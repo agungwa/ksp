@@ -106,10 +106,40 @@ lookup();
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simpanan</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
-                        <li><a href="<?=base_url()?>users">Set Up</a></li>
-                        <li><a href="<?=base_url()?>user_group">Anggota</a></li>
-                        <li><a href="<?=base_url()?>user_access">Setoran</a></li>
-                        <li><a href="<?=base_url()?>master_access">Data</a></li>
+                    <li>
+                            <a href="#" id="damian">Set Up <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Anggota">Anggota</a>
+                                </li>
+                                <li>
+                                    <a href="#">Informasi Anggota</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Simpananwajib">Tarik Simpanan Wajib</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Settingsimpanan">Simpanan</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="<?=base_url()?>Setoransimpanan">Setoran</a></li>
+                        <li><a href="<?=base_url()?>Mutasisimpanan">Mutasi</a></li>
+                        <li><a href="<?=base_url()?>Penarikansimpanan">Tarik Simpanan</a></li>
+                        <li>
+                            <a href="#" id="damian">Data<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="#">Data Jatuh Tempo</a>
+                                </li>
+                                <li>
+                                    <a href="#">Data Rekening</a>
+                                </li>
+                                <li>
+                                    <a href="#">Neraca / Sirkulasi</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li class="">
