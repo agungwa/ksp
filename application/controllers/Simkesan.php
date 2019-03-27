@@ -1,0 +1,244 @@
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Simkesan extends CI_Controller
+{
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Simkesan_model');
+        $this->load->library('form_validation');
+    }
+
+    public function index()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'simkesan/index.html';
+            $config['first_url'] = base_url() . 'simkesan/index.html';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Simkesan_model->total_rows($q);
+        $simkesan = $this->Simkesan_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'simkesan_data' => $simkesan,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+            'content' => 'backend/simkesan/simkesan_list',
+        );
+        $this->load->view(layout(), $data);
+    }
+
+    public function lookup()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        $idhtml = $this->input->get('idhtml');
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'simkesan/index.html';
+            $config['first_url'] = base_url() . 'simkesan/index.html';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Simkesan_model->total_rows($q);
+        $simkesan = $this->Simkesan_model->get_limit_data($config['per_page'], $start, $q);
+
+
+        $data = array(
+            'simkesan_data' => $simkesan,
+            'idhtml' => $idhtml,
+            'q' => $q,
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+            'content' => 'backend/simkesan/simkesan_lookup',
+        );
+        ob_start();
+        $this->load->view($data['content'], $data);
+        return ob_get_contents();
+        ob_end_clean();
+    }
+
+    public function read($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+		'sik_kode' => $row->sik_kode,
+		'ang_no' => $row->ang_no,
+		'kar_kode' => $row->kar_kode,
+		'psk_id' => $row->psk_id,
+		'wil_kode' => $row->wil_kode,
+		'sik_tglpendaftaran' => $row->sik_tglpendaftaran,
+		'sik_tglberakhir' => $row->sik_tglberakhir,
+		'sik_status' => $row->sik_status,
+		'sik_tgl' => $row->sik_tgl,
+		'sik_flag' => $row->sik_flag,
+		'sik_info' => $row->sik_info,'content' => 'backend/simkesan/simkesan_read',
+	    );
+            $this->load->view(
+            layout(), $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('simkesan'));
+        }
+    }
+
+    public function create() 
+    {
+        $data = array(
+            'button' => 'Create',
+            'action' => site_url('simkesan/create_action'),
+	    'sik_kode' => set_value('sik_kode'),
+	    'ang_no' => set_value('ang_no'),
+	    'kar_kode' => set_value('kar_kode'),
+	    'psk_id' => set_value('psk_id'),
+	    'wil_kode' => set_value('wil_kode'),
+	    'sik_tglpendaftaran' => set_value('sik_tglpendaftaran'),
+	    'sik_tglberakhir' => set_value('sik_tglberakhir'),
+	    'sik_status' => set_value('sik_status'),
+	    'sik_tgl' => set_value('sik_tgl'),
+	    'sik_flag' => set_value('sik_flag'),
+	    'sik_info' => set_value('sik_info'),
+	    'content' => 'backend/simkesan/simkesan_form',
+	);
+        $this->load->view(layout(), $data);
+    }
+    
+    public function create_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+        } else {
+            $data = array(
+		'ang_no' => $this->input->post('ang_no',TRUE),
+		'kar_kode' => $this->input->post('kar_kode',TRUE),
+		'psk_id' => $this->input->post('psk_id',TRUE),
+		'wil_kode' => $this->input->post('wil_kode',TRUE),
+		'sik_tglpendaftaran' => $this->input->post('sik_tglpendaftaran',TRUE),
+		'sik_tglberakhir' => $this->input->post('sik_tglberakhir',TRUE),
+		'sik_status' => $this->input->post('sik_status',TRUE),
+		'sik_tgl' => $this->input->post('sik_tgl',TRUE),
+		'sik_flag' => $this->input->post('sik_flag',TRUE),
+		'sik_info' => $this->input->post('sik_info',TRUE),
+	    );
+
+            $this->Simkesan_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('simkesan'));
+        }
+    }
+    
+    public function update($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('simkesan/update_action'),
+		'sik_kode' => set_value('sik_kode', $row->sik_kode),
+		'ang_no' => set_value('ang_no', $row->ang_no),
+		'kar_kode' => set_value('kar_kode', $row->kar_kode),
+		'psk_id' => set_value('psk_id', $row->psk_id),
+		'wil_kode' => set_value('wil_kode', $row->wil_kode),
+		'sik_tglpendaftaran' => set_value('sik_tglpendaftaran', $row->sik_tglpendaftaran),
+		'sik_tglberakhir' => set_value('sik_tglberakhir', $row->sik_tglberakhir),
+		'sik_status' => set_value('sik_status', $row->sik_status),
+		'sik_tgl' => set_value('sik_tgl', $row->sik_tgl),
+		'sik_flag' => set_value('sik_flag', $row->sik_flag),
+		'sik_info' => set_value('sik_info', $row->sik_info),
+	    'content' => 'backend/simkesan/simkesan_form',
+	    );
+            $this->load->view(layout(), $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('simkesan'));
+        }
+    }
+    
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('sik_kode', TRUE));
+        } else {
+            $data = array(
+		'ang_no' => $this->input->post('ang_no',TRUE),
+		'kar_kode' => $this->input->post('kar_kode',TRUE),
+		'psk_id' => $this->input->post('psk_id',TRUE),
+		'wil_kode' => $this->input->post('wil_kode',TRUE),
+		'sik_tglpendaftaran' => $this->input->post('sik_tglpendaftaran',TRUE),
+		'sik_tglberakhir' => $this->input->post('sik_tglberakhir',TRUE),
+		'sik_status' => $this->input->post('sik_status',TRUE),
+		'sik_tgl' => $this->input->post('sik_tgl',TRUE),
+		'sik_flag' => $this->input->post('sik_flag',TRUE),
+		'sik_info' => $this->input->post('sik_info',TRUE),
+	    );
+
+            $this->Simkesan_model->update($this->input->post('sik_kode', TRUE), $data);
+            $this->session->set_flashdata('message', 'Update Record Success');
+            redirect(site_url('simkesan'));
+        }
+    }
+    
+    public function delete($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+
+        if ($row) {
+            $this->Simkesan_model->delete($id);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('simkesan'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('simkesan'));
+        }
+    }
+
+    public function _rules() 
+    {
+	$this->form_validation->set_rules('ang_no', 'ang no', 'trim|required');
+	$this->form_validation->set_rules('kar_kode', 'kar kode', 'trim|required');
+	$this->form_validation->set_rules('psk_id', 'psk id', 'trim|required');
+	$this->form_validation->set_rules('wil_kode', 'wil kode', 'trim|required');
+	$this->form_validation->set_rules('sik_tglpendaftaran', 'sik tglpendaftaran', 'trim|required');
+	$this->form_validation->set_rules('sik_tglberakhir', 'sik tglberakhir', 'trim|required');
+	$this->form_validation->set_rules('sik_status', 'sik status', 'trim|required');
+	$this->form_validation->set_rules('sik_tgl', 'sik tgl', 'trim|required');
+	$this->form_validation->set_rules('sik_flag', 'sik flag', 'trim|required');
+	$this->form_validation->set_rules('sik_info', 'sik info', 'trim|required');
+
+	$this->form_validation->set_rules('sik_kode', 'sik_kode', 'trim');
+	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
+}
+
+/* End of file Simkesan.php */
+/* Location: ./application/controllers/Simkesan.php */
+/* Please DO NOT modify this information : */
+/* Generated by Harviacode Codeigniter CRUD Generator 2019-03-26 14:02:29 */
+/* http://harviacode.com */

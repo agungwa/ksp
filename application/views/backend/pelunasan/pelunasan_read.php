@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+    <div class="col-lg-12">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h2 style="margin-top:0px">Pelunasan Read</h2>
+            <div class="ibox-tools">
+            </div>
+        </div>
+        <div class="ibox-content">
+        
+        <table class="table">
+	    <tr><td>Jep Id</td><td><?php echo $jep_id; ?></td></tr>
+	    <tr><td>Pin Id</td><td><?php echo $pin_id; ?></td></tr>
+	    <tr><td>Pel Tgl</td><td><?php echo $pel_tgl; ?></td></tr>
+	    <tr><td>Pel Flag</td><td><?php echo $pel_flag; ?></td></tr>
+	    <tr><td>Pel Info</td><td><?php echo $pel_info; ?></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('pelunasan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	</table>
+            </div>
+        </div>
+    </div>
+    </div>
+    </body>
+</html>
