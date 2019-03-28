@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Jenissimpanan extends CI_Controller
+class Jenissimpanan extends MY_Base
 {
     function __construct()
     {

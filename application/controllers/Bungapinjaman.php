@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Bungapinjaman extends CI_Controller
+class Bungapinjaman extends MY_Base
 {
     function __construct()
     {

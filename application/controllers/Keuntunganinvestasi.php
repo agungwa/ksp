@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Keuntunganinvestasi extends CI_Controller
+class Keuntunganinvestasi extends MY_Base
 {
     function __construct()
     {

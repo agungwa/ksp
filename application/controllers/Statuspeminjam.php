@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Statuspeminjam extends CI_Controller
+class Statuspeminjam extends MY_Base
 {
     function __construct()
     {

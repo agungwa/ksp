@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Penjamin extends CI_Controller
+class Penjamin extends MY_Base
 {
     function __construct()
     {

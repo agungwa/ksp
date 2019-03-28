@@ -63,7 +63,7 @@ lookup();
                     </div>
                 </li>
                 <li><a href="<?=base_url()?>backend" ><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span><span class="label label-primary pull-right"></span></a></li>
-                
+               <!--  
                 <li>
                     <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
@@ -90,7 +90,7 @@ lookup();
                     </ul>
                 </li>
 
-                <li class="">
+               <li class="">
                     <?php if(is_allow('M_USER')): ?>
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Pengguna</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
@@ -100,10 +100,13 @@ lookup();
                         <li><a href="<?=base_url()?>user_access">User Access</a></li>
                         <li><a href="<?=base_url()?>master_access">Master Access</a></li>
                     </ul>
-                </li>
+                </li> -->
+
+                <!-- MENU SIMPANAN BERJANGKA -->
+                
                 <li class="">
                     <?php if(is_allow('M_USER')): ?>
-                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simpanan</span> <span class="fa arrow"></span></a>
+                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simpanan Berjangka</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
                     <li>
@@ -119,12 +122,22 @@ lookup();
                                     <a href="<?=base_url()?>Simpananwajib">Tarik Simpanan Wajib</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url()?>Settingsimpanan">Simpanan</a>
+                                    <a href="<?=base_url()?>Simpanan">Simpanan</a>
                                 </li>
                             </ul>
                         </li>
                         <li><a href="<?=base_url()?>Setoransimpanan">Setoran</a></li>
-                        <li><a href="<?=base_url()?>Mutasisimpanan">Mutasi</a></li>
+                        <li>
+                            <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Mutasisimpanan">Mutasi Simpanan</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li><a href="<?=base_url()?>Penarikansimpanan">Tarik Simpanan</a></li>
                         <li>
                             <a href="#" id="damian">Data<span class="fa arrow"></span></a>
@@ -142,12 +155,208 @@ lookup();
                         </li>
                     </ul>
                 </li>
+
+                <!-- MENU SIMKESAN -->
+
                 <li class="">
-                    <?php if(is_allow('M_LAPORAN')): ?>
-                    <a href="index.html"><i class="fa fa-list"></i> <span class="nav-label">Laporan</span> <span class="fa arrow"></span></a>
+                    <?php if(is_allow('M_USER')): ?>
+                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simkesan</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
-                        <li><a href="<?=site_url('backend')?>">Laporan kegiatan</a></li>
+                    <li>
+                            <a href="#" id="damian">Set Up <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Anggota">Anggota</a>
+                                </li>
+                                <li>
+                                    <a href="#">Informasi Anggota</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Simpananwajib">Tarik Simpanan Wajib</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Simkesan">Simkesan</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="<?=base_url()?>Setoransimkesan">Setoran</a></li>
+                        <li>
+                            <a href="#" id="damian">Klaim<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Klaimsimkesan">Klaim Rawat Inap</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Klaimsimkesan">Klaim Santunan Duka</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" id="damian">Penarikan<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Penarikansimkesan">Penarikan Jangka 5 Tahun</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Penarikansimkesan">Penarikan Jangka 10 Tahun</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Mutasisimkesan">Mutasi Simkesan</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" id="damian">Data<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="#">Terlambat Jatuh Tempo</a>
+                                </li>
+                                <li>
+                                    <a href="#">Rekening Simkesan Hangus</a>
+                                </li>
+                                <li>
+                                    <a href="#">Simkesan Lunas </a>
+                                </li>
+                                <li>
+                                    <a href="#">Simkesan Masa Berakhir</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Neraca / Sirkulasi</a></li>
+                    </ul>
+                </li>
+
+                <!-- MENU INVESTASI BERJANGKA -->
+                
+                <li class="">
+                    <?php if(is_allow('M_USER')): ?>
+                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Investasi Berjangka</span> <span class="fa arrow"></span></a>
+                <?php endif; ?>
+                    <ul class="nav nav-second-level">
+                    <li>
+                            <a href="#" id="damian">Set Up <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Anggota">Anggota</a>
+                                </li>
+                                <li>
+                                    <a href="#">Informasi Anggota</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Simpananwajib">Tarik Simpanan Wajib</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Investasiberjangka">Investasi Berjangka</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="<?=base_url()?>Penarikaninvestasiberjangka">Penarikan Jasa</a></li>
+                        <li><a href="<?=base_url()?>Tutupinvestasiberjangka">Penarikan Investasi Berjangka</a></li>                        
+                        <li>
+                            <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Mutasiberjangka">Mutasi Investasi</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" id="damian">Data<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="#">Data Investasi</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- MENU PINJAMAN -->
+
+                <li class="">
+                    <?php if(is_allow('M_USER')): ?>
+                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Pinjaman</span> <span class="fa arrow"></span></a>
+                <?php endif; ?>
+                    <ul class="nav nav-second-level">
+                    <li>
+                            <a href="#" id="damian">Set Up <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Anggota">Anggota</a>
+                                </li>
+                                <li>
+                                    <a href="#">Informasi Anggota</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Simpananwajib">Tarik Simpanan Wajib</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Pinjaman">Pengajuan Pinjaman</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Pinjaman">Persetujuan Pinjaman</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" id="damian">Angsuran<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Angsuran">Angsuran Awal</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Angsuran">Angsuaran >4 Bulan</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Penagihan</a></li>
+                        <li><a href="<?=base_url()?>Pelunasan">Pelunasan</a></li>
+                        <li><a href="#">Persentase</a></li>
+                        <li>
+                            <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Mutasipinjaman">Mutasi Simkesan</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" id="damian">Data / Laporan<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="#">Data Pinjaman</a>
+                                </li>
+                                <li>
+                                    <a href="#">Neraca / Sirkulasi</a>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                       
+                    </ul>
+                </li>
+
+                <li class="">
+                    <?php if(is_allow('M_LAPORAN')): ?>
+                    <a href="index.html"><i class="fa fa-list"></i> <span class="nav-label">Neraca</span> <span class="fa arrow"></span></a>
+                <?php endif; ?>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=site_url('backend')?>">Neraca Dashboard</a></li>
                     </ul>
                 </li>
                 <li class="">

@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Setoransimpanan extends CI_Controller
+class Setoransimpanan extends MY_Base
 {
     function __construct()
     {

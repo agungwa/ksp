@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Settingsimpanan extends CI_Controller
+class Settingsimpanan extends MY_Base
 {
     function __construct()
     {

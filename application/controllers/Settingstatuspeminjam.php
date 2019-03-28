@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Settingstatuspeminjam extends CI_Controller
+class Settingstatuspeminjam extends MY_Base
 {
     function __construct()
     {

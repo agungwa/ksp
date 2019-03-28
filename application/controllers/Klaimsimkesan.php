@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Klaimsimkesan extends CI_Controller
+class Klaimsimkesan extends MY_Base
 {
     function __construct()
     {
