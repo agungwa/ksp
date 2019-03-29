@@ -88,18 +88,6 @@ lookup();
                         <li>
                             <a href="#">Second Level Item</a></li>
                     </ul>
-                </li>
-
-               <li class="">
-                    <?php if(is_allow('M_USER')): ?>
-                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Pengguna</span> <span class="fa arrow"></span></a>
-                <?php endif; ?>
-                    <ul class="nav nav-second-level">
-                        <li><a href="<?=base_url()?>users">Users</a></li>
-                        <li><a href="<?=base_url()?>user_group">User Group</a></li>
-                        <li><a href="<?=base_url()?>user_access">User Access</a></li>
-                        <li><a href="<?=base_url()?>master_access">Master Access</a></li>
-                    </ul>
                 </li> -->
 
                 <!-- MENU SIMPANAN BERJANGKA -->
@@ -351,6 +339,7 @@ lookup();
                     </ul>
                 </li>
 
+                <!-- MENU NERACA -->
                 <li class="">
                     <?php if(is_allow('M_LAPORAN')): ?>
                     <a href="index.html"><i class="fa fa-list"></i> <span class="nav-label">Neraca</span> <span class="fa arrow"></span></a>
@@ -359,6 +348,21 @@ lookup();
                         <li><a href="<?=site_url('backend')?>">Neraca Dashboard</a></li>
                     </ul>
                 </li>
+
+                <!-- MENU USER MANAGEMENT -->
+               <li class="">
+                    <?php if(is_allow('M_USER')): ?>
+                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">MANAJEMEN USER</span> <span class="fa arrow"></span></a>
+                <?php endif; ?>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=base_url()?>users">Users</a></li>
+                        <li><a href="<?=base_url()?>user_group">User Group</a></li>
+                        <li><a href="<?=base_url()?>user_access">User Access</a></li>
+                        <li><a href="<?=base_url()?>master_access">Master Access</a></li>
+                    </ul>
+                </li>
+
+                <!-- MENU SISTEM UTIL -->
                 <li class="">
                     <?php if(is_allow('M_SISTEM')): ?>
                     <a href="index.html"><i class="fa fa-wrench"></i> <span class="nav-label">Sistem</span> <span class="fa arrow"></span></a>
