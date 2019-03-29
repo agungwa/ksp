@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Pinjaman extends CI_Controller
+class Pinjaman extends MY_Base
 {
     function __construct()
     {

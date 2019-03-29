@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Jasainvestasi extends CI_Controller
+class Jasainvestasi extends MY_Base
 {
     function __construct()
     {

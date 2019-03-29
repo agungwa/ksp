@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Settingkategoripeminjam extends CI_Controller
+class Settingkategoripeminjam extends MY_Base
 {
     function __construct()
     {

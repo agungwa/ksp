@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Simpanan extends CI_Controller
+class Simpanan extends MY_Base
 {
     function __construct()
     {

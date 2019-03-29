@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Tutupinvestasiberjangka extends CI_Controller
+class Tutupinvestasiberjangka extends MY_Base
 {
     function __construct()
     {

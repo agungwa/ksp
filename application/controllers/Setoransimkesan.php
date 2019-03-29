@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Setoransimkesan extends CI_Controller
+class Setoransimkesan extends MY_Base
 {
     function __construct()
     {

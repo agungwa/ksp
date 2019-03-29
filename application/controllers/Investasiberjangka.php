@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Investasiberjangka extends CI_Controller
+class Investasiberjangka extends MY_Base
 {
     function __construct()
     {

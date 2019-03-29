@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Plansimkesan extends CI_Controller
+class Plansimkesan extends MY_Base
 {
     function __construct()
     {

@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Pelunasan extends CI_Controller
+class Pelunasan extends MY_Base
 {
     function __construct()
     {

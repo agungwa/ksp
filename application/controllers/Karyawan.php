@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Karyawan extends CI_Controller
+class Karyawan extends MY_Base
 {
     function __construct()
     {

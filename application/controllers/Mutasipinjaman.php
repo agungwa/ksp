@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Mutasipinjaman extends CI_Controller
+class Mutasipinjaman extends MY_Base
 {
     function __construct()
     {

@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Angsuran extends CI_Controller
+class Angsuran extends MY_Base
 {
     function __construct()
     {

@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Anggota extends CI_Controller
+class Anggota extends MY_Base
 {
     function __construct()
     {
