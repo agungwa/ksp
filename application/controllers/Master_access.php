@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Master_access extends CI_Controller
+class Master_access extends MY_Base
 {
     function __construct()
     {
