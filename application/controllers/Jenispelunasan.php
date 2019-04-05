@@ -83,13 +83,11 @@ class Jenispelunasan extends MY_Base
         $row = $this->Jenispelunasan_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'jep_id' => $row->jep_id,
-		'jep_jenis' => $row->jep_jenis,
-		'jep_keterangan' => $row->jep_keterangan,
-		'jep_tgl' => $row->jep_tgl,
-		'jep_flag' => $row->jep_flag,
-		'jep_info' => $row->jep_info,'content' => 'backend/jenispelunasan/jenispelunasan_read',
-	    );
+    		'jep_id' => $row->jep_id,
+    		'jep_jenis' => $row->jep_jenis,
+    		'jep_keterangan' => $row->jep_keterangan,
+            'content' => 'backend/jenispelunasan/jenispelunasan_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -103,14 +101,11 @@ class Jenispelunasan extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('jenispelunasan/create_action'),
-	    'jep_id' => set_value('jep_id'),
-	    'jep_jenis' => set_value('jep_jenis'),
-	    'jep_keterangan' => set_value('jep_keterangan'),
-	    'jep_tgl' => set_value('jep_tgl'),
-	    'jep_flag' => set_value('jep_flag'),
-	    'jep_info' => set_value('jep_info'),
-	    'content' => 'backend/jenispelunasan/jenispelunasan_form',
-	);
+    	    'jep_id' => set_value('jep_id'),
+    	    'jep_jenis' => set_value('jep_jenis'),
+    	    'jep_keterangan' => set_value('jep_keterangan'),
+    	    'content' => 'backend/jenispelunasan/jenispelunasan_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -122,12 +117,12 @@ class Jenispelunasan extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'jep_jenis' => $this->input->post('jep_jenis',TRUE),
-		'jep_keterangan' => $this->input->post('jep_keterangan',TRUE),
-		'jep_tgl' => $this->input->post('jep_tgl',TRUE),
-		'jep_flag' => $this->input->post('jep_flag',TRUE),
-		'jep_info' => $this->input->post('jep_info',TRUE),
-	    );
+    		'jep_jenis' => $this->input->post('jep_jenis',TRUE),
+    		'jep_keterangan' => $this->input->post('jep_keterangan',TRUE),
+    		'jep_tgl' => $this->tgl,
+    		'jep_flag' => 0,
+    		'jep_info' => "",
+    	    );
 
             $this->Jenispelunasan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -143,14 +138,11 @@ class Jenispelunasan extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('jenispelunasan/update_action'),
-		'jep_id' => set_value('jep_id', $row->jep_id),
-		'jep_jenis' => set_value('jep_jenis', $row->jep_jenis),
-		'jep_keterangan' => set_value('jep_keterangan', $row->jep_keterangan),
-		'jep_tgl' => set_value('jep_tgl', $row->jep_tgl),
-		'jep_flag' => set_value('jep_flag', $row->jep_flag),
-		'jep_info' => set_value('jep_info', $row->jep_info),
-	    'content' => 'backend/jenispelunasan/jenispelunasan_form',
-	    );
+        		'jep_id' => set_value('jep_id', $row->jep_id),
+        		'jep_jenis' => set_value('jep_jenis', $row->jep_jenis),
+        		'jep_keterangan' => set_value('jep_keterangan', $row->jep_keterangan),
+        	    'content' => 'backend/jenispelunasan/jenispelunasan_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -166,12 +158,10 @@ class Jenispelunasan extends MY_Base
             $this->update($this->input->post('jep_id', TRUE));
         } else {
             $data = array(
-		'jep_jenis' => $this->input->post('jep_jenis',TRUE),
-		'jep_keterangan' => $this->input->post('jep_keterangan',TRUE),
-		'jep_tgl' => $this->input->post('jep_tgl',TRUE),
-		'jep_flag' => $this->input->post('jep_flag',TRUE),
-		'jep_info' => $this->input->post('jep_info',TRUE),
-	    );
+    		'jep_jenis' => $this->input->post('jep_jenis',TRUE),
+    		'jep_keterangan' => $this->input->post('jep_keterangan',TRUE),
+    		'jep_flag' => 1,
+    	    );
 
             $this->Jenispelunasan_model->update($this->input->post('jep_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -184,7 +174,11 @@ class Jenispelunasan extends MY_Base
         $row = $this->Jenispelunasan_model->get_by_id($id);
 
         if ($row) {
-            $this->Jenispelunasan_model->delete($id);
+             $data = array(
+            'jep_flag' => 2,
+            );
+
+            $this->Jenispelunasan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jenispelunasan'));
         } else {
@@ -197,9 +191,6 @@ class Jenispelunasan extends MY_Base
     {
 	$this->form_validation->set_rules('jep_jenis', 'jep jenis', 'trim|required');
 	$this->form_validation->set_rules('jep_keterangan', 'jep keterangan', 'trim|required');
-	$this->form_validation->set_rules('jep_tgl', 'jep tgl', 'trim|required');
-	$this->form_validation->set_rules('jep_flag', 'jep flag', 'trim|required');
-	$this->form_validation->set_rules('jep_info', 'jep info', 'trim|required');
 
 	$this->form_validation->set_rules('jep_id', 'jep_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

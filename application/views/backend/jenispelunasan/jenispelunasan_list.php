@@ -48,12 +48,10 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jep Jenis</th>
-		<th class="text-center">Jep Keterangan</th>
-		<th class="text-center">Jep Tgl</th>
-		<th class="text-center">Jep Flag</th>
-		<th class="text-center">Jep Info</th>
-		<th class="text-center">Action</th>
+        		<th class="text-center">Jep Jenis</th>
+        		<th class="text-center">Jep Keterangan</th>
+        		<th class="text-center">Jep Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -64,9 +62,7 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenispelunasan->jep_jenis ?></td>
 			<td><?php echo $jenispelunasan->jep_keterangan ?></td>
-			<td><?php echo $jenispelunasan->jep_tgl ?></td>
-			<td><?php echo $jenispelunasan->jep_flag ?></td>
-			<td><?php echo $jenispelunasan->jep_info ?></td>
+			<td><?php echo dateFormat($jenispelunasan->jep_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('jenispelunasan/read/'.$jenispelunasan->jep_id),'Read','class="text-navy"'); 

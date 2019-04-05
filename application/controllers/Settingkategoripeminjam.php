@@ -85,9 +85,7 @@ class Settingkategoripeminjam extends MY_Base
             $data = array(
 		'skp_id' => $row->skp_id,
 		'skp_kategori' => $row->skp_kategori,
-		'skp_tgl' => $row->skp_tgl,
-		'skp_flag' => $row->skp_flag,
-		'skp_info' => $row->skp_info,'content' => 'backend/settingkategoripeminjam/settingkategoripeminjam_read',
+        'content' => 'backend/settingkategoripeminjam/settingkategoripeminjam_read',
 	    );
             $this->load->view(
             layout(), $data);
@@ -104,9 +102,6 @@ class Settingkategoripeminjam extends MY_Base
             'action' => site_url('settingkategoripeminjam/create_action'),
 	    'skp_id' => set_value('skp_id'),
 	    'skp_kategori' => set_value('skp_kategori'),
-	    'skp_tgl' => set_value('skp_tgl'),
-	    'skp_flag' => set_value('skp_flag'),
-	    'skp_info' => set_value('skp_info'),
 	    'content' => 'backend/settingkategoripeminjam/settingkategoripeminjam_form',
 	);
         $this->load->view(layout(), $data);
@@ -121,9 +116,9 @@ class Settingkategoripeminjam extends MY_Base
         } else {
             $data = array(
 		'skp_kategori' => $this->input->post('skp_kategori',TRUE),
-		'skp_tgl' => $this->input->post('skp_tgl',TRUE),
-		'skp_flag' => $this->input->post('skp_flag',TRUE),
-		'skp_info' => $this->input->post('skp_info',TRUE),
+		'skp_tgl' => $this->tgl,
+		'skp_flag' => 0,
+		'skp_info' => "",
 	    );
 
             $this->Settingkategoripeminjam_model->insert($data);
@@ -142,9 +137,6 @@ class Settingkategoripeminjam extends MY_Base
                 'action' => site_url('settingkategoripeminjam/update_action'),
 		'skp_id' => set_value('skp_id', $row->skp_id),
 		'skp_kategori' => set_value('skp_kategori', $row->skp_kategori),
-		'skp_tgl' => set_value('skp_tgl', $row->skp_tgl),
-		'skp_flag' => set_value('skp_flag', $row->skp_flag),
-		'skp_info' => set_value('skp_info', $row->skp_info),
 	    'content' => 'backend/settingkategoripeminjam/settingkategoripeminjam_form',
 	    );
             $this->load->view(layout(), $data);
@@ -163,9 +155,7 @@ class Settingkategoripeminjam extends MY_Base
         } else {
             $data = array(
 		'skp_kategori' => $this->input->post('skp_kategori',TRUE),
-		'skp_tgl' => $this->input->post('skp_tgl',TRUE),
-		'skp_flag' => $this->input->post('skp_flag',TRUE),
-		'skp_info' => $this->input->post('skp_info',TRUE),
+		'skp_flag' => 1,
 	    );
 
             $this->Settingkategoripeminjam_model->update($this->input->post('skp_id', TRUE), $data);
@@ -179,7 +169,11 @@ class Settingkategoripeminjam extends MY_Base
         $row = $this->Settingkategoripeminjam_model->get_by_id($id);
 
         if ($row) {
-            $this->Settingkategoripeminjam_model->delete($id);
+            $data = array(
+                'skp_flag' => 2,
+                );
+
+            $this->Settingkategoripeminjam_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('settingkategoripeminjam'));
         } else {
@@ -191,9 +185,6 @@ class Settingkategoripeminjam extends MY_Base
     public function _rules() 
     {
 	$this->form_validation->set_rules('skp_kategori', 'skp kategori', 'trim|required');
-	$this->form_validation->set_rules('skp_tgl', 'skp tgl', 'trim|required');
-	$this->form_validation->set_rules('skp_flag', 'skp flag', 'trim|required');
-	$this->form_validation->set_rules('skp_info', 'skp info', 'trim|required');
 
 	$this->form_validation->set_rules('skp_id', 'skp_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

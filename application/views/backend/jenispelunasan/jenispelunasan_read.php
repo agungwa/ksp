@@ -16,9 +16,6 @@
         <table class="table">
 	    <tr><td>Jep Jenis</td><td><?php echo $jep_jenis; ?></td></tr>
 	    <tr><td>Jep Keterangan</td><td><?php echo $jep_keterangan; ?></td></tr>
-	    <tr><td>Jep Tgl</td><td><?php echo $jep_tgl; ?></td></tr>
-	    <tr><td>Jep Flag</td><td><?php echo $jep_flag; ?></td></tr>
-	    <tr><td>Jep Info</td><td><?php echo $jep_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('jenispelunasan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

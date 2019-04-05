@@ -51,8 +51,6 @@
 		<th class="text-center">Jej Jaminan</th>
 		<th class="text-center">Jej Keterangan</th>
 		<th class="text-center">Jej Tgl</th>
-		<th class="text-center">Jej Flag</th>
-		<th class="text-center">Jej Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -64,9 +62,7 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenisjaminan->jej_jaminan ?></td>
 			<td><?php echo $jenisjaminan->jej_keterangan ?></td>
-			<td><?php echo $jenisjaminan->jej_tgl ?></td>
-			<td><?php echo $jenisjaminan->jej_flag ?></td>
-			<td><?php echo $jenisjaminan->jej_info ?></td>
+			<td><?php echo dateFormat($jenisjaminan->jej_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('jenisjaminan/read/'.$jenisjaminan->jej_id),'Read','class="text-navy"'); 

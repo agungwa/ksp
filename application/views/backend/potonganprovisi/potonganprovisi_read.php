@@ -15,9 +15,6 @@
         
         <table class="table">
 	    <tr><td>Pop Potongan</td><td><?php echo $pop_potongan; ?></td></tr>
-	    <tr><td>Pop Tgl</td><td><?php echo $pop_tgl; ?></td></tr>
-	    <tr><td>Pop Flag</td><td><?php echo $pop_flag; ?></td></tr>
-	    <tr><td>Pop Info</td><td><?php echo $pop_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('potonganprovisi') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

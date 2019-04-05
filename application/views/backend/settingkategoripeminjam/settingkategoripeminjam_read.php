@@ -15,9 +15,6 @@
         
         <table class="table">
 	    <tr><td>Skp Kategori</td><td><?php echo $skp_kategori; ?></td></tr>
-	    <tr><td>Skp Tgl</td><td><?php echo $skp_tgl; ?></td></tr>
-	    <tr><td>Skp Flag</td><td><?php echo $skp_flag; ?></td></tr>
-	    <tr><td>Skp Info</td><td><?php echo $skp_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('settingkategoripeminjam') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

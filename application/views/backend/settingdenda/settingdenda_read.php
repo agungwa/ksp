@@ -14,12 +14,9 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Sed Hari</td><td><?php echo $sed_hari; ?></td></tr>
-	    <tr><td>Sed Denda</td><td><?php echo $sed_denda; ?></td></tr>
-	    <tr><td>Sed Tgl</td><td><?php echo $sed_tgl; ?></td></tr>
-	    <tr><td>Sed Flag</td><td><?php echo $sed_flag; ?></td></tr>
-	    <tr><td>Sed Info</td><td><?php echo $sed_info; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('settingdenda') ?>" class="btn btn-default">Cancel</a></td></tr>
+    	    <tr><td>Sed Hari</td><td><?php echo $sed_hari; ?></td></tr>
+    	    <tr><td>Sed Denda</td><td><?php echo $sed_denda; ?></td></tr>
+    	    <tr><td></td><td><a href="<?php echo site_url('settingdenda') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
         </div>

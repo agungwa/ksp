@@ -48,12 +48,10 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sed Hari</th>
-		<th class="text-center">Sed Denda</th>
-		<th class="text-center">Sed Tgl</th>
-		<th class="text-center">Sed Flag</th>
-		<th class="text-center">Sed Info</th>
-		<th class="text-center">Action</th>
+        		<th class="text-center">Sed Hari</th>
+        		<th class="text-center">Sed Denda</th>
+        		<th class="text-center">Sed Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -61,21 +59,19 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $settingdenda->sed_hari ?></td>
-			<td><?php echo $settingdenda->sed_denda ?></td>
-			<td><?php echo $settingdenda->sed_tgl ?></td>
-			<td><?php echo $settingdenda->sed_flag ?></td>
-			<td><?php echo $settingdenda->sed_info ?></td>
-			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('settingdenda/read/'.$settingdenda->sed_id),'Read','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('settingdenda/update/'.$settingdenda->sed_id),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('settingdenda/delete/'.$settingdenda->sed_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-				?>
-			</td>
+        			<td width="80px"><?php echo ++$start ?></td>
+        			<td><?php echo $settingdenda->sed_hari ?></td>
+        			<td><?php echo $settingdenda->sed_denda ?></td>
+        			<td><?php echo dateFormat($settingdenda->sed_tgl) ?></td>
+        			<td style="text-align:center" width="200px">
+        				<?php 
+        				echo anchor(site_url('settingdenda/read/'.$settingdenda->sed_id),'Read','class="text-navy"'); 
+        				echo ' | '; 
+        				echo anchor(site_url('settingdenda/update/'.$settingdenda->sed_id),'Update','class="text-navy"'); 
+        				echo ' | '; 
+        				echo anchor(site_url('settingdenda/delete/'.$settingdenda->sed_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+        				?>
+        			</td>
 		</tr>
                 
                 <?php

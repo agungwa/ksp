@@ -83,13 +83,11 @@ class Settingdenda extends MY_Base
         $row = $this->Settingdenda_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'sed_id' => $row->sed_id,
-		'sed_hari' => $row->sed_hari,
-		'sed_denda' => $row->sed_denda,
-		'sed_tgl' => $row->sed_tgl,
-		'sed_flag' => $row->sed_flag,
-		'sed_info' => $row->sed_info,'content' => 'backend/settingdenda/settingdenda_read',
-	    );
+    		'sed_id' => $row->sed_id,
+    		'sed_hari' => $row->sed_hari,
+    		'sed_denda' => $row->sed_denda,
+            'content' => 'backend/settingdenda/settingdenda_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -103,14 +101,11 @@ class Settingdenda extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('settingdenda/create_action'),
-	    'sed_id' => set_value('sed_id'),
-	    'sed_hari' => set_value('sed_hari'),
-	    'sed_denda' => set_value('sed_denda'),
-	    'sed_tgl' => set_value('sed_tgl'),
-	    'sed_flag' => set_value('sed_flag'),
-	    'sed_info' => set_value('sed_info'),
-	    'content' => 'backend/settingdenda/settingdenda_form',
-	);
+    	    'sed_id' => set_value('sed_id'),
+    	    'sed_hari' => set_value('sed_hari'),
+    	    'sed_denda' => set_value('sed_denda'),
+    	    'content' => 'backend/settingdenda/settingdenda_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -122,12 +117,12 @@ class Settingdenda extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'sed_hari' => $this->input->post('sed_hari',TRUE),
-		'sed_denda' => $this->input->post('sed_denda',TRUE),
-		'sed_tgl' => $this->input->post('sed_tgl',TRUE),
-		'sed_flag' => $this->input->post('sed_flag',TRUE),
-		'sed_info' => $this->input->post('sed_info',TRUE),
-	    );
+    		'sed_hari' => $this->input->post('sed_hari',TRUE),
+    		'sed_denda' => $this->input->post('sed_denda',TRUE),
+    		'sed_tgl' => $this->tgl,
+    		'sed_flag' => 0,
+    		'sed_info' => "",
+    	    );
 
             $this->Settingdenda_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -143,14 +138,11 @@ class Settingdenda extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('settingdenda/update_action'),
-		'sed_id' => set_value('sed_id', $row->sed_id),
-		'sed_hari' => set_value('sed_hari', $row->sed_hari),
-		'sed_denda' => set_value('sed_denda', $row->sed_denda),
-		'sed_tgl' => set_value('sed_tgl', $row->sed_tgl),
-		'sed_flag' => set_value('sed_flag', $row->sed_flag),
-		'sed_info' => set_value('sed_info', $row->sed_info),
-	    'content' => 'backend/settingdenda/settingdenda_form',
-	    );
+        		'sed_id' => set_value('sed_id', $row->sed_id),
+        		'sed_hari' => set_value('sed_hari', $row->sed_hari),
+        		'sed_denda' => set_value('sed_denda', $row->sed_denda),
+        	    'content' => 'backend/settingdenda/settingdenda_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -166,12 +158,10 @@ class Settingdenda extends MY_Base
             $this->update($this->input->post('sed_id', TRUE));
         } else {
             $data = array(
-		'sed_hari' => $this->input->post('sed_hari',TRUE),
-		'sed_denda' => $this->input->post('sed_denda',TRUE),
-		'sed_tgl' => $this->input->post('sed_tgl',TRUE),
-		'sed_flag' => $this->input->post('sed_flag',TRUE),
-		'sed_info' => $this->input->post('sed_info',TRUE),
-	    );
+    		'sed_hari' => $this->input->post('sed_hari',TRUE),
+    		'sed_denda' => $this->input->post('sed_denda',TRUE),
+    		'sed_flag' => 1,
+    	    );
 
             $this->Settingdenda_model->update($this->input->post('sed_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -184,7 +174,11 @@ class Settingdenda extends MY_Base
         $row = $this->Settingdenda_model->get_by_id($id);
 
         if ($row) {
-            $this->Settingdenda_model->delete($id);
+            $data = array(
+            'sed_flag' => 2,
+            );
+
+            $this->Settingdenda_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('settingdenda'));
         } else {
@@ -197,9 +191,6 @@ class Settingdenda extends MY_Base
     {
 	$this->form_validation->set_rules('sed_hari', 'sed hari', 'trim|required');
 	$this->form_validation->set_rules('sed_denda', 'sed denda', 'trim|required');
-	$this->form_validation->set_rules('sed_tgl', 'sed tgl', 'trim|required');
-	$this->form_validation->set_rules('sed_flag', 'sed flag', 'trim|required');
-	$this->form_validation->set_rules('sed_info', 'sed info', 'trim|required');
 
 	$this->form_validation->set_rules('sed_id', 'sed_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
