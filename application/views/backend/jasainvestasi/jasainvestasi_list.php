@@ -50,9 +50,6 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Jiv Jasa</th>
 		<th class="text-center">Jiv Keterangan</th>
-		<th class="text-center">Jiv Tgl</th>
-		<th class="text-center">Jiv Flag</th>
-		<th class="text-center">Jiv Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -64,9 +61,6 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jasainvestasi->jiv_jasa ?></td>
 			<td><?php echo $jasainvestasi->jiv_keterangan ?></td>
-			<td><?php echo $jasainvestasi->jiv_tgl ?></td>
-			<td><?php echo $jasainvestasi->jiv_flag ?></td>
-			<td><?php echo $jasainvestasi->jiv_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('jasainvestasi/read/'.$jasainvestasi->jiv_id),'Read','class="text-navy"'); 

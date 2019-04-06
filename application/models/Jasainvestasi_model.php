@@ -18,6 +18,7 @@ class Jasainvestasi_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('jiv_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,26 +32,17 @@ class Jasainvestasi_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('jiv_id', $q);
-	$this->db->or_like('jiv_jasa', $q);
-	$this->db->or_like('jiv_keterangan', $q);
-	$this->db->or_like('jiv_tgl', $q);
-	$this->db->or_like('jiv_flag', $q);
-	$this->db->or_like('jiv_info', $q);
+    $where = "jiv_jasa LIKE '%$q%' ESCAPE '!' AND 'jiv_flag < 2'";
+    $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
-        $this->db->order_by($this->id, $this->order);
-        $this->db->like('jiv_id', $q);
-	$this->db->or_like('jiv_jasa', $q);
-	$this->db->or_like('jiv_keterangan', $q);
-	$this->db->or_like('jiv_tgl', $q);
-	$this->db->or_like('jiv_flag', $q);
-	$this->db->or_like('jiv_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "jiv_jasa LIKE '%$q%' ESCAPE '!' AND 'jiv_flag < 2'";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

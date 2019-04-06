@@ -50,9 +50,6 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Biv Bunga</th>
 		<th class="text-center">Biv Keterangan</th>
-		<th class="text-center">Biv Tgl</th>
-		<th class="text-center">Biv Flag</th>
-		<th class="text-center">Biv Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -64,9 +61,6 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $bungainvestasi->biv_bunga ?></td>
 			<td><?php echo $bungainvestasi->biv_keterangan ?></td>
-			<td><?php echo $bungainvestasi->biv_tgl ?></td>
-			<td><?php echo $bungainvestasi->biv_flag ?></td>
-			<td><?php echo $bungainvestasi->biv_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('bungainvestasi/read/'.$bungainvestasi->biv_id),'Read','class="text-navy"'); 

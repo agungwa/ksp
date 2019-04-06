@@ -16,9 +16,6 @@
         <table class="table">
 	    <tr><td>Jiv Jasa</td><td><?php echo $jiv_jasa; ?></td></tr>
 	    <tr><td>Jiv Keterangan</td><td><?php echo $jiv_keterangan; ?></td></tr>
-	    <tr><td>Jiv Tgl</td><td><?php echo $jiv_tgl; ?></td></tr>
-	    <tr><td>Jiv Flag</td><td><?php echo $jiv_flag; ?></td></tr>
-	    <tr><td>Jiv Info</td><td><?php echo $jiv_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('jasainvestasi') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

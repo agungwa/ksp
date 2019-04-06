@@ -106,9 +106,6 @@ class Bungainvestasi extends MY_Base
 	    'biv_id' => set_value('biv_id'),
 	    'biv_bunga' => set_value('biv_bunga'),
 	    'biv_keterangan' => set_value('biv_keterangan'),
-	    'biv_tgl' => set_value('biv_tgl'),
-	    'biv_flag' => set_value('biv_flag'),
-	    'biv_info' => set_value('biv_info'),
 	    'content' => 'backend/bungainvestasi/bungainvestasi_form',
 	);
         $this->load->view(layout(), $data);
@@ -124,9 +121,9 @@ class Bungainvestasi extends MY_Base
             $data = array(
 		'biv_bunga' => $this->input->post('biv_bunga',TRUE),
 		'biv_keterangan' => $this->input->post('biv_keterangan',TRUE),
-		'biv_tgl' => $this->input->post('biv_tgl',TRUE),
-		'biv_flag' => $this->input->post('biv_flag',TRUE),
-		'biv_info' => $this->input->post('biv_info',TRUE),
+		'biv_tgl' => $this->tgl,
+		'biv_flag' => 0,
+		'biv_info' => "",
 	    );
 
             $this->Bungainvestasi_model->insert($data);
@@ -146,9 +143,6 @@ class Bungainvestasi extends MY_Base
 		'biv_id' => set_value('biv_id', $row->biv_id),
 		'biv_bunga' => set_value('biv_bunga', $row->biv_bunga),
 		'biv_keterangan' => set_value('biv_keterangan', $row->biv_keterangan),
-		'biv_tgl' => set_value('biv_tgl', $row->biv_tgl),
-		'biv_flag' => set_value('biv_flag', $row->biv_flag),
-		'biv_info' => set_value('biv_info', $row->biv_info),
 	    'content' => 'backend/bungainvestasi/bungainvestasi_form',
 	    );
             $this->load->view(layout(), $data);
@@ -168,9 +162,7 @@ class Bungainvestasi extends MY_Base
             $data = array(
 		'biv_bunga' => $this->input->post('biv_bunga',TRUE),
 		'biv_keterangan' => $this->input->post('biv_keterangan',TRUE),
-		'biv_tgl' => $this->input->post('biv_tgl',TRUE),
-		'biv_flag' => $this->input->post('biv_flag',TRUE),
-		'biv_info' => $this->input->post('biv_info',TRUE),
+		'biv_flag' => 1,
 	    );
 
             $this->Bungainvestasi_model->update($this->input->post('biv_id', TRUE), $data);
@@ -184,6 +176,10 @@ class Bungainvestasi extends MY_Base
         $row = $this->Bungainvestasi_model->get_by_id($id);
 
         if ($row) {
+            $data = array (
+                'biv_flag' => 2,
+            );
+            
             $this->Bungainvestasi_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('bungainvestasi'));

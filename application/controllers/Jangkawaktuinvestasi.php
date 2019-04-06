@@ -106,9 +106,6 @@ class Jangkawaktuinvestasi extends MY_Base
 	    'jwi_id' => set_value('jwi_id'),
 	    'jwi_jangkawaktu' => set_value('jwi_jangkawaktu'),
 	    'jwi_keterangan' => set_value('jwi_keterangan'),
-	    'jwi_tgl' => set_value('jwi_tgl'),
-	    'jwi_flag' => set_value('jwi_flag'),
-	    'jwi_info' => set_value('jwi_info'),
 	    'content' => 'backend/jangkawaktuinvestasi/jangkawaktuinvestasi_form',
 	);
         $this->load->view(layout(), $data);
@@ -124,9 +121,9 @@ class Jangkawaktuinvestasi extends MY_Base
             $data = array(
 		'jwi_jangkawaktu' => $this->input->post('jwi_jangkawaktu',TRUE),
 		'jwi_keterangan' => $this->input->post('jwi_keterangan',TRUE),
-		'jwi_tgl' => $this->input->post('jwi_tgl',TRUE),
-		'jwi_flag' => $this->input->post('jwi_flag',TRUE),
-		'jwi_info' => $this->input->post('jwi_info',TRUE),
+		'jwi_tgl' => $this->tgl,
+		'jwi_flag' => 0,
+		'jwi_info' => "",
 	    );
 
             $this->Jangkawaktuinvestasi_model->insert($data);
@@ -146,9 +143,6 @@ class Jangkawaktuinvestasi extends MY_Base
 		'jwi_id' => set_value('jwi_id', $row->jwi_id),
 		'jwi_jangkawaktu' => set_value('jwi_jangkawaktu', $row->jwi_jangkawaktu),
 		'jwi_keterangan' => set_value('jwi_keterangan', $row->jwi_keterangan),
-		'jwi_tgl' => set_value('jwi_tgl', $row->jwi_tgl),
-		'jwi_flag' => set_value('jwi_flag', $row->jwi_flag),
-		'jwi_info' => set_value('jwi_info', $row->jwi_info),
 	    'content' => 'backend/jangkawaktuinvestasi/jangkawaktuinvestasi_form',
 	    );
             $this->load->view(layout(), $data);
@@ -168,9 +162,7 @@ class Jangkawaktuinvestasi extends MY_Base
             $data = array(
 		'jwi_jangkawaktu' => $this->input->post('jwi_jangkawaktu',TRUE),
 		'jwi_keterangan' => $this->input->post('jwi_keterangan',TRUE),
-		'jwi_tgl' => $this->input->post('jwi_tgl',TRUE),
-		'jwi_flag' => $this->input->post('jwi_flag',TRUE),
-		'jwi_info' => $this->input->post('jwi_info',TRUE),
+		'jwi_flag' => 1,
 	    );
 
             $this->Jangkawaktuinvestasi_model->update($this->input->post('jwi_id', TRUE), $data);
@@ -184,6 +176,9 @@ class Jangkawaktuinvestasi extends MY_Base
         $row = $this->Jangkawaktuinvestasi_model->get_by_id($id);
 
         if ($row) {
+            $data = array (
+                'jwi_flag' => 2,
+            );
             $this->Jangkawaktuinvestasi_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jangkawaktuinvestasi'));
@@ -197,9 +192,6 @@ class Jangkawaktuinvestasi extends MY_Base
     {
 	$this->form_validation->set_rules('jwi_jangkawaktu', 'jwi jangkawaktu', 'trim|required');
 	$this->form_validation->set_rules('jwi_keterangan', 'jwi keterangan', 'trim|required');
-	$this->form_validation->set_rules('jwi_tgl', 'jwi tgl', 'trim|required');
-	$this->form_validation->set_rules('jwi_flag', 'jwi flag', 'trim|required');
-	$this->form_validation->set_rules('jwi_info', 'jwi info', 'trim|required');
 
 	$this->form_validation->set_rules('jwi_id', 'jwi_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

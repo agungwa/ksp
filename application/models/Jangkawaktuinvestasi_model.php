@@ -18,6 +18,7 @@ class Jangkawaktuinvestasi_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('jwi_fla<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,26 +32,17 @@ class Jangkawaktuinvestasi_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('jwi_id', $q);
-	$this->db->or_like('jwi_jangkawaktu', $q);
-	$this->db->or_like('jwi_keterangan', $q);
-	$this->db->or_like('jwi_tgl', $q);
-	$this->db->or_like('jwi_flag', $q);
-	$this->db->or_like('jwi_info', $q);
+    $where = "jwi_jangkawaktu LIKE '%$q' ESCAPE '!' AND 'jwi_flag < 2'";
+    $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
-        $this->db->order_by($this->id, $this->order);
-        $this->db->like('jwi_id', $q);
-	$this->db->or_like('jwi_jangkawaktu', $q);
-	$this->db->or_like('jwi_keterangan', $q);
-	$this->db->or_like('jwi_tgl', $q);
-	$this->db->or_like('jwi_flag', $q);
-	$this->db->or_like('jwi_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "jwi_jangkawaktu LIKE '%$q' ESCAPE '!' AND 'jwi_flag < 2'";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

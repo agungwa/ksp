@@ -50,9 +50,6 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Jwi Jangkawaktu</th>
 		<th class="text-center">Jwi Keterangan</th>
-		<th class="text-center">Jwi Tgl</th>
-		<th class="text-center">Jwi Flag</th>
-		<th class="text-center">Jwi Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -64,9 +61,6 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jangkawaktuinvestasi->jwi_jangkawaktu ?></td>
 			<td><?php echo $jangkawaktuinvestasi->jwi_keterangan ?></td>
-			<td><?php echo $jangkawaktuinvestasi->jwi_tgl ?></td>
-			<td><?php echo $jangkawaktuinvestasi->jwi_flag ?></td>
-			<td><?php echo $jangkawaktuinvestasi->jwi_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('jangkawaktuinvestasi/read/'.$jangkawaktuinvestasi->jwi_id),'Read','class="text-navy"'); 

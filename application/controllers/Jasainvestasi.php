@@ -106,9 +106,6 @@ class Jasainvestasi extends MY_Base
 	    'jiv_id' => set_value('jiv_id'),
 	    'jiv_jasa' => set_value('jiv_jasa'),
 	    'jiv_keterangan' => set_value('jiv_keterangan'),
-	    'jiv_tgl' => set_value('jiv_tgl'),
-	    'jiv_flag' => set_value('jiv_flag'),
-	    'jiv_info' => set_value('jiv_info'),
 	    'content' => 'backend/jasainvestasi/jasainvestasi_form',
 	);
         $this->load->view(layout(), $data);
@@ -124,9 +121,9 @@ class Jasainvestasi extends MY_Base
             $data = array(
 		'jiv_jasa' => $this->input->post('jiv_jasa',TRUE),
 		'jiv_keterangan' => $this->input->post('jiv_keterangan',TRUE),
-		'jiv_tgl' => $this->input->post('jiv_tgl',TRUE),
-		'jiv_flag' => $this->input->post('jiv_flag',TRUE),
-		'jiv_info' => $this->input->post('jiv_info',TRUE),
+		'jiv_tgl' => $this->tgl,
+		'jiv_flag' => 0,
+		'jiv_info' => "",
 	    );
 
             $this->Jasainvestasi_model->insert($data);
@@ -146,9 +143,6 @@ class Jasainvestasi extends MY_Base
 		'jiv_id' => set_value('jiv_id', $row->jiv_id),
 		'jiv_jasa' => set_value('jiv_jasa', $row->jiv_jasa),
 		'jiv_keterangan' => set_value('jiv_keterangan', $row->jiv_keterangan),
-		'jiv_tgl' => set_value('jiv_tgl', $row->jiv_tgl),
-		'jiv_flag' => set_value('jiv_flag', $row->jiv_flag),
-		'jiv_info' => set_value('jiv_info', $row->jiv_info),
 	    'content' => 'backend/jasainvestasi/jasainvestasi_form',
 	    );
             $this->load->view(layout(), $data);
@@ -168,9 +162,7 @@ class Jasainvestasi extends MY_Base
             $data = array(
 		'jiv_jasa' => $this->input->post('jiv_jasa',TRUE),
 		'jiv_keterangan' => $this->input->post('jiv_keterangan',TRUE),
-		'jiv_tgl' => $this->input->post('jiv_tgl',TRUE),
-		'jiv_flag' => $this->input->post('jiv_flag',TRUE),
-		'jiv_info' => $this->input->post('jiv_info',TRUE),
+		'jiv_flag' => 1,
 	    );
 
             $this->Jasainvestasi_model->update($this->input->post('jiv_id', TRUE), $data);
@@ -184,6 +176,10 @@ class Jasainvestasi extends MY_Base
         $row = $this->Jasainvestasi_model->get_by_id($id);
 
         if ($row) {
+            $data = array (
+                'jiv_flag' => 2,
+            );
+            
             $this->Jasainvestasi_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jasainvestasi'));

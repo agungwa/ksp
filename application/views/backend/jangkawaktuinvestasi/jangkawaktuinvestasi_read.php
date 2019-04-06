@@ -16,9 +16,6 @@
         <table class="table">
 	    <tr><td>Jwi Jangkawaktu</td><td><?php echo $jwi_jangkawaktu; ?></td></tr>
 	    <tr><td>Jwi Keterangan</td><td><?php echo $jwi_keterangan; ?></td></tr>
-	    <tr><td>Jwi Tgl</td><td><?php echo $jwi_tgl; ?></td></tr>
-	    <tr><td>Jwi Flag</td><td><?php echo $jwi_flag; ?></td></tr>
-	    <tr><td>Jwi Info</td><td><?php echo $jwi_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('jangkawaktuinvestasi') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
