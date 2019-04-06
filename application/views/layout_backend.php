@@ -98,6 +98,20 @@ lookup();
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
                     <li>
+                            <a href="#" id="damian">Utilitas Simpanan <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Jenissetoran">Jenis Setoran</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Jenissimpanan">Jenis Simpanan</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Bungasimpanan">Bunga Simpanan</a>
+                                </li>
+                            </ul>
+                        </li>
+                    <li>
                             <a href="#" id="damian">Set Up <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
@@ -230,6 +244,20 @@ lookup();
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Investasi Berjangka</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
+                    <li>
+                            <a href="#" id="damian">Utilitas Investasi <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Jenissetoran">Jangka Waktu</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Jenissimpanan">Jasa Investasi</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Bungasimpanan">Bunga Investasi</a>
+                                </li>
+                            </ul>
+                        </li>
                     <li>
                             <a href="#" id="damian">Set Up <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">

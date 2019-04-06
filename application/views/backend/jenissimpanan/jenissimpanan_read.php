@@ -16,9 +16,6 @@
         <table class="table">
 	    <tr><td>Jsi Simpanan</td><td><?php echo $jsi_simpanan; ?></td></tr>
 	    <tr><td>Jsi Keterangan</td><td><?php echo $jsi_keterangan; ?></td></tr>
-	    <tr><td>Jsi Tgl</td><td><?php echo $jsi_tgl; ?></td></tr>
-	    <tr><td>Jsi Flag</td><td><?php echo $jsi_flag; ?></td></tr>
-	    <tr><td>Jsi Info</td><td><?php echo $jsi_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('jenissimpanan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
