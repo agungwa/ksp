@@ -17,9 +17,6 @@
 	    <tr><td>Psk Plan</td><td><?php echo $psk_plan; ?></td></tr>
 	    <tr><td>Psk Setoran</td><td><?php echo $psk_setoran; ?></td></tr>
 	    <tr><td>Psk Keterangan</td><td><?php echo $psk_keterangan; ?></td></tr>
-	    <tr><td>Psk Tgl</td><td><?php echo $psk_tgl; ?></td></tr>
-	    <tr><td>Psk Flag</td><td><?php echo $psk_flag; ?></td></tr>
-	    <tr><td>Psk Info</td><td><?php echo $psk_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('plansimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

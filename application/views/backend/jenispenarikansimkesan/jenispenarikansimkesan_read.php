@@ -17,9 +17,6 @@
 	    <tr><td>Jps Jenis</td><td><?php echo $jps_jenis; ?></td></tr>
 	    <tr><td>Jps Administrasi</td><td><?php echo $jps_administrasi; ?></td></tr>
 	    <tr><td>Jps Persenpenarikan</td><td><?php echo $jps_persenpenarikan; ?></td></tr>
-	    <tr><td>Jps Tgl</td><td><?php echo $jps_tgl; ?></td></tr>
-	    <tr><td>Jps Flag</td><td><?php echo $jps_flag; ?></td></tr>
-	    <tr><td>Jps Info</td><td><?php echo $jps_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('jenispenarikansimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
