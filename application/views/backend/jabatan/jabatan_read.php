@@ -14,11 +14,9 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Jab Nama</td><td><?php echo $jab_nama; ?></td></tr>
-	    <tr><td>Jab Tgl</td><td><?php echo $jab_tgl; ?></td></tr>
-	    <tr><td>Jab Flag</td><td><?php echo $jab_flag; ?></td></tr>
-	    <tr><td>Jab Info</td><td><?php echo $jab_info; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('jabatan') ?>" class="btn btn-default">Cancel</a></td></tr>
+            <tr><td>Jab Kode</td><td><?php echo $jab_kode; ?></td></tr>
+    	    <tr><td>Jab Nama</td><td><?php echo $jab_nama; ?></td></tr>
+    	    <tr><td></td><td><a href="<?php echo site_url('jabatan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
         </div>

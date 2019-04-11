@@ -395,6 +395,18 @@ lookup();
                     </ul>
                 </li>
 
+                <!-- MENU KARYAWAN -->
+               <li class="">
+                    <?php if(is_allow('M_USER')): ?>
+                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">KARYAWAN</span> <span class="fa arrow"></span></a>
+                <?php endif; ?>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=base_url()?>jabatan">Jabatan</a></li>
+                        <li><a href="<?=base_url()?>wilayah">Wilayah</a></li>
+                        <li><a href="<?=base_url()?>karyawan">Karyawan</a></li>
+                    </ul>
+                </li>
+
                 <!-- MENU USER MANAGEMENT -->
                <li class="">
                     <?php if(is_allow('M_USER')): ?>

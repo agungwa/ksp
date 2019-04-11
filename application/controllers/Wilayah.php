@@ -101,14 +101,11 @@ class Wilayah extends MY_Base
     {
         $data = array(
             'button' => 'Create',
-            'action' => site_url('wilayah/create_action'),
-	    'wil_kode' => set_value('wil_kode'),
-	    'wil_nama' => set_value('wil_nama'),
-	    'wil_tgl' => set_value('wil_tgl'),
-	    'wil_flag' => set_value('wil_flag'),
-	    'wil_info' => set_value('wil_info'),
-	    'content' => 'backend/wilayah/wilayah_form',
-	);
+                'action' => site_url('wilayah/create_action'),
+        	    'wil_kode' => set_value('wil_kode'),
+        	    'wil_nama' => set_value('wil_nama'),
+        	    'content' => 'backend/wilayah/wilayah_form',
+        	);
         $this->load->view(layout(), $data);
     }
     
@@ -120,11 +117,12 @@ class Wilayah extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'wil_nama' => $this->input->post('wil_nama',TRUE),
-		'wil_tgl' => $this->input->post('wil_tgl',TRUE),
-		'wil_flag' => $this->input->post('wil_flag',TRUE),
-		'wil_info' => $this->input->post('wil_info',TRUE),
-	    );
+            'wil_kode' => $this->input->post('wil_kode',TRUE),
+    		'wil_nama' => $this->input->post('wil_nama',TRUE),
+    		'wil_tgl' => $this->tgl,
+    		'wil_flag' => 0,
+    		'wil_info' => "",
+    	    );
 
             $this->Wilayah_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -140,13 +138,10 @@ class Wilayah extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('wilayah/update_action'),
-		'wil_kode' => set_value('wil_kode', $row->wil_kode),
-		'wil_nama' => set_value('wil_nama', $row->wil_nama),
-		'wil_tgl' => set_value('wil_tgl', $row->wil_tgl),
-		'wil_flag' => set_value('wil_flag', $row->wil_flag),
-		'wil_info' => set_value('wil_info', $row->wil_info),
-	    'content' => 'backend/wilayah/wilayah_form',
-	    );
+        		'wil_kode' => set_value('wil_kode', $row->wil_kode),
+        		'wil_nama' => set_value('wil_nama', $row->wil_nama),
+        	    'content' => 'backend/wilayah/wilayah_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -162,11 +157,9 @@ class Wilayah extends MY_Base
             $this->update($this->input->post('wil_kode', TRUE));
         } else {
             $data = array(
-		'wil_nama' => $this->input->post('wil_nama',TRUE),
-		'wil_tgl' => $this->input->post('wil_tgl',TRUE),
-		'wil_flag' => $this->input->post('wil_flag',TRUE),
-		'wil_info' => $this->input->post('wil_info',TRUE),
-	    );
+    		'wil_nama' => $this->input->post('wil_nama',TRUE),
+    		'wil_flag' => 1,
+    	    );
 
             $this->Wilayah_model->update($this->input->post('wil_kode', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -179,7 +172,11 @@ class Wilayah extends MY_Base
         $row = $this->Wilayah_model->get_by_id($id);
 
         if ($row) {
-            $this->Wilayah_model->delete($id);
+            $data = array(
+            'wil_flag' => 2,
+            );
+
+            $this->Wilayah_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('wilayah'));
         } else {
@@ -191,9 +188,6 @@ class Wilayah extends MY_Base
     public function _rules() 
     {
 	$this->form_validation->set_rules('wil_nama', 'wil nama', 'trim|required');
-	$this->form_validation->set_rules('wil_tgl', 'wil tgl', 'trim|required');
-	$this->form_validation->set_rules('wil_flag', 'wil flag', 'trim|required');
-	$this->form_validation->set_rules('wil_info', 'wil info', 'trim|required');
 
 	$this->form_validation->set_rules('wil_kode', 'wil_kode', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

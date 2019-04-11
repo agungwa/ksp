@@ -14,10 +14,9 @@
         <div class="ibox-content">
         
         <table class="table">
+        <tr><td>Wil Kode</td><td><?php echo $wil_kode; ?></td></tr>
 	    <tr><td>Wil Nama</td><td><?php echo $wil_nama; ?></td></tr>
 	    <tr><td>Wil Tgl</td><td><?php echo $wil_tgl; ?></td></tr>
-	    <tr><td>Wil Flag</td><td><?php echo $wil_flag; ?></td></tr>
-	    <tr><td>Wil Info</td><td><?php echo $wil_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('wilayah') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
