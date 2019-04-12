@@ -83,12 +83,10 @@ class Jabatan extends MY_Base
         $row = $this->Jabatan_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'jab_kode' => $row->jab_kode,
-		'jab_nama' => $row->jab_nama,
-		'jab_tgl' => $row->jab_tgl,
-		'jab_flag' => $row->jab_flag,
-		'jab_info' => $row->jab_info,'content' => 'backend/jabatan/jabatan_read',
-	    );
+    		'jab_kode' => $row->jab_kode,
+    		'jab_nama' => $row->jab_nama,
+            'content' => 'backend/jabatan/jabatan_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -102,13 +100,10 @@ class Jabatan extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('jabatan/create_action'),
-	    'jab_kode' => set_value('jab_kode'),
-	    'jab_nama' => set_value('jab_nama'),
-	    'jab_tgl' => set_value('jab_tgl'),
-	    'jab_flag' => set_value('jab_flag'),
-	    'jab_info' => set_value('jab_info'),
-	    'content' => 'backend/jabatan/jabatan_form',
-	);
+    	    'jab_kode' => set_value('jab_kode'),
+    	    'jab_nama' => set_value('jab_nama'),
+    	    'content' => 'backend/jabatan/jabatan_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -120,11 +115,12 @@ class Jabatan extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'jab_nama' => $this->input->post('jab_nama',TRUE),
-		'jab_tgl' => $this->input->post('jab_tgl',TRUE),
-		'jab_flag' => $this->input->post('jab_flag',TRUE),
-		'jab_info' => $this->input->post('jab_info',TRUE),
-	    );
+            'jab_kode' => $this->input->post('jab_kode',TRUE),
+    		'jab_nama' => $this->input->post('jab_nama',TRUE),
+    		'jab_tgl' => $this->tgl,
+    		'jab_flag' => 0,
+    		'jab_info' => "",
+    	    );
 
             $this->Jabatan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -140,13 +136,10 @@ class Jabatan extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('jabatan/update_action'),
-		'jab_kode' => set_value('jab_kode', $row->jab_kode),
-		'jab_nama' => set_value('jab_nama', $row->jab_nama),
-		'jab_tgl' => set_value('jab_tgl', $row->jab_tgl),
-		'jab_flag' => set_value('jab_flag', $row->jab_flag),
-		'jab_info' => set_value('jab_info', $row->jab_info),
-	    'content' => 'backend/jabatan/jabatan_form',
-	    );
+        		'jab_kode' => set_value('jab_kode', $row->jab_kode),
+        		'jab_nama' => set_value('jab_nama', $row->jab_nama),
+        	    'content' => 'backend/jabatan/jabatan_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -162,11 +155,9 @@ class Jabatan extends MY_Base
             $this->update($this->input->post('jab_kode', TRUE));
         } else {
             $data = array(
-		'jab_nama' => $this->input->post('jab_nama',TRUE),
-		'jab_tgl' => $this->input->post('jab_tgl',TRUE),
-		'jab_flag' => $this->input->post('jab_flag',TRUE),
-		'jab_info' => $this->input->post('jab_info',TRUE),
-	    );
+    		'jab_nama' => $this->input->post('jab_nama',TRUE),
+    		'jab_flag' => 1,
+    	    );
 
             $this->Jabatan_model->update($this->input->post('jab_kode', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -179,7 +170,11 @@ class Jabatan extends MY_Base
         $row = $this->Jabatan_model->get_by_id($id);
 
         if ($row) {
-            $this->Jabatan_model->delete($id);
+            $data = array(
+            'jab_flag' => 2,
+            );
+
+            $this->Jabatan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jabatan'));
         } else {
@@ -191,9 +186,6 @@ class Jabatan extends MY_Base
     public function _rules() 
     {
 	$this->form_validation->set_rules('jab_nama', 'jab nama', 'trim|required');
-	$this->form_validation->set_rules('jab_tgl', 'jab tgl', 'trim|required');
-	$this->form_validation->set_rules('jab_flag', 'jab flag', 'trim|required');
-	$this->form_validation->set_rules('jab_info', 'jab info', 'trim|required');
 
 	$this->form_validation->set_rules('jab_kode', 'jab_kode', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

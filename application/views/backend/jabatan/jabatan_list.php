@@ -48,11 +48,10 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jab Nama</th>
-		<th class="text-center">Jab Tgl</th>
-		<th class="text-center">Jab Flag</th>
-		<th class="text-center">Jab Info</th>
-		<th class="text-center">Action</th>
+                <th class="text-center">Jab Kode</th>
+        		<th class="text-center">Jab Nama</th>
+        		<th class="text-center">Jab Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -60,12 +59,11 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $jabatan->jab_nama ?></td>
-			<td><?php echo $jabatan->jab_tgl ?></td>
-			<td><?php echo $jabatan->jab_flag ?></td>
-			<td><?php echo $jabatan->jab_info ?></td>
-			<td style="text-align:center" width="200px">
+    			<td width="80px"><?php echo ++$start ?></td>
+                <td><?php echo $jabatan->jab_kode ?></td>
+    			<td><?php echo $jabatan->jab_nama ?></td>
+    			<td><?php echo dateFormat($jabatan->jab_tgl) ?></td>
+    			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('jabatan/read/'.$jabatan->jab_kode),'Read','class="text-navy"'); 
 				echo ' | '; 

@@ -48,11 +48,10 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Wil Nama</th>
-		<th class="text-center">Wil Tgl</th>
-		<th class="text-center">Wil Flag</th>
-		<th class="text-center">Wil Info</th>
-		<th class="text-center">Action</th>
+                <th class="text-center">Wil Kode</th>
+        		<th class="text-center">Wil Nama</th>
+        		<th class="text-center">Wil Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -60,12 +59,11 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $wilayah->wil_nama ?></td>
-			<td><?php echo $wilayah->wil_tgl ?></td>
-			<td><?php echo $wilayah->wil_flag ?></td>
-			<td><?php echo $wilayah->wil_info ?></td>
-			<td style="text-align:center" width="200px">
+    			<td width="80px"><?php echo ++$start ?></td>
+                <td><?php echo $wilayah->wil_kode ?></td>
+    			<td><?php echo $wilayah->wil_nama ?></td>
+    			<td><?php echo dateFormat($wilayah->wil_tgl) ?></td>
+    			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('wilayah/read/'.$wilayah->wil_kode),'Read','class="text-navy"'); 
 				echo ' | '; 
