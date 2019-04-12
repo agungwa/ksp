@@ -50,8 +50,6 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Bup Bunga</th>
 		<th class="text-center">Bub Tgl</th>
-		<th class="text-center">Bub Flag</th>
-		<th class="text-center">Bup Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -62,9 +60,7 @@
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $bungapinjaman->bup_bunga ?></td>
-			<td><?php echo $bungapinjaman->bub_tgl ?></td>
-			<td><?php echo $bungapinjaman->bub_flag ?></td>
-			<td><?php echo $bungapinjaman->bup_info ?></td>
+			<td><?php echo dateFormat($bungapinjaman->bub_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('bungapinjaman/read/'.$bungapinjaman->bup_id),'Read','class="text-navy"'); 

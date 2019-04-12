@@ -37,18 +37,6 @@
             <label for="float">Jkl Administrasi <?php echo form_error('jkl_administrasi') ?></label>
             <input type="text" class="form-control" name="jkl_administrasi" id="jkl_administrasi" placeholder="Jkl Administrasi" value="<?php echo $jkl_administrasi; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="datetime">Jkl Tgl <?php echo form_error('jkl_tgl') ?></label>
-            <input type="text" class="form-control" name="jkl_tgl" id="jkl_tgl" placeholder="Jkl Tgl" value="<?php echo $jkl_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Jkl Flag <?php echo form_error('jkl_flag') ?></label>
-            <input type="text" class="form-control" name="jkl_flag" id="jkl_flag" placeholder="Jkl Flag" value="<?php echo $jkl_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="jkl_info">Jkl Info <?php echo form_error('jkl_info') ?></label>
-            <textarea class="form-control" rows="3" name="jkl_info" id="jkl_info" placeholder="Jkl Info"><?php echo $jkl_info; ?></textarea>
-        </div>
 	    <input type="hidden" name="jkl_id" value="<?php echo $jkl_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('jenisklaim') ?>" class="btn btn-default">Cancel</a>

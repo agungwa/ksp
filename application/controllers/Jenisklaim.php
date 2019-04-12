@@ -83,17 +83,15 @@ class Jenisklaim extends MY_Base
         $row = $this->Jenisklaim_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'jkl_id' => $row->jkl_id,
-		'jkl_keuntungan' => $row->jkl_keuntungan,
-		'jkl_plan' => $row->jkl_plan,
-		'jkl_tahunke' => $row->jkl_tahunke,
-		'jkl_nominal' => $row->jkl_nominal,
-		'jkl_keterangan' => $row->jkl_keterangan,
-		'jkl_administrasi' => $row->jkl_administrasi,
-		'jkl_tgl' => $row->jkl_tgl,
-		'jkl_flag' => $row->jkl_flag,
-		'jkl_info' => $row->jkl_info,'content' => 'backend/jenisklaim/jenisklaim_read',
-	    );
+    		'jkl_id' => $row->jkl_id,
+    		'jkl_keuntungan' => $row->jkl_keuntungan,
+    		'jkl_plan' => $row->jkl_plan,
+    		'jkl_tahunke' => $row->jkl_tahunke,
+    		'jkl_nominal' => $row->jkl_nominal,
+    		'jkl_keterangan' => $row->jkl_keterangan,
+    		'jkl_administrasi' => $row->jkl_administrasi,
+            'content' => 'backend/jenisklaim/jenisklaim_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -107,18 +105,15 @@ class Jenisklaim extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('jenisklaim/create_action'),
-	    'jkl_id' => set_value('jkl_id'),
-	    'jkl_keuntungan' => set_value('jkl_keuntungan'),
-	    'jkl_plan' => set_value('jkl_plan'),
-	    'jkl_tahunke' => set_value('jkl_tahunke'),
-	    'jkl_nominal' => set_value('jkl_nominal'),
-	    'jkl_keterangan' => set_value('jkl_keterangan'),
-	    'jkl_administrasi' => set_value('jkl_administrasi'),
-	    'jkl_tgl' => set_value('jkl_tgl'),
-	    'jkl_flag' => set_value('jkl_flag'),
-	    'jkl_info' => set_value('jkl_info'),
-	    'content' => 'backend/jenisklaim/jenisklaim_form',
-	);
+    	    'jkl_id' => set_value('jkl_id'),
+    	    'jkl_keuntungan' => set_value('jkl_keuntungan'),
+    	    'jkl_plan' => set_value('jkl_plan'),
+    	    'jkl_tahunke' => set_value('jkl_tahunke'),
+    	    'jkl_nominal' => set_value('jkl_nominal'),
+    	    'jkl_keterangan' => set_value('jkl_keterangan'),
+    	    'jkl_administrasi' => set_value('jkl_administrasi'),
+    	    'content' => 'backend/jenisklaim/jenisklaim_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -130,16 +125,16 @@ class Jenisklaim extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'jkl_keuntungan' => $this->input->post('jkl_keuntungan',TRUE),
-		'jkl_plan' => $this->input->post('jkl_plan',TRUE),
-		'jkl_tahunke' => $this->input->post('jkl_tahunke',TRUE),
-		'jkl_nominal' => $this->input->post('jkl_nominal',TRUE),
-		'jkl_keterangan' => $this->input->post('jkl_keterangan',TRUE),
-		'jkl_administrasi' => $this->input->post('jkl_administrasi',TRUE),
-		'jkl_tgl' => $this->input->post('jkl_tgl',TRUE),
-		'jkl_flag' => $this->input->post('jkl_flag',TRUE),
-		'jkl_info' => $this->input->post('jkl_info',TRUE),
-	    );
+    		'jkl_keuntungan' => $this->input->post('jkl_keuntungan',TRUE),
+    		'jkl_plan' => $this->input->post('jkl_plan',TRUE),
+    		'jkl_tahunke' => $this->input->post('jkl_tahunke',TRUE),
+    		'jkl_nominal' => $this->input->post('jkl_nominal',TRUE),
+    		'jkl_keterangan' => $this->input->post('jkl_keterangan',TRUE),
+    		'jkl_administrasi' => $this->input->post('jkl_administrasi',TRUE),
+    		'jkl_tgl' => $this->tgl,
+    		'jkl_flag' => 0,
+    		'jkl_info' => "",
+    	    );
 
             $this->Jenisklaim_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -155,18 +150,15 @@ class Jenisklaim extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('jenisklaim/update_action'),
-		'jkl_id' => set_value('jkl_id', $row->jkl_id),
-		'jkl_keuntungan' => set_value('jkl_keuntungan', $row->jkl_keuntungan),
-		'jkl_plan' => set_value('jkl_plan', $row->jkl_plan),
-		'jkl_tahunke' => set_value('jkl_tahunke', $row->jkl_tahunke),
-		'jkl_nominal' => set_value('jkl_nominal', $row->jkl_nominal),
-		'jkl_keterangan' => set_value('jkl_keterangan', $row->jkl_keterangan),
-		'jkl_administrasi' => set_value('jkl_administrasi', $row->jkl_administrasi),
-		'jkl_tgl' => set_value('jkl_tgl', $row->jkl_tgl),
-		'jkl_flag' => set_value('jkl_flag', $row->jkl_flag),
-		'jkl_info' => set_value('jkl_info', $row->jkl_info),
-	    'content' => 'backend/jenisklaim/jenisklaim_form',
-	    );
+        		'jkl_id' => set_value('jkl_id', $row->jkl_id),
+        		'jkl_keuntungan' => set_value('jkl_keuntungan', $row->jkl_keuntungan),
+        		'jkl_plan' => set_value('jkl_plan', $row->jkl_plan),
+        		'jkl_tahunke' => set_value('jkl_tahunke', $row->jkl_tahunke),
+        		'jkl_nominal' => set_value('jkl_nominal', $row->jkl_nominal),
+        		'jkl_keterangan' => set_value('jkl_keterangan', $row->jkl_keterangan),
+        		'jkl_administrasi' => set_value('jkl_administrasi', $row->jkl_administrasi),
+        	    'content' => 'backend/jenisklaim/jenisklaim_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -182,16 +174,14 @@ class Jenisklaim extends MY_Base
             $this->update($this->input->post('jkl_id', TRUE));
         } else {
             $data = array(
-		'jkl_keuntungan' => $this->input->post('jkl_keuntungan',TRUE),
-		'jkl_plan' => $this->input->post('jkl_plan',TRUE),
-		'jkl_tahunke' => $this->input->post('jkl_tahunke',TRUE),
-		'jkl_nominal' => $this->input->post('jkl_nominal',TRUE),
-		'jkl_keterangan' => $this->input->post('jkl_keterangan',TRUE),
-		'jkl_administrasi' => $this->input->post('jkl_administrasi',TRUE),
-		'jkl_tgl' => $this->input->post('jkl_tgl',TRUE),
-		'jkl_flag' => $this->input->post('jkl_flag',TRUE),
-		'jkl_info' => $this->input->post('jkl_info',TRUE),
-	    );
+    		'jkl_keuntungan' => $this->input->post('jkl_keuntungan',TRUE),
+    		'jkl_plan' => $this->input->post('jkl_plan',TRUE),
+    		'jkl_tahunke' => $this->input->post('jkl_tahunke',TRUE),
+    		'jkl_nominal' => $this->input->post('jkl_nominal',TRUE),
+    		'jkl_keterangan' => $this->input->post('jkl_keterangan',TRUE),
+    		'jkl_administrasi' => $this->input->post('jkl_administrasi',TRUE),
+    		'jkl_flag' => 1,
+    		);
 
             $this->Jenisklaim_model->update($this->input->post('jkl_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -204,7 +194,10 @@ class Jenisklaim extends MY_Base
         $row = $this->Jenisklaim_model->get_by_id($id);
 
         if ($row) {
-            $this->Jenisklaim_model->delete($id);
+            $data = array(
+                'jkl_flag' => 2
+            );
+            $this->Jenisklaim_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jenisklaim'));
         } else {
@@ -221,9 +214,6 @@ class Jenisklaim extends MY_Base
 	$this->form_validation->set_rules('jkl_nominal', 'jkl nominal', 'trim|required');
 	$this->form_validation->set_rules('jkl_keterangan', 'jkl keterangan', 'trim|required');
 	$this->form_validation->set_rules('jkl_administrasi', 'jkl administrasi', 'trim|required');
-	$this->form_validation->set_rules('jkl_tgl', 'jkl tgl', 'trim|required');
-	$this->form_validation->set_rules('jkl_flag', 'jkl flag', 'trim|required');
-	$this->form_validation->set_rules('jkl_info', 'jkl info', 'trim|required');
 
 	$this->form_validation->set_rules('jkl_id', 'jkl_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

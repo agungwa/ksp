@@ -48,13 +48,11 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Psk Plan</th>
-		<th class="text-center">Psk Setoran</th>
-		<th class="text-center">Psk Keterangan</th>
-		<th class="text-center">Psk Tgl</th>
-		<th class="text-center">Psk Flag</th>
-		<th class="text-center">Psk Info</th>
-		<th class="text-center">Action</th>
+        		<th class="text-center">Psk Plan</th>
+        		<th class="text-center">Psk Setoran</th>
+        		<th class="text-center">Psk Keterangan</th>
+        		<th class="text-center">Psk Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -66,9 +64,7 @@
 			<td><?php echo $plansimkesan->psk_plan ?></td>
 			<td><?php echo $plansimkesan->psk_setoran ?></td>
 			<td><?php echo $plansimkesan->psk_keterangan ?></td>
-			<td><?php echo $plansimkesan->psk_tgl ?></td>
-			<td><?php echo $plansimkesan->psk_flag ?></td>
-			<td><?php echo $plansimkesan->psk_info ?></td>
+			<td><?php echo dateFormat($plansimkesan->psk_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('plansimkesan/read/'.$plansimkesan->psk_id),'Read','class="text-navy"'); 

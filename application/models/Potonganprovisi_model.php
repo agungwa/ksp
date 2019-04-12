@@ -18,6 +18,7 @@ class Potonganprovisi_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('pop_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,24 +32,18 @@ class Potonganprovisi_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('pop_id', $q);
-	$this->db->or_like('pop_potongan', $q);
-	$this->db->or_like('pop_tgl', $q);
-	$this->db->or_like('pop_flag', $q);
-	$this->db->or_like('pop_info', $q);
-	$this->db->from($this->table);
+        $where = "pop_potongan LIKE '%$q%' ESCAPE '!' AND pop_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('pop_id', $q);
-	$this->db->or_like('pop_potongan', $q);
-	$this->db->or_like('pop_tgl', $q);
-	$this->db->or_like('pop_flag', $q);
-	$this->db->or_like('pop_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "pop_potongan LIKE '%$q%' ESCAPE '!' AND pop_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

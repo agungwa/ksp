@@ -50,8 +50,6 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Sea Tenor</th>
 		<th class="text-center">Sea Tgl</th>
-		<th class="text-center">Sea Flag</th>
-		<th class="text-center">Sea Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -62,9 +60,7 @@
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $settingangsuran->sea_tenor ?></td>
-			<td><?php echo $settingangsuran->sea_tgl ?></td>
-			<td><?php echo $settingangsuran->sea_flag ?></td>
-			<td><?php echo $settingangsuran->sea_info ?></td>
+			<td><?php echo dateFormat($settingangsuran->sea_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('settingangsuran/read/'.$settingangsuran->sea_id),'Read','class="text-navy"'); 

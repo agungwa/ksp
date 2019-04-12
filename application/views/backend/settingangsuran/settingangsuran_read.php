@@ -15,9 +15,6 @@
         
         <table class="table">
 	    <tr><td>Sea Tenor</td><td><?php echo $sea_tenor; ?></td></tr>
-	    <tr><td>Sea Tgl</td><td><?php echo $sea_tgl; ?></td></tr>
-	    <tr><td>Sea Flag</td><td><?php echo $sea_flag; ?></td></tr>
-	    <tr><td>Sea Info</td><td><?php echo $sea_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('settingangsuran') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

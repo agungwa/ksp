@@ -151,7 +151,24 @@ lookup();
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simkesan</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
-                    <li>
+                        <li>
+                            <a href="#" id="damian">Utilitas Simkesan<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>plansimkesan">Plan Simkesan</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>jenispenarikansimkesan">Jenis Penarikan Simkesan</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>jenisklaim">Jenis Klaim</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>jenisklaim">Plan Simkesan</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#" id="damian">Set Up <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
@@ -278,7 +295,33 @@ lookup();
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Pinjaman</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
-                    <li>
+                        <li>
+                            <a href="#" id="damian">Utilitas Pinjaman<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Settingkategoripeminjam">Setting Kategori Peminjam</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>SettingAngsuran">Setting Angsuran</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Bungapinjaman">Bunga Pinjaman</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Potonganprovisi">Potongan Provisi</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Jenisjaminan">Jenis Jaminan</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Jenispelunasan">Jenis Pelunasan</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Settingdenda">Setting Denda</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#" id="damian">Set Up <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
@@ -307,6 +350,9 @@ lookup();
                                 <li>
                                     <a href="<?=base_url()?>Angsuran">Angsuaran >4 Bulan</a>
                                 </li>
+                                <li>
+                                    <a href="<?=base_url()?>Dendaangsuran">Denda Angsuaran</a>
+                                </li>
                             </ul>
                         </li>
                         <li><a href="#">Penagihan</a></li>
@@ -319,7 +365,7 @@ lookup();
                                     <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url()?>Mutasipinjaman">Mutasi Simkesan</a>
+                                    <a href="<?=base_url()?>Mutasipinjaman">Mutasi Pinjaman</a>
                                 </li>
                             </ul>
                         </li>

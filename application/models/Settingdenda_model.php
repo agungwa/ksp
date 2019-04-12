@@ -18,6 +18,7 @@ class Settingdenda_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('sed_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,26 +32,18 @@ class Settingdenda_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('sed_id', $q);
-	$this->db->or_like('sed_hari', $q);
-	$this->db->or_like('sed_denda', $q);
-	$this->db->or_like('sed_tgl', $q);
-	$this->db->or_like('sed_flag', $q);
-	$this->db->or_like('sed_info', $q);
-	$this->db->from($this->table);
+        $where = "(sed_hari LIKE '%$q%' ESCAPE '!' OR sed_denda LIKE '%$q%' ESCAPE '!') AND sed_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('sed_id', $q);
-	$this->db->or_like('sed_hari', $q);
-	$this->db->or_like('sed_denda', $q);
-	$this->db->or_like('sed_tgl', $q);
-	$this->db->or_like('sed_flag', $q);
-	$this->db->or_like('sed_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "(sed_hari LIKE '%$q%' ESCAPE '!' OR sed_denda LIKE '%$q%' ESCAPE '!') AND sed_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

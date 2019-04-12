@@ -83,14 +83,12 @@ class Jenispenarikansimkesan extends MY_Base
         $row = $this->Jenispenarikansimkesan_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'jps_id' => $row->jps_id,
-		'jps_jenis' => $row->jps_jenis,
-		'jps_administrasi' => $row->jps_administrasi,
-		'jps_persenpenarikan' => $row->jps_persenpenarikan,
-		'jps_tgl' => $row->jps_tgl,
-		'jps_flag' => $row->jps_flag,
-		'jps_info' => $row->jps_info,'content' => 'backend/jenispenarikansimkesan/jenispenarikansimkesan_read',
-	    );
+    		'jps_id' => $row->jps_id,
+    		'jps_jenis' => $row->jps_jenis,
+    		'jps_administrasi' => $row->jps_administrasi,
+    		'jps_persenpenarikan' => $row->jps_persenpenarikan,
+            'content' => 'backend/jenispenarikansimkesan/jenispenarikansimkesan_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -104,15 +102,12 @@ class Jenispenarikansimkesan extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('jenispenarikansimkesan/create_action'),
-	    'jps_id' => set_value('jps_id'),
-	    'jps_jenis' => set_value('jps_jenis'),
-	    'jps_administrasi' => set_value('jps_administrasi'),
-	    'jps_persenpenarikan' => set_value('jps_persenpenarikan'),
-	    'jps_tgl' => set_value('jps_tgl'),
-	    'jps_flag' => set_value('jps_flag'),
-	    'jps_info' => set_value('jps_info'),
-	    'content' => 'backend/jenispenarikansimkesan/jenispenarikansimkesan_form',
-	);
+    	    'jps_id' => set_value('jps_id'),
+    	    'jps_jenis' => set_value('jps_jenis'),
+    	    'jps_administrasi' => set_value('jps_administrasi'),
+    	    'jps_persenpenarikan' => set_value('jps_persenpenarikan'),
+            'content' => 'backend/jenispenarikansimkesan/jenispenarikansimkesan_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -124,13 +119,13 @@ class Jenispenarikansimkesan extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'jps_jenis' => $this->input->post('jps_jenis',TRUE),
-		'jps_administrasi' => $this->input->post('jps_administrasi',TRUE),
-		'jps_persenpenarikan' => $this->input->post('jps_persenpenarikan',TRUE),
-		'jps_tgl' => $this->input->post('jps_tgl',TRUE),
-		'jps_flag' => $this->input->post('jps_flag',TRUE),
-		'jps_info' => $this->input->post('jps_info',TRUE),
-	    );
+    		'jps_jenis' => $this->input->post('jps_jenis',TRUE),
+    		'jps_administrasi' => $this->input->post('jps_administrasi',TRUE),
+    		'jps_persenpenarikan' => $this->input->post('jps_persenpenarikan',TRUE),
+    		'jps_tgl' => $this->tgl,
+    		'jps_flag' => 0,
+    		'jps_info' => "",
+    	    );
 
             $this->Jenispenarikansimkesan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -144,17 +139,14 @@ class Jenispenarikansimkesan extends MY_Base
 
         if ($row) {
             $data = array(
-                'button' => 'Update',
-                'action' => site_url('jenispenarikansimkesan/update_action'),
-		'jps_id' => set_value('jps_id', $row->jps_id),
-		'jps_jenis' => set_value('jps_jenis', $row->jps_jenis),
-		'jps_administrasi' => set_value('jps_administrasi', $row->jps_administrasi),
-		'jps_persenpenarikan' => set_value('jps_persenpenarikan', $row->jps_persenpenarikan),
-		'jps_tgl' => set_value('jps_tgl', $row->jps_tgl),
-		'jps_flag' => set_value('jps_flag', $row->jps_flag),
-		'jps_info' => set_value('jps_info', $row->jps_info),
-	    'content' => 'backend/jenispenarikansimkesan/jenispenarikansimkesan_form',
-	    );
+            'button' => 'Update',
+            'action' => site_url('jenispenarikansimkesan/update_action'),
+    		'jps_id' => set_value('jps_id', $row->jps_id),
+    		'jps_jenis' => set_value('jps_jenis', $row->jps_jenis),
+    		'jps_administrasi' => set_value('jps_administrasi', $row->jps_administrasi),
+    		'jps_persenpenarikan' => set_value('jps_persenpenarikan', $row->jps_persenpenarikan),
+    		'content' => 'backend/jenispenarikansimkesan/jenispenarikansimkesan_form',
+    	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -170,13 +162,11 @@ class Jenispenarikansimkesan extends MY_Base
             $this->update($this->input->post('jps_id', TRUE));
         } else {
             $data = array(
-		'jps_jenis' => $this->input->post('jps_jenis',TRUE),
-		'jps_administrasi' => $this->input->post('jps_administrasi',TRUE),
-		'jps_persenpenarikan' => $this->input->post('jps_persenpenarikan',TRUE),
-		'jps_tgl' => $this->input->post('jps_tgl',TRUE),
-		'jps_flag' => $this->input->post('jps_flag',TRUE),
-		'jps_info' => $this->input->post('jps_info',TRUE),
-	    );
+    		'jps_jenis' => $this->input->post('jps_jenis',TRUE),
+    		'jps_administrasi' => $this->input->post('jps_administrasi',TRUE),
+    		'jps_persenpenarikan' => $this->input->post('jps_persenpenarikan',TRUE),
+    		'jps_flag' => 1,
+    	    );
 
             $this->Jenispenarikansimkesan_model->update($this->input->post('jps_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -189,7 +179,11 @@ class Jenispenarikansimkesan extends MY_Base
         $row = $this->Jenispenarikansimkesan_model->get_by_id($id);
 
         if ($row) {
-            $this->Jenispenarikansimkesan_model->delete($id);
+            $data = array(
+            'jps_flag' => 2,
+            );
+
+            $this->Jenispenarikansimkesan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jenispenarikansimkesan'));
         } else {
@@ -203,10 +197,6 @@ class Jenispenarikansimkesan extends MY_Base
 	$this->form_validation->set_rules('jps_jenis', 'jps jenis', 'trim|required');
 	$this->form_validation->set_rules('jps_administrasi', 'jps administrasi', 'trim|required');
 	$this->form_validation->set_rules('jps_persenpenarikan', 'jps persenpenarikan', 'trim|required');
-	$this->form_validation->set_rules('jps_tgl', 'jps tgl', 'trim|required');
-	$this->form_validation->set_rules('jps_flag', 'jps flag', 'trim|required');
-	$this->form_validation->set_rules('jps_info', 'jps info', 'trim|required');
-
 	$this->form_validation->set_rules('jps_id', 'jps_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

@@ -18,6 +18,7 @@ class Jenispenarikansimkesan_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('jps_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,28 +32,18 @@ class Jenispenarikansimkesan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('jps_id', $q);
-	$this->db->or_like('jps_jenis', $q);
-	$this->db->or_like('jps_administrasi', $q);
-	$this->db->or_like('jps_persenpenarikan', $q);
-	$this->db->or_like('jps_tgl', $q);
-	$this->db->or_like('jps_flag', $q);
-	$this->db->or_like('jps_info', $q);
-	$this->db->from($this->table);
+        $where = "(jps_jenis LIKE '%$q%' ESCAPE '!' OR jps_administrasi LIKE '%$q%' ESCAPE '!' OR jps_persenpenarikan LIKE '%$q%' ESCAPE '!') AND jps_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('jps_id', $q);
-	$this->db->or_like('jps_jenis', $q);
-	$this->db->or_like('jps_administrasi', $q);
-	$this->db->or_like('jps_persenpenarikan', $q);
-	$this->db->or_like('jps_tgl', $q);
-	$this->db->or_like('jps_flag', $q);
-	$this->db->or_like('jps_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "(jps_jenis LIKE '%$q%' ESCAPE '!' OR jps_administrasi LIKE '%$q%' ESCAPE '!' OR jps_persenpenarikan LIKE '%$q%' ESCAPE '!') AND jps_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

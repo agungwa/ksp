@@ -50,8 +50,6 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Skp Kategori</th>
 		<th class="text-center">Skp Tgl</th>
-		<th class="text-center">Skp Flag</th>
-		<th class="text-center">Skp Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -62,9 +60,7 @@
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $settingkategoripeminjam->skp_kategori ?></td>
-			<td><?php echo $settingkategoripeminjam->skp_tgl ?></td>
-			<td><?php echo $settingkategoripeminjam->skp_flag ?></td>
-			<td><?php echo $settingkategoripeminjam->skp_info ?></td>
+			<td><?php echo dateFormat($settingkategoripeminjam->skp_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('settingkategoripeminjam/read/'.$settingkategoripeminjam->skp_id),'Read','class="text-navy"'); 

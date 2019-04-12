@@ -16,9 +16,6 @@
         <table class="table">
 	    <tr><td>Jej Jaminan</td><td><?php echo $jej_jaminan; ?></td></tr>
 	    <tr><td>Jej Keterangan</td><td><?php echo $jej_keterangan; ?></td></tr>
-	    <tr><td>Jej Tgl</td><td><?php echo $jej_tgl; ?></td></tr>
-	    <tr><td>Jej Flag</td><td><?php echo $jej_flag; ?></td></tr>
-	    <tr><td>Jej Info</td><td><?php echo $jej_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('jenisjaminan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

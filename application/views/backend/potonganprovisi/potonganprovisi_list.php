@@ -50,8 +50,6 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Pop Potongan</th>
 		<th class="text-center">Pop Tgl</th>
-		<th class="text-center">Pop Flag</th>
-		<th class="text-center">Pop Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -62,9 +60,7 @@
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $potonganprovisi->pop_potongan ?></td>
-			<td><?php echo $potonganprovisi->pop_tgl ?></td>
-			<td><?php echo $potonganprovisi->pop_flag ?></td>
-			<td><?php echo $potonganprovisi->pop_info ?></td>
+			<td><?php echo dateFormat($potonganprovisi->pop_tgl)?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('potonganprovisi/read/'.$potonganprovisi->pop_id),'Read','class="text-navy"'); 

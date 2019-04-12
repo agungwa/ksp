@@ -18,6 +18,7 @@ class Plansimkesan_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('psk_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,28 +32,18 @@ class Plansimkesan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('psk_id', $q);
-	$this->db->or_like('psk_plan', $q);
-	$this->db->or_like('psk_setoran', $q);
-	$this->db->or_like('psk_keterangan', $q);
-	$this->db->or_like('psk_tgl', $q);
-	$this->db->or_like('psk_flag', $q);
-	$this->db->or_like('psk_info', $q);
-	$this->db->from($this->table);
+        $where = "(psk_plan LIKE '%$q%' ESCAPE '!' OR psk_setoran LIKE '%$q%' ESCAPE '!') AND psk_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('psk_id', $q);
-	$this->db->or_like('psk_plan', $q);
-	$this->db->or_like('psk_setoran', $q);
-	$this->db->or_like('psk_keterangan', $q);
-	$this->db->or_like('psk_tgl', $q);
-	$this->db->or_like('psk_flag', $q);
-	$this->db->or_like('psk_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "(psk_plan LIKE '%$q%' ESCAPE '!' OR psk_setoran LIKE '%$q%' ESCAPE '!') AND psk_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

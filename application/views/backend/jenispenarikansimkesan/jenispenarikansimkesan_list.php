@@ -52,8 +52,6 @@
 		<th class="text-center">Jps Administrasi</th>
 		<th class="text-center">Jps Persenpenarikan</th>
 		<th class="text-center">Jps Tgl</th>
-		<th class="text-center">Jps Flag</th>
-		<th class="text-center">Jps Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -66,9 +64,7 @@
 			<td><?php echo $jenispenarikansimkesan->jps_jenis ?></td>
 			<td><?php echo $jenispenarikansimkesan->jps_administrasi ?></td>
 			<td><?php echo $jenispenarikansimkesan->jps_persenpenarikan ?></td>
-			<td><?php echo $jenispenarikansimkesan->jps_tgl ?></td>
-			<td><?php echo $jenispenarikansimkesan->jps_flag ?></td>
-			<td><?php echo $jenispenarikansimkesan->jps_info ?></td>
+			<td><?php echo dateFormat($jenispenarikansimkesan->jps_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('jenispenarikansimkesan/read/'.$jenispenarikansimkesan->jps_id),'Read','class="text-navy"'); 

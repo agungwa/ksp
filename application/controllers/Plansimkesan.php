@@ -104,14 +104,11 @@ class Plansimkesan extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('plansimkesan/create_action'),
-	    'psk_id' => set_value('psk_id'),
-	    'psk_plan' => set_value('psk_plan'),
-	    'psk_setoran' => set_value('psk_setoran'),
-	    'psk_keterangan' => set_value('psk_keterangan'),
-	    'psk_tgl' => set_value('psk_tgl'),
-	    'psk_flag' => set_value('psk_flag'),
-	    'psk_info' => set_value('psk_info'),
-	    'content' => 'backend/plansimkesan/plansimkesan_form',
+    	    'psk_id' => set_value('psk_id'),
+    	    'psk_plan' => set_value('psk_plan'),
+    	    'psk_setoran' => set_value('psk_setoran'),
+    	    'psk_keterangan' => set_value('psk_keterangan'),
+    	    'content' => 'backend/plansimkesan/plansimkesan_form',
 	);
         $this->load->view(layout(), $data);
     }
@@ -124,13 +121,13 @@ class Plansimkesan extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'psk_plan' => $this->input->post('psk_plan',TRUE),
-		'psk_setoran' => $this->input->post('psk_setoran',TRUE),
-		'psk_keterangan' => $this->input->post('psk_keterangan',TRUE),
-		'psk_tgl' => $this->input->post('psk_tgl',TRUE),
-		'psk_flag' => $this->input->post('psk_flag',TRUE),
-		'psk_info' => $this->input->post('psk_info',TRUE),
-	    );
+    		'psk_plan' => $this->input->post('psk_plan',TRUE),
+    		'psk_setoran' => $this->input->post('psk_setoran',TRUE),
+    		'psk_keterangan' => $this->input->post('psk_keterangan',TRUE),
+    		'psk_tgl' => $this->tgl,
+    		'psk_flag' => 0,
+    		'psk_info' => "",
+    	    );
 
             $this->Plansimkesan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -146,15 +143,12 @@ class Plansimkesan extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('plansimkesan/update_action'),
-		'psk_id' => set_value('psk_id', $row->psk_id),
-		'psk_plan' => set_value('psk_plan', $row->psk_plan),
-		'psk_setoran' => set_value('psk_setoran', $row->psk_setoran),
-		'psk_keterangan' => set_value('psk_keterangan', $row->psk_keterangan),
-		'psk_tgl' => set_value('psk_tgl', $row->psk_tgl),
-		'psk_flag' => set_value('psk_flag', $row->psk_flag),
-		'psk_info' => set_value('psk_info', $row->psk_info),
-	    'content' => 'backend/plansimkesan/plansimkesan_form',
-	    );
+        		'psk_id' => set_value('psk_id', $row->psk_id),
+        		'psk_plan' => set_value('psk_plan', $row->psk_plan),
+        		'psk_setoran' => set_value('psk_setoran', $row->psk_setoran),
+        		'psk_keterangan' => set_value('psk_keterangan', $row->psk_keterangan),
+        	    'content' => 'backend/plansimkesan/plansimkesan_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -170,13 +164,11 @@ class Plansimkesan extends MY_Base
             $this->update($this->input->post('psk_id', TRUE));
         } else {
             $data = array(
-		'psk_plan' => $this->input->post('psk_plan',TRUE),
-		'psk_setoran' => $this->input->post('psk_setoran',TRUE),
-		'psk_keterangan' => $this->input->post('psk_keterangan',TRUE),
-		'psk_tgl' => $this->input->post('psk_tgl',TRUE),
-		'psk_flag' => $this->input->post('psk_flag',TRUE),
-		'psk_info' => $this->input->post('psk_info',TRUE),
-	    );
+    		'psk_plan' => $this->input->post('psk_plan',TRUE),
+    		'psk_setoran' => $this->input->post('psk_setoran',TRUE),
+    		'psk_keterangan' => $this->input->post('psk_keterangan',TRUE),
+            'psk_flag' => 1,
+    	    );
 
             $this->Plansimkesan_model->update($this->input->post('psk_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -189,7 +181,11 @@ class Plansimkesan extends MY_Base
         $row = $this->Plansimkesan_model->get_by_id($id);
 
         if ($row) {
-            $this->Plansimkesan_model->delete($id);
+            $data = array(
+            'psk_flag' => 2,
+            );
+
+            $this->Plansimkesan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('plansimkesan'));
         } else {
@@ -203,9 +199,6 @@ class Plansimkesan extends MY_Base
 	$this->form_validation->set_rules('psk_plan', 'psk plan', 'trim|required');
 	$this->form_validation->set_rules('psk_setoran', 'psk setoran', 'trim|required');
 	$this->form_validation->set_rules('psk_keterangan', 'psk keterangan', 'trim|required');
-	$this->form_validation->set_rules('psk_tgl', 'psk tgl', 'trim|required');
-	$this->form_validation->set_rules('psk_flag', 'psk flag', 'trim|required');
-	$this->form_validation->set_rules('psk_info', 'psk info', 'trim|required');
 
 	$this->form_validation->set_rules('psk_id', 'psk_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

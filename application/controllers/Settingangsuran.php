@@ -85,9 +85,7 @@ class Settingangsuran extends MY_Base
             $data = array(
 		'sea_id' => $row->sea_id,
 		'sea_tenor' => $row->sea_tenor,
-		'sea_tgl' => $row->sea_tgl,
-		'sea_flag' => $row->sea_flag,
-		'sea_info' => $row->sea_info,'content' => 'backend/settingangsuran/settingangsuran_read',
+        'content' => 'backend/settingangsuran/settingangsuran_read',
 	    );
             $this->load->view(
             layout(), $data);
@@ -104,9 +102,6 @@ class Settingangsuran extends MY_Base
             'action' => site_url('settingangsuran/create_action'),
 	    'sea_id' => set_value('sea_id'),
 	    'sea_tenor' => set_value('sea_tenor'),
-	    'sea_tgl' => set_value('sea_tgl'),
-	    'sea_flag' => set_value('sea_flag'),
-	    'sea_info' => set_value('sea_info'),
 	    'content' => 'backend/settingangsuran/settingangsuran_form',
 	);
         $this->load->view(layout(), $data);
@@ -121,9 +116,9 @@ class Settingangsuran extends MY_Base
         } else {
             $data = array(
 		'sea_tenor' => $this->input->post('sea_tenor',TRUE),
-		'sea_tgl' => $this->input->post('sea_tgl',TRUE),
-		'sea_flag' => $this->input->post('sea_flag',TRUE),
-		'sea_info' => $this->input->post('sea_info',TRUE),
+		'sea_tgl' => $this->tgl,
+		'sea_flag' => 0,
+		'sea_info' => "",
 	    );
 
             $this->Settingangsuran_model->insert($data);
@@ -142,9 +137,6 @@ class Settingangsuran extends MY_Base
                 'action' => site_url('settingangsuran/update_action'),
 		'sea_id' => set_value('sea_id', $row->sea_id),
 		'sea_tenor' => set_value('sea_tenor', $row->sea_tenor),
-		'sea_tgl' => set_value('sea_tgl', $row->sea_tgl),
-		'sea_flag' => set_value('sea_flag', $row->sea_flag),
-		'sea_info' => set_value('sea_info', $row->sea_info),
 	    'content' => 'backend/settingangsuran/settingangsuran_form',
 	    );
             $this->load->view(layout(), $data);
@@ -162,11 +154,9 @@ class Settingangsuran extends MY_Base
             $this->update($this->input->post('sea_id', TRUE));
         } else {
             $data = array(
-		'sea_tenor' => $this->input->post('sea_tenor',TRUE),
-		'sea_tgl' => $this->input->post('sea_tgl',TRUE),
-		'sea_flag' => $this->input->post('sea_flag',TRUE),
-		'sea_info' => $this->input->post('sea_info',TRUE),
-	    );
+		          'sea_tenor' => $this->input->post('sea_tenor',TRUE),
+		          'sea_flag' => 1,
+	               );
 
             $this->Settingangsuran_model->update($this->input->post('sea_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -179,7 +169,11 @@ class Settingangsuran extends MY_Base
         $row = $this->Settingangsuran_model->get_by_id($id);
 
         if ($row) {
-            $this->Settingangsuran_model->delete($id);
+            $data = array(
+                  'sea_flag' => 2,
+                   );
+
+            $this->Settingangsuran_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('settingangsuran'));
         } else {
@@ -191,9 +185,6 @@ class Settingangsuran extends MY_Base
     public function _rules() 
     {
 	$this->form_validation->set_rules('sea_tenor', 'sea tenor', 'trim|required');
-	$this->form_validation->set_rules('sea_tgl', 'sea tgl', 'trim|required');
-	$this->form_validation->set_rules('sea_flag', 'sea flag', 'trim|required');
-	$this->form_validation->set_rules('sea_info', 'sea info', 'trim|required');
 
 	$this->form_validation->set_rules('sea_id', 'sea_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

@@ -48,16 +48,14 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jkl Keuntungan</th>
-		<th class="text-center">Jkl Plan</th>
-		<th class="text-center">Jkl Tahunke</th>
-		<th class="text-center">Jkl Nominal</th>
-		<th class="text-center">Jkl Keterangan</th>
-		<th class="text-center">Jkl Administrasi</th>
-		<th class="text-center">Jkl Tgl</th>
-		<th class="text-center">Jkl Flag</th>
-		<th class="text-center">Jkl Info</th>
-		<th class="text-center">Action</th>
+        		<th class="text-center">Jkl Keuntungan</th>
+        		<th class="text-center">Jkl Plan</th>
+        		<th class="text-center">Jkl Tahunke</th>
+        		<th class="text-center">Jkl Nominal</th>
+        		<th class="text-center">Jkl Keterangan</th>
+        		<th class="text-center">Jkl Administrasi</th>
+        		<th class="text-center">Jkl Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -72,9 +70,7 @@
 			<td><?php echo $jenisklaim->jkl_nominal ?></td>
 			<td><?php echo $jenisklaim->jkl_keterangan ?></td>
 			<td><?php echo $jenisklaim->jkl_administrasi ?></td>
-			<td><?php echo $jenisklaim->jkl_tgl ?></td>
-			<td><?php echo $jenisklaim->jkl_flag ?></td>
-			<td><?php echo $jenisklaim->jkl_info ?></td>
+			<td><?php echo dateFormat($jenisklaim->jkl_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('jenisklaim/read/'.$jenisklaim->jkl_id),'Read','class="text-navy"'); 

@@ -83,13 +83,12 @@ class Jenisjaminan extends MY_Base
         $row = $this->Jenisjaminan_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'jej_id' => $row->jej_id,
-		'jej_jaminan' => $row->jej_jaminan,
-		'jej_keterangan' => $row->jej_keterangan,
-		'jej_tgl' => $row->jej_tgl,
-		'jej_flag' => $row->jej_flag,
-		'jej_info' => $row->jej_info,'content' => 'backend/jenisjaminan/jenisjaminan_read',
-	    );
+    		'jej_id' => $row->jej_id,
+    		'jej_jaminan' => $row->jej_jaminan,
+    		'jej_keterangan' => $row->jej_keterangan,
+    		'jej_tgl' => $row->jej_tgl,
+            'content' => 'backend/jenisjaminan/jenisjaminan_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -103,14 +102,11 @@ class Jenisjaminan extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('jenisjaminan/create_action'),
-	    'jej_id' => set_value('jej_id'),
-	    'jej_jaminan' => set_value('jej_jaminan'),
-	    'jej_keterangan' => set_value('jej_keterangan'),
-	    'jej_tgl' => set_value('jej_tgl'),
-	    'jej_flag' => set_value('jej_flag'),
-	    'jej_info' => set_value('jej_info'),
-	    'content' => 'backend/jenisjaminan/jenisjaminan_form',
-	);
+    	    'jej_id' => set_value('jej_id'),
+    	    'jej_jaminan' => set_value('jej_jaminan'),
+    	    'jej_keterangan' => set_value('jej_keterangan'),
+    	    'content' => 'backend/jenisjaminan/jenisjaminan_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -122,12 +118,12 @@ class Jenisjaminan extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'jej_jaminan' => $this->input->post('jej_jaminan',TRUE),
-		'jej_keterangan' => $this->input->post('jej_keterangan',TRUE),
-		'jej_tgl' => $this->input->post('jej_tgl',TRUE),
-		'jej_flag' => $this->input->post('jej_flag',TRUE),
-		'jej_info' => $this->input->post('jej_info',TRUE),
-	    );
+        		'jej_jaminan' => $this->input->post('jej_jaminan',TRUE),
+        		'jej_keterangan' => $this->input->post('jej_keterangan',TRUE),
+        		'jej_tgl' => $this->tgl,
+        		'jej_flag' => 0,
+        		'jej_info' => "",
+        	);
 
             $this->Jenisjaminan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -143,14 +139,11 @@ class Jenisjaminan extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('jenisjaminan/update_action'),
-		'jej_id' => set_value('jej_id', $row->jej_id),
-		'jej_jaminan' => set_value('jej_jaminan', $row->jej_jaminan),
-		'jej_keterangan' => set_value('jej_keterangan', $row->jej_keterangan),
-		'jej_tgl' => set_value('jej_tgl', $row->jej_tgl),
-		'jej_flag' => set_value('jej_flag', $row->jej_flag),
-		'jej_info' => set_value('jej_info', $row->jej_info),
-	    'content' => 'backend/jenisjaminan/jenisjaminan_form',
-	    );
+        		'jej_id' => set_value('jej_id', $row->jej_id),
+        		'jej_jaminan' => set_value('jej_jaminan', $row->jej_jaminan),
+        		'jej_keterangan' => set_value('jej_keterangan', $row->jej_keterangan),
+        	    'content' => 'backend/jenisjaminan/jenisjaminan_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -166,12 +159,10 @@ class Jenisjaminan extends MY_Base
             $this->update($this->input->post('jej_id', TRUE));
         } else {
             $data = array(
-		'jej_jaminan' => $this->input->post('jej_jaminan',TRUE),
-		'jej_keterangan' => $this->input->post('jej_keterangan',TRUE),
-		'jej_tgl' => $this->input->post('jej_tgl',TRUE),
-		'jej_flag' => $this->input->post('jej_flag',TRUE),
-		'jej_info' => $this->input->post('jej_info',TRUE),
-	    );
+    		'jej_jaminan' => $this->input->post('jej_jaminan',TRUE),
+    		'jej_keterangan' => $this->input->post('jej_keterangan',TRUE),
+    		'jej_flag' => 1,
+    	    );
 
             $this->Jenisjaminan_model->update($this->input->post('jej_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -184,7 +175,11 @@ class Jenisjaminan extends MY_Base
         $row = $this->Jenisjaminan_model->get_by_id($id);
 
         if ($row) {
-            $this->Jenisjaminan_model->delete($id);
+            $data = array(
+            'jej_flag' => 2,
+            );
+
+            $this->Jenisjaminan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jenisjaminan'));
         } else {
@@ -197,9 +192,6 @@ class Jenisjaminan extends MY_Base
     {
 	$this->form_validation->set_rules('jej_jaminan', 'jej jaminan', 'trim|required');
 	$this->form_validation->set_rules('jej_keterangan', 'jej keterangan', 'trim|required');
-	$this->form_validation->set_rules('jej_tgl', 'jej tgl', 'trim|required');
-	$this->form_validation->set_rules('jej_flag', 'jej flag', 'trim|required');
-	$this->form_validation->set_rules('jej_info', 'jej info', 'trim|required');
 
 	$this->form_validation->set_rules('jej_id', 'jej_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

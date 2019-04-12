@@ -83,12 +83,10 @@ class Potonganprovisi extends MY_Base
         $row = $this->Potonganprovisi_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'pop_id' => $row->pop_id,
-		'pop_potongan' => $row->pop_potongan,
-		'pop_tgl' => $row->pop_tgl,
-		'pop_flag' => $row->pop_flag,
-		'pop_info' => $row->pop_info,'content' => 'backend/potonganprovisi/potonganprovisi_read',
-	    );
+    		'pop_id' => $row->pop_id,
+    		'pop_potongan' => $row->pop_potongan,
+            'content' => 'backend/potonganprovisi/potonganprovisi_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -102,12 +100,9 @@ class Potonganprovisi extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('potonganprovisi/create_action'),
-	    'pop_id' => set_value('pop_id'),
-	    'pop_potongan' => set_value('pop_potongan'),
-	    'pop_tgl' => set_value('pop_tgl'),
-	    'pop_flag' => set_value('pop_flag'),
-	    'pop_info' => set_value('pop_info'),
-	    'content' => 'backend/potonganprovisi/potonganprovisi_form',
+    	    'pop_id' => set_value('pop_id'),
+    	    'pop_potongan' => set_value('pop_potongan'),
+    	    'content' => 'backend/potonganprovisi/potonganprovisi_form',
 	);
         $this->load->view(layout(), $data);
     }
@@ -120,11 +115,11 @@ class Potonganprovisi extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'pop_potongan' => $this->input->post('pop_potongan',TRUE),
-		'pop_tgl' => $this->input->post('pop_tgl',TRUE),
-		'pop_flag' => $this->input->post('pop_flag',TRUE),
-		'pop_info' => $this->input->post('pop_info',TRUE),
-	    );
+		      'pop_potongan' => $this->input->post('pop_potongan',TRUE),
+		      'pop_tgl' => $this->tgl,
+		      'pop_flag' => 0,
+		      'pop_info' => "",
+	           );
 
             $this->Potonganprovisi_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -140,13 +135,10 @@ class Potonganprovisi extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('potonganprovisi/update_action'),
-		'pop_id' => set_value('pop_id', $row->pop_id),
-		'pop_potongan' => set_value('pop_potongan', $row->pop_potongan),
-		'pop_tgl' => set_value('pop_tgl', $row->pop_tgl),
-		'pop_flag' => set_value('pop_flag', $row->pop_flag),
-		'pop_info' => set_value('pop_info', $row->pop_info),
-	    'content' => 'backend/potonganprovisi/potonganprovisi_form',
-	    );
+        		'pop_id' => set_value('pop_id', $row->pop_id),
+        		'pop_potongan' => set_value('pop_potongan', $row->pop_potongan),
+        	    'content' => 'backend/potonganprovisi/potonganprovisi_form',
+	           );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -162,11 +154,9 @@ class Potonganprovisi extends MY_Base
             $this->update($this->input->post('pop_id', TRUE));
         } else {
             $data = array(
-		'pop_potongan' => $this->input->post('pop_potongan',TRUE),
-		'pop_tgl' => $this->input->post('pop_tgl',TRUE),
-		'pop_flag' => $this->input->post('pop_flag',TRUE),
-		'pop_info' => $this->input->post('pop_info',TRUE),
-	    );
+		      'pop_potongan' => $this->input->post('pop_potongan',TRUE),
+		      'pop_flag' => 1,
+	           );
 
             $this->Potonganprovisi_model->update($this->input->post('pop_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -179,7 +169,11 @@ class Potonganprovisi extends MY_Base
         $row = $this->Potonganprovisi_model->get_by_id($id);
 
         if ($row) {
-            $this->Potonganprovisi_model->delete($id);
+            $data = array(
+              'pop_flag' => 2,
+               );
+
+            $this->Potonganprovisi_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('potonganprovisi'));
         } else {
@@ -191,10 +185,6 @@ class Potonganprovisi extends MY_Base
     public function _rules() 
     {
 	$this->form_validation->set_rules('pop_potongan', 'pop potongan', 'trim|required');
-	$this->form_validation->set_rules('pop_tgl', 'pop tgl', 'trim|required');
-	$this->form_validation->set_rules('pop_flag', 'pop flag', 'trim|required');
-	$this->form_validation->set_rules('pop_info', 'pop info', 'trim|required');
-
 	$this->form_validation->set_rules('pop_id', 'pop_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
