@@ -106,9 +106,6 @@ class Jenissimpanan extends MY_Base
 	    'jsi_id' => set_value('jsi_id'),
 	    'jsi_simpanan' => set_value('jsi_simpanan'),
 	    'jsi_keterangan' => set_value('jsi_keterangan'),
-	    'jsi_tgl' => set_value('jsi_tgl'),
-	    'jsi_flag' => set_value('jsi_flag'),
-	    'jsi_info' => set_value('jsi_info'),
 	    'content' => 'backend/jenissimpanan/jenissimpanan_form',
 	);
         $this->load->view(layout(), $data);
@@ -124,9 +121,9 @@ class Jenissimpanan extends MY_Base
             $data = array(
 		'jsi_simpanan' => $this->input->post('jsi_simpanan',TRUE),
 		'jsi_keterangan' => $this->input->post('jsi_keterangan',TRUE),
-		'jsi_tgl' => $this->input->post('jsi_tgl',TRUE),
-		'jsi_flag' => $this->input->post('jsi_flag',TRUE),
-		'jsi_info' => $this->input->post('jsi_info',TRUE),
+		'jsi_tgl' => $this->tgl,
+		'jsi_flag' => 0,
+		'jsi_info' => "",
 	    );
 
             $this->Jenissimpanan_model->insert($data);
@@ -146,9 +143,6 @@ class Jenissimpanan extends MY_Base
 		'jsi_id' => set_value('jsi_id', $row->jsi_id),
 		'jsi_simpanan' => set_value('jsi_simpanan', $row->jsi_simpanan),
 		'jsi_keterangan' => set_value('jsi_keterangan', $row->jsi_keterangan),
-		'jsi_tgl' => set_value('jsi_tgl', $row->jsi_tgl),
-		'jsi_flag' => set_value('jsi_flag', $row->jsi_flag),
-		'jsi_info' => set_value('jsi_info', $row->jsi_info),
 	    'content' => 'backend/jenissimpanan/jenissimpanan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -168,9 +162,7 @@ class Jenissimpanan extends MY_Base
             $data = array(
 		'jsi_simpanan' => $this->input->post('jsi_simpanan',TRUE),
 		'jsi_keterangan' => $this->input->post('jsi_keterangan',TRUE),
-		'jsi_tgl' => $this->input->post('jsi_tgl',TRUE),
-		'jsi_flag' => $this->input->post('jsi_flag',TRUE),
-		'jsi_info' => $this->input->post('jsi_info',TRUE),
+		'jsi_flag' => 1,
 	    );
 
             $this->Jenissimpanan_model->update($this->input->post('jsi_id', TRUE), $data);
@@ -184,6 +176,10 @@ class Jenissimpanan extends MY_Base
         $row = $this->Jenissimpanan_model->get_by_id($id);
 
         if ($row) {
+            $data = array (
+                'jsi_flag' => 2,
+            );
+            
             $this->Jenissimpanan_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jenissimpanan'));
@@ -197,10 +193,6 @@ class Jenissimpanan extends MY_Base
     {
 	$this->form_validation->set_rules('jsi_simpanan', 'jsi simpanan', 'trim|required');
 	$this->form_validation->set_rules('jsi_keterangan', 'jsi keterangan', 'trim|required');
-	$this->form_validation->set_rules('jsi_tgl', 'jsi tgl', 'trim|required');
-	$this->form_validation->set_rules('jsi_flag', 'jsi flag', 'trim|required');
-	$this->form_validation->set_rules('jsi_info', 'jsi info', 'trim|required');
-
 	$this->form_validation->set_rules('jsi_id', 'jsi_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

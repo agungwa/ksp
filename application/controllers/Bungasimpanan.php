@@ -104,9 +104,6 @@ class Bungasimpanan extends MY_Base
             'action' => site_url('bungasimpanan/create_action'),
 	    'bus_id' => set_value('bus_id'),
 	    'bus_bunga' => set_value('bus_bunga'),
-	    'bus_tgl' => set_value('bus_tgl'),
-	    'bus_flag' => set_value('bus_flag'),
-	    'bus_info' => set_value('bus_info'),
 	    'content' => 'backend/bungasimpanan/bungasimpanan_form',
 	);
         $this->load->view(layout(), $data);
@@ -121,9 +118,9 @@ class Bungasimpanan extends MY_Base
         } else {
             $data = array(
 		'bus_bunga' => $this->input->post('bus_bunga',TRUE),
-		'bus_tgl' => $this->input->post('bus_tgl',TRUE),
-		'bus_flag' => $this->input->post('bus_flag',TRUE),
-		'bus_info' => $this->input->post('bus_info',TRUE),
+		'bus_tgl' => $this->tgl,
+		'bus_flag' => 0,
+		'bus_info' => "",
 	    );
 
             $this->Bungasimpanan_model->insert($data);
@@ -142,9 +139,6 @@ class Bungasimpanan extends MY_Base
                 'action' => site_url('bungasimpanan/update_action'),
 		'bus_id' => set_value('bus_id', $row->bus_id),
 		'bus_bunga' => set_value('bus_bunga', $row->bus_bunga),
-		'bus_tgl' => set_value('bus_tgl', $row->bus_tgl),
-		'bus_flag' => set_value('bus_flag', $row->bus_flag),
-		'bus_info' => set_value('bus_info', $row->bus_info),
 	    'content' => 'backend/bungasimpanan/bungasimpanan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -163,9 +157,7 @@ class Bungasimpanan extends MY_Base
         } else {
             $data = array(
 		'bus_bunga' => $this->input->post('bus_bunga',TRUE),
-		'bus_tgl' => $this->input->post('bus_tgl',TRUE),
-		'bus_flag' => $this->input->post('bus_flag',TRUE),
-		'bus_info' => $this->input->post('bus_info',TRUE),
+		'bus_flag' => 1,
 	    );
 
             $this->Bungasimpanan_model->update($this->input->post('bus_id', TRUE), $data);
@@ -179,6 +171,10 @@ class Bungasimpanan extends MY_Base
         $row = $this->Bungasimpanan_model->get_by_id($id);
 
         if ($row) {
+            $data = array (
+                'bus_flag' => 2,
+            );
+
             $this->Bungasimpanan_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('bungasimpanan'));
@@ -191,9 +187,6 @@ class Bungasimpanan extends MY_Base
     public function _rules() 
     {
 	$this->form_validation->set_rules('bus_bunga', 'bus bunga', 'trim|required');
-	$this->form_validation->set_rules('bus_tgl', 'bus tgl', 'trim|required');
-	$this->form_validation->set_rules('bus_flag', 'bus flag', 'trim|required');
-	$this->form_validation->set_rules('bus_info', 'bus info', 'trim|required');
 
 	$this->form_validation->set_rules('bus_id', 'bus_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

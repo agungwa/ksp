@@ -50,9 +50,6 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Jsi Simpanan</th>
 		<th class="text-center">Jsi Keterangan</th>
-		<th class="text-center">Jsi Tgl</th>
-		<th class="text-center">Jsi Flag</th>
-		<th class="text-center">Jsi Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -64,9 +61,6 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenissimpanan->jsi_simpanan ?></td>
 			<td><?php echo $jenissimpanan->jsi_keterangan ?></td>
-			<td><?php echo $jenissimpanan->jsi_tgl ?></td>
-			<td><?php echo $jenissimpanan->jsi_flag ?></td>
-			<td><?php echo $jenissimpanan->jsi_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('jenissimpanan/read/'.$jenissimpanan->jsi_id),'Read','class="text-navy"'); 

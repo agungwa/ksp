@@ -18,6 +18,7 @@ class Jenissimpanan_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('jsi_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,26 +32,17 @@ class Jenissimpanan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('jsi_id', $q);
-	$this->db->or_like('jsi_simpanan', $q);
-	$this->db->or_like('jsi_keterangan', $q);
-	$this->db->or_like('jsi_tgl', $q);
-	$this->db->or_like('jsi_flag', $q);
-	$this->db->or_like('jsi_info', $q);
+    $where = "jsi_simpanan LIKE '%$q%' ESCAPE '!' AND jsi_flag < 2";
+    $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
-        $this->db->order_by($this->id, $this->order);
-        $this->db->like('jsi_id', $q);
-	$this->db->or_like('jsi_simpanan', $q);
-	$this->db->or_like('jsi_keterangan', $q);
-	$this->db->or_like('jsi_tgl', $q);
-	$this->db->or_like('jsi_flag', $q);
-	$this->db->or_like('jsi_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "jsi_simpanan LIKE '%$q%' ESCAPE '!' AND jsi_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

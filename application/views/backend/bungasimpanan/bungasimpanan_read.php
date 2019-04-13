@@ -15,9 +15,6 @@
         
         <table class="table">
 	    <tr><td>Bus Bunga</td><td><?php echo $bus_bunga; ?></td></tr>
-	    <tr><td>Bus Tgl</td><td><?php echo $bus_tgl; ?></td></tr>
-	    <tr><td>Bus Flag</td><td><?php echo $bus_flag; ?></td></tr>
-	    <tr><td>Bus Info</td><td><?php echo $bus_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('bungasimpanan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

@@ -50,9 +50,6 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Jse Setoran</th>
 		<th class="text-center">Jse Keterangan</th>
-		<th class="text-center">Jse Tgl</th>
-		<th class="text-center">Jse Flag</th>
-		<th class="text-center">Jse Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -64,9 +61,6 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenissetoran->jse_setoran ?></td>
 			<td><?php echo $jenissetoran->jse_keterangan ?></td>
-			<td><?php echo $jenissetoran->jse_tgl ?></td>
-			<td><?php echo $jenissetoran->jse_flag ?></td>
-			<td><?php echo $jenissetoran->jse_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('jenissetoran/read/'.$jenissetoran->jse_id),'Read','class="text-navy"'); 

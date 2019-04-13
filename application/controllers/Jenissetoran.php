@@ -106,9 +106,6 @@ class Jenissetoran extends MY_Base
 	    'jse_id' => set_value('jse_id'),
 	    'jse_setoran' => set_value('jse_setoran'),
 	    'jse_keterangan' => set_value('jse_keterangan'),
-	    'jse_tgl' => set_value('jse_tgl'),
-	    'jse_flag' => set_value('jse_flag'),
-	    'jse_info' => set_value('jse_info'),
 	    'content' => 'backend/jenissetoran/jenissetoran_form',
 	);
         $this->load->view(layout(), $data);
@@ -124,9 +121,9 @@ class Jenissetoran extends MY_Base
             $data = array(
 		'jse_setoran' => $this->input->post('jse_setoran',TRUE),
 		'jse_keterangan' => $this->input->post('jse_keterangan',TRUE),
-		'jse_tgl' => $this->input->post('jse_tgl',TRUE),
-		'jse_flag' => $this->input->post('jse_flag',TRUE),
-		'jse_info' => $this->input->post('jse_info',TRUE),
+		'jse_tgl' => $this->tgl,
+		'jse_flag' => 0,
+		'jse_info' => "",
 	    );
 
             $this->Jenissetoran_model->insert($data);
@@ -146,9 +143,6 @@ class Jenissetoran extends MY_Base
 		'jse_id' => set_value('jse_id', $row->jse_id),
 		'jse_setoran' => set_value('jse_setoran', $row->jse_setoran),
 		'jse_keterangan' => set_value('jse_keterangan', $row->jse_keterangan),
-		'jse_tgl' => set_value('jse_tgl', $row->jse_tgl),
-		'jse_flag' => set_value('jse_flag', $row->jse_flag),
-		'jse_info' => set_value('jse_info', $row->jse_info),
 	    'content' => 'backend/jenissetoran/jenissetoran_form',
 	    );
             $this->load->view(layout(), $data);
@@ -168,9 +162,7 @@ class Jenissetoran extends MY_Base
             $data = array(
 		'jse_setoran' => $this->input->post('jse_setoran',TRUE),
 		'jse_keterangan' => $this->input->post('jse_keterangan',TRUE),
-		'jse_tgl' => $this->input->post('jse_tgl',TRUE),
-		'jse_flag' => $this->input->post('jse_flag',TRUE),
-		'jse_info' => $this->input->post('jse_info',TRUE),
+		'jse_flag' => 1,
 	    );
 
             $this->Jenissetoran_model->update($this->input->post('jse_id', TRUE), $data);
@@ -184,6 +176,10 @@ class Jenissetoran extends MY_Base
         $row = $this->Jenissetoran_model->get_by_id($id);
 
         if ($row) {
+            $data = array(
+                'jse_flag' => 2,
+                 );
+                 
             $this->Jenissetoran_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jenissetoran'));
@@ -197,10 +193,6 @@ class Jenissetoran extends MY_Base
     {
 	$this->form_validation->set_rules('jse_setoran', 'jse setoran', 'trim|required');
 	$this->form_validation->set_rules('jse_keterangan', 'jse keterangan', 'trim|required');
-	$this->form_validation->set_rules('jse_tgl', 'jse tgl', 'trim|required');
-	$this->form_validation->set_rules('jse_flag', 'jse flag', 'trim|required');
-	$this->form_validation->set_rules('jse_info', 'jse info', 'trim|required');
-
 	$this->form_validation->set_rules('jse_id', 'jse_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
