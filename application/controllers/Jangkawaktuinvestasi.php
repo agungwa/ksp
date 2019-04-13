@@ -179,7 +179,7 @@ class Jangkawaktuinvestasi extends MY_Base
             $data = array (
                 'jwi_flag' => 2,
             );
-            $this->Jangkawaktuinvestasi_model->delete($id);
+            $this->Jangkawaktuinvestasi_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jangkawaktuinvestasi'));
         } else {

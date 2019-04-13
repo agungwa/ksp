@@ -180,7 +180,7 @@ class Bungainvestasi extends MY_Base
                 'biv_flag' => 2,
             );
             
-            $this->Bungainvestasi_model->delete($id);
+            $this->Bungainvestasi_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('bungainvestasi'));
         } else {

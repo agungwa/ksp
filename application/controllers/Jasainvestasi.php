@@ -180,7 +180,7 @@ class Jasainvestasi extends MY_Base
                 'jiv_flag' => 2,
             );
             
-            $this->Jasainvestasi_model->delete($id);
+            $this->Jasainvestasi_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jasainvestasi'));
         } else {
