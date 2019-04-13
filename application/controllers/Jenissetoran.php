@@ -180,7 +180,7 @@ class Jenissetoran extends MY_Base
                 'jse_flag' => 2,
                  );
                  
-            $this->Jenissetoran_model->delete($id);
+            $this->Jenissetoran_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jenissetoran'));
         } else {

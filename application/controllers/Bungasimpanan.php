@@ -175,7 +175,7 @@ class Bungasimpanan extends MY_Base
                 'bus_flag' => 2,
             );
 
-            $this->Bungasimpanan_model->delete($id);
+            $this->Bungasimpanan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('bungasimpanan'));
         } else {

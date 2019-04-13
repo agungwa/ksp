@@ -109,6 +109,9 @@ lookup();
                                 <li>
                                     <a href="<?=base_url()?>Bungasimpanan">Bunga Simpanan</a>
                                 </li>
+                                <li>
+                                    <a href="<?=base_url()?>Bungasimpanan">Setting Simpanan</a>
+                                </li>
                             </ul>
                         </li>
                     <li>

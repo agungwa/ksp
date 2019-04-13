@@ -180,7 +180,7 @@ class Jenissimpanan extends MY_Base
                 'jsi_flag' => 2,
             );
             
-            $this->Jenissimpanan_model->delete($id);
+            $this->Jenissimpanan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jenissimpanan'));
         } else {
