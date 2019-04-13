@@ -108,9 +108,6 @@ class Settingsimpanan extends MY_Base
 	    'ses_nama' => set_value('ses_nama'),
 	    'ses_min' => set_value('ses_min'),
 	    'ses_max' => set_value('ses_max'),
-	    'ses_tgl' => set_value('ses_tgl'),
-	    'ses_flag' => set_value('ses_flag'),
-	    'ses_info' => set_value('ses_info'),
 	    'content' => 'backend/settingsimpanan/settingsimpanan_form',
 	);
         $this->load->view(layout(), $data);
@@ -127,9 +124,9 @@ class Settingsimpanan extends MY_Base
 		'ses_nama' => $this->input->post('ses_nama',TRUE),
 		'ses_min' => $this->input->post('ses_min',TRUE),
 		'ses_max' => $this->input->post('ses_max',TRUE),
-		'ses_tgl' => $this->input->post('ses_tgl',TRUE),
-		'ses_flag' => $this->input->post('ses_flag',TRUE),
-		'ses_info' => $this->input->post('ses_info',TRUE),
+		'ses_tgl' => $this->tgl,
+		'ses_flag' => 0,
+		'ses_info' => "",
 	    );
 
             $this->Settingsimpanan_model->insert($data);
@@ -150,9 +147,6 @@ class Settingsimpanan extends MY_Base
 		'ses_nama' => set_value('ses_nama', $row->ses_nama),
 		'ses_min' => set_value('ses_min', $row->ses_min),
 		'ses_max' => set_value('ses_max', $row->ses_max),
-		'ses_tgl' => set_value('ses_tgl', $row->ses_tgl),
-		'ses_flag' => set_value('ses_flag', $row->ses_flag),
-		'ses_info' => set_value('ses_info', $row->ses_info),
 	    'content' => 'backend/settingsimpanan/settingsimpanan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -173,9 +167,7 @@ class Settingsimpanan extends MY_Base
 		'ses_nama' => $this->input->post('ses_nama',TRUE),
 		'ses_min' => $this->input->post('ses_min',TRUE),
 		'ses_max' => $this->input->post('ses_max',TRUE),
-		'ses_tgl' => $this->input->post('ses_tgl',TRUE),
-		'ses_flag' => $this->input->post('ses_flag',TRUE),
-		'ses_info' => $this->input->post('ses_info',TRUE),
+		'ses_flag' => 1,
 	    );
 
             $this->Settingsimpanan_model->update($this->input->post('ses_id', TRUE), $data);
@@ -189,7 +181,10 @@ class Settingsimpanan extends MY_Base
         $row = $this->Settingsimpanan_model->get_by_id($id);
 
         if ($row) {
-            $this->Settingsimpanan_model->delete($id);
+            $data = array(
+                'ses_flag' => 2,
+            );
+            $this->Settingsimpanan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('settingsimpanan'));
         } else {
@@ -203,9 +198,6 @@ class Settingsimpanan extends MY_Base
 	$this->form_validation->set_rules('ses_nama', 'ses nama', 'trim|required');
 	$this->form_validation->set_rules('ses_min', 'ses min', 'trim|required');
 	$this->form_validation->set_rules('ses_max', 'ses max', 'trim|required');
-	$this->form_validation->set_rules('ses_tgl', 'ses tgl', 'trim|required');
-	$this->form_validation->set_rules('ses_flag', 'ses flag', 'trim|required');
-	$this->form_validation->set_rules('ses_info', 'ses info', 'trim|required');
 
 	$this->form_validation->set_rules('ses_id', 'ses_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

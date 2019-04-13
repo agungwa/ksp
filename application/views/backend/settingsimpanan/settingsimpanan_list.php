@@ -51,9 +51,6 @@
 		<th class="text-center">Ses Nama</th>
 		<th class="text-center">Ses Min</th>
 		<th class="text-center">Ses Max</th>
-		<th class="text-center">Ses Tgl</th>
-		<th class="text-center">Ses Flag</th>
-		<th class="text-center">Ses Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>

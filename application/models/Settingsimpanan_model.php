@@ -18,6 +18,7 @@ class Settingsimpanan_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('ses_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,27 +32,16 @@ class Settingsimpanan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('ses_id', $q);
-	$this->db->or_like('ses_nama', $q);
-	$this->db->or_like('ses_min', $q);
-	$this->db->or_like('ses_max', $q);
-	$this->db->or_like('ses_tgl', $q);
-	$this->db->or_like('ses_flag', $q);
-	$this->db->or_like('ses_info', $q);
+    $where = "ses_nama LIKE '%$q%' ESCAPE '!' AND 'ses_flag < 2'";
+    $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
-        $this->db->order_by($this->id, $this->order);
-        $this->db->like('ses_id', $q);
-	$this->db->or_like('ses_nama', $q);
-	$this->db->or_like('ses_min', $q);
-	$this->db->or_like('ses_max', $q);
-	$this->db->or_like('ses_tgl', $q);
-	$this->db->or_like('ses_flag', $q);
-	$this->db->or_like('ses_info', $q);
+    $where = "ses_nama LIKE '%$q%' ESCAPE '!' AND 'ses_flag < 2'";
+    $this->db->where($where);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
