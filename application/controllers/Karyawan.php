@@ -86,12 +86,9 @@ class Karyawan extends MY_Base
 		'kar_kode' => $row->kar_kode,
 		'kar_nama' => $row->kar_nama,
 		'jab_kode' => $row->jab_kode,
-		'wil_kode' => $row->wil_kode,
 		'kar_alamat' => $row->kar_alamat,
 		'kar_nohp' => $row->kar_nohp,
-		'kar_tgl' => $row->kar_tgl,
-		'kar_flag' => $row->kar_flag,
-		'kar_info' => $row->kar_info,'content' => 'backend/karyawan/karyawan_read',
+        'content' => 'backend/karyawan/karyawan_read',
 	    );
             $this->load->view(
             layout(), $data);
@@ -106,17 +103,17 @@ class Karyawan extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('karyawan/create_action'),
-	    'kar_kode' => set_value('kar_kode'),
-	    'kar_nama' => set_value('kar_nama'),
-	    'jab_kode' => set_value('jab_kode'),
-	    'wil_kode' => set_value('wil_kode'),
-	    'kar_alamat' => set_value('kar_alamat'),
-	    'kar_nohp' => set_value('kar_nohp'),
-	    'kar_tgl' => set_value('kar_tgl'),
-	    'kar_flag' => set_value('kar_flag'),
-	    'kar_info' => set_value('kar_info'),
-	    'content' => 'backend/karyawan/karyawan_form',
-	);
+    	    'kar_kode' => set_value('kar_kode'),
+    	    'kar_nama' => set_value('kar_nama'),
+    	    'jab_kode' => set_value('jab_kode'),
+            'nm_jab_kode' => set_value('nm_jab_kode'),
+    	    'kar_alamat' => set_value('kar_alamat'),
+    	    'kar_nohp' => set_value('kar_nohp'),
+    	    'kar_tgl' => set_value('kar_tgl'),
+    	    'kar_flag' => set_value('kar_flag'),
+    	    'kar_info' => set_value('kar_info'),
+    	    'content' => 'backend/karyawan/karyawan_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -128,15 +125,15 @@ class Karyawan extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'kar_nama' => $this->input->post('kar_nama',TRUE),
-		'jab_kode' => $this->input->post('jab_kode',TRUE),
-		'wil_kode' => $this->input->post('wil_kode',TRUE),
-		'kar_alamat' => $this->input->post('kar_alamat',TRUE),
-		'kar_nohp' => $this->input->post('kar_nohp',TRUE),
-		'kar_tgl' => $this->input->post('kar_tgl',TRUE),
-		'kar_flag' => $this->input->post('kar_flag',TRUE),
-		'kar_info' => $this->input->post('kar_info',TRUE),
-	    );
+            'kar_kode' => $this->input->post('kar_kode',TRUE),
+    		'kar_nama' => $this->input->post('kar_nama',TRUE),
+    		'jab_kode' => $this->input->post('jab_kode',TRUE),
+    		'kar_alamat' => $this->input->post('kar_alamat',TRUE),
+    		'kar_nohp' => $this->input->post('kar_nohp',TRUE),
+    		'kar_tgl' => $this->tgl,
+    		'kar_flag' => 0,
+    		'kar_info' => "",
+    	    );
 
             $this->Karyawan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -152,17 +149,14 @@ class Karyawan extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('karyawan/update_action'),
-		'kar_kode' => set_value('kar_kode', $row->kar_kode),
-		'kar_nama' => set_value('kar_nama', $row->kar_nama),
-		'jab_kode' => set_value('jab_kode', $row->jab_kode),
-		'wil_kode' => set_value('wil_kode', $row->wil_kode),
-		'kar_alamat' => set_value('kar_alamat', $row->kar_alamat),
-		'kar_nohp' => set_value('kar_nohp', $row->kar_nohp),
-		'kar_tgl' => set_value('kar_tgl', $row->kar_tgl),
-		'kar_flag' => set_value('kar_flag', $row->kar_flag),
-		'kar_info' => set_value('kar_info', $row->kar_info),
-	    'content' => 'backend/karyawan/karyawan_form',
-	    );
+        		'kar_kode' => set_value('kar_kode', $row->kar_kode),
+        		'kar_nama' => set_value('kar_nama', $row->kar_nama),
+        		'jab_kode' => set_value('jab_kode', $row->jab_kode),
+                'nm_jab_kode' => set_value('jab_kode', $row->jab_kode),
+        		'kar_alamat' => set_value('kar_alamat', $row->kar_alamat),
+        		'kar_nohp' => set_value('kar_nohp', $row->kar_nohp),
+        	    'content' => 'backend/karyawan/karyawan_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -178,15 +172,12 @@ class Karyawan extends MY_Base
             $this->update($this->input->post('kar_kode', TRUE));
         } else {
             $data = array(
-		'kar_nama' => $this->input->post('kar_nama',TRUE),
-		'jab_kode' => $this->input->post('jab_kode',TRUE),
-		'wil_kode' => $this->input->post('wil_kode',TRUE),
-		'kar_alamat' => $this->input->post('kar_alamat',TRUE),
-		'kar_nohp' => $this->input->post('kar_nohp',TRUE),
-		'kar_tgl' => $this->input->post('kar_tgl',TRUE),
-		'kar_flag' => $this->input->post('kar_flag',TRUE),
-		'kar_info' => $this->input->post('kar_info',TRUE),
-	    );
+    		'kar_nama' => $this->input->post('kar_nama',TRUE),
+    		'jab_kode' => $this->input->post('jab_kode',TRUE),
+    		'kar_alamat' => $this->input->post('kar_alamat',TRUE),
+    		'kar_nohp' => $this->input->post('kar_nohp',TRUE),
+    		'kar_flag' => 1,
+    	    );
 
             $this->Karyawan_model->update($this->input->post('kar_kode', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -199,7 +190,11 @@ class Karyawan extends MY_Base
         $row = $this->Karyawan_model->get_by_id($id);
 
         if ($row) {
-            $this->Karyawan_model->delete($id);
+            $data = array(
+            'kar_flag' => 2,
+            );
+
+            $this->Karyawan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('karyawan'));
         } else {
@@ -212,12 +207,8 @@ class Karyawan extends MY_Base
     {
 	$this->form_validation->set_rules('kar_nama', 'kar nama', 'trim|required');
 	$this->form_validation->set_rules('jab_kode', 'jab kode', 'trim|required');
-	$this->form_validation->set_rules('wil_kode', 'wil kode', 'trim|required');
 	$this->form_validation->set_rules('kar_alamat', 'kar alamat', 'trim|required');
 	$this->form_validation->set_rules('kar_nohp', 'kar nohp', 'trim|required');
-	$this->form_validation->set_rules('kar_tgl', 'kar tgl', 'trim|required');
-	$this->form_validation->set_rules('kar_flag', 'kar flag', 'trim|required');
-	$this->form_validation->set_rules('kar_info', 'kar info', 'trim|required');
 
 	$this->form_validation->set_rules('kar_kode', 'kar_kode', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

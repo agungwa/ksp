@@ -437,6 +437,7 @@ lookup();
                         <li><a href="<?=base_url()?>jabatan">Jabatan</a></li>
                         <li><a href="<?=base_url()?>wilayah">Wilayah</a></li>
                         <li><a href="<?=base_url()?>karyawan">Karyawan</a></li>
+                        <li><a href="<?=base_url()?>wilayah_karyawan">Wilayah Karyawan</a></li>
                     </ul>
                 </li>
 
