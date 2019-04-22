@@ -19,7 +19,7 @@
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-               
+            <?php echo anchor(site_url('anggota/create'),'Create', 'class="btn btn-primary"'); ?> 
             </div>
             
             
@@ -40,31 +40,28 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
+        <th class="text-center">Nomor Anggota</th>
 		<th class="text-center">Ang Nama</th>
 		<th class="text-center">Ang Alamat</th>
 		<th class="text-center">Ang Noktp</th>
 		<th class="text-center">Ang Nokk</th>
 		<th class="text-center">Ang Nohp</th>
 		<th class="text-center">Ang Tgllahir</th>
-		<th class="text-center">Ang Tgl</th>
-		<th class="text-center">Ang Flag</th>
-		<th class="text-center">Ang Info</th></tr>
             </thead>
 			<tbody><?php
             foreach ($anggota_data as $anggota)
             {
                 ?>
                 <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$anggota->ang_no?>','<?=$anggota->ang_nama?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
+            <td><?php echo $anggota->ang_no ?></td>
 			<td><?php echo $anggota->ang_nama ?></td>
 			<td><?php echo $anggota->ang_alamat ?></td>
 			<td><?php echo $anggota->ang_noktp ?></td>
 			<td><?php echo $anggota->ang_nokk ?></td>
 			<td><?php echo $anggota->ang_nohp ?></td>
 			<td><?php echo $anggota->ang_tgllahir ?></td>
-			<td><?php echo $anggota->ang_tgl ?></td>
-			<td><?php echo $anggota->ang_flag ?></td>
-			<td><?php echo $anggota->ang_info ?></td>
 		</tr>
                 
                 <?php

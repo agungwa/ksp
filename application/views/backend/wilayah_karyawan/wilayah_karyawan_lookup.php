@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Karyawan</b></h2>
+                    <h2><b>List Wilayah_karyawan</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -19,19 +19,18 @@
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-            <?php echo anchor(site_url('karyawan/create'),'Create', 'class="btn btn-primary"'); ?> 
-           
+               
             </div>
             
             
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('karyawan/index'); ?>" class="form-inline" method="get">
+                <form action="<?php echo site_url('wilayah_karyawan/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" id="q" value="<?php echo @$_GET['q']; ?>">
                         <span class="input-group-btn">
-                          <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>karyawan/lookup')" >Search</button>
+                          <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>wilayah_karyawan/lookup')" >Search</button>
                         </span>
                     </div>
                 </form>
@@ -41,27 +40,25 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Kar Nama</th>
-		<th class="text-center">Jab Kode</th>
 		<th class="text-center">Wil Kode</th>
-		<th class="text-center">Kar Alamat</th>
-		<th class="text-center">Kar Nohp</th>
+		<th class="text-center">Status</th>
+		<th class="text-center">Kar Kode</th>
+		<th class="text-center">Wik Tgl</th>
+		<th class="text-center">Wik Flag</th>
+		<th class="text-center">Wik Info</th></tr>
             </thead>
 			<tbody><?php
-            foreach ($karyawan_data as $karyawan)
+            foreach ($wilayah_karyawan_data as $wilayah_karyawan)
             {
                 ?>
                 <tr>
-                <tr onclick="setVal('<?=$idhtml?>','<?=$karyawan->kar_kode?>','<?=$karyawan->kar_kode?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $karyawan->kar_nama ?></td>
-			<td><?php echo $karyawan->jab_kode ?></td>
-			<td><?php echo $karyawan->wil_kode ?></td>
-			<td><?php echo $karyawan->kar_alamat ?></td>
-			<td><?php echo $karyawan->kar_nohp ?></td>
-			<td><?php echo $karyawan->kar_tgl ?></td>
-			<td><?php echo $karyawan->kar_flag ?></td>
-			<td><?php echo $karyawan->kar_info ?></td>
+			<td><?php echo $wilayah_karyawan->wil_kode ?></td>
+			<td><?php echo $wilayah_karyawan->status ?></td>
+			<td><?php echo $wilayah_karyawan->kar_kode ?></td>
+			<td><?php echo $wilayah_karyawan->wik_tgl ?></td>
+			<td><?php echo $wilayah_karyawan->wik_flag ?></td>
+			<td><?php echo $wilayah_karyawan->wik_info ?></td>
 		</tr>
                 
                 <?php

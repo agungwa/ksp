@@ -13,6 +13,10 @@
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
+        <div class="form-group">
+            <label for="varchar">Nomor Anggota <?php echo form_error('ang_no') ?></label>
+            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Nomor Anggota" value="<?php echo $ang_no; ?>" />
+        </div>
 	    <div class="form-group">
             <label for="varchar">Ang Nama <?php echo form_error('ang_nama') ?></label>
             <input type="text" class="form-control" name="ang_nama" id="ang_nama" placeholder="Ang Nama" value="<?php echo $ang_nama; ?>" />
@@ -35,21 +39,8 @@
         </div>
 	    <div class="form-group">
             <label for="date">Ang Tgllahir <?php echo form_error('ang_tgllahir') ?></label>
-            <input type="text" class="form-control" name="ang_tgllahir" id="ang_tgllahir" placeholder="Ang Tgllahir" value="<?php echo $ang_tgllahir; ?>" />
+            <input type="date" class="form-control" name="ang_tgllahir" id="ang_tgllahir" placeholder="Ang Tgllahir" value="<?php echo $ang_tgllahir; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="datetime">Ang Tgl <?php echo form_error('ang_tgl') ?></label>
-            <input type="text" class="form-control" name="ang_tgl" id="ang_tgl" placeholder="Ang Tgl" value="<?php echo $ang_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Ang Flag <?php echo form_error('ang_flag') ?></label>
-            <input type="text" class="form-control" name="ang_flag" id="ang_flag" placeholder="Ang Flag" value="<?php echo $ang_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="ang_info">Ang Info <?php echo form_error('ang_info') ?></label>
-            <textarea class="form-control" rows="3" name="ang_info" id="ang_info" placeholder="Ang Info"><?php echo $ang_info; ?></textarea>
-        </div>
-	    <input type="hidden" name="ang_no" value="<?php echo $ang_no; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('anggota') ?>" class="btn btn-default">Cancel</a>
 	</div>

@@ -42,21 +42,16 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Jse Setoran</th>
 		<th class="text-center">Jse Keterangan</th>
-		<th class="text-center">Jse Tgl</th>
-		<th class="text-center">Jse Flag</th>
-		<th class="text-center">Jse Info</th></tr>
             </thead>
 			<tbody><?php
             foreach ($jenissetoran_data as $jenissetoran)
             {
                 ?>
                 <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$jenissetoran->jse_id?>','<?=$jenissetoran->jse_setoran?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenissetoran->jse_setoran ?></td>
 			<td><?php echo $jenissetoran->jse_keterangan ?></td>
-			<td><?php echo $jenissetoran->jse_tgl ?></td>
-			<td><?php echo $jenissetoran->jse_flag ?></td>
-			<td><?php echo $jenissetoran->jse_info ?></td>
 		</tr>
                 
                 <?php

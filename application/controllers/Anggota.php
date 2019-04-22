@@ -114,9 +114,6 @@ class Anggota extends MY_Base
 	    'ang_nokk' => set_value('ang_nokk'),
 	    'ang_nohp' => set_value('ang_nohp'),
 	    'ang_tgllahir' => set_value('ang_tgllahir'),
-	    'ang_tgl' => set_value('ang_tgl'),
-	    'ang_flag' => set_value('ang_flag'),
-	    'ang_info' => set_value('ang_info'),
 	    'content' => 'backend/anggota/anggota_form',
 	);
         $this->load->view(layout(), $data);
@@ -136,9 +133,9 @@ class Anggota extends MY_Base
 		'ang_nokk' => $this->input->post('ang_nokk',TRUE),
 		'ang_nohp' => $this->input->post('ang_nohp',TRUE),
 		'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
-		'ang_tgl' => $this->input->post('ang_tgl',TRUE),
-		'ang_flag' => $this->input->post('ang_flag',TRUE),
-		'ang_info' => $this->input->post('ang_info',TRUE),
+		'ang_tgl' => $this->tgl,
+		'ang_flag' => 0,
+		'ang_info' => "",
 	    );
 
             $this->Anggota_model->insert($data);
@@ -162,9 +159,6 @@ class Anggota extends MY_Base
 		'ang_nokk' => set_value('ang_nokk', $row->ang_nokk),
 		'ang_nohp' => set_value('ang_nohp', $row->ang_nohp),
 		'ang_tgllahir' => set_value('ang_tgllahir', $row->ang_tgllahir),
-		'ang_tgl' => set_value('ang_tgl', $row->ang_tgl),
-		'ang_flag' => set_value('ang_flag', $row->ang_flag),
-		'ang_info' => set_value('ang_info', $row->ang_info),
 	    'content' => 'backend/anggota/anggota_form',
 	    );
             $this->load->view(layout(), $data);
@@ -188,9 +182,9 @@ class Anggota extends MY_Base
 		'ang_nokk' => $this->input->post('ang_nokk',TRUE),
 		'ang_nohp' => $this->input->post('ang_nohp',TRUE),
 		'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
-		'ang_tgl' => $this->input->post('ang_tgl',TRUE),
-		'ang_flag' => $this->input->post('ang_flag',TRUE),
-		'ang_info' => $this->input->post('ang_info',TRUE),
+		'ang_tgl' => $this->tgl,
+		'ang_flag' => 1,
+		'ang_info' => "",
 	    );
 
             $this->Anggota_model->update($this->input->post('ang_no', TRUE), $data);
@@ -204,7 +198,10 @@ class Anggota extends MY_Base
         $row = $this->Anggota_model->get_by_id($id);
 
         if ($row) {
-            $this->Anggota_model->delete($id);
+            $data = array(
+                'ang_flag' => 2
+            );
+            $this->Anggota_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('anggota'));
         } else {
@@ -221,9 +218,6 @@ class Anggota extends MY_Base
 	$this->form_validation->set_rules('ang_nokk', 'ang nokk', 'trim|required');
 	$this->form_validation->set_rules('ang_nohp', 'ang nohp', 'trim|required');
 	$this->form_validation->set_rules('ang_tgllahir', 'ang tgllahir', 'trim|required');
-	$this->form_validation->set_rules('ang_tgl', 'ang tgl', 'trim|required');
-	$this->form_validation->set_rules('ang_flag', 'ang flag', 'trim|required');
-	$this->form_validation->set_rules('ang_info', 'ang info', 'trim|required');
 
 	$this->form_validation->set_rules('ang_no', 'ang_no', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

@@ -90,6 +90,8 @@ lookup();
                     </ul>
                 </li> -->
 
+            
+
                 <!-- MENU SIMPANAN BERJANGKA -->
                 
                 <li class="">
@@ -110,7 +112,7 @@ lookup();
                                     <a href="<?=base_url()?>Bungasimpanan">Bunga Simpanan</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url()?>Bungasimpanan">Setting Simpanan</a>
+                                    <a href="<?=base_url()?>Settingsimpanan">Setting Simpanan</a>
                                 </li>
                             </ul>
                         </li>
@@ -127,7 +129,7 @@ lookup();
                                     <a href="<?=base_url()?>Simpananwajib">Tarik Simpanan Wajib</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url()?>Simpanan">Simpanan</a>
+                                    <a href="<?=base_url()?>Simpanan/create">Simpanan</a>
                                 </li>
                             </ul>
                         </li>
@@ -151,7 +153,7 @@ lookup();
                                     <a href="#">Data Jatuh Tempo</a>
                                 </li>
                                 <li>
-                                    <a href="#">Data Rekening</a>
+                                    <a href="<?=base_url()?>simpanan">Data Rekening</a>
                                 </li>
                                 <li>
                                     <a href="#">Neraca / Sirkulasi</a>

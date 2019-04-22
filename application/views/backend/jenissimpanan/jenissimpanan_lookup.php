@@ -42,21 +42,16 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Jsi Simpanan</th>
 		<th class="text-center">Jsi Keterangan</th>
-		<th class="text-center">Jsi Tgl</th>
-		<th class="text-center">Jsi Flag</th>
-		<th class="text-center">Jsi Info</th></tr>
             </thead>
 			<tbody><?php
             foreach ($jenissimpanan_data as $jenissimpanan)
             {
                 ?>
                 <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$jenissimpanan->jsi_id?>','<?=$jenissimpanan->jsi_simpanan?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenissimpanan->jsi_simpanan ?></td>
 			<td><?php echo $jenissimpanan->jsi_keterangan ?></td>
-			<td><?php echo $jenissimpanan->jsi_tgl ?></td>
-			<td><?php echo $jenissimpanan->jsi_flag ?></td>
-			<td><?php echo $jenissimpanan->jsi_info ?></td>
 		</tr>
                 
                 <?php

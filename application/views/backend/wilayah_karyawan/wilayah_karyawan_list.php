@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Simpanan</b></h2>
+                    <h2><b>List Wilayah_karyawan</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -19,14 +19,14 @@
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-                <?php echo anchor(site_url('simpanan/create'),'Create', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('wilayah_karyawan/create'),'Create', 'class="btn btn-primary"'); ?>
             </div>
             
             
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('simpanan/index'); ?>" class="form-inline" method="get">
+                <form action="<?php echo site_url('wilayah_karyawan/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
@@ -34,7 +34,7 @@
                                 if ($q <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo site_url('simpanan'); ?>" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo site_url('wilayah_karyawan'); ?>" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
@@ -48,40 +48,34 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sim Kode</th>
-		<th class="text-center">Ang No</th>
-		<th class="text-center">Kar Kode</th>
-		<th class="text-center">Bus Id</th>
-		<th class="text-center">Jsi Id</th>
-		<th class="text-center">Jse Id</th>
 		<th class="text-center">Wil Kode</th>
-		<th class="text-center">Sim Tglpendaftaran</th>
-		<th class="text-center">Sim Status</th>
+		<th class="text-center">Status</th>
+		<th class="text-center">Kar Kode</th>
+		<th class="text-center">Wik Tgl</th>
+		<th class="text-center">Wik Flag</th>
+		<th class="text-center">Wik Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
-            foreach ($simpanan_data as $simpanan)
+            foreach ($wilayah_karyawan_data as $wilayah_karyawan)
             {
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $simpanan->sim_kode ?></td>
-			<td><?php echo $simpanan->ang_no ?></td>
-			<td><?php echo $simpanan->kar_kode ?></td>
-			<td><?php echo $simpanan->bus_id ?></td>
-			<td><?php echo $simpanan->jsi_id ?></td>
-			<td><?php echo $simpanan->jse_id ?></td>
-			<td><?php echo $simpanan->wil_kode ?></td>
-			<td><?php echo $simpanan->sim_tglpendaftaran ?></td>
-			<td><?php echo $simpanan->sim_status ?></td>
+			<td><?php echo $wilayah_karyawan->wil_kode ?></td>
+			<td><?php echo $wilayah_karyawan->status ?></td>
+			<td><?php echo $wilayah_karyawan->kar_kode ?></td>
+			<td><?php echo $wilayah_karyawan->wik_tgl ?></td>
+			<td><?php echo $wilayah_karyawan->wik_flag ?></td>
+			<td><?php echo $wilayah_karyawan->wik_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('simpanan/read/'.$simpanan->sim_kode),'Read','class="text-navy"'); 
+				echo anchor(site_url('wilayah_karyawan/read/'.$wilayah_karyawan->wik_id),'Read','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('simpanan/update/'.$simpanan->sim_kode),'Update','class="text-navy"'); 
+				echo anchor(site_url('wilayah_karyawan/update/'.$wilayah_karyawan->wik_id),'Update','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('simpanan/delete/'.$simpanan->sim_kode),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('wilayah_karyawan/delete/'.$wilayah_karyawan->wik_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>
 		</tr>

@@ -110,17 +110,20 @@ class Simpanan extends MY_Base
             'button' => 'Create',
             'action' => site_url('simpanan/create_action'),
 	    'sim_kode' => set_value('sim_kode'),
-	    'ang_no' => set_value('ang_no'),
-	    'kar_kode' => set_value('kar_kode'),
+        'ang_no' => set_value('ang_no'),
+        'nm_ang_no' => set_value ('nm_ang_no'),
+        'kar_kode' => set_value('kar_kode'),
+        'nm_kar_kode' => set_value('nm_kar_kode'),
 	    'bus_id' => set_value('bus_id'),
+	    'nm_bus_id' => set_value('nm_bus_id'),
 	    'jsi_id' => set_value('jsi_id'),
+	    'nm_jsi_id' => set_value('nm_jsi_id'),
 	    'jse_id' => set_value('jse_id'),
+	    'nm_jse_id' => set_value('nm_jse_id'),
 	    'wil_kode' => set_value('wil_kode'),
+	    'nm_wil_kode' => set_value('nm_wil_kode'),
 	    'sim_tglpendaftaran' => set_value('sim_tglpendaftaran'),
 	    'sim_status' => set_value('sim_status'),
-	    'sim_tgl' => set_value('sim_tgl'),
-	    'sim_flag' => set_value('sim_flag'),
-	    'sim_info' => set_value('sim_info'),
 	    'content' => 'backend/simpanan/simpanan_form',
 	);
         $this->load->view(layout(), $data);
@@ -143,9 +146,9 @@ class Simpanan extends MY_Base
 		'wil_kode' => $this->input->post('wil_kode',TRUE),
 		'sim_tglpendaftaran' => $this->input->post('sim_tglpendaftaran',TRUE),
 		'sim_status' => $this->input->post('sim_status',TRUE),
-		'sim_tgl' => $this->input->post('sim_tgl',TRUE),
-		'sim_flag' => $this->input->post('sim_flag',TRUE),
-		'sim_info' => $this->input->post('sim_info',TRUE),
+		'sim_tgl' => $this->tgl,
+		'sim_flag' => 0,
+		'sim_info' => "",
 	    );
 
             $this->Simpanan_model->insert($data);
@@ -164,16 +167,19 @@ class Simpanan extends MY_Base
                 'action' => site_url('simpanan/update_action'),
 		'sim_kode' => set_value('sim_kode', $row->sim_kode),
 		'ang_no' => set_value('ang_no', $row->ang_no),
+		'nm_ang_no' => set_value('nm_ang_no', $row->ang_nama),
 		'kar_kode' => set_value('kar_kode', $row->kar_kode),
+		'nm_kar_kode' => set_value('kar_kode', $row->kar_nama),
 		'bus_id' => set_value('bus_id', $row->bus_id),
+		'nm_bus_id' => set_value('bus_id', $row->bus_bunga),
 		'jsi_id' => set_value('jsi_id', $row->jsi_id),
+		'nm_jsi_id' => set_value('jsi_id', $row->jsi_simpanan),
 		'jse_id' => set_value('jse_id', $row->jse_id),
+		'nm_jse_id' => set_value('jse_id', $row->jse_setoran),
 		'wil_kode' => set_value('wil_kode', $row->wil_kode),
+		'nm_wil_kode' => set_value('wil_kode', $row->wil_nama),
 		'sim_tglpendaftaran' => set_value('sim_tglpendaftaran', $row->sim_tglpendaftaran),
 		'sim_status' => set_value('sim_status', $row->sim_status),
-		'sim_tgl' => set_value('sim_tgl', $row->sim_tgl),
-		'sim_flag' => set_value('sim_flag', $row->sim_flag),
-		'sim_info' => set_value('sim_info', $row->sim_info),
 	    'content' => 'backend/simpanan/simpanan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -200,9 +206,7 @@ class Simpanan extends MY_Base
 		'wil_kode' => $this->input->post('wil_kode',TRUE),
 		'sim_tglpendaftaran' => $this->input->post('sim_tglpendaftaran',TRUE),
 		'sim_status' => $this->input->post('sim_status',TRUE),
-		'sim_tgl' => $this->input->post('sim_tgl',TRUE),
-		'sim_flag' => $this->input->post('sim_flag',TRUE),
-		'sim_info' => $this->input->post('sim_info',TRUE),
+		'sim_flag' => 1,
 	    );
 
             $this->Simpanan_model->update($this->input->post('', TRUE), $data);
@@ -216,7 +220,10 @@ class Simpanan extends MY_Base
         $row = $this->Simpanan_model->get_by_id($id);
 
         if ($row) {
-            $this->Simpanan_model->delete($id);
+            $data = array (
+                'sim_flag' => 2,
+            );
+            $this->Simpanan_model->update($id,$data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('simpanan'));
         } else {
@@ -236,9 +243,6 @@ class Simpanan extends MY_Base
 	$this->form_validation->set_rules('wil_kode', 'wil kode', 'trim|required');
 	$this->form_validation->set_rules('sim_tglpendaftaran', 'sim tglpendaftaran', 'trim|required');
 	$this->form_validation->set_rules('sim_status', 'sim status', 'trim|required');
-	$this->form_validation->set_rules('sim_tgl', 'sim tgl', 'trim|required');
-	$this->form_validation->set_rules('sim_flag', 'sim flag', 'trim|required');
-	$this->form_validation->set_rules('sim_info', 'sim info', 'trim|required');
 
 	$this->form_validation->set_rules('', '', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
