@@ -49,13 +49,13 @@
             foreach ($jabatan_data as $jabatan)
             {
                 ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $jabatan->jab_nama ?></td>
-			<td><?php echo $jabatan->jab_tgl ?></td>
-			<td><?php echo $jabatan->jab_flag ?></td>
-			<td><?php echo $jabatan->jab_info ?></td>
-		</tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$jabatan->jab_kode?>','<?=$jabatan->jab_nama?>')" style="cursor: pointer;">
+        			<td width="80px"><?php echo ++$start ?></td>
+        			<td><?php echo $jabatan->jab_nama ?></td>
+        			<td><?php echo $jabatan->jab_tgl ?></td>
+        			<td><?php echo $jabatan->jab_flag ?></td>
+        			<td><?php echo $jabatan->jab_info ?></td>
+        		</tr>
                 
                 <?php
             }

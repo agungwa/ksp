@@ -18,6 +18,7 @@ class Wilayah_karyawan_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('wik_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,28 +32,18 @@ class Wilayah_karyawan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('wik_id', $q);
-	$this->db->or_like('wil_kode', $q);
-	$this->db->or_like('status', $q);
-	$this->db->or_like('kar_kode', $q);
-	$this->db->or_like('wik_tgl', $q);
-	$this->db->or_like('wik_flag', $q);
-	$this->db->or_like('wik_info', $q);
-	$this->db->from($this->table);
+        $where = "(wil_kode LIKE '%$q%' ESCAPE '!' OR kar_kode LIKE '%$q%' ESCAPE '!') AND wik_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('wik_id', $q);
-	$this->db->or_like('wil_kode', $q);
-	$this->db->or_like('status', $q);
-	$this->db->or_like('kar_kode', $q);
-	$this->db->or_like('wik_tgl', $q);
-	$this->db->or_like('wik_flag', $q);
-	$this->db->or_like('wik_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "(wil_kode LIKE '%$q%' ESCAPE '!' OR kar_kode LIKE '%$q%' ESCAPE '!') AND wik_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 
