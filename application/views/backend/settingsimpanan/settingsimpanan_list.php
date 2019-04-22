@@ -63,9 +63,6 @@
 			<td><?php echo $settingsimpanan->ses_nama ?></td>
 			<td><?php echo $settingsimpanan->ses_min ?></td>
 			<td><?php echo $settingsimpanan->ses_max ?></td>
-			<td><?php echo $settingsimpanan->ses_tgl ?></td>
-			<td><?php echo $settingsimpanan->ses_flag ?></td>
-			<td><?php echo $settingsimpanan->ses_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('settingsimpanan/read/'.$settingsimpanan->ses_id),'Read','class="text-navy"'); 

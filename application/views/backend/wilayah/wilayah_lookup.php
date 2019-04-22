@@ -41,20 +41,15 @@
             <tr>
                 <th class="text-center">No</th>
 		<th class="text-center">Wil Nama</th>
-		<th class="text-center">Wil Tgl</th>
-		<th class="text-center">Wil Flag</th>
-		<th class="text-center">Wil Info</th></tr>
             </thead>
 			<tbody><?php
             foreach ($wilayah_data as $wilayah)
             {
                 ?>
                 <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$wilayah->wil_kode?>','<?=$wilayah->wil_nama?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $wilayah->wil_nama ?></td>
-			<td><?php echo $wilayah->wil_tgl ?></td>
-			<td><?php echo $wilayah->wil_flag ?></td>
-			<td><?php echo $wilayah->wil_info ?></td>
 		</tr>
                 
                 <?php

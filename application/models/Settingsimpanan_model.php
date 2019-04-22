@@ -32,7 +32,7 @@ class Settingsimpanan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-    $where = "ses_nama LIKE '%$q%' ESCAPE '!' AND 'ses_flag < 2'";
+    $where = "ses_nama LIKE '%$q%' ESCAPE '!' AND ses_flag < 2";
     $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
@@ -40,7 +40,7 @@ class Settingsimpanan_model extends CI_Model
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
-    $where = "ses_nama LIKE '%$q%' ESCAPE '!' AND 'ses_flag < 2'";
+    $where = "ses_nama LIKE '%$q%' ESCAPE '!' AND ses_flag < 2";
     $this->db->where($where);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();

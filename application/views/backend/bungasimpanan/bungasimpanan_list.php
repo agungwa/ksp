@@ -49,6 +49,7 @@
             <tr>
                 <th class="text-center">No</th>
 		<th class="text-center">Bus Bunga</th>
+        <th class="text-center">Bus Tgl</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -59,6 +60,7 @@
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $bungasimpanan->bus_bunga ?></td>
+            <td><?php echo dateFormat($bungasimpanan->bus_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('bungasimpanan/read/'.$bungasimpanan->bus_id),'Read','class="text-navy"'); 

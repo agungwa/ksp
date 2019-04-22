@@ -41,20 +41,15 @@
             <tr>
                 <th class="text-center">No</th>
 		<th class="text-center">Bus Bunga</th>
-		<th class="text-center">Bus Tgl</th>
-		<th class="text-center">Bus Flag</th>
-		<th class="text-center">Bus Info</th></tr>
             </thead>
 			<tbody><?php
             foreach ($bungasimpanan_data as $bungasimpanan)
             {
                 ?>
                 <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$bungasimpanan->bus_id?>','<?=$bungasimpanan->bus_bunga?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $bungasimpanan->bus_bunga ?></td>
-			<td><?php echo $bungasimpanan->bus_tgl ?></td>
-			<td><?php echo $bungasimpanan->bus_flag ?></td>
-			<td><?php echo $bungasimpanan->bus_info ?></td>
 		</tr>
                 
                 <?php

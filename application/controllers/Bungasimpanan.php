@@ -187,7 +187,6 @@ class Bungasimpanan extends MY_Base
     public function _rules() 
     {
 	$this->form_validation->set_rules('bus_bunga', 'bus bunga', 'trim|required');
-
 	$this->form_validation->set_rules('bus_id', 'bus_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
