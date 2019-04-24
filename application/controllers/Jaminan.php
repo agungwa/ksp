@@ -83,16 +83,14 @@ class Jaminan extends MY_Base
         $row = $this->Jaminan_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'jam_id' => $row->jam_id,
-		'pin_id' => $row->pin_id,
-		'jej_id' => $row->jej_id,
-		'jam_nomor' => $row->jam_nomor,
-		'jam_keterangan' => $row->jam_keterangan,
-		'jam_file' => $row->jam_file,
-		'jam_tgl' => $row->jam_tgl,
-		'jam_flag' => $row->jam_flag,
-		'jam_info' => $row->jam_info,'content' => 'backend/jaminan/jaminan_read',
-	    );
+    		'jam_id' => $row->jam_id,
+    		'pin_id' => $row->pin_id,
+    		'jej_id' => $row->jej_id,
+    		'jam_nomor' => $row->jam_nomor,
+    		'jam_keterangan' => $row->jam_keterangan,
+    		'jam_file' => $row->jam_file,
+            'content' => 'backend/jaminan/jaminan_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -106,17 +104,16 @@ class Jaminan extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('jaminan/create_action'),
-	    'jam_id' => set_value('jam_id'),
-	    'pin_id' => set_value('pin_id'),
-	    'jej_id' => set_value('jej_id'),
-	    'jam_nomor' => set_value('jam_nomor'),
-	    'jam_keterangan' => set_value('jam_keterangan'),
-	    'jam_file' => set_value('jam_file'),
-	    'jam_tgl' => set_value('jam_tgl'),
-	    'jam_flag' => set_value('jam_flag'),
-	    'jam_info' => set_value('jam_info'),
-	    'content' => 'backend/jaminan/jaminan_form',
-	);
+    	    'jam_id' => set_value('jam_id'),
+    	    'pin_id' => set_value('pin_id'),
+            'nm_pin_id' => set_value('nm_pin_id'),
+    	    'jej_id' => set_value('jej_id'),
+            'nm_jej_id' => set_value('nm_jej_id'),
+    	    'jam_nomor' => set_value('jam_nomor'),
+    	    'jam_keterangan' => set_value('jam_keterangan'),
+    	    'jam_file' => set_value('jam_file'),
+    	    'content' => 'backend/jaminan/jaminan_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -128,15 +125,15 @@ class Jaminan extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'pin_id' => $this->input->post('pin_id',TRUE),
-		'jej_id' => $this->input->post('jej_id',TRUE),
-		'jam_nomor' => $this->input->post('jam_nomor',TRUE),
-		'jam_keterangan' => $this->input->post('jam_keterangan',TRUE),
-		'jam_file' => $this->input->post('jam_file',TRUE),
-		'jam_tgl' => $this->input->post('jam_tgl',TRUE),
-		'jam_flag' => $this->input->post('jam_flag',TRUE),
-		'jam_info' => $this->input->post('jam_info',TRUE),
-	    );
+    		'pin_id' => $this->input->post('pin_id',TRUE),
+    		'jej_id' => $this->input->post('jej_id',TRUE),
+    		'jam_nomor' => $this->input->post('jam_nomor',TRUE),
+    		'jam_keterangan' => $this->input->post('jam_keterangan',TRUE),
+    		'jam_file' => "",
+    		'jam_tgl' => $this->tgl,
+    		'jam_flag' => 0,
+    		'jam_info' => "",
+    	    );
 
             $this->Jaminan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -152,17 +149,16 @@ class Jaminan extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('jaminan/update_action'),
-		'jam_id' => set_value('jam_id', $row->jam_id),
-		'pin_id' => set_value('pin_id', $row->pin_id),
-		'jej_id' => set_value('jej_id', $row->jej_id),
-		'jam_nomor' => set_value('jam_nomor', $row->jam_nomor),
-		'jam_keterangan' => set_value('jam_keterangan', $row->jam_keterangan),
-		'jam_file' => set_value('jam_file', $row->jam_file),
-		'jam_tgl' => set_value('jam_tgl', $row->jam_tgl),
-		'jam_flag' => set_value('jam_flag', $row->jam_flag),
-		'jam_info' => set_value('jam_info', $row->jam_info),
-	    'content' => 'backend/jaminan/jaminan_form',
-	    );
+        		'jam_id' => set_value('jam_id', $row->jam_id),
+        		'pin_id' => set_value('pin_id', $row->pin_id),
+                'nm_pin_id' => set_value('pin_id', $row->pin_id),
+        		'jej_id' => set_value('jej_id', $row->jej_id),
+                'nm_jej_id' => set_value('jej_id', $row->jej_id),
+        		'jam_nomor' => set_value('jam_nomor', $row->jam_nomor),
+        		'jam_keterangan' => set_value('jam_keterangan', $row->jam_keterangan),
+        		'jam_file' => set_value('jam_file', $row->jam_file),
+        	    'content' => 'backend/jaminan/jaminan_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -178,15 +174,12 @@ class Jaminan extends MY_Base
             $this->update($this->input->post('jam_id', TRUE));
         } else {
             $data = array(
-		'pin_id' => $this->input->post('pin_id',TRUE),
-		'jej_id' => $this->input->post('jej_id',TRUE),
-		'jam_nomor' => $this->input->post('jam_nomor',TRUE),
-		'jam_keterangan' => $this->input->post('jam_keterangan',TRUE),
-		'jam_file' => $this->input->post('jam_file',TRUE),
-		'jam_tgl' => $this->input->post('jam_tgl',TRUE),
-		'jam_flag' => $this->input->post('jam_flag',TRUE),
-		'jam_info' => $this->input->post('jam_info',TRUE),
-	    );
+    		'pin_id' => $this->input->post('pin_id',TRUE),
+    		'jej_id' => $this->input->post('jej_id',TRUE),
+    		'jam_nomor' => $this->input->post('jam_nomor',TRUE),
+    		'jam_keterangan' => $this->input->post('jam_keterangan',TRUE),
+    		'jam_flag' => 1,
+    	    );
 
             $this->Jaminan_model->update($this->input->post('jam_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -199,7 +192,11 @@ class Jaminan extends MY_Base
         $row = $this->Jaminan_model->get_by_id($id);
 
         if ($row) {
-            $this->Jaminan_model->delete($id);
+            $data = array(
+            'jam_flag' => 2,
+            );
+
+            $this->Jaminan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('jaminan'));
         } else {
@@ -214,10 +211,6 @@ class Jaminan extends MY_Base
 	$this->form_validation->set_rules('jej_id', 'jej id', 'trim|required');
 	$this->form_validation->set_rules('jam_nomor', 'jam nomor', 'trim|required');
 	$this->form_validation->set_rules('jam_keterangan', 'jam keterangan', 'trim|required');
-	$this->form_validation->set_rules('jam_file', 'jam file', 'trim|required');
-	$this->form_validation->set_rules('jam_tgl', 'jam tgl', 'trim|required');
-	$this->form_validation->set_rules('jam_flag', 'jam flag', 'trim|required');
-	$this->form_validation->set_rules('jam_info', 'jam info', 'trim|required');
 
 	$this->form_validation->set_rules('jam_id', 'jam_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

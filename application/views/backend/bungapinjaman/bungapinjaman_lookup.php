@@ -49,7 +49,7 @@
             foreach ($bungapinjaman_data as $bungapinjaman)
             {
                 ?>
-                <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$bungapinjaman->bup_id?>','<?=$bungapinjaman->bup_bunga?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $bungapinjaman->bup_bunga ?></td>
 			<td><?php echo $bungapinjaman->bub_tgl ?></td>

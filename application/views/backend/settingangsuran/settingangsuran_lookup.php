@@ -49,7 +49,7 @@
             foreach ($settingangsuran_data as $settingangsuran)
             {
                 ?>
-                <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$settingangsuran->sea_id?>','<?=$settingangsuran->sea_tenor?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $settingangsuran->sea_tenor ?></td>
 			<td><?php echo $settingangsuran->sea_tgl ?></td>

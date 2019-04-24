@@ -48,15 +48,13 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Pin Id</th>
-		<th class="text-center">Mup Tglmutasi</th>
-		<th class="text-center">Mup Asal</th>
-		<th class="text-center">Mup Tujuan</th>
-		<th class="text-center">Mup Status</th>
-		<th class="text-center">Mup Tgl</th>
-		<th class="text-center">Mup Flag</th>
-		<th class="text-center">Mup Info</th>
-		<th class="text-center">Action</th>
+        		<th class="text-center">Pin Id</th>
+        		<th class="text-center">Mup Tglmutasi</th>
+        		<th class="text-center">Mup Asal</th>
+        		<th class="text-center">Mup Tujuan</th>
+        		<th class="text-center">Mup Status</th>
+        		<th class="text-center">Mup Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -64,16 +62,14 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $mutasipinjaman->pin_id ?></td>
-			<td><?php echo $mutasipinjaman->mup_tglmutasi ?></td>
-			<td><?php echo $mutasipinjaman->mup_asal ?></td>
-			<td><?php echo $mutasipinjaman->mup_tujuan ?></td>
-			<td><?php echo $mutasipinjaman->mup_status ?></td>
-			<td><?php echo $mutasipinjaman->mup_tgl ?></td>
-			<td><?php echo $mutasipinjaman->mup_flag ?></td>
-			<td><?php echo $mutasipinjaman->mup_info ?></td>
-			<td style="text-align:center" width="200px">
+    			<td width="80px"><?php echo ++$start ?></td>
+    			<td><?php echo $mutasipinjaman->pin_id ?></td>
+    			<td><?php echo $mutasipinjaman->mup_tglmutasi ?></td>
+    			<td><?php echo $mutasipinjaman->mup_asal ?></td>
+    			<td><?php echo $mutasipinjaman->mup_tujuan ?></td>
+    			<td><?php echo $mutasipinjaman->mup_status ?></td>
+    			<td><?php echo dateFormat($mutasipinjaman->mup_tgl) ?></td>
+    			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('mutasipinjaman/read/'.$mutasipinjaman->mup_id),'Read','class="text-navy"'); 
 				echo ' | '; 

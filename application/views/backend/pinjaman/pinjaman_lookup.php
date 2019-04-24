@@ -64,7 +64,7 @@
             foreach ($pinjaman_data as $pinjaman)
             {
                 ?>
-                <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$pinjaman->pin_id?>','<?=$pinjaman->ang_no?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $pinjaman->pin_id ?></td>
 			<td><?php echo $pinjaman->ang_no ?></td>

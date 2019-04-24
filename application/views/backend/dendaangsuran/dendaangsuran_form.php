@@ -13,26 +13,30 @@
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
-	    <div class="form-group">
+        <div class="form-group">
             <label for="int">Ags Id <?php echo form_error('ags_id') ?></label>
-            <input type="text" class="form-control" name="ags_id" id="ags_id" placeholder="Ags Id" value="<?php echo $ags_id; ?>" />
+            <div class="input-group">
+            <!-- <input type="hidden" name="ags_id" id="ags_id" value="<?php echo $ags_id; ?>" /> -->
+            <input type="hidden" name="ags_id" id="ags_id" value="69" />
+            <input type="text" class="form-control" name="nm_ags_id" id="nm_ags_id" placeholder="Angsuran" value="<?php echo $nm_ags_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>angsuran/lookup','ags_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
+
+        <div class="form-group">
             <label for="int">Sed Id <?php echo form_error('sed_id') ?></label>
-            <input type="text" class="form-control" name="sed_id" id="sed_id" placeholder="Sed Id" value="<?php echo $sed_id; ?>" />
+            <div class="input-group">
+            <!-- <input type="hidden" name="sed_id" id="sed_id" value="<?php echo $sed_id; ?>" /> -->
+            <input type="hidden" name="sed_id" id="sed_id" value="69" />
+            <input type="text" class="form-control" name="nm_sed_id" id="nm_sed_id" placeholder="Setting Denda" value="<?php echo $nm_sed_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>settingdenda/lookup','sed_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
-            <label for="datetime">Dnd Tgl <?php echo form_error('dnd_tgl') ?></label>
-            <input type="text" class="form-control" name="dnd_tgl" id="dnd_tgl" placeholder="Dnd Tgl" value="<?php echo $dnd_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Dnd Flag <?php echo form_error('dnd_flag') ?></label>
-            <input type="text" class="form-control" name="dnd_flag" id="dnd_flag" placeholder="Dnd Flag" value="<?php echo $dnd_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="dnd_info">Dnd Info <?php echo form_error('dnd_info') ?></label>
-            <textarea class="form-control" rows="3" name="dnd_info" id="dnd_info" placeholder="Dnd Info"><?php echo $dnd_info; ?></textarea>
-        </div>
+
 	    <input type="hidden" name="dnd_id" value="<?php echo $dnd_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('dendaangsuran') ?>" class="btn btn-default">Cancel</a>

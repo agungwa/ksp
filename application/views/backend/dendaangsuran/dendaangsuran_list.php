@@ -48,12 +48,10 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ags Id</th>
-		<th class="text-center">Sed Id</th>
-		<th class="text-center">Dnd Tgl</th>
-		<th class="text-center">Dnd Flag</th>
-		<th class="text-center">Dnd Info</th>
-		<th class="text-center">Action</th>
+        		<th class="text-center">Ags Id</th>
+        		<th class="text-center">Sed Id</th>
+        		<th class="text-center">Dnd Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -61,13 +59,11 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $dendaangsuran->ags_id ?></td>
-			<td><?php echo $dendaangsuran->sed_id ?></td>
-			<td><?php echo $dendaangsuran->dnd_tgl ?></td>
-			<td><?php echo $dendaangsuran->dnd_flag ?></td>
-			<td><?php echo $dendaangsuran->dnd_info ?></td>
-			<td style="text-align:center" width="200px">
+    			<td width="80px"><?php echo ++$start ?></td>
+    			<td><?php echo $dendaangsuran->ags_id ?></td>
+    			<td><?php echo $dendaangsuran->sed_id ?></td>
+    			<td><?php echo dateFormat($dendaangsuran->dnd_tgl) ?></td>
+    			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('dendaangsuran/read/'.$dendaangsuran->dnd_id),'Read','class="text-navy"'); 
 				echo ' | '; 

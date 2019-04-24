@@ -49,7 +49,7 @@
             foreach ($potonganprovisi_data as $potonganprovisi)
             {
                 ?>
-                <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$potonganprovisi->pop_id?>','<?=$potonganprovisi->pop_potongan?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $potonganprovisi->pop_potongan ?></td>
 			<td><?php echo $potonganprovisi->pop_tgl ?></td>

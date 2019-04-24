@@ -18,6 +18,7 @@ class Dendaangsuran_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('dnd_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,26 +32,18 @@ class Dendaangsuran_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('dnd_id', $q);
-	$this->db->or_like('ags_id', $q);
-	$this->db->or_like('sed_id', $q);
-	$this->db->or_like('dnd_tgl', $q);
-	$this->db->or_like('dnd_flag', $q);
-	$this->db->or_like('dnd_info', $q);
-	$this->db->from($this->table);
+        $where = "ags_id LIKE '%$q%' ESCAPE '!' AND dnd_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('dnd_id', $q);
-	$this->db->or_like('ags_id', $q);
-	$this->db->or_like('sed_id', $q);
-	$this->db->or_like('dnd_tgl', $q);
-	$this->db->or_like('dnd_flag', $q);
-	$this->db->or_like('dnd_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "ags_id LIKE '%$q%' ESCAPE '!' AND dnd_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

@@ -50,7 +50,7 @@
             foreach ($jenisjaminan_data as $jenisjaminan)
             {
                 ?>
-                <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$jenisjaminan->jej_id?>','<?=$jenisjaminan->jej_jaminan?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenisjaminan->jej_jaminan ?></td>
 			<td><?php echo $jenisjaminan->jej_keterangan ?></td>

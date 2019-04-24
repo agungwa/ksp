@@ -18,6 +18,7 @@ class Pinjaman_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('pin_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,54 +32,18 @@ class Pinjaman_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('', $q);
-	$this->db->or_like('pin_id', $q);
-	$this->db->or_like('ang_no', $q);
-	$this->db->or_like('sea_id', $q);
-	$this->db->or_like('bup_id', $q);
-	$this->db->or_like('pop_id', $q);
-	$this->db->or_like('wil_kode', $q);
-	$this->db->or_like('skp_id', $q);
-	$this->db->or_like('pen_id', $q);
-	$this->db->or_like('pin_pengajuan', $q);
-	$this->db->or_like('pin_pinjaman', $q);
-	$this->db->or_like('pin_tglpengajuan', $q);
-	$this->db->or_like('pin_tglpencairan', $q);
-	$this->db->or_like('pin_marketing', $q);
-	$this->db->or_like('pin_surveyor', $q);
-	$this->db->or_like('pin_survey', $q);
-	$this->db->or_like('pin_statuspinjaman', $q);
-	$this->db->or_like('pin_tgl', $q);
-	$this->db->or_like('pin_flag', $q);
-	$this->db->or_like('pin_info', $q);
-	$this->db->from($this->table);
+	    $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR ang_no LIKE '%$q%' ESCAPE '!') AND pin_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('', $q);
-	$this->db->or_like('pin_id', $q);
-	$this->db->or_like('ang_no', $q);
-	$this->db->or_like('sea_id', $q);
-	$this->db->or_like('bup_id', $q);
-	$this->db->or_like('pop_id', $q);
-	$this->db->or_like('wil_kode', $q);
-	$this->db->or_like('skp_id', $q);
-	$this->db->or_like('pen_id', $q);
-	$this->db->or_like('pin_pengajuan', $q);
-	$this->db->or_like('pin_pinjaman', $q);
-	$this->db->or_like('pin_tglpengajuan', $q);
-	$this->db->or_like('pin_tglpencairan', $q);
-	$this->db->or_like('pin_marketing', $q);
-	$this->db->or_like('pin_surveyor', $q);
-	$this->db->or_like('pin_survey', $q);
-	$this->db->or_like('pin_statuspinjaman', $q);
-	$this->db->or_like('pin_tgl', $q);
-	$this->db->or_like('pin_flag', $q);
-	$this->db->or_like('pin_info', $q);
-	$this->db->limit($limit, $start);
+	    $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR ang_no LIKE '%$q%' ESCAPE '!') AND pin_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

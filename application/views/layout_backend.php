@@ -367,6 +367,9 @@ lookup();
                                     <a href="<?=base_url()?>Simpananwajib">Tarik Simpanan Wajib</a>
                                 </li>
                                 <li>
+                                    <a href="<?=base_url()?>Jaminan">Jaminan</a>
+                                </li>
+                                <li>
                                     <a href="<?=base_url()?>Pinjaman">Pengajuan Pinjaman</a>
                                 </li>
                                 <li>

@@ -40,24 +40,24 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sed Hari</th>
-		<th class="text-center">Sed Denda</th>
-		<th class="text-center">Sed Tgl</th>
-		<th class="text-center">Sed Flag</th>
-		<th class="text-center">Sed Info</th></tr>
+        		<th class="text-center">Sed Hari</th>
+        		<th class="text-center">Sed Denda</th>
+        		<th class="text-center">Sed Tgl</th>
+        		<th class="text-center">Sed Flag</th>
+        		<th class="text-center">Sed Info</th></tr>
             </thead>
 			<tbody><?php
             foreach ($settingdenda_data as $settingdenda)
             {
                 ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $settingdenda->sed_hari ?></td>
-			<td><?php echo $settingdenda->sed_denda ?></td>
-			<td><?php echo $settingdenda->sed_tgl ?></td>
-			<td><?php echo $settingdenda->sed_flag ?></td>
-			<td><?php echo $settingdenda->sed_info ?></td>
-		</tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$settingdenda->sed_id?>','<?=$settingdenda->sed_denda?>')" style="cursor: pointer;">
+        			<td width="80px"><?php echo ++$start ?></td>
+        			<td><?php echo $settingdenda->sed_hari ?></td>
+        			<td><?php echo $settingdenda->sed_denda ?></td>
+        			<td><?php echo $settingdenda->sed_tgl ?></td>
+        			<td><?php echo $settingdenda->sed_flag ?></td>
+        			<td><?php echo $settingdenda->sed_info ?></td>
+        		</tr>
                 
                 <?php
             }

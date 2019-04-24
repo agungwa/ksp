@@ -83,13 +83,11 @@ class Dendaangsuran extends MY_Base
         $row = $this->Dendaangsuran_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'dnd_id' => $row->dnd_id,
-		'ags_id' => $row->ags_id,
-		'sed_id' => $row->sed_id,
-		'dnd_tgl' => $row->dnd_tgl,
-		'dnd_flag' => $row->dnd_flag,
-		'dnd_info' => $row->dnd_info,'content' => 'backend/dendaangsuran/dendaangsuran_read',
-	    );
+    		'dnd_id' => $row->dnd_id,
+    		'ags_id' => $row->ags_id,
+    		'sed_id' => $row->sed_id,
+            'content' => 'backend/dendaangsuran/dendaangsuran_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -103,14 +101,13 @@ class Dendaangsuran extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('dendaangsuran/create_action'),
-	    'dnd_id' => set_value('dnd_id'),
-	    'ags_id' => set_value('ags_id'),
-	    'sed_id' => set_value('sed_id'),
-	    'dnd_tgl' => set_value('dnd_tgl'),
-	    'dnd_flag' => set_value('dnd_flag'),
-	    'dnd_info' => set_value('dnd_info'),
-	    'content' => 'backend/dendaangsuran/dendaangsuran_form',
-	);
+    	    'dnd_id' => set_value('dnd_id'),
+    	    'ags_id' => set_value('ags_id'),
+            'nm_ags_id' => set_value('nm_ags_id'),
+    	    'sed_id' => set_value('sed_id'),
+            'nm_sed_id' => set_value('nm_sed_id'),
+    	    'content' => 'backend/dendaangsuran/dendaangsuran_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -122,12 +119,12 @@ class Dendaangsuran extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'ags_id' => $this->input->post('ags_id',TRUE),
-		'sed_id' => $this->input->post('sed_id',TRUE),
-		'dnd_tgl' => $this->input->post('dnd_tgl',TRUE),
-		'dnd_flag' => $this->input->post('dnd_flag',TRUE),
-		'dnd_info' => $this->input->post('dnd_info',TRUE),
-	    );
+    		'ags_id' => $this->input->post('ags_id',TRUE),
+    		'sed_id' => $this->input->post('sed_id',TRUE),
+    		'dnd_tgl' => $this->tgl,
+    		'dnd_flag' => 0,
+    		'dnd_info' => "",
+    	    );
 
             $this->Dendaangsuran_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -143,14 +140,13 @@ class Dendaangsuran extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('dendaangsuran/update_action'),
-		'dnd_id' => set_value('dnd_id', $row->dnd_id),
-		'ags_id' => set_value('ags_id', $row->ags_id),
-		'sed_id' => set_value('sed_id', $row->sed_id),
-		'dnd_tgl' => set_value('dnd_tgl', $row->dnd_tgl),
-		'dnd_flag' => set_value('dnd_flag', $row->dnd_flag),
-		'dnd_info' => set_value('dnd_info', $row->dnd_info),
-	    'content' => 'backend/dendaangsuran/dendaangsuran_form',
-	    );
+        		'dnd_id' => set_value('dnd_id', $row->dnd_id),
+        		'ags_id' => set_value('ags_id', $row->ags_id),
+                'nm_ags_id' => set_value('ags_id', $row->ags_id),
+        		'sed_id' => set_value('sed_id', $row->sed_id),
+                'nm_sed_id' => set_value('sed_id', $row->sed_id),
+        	    'content' => 'backend/dendaangsuran/dendaangsuran_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -166,12 +162,10 @@ class Dendaangsuran extends MY_Base
             $this->update($this->input->post('dnd_id', TRUE));
         } else {
             $data = array(
-		'ags_id' => $this->input->post('ags_id',TRUE),
-		'sed_id' => $this->input->post('sed_id',TRUE),
-		'dnd_tgl' => $this->input->post('dnd_tgl',TRUE),
-		'dnd_flag' => $this->input->post('dnd_flag',TRUE),
-		'dnd_info' => $this->input->post('dnd_info',TRUE),
-	    );
+    		'ags_id' => $this->input->post('ags_id',TRUE),
+    		'sed_id' => $this->input->post('sed_id',TRUE),
+    		'dnd_flag' => 1,
+    	    );
 
             $this->Dendaangsuran_model->update($this->input->post('dnd_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -184,7 +178,11 @@ class Dendaangsuran extends MY_Base
         $row = $this->Dendaangsuran_model->get_by_id($id);
 
         if ($row) {
-            $this->Dendaangsuran_model->delete($id);
+            $data = array(
+            'dnd_flag' => 2,
+            );
+
+            $this->Dendaangsuran_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('dendaangsuran'));
         } else {
@@ -197,9 +195,6 @@ class Dendaangsuran extends MY_Base
     {
 	$this->form_validation->set_rules('ags_id', 'ags id', 'trim|required');
 	$this->form_validation->set_rules('sed_id', 'sed id', 'trim|required');
-	$this->form_validation->set_rules('dnd_tgl', 'dnd tgl', 'trim|required');
-	$this->form_validation->set_rules('dnd_flag', 'dnd flag', 'trim|required');
-	$this->form_validation->set_rules('dnd_info', 'dnd info', 'trim|required');
 
 	$this->form_validation->set_rules('dnd_id', 'dnd_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

@@ -18,6 +18,7 @@ class Mutasipinjaman_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('mup_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,32 +32,18 @@ class Mutasipinjaman_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('mup_id', $q);
-	$this->db->or_like('pin_id', $q);
-	$this->db->or_like('mup_tglmutasi', $q);
-	$this->db->or_like('mup_asal', $q);
-	$this->db->or_like('mup_tujuan', $q);
-	$this->db->or_like('mup_status', $q);
-	$this->db->or_like('mup_tgl', $q);
-	$this->db->or_like('mup_flag', $q);
-	$this->db->or_like('mup_info', $q);
-	$this->db->from($this->table);
+        $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR mup_asal LIKE '%$q%' ESCAPE '!') AND mup_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('mup_id', $q);
-	$this->db->or_like('pin_id', $q);
-	$this->db->or_like('mup_tglmutasi', $q);
-	$this->db->or_like('mup_asal', $q);
-	$this->db->or_like('mup_tujuan', $q);
-	$this->db->or_like('mup_status', $q);
-	$this->db->or_like('mup_tgl', $q);
-	$this->db->or_like('mup_flag', $q);
-	$this->db->or_like('mup_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR mup_asal LIKE '%$q%' ESCAPE '!') AND mup_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

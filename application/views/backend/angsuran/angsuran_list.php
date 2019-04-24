@@ -56,8 +56,6 @@
 		<th class="text-center">Ags Jmlbunga</th>
 		<th class="text-center">Ags Status</th>
 		<th class="text-center">Ags Tgl</th>
-		<th class="text-center">Ags Flag</th>
-		<th class="text-center">Ags Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -73,10 +71,8 @@
 			<td><?php echo $angsuran->ags_tglbayar ?></td>
 			<td><?php echo $angsuran->ags_jmlpokok ?></td>
 			<td><?php echo $angsuran->ags_jmlbunga ?></td>
-			<td><?php echo $angsuran->ags_status ?></td>
-			<td><?php echo $angsuran->ags_tgl ?></td>
-			<td><?php echo $angsuran->ags_flag ?></td>
-			<td><?php echo $angsuran->ags_info ?></td>
+			<td><?php echo $this->statusAngsuran[$angsuran->ags_status] ?></td>
+			<td><?php echo dateFormat($angsuran->ags_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('angsuran/read/'.$angsuran->ags_id),'Read','class="text-navy"'); 

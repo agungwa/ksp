@@ -55,19 +55,19 @@
             foreach ($angsuran_data as $angsuran)
             {
                 ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $angsuran->pin_id ?></td>
-			<td><?php echo $angsuran->ang_angsuranke ?></td>
-			<td><?php echo $angsuran->ags_tgljatuhtempo ?></td>
-			<td><?php echo $angsuran->ags_tglbayar ?></td>
-			<td><?php echo $angsuran->ags_jmlpokok ?></td>
-			<td><?php echo $angsuran->ags_jmlbunga ?></td>
-			<td><?php echo $angsuran->ags_status ?></td>
-			<td><?php echo $angsuran->ags_tgl ?></td>
-			<td><?php echo $angsuran->ags_flag ?></td>
-			<td><?php echo $angsuran->ags_info ?></td>
-		</tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$angsuran->pin_id?>','<?=$angsuran->pin_id?>')" style="cursor: pointer;">
+        			<td width="80px"><?php echo ++$start ?></td>
+        			<td><?php echo $angsuran->pin_id ?></td>
+        			<td><?php echo $angsuran->ang_angsuranke ?></td>
+        			<td><?php echo $angsuran->ags_tgljatuhtempo ?></td>
+        			<td><?php echo $angsuran->ags_tglbayar ?></td>
+        			<td><?php echo $angsuran->ags_jmlpokok ?></td>
+        			<td><?php echo $angsuran->ags_jmlbunga ?></td>
+        			<td><?php echo $angsuran->ags_status ?></td>
+        			<td><?php echo $angsuran->ags_tgl ?></td>
+        			<td><?php echo $angsuran->ags_flag ?></td>
+        			<td><?php echo $angsuran->ags_info ?></td>
+        		</tr>
                 
                 <?php
             }
