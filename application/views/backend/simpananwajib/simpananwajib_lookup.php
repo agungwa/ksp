@@ -45,24 +45,19 @@
 		<th class="text-center">Siw Tglbayar</th>
 		<th class="text-center">Siw Status</th>
 		<th class="text-center">Siw Tglambil</th>
-		<th class="text-center">Siw Tgl</th>
-		<th class="text-center">Siw Flag</th>
-		<th class="text-center">Siw Info</th></tr>
             </thead>
 			<tbody><?php
             foreach ($simpananwajib_data as $simpananwajib)
             {
                 ?>
                 <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$simpananwajib->siw_id?>','<?=$simpananwajib->ang_no?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $simpananwajib->ang_no ?></td>
 			<td><?php echo $simpananwajib->ses_id ?></td>
 			<td><?php echo $simpananwajib->siw_tglbayar ?></td>
 			<td><?php echo $simpananwajib->siw_status ?></td>
 			<td><?php echo $simpananwajib->siw_tglambil ?></td>
-			<td><?php echo $simpananwajib->siw_tgl ?></td>
-			<td><?php echo $simpananwajib->siw_flag ?></td>
-			<td><?php echo $simpananwajib->siw_info ?></td>
 		</tr>
                 
                 <?php

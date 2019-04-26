@@ -13,13 +13,25 @@
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
-	    <div class="form-group">
-            <label for="varchar">Ang No <?php echo form_error('ang_no') ?></label>
-            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Ang No" value="<?php echo $ang_no; ?>" />
+        <div class="form-group">
+            <label for="varchar">Anggota <?php echo form_error('ang_no') ?></label>
+            <div class="input-group">
+            <input type="hidden" name="ang_no" id="ang_no" value="<?php echo $ang_no; ?>" />
+            <input type="text" class="form-control" name="nm_ang_no" id="nm_ang_no" placeholder="Anggota" value="<?php echo $nm_ang_no; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>anggota/lookup','ang_no');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
-            <label for="int">Ses Id <?php echo form_error('ses_id') ?></label>
-            <input type="text" class="form-control" name="ses_id" id="ses_id" placeholder="Ses Id" value="<?php echo $ses_id; ?>" />
+        <div class="form-group">
+            <label for="varchar">Setting Simpanan <?php echo form_error('ses_id') ?></label>
+            <div class="input-group">
+            <input type="hidden" name="ses_id" id="ses_id" value="<?php echo $ses_id; ?>" />
+            <input type="text" class="form-control" name="nm_ses_id" id="nm_ses_id" placeholder="Setting Simpanan" value="<?php echo $nm_ses_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>settingsimpaan/lookup','ses_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
 	    <div class="form-group">
             <label for="datetime">Siw Tglbayar <?php echo form_error('siw_tglbayar') ?></label>

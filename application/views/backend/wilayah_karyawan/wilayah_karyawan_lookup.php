@@ -42,10 +42,7 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Wil Kode</th>
 		<th class="text-center">Status</th>
-		<th class="text-center">Kar Kode</th>
-		<th class="text-center">Wik Tgl</th>
-		<th class="text-center">Wik Flag</th>
-		<th class="text-center">Wik Info</th></tr>
+		<th class="text-center">Kar Kode</th></tr>
             </thead>
 			<tbody><?php
             foreach ($wilayah_karyawan_data as $wilayah_karyawan)
@@ -56,9 +53,6 @@
 			<td><?php echo $wilayah_karyawan->wil_kode ?></td>
 			<td><?php echo $wilayah_karyawan->status ?></td>
 			<td><?php echo $wilayah_karyawan->kar_kode ?></td>
-			<td><?php echo $wilayah_karyawan->wik_tgl ?></td>
-			<td><?php echo $wilayah_karyawan->wik_flag ?></td>
-			<td><?php echo $wilayah_karyawan->wik_info ?></td>
 		</tr>
                 
                 <?php

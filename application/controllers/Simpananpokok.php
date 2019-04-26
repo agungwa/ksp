@@ -105,12 +105,11 @@ class Simpananpokok extends MY_Base
             'button' => 'Create',
             'action' => site_url('simpananpokok/create_action'),
 	    'sip_id' => set_value('sip_id'),
+	    'nm_ang_no' => set_value('nm_ang_no'),
 	    'ang_no' => set_value('ang_no'),
+	    'nm_ses_id' => set_value('nm_ses_id'),
 	    'ses_id' => set_value('ses_id'),
 	    'sip_tglbayar' => set_value('sip_tglbayar'),
-	    'sip_tgl' => set_value('sip_tgl'),
-	    'sip_flag' => set_value('sip_flag'),
-	    'sip_info' => set_value('sip_info'),
 	    'content' => 'backend/simpananpokok/simpananpokok_form',
 	);
         $this->load->view(layout(), $data);
@@ -127,9 +126,9 @@ class Simpananpokok extends MY_Base
 		'ang_no' => $this->input->post('ang_no',TRUE),
 		'ses_id' => $this->input->post('ses_id',TRUE),
 		'sip_tglbayar' => $this->input->post('sip_tglbayar',TRUE),
-		'sip_tgl' => $this->input->post('sip_tgl',TRUE),
-		'sip_flag' => $this->input->post('sip_flag',TRUE),
-		'sip_info' => $this->input->post('sip_info',TRUE),
+		'sip_tgl' => $this->tgl,
+		'sip_flag' => 0,
+		'sip_info' => "",
 	    );
 
             $this->Simpananpokok_model->insert($data);
@@ -147,12 +146,11 @@ class Simpananpokok extends MY_Base
                 'button' => 'Update',
                 'action' => site_url('simpananpokok/update_action'),
 		'sip_id' => set_value('sip_id', $row->sip_id),
+		'nm_ang_no' => set_value('nm_ang_no', $row->ang_nama),
 		'ang_no' => set_value('ang_no', $row->ang_no),
+		'nm_ses_id' => set_value('nm_ses_id', $row->ses_nama),
 		'ses_id' => set_value('ses_id', $row->ses_id),
 		'sip_tglbayar' => set_value('sip_tglbayar', $row->sip_tglbayar),
-		'sip_tgl' => set_value('sip_tgl', $row->sip_tgl),
-		'sip_flag' => set_value('sip_flag', $row->sip_flag),
-		'sip_info' => set_value('sip_info', $row->sip_info),
 	    'content' => 'backend/simpananpokok/simpananpokok_form',
 	    );
             $this->load->view(layout(), $data);
@@ -173,9 +171,9 @@ class Simpananpokok extends MY_Base
 		'ang_no' => $this->input->post('ang_no',TRUE),
 		'ses_id' => $this->input->post('ses_id',TRUE),
 		'sip_tglbayar' => $this->input->post('sip_tglbayar',TRUE),
-		'sip_tgl' => $this->input->post('sip_tgl',TRUE),
-		'sip_flag' => $this->input->post('sip_flag',TRUE),
-		'sip_info' => $this->input->post('sip_info',TRUE),
+		'sip_tgl' => $this->tgl,
+		'sip_flag' => 1,
+		'sip_info' => "",
 	    );
 
             $this->Simpananpokok_model->update($this->input->post('sip_id', TRUE), $data);
@@ -189,7 +187,10 @@ class Simpananpokok extends MY_Base
         $row = $this->Simpananpokok_model->get_by_id($id);
 
         if ($row) {
-            $this->Simpananpokok_model->delete($id);
+            $data = array (
+                'sip_flag' => 2,
+            );
+            $this->Simpananpokok_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('simpananpokok'));
         } else {
@@ -203,9 +204,6 @@ class Simpananpokok extends MY_Base
 	$this->form_validation->set_rules('ang_no', 'ang no', 'trim|required');
 	$this->form_validation->set_rules('ses_id', 'ses id', 'trim|required');
 	$this->form_validation->set_rules('sip_tglbayar', 'sip tglbayar', 'trim|required');
-	$this->form_validation->set_rules('sip_tgl', 'sip tgl', 'trim|required');
-	$this->form_validation->set_rules('sip_flag', 'sip flag', 'trim|required');
-	$this->form_validation->set_rules('sip_info', 'sip info', 'trim|required');
 
 	$this->form_validation->set_rules('sip_id', 'sip_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

@@ -41,12 +41,9 @@
             <tr>
                 <th class="text-center">No</th>
 		<th class="text-center">Sim Kode</th>
-		<th class="text-center">Siw Id</th>
 		<th class="text-center">Pes Tglpenarikan</th>
 		<th class="text-center">Pes Jumlah</th>
-		<th class="text-center">Pes Tgl</th>
-		<th class="text-center">Pes Flag</th>
-		<th class="text-center">Pes Info</th></tr>
+        </tr>
             </thead>
 			<tbody><?php
             foreach ($penarikansimpanan_data as $penarikansimpanan)
@@ -55,12 +52,8 @@
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $penarikansimpanan->sim_kode ?></td>
-			<td><?php echo $penarikansimpanan->siw_id ?></td>
 			<td><?php echo $penarikansimpanan->pes_tglpenarikan ?></td>
 			<td><?php echo $penarikansimpanan->pes_jumlah ?></td>
-			<td><?php echo $penarikansimpanan->pes_tgl ?></td>
-			<td><?php echo $penarikansimpanan->pes_flag ?></td>
-			<td><?php echo $penarikansimpanan->pes_info ?></td>
 		</tr>
                 
                 <?php

@@ -13,13 +13,15 @@
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
-	    <div class="form-group">
-            <label for="varchar">Sim Kode <?php echo form_error('sim_kode') ?></label>
-            <input type="text" class="form-control" name="sim_kode" id="sim_kode" placeholder="Sim Kode" value="<?php echo $sim_kode; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="int">Siw Id <?php echo form_error('siw_id') ?></label>
-            <input type="text" class="form-control" name="siw_id" id="siw_id" placeholder="Siw Id" value="<?php echo $siw_id; ?>" />
+        <div class="form-group">
+            <label for="varchar">Simpanan <?php echo form_error('sim_kode') ?></label>
+            <div class="input-group">
+            <input type="hidden" name="sim_kode" id="sim_kode" value="<?php echo $sim_kode; ?>" />
+            <input type="text" class="form-control" name="nm_sim_kode" id="nm_sim_kode" placeholder="Simpanan" value="<?php echo $nm_sim_kode; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>simpanan/lookup','sim_kode');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
 	    <div class="form-group">
             <label for="datetime">Pes Tglpenarikan <?php echo form_error('pes_tglpenarikan') ?></label>
@@ -28,18 +30,6 @@
 	    <div class="form-group">
             <label for="float">Pes Jumlah <?php echo form_error('pes_jumlah') ?></label>
             <input type="text" class="form-control" name="pes_jumlah" id="pes_jumlah" placeholder="Pes Jumlah" value="<?php echo $pes_jumlah; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="datetime">Pes Tgl <?php echo form_error('pes_tgl') ?></label>
-            <input type="text" class="form-control" name="pes_tgl" id="pes_tgl" placeholder="Pes Tgl" value="<?php echo $pes_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Pes Flag <?php echo form_error('pes_flag') ?></label>
-            <input type="text" class="form-control" name="pes_flag" id="pes_flag" placeholder="Pes Flag" value="<?php echo $pes_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="pes_info">Pes Info <?php echo form_error('pes_info') ?></label>
-            <textarea class="form-control" rows="3" name="pes_info" id="pes_info" placeholder="Pes Info"><?php echo $pes_info; ?></textarea>
         </div>
 	    <input type="hidden" name="pes_id" value="<?php echo $pes_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

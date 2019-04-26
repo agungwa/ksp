@@ -85,7 +85,6 @@ class Penarikansimpanan extends MY_Base
             $data = array(
 		'pes_id' => $row->pes_id,
 		'sim_kode' => $row->sim_kode,
-		'siw_id' => $row->siw_id,
 		'pes_tglpenarikan' => $row->pes_tglpenarikan,
 		'pes_jumlah' => $row->pes_jumlah,
 		'pes_tgl' => $row->pes_tgl,
@@ -106,13 +105,10 @@ class Penarikansimpanan extends MY_Base
             'button' => 'Create',
             'action' => site_url('penarikansimpanan/create_action'),
 	    'pes_id' => set_value('pes_id'),
+	    'nm_sim_kode' => set_value('nm_sim_kode'),
 	    'sim_kode' => set_value('sim_kode'),
-	    'siw_id' => set_value('siw_id'),
 	    'pes_tglpenarikan' => set_value('pes_tglpenarikan'),
 	    'pes_jumlah' => set_value('pes_jumlah'),
-	    'pes_tgl' => set_value('pes_tgl'),
-	    'pes_flag' => set_value('pes_flag'),
-	    'pes_info' => set_value('pes_info'),
 	    'content' => 'backend/penarikansimpanan/penarikansimpanan_form',
 	);
         $this->load->view(layout(), $data);
@@ -127,12 +123,11 @@ class Penarikansimpanan extends MY_Base
         } else {
             $data = array(
 		'sim_kode' => $this->input->post('sim_kode',TRUE),
-		'siw_id' => $this->input->post('siw_id',TRUE),
 		'pes_tglpenarikan' => $this->input->post('pes_tglpenarikan',TRUE),
 		'pes_jumlah' => $this->input->post('pes_jumlah',TRUE),
-		'pes_tgl' => $this->input->post('pes_tgl',TRUE),
-		'pes_flag' => $this->input->post('pes_flag',TRUE),
-		'pes_info' => $this->input->post('pes_info',TRUE),
+		'pes_tgl' => $this->tgl,
+		'pes_flag' => 0,
+		'pes_info' => "",
 	    );
 
             $this->Penarikansimpanan_model->insert($data);
@@ -150,13 +145,10 @@ class Penarikansimpanan extends MY_Base
                 'button' => 'Update',
                 'action' => site_url('penarikansimpanan/update_action'),
 		'pes_id' => set_value('pes_id', $row->pes_id),
+		'nm_sim_kode' => set_value('nm_sim_kode', $row->sim_kode),
 		'sim_kode' => set_value('sim_kode', $row->sim_kode),
-		'siw_id' => set_value('siw_id', $row->siw_id),
 		'pes_tglpenarikan' => set_value('pes_tglpenarikan', $row->pes_tglpenarikan),
 		'pes_jumlah' => set_value('pes_jumlah', $row->pes_jumlah),
-		'pes_tgl' => set_value('pes_tgl', $row->pes_tgl),
-		'pes_flag' => set_value('pes_flag', $row->pes_flag),
-		'pes_info' => set_value('pes_info', $row->pes_info),
 	    'content' => 'backend/penarikansimpanan/penarikansimpanan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -175,13 +167,10 @@ class Penarikansimpanan extends MY_Base
         } else {
             $data = array(
 		'sim_kode' => $this->input->post('sim_kode',TRUE),
-		'siw_id' => $this->input->post('siw_id',TRUE),
 		'pes_tglpenarikan' => $this->input->post('pes_tglpenarikan',TRUE),
 		'pes_jumlah' => $this->input->post('pes_jumlah',TRUE),
-		'pes_tgl' => $this->input->post('pes_tgl',TRUE),
-		'pes_flag' => $this->input->post('pes_flag',TRUE),
-		'pes_info' => $this->input->post('pes_info',TRUE),
-	    );
+        'pes_flag' => 1,
+    	    );
 
             $this->Penarikansimpanan_model->update($this->input->post('pes_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -194,7 +183,10 @@ class Penarikansimpanan extends MY_Base
         $row = $this->Penarikansimpanan_model->get_by_id($id);
 
         if ($row) {
-            $this->Penarikansimpanan_model->delete($id);
+            $data = array(
+                'pes_flag' => 2,
+            );
+            $this->Penarikansimpanan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('penarikansimpanan'));
         } else {
@@ -206,12 +198,8 @@ class Penarikansimpanan extends MY_Base
     public function _rules() 
     {
 	$this->form_validation->set_rules('sim_kode', 'sim kode', 'trim|required');
-	$this->form_validation->set_rules('siw_id', 'siw id', 'trim|required');
 	$this->form_validation->set_rules('pes_tglpenarikan', 'pes tglpenarikan', 'trim|required');
 	$this->form_validation->set_rules('pes_jumlah', 'pes jumlah', 'trim|required');
-	$this->form_validation->set_rules('pes_tgl', 'pes tgl', 'trim|required');
-	$this->form_validation->set_rules('pes_flag', 'pes flag', 'trim|required');
-	$this->form_validation->set_rules('pes_info', 'pes info', 'trim|required');
 
 	$this->form_validation->set_rules('pes_id', 'pes_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
