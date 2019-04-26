@@ -43,7 +43,6 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Kar Nama</th>
 		<th class="text-center">Jab Kode</th>
-		<th class="text-center">Wil Kode</th>
 		<th class="text-center">Kar Alamat</th>
 		<th class="text-center">Kar Nohp</th>
             </thead>
@@ -56,12 +55,8 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $karyawan->kar_nama ?></td>
 			<td><?php echo $karyawan->jab_kode ?></td>
-			<td><?php echo $karyawan->wil_kode ?></td>
 			<td><?php echo $karyawan->kar_alamat ?></td>
 			<td><?php echo $karyawan->kar_nohp ?></td>
-			<td><?php echo $karyawan->kar_tgl ?></td>
-			<td><?php echo $karyawan->kar_flag ?></td>
-			<td><?php echo $karyawan->kar_info ?></td>
 		</tr>
                 
                 <?php

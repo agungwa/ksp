@@ -18,6 +18,7 @@ class Karyawan_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('kar_kode<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,15 +32,8 @@ class Karyawan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('kar_kode', $q);
-	$this->db->or_like('kar_nama', $q);
-	$this->db->or_like('jab_kode', $q);
-	$this->db->or_like('wil_kode', $q);
-	$this->db->or_like('kar_alamat', $q);
-	$this->db->or_like('kar_nohp', $q);
-	$this->db->or_like('kar_tgl', $q);
-	$this->db->or_like('kar_flag', $q);
-	$this->db->or_like('kar_info', $q);
+        $where="kar_nama LIKE '%$q%' ESCAPE '!' AND kar_kode < 2";
+        $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -47,15 +41,8 @@ class Karyawan_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('kar_kode', $q);
-	$this->db->or_like('kar_nama', $q);
-	$this->db->or_like('jab_kode', $q);
-	$this->db->or_like('wil_kode', $q);
-	$this->db->or_like('kar_alamat', $q);
-	$this->db->or_like('kar_nohp', $q);
-	$this->db->or_like('kar_tgl', $q);
-	$this->db->or_like('kar_flag', $q);
-	$this->db->or_like('kar_info', $q);
+        $where="kar_nama LIKE '%$q%' ESCAPE '!' AND kar_kode < 2";
+        $this->db->where($where);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }

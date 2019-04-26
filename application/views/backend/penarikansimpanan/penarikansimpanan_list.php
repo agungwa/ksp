@@ -52,9 +52,6 @@
 		<th class="text-center">Siw Id</th>
 		<th class="text-center">Pes Tglpenarikan</th>
 		<th class="text-center">Pes Jumlah</th>
-		<th class="text-center">Pes Tgl</th>
-		<th class="text-center">Pes Flag</th>
-		<th class="text-center">Pes Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -65,12 +62,8 @@
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $penarikansimpanan->sim_kode ?></td>
-			<td><?php echo $penarikansimpanan->siw_id ?></td>
 			<td><?php echo $penarikansimpanan->pes_tglpenarikan ?></td>
 			<td><?php echo $penarikansimpanan->pes_jumlah ?></td>
-			<td><?php echo $penarikansimpanan->pes_tgl ?></td>
-			<td><?php echo $penarikansimpanan->pes_flag ?></td>
-			<td><?php echo $penarikansimpanan->pes_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('penarikansimpanan/read/'.$penarikansimpanan->pes_id),'Read','class="text-navy"'); 

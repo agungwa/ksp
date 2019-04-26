@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Simpananwajib</b></h2>
+                    <h2><b>List Penarikansimpananwajib</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -19,14 +19,14 @@
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-                <?php echo anchor(site_url('simpananwajib/create'),'Create', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('penarikansimpananwajib/create'),'Create', 'class="btn btn-primary"'); ?>
             </div>
             
             
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('simpananwajib/index'); ?>" class="form-inline" method="get">
+                <form action="<?php echo site_url('penarikansimpananwajib/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
@@ -34,7 +34,7 @@
                                 if ($q <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo site_url('simpananwajib'); ?>" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo site_url('penarikansimpananwajib'); ?>" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
@@ -48,32 +48,28 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ang No</th>
-		<th class="text-center">Ses Id</th>
-		<th class="text-center">Siw Tglbayar</th>
-		<th class="text-center">Siw Status</th>
-		<th class="text-center">Siw Tglambil</th>
+		<th class="text-center">Siw Id</th>
+		<th class="text-center">Psw Tglpenarikan</th>
+		<th class="text-center">Psw Jumlah</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
-            foreach ($simpananwajib_data as $simpananwajib)
+            foreach ($penarikansimpananwajib_data as $penarikansimpananwajib)
             {
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $simpananwajib->ang_no ?></td>
-			<td><?php echo $simpananwajib->ses_id ?></td>
-			<td><?php echo $simpananwajib->siw_tglbayar ?></td>
-			<td><?php echo $simpananwajib->siw_status ?></td>
-			<td><?php echo $simpananwajib->siw_tglambil ?></td>
+			<td><?php echo $penarikansimpananwajib->siw_id ?></td>
+			<td><?php echo $penarikansimpananwajib->psw_tglpenarikan ?></td>
+			<td><?php echo $penarikansimpananwajib->psw_jumlah ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('simpananwajib/read/'.$simpananwajib->siw_id),'Read','class="text-navy"'); 
+				echo anchor(site_url('penarikansimpananwajib/read/'.$penarikansimpananwajib->psw_id),'Read','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('simpananwajib/update/'.$simpananwajib->siw_id),'Update','class="text-navy"'); 
+				echo anchor(site_url('penarikansimpananwajib/update/'.$penarikansimpananwajib->psw_id),'Update','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('simpananwajib/delete/'.$simpananwajib->siw_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('penarikansimpananwajib/delete/'.$penarikansimpananwajib->psw_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>
 		</tr>

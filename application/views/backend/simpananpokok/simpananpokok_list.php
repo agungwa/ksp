@@ -51,9 +51,6 @@
 		<th class="text-center">Ang No</th>
 		<th class="text-center">Ses Id</th>
 		<th class="text-center">Sip Tglbayar</th>
-		<th class="text-center">Sip Tgl</th>
-		<th class="text-center">Sip Flag</th>
-		<th class="text-center">Sip Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -66,9 +63,6 @@
 			<td><?php echo $simpananpokok->ang_no ?></td>
 			<td><?php echo $simpananpokok->ses_id ?></td>
 			<td><?php echo $simpananpokok->sip_tglbayar ?></td>
-			<td><?php echo $simpananpokok->sip_tgl ?></td>
-			<td><?php echo $simpananpokok->sip_flag ?></td>
-			<td><?php echo $simpananpokok->sip_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('simpananpokok/read/'.$simpananpokok->sip_id),'Read','class="text-navy"'); 

@@ -51,9 +51,6 @@
 		<th class="text-center">Wil Kode</th>
 		<th class="text-center">Status</th>
 		<th class="text-center">Kar Kode</th>
-		<th class="text-center">Wik Tgl</th>
-		<th class="text-center">Wik Flag</th>
-		<th class="text-center">Wik Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -66,9 +63,6 @@
 			<td><?php echo $wilayah_karyawan->wil_kode ?></td>
 			<td><?php echo $wilayah_karyawan->status ?></td>
 			<td><?php echo $wilayah_karyawan->kar_kode ?></td>
-			<td><?php echo $wilayah_karyawan->wik_tgl ?></td>
-			<td><?php echo $wilayah_karyawan->wik_flag ?></td>
-			<td><?php echo $wilayah_karyawan->wik_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('wilayah_karyawan/read/'.$wilayah_karyawan->wik_id),'Read','class="text-navy"'); 

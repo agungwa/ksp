@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Settingsimpanan</b></h2>
+                    <h2><b>List Penarikansimpananwajib</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -26,11 +26,11 @@
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('settingsimpanan/index'); ?>" class="form-inline" method="get">
+                <form action="<?php echo site_url('penarikansimpananwajib/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" id="q" value="<?php echo @$_GET['q']; ?>">
                         <span class="input-group-btn">
-                          <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>settingsimpanan/lookup')" >Search</button>
+                          <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>penarikansimpananwajib/lookup')" >Search</button>
                         </span>
                     </div>
                 </form>
@@ -40,20 +40,19 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ses Nama</th>
-		<th class="text-center">Ses Min</th>
-		<th class="text-center">Ses Max</th>
+		<th class="text-center">Siw Id</th>
+		<th class="text-center">Psw Tglpenarikan</th>
+		<th class="text-center">Psw Jumlah</th></tr>
             </thead>
 			<tbody><?php
-            foreach ($settingsimpanan_data as $settingsimpanan)
+            foreach ($penarikansimpananwajib_data as $penarikansimpananwajib)
             {
                 ?>
                 <tr>
-                <tr onclick="setVal('<?=$idhtml?>','<?=$settingsimpanan->ses_id?>','<?=$settingsimpanan->ses_id?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $settingsimpanan->ses_nama ?></td>
-			<td><?php echo $settingsimpanan->ses_min ?></td>
-			<td><?php echo $settingsimpanan->ses_max ?></td>
+			<td><?php echo $penarikansimpananwajib->siw_id ?></td>
+			<td><?php echo $penarikansimpananwajib->psw_tglpenarikan ?></td>
+			<td><?php echo $penarikansimpananwajib->psw_jumlah ?></td>
 		</tr>
                 
                 <?php

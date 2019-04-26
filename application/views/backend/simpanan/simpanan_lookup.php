@@ -49,15 +49,13 @@
 		<th class="text-center">Wil Kode</th>
 		<th class="text-center">Sim Tglpendaftaran</th>
 		<th class="text-center">Sim Status</th>
-		<th class="text-center">Sim Tgl</th>
-		<th class="text-center">Sim Flag</th>
-		<th class="text-center">Sim Info</th></tr>
             </thead>
 			<tbody><?php
             foreach ($simpanan_data as $simpanan)
             {
                 ?>
                 <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$simpanan->sim_kode?>','<?=$simpanan->sim_kode?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $simpanan->sim_kode ?></td>
 			<td><?php echo $simpanan->ang_no ?></td>
@@ -68,9 +66,6 @@
 			<td><?php echo $simpanan->wil_kode ?></td>
 			<td><?php echo $simpanan->sim_tglpendaftaran ?></td>
 			<td><?php echo $simpanan->sim_status ?></td>
-			<td><?php echo $simpanan->sim_tgl ?></td>
-			<td><?php echo $simpanan->sim_flag ?></td>
-			<td><?php echo $simpanan->sim_info ?></td>
 		</tr>
                 
                 <?php

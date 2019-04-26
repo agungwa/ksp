@@ -53,9 +53,6 @@
 		<th class="text-center">Wil Kode</th>
 		<th class="text-center">Kar Alamat</th>
 		<th class="text-center">Kar Nohp</th>
-		<th class="text-center">Kar Tgl</th>
-		<th class="text-center">Kar Flag</th>
-		<th class="text-center">Kar Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -70,9 +67,6 @@
 			<td><?php echo $karyawan->wil_kode ?></td>
 			<td><?php echo $karyawan->kar_alamat ?></td>
 			<td><?php echo $karyawan->kar_nohp ?></td>
-			<td><?php echo $karyawan->kar_tgl ?></td>
-			<td><?php echo $karyawan->kar_flag ?></td>
-			<td><?php echo $karyawan->kar_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('karyawan/read/'.$karyawan->kar_kode),'Read','class="text-navy"'); 

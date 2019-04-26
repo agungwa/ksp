@@ -50,7 +50,8 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$jabatan->jab_kode?>','<?=$jabatan->jab_kode?>')" style="cursor: pointer;">
+            <td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jabatan->jab_nama ?></td>
 			<td><?php echo $jabatan->jab_tgl ?></td>
 			<td><?php echo $jabatan->jab_flag ?></td>

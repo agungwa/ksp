@@ -19,9 +19,6 @@
 	    <tr><td>Siw Tglbayar</td><td><?php echo $siw_tglbayar; ?></td></tr>
 	    <tr><td>Siw Status</td><td><?php echo $siw_status; ?></td></tr>
 	    <tr><td>Siw Tglambil</td><td><?php echo $siw_tglambil; ?></td></tr>
-	    <tr><td>Siw Tgl</td><td><?php echo $siw_tgl; ?></td></tr>
-	    <tr><td>Siw Flag</td><td><?php echo $siw_flag; ?></td></tr>
-	    <tr><td>Siw Info</td><td><?php echo $siw_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('simpananwajib') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

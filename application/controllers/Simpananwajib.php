@@ -107,14 +107,13 @@ class Simpananwajib extends MY_Base
             'button' => 'Create',
             'action' => site_url('simpananwajib/create_action'),
 	    'siw_id' => set_value('siw_id'),
+	    'nm_ang_no' => set_value('nm_ang_no'),
 	    'ang_no' => set_value('ang_no'),
+	    'nm_ses_id' => set_value('nm_ses_id'),
 	    'ses_id' => set_value('ses_id'),
 	    'siw_tglbayar' => set_value('siw_tglbayar'),
 	    'siw_status' => set_value('siw_status'),
 	    'siw_tglambil' => set_value('siw_tglambil'),
-	    'siw_tgl' => set_value('siw_tgl'),
-	    'siw_flag' => set_value('siw_flag'),
-	    'siw_info' => set_value('siw_info'),
 	    'content' => 'backend/simpananwajib/simpananwajib_form',
 	);
         $this->load->view(layout(), $data);
@@ -133,9 +132,9 @@ class Simpananwajib extends MY_Base
 		'siw_tglbayar' => $this->input->post('siw_tglbayar',TRUE),
 		'siw_status' => $this->input->post('siw_status',TRUE),
 		'siw_tglambil' => $this->input->post('siw_tglambil',TRUE),
-		'siw_tgl' => $this->input->post('siw_tgl',TRUE),
-		'siw_flag' => $this->input->post('siw_flag',TRUE),
-		'siw_info' => $this->input->post('siw_info',TRUE),
+		'siw_tgl' => $this->tgl,
+		'siw_flag' => 0,
+		'siw_info' => "",
 	    );
 
             $this->Simpananwajib_model->insert($data);
@@ -153,14 +152,13 @@ class Simpananwajib extends MY_Base
                 'button' => 'Update',
                 'action' => site_url('simpananwajib/update_action'),
 		'siw_id' => set_value('siw_id', $row->siw_id),
+		'nm_ang_no' => set_value('nm_ng_no', $row->ang_nama),
 		'ang_no' => set_value('ang_no', $row->ang_no),
+		'nm_ses_id' => set_value('nm_ses_id', $row->ses_nama),
 		'ses_id' => set_value('ses_id', $row->ses_id),
 		'siw_tglbayar' => set_value('siw_tglbayar', $row->siw_tglbayar),
 		'siw_status' => set_value('siw_status', $row->siw_status),
 		'siw_tglambil' => set_value('siw_tglambil', $row->siw_tglambil),
-		'siw_tgl' => set_value('siw_tgl', $row->siw_tgl),
-		'siw_flag' => set_value('siw_flag', $row->siw_flag),
-		'siw_info' => set_value('siw_info', $row->siw_info),
 	    'content' => 'backend/simpananwajib/simpananwajib_form',
 	    );
             $this->load->view(layout(), $data);
@@ -183,9 +181,8 @@ class Simpananwajib extends MY_Base
 		'siw_tglbayar' => $this->input->post('siw_tglbayar',TRUE),
 		'siw_status' => $this->input->post('siw_status',TRUE),
 		'siw_tglambil' => $this->input->post('siw_tglambil',TRUE),
-		'siw_tgl' => $this->input->post('siw_tgl',TRUE),
-		'siw_flag' => $this->input->post('siw_flag',TRUE),
-		'siw_info' => $this->input->post('siw_info',TRUE),
+		'siw_flag' => 1,
+
 	    );
 
             $this->Simpananwajib_model->update($this->input->post('siw_id', TRUE), $data);
@@ -199,7 +196,10 @@ class Simpananwajib extends MY_Base
         $row = $this->Simpananwajib_model->get_by_id($id);
 
         if ($row) {
-            $this->Simpananwajib_model->delete($id);
+            $data = array (
+                'siw_flag' => 2,
+            );
+            $this->Simpananwajib_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('simpananwajib'));
         } else {
@@ -215,10 +215,6 @@ class Simpananwajib extends MY_Base
 	$this->form_validation->set_rules('siw_tglbayar', 'siw tglbayar', 'trim|required');
 	$this->form_validation->set_rules('siw_status', 'siw status', 'trim|required');
 	$this->form_validation->set_rules('siw_tglambil', 'siw tglambil', 'trim|required');
-	$this->form_validation->set_rules('siw_tgl', 'siw tgl', 'trim|required');
-	$this->form_validation->set_rules('siw_flag', 'siw flag', 'trim|required');
-	$this->form_validation->set_rules('siw_info', 'siw info', 'trim|required');
-
 	$this->form_validation->set_rules('siw_id', 'siw_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

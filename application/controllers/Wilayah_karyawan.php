@@ -105,12 +105,11 @@ class Wilayah_karyawan extends CI_Controller
             'button' => 'Create',
             'action' => site_url('wilayah_karyawan/create_action'),
 	    'wik_id' => set_value('wik_id'),
+	    'nm_wil_kode' => set_value('nm_wil_kode'),
 	    'wil_kode' => set_value('wil_kode'),
 	    'status' => set_value('status'),
+	    'nm_kar_kode' => set_value('nm_kar_kode'),
 	    'kar_kode' => set_value('kar_kode'),
-	    'wik_tgl' => set_value('wik_tgl'),
-	    'wik_flag' => set_value('wik_flag'),
-	    'wik_info' => set_value('wik_info'),
 	    'content' => 'backend/wilayah_karyawan/wilayah_karyawan_form',
 	);
         $this->load->view(layout(), $data);
@@ -127,9 +126,9 @@ class Wilayah_karyawan extends CI_Controller
 		'wil_kode' => $this->input->post('wil_kode',TRUE),
 		'status' => $this->input->post('status',TRUE),
 		'kar_kode' => $this->input->post('kar_kode',TRUE),
-		'wik_tgl' => $this->input->post('wik_tgl',TRUE),
-		'wik_flag' => $this->input->post('wik_flag',TRUE),
-		'wik_info' => $this->input->post('wik_info',TRUE),
+		'wik_tgl' => $this->tgl,
+		'wik_flag' => 0,
+		'wik_info' => "",
 	    );
 
             $this->Wilayah_karyawan_model->insert($data);
@@ -147,12 +146,11 @@ class Wilayah_karyawan extends CI_Controller
                 'button' => 'Update',
                 'action' => site_url('wilayah_karyawan/update_action'),
 		'wik_id' => set_value('wik_id', $row->wik_id),
+		'nm_wil_kode' => set_value('nm_wil_kode', $row->wil_nama),
 		'wil_kode' => set_value('wil_kode', $row->wil_kode),
 		'status' => set_value('status', $row->status),
+		'nm_kar_kode' => set_value('nm_kar_kode', $row->kar_nama),
 		'kar_kode' => set_value('kar_kode', $row->kar_kode),
-		'wik_tgl' => set_value('wik_tgl', $row->wik_tgl),
-		'wik_flag' => set_value('wik_flag', $row->wik_flag),
-		'wik_info' => set_value('wik_info', $row->wik_info),
 	    'content' => 'backend/wilayah_karyawan/wilayah_karyawan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -173,9 +171,9 @@ class Wilayah_karyawan extends CI_Controller
 		'wil_kode' => $this->input->post('wil_kode',TRUE),
 		'status' => $this->input->post('status',TRUE),
 		'kar_kode' => $this->input->post('kar_kode',TRUE),
-		'wik_tgl' => $this->input->post('wik_tgl',TRUE),
-		'wik_flag' => $this->input->post('wik_flag',TRUE),
-		'wik_info' => $this->input->post('wik_info',TRUE),
+		'wik_tgl' => $this->tgl,
+		'wik_flag' => 1,
+		'wik_info' => "",
 	    );
 
             $this->Wilayah_karyawan_model->update($this->input->post('wik_id', TRUE), $data);
@@ -189,7 +187,10 @@ class Wilayah_karyawan extends CI_Controller
         $row = $this->Wilayah_karyawan_model->get_by_id($id);
 
         if ($row) {
-            $this->Wilayah_karyawan_model->delete($id);
+            $data = array (
+                'wik_flag' => 2,
+            );
+            $this->Wilayah_karyawan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('wilayah_karyawan'));
         } else {
@@ -203,9 +204,6 @@ class Wilayah_karyawan extends CI_Controller
 	$this->form_validation->set_rules('wil_kode', 'wil kode', 'trim|required');
 	$this->form_validation->set_rules('status', 'status', 'trim|required');
 	$this->form_validation->set_rules('kar_kode', 'kar kode', 'trim|required');
-	$this->form_validation->set_rules('wik_tgl', 'wik tgl', 'trim|required');
-	$this->form_validation->set_rules('wik_flag', 'wik flag', 'trim|required');
-	$this->form_validation->set_rules('wik_info', 'wik info', 'trim|required');
 
 	$this->form_validation->set_rules('wik_id', 'wik_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
