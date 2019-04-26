@@ -17,34 +17,85 @@
             <label for="varchar">Pin Id <?php echo form_error('pin_id') ?></label>
             <input type="text" class="form-control" name="pin_id" id="pin_id" placeholder="Pin Id" value="<?php echo $pin_id; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="varchar">Ang No <?php echo form_error('ang_no') ?></label>
-            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Ang No" value="<?php echo $ang_no; ?>" />
+
+        <div class="form-group">
+            <label for="varchar">Anggota <?php echo form_error('ang_no') ?></label>
+            <div class="input-group">
+            <input type="hidden" name="ang_no" id="ang_no" value="<?php echo $ang_no; ?>" />
+            <input type="text" class="form-control" name="nm_ang_no" id="nm_ang_no" placeholder="Anggota" value="<?php echo $nm_ang_no; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>anggota/lookup','ang_no');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
-            <label for="int">Sea Id <?php echo form_error('sea_id') ?></label>
-            <input type="text" class="form-control" name="sea_id" id="sea_id" placeholder="Sea Id" value="<?php echo $sea_id; ?>" />
+
+        <div class="form-group">
+            <label for="int">Setting Angsuran <?php echo form_error('sea_id') ?></label>
+            <div class="input-group">
+            <input type="hidden" name="sea_id" id="sea_id" value="<?php echo $sea_id; ?>" />
+            <input type="text" class="form-control" name="nm_sea_id" id="nm_sea_id" placeholder="Setting Angsuran" value="<?php echo $nm_sea_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>settingangsuran/lookup','sea_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
+
+        <div class="form-group">
             <label for="int">Bup Id <?php echo form_error('bup_id') ?></label>
-            <input type="text" class="form-control" name="bup_id" id="bup_id" placeholder="Bup Id" value="<?php echo $bup_id; ?>" />
+            <div class="input-group">
+            <input type="hidden" name="bup_id" id="bup_id" value="<?php echo $bup_id; ?>" />
+            <input type="text" class="form-control" name="nm_bup_id" id="nm_bup_id" placeholder="Bunga Pinjaman" value="<?php echo $nm_bup_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>bungapinjaman/lookup','bup_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
+
+        <div class="form-group">
             <label for="int">Pop Id <?php echo form_error('pop_id') ?></label>
-            <input type="text" class="form-control" name="pop_id" id="pop_id" placeholder="Pop Id" value="<?php echo $pop_id; ?>" />
+            <div class="input-group">
+            <input type="hidden" name="pop_id" id="pop_id" value="<?php echo $pop_id; ?>" />
+            <input type="text" class="form-control" name="nm_pop_id" id="nm_pop_id" placeholder="Potongan Provisi" value="<?php echo $nm_pop_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>potonganprovisi/lookup','pop_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
+
+        <div class="form-group">
             <label for="varchar">Wil Kode <?php echo form_error('wil_kode') ?></label>
-            <input type="text" class="form-control" name="wil_kode" id="wil_kode" placeholder="Wil Kode" value="<?php echo $wil_kode; ?>" />
+            <div class="input-group">
+            <input type="hidden" name="wil_kode" id="wil_kode" value="<?php echo $wil_kode; ?>" />
+            <input type="text" class="form-control" name="nm_wil_kode" id="nm_wil_kode" placeholder="Wilayah" value="<?php echo $nm_wil_kode; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>wilayah/lookup','wil_kode');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
+
+        <div class="form-group">
             <label for="int">Skp Id <?php echo form_error('skp_id') ?></label>
-            <input type="text" class="form-control" name="skp_id" id="skp_id" placeholder="Skp Id" value="<?php echo $skp_id; ?>" />
+            <div class="input-group">
+            <input type="hidden" name="skp_id" id="skp_id" value="<?php echo $skp_id; ?>" />
+            <input type="text" class="form-control" name="nm_skp_id" id="nm_skp_id" placeholder="SKP Id" value="<?php echo $nm_skp_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>settingkategoripeminjam/lookup','skp_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
-            <label for="int">Pen Id <?php echo form_error('pen_id') ?></label>
-            <input type="text" class="form-control" name="pen_id" id="pen_id" placeholder="Pen Id" value="<?php echo $pen_id; ?>" />
+
+        <div class="form-group">
+            <label for="int">Penjamin <?php echo form_error('pen_id') ?></label>
+            <div class="input-group">
+            <!-- <input type="hidden" name="pen_id" id="pen_id" value="<?php echo $pen_id; ?>" /> -->
+            <input type="hidden" name="pen_id" id="pen_id" value="69" />
+            <input type="text" class="form-control" name="nm_pen_id" id="nm_pen_id" placeholder="Penjamin" value="<?php echo $nm_pen_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>penjamin/lookup','pen_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
+
 	    <div class="form-group">
             <label for="float">Pin Pengajuan <?php echo form_error('pin_pengajuan') ?></label>
             <input type="text" class="form-control" name="pin_pengajuan" id="pin_pengajuan" placeholder="Pin Pengajuan" value="<?php echo $pin_pengajuan; ?>" />
@@ -77,19 +128,7 @@
             <label for="varchar">Pin Statuspinjaman <?php echo form_error('pin_statuspinjaman') ?></label>
             <input type="text" class="form-control" name="pin_statuspinjaman" id="pin_statuspinjaman" placeholder="Pin Statuspinjaman" value="<?php echo $pin_statuspinjaman; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="datetime">Pin Tgl <?php echo form_error('pin_tgl') ?></label>
-            <input type="text" class="form-control" name="pin_tgl" id="pin_tgl" placeholder="Pin Tgl" value="<?php echo $pin_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Pin Flag <?php echo form_error('pin_flag') ?></label>
-            <input type="text" class="form-control" name="pin_flag" id="pin_flag" placeholder="Pin Flag" value="<?php echo $pin_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="pin_info">Pin Info <?php echo form_error('pin_info') ?></label>
-            <textarea class="form-control" rows="3" name="pin_info" id="pin_info" placeholder="Pin Info"><?php echo $pin_info; ?></textarea>
-        </div>
-	    <input type="hidden" name="" value="<?php echo $; ?>" /> 
+	    
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Cancel</a>
 	</div>

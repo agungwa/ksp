@@ -127,6 +127,7 @@ class Anggota extends MY_Base
             $this->create();
         } else {
             $data = array(
+                'ang_no' => $this->input->post('ang_no',TRUE),
 		'ang_nama' => $this->input->post('ang_nama',TRUE),
 		'ang_alamat' => $this->input->post('ang_alamat',TRUE),
 		'ang_noktp' => $this->input->post('ang_noktp',TRUE),

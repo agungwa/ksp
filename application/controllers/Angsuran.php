@@ -83,18 +83,16 @@ class Angsuran extends MY_Base
         $row = $this->Angsuran_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'ags_id' => $row->ags_id,
-		'pin_id' => $row->pin_id,
-		'ang_angsuranke' => $row->ang_angsuranke,
-		'ags_tgljatuhtempo' => $row->ags_tgljatuhtempo,
-		'ags_tglbayar' => $row->ags_tglbayar,
-		'ags_jmlpokok' => $row->ags_jmlpokok,
-		'ags_jmlbunga' => $row->ags_jmlbunga,
-		'ags_status' => $row->ags_status,
-		'ags_tgl' => $row->ags_tgl,
-		'ags_flag' => $row->ags_flag,
-		'ags_info' => $row->ags_info,'content' => 'backend/angsuran/angsuran_read',
-	    );
+    		'ags_id' => $row->ags_id,
+    		'pin_id' => $row->pin_id,
+    		'ang_angsuranke' => $row->ang_angsuranke,
+    		'ags_tgljatuhtempo' => $row->ags_tgljatuhtempo,
+    		'ags_tglbayar' => $row->ags_tglbayar,
+    		'ags_jmlpokok' => $row->ags_jmlpokok,
+    		'ags_jmlbunga' => $row->ags_jmlbunga,
+    		'ags_status' => $row->ags_status,
+            'content' => 'backend/angsuran/angsuran_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -108,19 +106,17 @@ class Angsuran extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('angsuran/create_action'),
-	    'ags_id' => set_value('ags_id'),
-	    'pin_id' => set_value('pin_id'),
-	    'ang_angsuranke' => set_value('ang_angsuranke'),
-	    'ags_tgljatuhtempo' => set_value('ags_tgljatuhtempo'),
-	    'ags_tglbayar' => set_value('ags_tglbayar'),
-	    'ags_jmlpokok' => set_value('ags_jmlpokok'),
-	    'ags_jmlbunga' => set_value('ags_jmlbunga'),
-	    'ags_status' => set_value('ags_status'),
-	    'ags_tgl' => set_value('ags_tgl'),
-	    'ags_flag' => set_value('ags_flag'),
-	    'ags_info' => set_value('ags_info'),
-	    'content' => 'backend/angsuran/angsuran_form',
-	);
+    	    'ags_id' => set_value('ags_id'),
+    	    'pin_id' => set_value('pin_id'),
+            'nm_pin_id' => set_value('nm_pin_id'),
+    	    'ang_angsuranke' => set_value('ang_angsuranke'),
+    	    'ags_tgljatuhtempo' => set_value('ags_tgljatuhtempo'),
+    	    'ags_tglbayar' => set_value('ags_tglbayar'),
+    	    'ags_jmlpokok' => set_value('ags_jmlpokok'),
+    	    'ags_jmlbunga' => set_value('ags_jmlbunga'),
+    	    'ags_status' => set_value('ags_status'),
+    	    'content' => 'backend/angsuran/angsuran_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -132,17 +128,17 @@ class Angsuran extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'pin_id' => $this->input->post('pin_id',TRUE),
-		'ang_angsuranke' => $this->input->post('ang_angsuranke',TRUE),
-		'ags_tgljatuhtempo' => $this->input->post('ags_tgljatuhtempo',TRUE),
-		'ags_tglbayar' => $this->input->post('ags_tglbayar',TRUE),
-		'ags_jmlpokok' => $this->input->post('ags_jmlpokok',TRUE),
-		'ags_jmlbunga' => $this->input->post('ags_jmlbunga',TRUE),
-		'ags_status' => $this->input->post('ags_status',TRUE),
-		'ags_tgl' => $this->input->post('ags_tgl',TRUE),
-		'ags_flag' => $this->input->post('ags_flag',TRUE),
-		'ags_info' => $this->input->post('ags_info',TRUE),
-	    );
+    		'pin_id' => $this->input->post('pin_id',TRUE),
+    		'ang_angsuranke' => $this->input->post('ang_angsuranke',TRUE),
+    		'ags_tgljatuhtempo' => $this->input->post('ags_tgljatuhtempo',TRUE),
+    		'ags_tglbayar' => $this->input->post('ags_tglbayar',TRUE),
+    		'ags_jmlpokok' => $this->input->post('ags_jmlpokok',TRUE),
+    		'ags_jmlbunga' => $this->input->post('ags_jmlbunga',TRUE),
+    		'ags_status' => $this->input->post('ags_status',TRUE),
+    		'ags_tgl' => $this->tgl,
+    		'ags_flag' => 0,
+    		'ags_info' => "",
+    	    );
 
             $this->Angsuran_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -158,19 +154,17 @@ class Angsuran extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('angsuran/update_action'),
-		'ags_id' => set_value('ags_id', $row->ags_id),
-		'pin_id' => set_value('pin_id', $row->pin_id),
-		'ang_angsuranke' => set_value('ang_angsuranke', $row->ang_angsuranke),
-		'ags_tgljatuhtempo' => set_value('ags_tgljatuhtempo', $row->ags_tgljatuhtempo),
-		'ags_tglbayar' => set_value('ags_tglbayar', $row->ags_tglbayar),
-		'ags_jmlpokok' => set_value('ags_jmlpokok', $row->ags_jmlpokok),
-		'ags_jmlbunga' => set_value('ags_jmlbunga', $row->ags_jmlbunga),
-		'ags_status' => set_value('ags_status', $row->ags_status),
-		'ags_tgl' => set_value('ags_tgl', $row->ags_tgl),
-		'ags_flag' => set_value('ags_flag', $row->ags_flag),
-		'ags_info' => set_value('ags_info', $row->ags_info),
-	    'content' => 'backend/angsuran/angsuran_form',
-	    );
+        		'ags_id' => set_value('ags_id', $row->ags_id),
+        		'pin_id' => set_value('pin_id', $row->pin_id),
+                'nm_pin_id' => set_value('pin_id', $row->pin_id),
+        		'ang_angsuranke' => set_value('ang_angsuranke', $row->ang_angsuranke),
+        		'ags_tgljatuhtempo' => set_value('ags_tgljatuhtempo', $row->ags_tgljatuhtempo),
+        		'ags_tglbayar' => set_value('ags_tglbayar', $row->ags_tglbayar),
+        		'ags_jmlpokok' => set_value('ags_jmlpokok', $row->ags_jmlpokok),
+        		'ags_jmlbunga' => set_value('ags_jmlbunga', $row->ags_jmlbunga),
+        		'ags_status' => set_value('ags_status', $row->ags_status),
+        	    'content' => 'backend/angsuran/angsuran_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -186,17 +180,15 @@ class Angsuran extends MY_Base
             $this->update($this->input->post('ags_id', TRUE));
         } else {
             $data = array(
-		'pin_id' => $this->input->post('pin_id',TRUE),
-		'ang_angsuranke' => $this->input->post('ang_angsuranke',TRUE),
-		'ags_tgljatuhtempo' => $this->input->post('ags_tgljatuhtempo',TRUE),
-		'ags_tglbayar' => $this->input->post('ags_tglbayar',TRUE),
-		'ags_jmlpokok' => $this->input->post('ags_jmlpokok',TRUE),
-		'ags_jmlbunga' => $this->input->post('ags_jmlbunga',TRUE),
-		'ags_status' => $this->input->post('ags_status',TRUE),
-		'ags_tgl' => $this->input->post('ags_tgl',TRUE),
-		'ags_flag' => $this->input->post('ags_flag',TRUE),
-		'ags_info' => $this->input->post('ags_info',TRUE),
-	    );
+    		'pin_id' => $this->input->post('pin_id',TRUE),
+    		'ang_angsuranke' => $this->input->post('ang_angsuranke',TRUE),
+    		'ags_tgljatuhtempo' => $this->input->post('ags_tgljatuhtempo',TRUE),
+    		'ags_tglbayar' => $this->input->post('ags_tglbayar',TRUE),
+    		'ags_jmlpokok' => $this->input->post('ags_jmlpokok',TRUE),
+    		'ags_jmlbunga' => $this->input->post('ags_jmlbunga',TRUE),
+    		'ags_status' => $this->input->post('ags_status',TRUE),
+    		'ags_flag' => 1,
+    	    );
 
             $this->Angsuran_model->update($this->input->post('ags_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -209,7 +201,11 @@ class Angsuran extends MY_Base
         $row = $this->Angsuran_model->get_by_id($id);
 
         if ($row) {
-            $this->Angsuran_model->delete($id);
+            $data = array(
+            'ags_flag' => 2,
+            );
+
+            $this->Angsuran_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('angsuran'));
         } else {
@@ -227,9 +223,6 @@ class Angsuran extends MY_Base
 	$this->form_validation->set_rules('ags_jmlpokok', 'ags jmlpokok', 'trim|required');
 	$this->form_validation->set_rules('ags_jmlbunga', 'ags jmlbunga', 'trim|required');
 	$this->form_validation->set_rules('ags_status', 'ags status', 'trim|required');
-	$this->form_validation->set_rules('ags_tgl', 'ags tgl', 'trim|required');
-	$this->form_validation->set_rules('ags_flag', 'ags flag', 'trim|required');
-	$this->form_validation->set_rules('ags_info', 'ags info', 'trim|required');
 
 	$this->form_validation->set_rules('ags_id', 'ags_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

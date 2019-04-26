@@ -83,16 +83,14 @@ class Mutasipinjaman extends MY_Base
         $row = $this->Mutasipinjaman_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'mup_id' => $row->mup_id,
-		'pin_id' => $row->pin_id,
-		'mup_tglmutasi' => $row->mup_tglmutasi,
-		'mup_asal' => $row->mup_asal,
-		'mup_tujuan' => $row->mup_tujuan,
-		'mup_status' => $row->mup_status,
-		'mup_tgl' => $row->mup_tgl,
-		'mup_flag' => $row->mup_flag,
-		'mup_info' => $row->mup_info,'content' => 'backend/mutasipinjaman/mutasipinjaman_read',
-	    );
+    		'mup_id' => $row->mup_id,
+    		'pin_id' => $row->pin_id,
+    		'mup_tglmutasi' => $row->mup_tglmutasi,
+    		'mup_asal' => $row->mup_asal,
+    		'mup_tujuan' => $row->mup_tujuan,
+    		'mup_status' => $row->mup_status,
+            'content' => 'backend/mutasipinjaman/mutasipinjaman_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -106,16 +104,14 @@ class Mutasipinjaman extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('mutasipinjaman/create_action'),
-	    'mup_id' => set_value('mup_id'),
-	    'pin_id' => set_value('pin_id'),
-	    'mup_tglmutasi' => set_value('mup_tglmutasi'),
-	    'mup_asal' => set_value('mup_asal'),
-	    'mup_tujuan' => set_value('mup_tujuan'),
-	    'mup_status' => set_value('mup_status'),
-	    'mup_tgl' => set_value('mup_tgl'),
-	    'mup_flag' => set_value('mup_flag'),
-	    'mup_info' => set_value('mup_info'),
-	    'content' => 'backend/mutasipinjaman/mutasipinjaman_form',
+    	    'mup_id' => set_value('mup_id'),
+    	    'pin_id' => set_value('pin_id'),
+            'nm_pin_id' => set_value('nm_pin_id'),
+    	    'mup_tglmutasi' => set_value('mup_tglmutasi'),
+    	    'mup_asal' => set_value('mup_asal'),
+    	    'mup_tujuan' => set_value('mup_tujuan'),
+    	    'mup_status' => set_value('mup_status'),
+    	    'content' => 'backend/mutasipinjaman/mutasipinjaman_form',
 	);
         $this->load->view(layout(), $data);
     }
@@ -128,15 +124,15 @@ class Mutasipinjaman extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'pin_id' => $this->input->post('pin_id',TRUE),
-		'mup_tglmutasi' => $this->input->post('mup_tglmutasi',TRUE),
-		'mup_asal' => $this->input->post('mup_asal',TRUE),
-		'mup_tujuan' => $this->input->post('mup_tujuan',TRUE),
-		'mup_status' => $this->input->post('mup_status',TRUE),
-		'mup_tgl' => $this->input->post('mup_tgl',TRUE),
-		'mup_flag' => $this->input->post('mup_flag',TRUE),
-		'mup_info' => $this->input->post('mup_info',TRUE),
-	    );
+    		'pin_id' => $this->input->post('pin_id',TRUE),
+    		'mup_tglmutasi' => $this->input->post('mup_tglmutasi',TRUE),
+    		'mup_asal' => $this->input->post('mup_asal',TRUE),
+    		'mup_tujuan' => $this->input->post('mup_tujuan',TRUE),
+    		'mup_status' => $this->input->post('mup_status',TRUE),
+    		'mup_tgl' => $this->tgl,
+    		'mup_flag' => 0,
+    		'mup_info' => "",
+    	    );
 
             $this->Mutasipinjaman_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -152,17 +148,15 @@ class Mutasipinjaman extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('mutasipinjaman/update_action'),
-		'mup_id' => set_value('mup_id', $row->mup_id),
-		'pin_id' => set_value('pin_id', $row->pin_id),
-		'mup_tglmutasi' => set_value('mup_tglmutasi', $row->mup_tglmutasi),
-		'mup_asal' => set_value('mup_asal', $row->mup_asal),
-		'mup_tujuan' => set_value('mup_tujuan', $row->mup_tujuan),
-		'mup_status' => set_value('mup_status', $row->mup_status),
-		'mup_tgl' => set_value('mup_tgl', $row->mup_tgl),
-		'mup_flag' => set_value('mup_flag', $row->mup_flag),
-		'mup_info' => set_value('mup_info', $row->mup_info),
-	    'content' => 'backend/mutasipinjaman/mutasipinjaman_form',
-	    );
+        		'mup_id' => set_value('mup_id', $row->mup_id),
+        		'pin_id' => set_value('pin_id', $row->pin_id),
+                'nm_pin_id' => set_value('pin_id', $row->pin_id),
+        		'mup_tglmutasi' => set_value('mup_tglmutasi', $row->mup_tglmutasi),
+        		'mup_asal' => set_value('mup_asal', $row->mup_asal),
+        		'mup_tujuan' => set_value('mup_tujuan', $row->mup_tujuan),
+        		'mup_status' => set_value('mup_status', $row->mup_status),
+        	    'content' => 'backend/mutasipinjaman/mutasipinjaman_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -178,15 +172,13 @@ class Mutasipinjaman extends MY_Base
             $this->update($this->input->post('mup_id', TRUE));
         } else {
             $data = array(
-		'pin_id' => $this->input->post('pin_id',TRUE),
-		'mup_tglmutasi' => $this->input->post('mup_tglmutasi',TRUE),
-		'mup_asal' => $this->input->post('mup_asal',TRUE),
-		'mup_tujuan' => $this->input->post('mup_tujuan',TRUE),
-		'mup_status' => $this->input->post('mup_status',TRUE),
-		'mup_tgl' => $this->input->post('mup_tgl',TRUE),
-		'mup_flag' => $this->input->post('mup_flag',TRUE),
-		'mup_info' => $this->input->post('mup_info',TRUE),
-	    );
+    		'pin_id' => $this->input->post('pin_id',TRUE),
+    		'mup_tglmutasi' => $this->input->post('mup_tglmutasi',TRUE),
+    		'mup_asal' => $this->input->post('mup_asal',TRUE),
+    		'mup_tujuan' => $this->input->post('mup_tujuan',TRUE),
+    		'mup_status' => $this->input->post('mup_status',TRUE),
+    		'mup_flag' => 1,
+    	    );
 
             $this->Mutasipinjaman_model->update($this->input->post('mup_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -199,7 +191,11 @@ class Mutasipinjaman extends MY_Base
         $row = $this->Mutasipinjaman_model->get_by_id($id);
 
         if ($row) {
-            $this->Mutasipinjaman_model->delete($id);
+            $data = array(
+            'mup_flag' => 2,
+            );
+
+            $this->Mutasipinjaman_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('mutasipinjaman'));
         } else {
@@ -215,9 +211,6 @@ class Mutasipinjaman extends MY_Base
 	$this->form_validation->set_rules('mup_asal', 'mup asal', 'trim|required');
 	$this->form_validation->set_rules('mup_tujuan', 'mup tujuan', 'trim|required');
 	$this->form_validation->set_rules('mup_status', 'mup status', 'trim|required');
-	$this->form_validation->set_rules('mup_tgl', 'mup tgl', 'trim|required');
-	$this->form_validation->set_rules('mup_flag', 'mup flag', 'trim|required');
-	$this->form_validation->set_rules('mup_info', 'mup info', 'trim|required');
 
 	$this->form_validation->set_rules('mup_id', 'mup_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

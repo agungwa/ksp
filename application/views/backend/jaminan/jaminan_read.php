@@ -18,10 +18,6 @@
 	    <tr><td>Jej Id</td><td><?php echo $jej_id; ?></td></tr>
 	    <tr><td>Jam Nomor</td><td><?php echo $jam_nomor; ?></td></tr>
 	    <tr><td>Jam Keterangan</td><td><?php echo $jam_keterangan; ?></td></tr>
-	    <tr><td>Jam File</td><td><?php echo $jam_file; ?></td></tr>
-	    <tr><td>Jam Tgl</td><td><?php echo $jam_tgl; ?></td></tr>
-	    <tr><td>Jam Flag</td><td><?php echo $jam_flag; ?></td></tr>
-	    <tr><td>Jam Info</td><td><?php echo $jam_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('jaminan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

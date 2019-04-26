@@ -48,26 +48,23 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Pin Id</th>
-		<th class="text-center">Ang No</th>
-		<th class="text-center">Sea Id</th>
-		<th class="text-center">Bup Id</th>
-		<th class="text-center">Pop Id</th>
-		<th class="text-center">Wil Kode</th>
-		<th class="text-center">Skp Id</th>
-		<th class="text-center">Pen Id</th>
-		<th class="text-center">Pin Pengajuan</th>
-		<th class="text-center">Pin Pinjaman</th>
-		<th class="text-center">Pin Tglpengajuan</th>
-		<th class="text-center">Pin Tglpencairan</th>
-		<th class="text-center">Pin Marketing</th>
-		<th class="text-center">Pin Surveyor</th>
-		<th class="text-center">Pin Survey</th>
-		<th class="text-center">Pin Statuspinjaman</th>
-		<th class="text-center">Pin Tgl</th>
-		<th class="text-center">Pin Flag</th>
-		<th class="text-center">Pin Info</th>
-		<th class="text-center">Action</th>
+        		<th class="text-center">Pin Id</th>
+        		<th class="text-center">Ang No</th>
+        		<th class="text-center">Sea Id</th>
+        		<th class="text-center">Bup Id</th>
+        		<th class="text-center">Pop Id</th>
+        		<th class="text-center">Wil Kode</th>
+        		<th class="text-center">Skp Id</th>
+        		<th class="text-center">Pen Id</th>
+        		<th class="text-center">Pin Pengajuan</th>
+        		<th class="text-center">Pin Pinjaman</th>
+        		<th class="text-center">Pin Tglpengajuan</th>
+        		<th class="text-center">Pin Tglpencairan</th>
+        		<th class="text-center">Pin Marketing</th>
+        		<th class="text-center">Pin Surveyor</th>
+        		<th class="text-center">Pin Survey</th>
+        		<th class="text-center">Pin Statuspinjaman</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -75,33 +72,30 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $pinjaman->pin_id ?></td>
-			<td><?php echo $pinjaman->ang_no ?></td>
-			<td><?php echo $pinjaman->sea_id ?></td>
-			<td><?php echo $pinjaman->bup_id ?></td>
-			<td><?php echo $pinjaman->pop_id ?></td>
-			<td><?php echo $pinjaman->wil_kode ?></td>
-			<td><?php echo $pinjaman->skp_id ?></td>
-			<td><?php echo $pinjaman->pen_id ?></td>
-			<td><?php echo $pinjaman->pin_pengajuan ?></td>
-			<td><?php echo $pinjaman->pin_pinjaman ?></td>
-			<td><?php echo $pinjaman->pin_tglpengajuan ?></td>
-			<td><?php echo $pinjaman->pin_tglpencairan ?></td>
-			<td><?php echo $pinjaman->pin_marketing ?></td>
-			<td><?php echo $pinjaman->pin_surveyor ?></td>
-			<td><?php echo $pinjaman->pin_survey ?></td>
-			<td><?php echo $pinjaman->pin_statuspinjaman ?></td>
-			<td><?php echo $pinjaman->pin_tgl ?></td>
-			<td><?php echo $pinjaman->pin_flag ?></td>
-			<td><?php echo $pinjaman->pin_info ?></td>
-			<td style="text-align:center" width="200px">
+    			<td width="80px"><?php echo ++$start ?></td>
+    			<td><?php echo $pinjaman->pin_id ?></td>
+    			<td><?php echo $pinjaman->ang_no ?></td>
+    			<td><?php echo $pinjaman->sea_id ?></td>
+    			<td><?php echo $pinjaman->bup_id ?></td>
+    			<td><?php echo $pinjaman->pop_id ?></td>
+    			<td><?php echo $pinjaman->wil_kode ?></td>
+    			<td><?php echo $pinjaman->skp_id ?></td>
+    			<td><?php echo $pinjaman->pen_id ?></td>
+    			<td><?php echo $pinjaman->pin_pengajuan ?></td>
+    			<td><?php echo $pinjaman->pin_pinjaman ?></td>
+    			<td><?php echo dateFormat($pinjaman->pin_tglpengajuan) ?></td>
+    			<td><?php echo dateFormat($pinjaman->pin_tglpencairan) ?></td>
+    			<td><?php echo $pinjaman->pin_marketing ?></td>
+    			<td><?php echo $pinjaman->pin_surveyor ?></td>
+    			<td><?php echo $pinjaman->pin_survey ?></td>
+    			<td><?php echo $pinjaman->pin_statuspinjaman ?></td>
+    			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('pinjaman/read/'.$pinjaman->),'Read','class="text-navy"'); 
+				echo anchor(site_url('pinjaman/read/'.$pinjaman->pin_id),'Read','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('pinjaman/update/'.$pinjaman->),'Update','class="text-navy"'); 
+				echo anchor(site_url('pinjaman/update/'.$pinjaman->pin_id),'Update','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('pinjaman/delete/'.$pinjaman->),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('pinjaman/delete/'.$pinjaman->pin_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>
 		</tr>

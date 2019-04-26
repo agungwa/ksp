@@ -24,15 +24,12 @@
 	    <tr><td>Pen Id</td><td><?php echo $pen_id; ?></td></tr>
 	    <tr><td>Pin Pengajuan</td><td><?php echo $pin_pengajuan; ?></td></tr>
 	    <tr><td>Pin Pinjaman</td><td><?php echo $pin_pinjaman; ?></td></tr>
-	    <tr><td>Pin Tglpengajuan</td><td><?php echo $pin_tglpengajuan; ?></td></tr>
-	    <tr><td>Pin Tglpencairan</td><td><?php echo $pin_tglpencairan; ?></td></tr>
+	    <tr><td>Pin Tglpengajuan</td><td><?php echo dateFormat($pin_tglpengajuan); ?></td></tr>
+	    <tr><td>Pin Tglpencairan</td><td><?php echo dateFormat($pin_tglpencairan); ?></td></tr>
 	    <tr><td>Pin Marketing</td><td><?php echo $pin_marketing; ?></td></tr>
 	    <tr><td>Pin Surveyor</td><td><?php echo $pin_surveyor; ?></td></tr>
 	    <tr><td>Pin Survey</td><td><?php echo $pin_survey; ?></td></tr>
 	    <tr><td>Pin Statuspinjaman</td><td><?php echo $pin_statuspinjaman; ?></td></tr>
-	    <tr><td>Pin Tgl</td><td><?php echo $pin_tgl; ?></td></tr>
-	    <tr><td>Pin Flag</td><td><?php echo $pin_flag; ?></td></tr>
-	    <tr><td>Pin Info</td><td><?php echo $pin_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

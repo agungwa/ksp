@@ -48,15 +48,13 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Pin Id</th>
-		<th class="text-center">Jej Id</th>
-		<th class="text-center">Jam Nomor</th>
-		<th class="text-center">Jam Keterangan</th>
-		<th class="text-center">Jam File</th>
-		<th class="text-center">Jam Tgl</th>
-		<th class="text-center">Jam Flag</th>
-		<th class="text-center">Jam Info</th>
-		<th class="text-center">Action</th>
+        		<th class="text-center">Pin Id</th>
+        		<th class="text-center">Jej Id</th>
+        		<th class="text-center">Jam Nomor</th>
+        		<th class="text-center">Jam Keterangan</th>
+        		<th class="text-center">Jam File</th>
+        		<th class="text-center">Jam Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -64,16 +62,14 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $jaminan->pin_id ?></td>
-			<td><?php echo $jaminan->jej_id ?></td>
-			<td><?php echo $jaminan->jam_nomor ?></td>
-			<td><?php echo $jaminan->jam_keterangan ?></td>
-			<td><?php echo $jaminan->jam_file ?></td>
-			<td><?php echo $jaminan->jam_tgl ?></td>
-			<td><?php echo $jaminan->jam_flag ?></td>
-			<td><?php echo $jaminan->jam_info ?></td>
-			<td style="text-align:center" width="200px">
+    			<td width="80px"><?php echo ++$start ?></td>
+    			<td><?php echo $jaminan->pin_id ?></td>
+    			<td><?php echo $jaminan->jej_id ?></td>
+    			<td><?php echo $jaminan->jam_nomor ?></td>
+    			<td><?php echo $jaminan->jam_keterangan ?></td>
+    			<td><?php echo $jaminan->jam_file ?></td>
+    			<td><?php echo dateFormat($jaminan->jam_tgl) ?></td>
+    			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('jaminan/read/'.$jaminan->jam_id),'Read','class="text-navy"'); 
 				echo ' | '; 

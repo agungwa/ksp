@@ -18,6 +18,7 @@ class Angsuran_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('ags_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,36 +32,18 @@ class Angsuran_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('ags_id', $q);
-	$this->db->or_like('pin_id', $q);
-	$this->db->or_like('ang_angsuranke', $q);
-	$this->db->or_like('ags_tgljatuhtempo', $q);
-	$this->db->or_like('ags_tglbayar', $q);
-	$this->db->or_like('ags_jmlpokok', $q);
-	$this->db->or_like('ags_jmlbunga', $q);
-	$this->db->or_like('ags_status', $q);
-	$this->db->or_like('ags_tgl', $q);
-	$this->db->or_like('ags_flag', $q);
-	$this->db->or_like('ags_info', $q);
-	$this->db->from($this->table);
+        $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR ags_tgljatuhtempo LIKE '%$q%' ESCAPE '!') AND ags_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('ags_id', $q);
-	$this->db->or_like('pin_id', $q);
-	$this->db->or_like('ang_angsuranke', $q);
-	$this->db->or_like('ags_tgljatuhtempo', $q);
-	$this->db->or_like('ags_tglbayar', $q);
-	$this->db->or_like('ags_jmlpokok', $q);
-	$this->db->or_like('ags_jmlbunga', $q);
-	$this->db->or_like('ags_status', $q);
-	$this->db->or_like('ags_tgl', $q);
-	$this->db->or_like('ags_flag', $q);
-	$this->db->or_like('ags_info', $q);
-	$this->db->limit($limit, $start);
+         $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR ags_tgljatuhtempo LIKE '%$q%' ESCAPE '!') AND ags_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

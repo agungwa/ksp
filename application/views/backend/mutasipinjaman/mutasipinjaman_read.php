@@ -19,9 +19,6 @@
 	    <tr><td>Mup Asal</td><td><?php echo $mup_asal; ?></td></tr>
 	    <tr><td>Mup Tujuan</td><td><?php echo $mup_tujuan; ?></td></tr>
 	    <tr><td>Mup Status</td><td><?php echo $mup_status; ?></td></tr>
-	    <tr><td>Mup Tgl</td><td><?php echo $mup_tgl; ?></td></tr>
-	    <tr><td>Mup Flag</td><td><?php echo $mup_flag; ?></td></tr>
-	    <tr><td>Mup Info</td><td><?php echo $mup_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('mutasipinjaman') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
