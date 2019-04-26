@@ -48,12 +48,13 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Kar Nama</th>
-		<th class="text-center">Jab Kode</th>
-		<th class="text-center">Wil Kode</th>
-		<th class="text-center">Kar Alamat</th>
-		<th class="text-center">Kar Nohp</th>
-		<th class="text-center">Action</th>
+                <th class="text-center">Kar Kode</th>
+        		<th class="text-center">Kar Nama</th>
+        		<th class="text-center">Jab Kode</th>
+        		<th class="text-center">Kar Alamat</th>
+        		<th class="text-center">Kar Nohp</th>
+        		<th class="text-center">Kar Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -62,11 +63,12 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
+            <td><?php echo $karyawan->kar_kode ?></td>
 			<td><?php echo $karyawan->kar_nama ?></td>
 			<td><?php echo $karyawan->jab_kode ?></td>
-			<td><?php echo $karyawan->wil_kode ?></td>
 			<td><?php echo $karyawan->kar_alamat ?></td>
 			<td><?php echo $karyawan->kar_nohp ?></td>
+			<td><?php echo dateFormat($karyawan->kar_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('karyawan/read/'.$karyawan->kar_kode),'Read','class="text-navy"'); 

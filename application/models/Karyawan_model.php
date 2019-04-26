@@ -18,7 +18,7 @@ class Karyawan_model extends CI_Model
     // get all
     function get_all()
     {
-        $this->db->where('kar_kode<',2);
+        $this->db->where('kar_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -32,18 +32,18 @@ class Karyawan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $where="kar_nama LIKE '%$q%' ESCAPE '!' AND kar_kode < 2";
+        $where = "(kar_kode LIKE '%$q%' ESCAPE '!' OR kar_nama LIKE '%$q%' ESCAPE '!') AND kar_flag < 2";
         $this->db->where($where);
-	$this->db->from($this->table);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $where="kar_nama LIKE '%$q%' ESCAPE '!' AND kar_kode < 2";
+        $where = "(kar_kode LIKE '%$q%' ESCAPE '!' OR kar_nama LIKE '%$q%' ESCAPE '!') AND kar_flag < 2";
         $this->db->where($where);
-	$this->db->limit($limit, $start);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 
