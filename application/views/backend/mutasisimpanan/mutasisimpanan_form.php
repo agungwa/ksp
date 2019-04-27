@@ -13,9 +13,15 @@
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
-	    <div class="form-group">
+        <div class="form-group">
             <label for="varchar">Sim Kode <?php echo form_error('sim_kode') ?></label>
-            <input type="text" class="form-control" name="sim_kode" id="sim_kode" placeholder="Sim Kode" value="<?php echo $sim_kode; ?>" />
+            <div class="input-group">
+            <input type="hidden" name="sim_kode" id="sim_kode" value="<?php echo $sim_kode; ?>" />
+            <input type="text" class="form-control" name="nm_sim_kode" id="nm_sim_kode" placeholder="Simpanan" value="<?php echo $nm_sim_kode; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>simpanan/lookup','sim_kode');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
 	    <div class="form-group">
             <label for="datetime">Mus Tglmutasi <?php echo form_error('mus_tglmutasi') ?></label>
@@ -32,18 +38,6 @@
 	    <div class="form-group">
             <label for="tinyint">Mus Status <?php echo form_error('mus_status') ?></label>
             <input type="text" class="form-control" name="mus_status" id="mus_status" placeholder="Mus Status" value="<?php echo $mus_status; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="datetime">Mus Tgl <?php echo form_error('mus_tgl') ?></label>
-            <input type="text" class="form-control" name="mus_tgl" id="mus_tgl" placeholder="Mus Tgl" value="<?php echo $mus_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Mus Flag <?php echo form_error('mus_flag') ?></label>
-            <input type="text" class="form-control" name="mus_flag" id="mus_flag" placeholder="Mus Flag" value="<?php echo $mus_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="mus_info">Mus Info <?php echo form_error('mus_info') ?></label>
-            <textarea class="form-control" rows="3" name="mus_info" id="mus_info" placeholder="Mus Info"><?php echo $mus_info; ?></textarea>
         </div>
 	    <input type="hidden" name="mus_id" value="<?php echo $mus_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

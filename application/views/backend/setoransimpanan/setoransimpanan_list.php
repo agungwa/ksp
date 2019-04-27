@@ -52,9 +52,6 @@
 		<th class="text-center">Ssi Tglsetor</th>
 		<th class="text-center">Ssi Jmlsetor</th>
 		<th class="text-center">Ssi Jmlbunga</th>
-		<th class="text-center">Ssi Tgl</th>
-		<th class="text-center">Ssi Flag</th>
-		<th class="text-center">Ssi Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>

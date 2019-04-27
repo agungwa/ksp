@@ -106,13 +106,11 @@ class Setoransimpanan extends MY_Base
             'button' => 'Create',
             'action' => site_url('setoransimpanan/create_action'),
 	    'ssi_id' => set_value('ssi_id'),
-	    'sim_kode' => set_value('sim_kode'),
+        'sim_kode' => set_value('sim_kode'),
+        'nm_sim_kode' => set_value('nm_sim_kode'),
 	    'ssi_tglsetor' => set_value('ssi_tglsetor'),
 	    'ssi_jmlsetor' => set_value('ssi_jmlsetor'),
 	    'ssi_jmlbunga' => set_value('ssi_jmlbunga'),
-	    'ssi_tgl' => set_value('ssi_tgl'),
-	    'ssi_flag' => set_value('ssi_flag'),
-	    'ssi_info' => set_value('ssi_info'),
 	    'content' => 'backend/setoransimpanan/setoransimpanan_form',
 	);
         $this->load->view(layout(), $data);
@@ -130,9 +128,9 @@ class Setoransimpanan extends MY_Base
 		'ssi_tglsetor' => $this->input->post('ssi_tglsetor',TRUE),
 		'ssi_jmlsetor' => $this->input->post('ssi_jmlsetor',TRUE),
 		'ssi_jmlbunga' => $this->input->post('ssi_jmlbunga',TRUE),
-		'ssi_tgl' => $this->input->post('ssi_tgl',TRUE),
-		'ssi_flag' => $this->input->post('ssi_flag',TRUE),
-		'ssi_info' => $this->input->post('ssi_info',TRUE),
+		'ssi_tgl' => $this->tgl,
+		'ssi_flag' => 0,
+		'ssi_info' => "",
 	    );
 
             $this->Setoransimpanan_model->insert($data);
@@ -150,13 +148,11 @@ class Setoransimpanan extends MY_Base
                 'button' => 'Update',
                 'action' => site_url('setoransimpanan/update_action'),
 		'ssi_id' => set_value('ssi_id', $row->ssi_id),
-		'sim_kode' => set_value('sim_kode', $row->sim_kode),
+        'sim_kode' => set_value('sim_kode', $row->sim_kode),
+        'nm_sim_kode' => set_value('nm_sim_kode', $row->sim_kode),
 		'ssi_tglsetor' => set_value('ssi_tglsetor', $row->ssi_tglsetor),
 		'ssi_jmlsetor' => set_value('ssi_jmlsetor', $row->ssi_jmlsetor),
 		'ssi_jmlbunga' => set_value('ssi_jmlbunga', $row->ssi_jmlbunga),
-		'ssi_tgl' => set_value('ssi_tgl', $row->ssi_tgl),
-		'ssi_flag' => set_value('ssi_flag', $row->ssi_flag),
-		'ssi_info' => set_value('ssi_info', $row->ssi_info),
 	    'content' => 'backend/setoransimpanan/setoransimpanan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -178,9 +174,9 @@ class Setoransimpanan extends MY_Base
 		'ssi_tglsetor' => $this->input->post('ssi_tglsetor',TRUE),
 		'ssi_jmlsetor' => $this->input->post('ssi_jmlsetor',TRUE),
 		'ssi_jmlbunga' => $this->input->post('ssi_jmlbunga',TRUE),
-		'ssi_tgl' => $this->input->post('ssi_tgl',TRUE),
-		'ssi_flag' => $this->input->post('ssi_flag',TRUE),
-		'ssi_info' => $this->input->post('ssi_info',TRUE),
+		'ssi_tgl' => $this->tgl,
+		'ssi_flag' => 1,
+		'ssi_info' => "",
 	    );
 
             $this->Setoransimpanan_model->update($this->input->post('ssi_id', TRUE), $data);
@@ -194,7 +190,10 @@ class Setoransimpanan extends MY_Base
         $row = $this->Setoransimpanan_model->get_by_id($id);
 
         if ($row) {
-            $this->Setoransimpanan_model->delete($id);
+            $data = array (
+                'ssi_flag' => 2,
+            );
+            $this->Setoransimpanan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('setoransimpanan'));
         } else {
