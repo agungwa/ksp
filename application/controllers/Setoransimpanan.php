@@ -176,7 +176,6 @@ class Setoransimpanan extends MY_Base
 		'ssi_jmlbunga' => $this->input->post('ssi_jmlbunga',TRUE),
 		'ssi_tgl' => $this->tgl,
 		'ssi_flag' => 1,
-		'ssi_info' => "",
 	    );
 
             $this->Setoransimpanan_model->update($this->input->post('ssi_id', TRUE), $data);
@@ -208,9 +207,6 @@ class Setoransimpanan extends MY_Base
 	$this->form_validation->set_rules('ssi_tglsetor', 'ssi tglsetor', 'trim|required');
 	$this->form_validation->set_rules('ssi_jmlsetor', 'ssi jmlsetor', 'trim|required');
 	$this->form_validation->set_rules('ssi_jmlbunga', 'ssi jmlbunga', 'trim|required');
-	$this->form_validation->set_rules('ssi_tgl', 'ssi tgl', 'trim|required');
-	$this->form_validation->set_rules('ssi_flag', 'ssi flag', 'trim|required');
-	$this->form_validation->set_rules('ssi_info', 'ssi info', 'trim|required');
 
 	$this->form_validation->set_rules('ssi_id', 'ssi_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
