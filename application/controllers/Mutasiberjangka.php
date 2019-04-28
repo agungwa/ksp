@@ -108,13 +108,11 @@ class Mutasiberjangka extends MY_Base
             'action' => site_url('mutasiberjangka/create_action'),
 	    'mib_id' => set_value('mib_id'),
 	    'ivb_kode' => set_value('ivb_kode'),
+	    'nm_ivb_kode' => set_value('nm_ivb_kode'),
 	    'mib_tglmutasi' => set_value('mib_tglmutasi'),
 	    'mib_asal' => set_value('mib_asal'),
 	    'mib_tujuan' => set_value('mib_tujuan'),
 	    'mib_status' => set_value('mib_status'),
-	    'mib_tgl' => set_value('mib_tgl'),
-	    'mib_flag' => set_value('mib_flag'),
-	    'mib_info' => set_value('mib_info'),
 	    'content' => 'backend/mutasiberjangka/mutasiberjangka_form',
 	);
         $this->load->view(layout(), $data);
@@ -133,9 +131,9 @@ class Mutasiberjangka extends MY_Base
 		'mib_asal' => $this->input->post('mib_asal',TRUE),
 		'mib_tujuan' => $this->input->post('mib_tujuan',TRUE),
 		'mib_status' => $this->input->post('mib_status',TRUE),
-		'mib_tgl' => $this->input->post('mib_tgl',TRUE),
-		'mib_flag' => $this->input->post('mib_flag',TRUE),
-		'mib_info' => $this->input->post('mib_info',TRUE),
+		'mib_tgl' => $this->tgl,
+		'mib_flag' => 0,
+		'mib_info' => "",
 	    );
 
             $this->Mutasiberjangka_model->insert($data);
@@ -154,13 +152,11 @@ class Mutasiberjangka extends MY_Base
                 'action' => site_url('mutasiberjangka/update_action'),
 		'mib_id' => set_value('mib_id', $row->mib_id),
 		'ivb_kode' => set_value('ivb_kode', $row->ivb_kode),
+		'nm_ivb_kode' => set_value('nm_ivb_kode', $row->ivb_kode),
 		'mib_tglmutasi' => set_value('mib_tglmutasi', $row->mib_tglmutasi),
 		'mib_asal' => set_value('mib_asal', $row->mib_asal),
 		'mib_tujuan' => set_value('mib_tujuan', $row->mib_tujuan),
 		'mib_status' => set_value('mib_status', $row->mib_status),
-		'mib_tgl' => set_value('mib_tgl', $row->mib_tgl),
-		'mib_flag' => set_value('mib_flag', $row->mib_flag),
-		'mib_info' => set_value('mib_info', $row->mib_info),
 	    'content' => 'backend/mutasiberjangka/mutasiberjangka_form',
 	    );
             $this->load->view(layout(), $data);
@@ -183,9 +179,7 @@ class Mutasiberjangka extends MY_Base
 		'mib_asal' => $this->input->post('mib_asal',TRUE),
 		'mib_tujuan' => $this->input->post('mib_tujuan',TRUE),
 		'mib_status' => $this->input->post('mib_status',TRUE),
-		'mib_tgl' => $this->input->post('mib_tgl',TRUE),
-		'mib_flag' => $this->input->post('mib_flag',TRUE),
-		'mib_info' => $this->input->post('mib_info',TRUE),
+		'mib_flag' => 1,
 	    );
 
             $this->Mutasiberjangka_model->update($this->input->post('mib_id', TRUE), $data);
@@ -199,7 +193,10 @@ class Mutasiberjangka extends MY_Base
         $row = $this->Mutasiberjangka_model->get_by_id($id);
 
         if ($row) {
-            $this->Mutasiberjangka_model->delete($id);
+            $data = array (
+                'mib_flag' => 2,
+            );
+            $this->Mutasiberjangka_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('mutasiberjangka'));
         } else {
@@ -215,9 +212,6 @@ class Mutasiberjangka extends MY_Base
 	$this->form_validation->set_rules('mib_asal', 'mib asal', 'trim|required');
 	$this->form_validation->set_rules('mib_tujuan', 'mib tujuan', 'trim|required');
 	$this->form_validation->set_rules('mib_status', 'mib status', 'trim|required');
-	$this->form_validation->set_rules('mib_tgl', 'mib tgl', 'trim|required');
-	$this->form_validation->set_rules('mib_flag', 'mib flag', 'trim|required');
-	$this->form_validation->set_rules('mib_info', 'mib info', 'trim|required');
 
 	$this->form_validation->set_rules('mib_id', 'mib_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

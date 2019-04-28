@@ -107,12 +107,10 @@ class Penarikaninvestasiberjangka extends MY_Base
             'action' => site_url('penarikaninvestasiberjangka/create_action'),
 	    'pib_id' => set_value('pib_id'),
 	    'ivb_kode' => set_value('ivb_kode'),
+	    'nm_ivb_kode' => set_value('nm_ivb_kode'),
 	    'pib_penarikanke' => set_value('pib_penarikanke'),
 	    'pib_jmlkeuntungan' => set_value('pib_jmlkeuntungan'),
 	    'pib_jmlditerima' => set_value('pib_jmlditerima'),
-	    'pib_tgl' => set_value('pib_tgl'),
-	    'pib_flag' => set_value('pib_flag'),
-	    'pib_info' => set_value('pib_info'),
 	    'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka_form',
 	);
         $this->load->view(layout(), $data);
@@ -130,9 +128,9 @@ class Penarikaninvestasiberjangka extends MY_Base
 		'pib_penarikanke' => $this->input->post('pib_penarikanke',TRUE),
 		'pib_jmlkeuntungan' => $this->input->post('pib_jmlkeuntungan',TRUE),
 		'pib_jmlditerima' => $this->input->post('pib_jmlditerima',TRUE),
-		'pib_tgl' => $this->input->post('pib_tgl',TRUE),
-		'pib_flag' => $this->input->post('pib_flag',TRUE),
-		'pib_info' => $this->input->post('pib_info',TRUE),
+		'pib_tgl' => $this->tgl,
+		'pib_flag' => 0,
+		'pib_info' => "",
 	    );
 
             $this->Penarikaninvestasiberjangka_model->insert($data);
@@ -151,12 +149,10 @@ class Penarikaninvestasiberjangka extends MY_Base
                 'action' => site_url('penarikaninvestasiberjangka/update_action'),
 		'pib_id' => set_value('pib_id', $row->pib_id),
 		'ivb_kode' => set_value('ivb_kode', $row->ivb_kode),
+		'nm_ivb_kode' => set_value('ivb_kode', $row->nm_ivb_kode),
 		'pib_penarikanke' => set_value('pib_penarikanke', $row->pib_penarikanke),
 		'pib_jmlkeuntungan' => set_value('pib_jmlkeuntungan', $row->pib_jmlkeuntungan),
 		'pib_jmlditerima' => set_value('pib_jmlditerima', $row->pib_jmlditerima),
-		'pib_tgl' => set_value('pib_tgl', $row->pib_tgl),
-		'pib_flag' => set_value('pib_flag', $row->pib_flag),
-		'pib_info' => set_value('pib_info', $row->pib_info),
 	    'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka_form',
 	    );
             $this->load->view(layout(), $data);
@@ -178,9 +174,7 @@ class Penarikaninvestasiberjangka extends MY_Base
 		'pib_penarikanke' => $this->input->post('pib_penarikanke',TRUE),
 		'pib_jmlkeuntungan' => $this->input->post('pib_jmlkeuntungan',TRUE),
 		'pib_jmlditerima' => $this->input->post('pib_jmlditerima',TRUE),
-		'pib_tgl' => $this->input->post('pib_tgl',TRUE),
-		'pib_flag' => $this->input->post('pib_flag',TRUE),
-		'pib_info' => $this->input->post('pib_info',TRUE),
+		'pib_flag' => 1,
 	    );
 
             $this->Penarikaninvestasiberjangka_model->update($this->input->post('pib_id', TRUE), $data);
@@ -194,7 +188,10 @@ class Penarikaninvestasiberjangka extends MY_Base
         $row = $this->Penarikaninvestasiberjangka_model->get_by_id($id);
 
         if ($row) {
-            $this->Penarikaninvestasiberjangka_model->delete($id);
+            $data = array (
+                'pib_flag' => 2,
+            );
+            $this->Penarikaninvestasiberjangka_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('penarikaninvestasiberjangka'));
         } else {
@@ -209,10 +206,6 @@ class Penarikaninvestasiberjangka extends MY_Base
 	$this->form_validation->set_rules('pib_penarikanke', 'pib penarikanke', 'trim|required');
 	$this->form_validation->set_rules('pib_jmlkeuntungan', 'pib jmlkeuntungan', 'trim|required');
 	$this->form_validation->set_rules('pib_jmlditerima', 'pib jmlditerima', 'trim|required');
-	$this->form_validation->set_rules('pib_tgl', 'pib tgl', 'trim|required');
-	$this->form_validation->set_rules('pib_flag', 'pib flag', 'trim|required');
-	$this->form_validation->set_rules('pib_info', 'pib info', 'trim|required');
-
 	$this->form_validation->set_rules('pib_id', 'pib_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

@@ -48,6 +48,7 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
+        <th class="text-center">Investasi Kode</th>
 		<th class="text-center">Ang No</th>
 		<th class="text-center">Kar Kode</th>
 		<th class="text-center">Wil Kode</th>
@@ -57,9 +58,6 @@
 		<th class="text-center">Ivb Tglpendaftaran</th>
 		<th class="text-center">Ivb Tglperpanjangan</th>
 		<th class="text-center">Ivb Status</th>
-		<th class="text-center">Ivb Tgl</th>
-		<th class="text-center">Ivb Flag</th>
-		<th class="text-center">Ivb Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -69,6 +67,7 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
+            <td><?php echo $investasiberjangka->ivb_kode ?></td>
 			<td><?php echo $investasiberjangka->ang_no ?></td>
 			<td><?php echo $investasiberjangka->kar_kode ?></td>
 			<td><?php echo $investasiberjangka->wil_kode ?></td>
@@ -78,9 +77,6 @@
 			<td><?php echo $investasiberjangka->ivb_tglpendaftaran ?></td>
 			<td><?php echo $investasiberjangka->ivb_tglperpanjangan ?></td>
 			<td><?php echo $investasiberjangka->ivb_status ?></td>
-			<td><?php echo $investasiberjangka->ivb_tgl ?></td>
-			<td><?php echo $investasiberjangka->ivb_flag ?></td>
-			<td><?php echo $investasiberjangka->ivb_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('investasiberjangka/read/'.$investasiberjangka->ivb_kode),'Read','class="text-navy"'); 

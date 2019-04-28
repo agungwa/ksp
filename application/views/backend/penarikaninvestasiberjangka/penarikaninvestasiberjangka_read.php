@@ -18,9 +18,6 @@
 	    <tr><td>Pib Penarikanke</td><td><?php echo $pib_penarikanke; ?></td></tr>
 	    <tr><td>Pib Jmlkeuntungan</td><td><?php echo $pib_jmlkeuntungan; ?></td></tr>
 	    <tr><td>Pib Jmlditerima</td><td><?php echo $pib_jmlditerima; ?></td></tr>
-	    <tr><td>Pib Tgl</td><td><?php echo $pib_tgl; ?></td></tr>
-	    <tr><td>Pib Flag</td><td><?php echo $pib_flag; ?></td></tr>
-	    <tr><td>Pib Info</td><td><?php echo $pib_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('penarikaninvestasiberjangka') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

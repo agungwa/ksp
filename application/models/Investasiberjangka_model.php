@@ -18,6 +18,7 @@ class Investasiberjangka_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('ivb_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -32,18 +33,8 @@ class Investasiberjangka_model extends CI_Model
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('ivb_kode', $q);
-	$this->db->or_like('ang_no', $q);
-	$this->db->or_like('kar_kode', $q);
-	$this->db->or_like('wil_kode', $q);
-	$this->db->or_like('jwi_id', $q);
-	$this->db->or_like('jiv_id', $q);
-	$this->db->or_like('biv_id', $q);
-	$this->db->or_like('ivb_tglpendaftaran', $q);
-	$this->db->or_like('ivb_tglperpanjangan', $q);
-	$this->db->or_like('ivb_status', $q);
-	$this->db->or_like('ivb_tgl', $q);
-	$this->db->or_like('ivb_flag', $q);
-	$this->db->or_like('ivb_info', $q);
+    $where = "ivb_kode LIKE '%$q' ESCAPE '!' AND ivb_flag < 2";
+    $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -51,19 +42,8 @@ class Investasiberjangka_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('ivb_kode', $q);
-	$this->db->or_like('ang_no', $q);
-	$this->db->or_like('kar_kode', $q);
-	$this->db->or_like('wil_kode', $q);
-	$this->db->or_like('jwi_id', $q);
-	$this->db->or_like('jiv_id', $q);
-	$this->db->or_like('biv_id', $q);
-	$this->db->or_like('ivb_tglpendaftaran', $q);
-	$this->db->or_like('ivb_tglperpanjangan', $q);
-	$this->db->or_like('ivb_status', $q);
-	$this->db->or_like('ivb_tgl', $q);
-	$this->db->or_like('ivb_flag', $q);
-	$this->db->or_like('ivb_info', $q);
+        $where = "ivb_kode LIKE '%$q' ESCAPE '!' AND ivb_flag < 2";
+        $this->db->where($where);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
