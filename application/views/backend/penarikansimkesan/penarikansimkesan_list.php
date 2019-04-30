@@ -48,7 +48,6 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Pns Id</th>
 		<th class="text-center">Sik Kode</th>
 		<th class="text-center">Jps Id</th>
 		<th class="text-center">Pns Tglpenarikan</th>
@@ -56,8 +55,6 @@
 		<th class="text-center">Pns Jmlpenarikan</th>
 		<th class="text-center">Pns Catatan</th>
 		<th class="text-center">Pns Tgl</th>
-		<th class="text-center">Pns Flag</th>
-		<th class="text-center">Pns Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -66,24 +63,21 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $penarikansimkesan->pns_id ?></td>
-			<td><?php echo $penarikansimkesan->sik_kode ?></td>
-			<td><?php echo $penarikansimkesan->jps_id ?></td>
-			<td><?php echo $penarikansimkesan->pns_tglpenarikan ?></td>
-			<td><?php echo $penarikansimkesan->pns_jmlsimkesan ?></td>
-			<td><?php echo $penarikansimkesan->pns_jmlpenarikan ?></td>
-			<td><?php echo $penarikansimkesan->pns_catatan ?></td>
-			<td><?php echo $penarikansimkesan->pns_tgl ?></td>
-			<td><?php echo $penarikansimkesan->pns_flag ?></td>
-			<td><?php echo $penarikansimkesan->pns_info ?></td>
-			<td style="text-align:center" width="200px">
+    			<td width="80px"><?php echo ++$start ?></td>
+    			<td><?php echo $penarikansimkesan->sik_kode ?></td>
+    			<td><?php echo $penarikansimkesan->jps_id ?></td>
+    			<td><?php echo $penarikansimkesan->pns_tglpenarikan ?></td>
+    			<td><?php echo $penarikansimkesan->pns_jmlsimkesan ?></td>
+    			<td><?php echo $penarikansimkesan->pns_jmlpenarikan ?></td>
+    			<td><?php echo $penarikansimkesan->pns_catatan ?></td>
+    			<td><?php echo dateFormat($penarikansimkesan->pns_tgl) ?></td>
+    			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('penarikansimkesan/read/'.$penarikansimkesan->),'Read','class="text-navy"'); 
+				echo anchor(site_url('penarikansimkesan/read/'.$penarikansimkesan->pns_id),'Read','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('penarikansimkesan/update/'.$penarikansimkesan->),'Update','class="text-navy"'); 
+				echo anchor(site_url('penarikansimkesan/update/'.$penarikansimkesan->pns_id),'Update','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('penarikansimkesan/delete/'.$penarikansimkesan->),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('penarikansimkesan/delete/'.$penarikansimkesan->pns_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>
 		</tr>

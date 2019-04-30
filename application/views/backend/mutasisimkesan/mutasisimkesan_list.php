@@ -54,8 +54,6 @@
 		<th class="text-center">Msk Tujuan</th>
 		<th class="text-center">Msk Status</th>
 		<th class="text-center">Msk Tgl</th>
-		<th class="text-center">Msk Flag</th>
-		<th class="text-center">Msk Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -70,9 +68,7 @@
 			<td><?php echo $mutasisimkesan->msk_asal ?></td>
 			<td><?php echo $mutasisimkesan->msk_tujuan ?></td>
 			<td><?php echo $mutasisimkesan->msk_status ?></td>
-			<td><?php echo $mutasisimkesan->msk_tgl ?></td>
-			<td><?php echo $mutasisimkesan->msk_flag ?></td>
-			<td><?php echo $mutasisimkesan->msk_info ?></td>
+			<td><?php echo dateFormat($mutasisimkesan->msk_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('mutasisimkesan/read/'.$mutasisimkesan->msk_id),'Read','class="text-navy"'); 

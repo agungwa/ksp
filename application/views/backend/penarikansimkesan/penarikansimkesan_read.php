@@ -21,9 +21,6 @@
 	    <tr><td>Pns Jmlsimkesan</td><td><?php echo $pns_jmlsimkesan; ?></td></tr>
 	    <tr><td>Pns Jmlpenarikan</td><td><?php echo $pns_jmlpenarikan; ?></td></tr>
 	    <tr><td>Pns Catatan</td><td><?php echo $pns_catatan; ?></td></tr>
-	    <tr><td>Pns Tgl</td><td><?php echo $pns_tgl; ?></td></tr>
-	    <tr><td>Pns Flag</td><td><?php echo $pns_flag; ?></td></tr>
-	    <tr><td>Pns Info</td><td><?php echo $pns_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('penarikansimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

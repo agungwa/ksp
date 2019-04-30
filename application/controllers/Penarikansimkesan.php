@@ -83,17 +83,15 @@ class Penarikansimkesan extends MY_Base
         $row = $this->Penarikansimkesan_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'pns_id' => $row->pns_id,
-		'sik_kode' => $row->sik_kode,
-		'jps_id' => $row->jps_id,
-		'pns_tglpenarikan' => $row->pns_tglpenarikan,
-		'pns_jmlsimkesan' => $row->pns_jmlsimkesan,
-		'pns_jmlpenarikan' => $row->pns_jmlpenarikan,
-		'pns_catatan' => $row->pns_catatan,
-		'pns_tgl' => $row->pns_tgl,
-		'pns_flag' => $row->pns_flag,
-		'pns_info' => $row->pns_info,'content' => 'backend/penarikansimkesan/penarikansimkesan_read',
-	    );
+    		'pns_id' => $row->pns_id,
+    		'sik_kode' => $row->sik_kode,
+    		'jps_id' => $row->jps_id,
+    		'pns_tglpenarikan' => $row->pns_tglpenarikan,
+    		'pns_jmlsimkesan' => $row->pns_jmlsimkesan,
+    		'pns_jmlpenarikan' => $row->pns_jmlpenarikan,
+    		'pns_catatan' => $row->pns_catatan,
+            'content' => 'backend/penarikansimkesan/penarikansimkesan_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -107,18 +105,17 @@ class Penarikansimkesan extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('penarikansimkesan/create_action'),
-	    'pns_id' => set_value('pns_id'),
-	    'sik_kode' => set_value('sik_kode'),
-	    'jps_id' => set_value('jps_id'),
-	    'pns_tglpenarikan' => set_value('pns_tglpenarikan'),
-	    'pns_jmlsimkesan' => set_value('pns_jmlsimkesan'),
-	    'pns_jmlpenarikan' => set_value('pns_jmlpenarikan'),
-	    'pns_catatan' => set_value('pns_catatan'),
-	    'pns_tgl' => set_value('pns_tgl'),
-	    'pns_flag' => set_value('pns_flag'),
-	    'pns_info' => set_value('pns_info'),
-	    'content' => 'backend/penarikansimkesan/penarikansimkesan_form',
-	);
+    	    'pns_id' => set_value('pns_id'),
+    	    'sik_kode' => set_value('sik_kode'),
+            'nm_sik_kode' => set_value('nm_sik_kode'),
+    	    'jps_id' => set_value('jps_id'),
+            'nm_jps_id' => set_value('nm_jps_id'),
+    	    'pns_tglpenarikan' => set_value('pns_tglpenarikan'),
+    	    'pns_jmlsimkesan' => set_value('pns_jmlsimkesan'),
+    	    'pns_jmlpenarikan' => set_value('pns_jmlpenarikan'),
+    	    'pns_catatan' => set_value('pns_catatan'),
+    	    'content' => 'backend/penarikansimkesan/penarikansimkesan_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -130,17 +127,17 @@ class Penarikansimkesan extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'pns_id' => $this->input->post('pns_id',TRUE),
-		'sik_kode' => $this->input->post('sik_kode',TRUE),
-		'jps_id' => $this->input->post('jps_id',TRUE),
-		'pns_tglpenarikan' => $this->input->post('pns_tglpenarikan',TRUE),
-		'pns_jmlsimkesan' => $this->input->post('pns_jmlsimkesan',TRUE),
-		'pns_jmlpenarikan' => $this->input->post('pns_jmlpenarikan',TRUE),
-		'pns_catatan' => $this->input->post('pns_catatan',TRUE),
-		'pns_tgl' => $this->input->post('pns_tgl',TRUE),
-		'pns_flag' => $this->input->post('pns_flag',TRUE),
-		'pns_info' => $this->input->post('pns_info',TRUE),
-	    );
+    		'pns_id' => $this->input->post('pns_id',TRUE),
+    		'sik_kode' => $this->input->post('sik_kode',TRUE),
+    		'jps_id' => $this->input->post('jps_id',TRUE),
+    		'pns_tglpenarikan' => $this->input->post('pns_tglpenarikan',TRUE),
+    		'pns_jmlsimkesan' => $this->input->post('pns_jmlsimkesan',TRUE),
+    		'pns_jmlpenarikan' => $this->input->post('pns_jmlpenarikan',TRUE),
+    		'pns_catatan' => $this->input->post('pns_catatan',TRUE),
+    		'pns_tgl' => $this->tgl,
+    		'pns_flag' => 0,
+    		'pns_info' => "",
+    	    );
 
             $this->Penarikansimkesan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -156,18 +153,17 @@ class Penarikansimkesan extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('penarikansimkesan/update_action'),
-		'pns_id' => set_value('pns_id', $row->pns_id),
-		'sik_kode' => set_value('sik_kode', $row->sik_kode),
-		'jps_id' => set_value('jps_id', $row->jps_id),
-		'pns_tglpenarikan' => set_value('pns_tglpenarikan', $row->pns_tglpenarikan),
-		'pns_jmlsimkesan' => set_value('pns_jmlsimkesan', $row->pns_jmlsimkesan),
-		'pns_jmlpenarikan' => set_value('pns_jmlpenarikan', $row->pns_jmlpenarikan),
-		'pns_catatan' => set_value('pns_catatan', $row->pns_catatan),
-		'pns_tgl' => set_value('pns_tgl', $row->pns_tgl),
-		'pns_flag' => set_value('pns_flag', $row->pns_flag),
-		'pns_info' => set_value('pns_info', $row->pns_info),
-	    'content' => 'backend/penarikansimkesan/penarikansimkesan_form',
-	    );
+        		'pns_id' => set_value('pns_id', $row->pns_id),
+        		'sik_kode' => set_value('sik_kode', $row->sik_kode),
+                'nm_sik_kode' => set_value('sik_kode', $row->sik_kode),
+        		'jps_id' => set_value('jps_id', $row->jps_id),
+                'nm_jps_id' => set_value('jps_id', $row->jps_id),
+        		'pns_tglpenarikan' => set_value('pns_tglpenarikan', $row->pns_tglpenarikan),
+        		'pns_jmlsimkesan' => set_value('pns_jmlsimkesan', $row->pns_jmlsimkesan),
+        		'pns_jmlpenarikan' => set_value('pns_jmlpenarikan', $row->pns_jmlpenarikan),
+        		'pns_catatan' => set_value('pns_catatan', $row->pns_catatan),
+        	    'content' => 'backend/penarikansimkesan/penarikansimkesan_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -180,22 +176,19 @@ class Penarikansimkesan extends MY_Base
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('', TRUE));
+            $this->update($this->input->post('pns_id', TRUE));
         } else {
             $data = array(
-		'pns_id' => $this->input->post('pns_id',TRUE),
-		'sik_kode' => $this->input->post('sik_kode',TRUE),
-		'jps_id' => $this->input->post('jps_id',TRUE),
-		'pns_tglpenarikan' => $this->input->post('pns_tglpenarikan',TRUE),
-		'pns_jmlsimkesan' => $this->input->post('pns_jmlsimkesan',TRUE),
-		'pns_jmlpenarikan' => $this->input->post('pns_jmlpenarikan',TRUE),
-		'pns_catatan' => $this->input->post('pns_catatan',TRUE),
-		'pns_tgl' => $this->input->post('pns_tgl',TRUE),
-		'pns_flag' => $this->input->post('pns_flag',TRUE),
-		'pns_info' => $this->input->post('pns_info',TRUE),
-	    );
+    		'sik_kode' => $this->input->post('sik_kode',TRUE),
+    		'jps_id' => $this->input->post('jps_id',TRUE),
+    		'pns_tglpenarikan' => $this->input->post('pns_tglpenarikan',TRUE),
+    		'pns_jmlsimkesan' => $this->input->post('pns_jmlsimkesan',TRUE),
+    		'pns_jmlpenarikan' => $this->input->post('pns_jmlpenarikan',TRUE),
+    		'pns_catatan' => $this->input->post('pns_catatan',TRUE),
+    		'pns_flag' => 1,
+    	    );
 
-            $this->Penarikansimkesan_model->update($this->input->post('', TRUE), $data);
+            $this->Penarikansimkesan_model->update($this->input->post('pns_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('penarikansimkesan'));
         }
@@ -206,7 +199,11 @@ class Penarikansimkesan extends MY_Base
         $row = $this->Penarikansimkesan_model->get_by_id($id);
 
         if ($row) {
-            $this->Penarikansimkesan_model->delete($id);
+            $data = array(
+            'pns_flag' => 2,
+            );
+
+            $this->Penarikansimkesan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('penarikansimkesan'));
         } else {
@@ -217,18 +214,14 @@ class Penarikansimkesan extends MY_Base
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('pns_id', 'pns id', 'trim|required');
 	$this->form_validation->set_rules('sik_kode', 'sik kode', 'trim|required');
 	$this->form_validation->set_rules('jps_id', 'jps id', 'trim|required');
 	$this->form_validation->set_rules('pns_tglpenarikan', 'pns tglpenarikan', 'trim|required');
 	$this->form_validation->set_rules('pns_jmlsimkesan', 'pns jmlsimkesan', 'trim|required');
 	$this->form_validation->set_rules('pns_jmlpenarikan', 'pns jmlpenarikan', 'trim|required');
 	$this->form_validation->set_rules('pns_catatan', 'pns catatan', 'trim|required');
-	$this->form_validation->set_rules('pns_tgl', 'pns tgl', 'trim|required');
-	$this->form_validation->set_rules('pns_flag', 'pns flag', 'trim|required');
-	$this->form_validation->set_rules('pns_info', 'pns info', 'trim|required');
 
-	$this->form_validation->set_rules('', '', 'trim');
+	$this->form_validation->set_rules('pns_id', 'pns id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 

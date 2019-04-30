@@ -15,15 +15,30 @@
         <div class="ibox-content">
 	    <div class="form-group">
             <label for="varchar">Sik Kode <?php echo form_error('sik_kode') ?></label>
-            <input type="text" class="form-control" name="sik_kode" id="sik_kode" placeholder="Sik Kode" value="<?php echo $sik_kode; ?>" />
+            <div class="input-group">
+            <!-- <input type="hidden" name="sik_kode" id="sik_kode" value="<?php echo $sik_kode; ?>" /> -->
+            <input type="hidden" name="sik_kode" id="sik_kode" value="69" />
+            <input type="text" class="form-control" name="nm_sik_kode" id="nm_sik_kode" placeholder="Simkesan" value="<?php echo $nm_sik_kode; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>simkesan/lookup','sik_kode');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
+
+        <div class="form-group">
             <label for="int">Jkl Id <?php echo form_error('jkl_id') ?></label>
-            <input type="text" class="form-control" name="jkl_id" id="jkl_id" placeholder="Jkl Id" value="<?php echo $jkl_id; ?>" />
+            <div class="input-group">
+            <input type="hidden" name="jkl_id" id="jkl_id" value="<?php echo $jkl_id; ?>" />
+            <input type="text" class="form-control" name="nm_jkl_id" id="nm_jkl_id" placeholder="Jenis Klaim" value="<?php echo $nm_jkl_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>jenisklaim/lookup','jkl_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
+
 	    <div class="form-group">
             <label for="datetime">Ksi Tglklaim <?php echo form_error('ksi_tglklaim') ?></label>
-            <input type="text" class="form-control" name="ksi_tglklaim" id="ksi_tglklaim" placeholder="Ksi Tglklaim" value="<?php echo $ksi_tglklaim; ?>" />
+            <input type="date" class="form-control" name="ksi_tglklaim" id="ksi_tglklaim" placeholder="Ksi Tglklaim" value="<?php echo $ksi_tglklaim; ?>" />
         </div>
 	    <div class="form-group">
             <label for="float">Ksi Jmlklaim <?php echo form_error('ksi_jmlklaim') ?></label>
@@ -41,18 +56,7 @@
             <label for="tinyint">Ksi Status <?php echo form_error('ksi_status') ?></label>
             <input type="text" class="form-control" name="ksi_status" id="ksi_status" placeholder="Ksi Status" value="<?php echo $ksi_status; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="datetime">Ksi Tgl <?php echo form_error('ksi_tgl') ?></label>
-            <input type="text" class="form-control" name="ksi_tgl" id="ksi_tgl" placeholder="Ksi Tgl" value="<?php echo $ksi_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Ksi Flag <?php echo form_error('ksi_flag') ?></label>
-            <input type="text" class="form-control" name="ksi_flag" id="ksi_flag" placeholder="Ksi Flag" value="<?php echo $ksi_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="ksi_info">Ksi Info <?php echo form_error('ksi_info') ?></label>
-            <textarea class="form-control" rows="3" name="ksi_info" id="ksi_info" placeholder="Ksi Info"><?php echo $ksi_info; ?></textarea>
-        </div>
+
 	    <input type="hidden" name="ksi_id" value="<?php echo $ksi_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('klaimsimkesan') ?>" class="btn btn-default">Cancel</a>

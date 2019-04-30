@@ -31,36 +31,18 @@ class Simkesan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('sik_kode', $q);
-	$this->db->or_like('ang_no', $q);
-	$this->db->or_like('kar_kode', $q);
-	$this->db->or_like('psk_id', $q);
-	$this->db->or_like('wil_kode', $q);
-	$this->db->or_like('sik_tglpendaftaran', $q);
-	$this->db->or_like('sik_tglberakhir', $q);
-	$this->db->or_like('sik_status', $q);
-	$this->db->or_like('sik_tgl', $q);
-	$this->db->or_like('sik_flag', $q);
-	$this->db->or_like('sik_info', $q);
-	$this->db->from($this->table);
+        $where = "(sik_kode LIKE '%$q%' ESCAPE '!' OR ang_no LIKE '%$q%' ESCAPE '!') AND sik_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('sik_kode', $q);
-	$this->db->or_like('ang_no', $q);
-	$this->db->or_like('kar_kode', $q);
-	$this->db->or_like('psk_id', $q);
-	$this->db->or_like('wil_kode', $q);
-	$this->db->or_like('sik_tglpendaftaran', $q);
-	$this->db->or_like('sik_tglberakhir', $q);
-	$this->db->or_like('sik_status', $q);
-	$this->db->or_like('sik_tgl', $q);
-	$this->db->or_like('sik_flag', $q);
-	$this->db->or_like('sik_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "(sik_kode LIKE '%$q%' ESCAPE '!' OR ang_no LIKE '%$q%' ESCAPE '!') AND sik_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

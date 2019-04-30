@@ -56,8 +56,6 @@
 		<th class="text-center">Aws Hubungan</th>
 		<th class="text-center">Aws Lampiran</th>
 		<th class="text-center">Aws Tgl</th>
-		<th class="text-center">Aws Flag</th>
-		<th class="text-center">Aws Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -74,9 +72,7 @@
 			<td><?php echo $ahliwarissimkesan->aws_alamat ?></td>
 			<td><?php echo $ahliwarissimkesan->aws_hubungan ?></td>
 			<td><?php echo $ahliwarissimkesan->aws_lampiran ?></td>
-			<td><?php echo $ahliwarissimkesan->aws_tgl ?></td>
-			<td><?php echo $ahliwarissimkesan->aws_flag ?></td>
-			<td><?php echo $ahliwarissimkesan->aws_info ?></td>
+			<td><?php echo dateFormat($ahliwarissimkesan->aws_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('ahliwarissimkesan/read/'.$ahliwarissimkesan->aws_id),'Read','class="text-navy"'); 

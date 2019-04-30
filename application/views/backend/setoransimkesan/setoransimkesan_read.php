@@ -19,9 +19,6 @@
 	    <tr><td>Ssk Tglbayar</td><td><?php echo $ssk_tglbayar; ?></td></tr>
 	    <tr><td>Ssk Jmlsetor</td><td><?php echo $ssk_jmlsetor; ?></td></tr>
 	    <tr><td>Ssk Status</td><td><?php echo $ssk_status; ?></td></tr>
-	    <tr><td>Ssk Tgl</td><td><?php echo $ssk_tgl; ?></td></tr>
-	    <tr><td>Ssk Flag</td><td><?php echo $ssk_flag; ?></td></tr>
-	    <tr><td>Ssk Info</td><td><?php echo $ssk_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('setoransimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

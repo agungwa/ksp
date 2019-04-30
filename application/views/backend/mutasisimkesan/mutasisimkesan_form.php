@@ -13,13 +13,22 @@
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
-	    <div class="form-group">
+	    
+        <div class="form-group">
             <label for="varchar">Sik Kode <?php echo form_error('sik_kode') ?></label>
-            <input type="text" class="form-control" name="sik_kode" id="sik_kode" placeholder="Sik Kode" value="<?php echo $sik_kode; ?>" />
+            <div class="input-group">
+            <!-- <input type="hidden" name="sik_kode" id="sik_kode" value="<?php echo $sik_kode; ?>" /> -->
+            <input type="hidden" name="sik_kode" id="sik_kode" value="69" />
+            <input type="text" class="form-control" name="nm_sik_kode" id="nm_sik_kode" placeholder="Simkesan" value="<?php echo $nm_sik_kode; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>simkesan/lookup','sik_kode');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
+
 	    <div class="form-group">
             <label for="datetime">Msk Tglmutasi <?php echo form_error('msk_tglmutasi') ?></label>
-            <input type="text" class="form-control" name="msk_tglmutasi" id="msk_tglmutasi" placeholder="Msk Tglmutasi" value="<?php echo $msk_tglmutasi; ?>" />
+            <input type="date" class="form-control" name="msk_tglmutasi" id="msk_tglmutasi" placeholder="Msk Tglmutasi" value="<?php echo $msk_tglmutasi; ?>" />
         </div>
 	    <div class="form-group">
             <label for="varchar">Msk Asal <?php echo form_error('msk_asal') ?></label>
@@ -33,18 +42,7 @@
             <label for="tinyint">Msk Status <?php echo form_error('msk_status') ?></label>
             <input type="text" class="form-control" name="msk_status" id="msk_status" placeholder="Msk Status" value="<?php echo $msk_status; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="datetime">Msk Tgl <?php echo form_error('msk_tgl') ?></label>
-            <input type="text" class="form-control" name="msk_tgl" id="msk_tgl" placeholder="Msk Tgl" value="<?php echo $msk_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Msk Flag <?php echo form_error('msk_flag') ?></label>
-            <input type="text" class="form-control" name="msk_flag" id="msk_flag" placeholder="Msk Flag" value="<?php echo $msk_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="msk_info">Msk Info <?php echo form_error('msk_info') ?></label>
-            <textarea class="form-control" rows="3" name="msk_info" id="msk_info" placeholder="Msk Info"><?php echo $msk_info; ?></textarea>
-        </div>
+        
 	    <input type="hidden" name="msk_id" value="<?php echo $msk_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('mutasisimkesan') ?>" class="btn btn-default">Cancel</a>

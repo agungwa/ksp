@@ -21,9 +21,6 @@
 	    <tr><td>Sik Tglpendaftaran</td><td><?php echo $sik_tglpendaftaran; ?></td></tr>
 	    <tr><td>Sik Tglberakhir</td><td><?php echo $sik_tglberakhir; ?></td></tr>
 	    <tr><td>Sik Status</td><td><?php echo $sik_status; ?></td></tr>
-	    <tr><td>Sik Tgl</td><td><?php echo $sik_tgl; ?></td></tr>
-	    <tr><td>Sik Flag</td><td><?php echo $sik_flag; ?></td></tr>
-	    <tr><td>Sik Info</td><td><?php echo $sik_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('simkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

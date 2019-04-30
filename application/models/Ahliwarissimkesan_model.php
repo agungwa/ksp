@@ -18,6 +18,7 @@ class Ahliwarissimkesan_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('aws_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,36 +32,18 @@ class Ahliwarissimkesan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('aws_id', $q);
-	$this->db->or_like('sik_kode', $q);
-	$this->db->or_like('aws_noid', $q);
-	$this->db->or_like('aws_jenisid', $q);
-	$this->db->or_like('aws_nama', $q);
-	$this->db->or_like('aws_alamat', $q);
-	$this->db->or_like('aws_hubungan', $q);
-	$this->db->or_like('aws_lampiran', $q);
-	$this->db->or_like('aws_tgl', $q);
-	$this->db->or_like('aws_flag', $q);
-	$this->db->or_like('aws_info', $q);
-	$this->db->from($this->table);
+        $where = "(sik_kode LIKE '%$q%' ESCAPE '!' OR aws_noid LIKE '%$q%' ESCAPE '!') AND aws_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('aws_id', $q);
-	$this->db->or_like('sik_kode', $q);
-	$this->db->or_like('aws_noid', $q);
-	$this->db->or_like('aws_jenisid', $q);
-	$this->db->or_like('aws_nama', $q);
-	$this->db->or_like('aws_alamat', $q);
-	$this->db->or_like('aws_hubungan', $q);
-	$this->db->or_like('aws_lampiran', $q);
-	$this->db->or_like('aws_tgl', $q);
-	$this->db->or_like('aws_flag', $q);
-	$this->db->or_like('aws_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "(sik_kode LIKE '%$q%' ESCAPE '!' OR aws_noid LIKE '%$q%' ESCAPE '!') AND aws_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

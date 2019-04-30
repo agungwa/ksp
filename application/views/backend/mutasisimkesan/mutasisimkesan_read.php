@@ -19,9 +19,6 @@
 	    <tr><td>Msk Asal</td><td><?php echo $msk_asal; ?></td></tr>
 	    <tr><td>Msk Tujuan</td><td><?php echo $msk_tujuan; ?></td></tr>
 	    <tr><td>Msk Status</td><td><?php echo $msk_status; ?></td></tr>
-	    <tr><td>Msk Tgl</td><td><?php echo $msk_tgl; ?></td></tr>
-	    <tr><td>Msk Flag</td><td><?php echo $msk_flag; ?></td></tr>
-	    <tr><td>Msk Info</td><td><?php echo $msk_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('mutasisimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
