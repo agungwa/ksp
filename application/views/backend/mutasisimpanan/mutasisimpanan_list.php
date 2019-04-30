@@ -53,9 +53,6 @@
 		<th class="text-center">Mus Asal</th>
 		<th class="text-center">Mus Tujuan</th>
 		<th class="text-center">Mus Status</th>
-		<th class="text-center">Mus Tgl</th>
-		<th class="text-center">Mus Flag</th>
-		<th class="text-center">Mus Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -70,9 +67,6 @@
 			<td><?php echo $mutasisimpanan->mus_asal ?></td>
 			<td><?php echo $mutasisimpanan->mus_tujuan ?></td>
 			<td><?php echo $mutasisimpanan->mus_status ?></td>
-			<td><?php echo $mutasisimpanan->mus_tgl ?></td>
-			<td><?php echo $mutasisimpanan->mus_flag ?></td>
-			<td><?php echo $mutasisimpanan->mus_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('mutasisimpanan/read/'.$mutasisimpanan->mus_id),'Read','class="text-navy"'); 

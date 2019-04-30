@@ -19,9 +19,6 @@
 	    <tr><td>Mus Asal</td><td><?php echo $mus_asal; ?></td></tr>
 	    <tr><td>Mus Tujuan</td><td><?php echo $mus_tujuan; ?></td></tr>
 	    <tr><td>Mus Status</td><td><?php echo $mus_status; ?></td></tr>
-	    <tr><td>Mus Tgl</td><td><?php echo $mus_tgl; ?></td></tr>
-	    <tr><td>Mus Flag</td><td><?php echo $mus_flag; ?></td></tr>
-	    <tr><td>Mus Info</td><td><?php echo $mus_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('mutasisimpanan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

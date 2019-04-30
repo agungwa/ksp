@@ -107,14 +107,12 @@ class Mutasisimpanan extends MY_Base
             'button' => 'Create',
             'action' => site_url('mutasisimpanan/create_action'),
 	    'mus_id' => set_value('mus_id'),
-	    'sim_kode' => set_value('sim_kode'),
+        'sim_kode' => set_value('sim_kode'),
+        'nm_sim_kode' => set_value('nm_sim_kode'),
 	    'mus_tglmutasi' => set_value('mus_tglmutasi'),
 	    'mus_asal' => set_value('mus_asal'),
 	    'mus_tujuan' => set_value('mus_tujuan'),
 	    'mus_status' => set_value('mus_status'),
-	    'mus_tgl' => set_value('mus_tgl'),
-	    'mus_flag' => set_value('mus_flag'),
-	    'mus_info' => set_value('mus_info'),
 	    'content' => 'backend/mutasisimpanan/mutasisimpanan_form',
 	);
         $this->load->view(layout(), $data);
@@ -133,9 +131,9 @@ class Mutasisimpanan extends MY_Base
 		'mus_asal' => $this->input->post('mus_asal',TRUE),
 		'mus_tujuan' => $this->input->post('mus_tujuan',TRUE),
 		'mus_status' => $this->input->post('mus_status',TRUE),
-		'mus_tgl' => $this->input->post('mus_tgl',TRUE),
-		'mus_flag' => $this->input->post('mus_flag',TRUE),
-		'mus_info' => $this->input->post('mus_info',TRUE),
+		'mus_tgl' => 0,
+		'mus_flag' => $this->tgl,
+		'mus_info' => "",
 	    );
 
             $this->Mutasisimpanan_model->insert($data);
@@ -153,14 +151,12 @@ class Mutasisimpanan extends MY_Base
                 'button' => 'Update',
                 'action' => site_url('mutasisimpanan/update_action'),
 		'mus_id' => set_value('mus_id', $row->mus_id),
-		'sim_kode' => set_value('sim_kode', $row->sim_kode),
+        'sim_kode' => set_value('sim_kode'),
+        'nm_sim_kode' => set_value('nm_sim_kode', $row->sim_kode),
 		'mus_tglmutasi' => set_value('mus_tglmutasi', $row->mus_tglmutasi),
 		'mus_asal' => set_value('mus_asal', $row->mus_asal),
 		'mus_tujuan' => set_value('mus_tujuan', $row->mus_tujuan),
 		'mus_status' => set_value('mus_status', $row->mus_status),
-		'mus_tgl' => set_value('mus_tgl', $row->mus_tgl),
-		'mus_flag' => set_value('mus_flag', $row->mus_flag),
-		'mus_info' => set_value('mus_info', $row->mus_info),
 	    'content' => 'backend/mutasisimpanan/mutasisimpanan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -183,9 +179,7 @@ class Mutasisimpanan extends MY_Base
 		'mus_asal' => $this->input->post('mus_asal',TRUE),
 		'mus_tujuan' => $this->input->post('mus_tujuan',TRUE),
 		'mus_status' => $this->input->post('mus_status',TRUE),
-		'mus_tgl' => $this->input->post('mus_tgl',TRUE),
-		'mus_flag' => $this->input->post('mus_flag',TRUE),
-		'mus_info' => $this->input->post('mus_info',TRUE),
+		'mus_flag' => "",
 	    );
 
             $this->Mutasisimpanan_model->update($this->input->post('mus_id', TRUE), $data);
@@ -199,7 +193,10 @@ class Mutasisimpanan extends MY_Base
         $row = $this->Mutasisimpanan_model->get_by_id($id);
 
         if ($row) {
-            $this->Mutasisimpanan_model->delete($id);
+            $data = array (
+                'mus_flag' => 2,
+            );
+            $this->Mutasisimpanan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('mutasisimpanan'));
         } else {
@@ -215,9 +212,6 @@ class Mutasisimpanan extends MY_Base
 	$this->form_validation->set_rules('mus_asal', 'mus asal', 'trim|required');
 	$this->form_validation->set_rules('mus_tujuan', 'mus tujuan', 'trim|required');
 	$this->form_validation->set_rules('mus_status', 'mus status', 'trim|required');
-	$this->form_validation->set_rules('mus_tgl', 'mus tgl', 'trim|required');
-	$this->form_validation->set_rules('mus_flag', 'mus flag', 'trim|required');
-	$this->form_validation->set_rules('mus_info', 'mus info', 'trim|required');
 
 	$this->form_validation->set_rules('mus_id', 'mus_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
