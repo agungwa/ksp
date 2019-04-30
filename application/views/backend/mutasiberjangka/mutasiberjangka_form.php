@@ -13,9 +13,15 @@
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
-	    <div class="form-group">
-            <label for="varchar">Ivb Kode <?php echo form_error('ivb_kode') ?></label>
-            <input type="text" class="form-control" name="ivb_kode" id="ivb_kode" placeholder="Ivb Kode" value="<?php echo $ivb_kode; ?>" />
+        <div class="form-group">
+            <label for="varchar">Investasi Kode <?php echo form_error('ivb_kode') ?></label>
+            <div class="input-group">
+            <input type="hidden" name="ivb_kode" id="ivb_kode" value="<?php echo $ivb_kode; ?>" />
+            <input type="text" class="form-control" name="nm_ivb_kode" id="nm_ivb_kode" placeholder="Investasi Kode" value="<?php echo $nm_ivb_kode; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>investasiberjangka/lookup','ivb_kode');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
 	    <div class="form-group">
             <label for="datetime">Mib Tglmutasi <?php echo form_error('mib_tglmutasi') ?></label>
@@ -32,18 +38,6 @@
 	    <div class="form-group">
             <label for="tinyint">Mib Status <?php echo form_error('mib_status') ?></label>
             <input type="text" class="form-control" name="mib_status" id="mib_status" placeholder="Mib Status" value="<?php echo $mib_status; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="datetime">Mib Tgl <?php echo form_error('mib_tgl') ?></label>
-            <input type="text" class="form-control" name="mib_tgl" id="mib_tgl" placeholder="Mib Tgl" value="<?php echo $mib_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Mib Flag <?php echo form_error('mib_flag') ?></label>
-            <input type="text" class="form-control" name="mib_flag" id="mib_flag" placeholder="Mib Flag" value="<?php echo $mib_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="mib_info">Mib Info <?php echo form_error('mib_info') ?></label>
-            <textarea class="form-control" rows="3" name="mib_info" id="mib_info" placeholder="Mib Info"><?php echo $mib_info; ?></textarea>
         </div>
 	    <input type="hidden" name="mib_id" value="<?php echo $mib_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

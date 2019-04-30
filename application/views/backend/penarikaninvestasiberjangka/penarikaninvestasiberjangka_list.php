@@ -52,9 +52,6 @@
 		<th class="text-center">Pib Penarikanke</th>
 		<th class="text-center">Pib Jmlkeuntungan</th>
 		<th class="text-center">Pib Jmlditerima</th>
-		<th class="text-center">Pib Tgl</th>
-		<th class="text-center">Pib Flag</th>
-		<th class="text-center">Pib Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -68,9 +65,6 @@
 			<td><?php echo $penarikaninvestasiberjangka->pib_penarikanke ?></td>
 			<td><?php echo $penarikaninvestasiberjangka->pib_jmlkeuntungan ?></td>
 			<td><?php echo $penarikaninvestasiberjangka->pib_jmlditerima ?></td>
-			<td><?php echo $penarikaninvestasiberjangka->pib_tgl ?></td>
-			<td><?php echo $penarikaninvestasiberjangka->pib_flag ?></td>
-			<td><?php echo $penarikaninvestasiberjangka->pib_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('penarikaninvestasiberjangka/read/'.$penarikaninvestasiberjangka->pib_id),'Read','class="text-navy"'); 

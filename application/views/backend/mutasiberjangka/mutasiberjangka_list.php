@@ -53,9 +53,6 @@
 		<th class="text-center">Mib Asal</th>
 		<th class="text-center">Mib Tujuan</th>
 		<th class="text-center">Mib Status</th>
-		<th class="text-center">Mib Tgl</th>
-		<th class="text-center">Mib Flag</th>
-		<th class="text-center">Mib Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -69,10 +66,7 @@
 			<td><?php echo $mutasiberjangka->mib_tglmutasi ?></td>
 			<td><?php echo $mutasiberjangka->mib_asal ?></td>
 			<td><?php echo $mutasiberjangka->mib_tujuan ?></td>
-			<td><?php echo $mutasiberjangka->mib_status ?></td>
-			<td><?php echo $mutasiberjangka->mib_tgl ?></td>
-			<td><?php echo $mutasiberjangka->mib_flag ?></td>
-			<td><?php echo $mutasiberjangka->mib_info ?></td>
+			<td><?php echo $mutasiberjangka->mib_status ?></td>>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('mutasiberjangka/read/'.$mutasiberjangka->mib_id),'Read','class="text-navy"'); 

@@ -19,9 +19,6 @@
 	    <tr><td>Mib Asal</td><td><?php echo $mib_asal; ?></td></tr>
 	    <tr><td>Mib Tujuan</td><td><?php echo $mib_tujuan; ?></td></tr>
 	    <tr><td>Mib Status</td><td><?php echo $mib_status; ?></td></tr>
-	    <tr><td>Mib Tgl</td><td><?php echo $mib_tgl; ?></td></tr>
-	    <tr><td>Mib Flag</td><td><?php echo $mib_flag; ?></td></tr>
-	    <tr><td>Mib Info</td><td><?php echo $mib_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('mutasiberjangka') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
