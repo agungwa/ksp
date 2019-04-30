@@ -83,18 +83,16 @@ class Ahliwarissimkesan extends MY_Base
         $row = $this->Ahliwarissimkesan_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'aws_id' => $row->aws_id,
-		'sik_kode' => $row->sik_kode,
-		'aws_noid' => $row->aws_noid,
-		'aws_jenisid' => $row->aws_jenisid,
-		'aws_nama' => $row->aws_nama,
-		'aws_alamat' => $row->aws_alamat,
-		'aws_hubungan' => $row->aws_hubungan,
-		'aws_lampiran' => $row->aws_lampiran,
-		'aws_tgl' => $row->aws_tgl,
-		'aws_flag' => $row->aws_flag,
-		'aws_info' => $row->aws_info,'content' => 'backend/ahliwarissimkesan/ahliwarissimkesan_read',
-	    );
+    		'aws_id' => $row->aws_id,
+    		'sik_kode' => $row->sik_kode,
+    		'aws_noid' => $row->aws_noid,
+    		'aws_jenisid' => $row->aws_jenisid,
+    		'aws_nama' => $row->aws_nama,
+    		'aws_alamat' => $row->aws_alamat,
+    		'aws_hubungan' => $row->aws_hubungan,
+    		'aws_lampiran' => $row->aws_lampiran,
+    		'content' => 'backend/ahliwarissimkesan/ahliwarissimkesan_read',
+    	    );
             $this->load->view(
             layout(), $data);
         } else {
@@ -108,19 +106,20 @@ class Ahliwarissimkesan extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('ahliwarissimkesan/create_action'),
-	    'aws_id' => set_value('aws_id'),
-	    'sik_kode' => set_value('sik_kode'),
-	    'aws_noid' => set_value('aws_noid'),
-	    'aws_jenisid' => set_value('aws_jenisid'),
-	    'aws_nama' => set_value('aws_nama'),
-	    'aws_alamat' => set_value('aws_alamat'),
-	    'aws_hubungan' => set_value('aws_hubungan'),
-	    'aws_lampiran' => set_value('aws_lampiran'),
-	    'aws_tgl' => set_value('aws_tgl'),
-	    'aws_flag' => set_value('aws_flag'),
-	    'aws_info' => set_value('aws_info'),
-	    'content' => 'backend/ahliwarissimkesan/ahliwarissimkesan_form',
-	);
+    	    'aws_id' => set_value('aws_id'),
+    	    'sik_kode' => set_value('sik_kode'),
+            'nm_sik_kode' => set_value('nm_sik_kode'),
+    	    'aws_noid' => set_value('aws_noid'),
+    	    'aws_jenisid' => set_value('aws_jenisid'),
+    	    'aws_nama' => set_value('aws_nama'),
+    	    'aws_alamat' => set_value('aws_alamat'),
+    	    'aws_hubungan' => set_value('aws_hubungan'),
+    	    'aws_lampiran' => set_value('aws_lampiran'),
+    	    'aws_tgl' => set_value('aws_tgl'),
+    	    'aws_flag' => set_value('aws_flag'),
+    	    'aws_info' => set_value('aws_info'),
+    	    'content' => 'backend/ahliwarissimkesan/ahliwarissimkesan_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -132,17 +131,17 @@ class Ahliwarissimkesan extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'sik_kode' => $this->input->post('sik_kode',TRUE),
-		'aws_noid' => $this->input->post('aws_noid',TRUE),
-		'aws_jenisid' => $this->input->post('aws_jenisid',TRUE),
-		'aws_nama' => $this->input->post('aws_nama',TRUE),
-		'aws_alamat' => $this->input->post('aws_alamat',TRUE),
-		'aws_hubungan' => $this->input->post('aws_hubungan',TRUE),
-		'aws_lampiran' => $this->input->post('aws_lampiran',TRUE),
-		'aws_tgl' => $this->input->post('aws_tgl',TRUE),
-		'aws_flag' => $this->input->post('aws_flag',TRUE),
-		'aws_info' => $this->input->post('aws_info',TRUE),
-	    );
+    		'sik_kode' => $this->input->post('sik_kode',TRUE),
+    		'aws_noid' => $this->input->post('aws_noid',TRUE),
+    		'aws_jenisid' => $this->input->post('aws_jenisid',TRUE),
+    		'aws_nama' => $this->input->post('aws_nama',TRUE),
+    		'aws_alamat' => $this->input->post('aws_alamat',TRUE),
+    		'aws_hubungan' => $this->input->post('aws_hubungan',TRUE),
+    		'aws_lampiran' => $this->input->post('aws_lampiran',TRUE),
+    		'aws_tgl' => $this->tgl,
+    		'aws_flag' => 0,
+    		'aws_info' => "",
+    	    );
 
             $this->Ahliwarissimkesan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -158,19 +157,20 @@ class Ahliwarissimkesan extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('ahliwarissimkesan/update_action'),
-		'aws_id' => set_value('aws_id', $row->aws_id),
-		'sik_kode' => set_value('sik_kode', $row->sik_kode),
-		'aws_noid' => set_value('aws_noid', $row->aws_noid),
-		'aws_jenisid' => set_value('aws_jenisid', $row->aws_jenisid),
-		'aws_nama' => set_value('aws_nama', $row->aws_nama),
-		'aws_alamat' => set_value('aws_alamat', $row->aws_alamat),
-		'aws_hubungan' => set_value('aws_hubungan', $row->aws_hubungan),
-		'aws_lampiran' => set_value('aws_lampiran', $row->aws_lampiran),
-		'aws_tgl' => set_value('aws_tgl', $row->aws_tgl),
-		'aws_flag' => set_value('aws_flag', $row->aws_flag),
-		'aws_info' => set_value('aws_info', $row->aws_info),
-	    'content' => 'backend/ahliwarissimkesan/ahliwarissimkesan_form',
-	    );
+        		'aws_id' => set_value('aws_id', $row->aws_id),
+        		'sik_kode' => set_value('sik_kode', $row->sik_kode),
+                'nm_sik_kode' => set_value('sik_kode', $row->sik_kode),
+        		'aws_noid' => set_value('aws_noid', $row->aws_noid),
+        		'aws_jenisid' => set_value('aws_jenisid', $row->aws_jenisid),
+        		'aws_nama' => set_value('aws_nama', $row->aws_nama),
+        		'aws_alamat' => set_value('aws_alamat', $row->aws_alamat),
+        		'aws_hubungan' => set_value('aws_hubungan', $row->aws_hubungan),
+        		'aws_lampiran' => set_value('aws_lampiran', $row->aws_lampiran),
+        		'aws_tgl' => set_value('aws_tgl', $row->aws_tgl),
+        		'aws_flag' => set_value('aws_flag', $row->aws_flag),
+        		'aws_info' => set_value('aws_info', $row->aws_info),
+        	    'content' => 'backend/ahliwarissimkesan/ahliwarissimkesan_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -186,17 +186,15 @@ class Ahliwarissimkesan extends MY_Base
             $this->update($this->input->post('aws_id', TRUE));
         } else {
             $data = array(
-		'sik_kode' => $this->input->post('sik_kode',TRUE),
-		'aws_noid' => $this->input->post('aws_noid',TRUE),
-		'aws_jenisid' => $this->input->post('aws_jenisid',TRUE),
-		'aws_nama' => $this->input->post('aws_nama',TRUE),
-		'aws_alamat' => $this->input->post('aws_alamat',TRUE),
-		'aws_hubungan' => $this->input->post('aws_hubungan',TRUE),
-		'aws_lampiran' => $this->input->post('aws_lampiran',TRUE),
-		'aws_tgl' => $this->input->post('aws_tgl',TRUE),
-		'aws_flag' => $this->input->post('aws_flag',TRUE),
-		'aws_info' => $this->input->post('aws_info',TRUE),
-	    );
+    		'sik_kode' => $this->input->post('sik_kode',TRUE),
+    		'aws_noid' => $this->input->post('aws_noid',TRUE),
+    		'aws_jenisid' => $this->input->post('aws_jenisid',TRUE),
+    		'aws_nama' => $this->input->post('aws_nama',TRUE),
+    		'aws_alamat' => $this->input->post('aws_alamat',TRUE),
+    		'aws_hubungan' => $this->input->post('aws_hubungan',TRUE),
+    		'aws_lampiran' => $this->input->post('aws_lampiran',TRUE),
+    		'aws_flag' => 1
+    	    );
 
             $this->Ahliwarissimkesan_model->update($this->input->post('aws_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -209,7 +207,11 @@ class Ahliwarissimkesan extends MY_Base
         $row = $this->Ahliwarissimkesan_model->get_by_id($id);
 
         if ($row) {
-            $this->Ahliwarissimkesan_model->delete($id);
+            $data = array(
+            'aws_flag' => 2
+            );
+
+            $this->Ahliwarissimkesan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('ahliwarissimkesan'));
         } else {
@@ -227,9 +229,6 @@ class Ahliwarissimkesan extends MY_Base
 	$this->form_validation->set_rules('aws_alamat', 'aws alamat', 'trim|required');
 	$this->form_validation->set_rules('aws_hubungan', 'aws hubungan', 'trim|required');
 	$this->form_validation->set_rules('aws_lampiran', 'aws lampiran', 'trim|required');
-	$this->form_validation->set_rules('aws_tgl', 'aws tgl', 'trim|required');
-	$this->form_validation->set_rules('aws_flag', 'aws flag', 'trim|required');
-	$this->form_validation->set_rules('aws_info', 'aws info', 'trim|required');
 
 	$this->form_validation->set_rules('aws_id', 'aws_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

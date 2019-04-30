@@ -51,15 +51,15 @@
             foreach ($plansimkesan_data as $plansimkesan)
             {
                 ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $plansimkesan->psk_plan ?></td>
-			<td><?php echo $plansimkesan->psk_setoran ?></td>
-			<td><?php echo $plansimkesan->psk_keterangan ?></td>
-			<td><?php echo $plansimkesan->psk_tgl ?></td>
-			<td><?php echo $plansimkesan->psk_flag ?></td>
-			<td><?php echo $plansimkesan->psk_info ?></td>
-		</tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$plansimkesan->psk_id?>','<?=$plansimkesan->psk_plan?>')" style="cursor: pointer;">
+        			<td width="80px"><?php echo ++$start ?></td>
+        			<td><?php echo $plansimkesan->psk_plan ?></td>
+        			<td><?php echo $plansimkesan->psk_setoran ?></td>
+        			<td><?php echo $plansimkesan->psk_keterangan ?></td>
+        			<td><?php echo $plansimkesan->psk_tgl ?></td>
+        			<td><?php echo $plansimkesan->psk_flag ?></td>
+        			<td><?php echo $plansimkesan->psk_info ?></td>
+        		</tr>
                 
                 <?php
             }

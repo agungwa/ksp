@@ -13,47 +13,69 @@
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
-	    <div class="form-group">
+            
+        <div class="form-group">
+            <label for="tinyint">Sik Kode <?php echo form_error('sik_kode') ?></label>
+            <input type="text" class="form-control" name="sik_kode" id="sik_kode" placeholder="Sik Kode" value="<?php echo $sik_kode; ?>" />
+        </div>
+
+        <div class="form-group">
             <label for="varchar">Ang No <?php echo form_error('ang_no') ?></label>
-            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Ang No" value="<?php echo $ang_no; ?>" />
+            <div class="input-group">
+            <input type="hidden" name="ang_no" id="ang_no" value="<?php echo $ang_no; ?>" />
+            <input type="text" class="form-control" name="nm_ang_no" id="nm_ang_no" placeholder="Anggota" value="<?php echo $nm_ang_no; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>anggota/lookup','ang_no');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
+
+        <div class="form-group">
             <label for="varchar">Kar Kode <?php echo form_error('kar_kode') ?></label>
-            <input type="text" class="form-control" name="kar_kode" id="kar_kode" placeholder="Kar Kode" value="<?php echo $kar_kode; ?>" />
+            <div class="input-group">
+            <input type="hidden" name="kar_kode" id="kar_kode" value="<?php echo $kar_kode; ?>" />
+            <input type="text" class="form-control" name="nm_kar_kode" id="nm_kar_kode" placeholder="Karyawan" value="<?php echo $nm_kar_kode; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>karyawan/lookup','kar_kode');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
+
+        <div class="form-group">
             <label for="int">Psk Id <?php echo form_error('psk_id') ?></label>
-            <input type="text" class="form-control" name="psk_id" id="psk_id" placeholder="Psk Id" value="<?php echo $psk_id; ?>" />
+            <div class="input-group">
+            <input type="hidden" name="psk_id" id="psk_id" value="<?php echo $psk_id; ?>" />
+            <input type="text" class="form-control" name="nm_psk_id" id="nm_psk_id" placeholder="Plan Simkesan" value="<?php echo $nm_psk_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>plansimkesan/lookup','psk_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
+
+        <div class="form-group">
             <label for="varchar">Wil Kode <?php echo form_error('wil_kode') ?></label>
-            <input type="text" class="form-control" name="wil_kode" id="wil_kode" placeholder="Wil Kode" value="<?php echo $wil_kode; ?>" />
+            <div class="input-group">
+            <input type="hidden" name="wil_kode" id="wil_kode" value="<?php echo $wil_kode; ?>" />
+            <input type="text" class="form-control" name="nm_wil_kode" id="nm_wil_kode" placeholder="Wilayah" value="<?php echo $nm_wil_kode; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>wilayah/lookup','wil_kode');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
+
 	    <div class="form-group">
             <label for="datetime">Sik Tglpendaftaran <?php echo form_error('sik_tglpendaftaran') ?></label>
-            <input type="text" class="form-control" name="sik_tglpendaftaran" id="sik_tglpendaftaran" placeholder="Sik Tglpendaftaran" value="<?php echo $sik_tglpendaftaran; ?>" />
+            <input type="date" class="form-control" name="sik_tglpendaftaran" id="sik_tglpendaftaran" placeholder="Sik Tglpendaftaran" value="<?php echo $sik_tglpendaftaran; ?>" />
         </div>
 	    <div class="form-group">
             <label for="datetime">Sik Tglberakhir <?php echo form_error('sik_tglberakhir') ?></label>
-            <input type="text" class="form-control" name="sik_tglberakhir" id="sik_tglberakhir" placeholder="Sik Tglberakhir" value="<?php echo $sik_tglberakhir; ?>" />
+            <input type="date" class="form-control" name="sik_tglberakhir" id="sik_tglberakhir" placeholder="Sik Tglberakhir" value="<?php echo $sik_tglberakhir; ?>" />
         </div>
 	    <div class="form-group">
             <label for="tinyint">Sik Status <?php echo form_error('sik_status') ?></label>
             <input type="text" class="form-control" name="sik_status" id="sik_status" placeholder="Sik Status" value="<?php echo $sik_status; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="datetime">Sik Tgl <?php echo form_error('sik_tgl') ?></label>
-            <input type="text" class="form-control" name="sik_tgl" id="sik_tgl" placeholder="Sik Tgl" value="<?php echo $sik_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Sik Flag <?php echo form_error('sik_flag') ?></label>
-            <input type="text" class="form-control" name="sik_flag" id="sik_flag" placeholder="Sik Flag" value="<?php echo $sik_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="sik_info">Sik Info <?php echo form_error('sik_info') ?></label>
-            <textarea class="form-control" rows="3" name="sik_info" id="sik_info" placeholder="Sik Info"><?php echo $sik_info; ?></textarea>
-        </div>
-	    <input type="hidden" name="sik_kode" value="<?php echo $sik_kode; ?>" /> 
+
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('simkesan') ?>" class="btn btn-default">Cancel</a>
 	</div>

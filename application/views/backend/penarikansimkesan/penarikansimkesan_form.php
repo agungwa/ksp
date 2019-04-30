@@ -13,21 +13,33 @@
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
-	    <div class="form-group">
-            <label for="int">Pns Id <?php echo form_error('pns_id') ?></label>
-            <input type="text" class="form-control" name="pns_id" id="pns_id" placeholder="Pns Id" value="<?php echo $pns_id; ?>" />
-        </div>
+
 	    <div class="form-group">
             <label for="varchar">Sik Kode <?php echo form_error('sik_kode') ?></label>
-            <input type="text" class="form-control" name="sik_kode" id="sik_kode" placeholder="Sik Kode" value="<?php echo $sik_kode; ?>" />
+            <div class="input-group">
+            <!-- <input type="hidden" name="sik_kode" id="sik_kode" value="<?php echo $sik_kode; ?>" /> -->
+            <input type="hidden" name="sik_kode" id="sik_kode" value="69" />
+            <input type="text" class="form-control" name="nm_sik_kode" id="nm_sik_kode" placeholder="Simkesan" value="<?php echo $nm_sik_kode; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>simkesan/lookup','sik_kode');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
+
+        <div class="form-group">
             <label for="int">Jps Id <?php echo form_error('jps_id') ?></label>
-            <input type="text" class="form-control" name="jps_id" id="jps_id" placeholder="Jps Id" value="<?php echo $jps_id; ?>" />
+            <div class="input-group">
+            <input type="hidden" name="jps_id" id="jps_id" value="<?php echo $jps_id; ?>" />
+            <input type="text" class="form-control" name="nm_jps_id" id="nm_jps_id" placeholder="Simkesan" value="<?php echo $nm_jps_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>jenispenarikansimkesan/lookup','jps_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
+
 	    <div class="form-group">
             <label for="datetime">Pns Tglpenarikan <?php echo form_error('pns_tglpenarikan') ?></label>
-            <input type="text" class="form-control" name="pns_tglpenarikan" id="pns_tglpenarikan" placeholder="Pns Tglpenarikan" value="<?php echo $pns_tglpenarikan; ?>" />
+            <input type="date" class="form-control" name="pns_tglpenarikan" id="pns_tglpenarikan" placeholder="Pns Tglpenarikan" value="<?php echo $pns_tglpenarikan; ?>" />
         </div>
 	    <div class="form-group">
             <label for="float">Pns Jmlsimkesan <?php echo form_error('pns_jmlsimkesan') ?></label>
@@ -41,19 +53,8 @@
             <label for="pns_catatan">Pns Catatan <?php echo form_error('pns_catatan') ?></label>
             <textarea class="form-control" rows="3" name="pns_catatan" id="pns_catatan" placeholder="Pns Catatan"><?php echo $pns_catatan; ?></textarea>
         </div>
-	    <div class="form-group">
-            <label for="datetime">Pns Tgl <?php echo form_error('pns_tgl') ?></label>
-            <input type="text" class="form-control" name="pns_tgl" id="pns_tgl" placeholder="Pns Tgl" value="<?php echo $pns_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Pns Flag <?php echo form_error('pns_flag') ?></label>
-            <input type="text" class="form-control" name="pns_flag" id="pns_flag" placeholder="Pns Flag" value="<?php echo $pns_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="pns_info">Pns Info <?php echo form_error('pns_info') ?></label>
-            <textarea class="form-control" rows="3" name="pns_info" id="pns_info" placeholder="Pns Info"><?php echo $pns_info; ?></textarea>
-        </div>
-	    <input type="hidden" name="" value="<?php echo $; ?>" /> 
+
+	    <input type="hidden" name="pns_id" value="<?php echo $pns_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('penarikansimkesan') ?>" class="btn btn-default">Cancel</a>
 	</div>

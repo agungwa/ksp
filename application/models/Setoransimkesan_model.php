@@ -18,6 +18,7 @@ class Setoransimkesan_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('ssk_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,32 +32,18 @@ class Setoransimkesan_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('ssk_id', $q);
-	$this->db->or_like('sik_kode', $q);
-	$this->db->or_like('ssk_tglsetoran', $q);
-	$this->db->or_like('ssk_tglbayar', $q);
-	$this->db->or_like('ssk_jmlsetor', $q);
-	$this->db->or_like('ssk_status', $q);
-	$this->db->or_like('ssk_tgl', $q);
-	$this->db->or_like('ssk_flag', $q);
-	$this->db->or_like('ssk_info', $q);
-	$this->db->from($this->table);
+        $where = "sik_kode LIKE '%$q%' ESCAPE '!' AND ssk_flag < 2";
+        $this->db->where($where);
+	    $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('ssk_id', $q);
-	$this->db->or_like('sik_kode', $q);
-	$this->db->or_like('ssk_tglsetoran', $q);
-	$this->db->or_like('ssk_tglbayar', $q);
-	$this->db->or_like('ssk_jmlsetor', $q);
-	$this->db->or_like('ssk_status', $q);
-	$this->db->or_like('ssk_tgl', $q);
-	$this->db->or_like('ssk_flag', $q);
-	$this->db->or_like('ssk_info', $q);
-	$this->db->limit($limit, $start);
+        $where = "sik_kode LIKE '%$q%' ESCAPE '!' AND ssk_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

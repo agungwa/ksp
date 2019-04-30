@@ -208,6 +208,9 @@ lookup();
                                 <li>
                                     <a href="<?=base_url()?>Simkesan">Simkesan</a>
                                 </li>
+                                <li>
+                                    <a href="<?=base_url()?>ahliwarissimkesan">Ahli Waris Simkesan</a>
+                                </li>
                             </ul>
                         </li>
                         <li><a href="<?=base_url()?>Setoransimkesan">Setoran</a></li>

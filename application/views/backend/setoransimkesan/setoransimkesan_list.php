@@ -48,15 +48,13 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sik Kode</th>
-		<th class="text-center">Ssk Tglsetoran</th>
-		<th class="text-center">Ssk Tglbayar</th>
-		<th class="text-center">Ssk Jmlsetor</th>
-		<th class="text-center">Ssk Status</th>
-		<th class="text-center">Ssk Tgl</th>
-		<th class="text-center">Ssk Flag</th>
-		<th class="text-center">Ssk Info</th>
-		<th class="text-center">Action</th>
+        		<th class="text-center">Sik Kode</th>
+        		<th class="text-center">Ssk Tglsetoran</th>
+        		<th class="text-center">Ssk Tglbayar</th>
+        		<th class="text-center">Ssk Jmlsetor</th>
+        		<th class="text-center">Ssk Status</th>
+        		<th class="text-center">Ssk Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -64,16 +62,14 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $setoransimkesan->sik_kode ?></td>
-			<td><?php echo $setoransimkesan->ssk_tglsetoran ?></td>
-			<td><?php echo $setoransimkesan->ssk_tglbayar ?></td>
-			<td><?php echo $setoransimkesan->ssk_jmlsetor ?></td>
-			<td><?php echo $setoransimkesan->ssk_status ?></td>
-			<td><?php echo $setoransimkesan->ssk_tgl ?></td>
-			<td><?php echo $setoransimkesan->ssk_flag ?></td>
-			<td><?php echo $setoransimkesan->ssk_info ?></td>
-			<td style="text-align:center" width="200px">
+    			<td width="80px"><?php echo ++$start ?></td>
+    			<td><?php echo $setoransimkesan->sik_kode ?></td>
+    			<td><?php echo $setoransimkesan->ssk_tglsetoran ?></td>
+    			<td><?php echo $setoransimkesan->ssk_tglbayar ?></td>
+    			<td><?php echo $setoransimkesan->ssk_jmlsetor ?></td>
+    			<td><?php echo $setoransimkesan->ssk_status ?></td>
+    			<td><?php echo dateFormat($setoransimkesan->ssk_tgl) ?></td>
+    			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('setoransimkesan/read/'.$setoransimkesan->ssk_id),'Read','class="text-navy"'); 
 				echo ' | '; 

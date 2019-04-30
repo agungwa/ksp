@@ -48,17 +48,15 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sik Kode</th>
-		<th class="text-center">Jkl Id</th>
-		<th class="text-center">Ksi Tglklaim</th>
-		<th class="text-center">Ksi Jmlklaim</th>
-		<th class="text-center">Ksi Jmltunggakan</th>
-		<th class="text-center">Ksi Jmlditerima</th>
-		<th class="text-center">Ksi Status</th>
-		<th class="text-center">Ksi Tgl</th>
-		<th class="text-center">Ksi Flag</th>
-		<th class="text-center">Ksi Info</th>
-		<th class="text-center">Action</th>
+        		<th class="text-center">Sik Kode</th>
+        		<th class="text-center">Jkl Id</th>
+        		<th class="text-center">Ksi Tglklaim</th>
+        		<th class="text-center">Ksi Jmlklaim</th>
+        		<th class="text-center">Ksi Jmltunggakan</th>
+        		<th class="text-center">Ksi Jmlditerima</th>
+        		<th class="text-center">Ksi Status</th>
+        		<th class="text-center">Ksi Tgl</th>
+        		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -66,18 +64,16 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $klaimsimkesan->sik_kode ?></td>
-			<td><?php echo $klaimsimkesan->jkl_id ?></td>
-			<td><?php echo $klaimsimkesan->ksi_tglklaim ?></td>
-			<td><?php echo $klaimsimkesan->ksi_jmlklaim ?></td>
-			<td><?php echo $klaimsimkesan->ksi_jmltunggakan ?></td>
-			<td><?php echo $klaimsimkesan->ksi_jmlditerima ?></td>
-			<td><?php echo $klaimsimkesan->ksi_status ?></td>
-			<td><?php echo $klaimsimkesan->ksi_tgl ?></td>
-			<td><?php echo $klaimsimkesan->ksi_flag ?></td>
-			<td><?php echo $klaimsimkesan->ksi_info ?></td>
-			<td style="text-align:center" width="200px">
+    			<td width="80px"><?php echo ++$start ?></td>
+    			<td><?php echo $klaimsimkesan->sik_kode ?></td>
+    			<td><?php echo $klaimsimkesan->jkl_id ?></td>
+    			<td><?php echo $klaimsimkesan->ksi_tglklaim ?></td>
+    			<td><?php echo $klaimsimkesan->ksi_jmlklaim ?></td>
+    			<td><?php echo $klaimsimkesan->ksi_jmltunggakan ?></td>
+    			<td><?php echo $klaimsimkesan->ksi_jmlditerima ?></td>
+    			<td><?php echo $klaimsimkesan->ksi_status ?></td>
+    			<td><?php echo dateFormat($klaimsimkesan->ksi_tgl) ?></td>
+    			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('klaimsimkesan/read/'.$klaimsimkesan->ksi_id),'Read','class="text-navy"'); 
 				echo ' | '; 

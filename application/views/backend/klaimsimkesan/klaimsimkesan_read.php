@@ -21,9 +21,6 @@
 	    <tr><td>Ksi Jmltunggakan</td><td><?php echo $ksi_jmltunggakan; ?></td></tr>
 	    <tr><td>Ksi Jmlditerima</td><td><?php echo $ksi_jmlditerima; ?></td></tr>
 	    <tr><td>Ksi Status</td><td><?php echo $ksi_status; ?></td></tr>
-	    <tr><td>Ksi Tgl</td><td><?php echo $ksi_tgl; ?></td></tr>
-	    <tr><td>Ksi Flag</td><td><?php echo $ksi_flag; ?></td></tr>
-	    <tr><td>Ksi Info</td><td><?php echo $ksi_info; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('klaimsimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

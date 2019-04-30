@@ -108,19 +108,20 @@ class Simkesan extends MY_Base
         $data = array(
             'button' => 'Create',
             'action' => site_url('simkesan/create_action'),
-	    'sik_kode' => set_value('sik_kode'),
-	    'ang_no' => set_value('ang_no'),
-	    'kar_kode' => set_value('kar_kode'),
-	    'psk_id' => set_value('psk_id'),
-	    'wil_kode' => set_value('wil_kode'),
-	    'sik_tglpendaftaran' => set_value('sik_tglpendaftaran'),
-	    'sik_tglberakhir' => set_value('sik_tglberakhir'),
-	    'sik_status' => set_value('sik_status'),
-	    'sik_tgl' => set_value('sik_tgl'),
-	    'sik_flag' => set_value('sik_flag'),
-	    'sik_info' => set_value('sik_info'),
-	    'content' => 'backend/simkesan/simkesan_form',
-	);
+    	    'sik_kode' => set_value('sik_kode'),
+    	    'ang_no' => set_value('ang_no'),
+            'nm_ang_no' => set_value('nm_ang_no'),
+    	    'kar_kode' => set_value('kar_kode'),
+            'nm_kar_kode' => set_value('nm_kar_kode'),
+    	    'psk_id' => set_value('psk_id'),
+            'nm_psk_id' => set_value('nm_psk_id'),
+    	    'wil_kode' => set_value('wil_kode'),
+            'nm_wil_kode' => set_value('nm_wil_kode'),
+    	    'sik_tglpendaftaran' => set_value('sik_tglpendaftaran'),
+    	    'sik_tglberakhir' => set_value('sik_tglberakhir'),
+    	    'sik_status' => set_value('sik_status'),
+    	    'content' => 'backend/simkesan/simkesan_form',
+    	);
         $this->load->view(layout(), $data);
     }
     
@@ -132,17 +133,17 @@ class Simkesan extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'ang_no' => $this->input->post('ang_no',TRUE),
-		'kar_kode' => $this->input->post('kar_kode',TRUE),
-		'psk_id' => $this->input->post('psk_id',TRUE),
-		'wil_kode' => $this->input->post('wil_kode',TRUE),
-		'sik_tglpendaftaran' => $this->input->post('sik_tglpendaftaran',TRUE),
-		'sik_tglberakhir' => $this->input->post('sik_tglberakhir',TRUE),
-		'sik_status' => $this->input->post('sik_status',TRUE),
-		'sik_tgl' => $this->input->post('sik_tgl',TRUE),
-		'sik_flag' => $this->input->post('sik_flag',TRUE),
-		'sik_info' => $this->input->post('sik_info',TRUE),
-	    );
+    		'ang_no' => $this->input->post('ang_no',TRUE),
+    		'kar_kode' => $this->input->post('kar_kode',TRUE),
+    		'psk_id' => $this->input->post('psk_id',TRUE),
+    		'wil_kode' => $this->input->post('wil_kode',TRUE),
+    		'sik_tglpendaftaran' => $this->input->post('sik_tglpendaftaran',TRUE),
+    		'sik_tglberakhir' => $this->input->post('sik_tglberakhir',TRUE),
+    		'sik_status' => $this->input->post('sik_status',TRUE),
+    		'sik_tgl' => $this->tgl,
+    		'sik_flag' => 0,
+    		'sik_info' => "",
+    	    );
 
             $this->Simkesan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -158,19 +159,20 @@ class Simkesan extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('simkesan/update_action'),
-		'sik_kode' => set_value('sik_kode', $row->sik_kode),
-		'ang_no' => set_value('ang_no', $row->ang_no),
-		'kar_kode' => set_value('kar_kode', $row->kar_kode),
-		'psk_id' => set_value('psk_id', $row->psk_id),
-		'wil_kode' => set_value('wil_kode', $row->wil_kode),
-		'sik_tglpendaftaran' => set_value('sik_tglpendaftaran', $row->sik_tglpendaftaran),
-		'sik_tglberakhir' => set_value('sik_tglberakhir', $row->sik_tglberakhir),
-		'sik_status' => set_value('sik_status', $row->sik_status),
-		'sik_tgl' => set_value('sik_tgl', $row->sik_tgl),
-		'sik_flag' => set_value('sik_flag', $row->sik_flag),
-		'sik_info' => set_value('sik_info', $row->sik_info),
-	    'content' => 'backend/simkesan/simkesan_form',
-	    );
+        		'sik_kode' => set_value('sik_kode', $row->sik_kode),
+        		'ang_no' => set_value('ang_no', $row->ang_no),
+                'nm_ang_no' => set_value('ang_no', $row->ang_no),
+        		'kar_kode' => set_value('kar_kode', $row->kar_kode),
+                'nm_kar_kode' => set_value('kar_kode', $row->kar_kode),
+        		'psk_id' => set_value('psk_id', $row->psk_id),
+                'nm_psk_id' => set_value('psk_id', $row->psk_id),
+        		'wil_kode' => set_value('wil_kode', $row->wil_kode),
+                'nm_wil_kode' => set_value('wil_kode', $row->wil_kode),
+        		'sik_tglpendaftaran' => set_value('sik_tglpendaftaran', $row->sik_tglpendaftaran),
+        		'sik_tglberakhir' => set_value('sik_tglberakhir', $row->sik_tglberakhir),
+        		'sik_status' => set_value('sik_status', $row->sik_status),
+        	    'content' => 'backend/simkesan/simkesan_form',
+        	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -186,17 +188,15 @@ class Simkesan extends MY_Base
             $this->update($this->input->post('sik_kode', TRUE));
         } else {
             $data = array(
-		'ang_no' => $this->input->post('ang_no',TRUE),
-		'kar_kode' => $this->input->post('kar_kode',TRUE),
-		'psk_id' => $this->input->post('psk_id',TRUE),
-		'wil_kode' => $this->input->post('wil_kode',TRUE),
-		'sik_tglpendaftaran' => $this->input->post('sik_tglpendaftaran',TRUE),
-		'sik_tglberakhir' => $this->input->post('sik_tglberakhir',TRUE),
-		'sik_status' => $this->input->post('sik_status',TRUE),
-		'sik_tgl' => $this->input->post('sik_tgl',TRUE),
-		'sik_flag' => $this->input->post('sik_flag',TRUE),
-		'sik_info' => $this->input->post('sik_info',TRUE),
-	    );
+    		'ang_no' => $this->input->post('ang_no',TRUE),
+    		'kar_kode' => $this->input->post('kar_kode',TRUE),
+    		'psk_id' => $this->input->post('psk_id',TRUE),
+    		'wil_kode' => $this->input->post('wil_kode',TRUE),
+    		'sik_tglpendaftaran' => $this->input->post('sik_tglpendaftaran',TRUE),
+    		'sik_tglberakhir' => $this->input->post('sik_tglberakhir',TRUE),
+    		'sik_status' => $this->input->post('sik_status',TRUE),
+    		'sik_flag' => 1,
+    	    );
 
             $this->Simkesan_model->update($this->input->post('sik_kode', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -209,7 +209,11 @@ class Simkesan extends MY_Base
         $row = $this->Simkesan_model->get_by_id($id);
 
         if ($row) {
-            $this->Simkesan_model->delete($id);
+            $data = array(
+            'sik_flag' => 2,
+            );
+
+            $this->Simkesan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('simkesan'));
         } else {
@@ -227,10 +231,6 @@ class Simkesan extends MY_Base
 	$this->form_validation->set_rules('sik_tglpendaftaran', 'sik tglpendaftaran', 'trim|required');
 	$this->form_validation->set_rules('sik_tglberakhir', 'sik tglberakhir', 'trim|required');
 	$this->form_validation->set_rules('sik_status', 'sik status', 'trim|required');
-	$this->form_validation->set_rules('sik_tgl', 'sik tgl', 'trim|required');
-	$this->form_validation->set_rules('sik_flag', 'sik flag', 'trim|required');
-	$this->form_validation->set_rules('sik_info', 'sik info', 'trim|required');
-
 	$this->form_validation->set_rules('sik_kode', 'sik_kode', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

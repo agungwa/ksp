@@ -38,34 +38,28 @@
         </div>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
-            <tr>
+                <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jkl Keuntungan</th>
-		<th class="text-center">Jkl Plan</th>
-		<th class="text-center">Jkl Tahunke</th>
-		<th class="text-center">Jkl Nominal</th>
-		<th class="text-center">Jkl Keterangan</th>
-		<th class="text-center">Jkl Administrasi</th>
-		<th class="text-center">Jkl Tgl</th>
-		<th class="text-center">Jkl Flag</th>
-		<th class="text-center">Jkl Info</th></tr>
+        		<th class="text-center">Jkl Keuntungan</th>
+        		<th class="text-center">Jkl Plan</th>
+        		<th class="text-center">Jkl Tahunke</th>
+        		<th class="text-center">Jkl Nominal</th>
+        		<th class="text-center">Jkl Keterangan</th>
+        		<th class="text-center">Jkl Administrasi</th></tr>
             </thead>
 			<tbody><?php
             foreach ($jenisklaim_data as $jenisklaim)
             {
                 ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $jenisklaim->jkl_keuntungan ?></td>
-			<td><?php echo $jenisklaim->jkl_plan ?></td>
-			<td><?php echo $jenisklaim->jkl_tahunke ?></td>
-			<td><?php echo $jenisklaim->jkl_nominal ?></td>
-			<td><?php echo $jenisklaim->jkl_keterangan ?></td>
-			<td><?php echo $jenisklaim->jkl_administrasi ?></td>
-			<td><?php echo $jenisklaim->jkl_tgl ?></td>
-			<td><?php echo $jenisklaim->jkl_flag ?></td>
-			<td><?php echo $jenisklaim->jkl_info ?></td>
-		</tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$jenisklaim->jkl_id?>','<?=$jenisklaim->jkl_keuntungan?>')" style="cursor: pointer;">
+    			<td width="80px"><?php echo ++$start ?></td>
+    			<td><?php echo $jenisklaim->jkl_keuntungan ?></td>
+    			<td><?php echo $jenisklaim->jkl_plan ?></td>
+    			<td><?php echo $jenisklaim->jkl_tahunke ?></td>
+    			<td><?php echo $jenisklaim->jkl_nominal ?></td>
+    			<td><?php echo $jenisklaim->jkl_keterangan ?></td>
+    			<td><?php echo $jenisklaim->jkl_administrasi ?></td>
+		      </tr>
                 
                 <?php
             }

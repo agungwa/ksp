@@ -56,8 +56,6 @@
 		<th class="text-center">Sik Tglberakhir</th>
 		<th class="text-center">Sik Status</th>
 		<th class="text-center">Sik Tgl</th>
-		<th class="text-center">Sik Flag</th>
-		<th class="text-center">Sik Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -74,9 +72,7 @@
 			<td><?php echo $simkesan->sik_tglpendaftaran ?></td>
 			<td><?php echo $simkesan->sik_tglberakhir ?></td>
 			<td><?php echo $simkesan->sik_status ?></td>
-			<td><?php echo $simkesan->sik_tgl ?></td>
-			<td><?php echo $simkesan->sik_flag ?></td>
-			<td><?php echo $simkesan->sik_info ?></td>
+			<td><?php echo dateFormat($simkesan->sik_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('simkesan/read/'.$simkesan->sik_kode),'Read','class="text-navy"'); 

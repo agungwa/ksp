@@ -51,7 +51,7 @@
             foreach ($jenispenarikansimkesan_data as $jenispenarikansimkesan)
             {
                 ?>
-                <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$jenispenarikansimkesan->jps_id?>','<?=$jenispenarikansimkesan->jps_jenis?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenispenarikansimkesan->jps_jenis ?></td>
 			<td><?php echo $jenispenarikansimkesan->jps_administrasi ?></td>

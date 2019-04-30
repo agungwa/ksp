@@ -55,19 +55,19 @@
             foreach ($simkesan_data as $simkesan)
             {
                 ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $simkesan->ang_no ?></td>
-			<td><?php echo $simkesan->kar_kode ?></td>
-			<td><?php echo $simkesan->psk_id ?></td>
-			<td><?php echo $simkesan->wil_kode ?></td>
-			<td><?php echo $simkesan->sik_tglpendaftaran ?></td>
-			<td><?php echo $simkesan->sik_tglberakhir ?></td>
-			<td><?php echo $simkesan->sik_status ?></td>
-			<td><?php echo $simkesan->sik_tgl ?></td>
-			<td><?php echo $simkesan->sik_flag ?></td>
-			<td><?php echo $simkesan->sik_info ?></td>
-		</tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$simkesan->sik_kode?>','<?=$simkesan->sik_kode?>')" style="cursor: pointer;">
+        			<td width="80px"><?php echo ++$start ?></td>
+        			<td><?php echo $simkesan->ang_no ?></td>
+        			<td><?php echo $simkesan->kar_kode ?></td>
+        			<td><?php echo $simkesan->psk_id ?></td>
+        			<td><?php echo $simkesan->wil_kode ?></td>
+        			<td><?php echo $simkesan->sik_tglpendaftaran ?></td>
+        			<td><?php echo $simkesan->sik_tglberakhir ?></td>
+        			<td><?php echo $simkesan->sik_status ?></td>
+        			<td><?php echo $simkesan->sik_tgl ?></td>
+        			<td><?php echo $simkesan->sik_flag ?></td>
+        			<td><?php echo $simkesan->sik_info ?></td>
+        		</tr>
                 
                 <?php
             }

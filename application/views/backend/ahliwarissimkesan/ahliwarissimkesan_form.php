@@ -13,10 +13,19 @@
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
-	    <div class="form-group">
+	    
+        <div class="form-group">
             <label for="varchar">Sik Kode <?php echo form_error('sik_kode') ?></label>
-            <input type="text" class="form-control" name="sik_kode" id="sik_kode" placeholder="Sik Kode" value="<?php echo $sik_kode; ?>" />
+            <div class="input-group">
+            <!-- <input type="hidden" name="pin_id" id="pin_id" value="<?php echo $pin_id; ?>" /> -->
+            <input type="hidden" name="sik_kode" id="sik_kode" value="69" />
+            <input type="text" class="form-control" name="nm_sik_kode" id="nm_sik_kode" placeholder="Simkesan" value="<?php echo $nm_sik_kode; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>simkesan/lookup','sik_kode');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
+
 	    <div class="form-group">
             <label for="varchar">Aws Noid <?php echo form_error('aws_noid') ?></label>
             <input type="text" class="form-control" name="aws_noid" id="aws_noid" placeholder="Aws Noid" value="<?php echo $aws_noid; ?>" />
@@ -41,18 +50,7 @@
             <label for="aws_lampiran">Aws Lampiran <?php echo form_error('aws_lampiran') ?></label>
             <textarea class="form-control" rows="3" name="aws_lampiran" id="aws_lampiran" placeholder="Aws Lampiran"><?php echo $aws_lampiran; ?></textarea>
         </div>
-	    <div class="form-group">
-            <label for="datetime">Aws Tgl <?php echo form_error('aws_tgl') ?></label>
-            <input type="text" class="form-control" name="aws_tgl" id="aws_tgl" placeholder="Aws Tgl" value="<?php echo $aws_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Aws Flag <?php echo form_error('aws_flag') ?></label>
-            <input type="text" class="form-control" name="aws_flag" id="aws_flag" placeholder="Aws Flag" value="<?php echo $aws_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="aws_info">Aws Info <?php echo form_error('aws_info') ?></label>
-            <textarea class="form-control" rows="3" name="aws_info" id="aws_info" placeholder="Aws Info"><?php echo $aws_info; ?></textarea>
-        </div>
+
 	    <input type="hidden" name="aws_id" value="<?php echo $aws_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('ahliwarissimkesan') ?>" class="btn btn-default">Cancel</a>
