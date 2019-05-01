@@ -106,11 +106,9 @@ class Tutupinvestasiberjangka extends MY_Base
             'action' => site_url('tutupinvestasiberjangka/create_action'),
 	    'tib_id' => set_value('tib_id'),
 	    'ivb_kode' => set_value('ivb_kode'),
+	    'nm_ivb_kode' => set_value('nm_ivb_kode'),
 	    'tib_tgltutup' => set_value('tib_tgltutup'),
 	    'tib_catatan' => set_value('tib_catatan'),
-	    'tib_tgl' => set_value('tib_tgl'),
-	    'tib_flag' => set_value('tib_flag'),
-	    'tib_info' => set_value('tib_info'),
 	    'content' => 'backend/tutupinvestasiberjangka/tutupinvestasiberjangka_form',
 	);
         $this->load->view(layout(), $data);
@@ -127,9 +125,9 @@ class Tutupinvestasiberjangka extends MY_Base
 		'ivb_kode' => $this->input->post('ivb_kode',TRUE),
 		'tib_tgltutup' => $this->input->post('tib_tgltutup',TRUE),
 		'tib_catatan' => $this->input->post('tib_catatan',TRUE),
-		'tib_tgl' => $this->input->post('tib_tgl',TRUE),
-		'tib_flag' => $this->input->post('tib_flag',TRUE),
-		'tib_info' => $this->input->post('tib_info',TRUE),
+		'tib_tgl' => $this->tgl,
+		'tib_flag' => 0,
+		'tib_info' => "",
 	    );
 
             $this->Tutupinvestasiberjangka_model->insert($data);
@@ -148,11 +146,9 @@ class Tutupinvestasiberjangka extends MY_Base
                 'action' => site_url('tutupinvestasiberjangka/update_action'),
 		'tib_id' => set_value('tib_id', $row->tib_id),
 		'ivb_kode' => set_value('ivb_kode', $row->ivb_kode),
+		'nm_ivb_kode' => set_value('nm_ivb_kode', $row->ivb_kode),
 		'tib_tgltutup' => set_value('tib_tgltutup', $row->tib_tgltutup),
 		'tib_catatan' => set_value('tib_catatan', $row->tib_catatan),
-		'tib_tgl' => set_value('tib_tgl', $row->tib_tgl),
-		'tib_flag' => set_value('tib_flag', $row->tib_flag),
-		'tib_info' => set_value('tib_info', $row->tib_info),
 	    'content' => 'backend/tutupinvestasiberjangka/tutupinvestasiberjangka_form',
 	    );
             $this->load->view(layout(), $data);
@@ -173,9 +169,7 @@ class Tutupinvestasiberjangka extends MY_Base
 		'ivb_kode' => $this->input->post('ivb_kode',TRUE),
 		'tib_tgltutup' => $this->input->post('tib_tgltutup',TRUE),
 		'tib_catatan' => $this->input->post('tib_catatan',TRUE),
-		'tib_tgl' => $this->input->post('tib_tgl',TRUE),
-		'tib_flag' => $this->input->post('tib_flag',TRUE),
-		'tib_info' => $this->input->post('tib_info',TRUE),
+		'tib_flag' => 1,
 	    );
 
             $this->Tutupinvestasiberjangka_model->update($this->input->post('tib_id', TRUE), $data);
@@ -189,7 +183,10 @@ class Tutupinvestasiberjangka extends MY_Base
         $row = $this->Tutupinvestasiberjangka_model->get_by_id($id);
 
         if ($row) {
-            $this->Tutupinvestasiberjangka_model->delete($id);
+            $data = array (
+                'tib_flag' => 2,
+            );
+            $this->Tutupinvestasiberjangka_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('tutupinvestasiberjangka'));
         } else {
@@ -203,9 +200,6 @@ class Tutupinvestasiberjangka extends MY_Base
 	$this->form_validation->set_rules('ivb_kode', 'ivb kode', 'trim|required');
 	$this->form_validation->set_rules('tib_tgltutup', 'tib tgltutup', 'trim|required');
 	$this->form_validation->set_rules('tib_catatan', 'tib catatan', 'trim|required');
-	$this->form_validation->set_rules('tib_tgl', 'tib tgl', 'trim|required');
-	$this->form_validation->set_rules('tib_flag', 'tib flag', 'trim|required');
-	$this->form_validation->set_rules('tib_info', 'tib info', 'trim|required');
 
 	$this->form_validation->set_rules('tib_id', 'tib_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

@@ -42,10 +42,7 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Ivb Kode</th>
 		<th class="text-center">Tib Tgltutup</th>
-		<th class="text-center">Tib Catatan</th>
-		<th class="text-center">Tib Tgl</th>
-		<th class="text-center">Tib Flag</th>
-		<th class="text-center">Tib Info</th></tr>
+		<th class="text-center">Tib Catatan</th></tr>
             </thead>
 			<tbody><?php
             foreach ($tutupinvestasiberjangka_data as $tutupinvestasiberjangka)
@@ -56,9 +53,6 @@
 			<td><?php echo $tutupinvestasiberjangka->ivb_kode ?></td>
 			<td><?php echo $tutupinvestasiberjangka->tib_tgltutup ?></td>
 			<td><?php echo $tutupinvestasiberjangka->tib_catatan ?></td>
-			<td><?php echo $tutupinvestasiberjangka->tib_tgl ?></td>
-			<td><?php echo $tutupinvestasiberjangka->tib_flag ?></td>
-			<td><?php echo $tutupinvestasiberjangka->tib_info ?></td>
 		</tr>
                 
                 <?php
