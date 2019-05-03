@@ -144,6 +144,9 @@ lookup();
                                     <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
                                 </li>
                                 <li>
+                                    <a href="<?=base_url()?>Wilayah_karyawan">Wilayah Karyawan</a>
+                                </li>
+                                <li>
                                     <a href="<?=base_url()?>Mutasisimpanan">Mutasi Simpanan</a>
                                 </li>
                             </ul>
@@ -243,6 +246,9 @@ lookup();
                                     <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
                                 </li>
                                 <li>
+                                    <a href="<?=base_url()?>Wilayah_karyawan">Wilayah Karyawan</a>
+                                </li>
+                                <li>
                                     <a href="<?=base_url()?>Mutasisimkesan">Mutasi Simkesan</a>
                                 </li>
                             </ul>
@@ -316,6 +322,9 @@ lookup();
                             <ul class="nav nav-third-level">
                                 <li>
                                     <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Wilayah_karyawan">Wilayah Karyawan</a>
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>Mutasiberjangka">Mutasi Investasi</a>
@@ -414,6 +423,9 @@ lookup();
                             <ul class="nav nav-third-level">
                                 <li>
                                     <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Wilayah_karyawan">Wilayah Karyawan</a>
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>Mutasipinjaman">Mutasi Pinjaman</a>
