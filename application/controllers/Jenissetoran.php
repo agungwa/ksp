@@ -86,7 +86,8 @@ class Jenissetoran extends MY_Base
 		'jse_id' => $row->jse_id,
 		'jse_setoran' => $row->jse_setoran,
 		'jse_keterangan' => $row->jse_keterangan,
-		'jse_tgl' => $row->jse_tgl,
+		'jse_min' => $row->jse_min,
+        'jse_tgl' => $row->jse_tgl,
 		'jse_flag' => $row->jse_flag,
 		'jse_info' => $row->jse_info,'content' => 'backend/jenissetoran/jenissetoran_read',
 	    );
@@ -106,7 +107,8 @@ class Jenissetoran extends MY_Base
 	    'jse_id' => set_value('jse_id'),
 	    'jse_setoran' => set_value('jse_setoran'),
 	    'jse_keterangan' => set_value('jse_keterangan'),
-	    'content' => 'backend/jenissetoran/jenissetoran_form',
+	    'jse_min' => set_value('jse_min'),
+        'content' => 'backend/jenissetoran/jenissetoran_form',
 	);
         $this->load->view(layout(), $data);
     }
@@ -121,7 +123,8 @@ class Jenissetoran extends MY_Base
             $data = array(
 		'jse_setoran' => $this->input->post('jse_setoran',TRUE),
 		'jse_keterangan' => $this->input->post('jse_keterangan',TRUE),
-		'jse_tgl' => $this->tgl,
+		'jse_min' => $this->input->post('jse_min',TRUE),
+        'jse_tgl' => $this->tgl,
 		'jse_flag' => 0,
 		'jse_info' => "",
 	    );
@@ -142,7 +145,8 @@ class Jenissetoran extends MY_Base
                 'action' => site_url('jenissetoran/update_action'),
 		'jse_id' => set_value('jse_id', $row->jse_id),
 		'jse_setoran' => set_value('jse_setoran', $row->jse_setoran),
-		'jse_keterangan' => set_value('jse_keterangan', $row->jse_keterangan),
+        'jse_keterangan' => set_value('jse_keterangan', $row->jse_keterangan),
+        'jse_min' => set_value('jse_min', $row->jse_min),
 	    'content' => 'backend/jenissetoran/jenissetoran_form',
 	    );
             $this->load->view(layout(), $data);
@@ -162,6 +166,7 @@ class Jenissetoran extends MY_Base
             $data = array(
 		'jse_setoran' => $this->input->post('jse_setoran',TRUE),
 		'jse_keterangan' => $this->input->post('jse_keterangan',TRUE),
+		'jse_min' => $this->input->post('jse_min',TRUE),
 		'jse_flag' => 1,
 	    );
 
@@ -193,6 +198,7 @@ class Jenissetoran extends MY_Base
     {
 	$this->form_validation->set_rules('jse_setoran', 'jse setoran', 'trim|required');
 	$this->form_validation->set_rules('jse_keterangan', 'jse keterangan', 'trim|required');
+	$this->form_validation->set_rules('jse_min', 'jse min', 'trim|required');
 	$this->form_validation->set_rules('jse_id', 'jse_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

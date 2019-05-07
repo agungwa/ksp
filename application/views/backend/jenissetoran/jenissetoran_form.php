@@ -21,6 +21,10 @@
             <label for="jse_keterangan">Keterangan <?php echo form_error('jse_keterangan') ?></label>
             <textarea class="form-control" rows="3" name="jse_keterangan" id="jse_keterangan" placeholder="Keterangan"><?php echo $jse_keterangan; ?></textarea>
         </div>
+        <div class="form-group">
+            <label for="jse_min">Minimal <?php echo form_error('jse_min') ?></label>
+            <input type="number" class="form-control" name="jse_min" id="jse_min" placeholder="Minimal" value="<?php echo $jse_min; ?>" />
+        </div>
 	    <input type="hidden" name="jse_id" value="<?php echo $jse_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('jenissetoran') ?>" class="btn btn-default">Cancel</a>

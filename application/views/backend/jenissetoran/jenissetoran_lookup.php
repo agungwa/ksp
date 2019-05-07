@@ -42,6 +42,7 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Jenis Setoran</th>
 		<th class="text-center">Keterangan</th>
+		<th class="text-center">Minimal</th>
             </thead>
 			<tbody><?php
             foreach ($jenissetoran_data as $jenissetoran)
@@ -52,6 +53,7 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenissetoran->jse_setoran ?></td>
 			<td><?php echo $jenissetoran->jse_keterangan ?></td>
+			<td><?php echo $jenissetoran->jse_min ?></td>
 		</tr>
                 
                 <?php

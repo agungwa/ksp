@@ -16,6 +16,7 @@
         <table class="table">
 	    <tr><td>Jenis Setoran</td><td><?php echo $jse_setoran; ?></td></tr>
 	    <tr><td>Keterangan</td><td><?php echo $jse_keterangan; ?></td></tr>
+	    <tr><td>Minimal</td><td><?php echo $jse_min; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('jenissetoran') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
