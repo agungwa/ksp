@@ -90,6 +90,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => $row->ang_nokk,
 		'ang_nohp' => $row->ang_nohp,
 		'ang_tgllahir' => $row->ang_tgllahir,
+		'ang_status' => $row->ang_status,
 		'ang_tgl' => $row->ang_tgl,
 		'ang_flag' => $row->ang_flag,
 		'ang_info' => $row->ang_info,'content' => 'backend/anggota/anggota_read',
@@ -114,6 +115,7 @@ class Anggota extends MY_Base
 	    'ang_nokk' => set_value('ang_nokk'),
 	    'ang_nohp' => set_value('ang_nohp'),
 	    'ang_tgllahir' => set_value('ang_tgllahir'),
+	    'ang_status' => set_value('ang_status'),
 	    'content' => 'backend/anggota/anggota_form',
 	);
         $this->load->view(layout(), $data);
@@ -134,6 +136,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => $this->input->post('ang_nokk',TRUE),
 		'ang_nohp' => $this->input->post('ang_nohp',TRUE),
 		'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+		'ang_status' => $this->input->post('ang_status',TRUE),
 		'ang_tgl' => $this->tgl,
 		'ang_flag' => 0,
 		'ang_info' => "",
@@ -160,6 +163,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => set_value('ang_nokk', $row->ang_nokk),
 		'ang_nohp' => set_value('ang_nohp', $row->ang_nohp),
 		'ang_tgllahir' => set_value('ang_tgllahir', $row->ang_tgllahir),
+		'ang_status' => set_value('ang_status', $row->ang_tgllahir),
 	    'content' => 'backend/anggota/anggota_form',
 	    );
             $this->load->view(layout(), $data);
@@ -183,6 +187,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => $this->input->post('ang_nokk',TRUE),
 		'ang_nohp' => $this->input->post('ang_nohp',TRUE),
 		'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+		'ang_status' => $this->input->post('ang_status',TRUE),
 		'ang_tgl' => $this->tgl,
 		'ang_flag' => 1,
 		'ang_info' => "",
@@ -219,6 +224,7 @@ class Anggota extends MY_Base
 	$this->form_validation->set_rules('ang_nokk', 'ang nokk', 'trim|required');
 	$this->form_validation->set_rules('ang_nohp', 'ang nohp', 'trim|required');
 	$this->form_validation->set_rules('ang_tgllahir', 'ang tgllahir', 'trim|required');
+	$this->form_validation->set_rules('ang_status', 'ang status', 'trim|required');
 
 	$this->form_validation->set_rules('ang_no', 'ang_no', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

@@ -15,12 +15,13 @@
         
         <table class="table">
         <tr><td>Nomor Anggota</td><td><?php echo $ang_no; ?></td></tr>
-	    <tr><td>Ang Nama</td><td><?php echo $ang_nama; ?></td></tr>
-	    <tr><td>Ang Alamat</td><td><?php echo $ang_alamat; ?></td></tr>
-	    <tr><td>Ang Noktp</td><td><?php echo $ang_noktp; ?></td></tr>
-	    <tr><td>Ang Nokk</td><td><?php echo $ang_nokk; ?></td></tr>
-	    <tr><td>Ang Nohp</td><td><?php echo $ang_nohp; ?></td></tr>
-	    <tr><td>Ang Tgllahir</td><td><?php echo $ang_tgllahir; ?></td></tr>
+	    <tr><td>Nama</td><td><?php echo $ang_nama; ?></td></tr>
+	    <tr><td>Alamat</td><td><?php echo $ang_alamat; ?></td></tr>
+	    <tr><td>Nomor KTP</td><td><?php echo $ang_noktp; ?></td></tr>
+	    <tr><td>Nomor KK</td><td><?php echo $ang_nokk; ?></td></tr>
+	    <tr><td>Nomor Handphone</td><td><?php echo $ang_nohp; ?></td></tr>
+	    <tr><td>Tanggal Lahir</td><td><?php echo $ang_tgllahir; ?></td></tr>
+	    <tr><td>Status</td><td><?php echo $ang_status; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('anggota') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
