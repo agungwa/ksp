@@ -12,7 +12,8 @@
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
-        <div class="ibox-content col-md-6">
+        <div class="ibox-title col-md-12">
+        <div class="col-md-6">
 	    <div class="form-group col-md-12">
             <label for="varchar">Nama <?php echo form_error('ses_nama') ?></label>
             <input type="text" class="form-control" name="ses_nama" id="ses_nama" placeholder="Nama" value="<?php echo $ses_nama; ?>" />
@@ -31,6 +32,7 @@
 	    <input type="hidden" name="ses_id" value="<?php echo $ses_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('settingsimpanan') ?>" class="btn btn-default">Cancel</a>
+        </div>
 	</div>
             </form>
         </div>
