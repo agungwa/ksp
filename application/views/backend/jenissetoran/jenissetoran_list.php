@@ -48,8 +48,8 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jse Setoran</th>
-		<th class="text-center">Jse Keterangan</th>
+		<th class="text-center">Jenis Setoran</th>
+		<th class="text-center">Keterangan</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
