@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Settingsimpanan</b></h2>
+                    <h2><b>List Setting Simpanan</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -48,9 +48,9 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ses Nama</th>
-		<th class="text-center">Ses Min</th>
-		<th class="text-center">Ses Max</th>
+		<th class="text-center">Nama</th>
+		<th class="text-center">Minimal</th>
+		<th class="text-center">Maximal</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
