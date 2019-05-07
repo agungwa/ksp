@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Bungasimpanan</b></h2>
+                    <h2><b>List Bunga Simpanan</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,7 +40,7 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Bus Bunga</th>
+		<th class="text-center">Bunga</th>
             </thead>
 			<tbody><?php
             foreach ($bungasimpanan_data as $bungasimpanan)
