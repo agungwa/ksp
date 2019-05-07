@@ -50,6 +50,7 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Jenis Setoran</th>
 		<th class="text-center">Keterangan</th>
+		<th class="text-center">Minimal</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -61,6 +62,7 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenissetoran->jse_setoran ?></td>
 			<td><?php echo $jenissetoran->jse_keterangan ?></td>
+			<td><?php echo $jenissetoran->jse_min ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('jenissetoran/read/'.$jenissetoran->jse_id),'Read','class="text-navy"'); 
