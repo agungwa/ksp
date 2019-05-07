@@ -49,12 +49,13 @@
             <tr>
                 <th class="text-center">No</th>
         <th class="text-center">Nomor Anggota</th>
-		<th class="text-center">Ang Nama</th>
-		<th class="text-center">Ang Alamat</th>
-		<th class="text-center">Ang Noktp</th>
-		<th class="text-center">Ang Nokk</th>
-		<th class="text-center">Ang Nohp</th>
-		<th class="text-center">Ang Tgllahir</th>
+		<th class="text-center">Nama</th>
+		<th class="text-center">Alamat</th>
+		<th class="text-center">Nomor KTP</th>
+		<th class="text-center">Nomor KK</th>
+		<th class="text-center">Nomor Handphone</th>
+		<th class="text-center">Tanggal Lahir</th>
+		<th class="text-center">Status</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -71,6 +72,7 @@
 			<td><?php echo $anggota->ang_nokk ?></td>
 			<td><?php echo $anggota->ang_nohp ?></td>
 			<td><?php echo $anggota->ang_tgllahir ?></td>
+			<td><?php echo $anggota->ang_status ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('anggota/read/'.$anggota->ang_no),'Read','class="text-navy"'); 
