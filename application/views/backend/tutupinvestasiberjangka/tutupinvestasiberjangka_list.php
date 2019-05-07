@@ -51,9 +51,6 @@
 		<th class="text-center">Ivb Kode</th>
 		<th class="text-center">Tib Tgltutup</th>
 		<th class="text-center">Tib Catatan</th>
-		<th class="text-center">Tib Tgl</th>
-		<th class="text-center">Tib Flag</th>
-		<th class="text-center">Tib Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -66,9 +63,6 @@
 			<td><?php echo $tutupinvestasiberjangka->ivb_kode ?></td>
 			<td><?php echo $tutupinvestasiberjangka->tib_tgltutup ?></td>
 			<td><?php echo $tutupinvestasiberjangka->tib_catatan ?></td>
-			<td><?php echo $tutupinvestasiberjangka->tib_tgl ?></td>
-			<td><?php echo $tutupinvestasiberjangka->tib_flag ?></td>
-			<td><?php echo $tutupinvestasiberjangka->tib_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('tutupinvestasiberjangka/read/'.$tutupinvestasiberjangka->tib_id),'Read','class="text-navy"'); 
