@@ -14,12 +14,12 @@
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
 	    <div class="form-group">
-            <label for="varchar">Jse Setoran <?php echo form_error('jse_setoran') ?></label>
-            <input type="text" class="form-control" name="jse_setoran" id="jse_setoran" placeholder="Jse Setoran" value="<?php echo $jse_setoran; ?>" />
+            <label for="varchar">Jenis Setoran <?php echo form_error('jse_setoran') ?></label>
+            <input type="text" class="form-control" name="jse_setoran" id="jse_setoran" placeholder="Setoran" value="<?php echo $jse_setoran; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="jse_keterangan">Jse Keterangan <?php echo form_error('jse_keterangan') ?></label>
-            <textarea class="form-control" rows="3" name="jse_keterangan" id="jse_keterangan" placeholder="Jse Keterangan"><?php echo $jse_keterangan; ?></textarea>
+            <label for="jse_keterangan">Keterangan <?php echo form_error('jse_keterangan') ?></label>
+            <textarea class="form-control" rows="3" name="jse_keterangan" id="jse_keterangan" placeholder="Keterangan"><?php echo $jse_keterangan; ?></textarea>
         </div>
 	    <input type="hidden" name="jse_id" value="<?php echo $jse_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
