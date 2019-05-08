@@ -111,7 +111,9 @@ class Mutasisimpanan extends MY_Base
         'nm_sim_kode' => set_value('nm_sim_kode'),
 	    'mus_tglmutasi' => set_value('mus_tglmutasi'),
 	    'mus_asal' => set_value('mus_asal'),
+	    'nm_mus_asal' => set_value('nm_mus_asal'),
 	    'mus_tujuan' => set_value('mus_tujuan'),
+	    'nm_mus_tujuan' => set_value('nm_mus_tujuan'),
 	    'mus_status' => set_value('mus_status'),
 	    'content' => 'backend/mutasisimpanan/mutasisimpanan_form',
 	);
@@ -155,7 +157,9 @@ class Mutasisimpanan extends MY_Base
         'nm_sim_kode' => set_value('nm_sim_kode', $row->sim_kode),
 		'mus_tglmutasi' => set_value('mus_tglmutasi', $row->mus_tglmutasi),
 		'mus_asal' => set_value('mus_asal', $row->mus_asal),
+		'nm_mus_asal' => set_value('nm_mus_asal', $row->wil_nama),
 		'mus_tujuan' => set_value('mus_tujuan', $row->mus_tujuan),
+		'nm_mus_tujuan' => set_value('nm_mus_tujuan', $row->wil_nama),
 		'mus_status' => set_value('mus_status', $row->mus_status),
 	    'content' => 'backend/mutasisimpanan/mutasisimpanan_form',
 	    );
