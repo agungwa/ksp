@@ -10,10 +10,12 @@
                 <div class="ibox-title">
                     <h2 style="margin-top:0px"><?php echo $button ?> Anggota </h2>
                 </div>
+            </div>
+        </div>
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content col-md-12">
-        <div class="col-md-6">
+        <div class="col-md-3">
         <div class="form-group col-md-12">
             <label for="varchar">Nomor Anggota <?php echo form_error('ang_no') ?></label>
             <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Nomor Anggota" value="<?php echo $ang_no; ?>" />
@@ -27,6 +29,7 @@
             <textarea class="form-control" rows="3" name="ang_alamat" id="ang_alamat" placeholder="Alamat"><?php echo $ang_alamat; ?></textarea>
         </div>
         </div>
+        <div class="form-group col-md-12">
 	    <div class="form-group col-md-6">
             <label for="varchar">Nomor KTP <?php echo form_error('ang_noktp') ?></label>
             <input type="number" class="form-control" name="ang_noktp" id="ang_noktp" placeholder="Nomor KTP" value="<?php echo $ang_noktp; ?>" />
@@ -43,15 +46,18 @@
             <label for="date">Tanggal Lahir <?php echo form_error('ang_tgllahir') ?></label>
             <input type="date" class="form-control" name="ang_tgllahir" id="ang_tgllahir" placeholder="Tgl Lahir" value="<?php echo $ang_tgllahir; ?>" />
         </div>
-	    <div class="form-group col-md-6">
+        </div>
+        <div class="form-group col-md-3">
+	    <div class="form-group col-md-12">
             <label for="tinyint">Status <?php echo form_error('ang_status') ?></label>
             <input type="number" class="form-control" name="ang_status" id="ang_status" placeholder="status" value="<?php echo $ang_status; ?>" />
         </div>
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('anggota') ?>" class="btn btn-default">Cancel</a>
-	</div>
+        </div>
+	    </div>
             </form>
-        </div>
-        </div>
+    </div>  
+  
     </body>
 </html>
