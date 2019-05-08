@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Setoransimpanan</b></h2>
+                    <h2><b>List Setoran Simpanan</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,13 +40,10 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sim Kode</th>
-		<th class="text-center">Ssi Tglsetor</th>
-		<th class="text-center">Ssi Jmlsetor</th>
-		<th class="text-center">Ssi Jmlbunga</th>
-		<th class="text-center">Ssi Tgl</th>
-		<th class="text-center">Ssi Flag</th>
-		<th class="text-center">Ssi Info</th></tr>
+		<th class="text-center">Rekening Simpanan</th>
+		<th class="text-center">Tanggal Setor</th>
+		<th class="text-center">Jumlah Setor</th>
+		<th class="text-center">Jumlah Bunga</th>
             </thead>
 			<tbody><?php
             foreach ($setoransimpanan_data as $setoransimpanan)
@@ -58,9 +55,6 @@
 			<td><?php echo $setoransimpanan->ssi_tglsetor ?></td>
 			<td><?php echo $setoransimpanan->ssi_jmlsetor ?></td>
 			<td><?php echo $setoransimpanan->ssi_jmlbunga ?></td>
-			<td><?php echo $setoransimpanan->ssi_tgl ?></td>
-			<td><?php echo $setoransimpanan->ssi_flag ?></td>
-			<td><?php echo $setoransimpanan->ssi_info ?></td>
 		</tr>
                 
                 <?php
