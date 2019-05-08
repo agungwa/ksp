@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Plansimkesan</b></h2>
+                    <h2><b>List Plan Simkesan</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -48,10 +48,10 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-        		<th class="text-center">Psk Plan</th>
-        		<th class="text-center">Psk Setoran</th>
-        		<th class="text-center">Psk Keterangan</th>
-        		<th class="text-center">Psk Tgl</th>
+        		<th class="text-center">Plan Simkesan</th>
+        		<th class="text-center">Setoran</th>
+        		<th class="text-center">Keterangan</th>
+        		<th class="text-center">Tanggal</th>
         		<th class="text-center">Action</th>
             </tr>
             </thead>
