@@ -48,15 +48,15 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sim Kode</th>
-		<th class="text-center">Ang No</th>
-		<th class="text-center">Kar Kode</th>
-		<th class="text-center">Bus Id</th>
-		<th class="text-center">Jsi Id</th>
-		<th class="text-center">Jse Id</th>
-		<th class="text-center">Wil Kode</th>
-		<th class="text-center">Sim Tglpendaftaran</th>
-		<th class="text-center">Sim Status</th>
+		<th class="text-center">Kode Simpanan</th>
+		<th class="text-center">Anggota</th>
+		<th class="text-center">Karyawan</th>
+		<th class="text-center">Bunga</th>
+		<th class="text-center">Jenis Simpanan</th>
+		<th class="text-center">Jenis Setoran</th>
+		<th class="text-center">Wilayah</th>
+		<th class="text-center">Tanggal Pendaftaran</th>
+		<th class="text-center">Status</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
