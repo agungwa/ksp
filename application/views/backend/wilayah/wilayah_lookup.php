@@ -40,7 +40,7 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Wil Nama</th>
+		<th class="text-center">Nama Wilayah</th>
             </thead>
 			<tbody><?php
             foreach ($wilayah_data as $wilayah)
