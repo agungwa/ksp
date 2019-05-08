@@ -12,12 +12,13 @@
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
-        <div class="ibox-content">
-	    <div class="form-group">
-            <label for="varchar">Sim Kode <?php echo form_error('sim_kode') ?></label>
-            <input type="text" class="form-control" name="sim_kode" id="sim_kode" placeholder="Sim Kode" value="<?php echo $sim_kode; ?>" />
+        <div class="ibox-content col-md-12">
+        <div class="col-md-6">
+	    <div class="form-group col-md-12">
+            <label for="varchar">Kode Simpanan <?php echo form_error('sim_kode') ?></label>
+            <input type="text" class="form-control" name="sim_kode" id="sim_kode" placeholder="Kode Simpanan" value="<?php echo $sim_kode; ?>" />
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label for="varchar">Anggota <?php echo form_error('ang_no') ?></label>
             <div class="input-group">
             <input type="hidden" name="ang_no" id="ang_no" value="<?php echo $ang_no; ?>" />
@@ -27,7 +28,7 @@
             </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label for="varchar">Karyawan <?php echo form_error('kar_kode') ?></label>
             <div class="input-group">
             <input type="hidden" name="kar_kode" id="kar_kode" value="<?php echo $kar_kode; ?>" />
@@ -37,7 +38,7 @@
             </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label for="float">Bunga Simpanan <?php echo form_error('bus_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="bus_id" id="bus_id" value="<?php echo $bus_id; ?>" />
@@ -47,7 +48,9 @@
             </div>
             </div>
         </div>
-        <div class="form-group">
+        </div>
+        <div class="col-md-6">
+        <div class="form-group col-md-12">
             <label for="int">Jenis Simpanan <?php echo form_error('jsi_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="jsi_id" id="jsi_id" value="<?php echo $jsi_id; ?>" />
@@ -57,7 +60,7 @@
             </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label for="int">Jenis Setoran <?php echo form_error('jse_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="jse_id" id="jse_id" value="<?php echo $jse_id; ?>" />
@@ -67,7 +70,7 @@
             </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label for="varchar">Wilayah <?php echo form_error('wil_kode') ?></label>
             <div class="input-group">
             <input type="hidden" name="wil_kode" id="wil_kode" value="<?php echo $wil_kode; ?>" />
@@ -77,16 +80,20 @@
             </div>
             </div>
         </div>
-	    <div class="form-group">
+	    <div class="form-group col-md-12">
             <label for="datetime">Tanggal Pendaftaran <?php echo form_error('sim_tglpendaftaran') ?></label>
             <input type="date" class="form-control" name="sim_tglpendaftaran" id="sim_tglpendaftaran" placeholder="Sim Tglpendaftaran" value="<?php echo $sim_tglpendaftaran; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="varchar">Sim Status <?php echo form_error('sim_status') ?></label>
+        </div>
+        <div class="col-md-12">
+	    <div class="form-group col-md-3">
+            <label for="varchar">Status <?php echo form_error('sim_status') ?></label>
             <input type="text" class="form-control" name="sim_status" id="sim_status" placeholder="Sim Status" value="<?php echo $sim_status; ?>" />
+        </div>
         </div>
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('simpanan') ?>" class="btn btn-default">Cancel</a>
+        
 	</div>
             </form>
         </div>
