@@ -48,9 +48,9 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-                <th class="text-center">Wil Kode</th>
-        		<th class="text-center">Wil Nama</th>
-        		<th class="text-center">Wil Tgl</th>
+                <th class="text-center">Kode Wilayah</th>
+        		<th class="text-center">Nama Wilayah</th>
+        		<th class="text-center">Tanggal</th>
         		<th class="text-center">Action</th>
             </tr>
             </thead>
