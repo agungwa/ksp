@@ -12,7 +12,8 @@
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
-        <div class="ibox-content">
+        <div class="ibox-content col-md-12">
+        <div class="col-md-6">
         <div class="form-group">
             <label for="varchar">Rekening Simpanan <?php echo form_error('sim_kode') ?></label>
             <div class="input-group">
@@ -39,6 +40,7 @@
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('setoransimpanan') ?>" class="btn btn-default">Cancel</a>
 	</div>
+    </div>
             </form>
         </div>
         </div>
