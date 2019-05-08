@@ -14,9 +14,9 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Ang No</td><td><?php echo $ang_no; ?></td></tr>
-	    <tr><td>Ses Id</td><td><?php echo $ses_id; ?></td></tr>
-	    <tr><td>Sip Tglbayar</td><td><?php echo $sip_tglbayar; ?></td></tr>
+	    <tr><td>Anggota</td><td><?php echo $ang_no; ?></td></tr>
+	    <tr><td>Setting Simpanan</td><td><?php echo $ses_id; ?></td></tr>
+	    <tr><td>Tanggal Bayar</td><td><?php echo $sip_tglbayar; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('simpananpokok') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

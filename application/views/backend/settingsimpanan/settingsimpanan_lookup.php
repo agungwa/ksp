@@ -49,7 +49,7 @@
             {
                 ?>
                 <tr>
-                <tr onclick="setVal('<?=$idhtml?>','<?=$settingsimpanan->ses_id?>','<?=$settingsimpanan->ses_id?>')" style="cursor: pointer;">
+                <tr onclick="setVal('<?=$idhtml?>','<?=$settingsimpanan->ses_id?>','<?=$settingsimpanan->ses_nama?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $settingsimpanan->ses_nama ?></td>
 			<td><?php echo $settingsimpanan->ses_min ?></td>
