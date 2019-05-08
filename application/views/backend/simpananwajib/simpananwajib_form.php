@@ -12,8 +12,9 @@
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
-        <div class="ibox-content">
-        <div class="form-group">
+        <div class="ibox-content col-md-12">
+        <div class="col-md-6">
+        <div class="form-group col-md-12">
             <label for="varchar">Anggota <?php echo form_error('ang_no') ?></label>
             <div class="input-group">
             <input type="hidden" name="ang_no" id="ang_no" value="<?php echo $ang_no; ?>" />
@@ -23,7 +24,7 @@
             </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label for="varchar">Setting Simpanan <?php echo form_error('ses_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="ses_id" id="ses_id" value="<?php echo $ses_id; ?>" />
@@ -33,21 +34,22 @@
             </div>
             </div>
         </div>
-	    <div class="form-group">
-            <label for="datetime">Siw Tglbayar <?php echo form_error('siw_tglbayar') ?></label>
-            <input type="date" class="form-control" name="siw_tglbayar" id="siw_tglbayar" placeholder="Siw Tglbayar" value="<?php echo $siw_tglbayar; ?>" />
+	    <div class="form-group col-md-12">
+            <label for="datetime">Tanggal Bayar <?php echo form_error('siw_tglbayar') ?></label>
+            <input type="date" class="form-control" name="siw_tglbayar" id="todays-date" placeholder="Tanggal Bayar" value="<?php echo $siw_tglbayar; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="tinyint">Siw Status <?php echo form_error('siw_status') ?></label>
-            <input type="text" class="form-control" name="siw_status" id="siw_status" placeholder="Siw Status" value="<?php echo $siw_status; ?>" />
+	    <div class="form-group col-md-12">
+            <label for="tinyint">Status <?php echo form_error('siw_status') ?></label>
+            <input type="text" class="form-control" name="siw_status" id="siw_status" placeholder="Status" value="<?php echo $siw_status; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="datetime">Siw Tglambil <?php echo form_error('siw_tglambil') ?></label>
-            <input type="text" class="form-control" name="siw_tglambil" id="siw_tglambil" placeholder="Siw Tglambil" value="<?php echo $siw_tglambil; ?>" />
+	    <div class="form-group col-md-12">
+            <label for="datetime">Tanggal Ambil <?php echo form_error('siw_tglambil') ?></label>
+            <input type="date" class="form-control" name="siw_tglambil" id="siw_tglambil" placeholder="Tanggal Ambil" value="<?php echo $siw_tglambil; ?>" />
         </div>
 	    <input type="hidden" name="siw_id" value="<?php echo $siw_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('simpananwajib') ?>" class="btn btn-default">Cancel</a>
+        </div>
 	</div>
             </form>
         </div>

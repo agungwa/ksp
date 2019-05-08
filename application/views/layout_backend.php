@@ -126,6 +126,9 @@ lookup();
                                     <a href="<?=base_url()?>anggota">Informasi Anggota</a>
                                 </li>
                                 <li>
+                                    <a href="<?=base_url()?>simpananpokok">Simpanan Pokok</a>
+                                </li>
+                                <li>
                                     <a href="<?=base_url()?>simpananwajib">Simpanan Wajib</a>
                                 </li>
                                 <li>
@@ -201,6 +204,9 @@ lookup();
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>anggota">Informasi Anggota</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>simpananpokok">Simpanan Pokok</a>
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>simpananwajib">Simpanan Wajib</a>
@@ -305,6 +311,9 @@ lookup();
                                     <a href="<?=base_url()?>anggota">Informasi Anggota</a>
                                 </li>
                                 <li>
+                                    <a href="<?=base_url()?>simpananpokok">Simpanan Pokok</a>
+                                </li>
+                                <li>
                                     <a href="<?=base_url()?>simpananwajib">Simpanan Wajib</a>
                                 </li>
                                 <li>
@@ -383,6 +392,9 @@ lookup();
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>anggota">Informasi Anggota</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>simpananpokok">Simpanan Pokok</a>
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>simpananwajib">Simpanan Wajib</a>
@@ -597,6 +609,15 @@ lookup();
 
         });
 
+    </script>
+
+    <script>
+        var today = new Date();
+        var dd = ("0" + (today.getDate())).slice(-2);
+        var mm = ("0" + (today.getMonth() +　1)).slice(-2);
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd ;
+        $("#todays-date").attr("value", today)
     </script>
 </body>
 </html>

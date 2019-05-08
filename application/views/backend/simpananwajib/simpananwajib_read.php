@@ -14,11 +14,11 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Ang No</td><td><?php echo $ang_no; ?></td></tr>
-	    <tr><td>Ses Id</td><td><?php echo $ses_id; ?></td></tr>
-	    <tr><td>Siw Tglbayar</td><td><?php echo $siw_tglbayar; ?></td></tr>
-	    <tr><td>Siw Status</td><td><?php echo $siw_status; ?></td></tr>
-	    <tr><td>Siw Tglambil</td><td><?php echo $siw_tglambil; ?></td></tr>
+	    <tr><td>Anggota</td><td><?php echo $ang_no; ?></td></tr>
+	    <tr><td>Setting Simpanan</td><td><?php echo $ses_id; ?></td></tr>
+	    <tr><td>Tanggal Bayar</td><td><?php echo $siw_tglbayar; ?></td></tr>
+	    <tr><td>Status</td><td><?php echo $siw_status; ?></td></tr>
+	    <tr><td>Tanggal Ambil</td><td><?php echo $siw_tglambil; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('simpananwajib') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
