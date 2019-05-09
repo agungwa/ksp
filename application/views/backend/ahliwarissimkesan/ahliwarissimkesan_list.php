@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Ahliwarissimkesan</b></h2>
+                    <h2><b>List Ahliwaris Simkesan</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -48,14 +48,14 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sik Kode</th>
-		<th class="text-center">Aws Noid</th>
-		<th class="text-center">Aws Jenisid</th>
-		<th class="text-center">Aws Nama</th>
-		<th class="text-center">Aws Alamat</th>
-		<th class="text-center">Aws Hubungan</th>
-		<th class="text-center">Aws Lampiran</th>
-		<th class="text-center">Aws Tgl</th>
+		<th class="text-center">Rekening Simkesan</th>
+		<th class="text-center">Ahli Waris ID</th>
+		<th class="text-center">Jenis ID</th>
+		<th class="text-center">Nama</th>
+		<th class="text-center">Alamat</th>
+		<th class="text-center">Hubungan</th>
+		<th class="text-center">Lampiran</th>
+		<th class="text-center">Tanggal</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
