@@ -14,13 +14,14 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Ang No</td><td><?php echo $ang_no; ?></td></tr>
-	    <tr><td>Kar Kode</td><td><?php echo $kar_kode; ?></td></tr>
-	    <tr><td>Psk Id</td><td><?php echo $psk_id; ?></td></tr>
-	    <tr><td>Wil Kode</td><td><?php echo $wil_kode; ?></td></tr>
-	    <tr><td>Sik Tglpendaftaran</td><td><?php echo $sik_tglpendaftaran; ?></td></tr>
-	    <tr><td>Sik Tglberakhir</td><td><?php echo $sik_tglberakhir; ?></td></tr>
-	    <tr><td>Sik Status</td><td><?php echo $sik_status; ?></td></tr>
+	    <tr><td>Rekening Simkesan</td><td><?php echo $sik_kode; ?></td></tr>
+	    <tr><td>Anggota</td><td><?php echo $ang_no; ?></td></tr>
+	    <tr><td>Karyawan</td><td><?php echo $kar_kode; ?></td></tr>
+	    <tr><td>Plan Simkesan</td><td><?php echo $psk_id; ?></td></tr>
+	    <tr><td>Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
+	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $sik_tglpendaftaran; ?></td></tr>
+	    <tr><td>Tanggal Berakhir</td><td><?php echo $sik_tglberakhir; ?></td></tr>
+	    <tr><td>Status</td><td><?php echo $sik_status; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('simkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

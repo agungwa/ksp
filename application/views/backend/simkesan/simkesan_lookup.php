@@ -40,16 +40,14 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ang No</th>
-		<th class="text-center">Kar Kode</th>
-		<th class="text-center">Psk Id</th>
-		<th class="text-center">Wil Kode</th>
-		<th class="text-center">Sik Tglpendaftaran</th>
-		<th class="text-center">Sik Tglberakhir</th>
-		<th class="text-center">Sik Status</th>
-		<th class="text-center">Sik Tgl</th>
-		<th class="text-center">Sik Flag</th>
-		<th class="text-center">Sik Info</th></tr>
+        <th class="text-center">Rekening Simkesan</th>
+		<th class="text-center">Anggota</th>
+		<th class="text-center">Karyawan</th>
+		<th class="text-center">Plan Simkesan</th>
+		<th class="text-center">Wilayah</th>
+		<th class="text-center">Tanggal Pendaftaran</th>
+		<th class="text-center">Tanggal Berakhir</th>
+		<th class="text-center">Status</th></tr>
             </thead>
 			<tbody><?php
             foreach ($simkesan_data as $simkesan)
@@ -57,6 +55,7 @@
                 ?>
                 <tr onclick="setVal('<?=$idhtml?>','<?=$simkesan->sik_kode?>','<?=$simkesan->sik_kode?>')" style="cursor: pointer;">
         			<td width="80px"><?php echo ++$start ?></td>
+        			<td><?php echo $simkesan->sik_kode ?></td>
         			<td><?php echo $simkesan->ang_no ?></td>
         			<td><?php echo $simkesan->kar_kode ?></td>
         			<td><?php echo $simkesan->psk_id ?></td>
@@ -64,9 +63,6 @@
         			<td><?php echo $simkesan->sik_tglpendaftaran ?></td>
         			<td><?php echo $simkesan->sik_tglberakhir ?></td>
         			<td><?php echo $simkesan->sik_status ?></td>
-        			<td><?php echo $simkesan->sik_tgl ?></td>
-        			<td><?php echo $simkesan->sik_flag ?></td>
-        			<td><?php echo $simkesan->sik_info ?></td>
         		</tr>
                 
                 <?php
