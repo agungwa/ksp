@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2 style="margin-top:0px"><?php echo $button ?> Setoransimkesan </h2>
+                    <h2 style="margin-top:0px"><?php echo $button ?> Setoran Simkesan </h2>
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
@@ -36,7 +36,7 @@
         </div>
 	    <div class="form-group">
             <label for="float">Jumlah Setor <?php echo form_error('ssk_jmlsetor') ?></label>
-            <input type="text" class="form-control" name="ssk_jmlsetor" id="ssk_jmlsetor" placeholder="Jumlah Setor" value="<?php echo $ssk_jmlsetor; ?>" />
+            <input type="number" class="form-control" name="ssk_jmlsetor" id="ssk_jmlsetor" placeholder="Jumlah Setor" value="<?php echo $ssk_jmlsetor; ?>" />
         </div>
 	    <div class="form-group">
             <label for="tinyint">Status <?php echo form_error('ssk_status') ?></label>
