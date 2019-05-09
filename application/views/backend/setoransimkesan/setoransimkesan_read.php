@@ -14,11 +14,11 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Rekening Simkesan</td><td><?php echo $sik_kode; ?></td></tr>
-	    <tr><td>Tanggal Setoran</td><td><?php echo $ssk_tglsetoran; ?></td></tr>
-	    <tr><td>Tanggal Bayar</td><td><?php echo $ssk_tglbayar; ?></td></tr>
-	    <tr><td>Jumlah Setor</td><td><?php echo $ssk_jmlsetor; ?></td></tr>
-	    <tr><td>Status</td><td><?php echo $ssk_status; ?></td></tr>
+	    <tr><td>Sik Kode</td><td><?php echo $sik_kode; ?></td></tr>
+	    <tr><td>Ssk Tglsetoran</td><td><?php echo $ssk_tglsetoran; ?></td></tr>
+	    <tr><td>Ssk Tglbayar</td><td><?php echo $ssk_tglbayar; ?></td></tr>
+	    <tr><td>Ssk Jmlsetor</td><td><?php echo $ssk_jmlsetor; ?></td></tr>
+	    <tr><td>Ssk Status</td><td><?php echo $ssk_status; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('setoransimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
