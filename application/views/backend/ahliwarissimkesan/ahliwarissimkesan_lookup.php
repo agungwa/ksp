@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Ahliwarissimkesan</b></h2>
+                    <h2><b>List Ahli Waris Simkesan</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,16 +40,14 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sik Kode</th>
-		<th class="text-center">Aws Noid</th>
-		<th class="text-center">Aws Jenisid</th>
-		<th class="text-center">Aws Nama</th>
-		<th class="text-center">Aws Alamat</th>
-		<th class="text-center">Aws Hubungan</th>
-		<th class="text-center">Aws Lampiran</th>
-		<th class="text-center">Aws Tgl</th>
-		<th class="text-center">Aws Flag</th>
-		<th class="text-center">Aws Info</th></tr>
+		<th class="text-center">Rekening Simkesan</th>
+		<th class="text-center">Ahli Waris ID</th>
+		<th class="text-center">Jenis ID</th>
+		<th class="text-center">Nama</th>
+		<th class="text-center">Alamat</th>
+		<th class="text-center">Hubungan</th>
+		<th class="text-center">Lampiran</th>
+		<th class="text-center">Tanggal</th>
             </thead>
 			<tbody><?php
             foreach ($ahliwarissimkesan_data as $ahliwarissimkesan)
@@ -64,9 +62,6 @@
 			<td><?php echo $ahliwarissimkesan->aws_alamat ?></td>
 			<td><?php echo $ahliwarissimkesan->aws_hubungan ?></td>
 			<td><?php echo $ahliwarissimkesan->aws_lampiran ?></td>
-			<td><?php echo $ahliwarissimkesan->aws_tgl ?></td>
-			<td><?php echo $ahliwarissimkesan->aws_flag ?></td>
-			<td><?php echo $ahliwarissimkesan->aws_info ?></td>
 		</tr>
                 
                 <?php

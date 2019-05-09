@@ -14,13 +14,13 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Sik Kode</td><td><?php echo $sik_kode; ?></td></tr>
-	    <tr><td>Aws Noid</td><td><?php echo $aws_noid; ?></td></tr>
-	    <tr><td>Aws Jenisid</td><td><?php echo $aws_jenisid; ?></td></tr>
-	    <tr><td>Aws Nama</td><td><?php echo $aws_nama; ?></td></tr>
-	    <tr><td>Aws Alamat</td><td><?php echo $aws_alamat; ?></td></tr>
-	    <tr><td>Aws Hubungan</td><td><?php echo $aws_hubungan; ?></td></tr>
-	    <tr><td>Aws Lampiran</td><td><?php echo $aws_lampiran; ?></td></tr>
+	    <tr><td>Rekening Simkesan</td><td><?php echo $sik_kode; ?></td></tr>
+	    <tr><td>Ahliwaris ID</td><td><?php echo $aws_noid; ?></td></tr>
+	    <tr><td>Jenis ID</td><td><?php echo $aws_jenisid; ?></td></tr>
+	    <tr><td>Nama</td><td><?php echo $aws_nama; ?></td></tr>
+	    <tr><td>Alamat</td><td><?php echo $aws_alamat; ?></td></tr>
+	    <tr><td>Hubungan</td><td><?php echo $aws_hubungan; ?></td></tr>
+	    <tr><td>Lampiran</td><td><?php echo $aws_lampiran; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('ahliwarissimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
