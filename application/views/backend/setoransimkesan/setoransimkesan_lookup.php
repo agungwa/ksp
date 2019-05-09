@@ -40,14 +40,12 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sik Kode</th>
-		<th class="text-center">Ssk Tglsetoran</th>
-		<th class="text-center">Ssk Tglbayar</th>
-		<th class="text-center">Ssk Jmlsetor</th>
-		<th class="text-center">Ssk Status</th>
-		<th class="text-center">Ssk Tgl</th>
-		<th class="text-center">Ssk Flag</th>
-		<th class="text-center">Ssk Info</th></tr>
+        	<th class="text-center">Rekening Simkesan</th>
+        	<th class="text-center">Tanggal Setoran</th>
+        	<th class="text-center">Tanggal Bayar</th>
+        	<th class="text-center">Jumlah Setor</th>
+        	<th class="text-center">Status</th>
+        	<th class="text-center">Tanggal</th>
             </thead>
 			<tbody><?php
             foreach ($setoransimkesan_data as $setoransimkesan)
@@ -61,8 +59,6 @@
 			<td><?php echo $setoransimkesan->ssk_jmlsetor ?></td>
 			<td><?php echo $setoransimkesan->ssk_status ?></td>
 			<td><?php echo $setoransimkesan->ssk_tgl ?></td>
-			<td><?php echo $setoransimkesan->ssk_flag ?></td>
-			<td><?php echo $setoransimkesan->ssk_info ?></td>
 		</tr>
                 
                 <?php
