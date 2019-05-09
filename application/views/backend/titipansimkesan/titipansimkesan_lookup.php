@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Titipansimkesan</b></h2>
+                    <h2><b>List Titipan Simkesan</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,14 +40,11 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sik Id</th>
-		<th class="text-center">Tts Tgltitip</th>
-		<th class="text-center">Tts Jmltitip</th>
-		<th class="text-center">Tts Jmlambil</th>
-		<th class="text-center">Tts Status</th>
-		<th class="text-center">Tts Tgl</th>
-		<th class="text-center">Tts Flag</th>
-		<th class="text-center">Tts Info</th></tr>
+		<th class="text-center">Rekening Simkesan</th>
+		<th class="text-center">Tanggal Titip</th>
+		<th class="text-center">Jumlah Titip</th>
+		<th class="text-center">Jumlah Ambil</th>
+		<th class="text-center">Status</th></tr>
             </thead>
 			<tbody><?php
             foreach ($titipansimkesan_data as $titipansimkesan)
@@ -55,14 +52,11 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $titipansimkesan->sik_id ?></td>
+			<td><?php echo $titipansimkesan->sik_kode ?></td>
 			<td><?php echo $titipansimkesan->tts_tgltitip ?></td>
 			<td><?php echo $titipansimkesan->tts_jmltitip ?></td>
 			<td><?php echo $titipansimkesan->tts_jmlambil ?></td>
 			<td><?php echo $titipansimkesan->tts_status ?></td>
-			<td><?php echo $titipansimkesan->tts_tgl ?></td>
-			<td><?php echo $titipansimkesan->tts_flag ?></td>
-			<td><?php echo $titipansimkesan->tts_info ?></td>
 		</tr>
                 
                 <?php

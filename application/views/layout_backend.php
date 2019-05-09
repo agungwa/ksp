@@ -222,7 +222,16 @@ lookup();
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="<?=base_url()?>Setoransimkesan">Setoran</a></li>
+                        <li>
+                        <a href="#" id="damian">Setor Simkesan<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>Setoransimkesan">Setoran Simkesan</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>titipansimkesan">Titipan Simkesan</a>
+                                </li>
+                            </ul>
                         <li>
                             <a href="#" id="damian">Klaim<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">

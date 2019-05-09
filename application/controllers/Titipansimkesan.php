@@ -84,7 +84,7 @@ class Titipansimkesan extends CI_Controller
         if ($row) {
             $data = array(
 		'tts_id' => $row->tts_id,
-		'sik_id' => $row->sik_id,
+		'sik_kode' => $row->sik_kode,
 		'tts_tgltitip' => $row->tts_tgltitip,
 		'tts_jmltitip' => $row->tts_jmltitip,
 		'tts_jmlambil' => $row->tts_jmlambil,
@@ -107,14 +107,12 @@ class Titipansimkesan extends CI_Controller
             'button' => 'Create',
             'action' => site_url('titipansimkesan/create_action'),
 	    'tts_id' => set_value('tts_id'),
-	    'sik_id' => set_value('sik_id'),
+	    'sik_kode' => set_value('sik_kode'),
+	    'nm_sik_kode' => set_value('nm_sik_kode'),
 	    'tts_tgltitip' => set_value('tts_tgltitip'),
 	    'tts_jmltitip' => set_value('tts_jmltitip'),
 	    'tts_jmlambil' => set_value('tts_jmlambil'),
 	    'tts_status' => set_value('tts_status'),
-	    'tts_tgl' => set_value('tts_tgl'),
-	    'tts_flag' => set_value('tts_flag'),
-	    'tts_info' => set_value('tts_info'),
 	    'content' => 'backend/titipansimkesan/titipansimkesan_form',
 	);
         $this->load->view(layout(), $data);
@@ -128,14 +126,14 @@ class Titipansimkesan extends CI_Controller
             $this->create();
         } else {
             $data = array(
-		'sik_id' => $this->input->post('sik_id',TRUE),
+		'sik_kode' => $this->input->post('sik_kode',TRUE),
 		'tts_tgltitip' => $this->input->post('tts_tgltitip',TRUE),
 		'tts_jmltitip' => $this->input->post('tts_jmltitip',TRUE),
 		'tts_jmlambil' => $this->input->post('tts_jmlambil',TRUE),
 		'tts_status' => $this->input->post('tts_status',TRUE),
-		'tts_tgl' => $this->input->post('tts_tgl',TRUE),
-		'tts_flag' => $this->input->post('tts_flag',TRUE),
-		'tts_info' => $this->input->post('tts_info',TRUE),
+		'tts_tgl' => $this->tgl,
+		'tts_flag' => 0,
+		'tts_info' => "",
 	    );
 
             $this->Titipansimkesan_model->insert($data);
@@ -153,14 +151,12 @@ class Titipansimkesan extends CI_Controller
                 'button' => 'Update',
                 'action' => site_url('titipansimkesan/update_action'),
 		'tts_id' => set_value('tts_id', $row->tts_id),
-		'sik_id' => set_value('sik_id', $row->sik_id),
+		'sik_kode' => set_value('sik_kode', $row->sik_kode),
+		'nm_sik_kode' => set_value('nm_sik_kode', $row->sik_kode),
 		'tts_tgltitip' => set_value('tts_tgltitip', $row->tts_tgltitip),
 		'tts_jmltitip' => set_value('tts_jmltitip', $row->tts_jmltitip),
 		'tts_jmlambil' => set_value('tts_jmlambil', $row->tts_jmlambil),
 		'tts_status' => set_value('tts_status', $row->tts_status),
-		'tts_tgl' => set_value('tts_tgl', $row->tts_tgl),
-		'tts_flag' => set_value('tts_flag', $row->tts_flag),
-		'tts_info' => set_value('tts_info', $row->tts_info),
 	    'content' => 'backend/titipansimkesan/titipansimkesan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -178,14 +174,12 @@ class Titipansimkesan extends CI_Controller
             $this->update($this->input->post('tts_id', TRUE));
         } else {
             $data = array(
-		'sik_id' => $this->input->post('sik_id',TRUE),
+		'sik_kode' => $this->input->post('sik_kode',TRUE),
 		'tts_tgltitip' => $this->input->post('tts_tgltitip',TRUE),
 		'tts_jmltitip' => $this->input->post('tts_jmltitip',TRUE),
 		'tts_jmlambil' => $this->input->post('tts_jmlambil',TRUE),
 		'tts_status' => $this->input->post('tts_status',TRUE),
-		'tts_tgl' => $this->input->post('tts_tgl',TRUE),
-		'tts_flag' => $this->input->post('tts_flag',TRUE),
-		'tts_info' => $this->input->post('tts_info',TRUE),
+		'tts_flag' => 1,
 	    );
 
             $this->Titipansimkesan_model->update($this->input->post('tts_id', TRUE), $data);
@@ -199,6 +193,9 @@ class Titipansimkesan extends CI_Controller
         $row = $this->Titipansimkesan_model->get_by_id($id);
 
         if ($row) {
+            $data = array (
+                'tts_flag' => 2,
+            );
             $this->Titipansimkesan_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('titipansimkesan'));
@@ -210,14 +207,11 @@ class Titipansimkesan extends CI_Controller
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('sik_id', 'sik id', 'trim|required');
+	$this->form_validation->set_rules('sik_kode', 'sik kode', 'trim|required');
 	$this->form_validation->set_rules('tts_tgltitip', 'tts tgltitip', 'trim|required');
 	$this->form_validation->set_rules('tts_jmltitip', 'tts jmltitip', 'trim|required');
 	$this->form_validation->set_rules('tts_jmlambil', 'tts jmlambil', 'trim|required');
 	$this->form_validation->set_rules('tts_status', 'tts status', 'trim|required');
-	$this->form_validation->set_rules('tts_tgl', 'tts tgl', 'trim|required');
-	$this->form_validation->set_rules('tts_flag', 'tts flag', 'trim|required');
-	$this->form_validation->set_rules('tts_info', 'tts info', 'trim|required');
 
 	$this->form_validation->set_rules('tts_id', 'tts_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

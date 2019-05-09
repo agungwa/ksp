@@ -30,11 +30,11 @@
         </div>
 	    <div class="form-group">
             <label for="float">Jumlah Setor <?php echo form_error('ssi_jmlsetor') ?></label>
-            <input type="text" class="form-control" name="ssi_jmlsetor" id="ssi_jmlsetor" placeholder="Jumalah Setor" value="<?php echo $ssi_jmlsetor; ?>" />
+            <input type="number" class="form-control" name="ssi_jmlsetor" id="ssi_jmlsetor" placeholder="Jumalah Setor" value="<?php echo $ssi_jmlsetor; ?>" />
         </div>
 	    <div class="form-group">
             <label for="float">Jumlah Bunga <?php echo form_error('ssi_jmlbunga') ?></label>
-            <input type="text" class="form-control" name="ssi_jmlbunga" id="ssi_jmlbunga" placeholder="Jumlah Bunga" value="<?php echo $ssi_jmlbunga; ?>" />
+            <input type="number" step="0.01" class="form-control" name="ssi_jmlbunga" id="ssi_jmlbunga" placeholder="Jumlah Bunga" value="<?php echo $ssi_jmlbunga; ?>" />
         </div>
 	    <input type="hidden" name="ssi_id" value="<?php echo $ssi_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
