@@ -48,14 +48,15 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ang No</th>
-		<th class="text-center">Kar Kode</th>
-		<th class="text-center">Psk Id</th>
-		<th class="text-center">Wil Kode</th>
-		<th class="text-center">Sik Tglpendaftaran</th>
-		<th class="text-center">Sik Tglberakhir</th>
-		<th class="text-center">Sik Status</th>
-		<th class="text-center">Sik Tgl</th>
+        <th class="text-center">Rekening Simkesan</th>
+		<th class="text-center">Angggota</th>
+		<th class="text-center">Karyawan</th>
+		<th class="text-center">Plan Simkesan</th>
+		<th class="text-center">Wilayah</th>
+		<th class="text-center">Tanggal Pendaftaran</th>
+		<th class="text-center">Tanggal Berakhir</th>
+		<th class="text-center">Status</th>
+		<th class="text-center">Tanggal</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -65,6 +66,7 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
+            <td><?php echo $simkesan->sik_kode ?></td>
 			<td><?php echo $simkesan->ang_no ?></td>
 			<td><?php echo $simkesan->kar_kode ?></td>
 			<td><?php echo $simkesan->psk_id ?></td>
