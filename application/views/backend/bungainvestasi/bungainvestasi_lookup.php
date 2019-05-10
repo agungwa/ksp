@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Bungainvestasi</b></h2>
+                    <h2><b>List Bunga Investasi</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,11 +40,8 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Biv Bunga</th>
-		<th class="text-center">Biv Keterangan</th>
-		<th class="text-center">Biv Tgl</th>
-		<th class="text-center">Biv Flag</th>
-		<th class="text-center">Biv Info</th></tr>
+		<th class="text-center">Bunga</th>
+		<th class="text-center">Keterangan</th></tr>
             </thead>
 			<tbody><?php
             foreach ($bungainvestasi_data as $bungainvestasi)
@@ -54,9 +51,6 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $bungainvestasi->biv_bunga ?></td>
 			<td><?php echo $bungainvestasi->biv_keterangan ?></td>
-			<td><?php echo $bungainvestasi->biv_tgl ?></td>
-			<td><?php echo $bungainvestasi->biv_flag ?></td>
-			<td><?php echo $bungainvestasi->biv_info ?></td>
 		</tr>
                 
                 <?php
