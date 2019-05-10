@@ -8,14 +8,16 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2 style="margin-top:0px"><?php echo $button ?> Investasiberjangka </h2>
+                    <h2 style="margin-top:0px"><?php echo $button ?> Investasi Berjangka </h2>
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
-        <div class="ibox-content">
+        <div class="ibox-content col-md-12">
+        <div class="col-md-8">
+        <div class="col-md-6">
         <div class="form-group">
-            <label for="varchar">Investasi Kode <?php echo form_error('ivb_kode') ?></label>
-            <input type="text" class="form-control" name="ivb_kode" id="ivb_kode" placeholder="Ivb Kode" value="<?php echo $ivb_kode; ?>" />
+            <label for="varchar">Rekening Investasi <?php echo form_error('ivb_kode') ?></label>
+            <input type="text" class="form-control" name="ivb_kode" id="ivb_kode" placeholder="Rekening Investasi" value="<?php echo $ivb_kode; ?>" />
         </div>
         <div class="form-group">
             <label for="varchar">Anggota <?php echo form_error('ang_no') ?></label>
@@ -37,6 +39,8 @@
             </div>
             </div>
         </div>
+        
+        
 	    <div class="form-group">
             <label for="varchar">Wilayah <?php echo form_error('wil_kode') ?></label>
             <div class="input-group">
@@ -57,6 +61,8 @@
             </div>
             </div>
         </div>
+        </div>
+        <div class="col-md-6">
         <div class="form-group">
             <label for="int">Jasa Investasi <?php echo form_error('jiv_id') ?></label>
             <div class="input-group">
@@ -67,6 +73,7 @@
             </div>
             </div>
         </div>
+       
         <div class="form-group">
             <label for="int">Bunga Investasi <?php echo form_error('biv_id') ?></label>
             <div class="input-group">
@@ -78,19 +85,21 @@
             </div>
         </div>
 	    <div class="form-group">
-            <label for="datetime">Ivb Tglpendaftaran <?php echo form_error('ivb_tglpendaftaran') ?></label>
-            <input type="date" class="form-control" name="ivb_tglpendaftaran" id="ivb_tglpendaftaran" placeholder="Ivb Tglpendaftaran" value="<?php echo $ivb_tglpendaftaran; ?>" />
+            <label for="datetime">Tanggal Pendaftaran <?php echo form_error('ivb_tglpendaftaran') ?></label>
+            <input type="date" class="form-control" name="ivb_tglpendaftaran" id="todays-date" placeholder="Tanggal Pendaftaran" value="<?php echo $ivb_tglpendaftaran; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="datetime">Ivb Tglperpanjangan <?php echo form_error('ivb_tglperpanjangan') ?></label>
-            <input type="date" class="form-control" name="ivb_tglperpanjangan" id="ivb_tglperpanjangan" placeholder="Ivb Tglperpanjangan" value="<?php echo $ivb_tglperpanjangan; ?>" />
+            <label for="datetime">Tanggal Perpanjangan<?php echo form_error('ivb_tglperpanjangan') ?></label>
+            <input type="date" class="form-control" name="ivb_tglperpanjangan" id="ivb_tglperpanjangan" placeholder="Tanggal Perpanjangan" value="<?php echo $ivb_tglperpanjangan; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="tinyint">Ivb Status <?php echo form_error('ivb_status') ?></label>
-            <input type="text" class="form-control" name="ivb_status" id="ivb_status" placeholder="Ivb Status" value="<?php echo $ivb_status; ?>" />
+            <label for="tinyint">Status <?php echo form_error('ivb_status') ?></label>
+            <input type="text" class="form-control" name="ivb_status" id="ivb_status" placeholder="Status" value="<?php echo $ivb_status; ?>" />
         </div>
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('investasiberjangka') ?>" class="btn btn-default">Cancel</a>
+        </div>
+        </div>
 	</div>
             </form>
         </div>

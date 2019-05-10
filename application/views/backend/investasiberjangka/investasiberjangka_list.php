@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Investasiberjangka</b></h2>
+                    <h2><b>List Investasi Berjangka</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -48,16 +48,16 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-        <th class="text-center">Investasi Kode</th>
-		<th class="text-center">Ang No</th>
-		<th class="text-center">Kar Kode</th>
-		<th class="text-center">Wil Kode</th>
-		<th class="text-center">Jwi Id</th>
-		<th class="text-center">Jiv Id</th>
-		<th class="text-center">Biv Id</th>
-		<th class="text-center">Ivb Tglpendaftaran</th>
-		<th class="text-center">Ivb Tglperpanjangan</th>
-		<th class="text-center">Ivb Status</th>
+        <th class="text-center">Rekening Investasi</th>
+		<th class="text-center">Anggota</th>
+		<th class="text-center">Karyawan</th>
+		<th class="text-center">Wilayah</th>
+		<th class="text-center">Jangka Waktu</th>
+		<th class="text-center">Jasa</th>
+		<th class="text-center">Bunga</th>
+		<th class="text-center">Tanggal Pendaftaran</th>
+		<th class="text-center">Tanggal Perpanjangan</th>
+		<th class="text-center">Status</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
