@@ -303,7 +303,7 @@ lookup();
                                     <a href="<?=base_url()?>jangkawaktuinvestasi">Jangka Waktu</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url()?>jasainvestas">Jasa Investasi</a>
+                                    <a href="<?=base_url()?>jasainvestasi">Jasa Investasi</a>
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>bungainvestasi">Bunga Investasi</a>
