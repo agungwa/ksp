@@ -14,13 +14,13 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Sik Kode</td><td><?php echo $sik_kode; ?></td></tr>
-	    <tr><td>Jkl Id</td><td><?php echo $jkl_id; ?></td></tr>
-	    <tr><td>Ksi Tglklaim</td><td><?php echo $ksi_tglklaim; ?></td></tr>
-	    <tr><td>Ksi Jmlklaim</td><td><?php echo $ksi_jmlklaim; ?></td></tr>
-	    <tr><td>Ksi Jmltunggakan</td><td><?php echo $ksi_jmltunggakan; ?></td></tr>
-	    <tr><td>Ksi Jmlditerima</td><td><?php echo $ksi_jmlditerima; ?></td></tr>
-	    <tr><td>Ksi Status</td><td><?php echo $ksi_status; ?></td></tr>
+	    <tr><td>Rekening Simkesan</td><td><?php echo $sik_kode; ?></td></tr>
+	    <tr><td>Jenis Klaim</td><td><?php echo $jkl_id; ?></td></tr>
+	    <tr><td>Tanggal Klaim</td><td><?php echo $ksi_tglklaim; ?></td></tr>
+	    <tr><td>Jumlah Klaim</td><td><?php echo $ksi_jmlklaim; ?></td></tr>
+	    <tr><td>Jumlah Tunggakan</td><td><?php echo $ksi_jmltunggakan; ?></td></tr>
+	    <tr><td>Jumlah Terima</td><td><?php echo $ksi_jmlditerima; ?></td></tr>
+	    <tr><td>Status</td><td><?php echo $ksi_status; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('klaimsimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
