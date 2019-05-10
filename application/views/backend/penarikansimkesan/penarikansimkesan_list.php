@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Penarikansimkesan</b></h2>
+                    <h2><b>List Penarikan Simkesan</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -48,13 +48,13 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Sik Kode</th>
-		<th class="text-center">Jps Id</th>
-		<th class="text-center">Pns Tglpenarikan</th>
-		<th class="text-center">Pns Jmlsimkesan</th>
-		<th class="text-center">Pns Jmlpenarikan</th>
-		<th class="text-center">Pns Catatan</th>
-		<th class="text-center">Pns Tgl</th>
+		<th class="text-center">Rekening Simkesan</th>
+		<th class="text-center">Jenis Penarikan</th>
+		<th class="text-center">Tanggal Penarikan</th>
+		<th class="text-center">Jumlah Simkesan</th>
+		<th class="text-center">Jumlah Penarikan</th>
+		<th class="text-center">Catatan</th>
+		<th class="text-center">Tanggal</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
