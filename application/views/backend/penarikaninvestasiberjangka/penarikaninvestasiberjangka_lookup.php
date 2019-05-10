@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Penarikaninvestasiberjangka</b></h2>
+                    <h2><b>List Penarikan Investasi Berjangka</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,13 +40,10 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ivb Kode</th>
-		<th class="text-center">Pib Penarikanke</th>
-		<th class="text-center">Pib Jmlkeuntungan</th>
-		<th class="text-center">Pib Jmlditerima</th>
-		<th class="text-center">Pib Tgl</th>
-		<th class="text-center">Pib Flag</th>
-		<th class="text-center">Pib Info</th></tr>
+		<th class="text-center">Rekening Investasi</th>
+		<th class="text-center">Penarikanke</th>
+		<th class="text-center">Jumlah Keuntungan</th>
+		<th class="text-center">Jumlah Diterima</th></tr>
             </thead>
 			<tbody><?php
             foreach ($penarikaninvestasiberjangka_data as $penarikaninvestasiberjangka)
@@ -58,9 +55,6 @@
 			<td><?php echo $penarikaninvestasiberjangka->pib_penarikanke ?></td>
 			<td><?php echo $penarikaninvestasiberjangka->pib_jmlkeuntungan ?></td>
 			<td><?php echo $penarikaninvestasiberjangka->pib_jmlditerima ?></td>
-			<td><?php echo $penarikaninvestasiberjangka->pib_tgl ?></td>
-			<td><?php echo $penarikaninvestasiberjangka->pib_flag ?></td>
-			<td><?php echo $penarikaninvestasiberjangka->pib_info ?></td>
 		</tr>
                 
                 <?php
