@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Setting Status Peminjam</b></h2>
+                    <h2><b>List Settingstatuspeminjam</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -48,7 +48,10 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ssp Nama Status</th>
+		<th class="text-center">Ssp Namastatus</th>
+		<th class="text-center">Ssp Tgl</th>
+		<th class="text-center">Ssp Flag</th>
+		<th class="text-center">Ssp Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -59,6 +62,9 @@
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $settingstatuspeminjam->ssp_namastatus ?></td>
+			<td><?php echo $settingstatuspeminjam->ssp_tgl ?></td>
+			<td><?php echo $settingstatuspeminjam->ssp_flag ?></td>
+			<td><?php echo $settingstatuspeminjam->ssp_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('settingstatuspeminjam/read/'.$settingstatuspeminjam->ssp_id),'Read','class="text-navy"'); 

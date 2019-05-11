@@ -104,6 +104,9 @@ class Settingstatuspeminjam extends MY_Base
             'action' => site_url('settingstatuspeminjam/create_action'),
 	    'ssp_id' => set_value('ssp_id'),
 	    'ssp_namastatus' => set_value('ssp_namastatus'),
+	    'ssp_tgl' => set_value('ssp_tgl'),
+	    'ssp_flag' => set_value('ssp_flag'),
+	    'ssp_info' => set_value('ssp_info'),
 	    'content' => 'backend/settingstatuspeminjam/settingstatuspeminjam_form',
 	);
         $this->load->view(layout(), $data);
@@ -118,9 +121,9 @@ class Settingstatuspeminjam extends MY_Base
         } else {
             $data = array(
 		'ssp_namastatus' => $this->input->post('ssp_namastatus',TRUE),
-		'ssp_tgl' => $this->tgl,
-		'ssp_flag' => 0,
-		'ssp_info' => "",
+		'ssp_tgl' => $this->input->post('ssp_tgl',TRUE),
+		'ssp_flag' => $this->input->post('ssp_flag',TRUE),
+		'ssp_info' => $this->input->post('ssp_info',TRUE),
 	    );
 
             $this->Settingstatuspeminjam_model->insert($data);
@@ -139,6 +142,9 @@ class Settingstatuspeminjam extends MY_Base
                 'action' => site_url('settingstatuspeminjam/update_action'),
 		'ssp_id' => set_value('ssp_id', $row->ssp_id),
 		'ssp_namastatus' => set_value('ssp_namastatus', $row->ssp_namastatus),
+		'ssp_tgl' => set_value('ssp_tgl', $row->ssp_tgl),
+		'ssp_flag' => set_value('ssp_flag', $row->ssp_flag),
+		'ssp_info' => set_value('ssp_info', $row->ssp_info),
 	    'content' => 'backend/settingstatuspeminjam/settingstatuspeminjam_form',
 	    );
             $this->load->view(layout(), $data);
@@ -157,7 +163,9 @@ class Settingstatuspeminjam extends MY_Base
         } else {
             $data = array(
 		'ssp_namastatus' => $this->input->post('ssp_namastatus',TRUE),
-		'ssp_flag' => 1,
+		'ssp_tgl' => $this->input->post('ssp_tgl',TRUE),
+		'ssp_flag' => $this->input->post('ssp_flag',TRUE),
+		'ssp_info' => $this->input->post('ssp_info',TRUE),
 	    );
 
             $this->Settingstatuspeminjam_model->update($this->input->post('ssp_id', TRUE), $data);
@@ -171,10 +179,7 @@ class Settingstatuspeminjam extends MY_Base
         $row = $this->Settingstatuspeminjam_model->get_by_id($id);
 
         if ($row) {
-            $data = array (
-                'ssp_flag' => 2,
-            );
-            $this->Settingstatuspeminjam_model->update($id, $data);
+            $this->Settingstatuspeminjam_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('settingstatuspeminjam'));
         } else {

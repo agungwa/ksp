@@ -186,7 +186,7 @@ class Keuntunganinvestasi extends MY_Base
             $data = array (
                 'kiv_flag' => 2,
             );
-            $this->Keuntunganinvestasi_model->update($id, $data);
+            $this->Keuntunganinvestasi_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('keuntunganinvestasi'));
         } else {

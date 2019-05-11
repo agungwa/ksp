@@ -18,7 +18,6 @@ class Settingstatuspeminjam_model extends CI_Model
     // get all
     function get_all()
     {
-        $this->db->where('ssp_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -32,8 +31,11 @@ class Settingstatuspeminjam_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-       $where = "ssp_id LIKE '%$q%' ESCAPE '!' AND ssp_flag < 2";
-       $this->db->where($where);
+        $this->db->like('ssp_id', $q);
+	$this->db->or_like('ssp_namastatus', $q);
+	$this->db->or_like('ssp_tgl', $q);
+	$this->db->or_like('ssp_flag', $q);
+	$this->db->or_like('ssp_info', $q);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -41,8 +43,11 @@ class Settingstatuspeminjam_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $where = "ssp_id LIKE '%$q%' ESCAPE '!' AND ssp_flag < 2";
-        $this->db->where($where);
+        $this->db->like('ssp_id', $q);
+	$this->db->or_like('ssp_namastatus', $q);
+	$this->db->or_like('ssp_tgl', $q);
+	$this->db->or_like('ssp_flag', $q);
+	$this->db->or_like('ssp_info', $q);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }

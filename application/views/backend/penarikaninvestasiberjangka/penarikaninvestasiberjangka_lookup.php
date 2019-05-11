@@ -50,7 +50,6 @@
             {
                 ?>
                 <tr>
-                <tr onclick="setVal('<?=$idhtml?>','<?=$penarikaninvestasiberjangka->pib_id?>','<?=$penarikaninvestasiberjangka->ivb_kode?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $penarikaninvestasiberjangka->ivb_kode ?></td>
 			<td><?php echo $penarikaninvestasiberjangka->pib_penarikanke ?></td>
