@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Potonganprovisi</b></h2>
+                    <h2><b>List Potongan Provisi</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,10 +40,7 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Pop Potongan</th>
-		<th class="text-center">Pop Tgl</th>
-		<th class="text-center">Pop Flag</th>
-		<th class="text-center">Pop Info</th></tr>
+		<th class="text-center">Pop Potongan</th></tr>
             </thead>
 			<tbody><?php
             foreach ($potonganprovisi_data as $potonganprovisi)
@@ -52,9 +49,6 @@
                 <tr onclick="setVal('<?=$idhtml?>','<?=$potonganprovisi->pop_id?>','<?=$potonganprovisi->pop_potongan?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $potonganprovisi->pop_potongan ?></td>
-			<td><?php echo $potonganprovisi->pop_tgl ?></td>
-			<td><?php echo $potonganprovisi->pop_flag ?></td>
-			<td><?php echo $potonganprovisi->pop_info ?></td>
 		</tr>
                 
                 <?php
