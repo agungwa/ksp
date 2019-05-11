@@ -7,15 +7,15 @@
     <div class="col-lg-12">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h2 style="margin-top:0px">Settingdenda Read</h2>
+            <h2 style="margin-top:0px">Setting Denda Read</h2>
             <div class="ibox-tools">
             </div>
         </div>
         <div class="ibox-content">
         
         <table class="table">
-    	    <tr><td>Sed Hari</td><td><?php echo $sed_hari; ?></td></tr>
-    	    <tr><td>Sed Denda</td><td><?php echo $sed_denda; ?></td></tr>
+    	    <tr><td>Hari</td><td><?php echo $sed_hari; ?></td></tr>
+    	    <tr><td>Denda</td><td><?php echo $sed_denda; ?></td></tr>
     	    <tr><td></td><td><a href="<?php echo site_url('settingdenda') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
