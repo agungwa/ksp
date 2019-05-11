@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Settingkategoripeminjam</b></h2>
+                    <h2><b>List Setting Kategori Peminjam</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,10 +40,7 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Skp Kategori</th>
-		<th class="text-center">Skp Tgl</th>
-		<th class="text-center">Skp Flag</th>
-		<th class="text-center">Skp Info</th></tr>
+		<th class="text-center">Kategori</th></tr>
             </thead>
 			<tbody><?php
             foreach ($settingkategoripeminjam_data as $settingkategoripeminjam)
