@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Settingstatuspeminjam</b></h2>
+                    <h2><b>List Setting Status Peminjam</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,21 +40,16 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ssp Namastatus</th>
-		<th class="text-center">Ssp Tgl</th>
-		<th class="text-center">Ssp Flag</th>
-		<th class="text-center">Ssp Info</th></tr>
+		<th class="text-center">Nama Status</th></tr>
             </thead>
 			<tbody><?php
             foreach ($settingstatuspeminjam_data as $settingstatuspeminjam)
             {
                 ?>
                 <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$settingstatuspeminjam->ssp_id?>','<?=$settingstatuspeminjam->ssp_namastatus?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $settingstatuspeminjam->ssp_namastatus ?></td>
-			<td><?php echo $settingstatuspeminjam->ssp_tgl ?></td>
-			<td><?php echo $settingstatuspeminjam->ssp_flag ?></td>
-			<td><?php echo $settingstatuspeminjam->ssp_info ?></td>
 		</tr>
                 
                 <?php
