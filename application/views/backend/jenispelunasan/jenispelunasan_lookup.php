@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Jenispelunasan</b></h2>
+                    <h2><b>Jenis Pelunasan</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,11 +40,8 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jep Jenis</th>
-		<th class="text-center">Jep Keterangan</th>
-		<th class="text-center">Jep Tgl</th>
-		<th class="text-center">Jep Flag</th>
-		<th class="text-center">Jep Info</th></tr>
+		<th class="text-center">Jenis</th>
+		<th class="text-center">Keterangan</th></tr>
             </thead>
 			<tbody><?php
             foreach ($jenispelunasan_data as $jenispelunasan)
@@ -54,9 +51,6 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenispelunasan->jep_jenis ?></td>
 			<td><?php echo $jenispelunasan->jep_keterangan ?></td>
-			<td><?php echo $jenispelunasan->jep_tgl ?></td>
-			<td><?php echo $jenispelunasan->jep_flag ?></td>
-			<td><?php echo $jenispelunasan->jep_info ?></td>
 		</tr>
                 
                 <?php
