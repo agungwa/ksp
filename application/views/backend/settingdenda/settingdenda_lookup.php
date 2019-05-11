@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Settingdenda</b></h2>
+                    <h2><b>List Setting Denda</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,11 +40,8 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-        		<th class="text-center">Sed Hari</th>
-        		<th class="text-center">Sed Denda</th>
-        		<th class="text-center">Sed Tgl</th>
-        		<th class="text-center">Sed Flag</th>
-        		<th class="text-center">Sed Info</th></tr>
+        		<th class="text-center">Hari</th>
+        		<th class="text-center">Denda</th></tr>
             </thead>
 			<tbody><?php
             foreach ($settingdenda_data as $settingdenda)
@@ -54,9 +51,6 @@
         			<td width="80px"><?php echo ++$start ?></td>
         			<td><?php echo $settingdenda->sed_hari ?></td>
         			<td><?php echo $settingdenda->sed_denda ?></td>
-        			<td><?php echo $settingdenda->sed_tgl ?></td>
-        			<td><?php echo $settingdenda->sed_flag ?></td>
-        			<td><?php echo $settingdenda->sed_info ?></td>
         		</tr>
                 
                 <?php
