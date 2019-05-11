@@ -40,7 +40,7 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Pop Potongan</th></tr>
+		<th class="text-center">Potongan</th></tr>
             </thead>
 			<tbody><?php
             foreach ($potonganprovisi_data as $potonganprovisi)
