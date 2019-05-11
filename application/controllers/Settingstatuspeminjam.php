@@ -186,9 +186,6 @@ class Settingstatuspeminjam extends MY_Base
     public function _rules() 
     {
 	$this->form_validation->set_rules('ssp_namastatus', 'ssp namastatus', 'trim|required');
-	$this->form_validation->set_rules('ssp_tgl', 'ssp tgl', 'trim|required');
-	$this->form_validation->set_rules('ssp_flag', 'ssp flag', 'trim|required');
-	$this->form_validation->set_rules('ssp_info', 'ssp info', 'trim|required');
 
 	$this->form_validation->set_rules('ssp_id', 'ssp_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

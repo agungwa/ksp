@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Statuspeminjam</b></h2>
+                    <h2><b>List Status Peminjam</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,12 +40,9 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ang No</th>
-		<th class="text-center">Ssp Id</th>
-		<th class="text-center">Pin Id</th>
-		<th class="text-center">Stp Tgl</th>
-		<th class="text-center">Stp Flag</th>
-		<th class="text-center">Stp Info</th></tr>
+		<th class="text-center">Anggota</th>
+		<th class="text-center">Status Peminjam</th>
+		<th class="text-center">Rekening Pinjaman</th></tr>
             </thead>
 			<tbody><?php
             foreach ($statuspeminjam_data as $statuspeminjam)
@@ -56,9 +53,6 @@
 			<td><?php echo $statuspeminjam->ang_no ?></td>
 			<td><?php echo $statuspeminjam->ssp_id ?></td>
 			<td><?php echo $statuspeminjam->pin_id ?></td>
-			<td><?php echo $statuspeminjam->stp_tgl ?></td>
-			<td><?php echo $statuspeminjam->stp_flag ?></td>
-			<td><?php echo $statuspeminjam->stp_info ?></td>
 		</tr>
                 
                 <?php

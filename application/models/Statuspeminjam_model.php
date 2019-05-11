@@ -18,6 +18,7 @@ class Statuspeminjam_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('ssp_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,13 +32,8 @@ class Statuspeminjam_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('stp_id', $q);
-	$this->db->or_like('ang_no', $q);
-	$this->db->or_like('ssp_id', $q);
-	$this->db->or_like('pin_id', $q);
-	$this->db->or_like('stp_tgl', $q);
-	$this->db->or_like('stp_flag', $q);
-	$this->db->or_like('stp_info', $q);
+        $where = "(stp_id LIKE '%$q%' ESCAPE '!' OR ang_no LIKE '%$q%' ESCAPE '!') AND stp_flag < 2";
+        $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -45,13 +41,8 @@ class Statuspeminjam_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('stp_id', $q);
-	$this->db->or_like('ang_no', $q);
-	$this->db->or_like('ssp_id', $q);
-	$this->db->or_like('pin_id', $q);
-	$this->db->or_like('stp_tgl', $q);
-	$this->db->or_like('stp_flag', $q);
-	$this->db->or_like('stp_info', $q);
+        $where = "(stp_id LIKE '%$q%' ESCAPE '!' OR ang_no LIKE '%$q%' ESCAPE '!') AND stp_flag < 2";
+        $this->db->where($where);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
