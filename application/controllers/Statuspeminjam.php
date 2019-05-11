@@ -106,11 +106,11 @@ class Statuspeminjam extends MY_Base
             'action' => site_url('statuspeminjam/create_action'),
 	    'stp_id' => set_value('stp_id'),
 	    'ang_no' => set_value('ang_no'),
+	    'nm_ang_no' => set_value('nm_ang_no'),
 	    'ssp_id' => set_value('ssp_id'),
+	    'nm_ssp_id' => set_value('nm_ssp_id'),
 	    'pin_id' => set_value('pin_id'),
-	    'stp_tgl' => set_value('stp_tgl'),
-	    'stp_flag' => set_value('stp_flag'),
-	    'stp_info' => set_value('stp_info'),
+	    'nm_pin_id' => set_value('nm_pin_id'),
 	    'content' => 'backend/statuspeminjam/statuspeminjam_form',
 	);
         $this->load->view(layout(), $data);
@@ -127,9 +127,9 @@ class Statuspeminjam extends MY_Base
 		'ang_no' => $this->input->post('ang_no',TRUE),
 		'ssp_id' => $this->input->post('ssp_id',TRUE),
 		'pin_id' => $this->input->post('pin_id',TRUE),
-		'stp_tgl' => $this->input->post('stp_tgl',TRUE),
-		'stp_flag' => $this->input->post('stp_flag',TRUE),
-		'stp_info' => $this->input->post('stp_info',TRUE),
+		'stp_tgl' => $this->tgl,
+		'stp_flag' => 0,
+		'stp_info' => "",
 	    );
 
             $this->Statuspeminjam_model->insert($data);
@@ -148,11 +148,10 @@ class Statuspeminjam extends MY_Base
                 'action' => site_url('statuspeminjam/update_action'),
 		'stp_id' => set_value('stp_id', $row->stp_id),
 		'ang_no' => set_value('ang_no', $row->ang_no),
+		'nm_ang_no' => set_value('nm_ang_no', $row->ang_nama),
 		'ssp_id' => set_value('ssp_id', $row->ssp_id),
+		'nm_ssp_id' => set_value('nm_ssp_id', $row->ssp_namastatus),
 		'pin_id' => set_value('pin_id', $row->pin_id),
-		'stp_tgl' => set_value('stp_tgl', $row->stp_tgl),
-		'stp_flag' => set_value('stp_flag', $row->stp_flag),
-		'stp_info' => set_value('stp_info', $row->stp_info),
 	    'content' => 'backend/statuspeminjam/statuspeminjam_form',
 	    );
             $this->load->view(layout(), $data);
@@ -173,9 +172,7 @@ class Statuspeminjam extends MY_Base
 		'ang_no' => $this->input->post('ang_no',TRUE),
 		'ssp_id' => $this->input->post('ssp_id',TRUE),
 		'pin_id' => $this->input->post('pin_id',TRUE),
-		'stp_tgl' => $this->input->post('stp_tgl',TRUE),
-		'stp_flag' => $this->input->post('stp_flag',TRUE),
-		'stp_info' => $this->input->post('stp_info',TRUE),
+		'stp_flag' => 1,
 	    );
 
             $this->Statuspeminjam_model->update($this->input->post('stp_id', TRUE), $data);
@@ -189,7 +186,10 @@ class Statuspeminjam extends MY_Base
         $row = $this->Statuspeminjam_model->get_by_id($id);
 
         if ($row) {
-            $this->Statuspeminjam_model->delete($id);
+            $data = array (
+                'stp_falg' => 2,
+            );
+            $this->Statuspeminjam_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('statuspeminjam'));
         } else {
@@ -203,9 +203,6 @@ class Statuspeminjam extends MY_Base
 	$this->form_validation->set_rules('ang_no', 'ang no', 'trim|required');
 	$this->form_validation->set_rules('ssp_id', 'ssp id', 'trim|required');
 	$this->form_validation->set_rules('pin_id', 'pin id', 'trim|required');
-	$this->form_validation->set_rules('stp_tgl', 'stp tgl', 'trim|required');
-	$this->form_validation->set_rules('stp_flag', 'stp flag', 'trim|required');
-	$this->form_validation->set_rules('stp_info', 'stp info', 'trim|required');
 
 	$this->form_validation->set_rules('stp_id', 'stp_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
