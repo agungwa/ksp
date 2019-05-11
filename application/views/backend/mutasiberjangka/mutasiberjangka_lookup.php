@@ -40,14 +40,11 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ivb Kode</th>
-		<th class="text-center">Mib Tglmutasi</th>
-		<th class="text-center">Mib Asal</th>
-		<th class="text-center">Mib Tujuan</th>
-		<th class="text-center">Mib Status</th>
-		<th class="text-center">Mib Tgl</th>
-		<th class="text-center">Mib Flag</th>
-		<th class="text-center">Mib Info</th></tr>
+		<th class="text-center">Rekening Investasi</th>
+		<th class="text-center">Tanggal Mutasi</th>
+		<th class="text-center">Asal</th>
+		<th class="text-center">Tujuan</th>
+		<th class="text-center">Status</th></tr>
             </thead>
 			<tbody><?php
             foreach ($mutasiberjangka_data as $mutasiberjangka)
@@ -60,9 +57,6 @@
 			<td><?php echo $mutasiberjangka->mib_asal ?></td>
 			<td><?php echo $mutasiberjangka->mib_tujuan ?></td>
 			<td><?php echo $mutasiberjangka->mib_status ?></td>
-			<td><?php echo $mutasiberjangka->mib_tgl ?></td>
-			<td><?php echo $mutasiberjangka->mib_flag ?></td>
-			<td><?php echo $mutasiberjangka->mib_info ?></td>
 		</tr>
                 
                 <?php
