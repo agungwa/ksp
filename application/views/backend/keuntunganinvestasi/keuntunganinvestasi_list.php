@@ -50,7 +50,7 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Penarikan Investasi</th>
 		<th class="text-center">Jumlah Keuntungan</th>
-		<th class="text-center">Tanggal</th>>
+		<th class="text-center">Tanggal</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
