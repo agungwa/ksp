@@ -196,7 +196,7 @@ class Titipansimkesan extends CI_Controller
             $data = array (
                 'tts_flag' => 2,
             );
-            $this->Titipansimkesan_model->delete($id);
+            $this->Titipansimkesan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('titipansimkesan'));
         } else {
