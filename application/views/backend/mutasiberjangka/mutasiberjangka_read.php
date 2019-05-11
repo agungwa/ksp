@@ -14,11 +14,11 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Ivb Kode</td><td><?php echo $ivb_kode; ?></td></tr>
-	    <tr><td>Mib Tglmutasi</td><td><?php echo $mib_tglmutasi; ?></td></tr>
-	    <tr><td>Mib Asal</td><td><?php echo $mib_asal; ?></td></tr>
-	    <tr><td>Mib Tujuan</td><td><?php echo $mib_tujuan; ?></td></tr>
-	    <tr><td>Mib Status</td><td><?php echo $mib_status; ?></td></tr>
+	    <tr><td>Rekening Investasi</td><td><?php echo $ivb_kode; ?></td></tr>
+	    <tr><td>Tanggal Mutasi</td><td><?php echo $mib_tglmutasi; ?></td></tr>
+	    <tr><td>Asal</td><td><?php echo $mib_asal; ?></td></tr>
+	    <tr><td>Tujuan</td><td><?php echo $mib_tujuan; ?></td></tr>
+	    <tr><td>Status</td><td><?php echo $mib_status; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('mutasiberjangka') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

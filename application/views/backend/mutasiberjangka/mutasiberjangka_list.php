@@ -48,11 +48,11 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ivb Kode</th>
-		<th class="text-center">Mib Tglmutasi</th>
-		<th class="text-center">Mib Asal</th>
-		<th class="text-center">Mib Tujuan</th>
-		<th class="text-center">Mib Status</th>
+		<th class="text-center">Rekening Investasi</th>
+		<th class="text-center">Tanggal Mutasi</th>
+		<th class="text-center">Asal</th>
+		<th class="text-center">Tujuan</th>
+		<th class="text-center">Status</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
