@@ -186,7 +186,7 @@ class Penarikansimpananwajib extends CI_Controller
             $data = array (
                 'psw_flag' => 2,
             );
-            $this->Penarikansimpananwajib_model->delete($id);
+            $this->Penarikansimpananwajib_model->update($id,$data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('penarikansimpananwajib'));
         } else {
