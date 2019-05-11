@@ -18,6 +18,7 @@ class Keuntunganinvestasi_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('kiv_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,13 +32,8 @@ class Keuntunganinvestasi_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('kiv_id', $q);
-	$this->db->or_like('pib_id', $q);
-	$this->db->or_like('kiv_jmlkeuntungan', $q);
-	$this->db->or_like('kiv_tglkeuntungan', $q);
-	$this->db->or_like('kiv_tgl', $q);
-	$this->db->or_like('kiv_flag', $q);
-	$this->db->or_like('kiv_info', $q);
+        $where = "(kiv_id LIKE '%$q%' ESCAPE '!' OR pib_id LIKE '%$q%' ESCAPE '!') AND kiv_flag < 2";
+        $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -45,13 +41,8 @@ class Keuntunganinvestasi_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('kiv_id', $q);
-	$this->db->or_like('pib_id', $q);
-	$this->db->or_like('kiv_jmlkeuntungan', $q);
-	$this->db->or_like('kiv_tglkeuntungan', $q);
-	$this->db->or_like('kiv_tgl', $q);
-	$this->db->or_like('kiv_flag', $q);
-	$this->db->or_like('kiv_info', $q);
+        $where = "(kiv_id LIKE '%$q%' ESCAPE '!' OR pib_id LIKE '%$q%' ESCAPE '!') AND kiv_flag < 2";
+        $this->db->where($where);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }

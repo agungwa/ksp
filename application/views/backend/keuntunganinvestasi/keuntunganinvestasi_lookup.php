@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Keuntunganinvestasi</b></h2>
+                    <h2><b>List Keuntungan Investasi</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,12 +40,9 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Pib Id</th>
-		<th class="text-center">Kiv Jmlkeuntungan</th>
-		<th class="text-center">Kiv Tglkeuntungan</th>
-		<th class="text-center">Kiv Tgl</th>
-		<th class="text-center">Kiv Flag</th>
-		<th class="text-center">Kiv Info</th></tr>
+		<th class="text-center">Penarikan Investasi</th>
+		<th class="text-center">Jumlah Keuntungan</th>
+		<th class="text-center">Tanggal</th>></tr>
             </thead>
 			<tbody><?php
             foreach ($keuntunganinvestasi_data as $keuntunganinvestasi)
@@ -56,9 +53,6 @@
 			<td><?php echo $keuntunganinvestasi->pib_id ?></td>
 			<td><?php echo $keuntunganinvestasi->kiv_jmlkeuntungan ?></td>
 			<td><?php echo $keuntunganinvestasi->kiv_tglkeuntungan ?></td>
-			<td><?php echo $keuntunganinvestasi->kiv_tgl ?></td>
-			<td><?php echo $keuntunganinvestasi->kiv_flag ?></td>
-			<td><?php echo $keuntunganinvestasi->kiv_info ?></td>
 		</tr>
                 
                 <?php
