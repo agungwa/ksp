@@ -14,12 +14,9 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Pib Id</td><td><?php echo $pib_id; ?></td></tr>
-	    <tr><td>Kiv Jmlkeuntungan</td><td><?php echo $kiv_jmlkeuntungan; ?></td></tr>
-	    <tr><td>Kiv Tglkeuntungan</td><td><?php echo $kiv_tglkeuntungan; ?></td></tr>
-	    <tr><td>Kiv Tgl</td><td><?php echo $kiv_tgl; ?></td></tr>
-	    <tr><td>Kiv Flag</td><td><?php echo $kiv_flag; ?></td></tr>
-	    <tr><td>Kiv Info</td><td><?php echo $kiv_info; ?></td></tr>
+	    <tr><td>Penarikan Investasi</td><td><?php echo $pib_id; ?></td></tr>
+	    <tr><td>Jumlah Keuntungan</td><td><?php echo $kiv_jmlkeuntungan; ?></td></tr>
+	    <tr><td>Tanggal</td><td><?php echo $kiv_tglkeuntungan; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('keuntunganinvestasi') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

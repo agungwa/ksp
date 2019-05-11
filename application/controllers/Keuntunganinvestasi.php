@@ -106,11 +106,9 @@ class Keuntunganinvestasi extends MY_Base
             'action' => site_url('keuntunganinvestasi/create_action'),
 	    'kiv_id' => set_value('kiv_id'),
 	    'pib_id' => set_value('pib_id'),
+	    'nm_pib_id' => set_value('nm_pib_id'),
 	    'kiv_jmlkeuntungan' => set_value('kiv_jmlkeuntungan'),
 	    'kiv_tglkeuntungan' => set_value('kiv_tglkeuntungan'),
-	    'kiv_tgl' => set_value('kiv_tgl'),
-	    'kiv_flag' => set_value('kiv_flag'),
-	    'kiv_info' => set_value('kiv_info'),
 	    'content' => 'backend/keuntunganinvestasi/keuntunganinvestasi_form',
 	);
         $this->load->view(layout(), $data);
@@ -127,9 +125,9 @@ class Keuntunganinvestasi extends MY_Base
 		'pib_id' => $this->input->post('pib_id',TRUE),
 		'kiv_jmlkeuntungan' => $this->input->post('kiv_jmlkeuntungan',TRUE),
 		'kiv_tglkeuntungan' => $this->input->post('kiv_tglkeuntungan',TRUE),
-		'kiv_tgl' => $this->input->post('kiv_tgl',TRUE),
-		'kiv_flag' => $this->input->post('kiv_flag',TRUE),
-		'kiv_info' => $this->input->post('kiv_info',TRUE),
+		'kiv_tgl' => $this->tgl,
+		'kiv_flag' => 0,
+		'kiv_info' => "",
 	    );
 
             $this->Keuntunganinvestasi_model->insert($data);
@@ -148,11 +146,9 @@ class Keuntunganinvestasi extends MY_Base
                 'action' => site_url('keuntunganinvestasi/update_action'),
 		'kiv_id' => set_value('kiv_id', $row->kiv_id),
 		'pib_id' => set_value('pib_id', $row->pib_id),
+		'nm_pib_id' => set_value('nm_pib_id', $row->ivb_kode),
 		'kiv_jmlkeuntungan' => set_value('kiv_jmlkeuntungan', $row->kiv_jmlkeuntungan),
 		'kiv_tglkeuntungan' => set_value('kiv_tglkeuntungan', $row->kiv_tglkeuntungan),
-		'kiv_tgl' => set_value('kiv_tgl', $row->kiv_tgl),
-		'kiv_flag' => set_value('kiv_flag', $row->kiv_flag),
-		'kiv_info' => set_value('kiv_info', $row->kiv_info),
 	    'content' => 'backend/keuntunganinvestasi/keuntunganinvestasi_form',
 	    );
             $this->load->view(layout(), $data);
@@ -173,9 +169,7 @@ class Keuntunganinvestasi extends MY_Base
 		'pib_id' => $this->input->post('pib_id',TRUE),
 		'kiv_jmlkeuntungan' => $this->input->post('kiv_jmlkeuntungan',TRUE),
 		'kiv_tglkeuntungan' => $this->input->post('kiv_tglkeuntungan',TRUE),
-		'kiv_tgl' => $this->input->post('kiv_tgl',TRUE),
-		'kiv_flag' => $this->input->post('kiv_flag',TRUE),
-		'kiv_info' => $this->input->post('kiv_info',TRUE),
+		'kiv_flag' => 1,
 	    );
 
             $this->Keuntunganinvestasi_model->update($this->input->post('kiv_id', TRUE), $data);
@@ -189,6 +183,9 @@ class Keuntunganinvestasi extends MY_Base
         $row = $this->Keuntunganinvestasi_model->get_by_id($id);
 
         if ($row) {
+            $data = array (
+                'kiv_flag' => 2,
+            );
             $this->Keuntunganinvestasi_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('keuntunganinvestasi'));
@@ -203,9 +200,6 @@ class Keuntunganinvestasi extends MY_Base
 	$this->form_validation->set_rules('pib_id', 'pib id', 'trim|required');
 	$this->form_validation->set_rules('kiv_jmlkeuntungan', 'kiv jmlkeuntungan', 'trim|required');
 	$this->form_validation->set_rules('kiv_tglkeuntungan', 'kiv tglkeuntungan', 'trim|required');
-	$this->form_validation->set_rules('kiv_tgl', 'kiv tgl', 'trim|required');
-	$this->form_validation->set_rules('kiv_flag', 'kiv flag', 'trim|required');
-	$this->form_validation->set_rules('kiv_info', 'kiv info', 'trim|required');
 
 	$this->form_validation->set_rules('kiv_id', 'kiv_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
