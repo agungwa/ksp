@@ -334,6 +334,7 @@ lookup();
                             </ul>
                         </li>
                         <li><a href="<?=base_url()?>Penarikaninvestasiberjangka">Penarikan Jasa</a></li>
+                        <li><a href="<?=base_url()?>Keuntunganinvestasi">Keuntungan Investasi</a></li>
                         <li><a href="<?=base_url()?>Tutupinvestasiberjangka">Penarikan Investasi Berjangka</a></li>                        
                         <li>
                             <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
@@ -374,7 +375,13 @@ lookup();
                                     <a href="<?=base_url()?>Settingkategoripeminjam">Setting Kategori Peminjam</a>
                                 </li>
                                 <li>
+                                    <a href="<?=base_url()?>Settingstatuspeminjam">Setting Status Peminjam</a>
+                                </li>
+                                <li>
                                     <a href="<?=base_url()?>SettingAngsuran">Setting Angsuran</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Statuspeminjam">Status Peminjam</a>
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>Bungapinjaman">Bunga Pinjaman</a>
@@ -419,6 +426,9 @@ lookup();
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>Pinjaman">Persetujuan Pinjaman</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>Penjamin">Penjamin</a>
                                 </li>
                             </ul>
                         </li>
