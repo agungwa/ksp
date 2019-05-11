@@ -7,14 +7,14 @@
     <div class="col-lg-12">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h2 style="margin-top:0px">Bungapinjaman Read</h2>
+            <h2 style="margin-top:0px">Bunga Pinjaman Read</h2>
             <div class="ibox-tools">
             </div>
         </div>
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Bup Bunga</td><td><?php echo $bup_bunga; ?></td></tr>
+	    <tr><td>Bunga</td><td><?php echo $bup_bunga; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('bungapinjaman') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
