@@ -55,9 +55,6 @@
 			<td><?php echo $penjamin->pen_nama ?></td>
 			<td><?php echo $penjamin->pen_alamat ?></td>
 			<td><?php echo $penjamin->pen_nohp ?></td>
-			<td><?php echo $penjamin->pen_tgl ?></td>
-			<td><?php echo $penjamin->pen_flag ?></td>
-			<td><?php echo $penjamin->pen_info ?></td>
 		</tr>
                 
                 <?php

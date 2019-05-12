@@ -65,9 +65,6 @@
 			<td><?php echo $penjamin->pen_nama ?></td>
 			<td><?php echo $penjamin->pen_alamat ?></td>
 			<td><?php echo $penjamin->pen_nohp ?></td>
-			<td><?php echo $penjamin->pen_tgl ?></td>
-			<td><?php echo $penjamin->pen_flag ?></td>
-			<td><?php echo $penjamin->pen_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('penjamin/read/'.$penjamin->pen_id),'Read','class="text-navy"'); 
