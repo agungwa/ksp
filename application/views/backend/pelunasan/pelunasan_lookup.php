@@ -40,11 +40,8 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jep Id</th>
-		<th class="text-center">Pin Id</th>
-		<th class="text-center">Pel Tgl</th>
-		<th class="text-center">Pel Flag</th>
-		<th class="text-center">Pel Info</th></tr>
+		<th class="text-center">Jenis Pelunasan</th>
+		<th class="text-center">Rekening Pinjaman</th></tr>
             </thead>
 			<tbody><?php
             foreach ($pelunasan_data as $pelunasan)
@@ -54,9 +51,6 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $pelunasan->jep_id ?></td>
 			<td><?php echo $pelunasan->pin_id ?></td>
-			<td><?php echo $pelunasan->pel_tgl ?></td>
-			<td><?php echo $pelunasan->pel_flag ?></td>
-			<td><?php echo $pelunasan->pel_info ?></td>
 		</tr>
                 
                 <?php

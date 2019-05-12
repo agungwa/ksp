@@ -105,10 +105,9 @@ class Pelunasan extends MY_Base
             'action' => site_url('pelunasan/create_action'),
 	    'pel_id' => set_value('pel_id'),
 	    'jep_id' => set_value('jep_id'),
+	    'nm_jep_id' => set_value('nm_jep_id'),
 	    'pin_id' => set_value('pin_id'),
-	    'pel_tgl' => set_value('pel_tgl'),
-	    'pel_flag' => set_value('pel_flag'),
-	    'pel_info' => set_value('pel_info'),
+	    'nm_pin_id' => set_value('nm_pin_id'),
 	    'content' => 'backend/pelunasan/pelunasan_form',
 	);
         $this->load->view(layout(), $data);
@@ -124,9 +123,9 @@ class Pelunasan extends MY_Base
             $data = array(
 		'jep_id' => $this->input->post('jep_id',TRUE),
 		'pin_id' => $this->input->post('pin_id',TRUE),
-		'pel_tgl' => $this->input->post('pel_tgl',TRUE),
-		'pel_flag' => $this->input->post('pel_flag',TRUE),
-		'pel_info' => $this->input->post('pel_info',TRUE),
+		'pel_tgl' => $this->tgl,
+		'pel_flag' => 0,
+		'pel_info' => "",
 	    );
 
             $this->Pelunasan_model->insert($data);
@@ -145,10 +144,9 @@ class Pelunasan extends MY_Base
                 'action' => site_url('pelunasan/update_action'),
 		'pel_id' => set_value('pel_id', $row->pel_id),
 		'jep_id' => set_value('jep_id', $row->jep_id),
+		'nm_jep_id' => set_value('nm_jep_id', $row->jep_jenis),
 		'pin_id' => set_value('pin_id', $row->pin_id),
-		'pel_tgl' => set_value('pel_tgl', $row->pel_tgl),
-		'pel_flag' => set_value('pel_flag', $row->pel_flag),
-		'pel_info' => set_value('pel_info', $row->pel_info),
+		'nm_pin_id' => set_value('nm_pin_id', $row->pin_id),
 	    'content' => 'backend/pelunasan/pelunasan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -168,9 +166,7 @@ class Pelunasan extends MY_Base
             $data = array(
 		'jep_id' => $this->input->post('jep_id',TRUE),
 		'pin_id' => $this->input->post('pin_id',TRUE),
-		'pel_tgl' => $this->input->post('pel_tgl',TRUE),
-		'pel_flag' => $this->input->post('pel_flag',TRUE),
-		'pel_info' => $this->input->post('pel_info',TRUE),
+		'pel_flag' => 1,
 	    );
 
             $this->Pelunasan_model->update($this->input->post('pel_id', TRUE), $data);
@@ -184,7 +180,10 @@ class Pelunasan extends MY_Base
         $row = $this->Pelunasan_model->get_by_id($id);
 
         if ($row) {
-            $this->Pelunasan_model->delete($id);
+            $data = array (
+                'pel_flag' => 2,
+            );
+            $this->Pelunasan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('pelunasan'));
         } else {
@@ -196,11 +195,8 @@ class Pelunasan extends MY_Base
     public function _rules() 
     {
 	$this->form_validation->set_rules('jep_id', 'jep id', 'trim|required');
-	$this->form_validation->set_rules('pin_id', 'pin id', 'trim|required');
-	$this->form_validation->set_rules('pel_tgl', 'pel tgl', 'trim|required');
-	$this->form_validation->set_rules('pel_flag', 'pel flag', 'trim|required');
-	$this->form_validation->set_rules('pel_info', 'pel info', 'trim|required');
-
+    $this->form_validation->set_rules('pin_id', 'pin id', 'trim|required');
+    
 	$this->form_validation->set_rules('pel_id', 'pel_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

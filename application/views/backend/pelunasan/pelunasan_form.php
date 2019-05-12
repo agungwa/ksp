@@ -12,30 +12,32 @@
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
-        <div class="ibox-content">
-	    <div class="form-group">
-            <label for="tinyint">Jep Id <?php echo form_error('jep_id') ?></label>
-            <input type="text" class="form-control" name="jep_id" id="jep_id" placeholder="Jep Id" value="<?php echo $jep_id; ?>" />
+        <div class="ibox-content col-md-12">
+        <div class="col-md-4">
+        <div class="form-group">
+            <label for="int">Angsuran<?php echo form_error('jep_id') ?></label>
+            <div class="input-group">
+            <input type="hidden" name="jep_id" id="jep_id" value="<?php echo $jep_id; ?>" />
+            <input type="text" class="form-control" name="nm_jep_id" id="nm_jep_id" placeholder="Angsuran" value="<?php echo $nm_jep_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>Jenispelunasan/lookup','jep_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
-            <label for="varchar">Pin Id <?php echo form_error('pin_id') ?></label>
-            <input type="text" class="form-control" name="pin_id" id="pin_id" placeholder="Pin Id" value="<?php echo $pin_id; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="datetime">Pel Tgl <?php echo form_error('pel_tgl') ?></label>
-            <input type="text" class="form-control" name="pel_tgl" id="pel_tgl" placeholder="Pel Tgl" value="<?php echo $pel_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Pel Flag <?php echo form_error('pel_flag') ?></label>
-            <input type="text" class="form-control" name="pel_flag" id="pel_flag" placeholder="Pel Flag" value="<?php echo $pel_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="pel_info">Pel Info <?php echo form_error('pel_info') ?></label>
-            <textarea class="form-control" rows="3" name="pel_info" id="pel_info" placeholder="Pel Info"><?php echo $pel_info; ?></textarea>
+        <div class="form-group">
+            <label for="int">Rekening Pinjaman<?php echo form_error('pin_id') ?></label>
+            <div class="input-group">
+            <input type="hidden" name="pin_id" id="pin_id" value="<?php echo $pin_id; ?>" />
+            <input type="text" class="form-control" name="nm_pin_id" id="nm_pin_id" placeholder="Pinjaman" value="<?php echo $nm_pin_id; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>Pinjaman/lookup','pin_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
 	    <input type="hidden" name="pel_id" value="<?php echo $pel_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('pelunasan') ?>" class="btn btn-default">Cancel</a>
+        </div>
 	</div>
             </form>
         </div>
