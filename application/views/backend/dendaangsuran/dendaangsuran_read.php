@@ -14,8 +14,8 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Ags Id</td><td><?php echo $ags_id; ?></td></tr>
-	    <tr><td>Sed Id</td><td><?php echo $sed_id; ?></td></tr>
+	    <tr><td>Angsuran</td><td><?php echo $ags_id; ?></td></tr>
+	    <tr><td>Setting Denda</td><td><?php echo $sed_id; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('dendaangsuran') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>

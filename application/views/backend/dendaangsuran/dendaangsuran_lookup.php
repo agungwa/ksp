@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Dendaangsuran</b></h2>
+                    <h2><b>List Denda Angsuran</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -40,11 +40,9 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Ags Id</th>
-		<th class="text-center">Sed Id</th>
-		<th class="text-center">Dnd Tgl</th>
-		<th class="text-center">Dnd Flag</th>
-		<th class="text-center">Dnd Info</th></tr>
+		<th class="text-center">Angsuran</th>
+		<th class="text-center">Setting Denda</th>
+		<th class="text-center">Tanggal</th></tr>
             </thead>
 			<tbody><?php
             foreach ($dendaangsuran_data as $dendaangsuran)
@@ -55,8 +53,6 @@
 			<td><?php echo $dendaangsuran->ags_id ?></td>
 			<td><?php echo $dendaangsuran->sed_id ?></td>
 			<td><?php echo $dendaangsuran->dnd_tgl ?></td>
-			<td><?php echo $dendaangsuran->dnd_flag ?></td>
-			<td><?php echo $dendaangsuran->dnd_info ?></td>
 		</tr>
                 
                 <?php

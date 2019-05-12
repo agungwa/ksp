@@ -12,9 +12,10 @@
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
-        <div class="ibox-content">
+        <div class="ibox-content col-md-12">
+        <div class="col-md-4">
         <div class="form-group">
-            <label for="int">Ags Id <?php echo form_error('ags_id') ?></label>
+            <label for="int">Angsuran<?php echo form_error('ags_id') ?></label>
             <div class="input-group">
             <!-- <input type="hidden" name="ags_id" id="ags_id" value="<?php echo $ags_id; ?>" /> -->
             <input type="hidden" name="ags_id" id="ags_id" value="69" />
@@ -26,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            <label for="int">Sed Id <?php echo form_error('sed_id') ?></label>
+            <label for="int">Setting Denda <?php echo form_error('sed_id') ?></label>
             <div class="input-group">
             <!-- <input type="hidden" name="sed_id" id="sed_id" value="<?php echo $sed_id; ?>" /> -->
             <input type="hidden" name="sed_id" id="sed_id" value="69" />
@@ -40,6 +41,7 @@
 	    <input type="hidden" name="dnd_id" value="<?php echo $dnd_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('dendaangsuran') ?>" class="btn btn-default">Cancel</a>
+        </div>
 	</div>
             </form>
         </div>
