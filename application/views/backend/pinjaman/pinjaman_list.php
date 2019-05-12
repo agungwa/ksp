@@ -48,22 +48,22 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-        		<th class="text-center">Pin Id</th>
-        		<th class="text-center">Ang No</th>
-        		<th class="text-center">Sea Id</th>
-        		<th class="text-center">Bup Id</th>
-        		<th class="text-center">Pop Id</th>
-        		<th class="text-center">Wil Kode</th>
-        		<th class="text-center">Skp Id</th>
-        		<th class="text-center">Pen Id</th>
-        		<th class="text-center">Pin Pengajuan</th>
-        		<th class="text-center">Pin Pinjaman</th>
-        		<th class="text-center">Pin Tglpengajuan</th>
-        		<th class="text-center">Pin Tglpencairan</th>
-        		<th class="text-center">Pin Marketing</th>
-        		<th class="text-center">Pin Surveyor</th>
-        		<th class="text-center">Pin Survey</th>
-        		<th class="text-center">Pin Statuspinjaman</th>
+        		<th class="text-center">Pinjaman</th>
+        		<th class="text-center">Anggota</th>
+        		<th class="text-center">Setting Angsuran</th>
+        		<th class="text-center">Bunga Pinjaman</th>
+        		<th class="text-center">Potongan Provisi</th>
+        		<th class="text-center">Wilayah</th>
+        		<th class="text-center">Kategori Peminjam</th>
+        		<th class="text-center">Penjamin</th>
+        		<th class="text-center">Pengajuan</th>
+        		<th class="text-center">Pinjaman</th>
+        		<th class="text-center">Tanggal Pengajuan</th>
+        		<th class="text-center">Tanggal Pencairan</th>
+        		<th class="text-center">Marketing</th>
+        		<th class="text-center">Surveyor</th>
+        		<th class="text-center">Survey</th>
+        		<th class="text-center">Status Pinjaman</th>
         		<th class="text-center">Action</th>
             </tr>
             </thead>

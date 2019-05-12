@@ -12,10 +12,11 @@
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
-        <div class="ibox-content">
+        <div class="ibox-content col-md-12">
+        <div class="col-md-4">
 	    <div class="form-group">
-            <label for="varchar">Pin Id <?php echo form_error('pin_id') ?></label>
-            <input type="text" class="form-control" name="pin_id" id="pin_id" placeholder="Pin Id" value="<?php echo $pin_id; ?>" />
+            <label for="varchar">Rekening Pinjaman <?php echo form_error('pin_id') ?></label>
+            <input type="text" class="form-control" name="pin_id" id="pin_id" placeholder="Rekening Pinjaman" value="<?php echo $pin_id; ?>" />
         </div>
 
         <div class="form-group">
@@ -41,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            <label for="int">Bup Id <?php echo form_error('bup_id') ?></label>
+            <label for="int">Bunga Pinjaman<?php echo form_error('bup_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="bup_id" id="bup_id" value="<?php echo $bup_id; ?>" />
             <input type="text" class="form-control" name="nm_bup_id" id="nm_bup_id" placeholder="Bunga Pinjaman" value="<?php echo $nm_bup_id; ?>" readonly/>
@@ -52,7 +53,7 @@
         </div>
 
         <div class="form-group">
-            <label for="int">Pop Id <?php echo form_error('pop_id') ?></label>
+            <label for="int">Potongan Provisi <?php echo form_error('pop_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="pop_id" id="pop_id" value="<?php echo $pop_id; ?>" />
             <input type="text" class="form-control" name="nm_pop_id" id="nm_pop_id" placeholder="Potongan Provisi" value="<?php echo $nm_pop_id; ?>" readonly/>
@@ -63,7 +64,7 @@
         </div>
 
         <div class="form-group">
-            <label for="varchar">Wil Kode <?php echo form_error('wil_kode') ?></label>
+            <label for="varchar">Wilayah <?php echo form_error('wil_kode') ?></label>
             <div class="input-group">
             <input type="hidden" name="wil_kode" id="wil_kode" value="<?php echo $wil_kode; ?>" />
             <input type="text" class="form-control" name="nm_wil_kode" id="nm_wil_kode" placeholder="Wilayah" value="<?php echo $nm_wil_kode; ?>" readonly/>
@@ -74,7 +75,7 @@
         </div>
 
         <div class="form-group">
-            <label for="int">Skp Id <?php echo form_error('skp_id') ?></label>
+            <label for="int">Kategori Peminjam <?php echo form_error('skp_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="skp_id" id="skp_id" value="<?php echo $skp_id; ?>" />
             <input type="text" class="form-control" name="nm_skp_id" id="nm_skp_id" placeholder="SKP Id" value="<?php echo $nm_skp_id; ?>" readonly/>
@@ -95,42 +96,45 @@
             </div>
             </div>
         </div>
+        </div>
 
+        <div class="col-md-4">
 	    <div class="form-group">
-            <label for="float">Pin Pengajuan <?php echo form_error('pin_pengajuan') ?></label>
-            <input type="text" class="form-control" name="pin_pengajuan" id="pin_pengajuan" placeholder="Pin Pengajuan" value="<?php echo $pin_pengajuan; ?>" />
+            <label for="float">Pengajuan <?php echo form_error('pin_pengajuan') ?></label>
+            <input type="number" class="form-control" name="pin_pengajuan" id="pin_pengajuan" placeholder="Pin Pengajuan" value="<?php echo $pin_pengajuan; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="float">Pin Pinjaman <?php echo form_error('pin_pinjaman') ?></label>
-            <input type="text" class="form-control" name="pin_pinjaman" id="pin_pinjaman" placeholder="Pin Pinjaman" value="<?php echo $pin_pinjaman; ?>" />
+            <label for="float">Pinjaman <?php echo form_error('pin_pinjaman') ?></label>
+            <input type="number" class="form-control" name="pin_pinjaman" id="pin_pinjaman" placeholder="Pin Pinjaman" value="<?php echo $pin_pinjaman; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="datetime">Pin Tglpengajuan <?php echo form_error('pin_tglpengajuan') ?></label>
-            <input type="text" class="form-control" name="pin_tglpengajuan" id="pin_tglpengajuan" placeholder="Pin Tglpengajuan" value="<?php echo $pin_tglpengajuan; ?>" />
+            <label for="datetime">Tanggal Pengajuan <?php echo form_error('pin_tglpengajuan') ?></label>
+            <input type="date" class="form-control" name="pin_tglpengajuan" id="todays-date" placeholder="Tanggal Pengajuan" value="<?php echo $pin_tglpengajuan; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="datetime">Pin Tglpencairan <?php echo form_error('pin_tglpencairan') ?></label>
-            <input type="text" class="form-control" name="pin_tglpencairan" id="pin_tglpencairan" placeholder="Pin Tglpencairan" value="<?php echo $pin_tglpencairan; ?>" />
+            <label for="datetime">Tanggal Pencairan <?php echo form_error('pin_tglpencairan') ?></label>
+            <input type="date" class="form-control" name="pin_tglpencairan" id="pin_tglpencairan" placeholder="Tanggal Pencairan" value="<?php echo $pin_tglpencairan; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Pin Marketing <?php echo form_error('pin_marketing') ?></label>
-            <input type="text" class="form-control" name="pin_marketing" id="pin_marketing" placeholder="Pin Marketing" value="<?php echo $pin_marketing; ?>" />
+            <label for="varchar">Marketing <?php echo form_error('pin_marketing') ?></label>
+            <input type="text" class="form-control" name="pin_marketing" id="pin_marketing" placeholder="Marketing" value="<?php echo $pin_marketing; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Pin Surveyor <?php echo form_error('pin_surveyor') ?></label>
-            <input type="text" class="form-control" name="pin_surveyor" id="pin_surveyor" placeholder="Pin Surveyor" value="<?php echo $pin_surveyor; ?>" />
+            <label for="varchar">Surveyor <?php echo form_error('pin_surveyor') ?></label>
+            <input type="text" class="form-control" name="pin_surveyor" id="pin_surveyor" placeholder="Surveyor" value="<?php echo $pin_surveyor; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Pin Survey <?php echo form_error('pin_survey') ?></label>
-            <input type="text" class="form-control" name="pin_survey" id="pin_survey" placeholder="Pin Survey" value="<?php echo $pin_survey; ?>" />
+            <label for="varchar">Survey <?php echo form_error('pin_survey') ?></label>
+            <input type="text" class="form-control" name="pin_survey" id="pin_survey" placeholder="Survey" value="<?php echo $pin_survey; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Pin Statuspinjaman <?php echo form_error('pin_statuspinjaman') ?></label>
-            <input type="text" class="form-control" name="pin_statuspinjaman" id="pin_statuspinjaman" placeholder="Pin Statuspinjaman" value="<?php echo $pin_statuspinjaman; ?>" />
+            <label for="varchar">Status Pinjaman <?php echo form_error('pin_statuspinjaman') ?></label>
+            <input type="text" class="form-control" name="pin_statuspinjaman" id="pin_statuspinjaman" placeholder="Status Pinjaman" value="<?php echo $pin_statuspinjaman; ?>" />
         </div>
 	    
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Cancel</a>
+        </div>
 	</div>
             </form>
         </div>
