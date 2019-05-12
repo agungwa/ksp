@@ -15,10 +15,10 @@
         <div class="ibox-content col-md-12">
         <div class="col-md-4">
         <div class="form-group">
-            <label for="int">Angsuran<?php echo form_error('jep_id') ?></label>
+            <label for="int">Jenis Pelunasan<?php echo form_error('jep_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="jep_id" id="jep_id" value="<?php echo $jep_id; ?>" />
-            <input type="text" class="form-control" name="nm_jep_id" id="nm_jep_id" placeholder="Angsuran" value="<?php echo $nm_jep_id; ?>" readonly/>
+            <input type="text" class="form-control" name="nm_jep_id" id="nm_jep_id" placeholder="Jenis Pelunasan" value="<?php echo $nm_jep_id; ?>" readonly/>
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>Jenispelunasan/lookup','jep_id');" style="cursor: pointer;">Cari</span>
             </div>
