@@ -19,7 +19,7 @@
 	    <tr><td>Asal</td><td><?php echo $mup_asal; ?></td></tr>
 	    <tr><td>Tujuan</td><td><?php echo $mup_tujuan; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $mup_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('mutasipinjaman') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('mutasipinjaman') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

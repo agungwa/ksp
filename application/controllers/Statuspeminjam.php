@@ -102,7 +102,7 @@ class Statuspeminjam extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('statuspeminjam/create_action'),
 	    'stp_id' => set_value('stp_id'),
 	    'ang_no' => set_value('ang_no'),

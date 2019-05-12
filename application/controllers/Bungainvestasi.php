@@ -101,7 +101,7 @@ class Bungainvestasi extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('bungainvestasi/create_action'),
 	    'biv_id' => set_value('biv_id'),
 	    'biv_bunga' => set_value('biv_bunga'),

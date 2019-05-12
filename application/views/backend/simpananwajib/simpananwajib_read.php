@@ -19,7 +19,7 @@
 	    <tr><td>Tanggal Bayar</td><td><?php echo $siw_tglbayar; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $siw_status; ?></td></tr>
 	    <tr><td>Tanggal Ambil</td><td><?php echo $siw_tglambil; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('simpananwajib') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('simpananwajib') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

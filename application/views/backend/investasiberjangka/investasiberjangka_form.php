@@ -97,7 +97,7 @@
             <input type="text" class="form-control" name="ivb_status" id="ivb_status" placeholder="Status" value="<?php echo $ivb_status; ?>" />
         </div>
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('investasiberjangka') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('investasiberjangka') ?>" class="btn btn-default">Batal</a>
         </div>
         </div>
 	</div>

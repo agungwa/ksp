@@ -100,7 +100,7 @@ class Bungasimpanan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('bungasimpanan/create_action'),
 	    'bus_id' => set_value('bus_id'),
 	    'bus_bunga' => set_value('bus_bunga'),

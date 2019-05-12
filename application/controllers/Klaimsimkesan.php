@@ -104,7 +104,7 @@ class Klaimsimkesan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('klaimsimkesan/create_action'),
     	    'ksi_id' => set_value('ksi_id'),
     	    'sik_kode' => set_value('sik_kode'),

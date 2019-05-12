@@ -102,7 +102,7 @@ class Jenissetoran extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('jenissetoran/create_action'),
 	    'jse_id' => set_value('jse_id'),
 	    'jse_setoran' => set_value('jse_setoran'),

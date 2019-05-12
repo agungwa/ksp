@@ -17,7 +17,7 @@
 	    <tr><td>Jenis</td><td><?php echo $jps_jenis; ?></td></tr>
 	    <tr><td>Administrasi</td><td><?php echo $jps_administrasi; ?></td></tr>
 	    <tr><td>Persen Penarikan</td><td><?php echo $jps_persenpenarikan; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('jenispenarikansimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('jenispenarikansimkesan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

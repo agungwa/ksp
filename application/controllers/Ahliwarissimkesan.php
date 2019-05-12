@@ -104,7 +104,7 @@ class Ahliwarissimkesan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('ahliwarissimkesan/create_action'),
     	    'aws_id' => set_value('aws_id'),
     	    'sik_kode' => set_value('sik_kode'),

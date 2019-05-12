@@ -103,7 +103,7 @@ class Jenisklaim extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('jenisklaim/create_action'),
     	    'jkl_id' => set_value('jkl_id'),
     	    'jkl_keuntungan' => set_value('jkl_keuntungan'),

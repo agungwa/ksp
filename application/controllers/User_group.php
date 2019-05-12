@@ -105,7 +105,7 @@ class User_group extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('user_group/create_action'),
 	    'id' => set_value('id'),
 	    'group_name' => set_value('group_name'),

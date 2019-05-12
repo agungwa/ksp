@@ -19,7 +19,7 @@
 	    <tr><td>Nm Access</td><td><?php echo $nm_access; ?></td></tr>
 	    <tr><td>Is Allow</td><td><?php echo $is_allow; ?></td></tr>
 	    <tr><td>Note</td><td><?php echo $note; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('user_access') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('user_access') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

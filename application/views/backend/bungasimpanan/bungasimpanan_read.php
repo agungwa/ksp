@@ -15,7 +15,7 @@
         
         <table class="table">
 	    <tr><td>Bunga</td><td><?php echo $bus_bunga; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('bungasimpanan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('bungasimpanan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

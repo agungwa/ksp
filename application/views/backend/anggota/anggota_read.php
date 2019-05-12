@@ -22,7 +22,7 @@
 	    <tr><td>Nomor Handphone</td><td><?php echo $ang_nohp; ?></td></tr>
 	    <tr><td>Tanggal Lahir</td><td><?php echo $ang_tgllahir; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $ang_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('anggota') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('anggota') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

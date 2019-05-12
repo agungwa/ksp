@@ -104,7 +104,7 @@ class Mutasisimpanan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('mutasisimpanan/create_action'),
 	    'mus_id' => set_value('mus_id'),
         'sim_kode' => set_value('sim_kode'),

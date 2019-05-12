@@ -102,7 +102,7 @@ class Plansimkesan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('plansimkesan/create_action'),
     	    'psk_id' => set_value('psk_id'),
     	    'psk_plan' => set_value('psk_plan'),

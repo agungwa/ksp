@@ -108,7 +108,7 @@ class Investasiberjangka extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('investasiberjangka/create_action'),
 	    'ivb_kode' => set_value('ivb_kode'),
 	    'ang_no' => set_value('ang_no'),

@@ -101,7 +101,7 @@ class Jenissimpanan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('jenissimpanan/create_action'),
 	    'jsi_id' => set_value('jsi_id'),
 	    'jsi_simpanan' => set_value('jsi_simpanan'),

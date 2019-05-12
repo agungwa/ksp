@@ -18,7 +18,7 @@
 	    <tr><td>Tanggal Setor</td><td><?php echo $ssi_tglsetor; ?></td></tr>
 	    <tr><td>Jumlah Setor</td><td><?php echo $ssi_jmlsetor; ?></td></tr>
 	    <tr><td>Jumlah Bunga</td><td><?php echo $ssi_jmlbunga; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('setoransimpanan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('setoransimpanan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

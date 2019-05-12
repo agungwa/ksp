@@ -109,7 +109,7 @@ class Users extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('users/create_action'),
 	    'id_user' => set_value('id_user'),
 	    'fullname' => set_value('fullname'),

@@ -53,7 +53,7 @@
             <input type="number" class="form-control" name="ang_status" id="ang_status" placeholder="status" value="<?php echo $ang_status; ?>" />
         </div>
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('anggota') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('anggota') ?>" class="btn btn-default">Batal</a>
         </div>
 	    </div>
             </form>

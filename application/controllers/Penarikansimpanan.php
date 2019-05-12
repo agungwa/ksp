@@ -102,7 +102,7 @@ class Penarikansimpanan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('penarikansimpanan/create_action'),
 	    'pes_id' => set_value('pes_id'),
 	    'nm_sim_kode' => set_value('nm_sim_kode'),

@@ -100,7 +100,7 @@ class Jenisjaminan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('jenisjaminan/create_action'),
     	    'jej_id' => set_value('jej_id'),
     	    'jej_jaminan' => set_value('jej_jaminan'),

@@ -107,7 +107,7 @@ class Simpanan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('simpanan/create_action'),
 	    'sim_kode' => set_value('sim_kode'),
         'ang_no' => set_value('ang_no'),

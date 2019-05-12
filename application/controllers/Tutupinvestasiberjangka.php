@@ -102,7 +102,7 @@ class Tutupinvestasiberjangka extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('tutupinvestasiberjangka/create_action'),
 	    'tib_id' => set_value('tib_id'),
 	    'ivb_kode' => set_value('ivb_kode'),

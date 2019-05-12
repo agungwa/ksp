@@ -99,7 +99,7 @@ class Dendaangsuran extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('dendaangsuran/create_action'),
     	    'dnd_id' => set_value('dnd_id'),
     	    'ags_id' => set_value('ags_id'),

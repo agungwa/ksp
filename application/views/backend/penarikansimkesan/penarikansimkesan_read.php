@@ -21,7 +21,7 @@
 	    <tr><td>Jumlah Simkesan</td><td><?php echo $pns_jmlsimkesan; ?></td></tr>
 	    <tr><td>Jumlah Penarikan</td><td><?php echo $pns_jmlpenarikan; ?></td></tr>
 	    <tr><td>Catatan</td><td><?php echo $pns_catatan; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('penarikansimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('penarikansimkesan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

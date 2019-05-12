@@ -102,7 +102,7 @@ class Penarikansimpananwajib extends CI_Controller
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('penarikansimpananwajib/create_action'),
 	    'psw_id' => set_value('psw_id'),
 	    'nm_siw_id' => set_value('nm_siw_id'),

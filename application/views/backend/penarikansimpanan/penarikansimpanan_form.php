@@ -34,7 +34,7 @@
         </div>
 	    <input type="hidden" name="pes_id" value="<?php echo $pes_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('penarikansimpanan') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('penarikansimpanan') ?>" class="btn btn-default">Batal</a>
         </div>
 	</div>
             </form>

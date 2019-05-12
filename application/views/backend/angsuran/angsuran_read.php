@@ -21,7 +21,7 @@
 	    <tr><td>Jumlah Pokok</td><td><?php echo $ags_jmlpokok; ?></td></tr>
 	    <tr><td>Jumlah Bunga</td><td><?php echo $ags_jmlbunga; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $this->statusAngsuran[$ags_status]; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('angsuran') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('angsuran') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

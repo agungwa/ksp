@@ -66,7 +66,7 @@ class Master_access extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('master_access/create_action'),
 	    'id' => set_value('id'),
 	    'nm_access' => set_value('nm_access'),

@@ -24,7 +24,7 @@
 	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $ivb_tglpendaftaran; ?></td></tr>
 	    <tr><td>Tanggal Perpanjangan</td><td><?php echo $ivb_tglperpanjangan; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $ivb_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('investasiberjangka') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('investasiberjangka') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

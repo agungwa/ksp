@@ -20,7 +20,7 @@
 	    <tr><td>Nominal</td><td><?php echo $jkl_nominal; ?></td></tr>
 	    <tr><td>Keterangan</td><td><?php echo $jkl_keterangan; ?></td></tr>
 	    <tr><td>Administrasi</td><td><?php echo $jkl_administrasi; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('jenisklaim') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('jenisklaim') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

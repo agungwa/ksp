@@ -15,7 +15,7 @@
         
         <table class="table">
 	    <tr><td>Nama Status</td><td><?php echo $ssp_namastatus; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('settingstatuspeminjam') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('settingstatuspeminjam') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

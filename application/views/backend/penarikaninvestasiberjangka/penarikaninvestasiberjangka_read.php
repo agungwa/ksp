@@ -18,7 +18,7 @@
 	    <tr><td>Penarikanke</td><td><?php echo $pib_penarikanke; ?></td></tr>
 	    <tr><td>Jumlah Keuntungan</td><td><?php echo $pib_jmlkeuntungan; ?></td></tr>
 	    <tr><td>Jumlah Diterima</td><td><?php echo $pib_jmlditerima; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('penarikaninvestasiberjangka') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('penarikaninvestasiberjangka') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

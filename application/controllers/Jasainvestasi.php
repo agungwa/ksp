@@ -101,7 +101,7 @@ class Jasainvestasi extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('jasainvestasi/create_action'),
 	    'jiv_id' => set_value('jiv_id'),
 	    'jiv_jasa' => set_value('jiv_jasa'),

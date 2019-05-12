@@ -104,7 +104,7 @@ class Titipansimkesan extends CI_Controller
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('titipansimkesan/create_action'),
 	    'tts_id' => set_value('tts_id'),
 	    'sik_kode' => set_value('sik_kode'),

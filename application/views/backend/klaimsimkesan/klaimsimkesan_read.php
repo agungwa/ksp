@@ -21,7 +21,7 @@
 	    <tr><td>Jumlah Tunggakan</td><td><?php echo $ksi_jmltunggakan; ?></td></tr>
 	    <tr><td>Jumlah Terima</td><td><?php echo $ksi_jmlditerima; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $ksi_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('klaimsimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('klaimsimkesan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

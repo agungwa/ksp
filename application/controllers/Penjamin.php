@@ -103,7 +103,7 @@ class Penjamin extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('penjamin/create_action'),
 	    'pen_id' => set_value('pen_id'),
 	    'pen_noktp' => set_value('pen_noktp'),

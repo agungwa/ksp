@@ -21,7 +21,7 @@
 	    <tr><td>Alamat</td><td><?php echo $aws_alamat; ?></td></tr>
 	    <tr><td>Hubungan</td><td><?php echo $aws_hubungan; ?></td></tr>
 	    <tr><td>Lampiran</td><td><?php echo $aws_lampiran; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('ahliwarissimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('ahliwarissimkesan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

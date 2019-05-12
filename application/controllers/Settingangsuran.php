@@ -98,7 +98,7 @@ class Settingangsuran extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('settingangsuran/create_action'),
 	    'sea_id' => set_value('sea_id'),
 	    'sea_tenor' => set_value('sea_tenor'),

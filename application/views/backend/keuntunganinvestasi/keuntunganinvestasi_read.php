@@ -17,7 +17,7 @@
 	    <tr><td>Penarikan Investasi</td><td><?php echo $pib_id; ?></td></tr>
 	    <tr><td>Jumlah Keuntungan</td><td><?php echo $kiv_jmlkeuntungan; ?></td></tr>
 	    <tr><td>Tanggal</td><td><?php echo $kiv_tglkeuntungan; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('keuntunganinvestasi') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('keuntunganinvestasi') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

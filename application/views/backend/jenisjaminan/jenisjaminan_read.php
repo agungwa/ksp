@@ -16,7 +16,7 @@
         <table class="table">
 	    <tr><td>Jaminan</td><td><?php echo $jej_jaminan; ?></td></tr>
 	    <tr><td>Keterangan</td><td><?php echo $jej_keterangan; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('jenisjaminan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('jenisjaminan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

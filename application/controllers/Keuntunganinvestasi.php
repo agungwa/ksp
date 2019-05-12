@@ -102,7 +102,7 @@ class Keuntunganinvestasi extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('keuntunganinvestasi/create_action'),
 	    'kiv_id' => set_value('kiv_id'),
 	    'pib_id' => set_value('pib_id'),

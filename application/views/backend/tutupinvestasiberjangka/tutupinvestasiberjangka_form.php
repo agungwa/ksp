@@ -33,7 +33,7 @@
         </div>
 	    <input type="hidden" name="tib_id" value="<?php echo $tib_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('tutupinvestasiberjangka') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('tutupinvestasiberjangka') ?>" class="btn btn-default">Batal</a>
 	</div>
             </form>
         </div>

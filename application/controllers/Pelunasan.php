@@ -101,7 +101,7 @@ class Pelunasan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('pelunasan/create_action'),
 	    'pel_id' => set_value('pel_id'),
 	    'jep_id' => set_value('jep_id'),

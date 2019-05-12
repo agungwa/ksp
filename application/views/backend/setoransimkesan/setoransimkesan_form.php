@@ -45,7 +45,7 @@
         
 	    <input type="hidden" name="ssk_id" value="<?php echo $ssk_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('setoransimkesan') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('setoransimkesan') ?>" class="btn btn-default">Batal</a>
 	</div>
             </form>
         </div>

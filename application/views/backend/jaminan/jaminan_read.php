@@ -18,7 +18,7 @@
 	    <tr><td>Jenis Jaminan</td><td><?php echo $jej_id; ?></td></tr>
 	    <tr><td>Nomor Jaminan</td><td><?php echo $jam_nomor; ?></td></tr>
 	    <tr><td>Keterangan</td><td><?php echo $jam_keterangan; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('jaminan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('jaminan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

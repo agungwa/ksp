@@ -24,7 +24,7 @@
         </div>
 	    <input type="hidden" name="jwi_id" value="<?php echo $jwi_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('jangkawaktuinvestasi') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('jangkawaktuinvestasi') ?>" class="btn btn-default">Batal</a>
         </div>
 	</div>
             </form>

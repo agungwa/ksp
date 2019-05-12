@@ -20,7 +20,7 @@
         </div>
 	    <input type="hidden" name="ssp_id" value="<?php echo $ssp_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('settingstatuspeminjam') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('settingstatuspeminjam') ?>" class="btn btn-default">Batal</a>
 	</div>
             </form>
         </div>

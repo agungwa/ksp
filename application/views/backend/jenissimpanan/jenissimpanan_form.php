@@ -23,7 +23,7 @@
         </div>
 	    <input type="hidden" name="jsi_id" value="<?php echo $jsi_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('jenissimpanan') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('jenissimpanan') ?>" class="btn btn-default">Batal</a>
 	</div>
             </form>
         </div>

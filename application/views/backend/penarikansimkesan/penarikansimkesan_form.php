@@ -57,7 +57,7 @@
 
 	    <input type="hidden" name="pns_id" value="<?php echo $pns_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('penarikansimkesan') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('penarikansimkesan') ?>" class="btn btn-default">Batal</a>
         </div>
 	</div>
             </form>

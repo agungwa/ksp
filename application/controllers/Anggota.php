@@ -106,7 +106,7 @@ class Anggota extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('anggota/create_action'),
 	    'ang_no' => set_value('ang_no'),
 	    'ang_nama' => set_value('ang_nama'),

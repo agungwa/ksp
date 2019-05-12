@@ -17,7 +17,7 @@
 	    <tr><td>Simpanan Wajib</td><td><?php echo $siw_id; ?></td></tr>
 	    <tr><td>Tanggal Penarikan</td><td><?php echo $psw_tglpenarikan; ?></td></tr>
 	    <tr><td>Jumlah</td><td><?php echo $psw_jumlah; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('penarikansimpananwajib') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('penarikansimpananwajib') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

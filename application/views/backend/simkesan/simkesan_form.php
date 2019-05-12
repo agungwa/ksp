@@ -79,7 +79,7 @@
         </div>
 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('simkesan') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('simkesan') ?>" class="btn btn-default">Batal</a>
         </div>
         </div>
 	</div>

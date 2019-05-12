@@ -58,7 +58,7 @@
 
 	    <input type="hidden" name="aws_id" value="<?php echo $aws_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('ahliwarissimkesan') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('ahliwarissimkesan') ?>" class="btn btn-default">Batal</a>
         </div>
    
 	</div>

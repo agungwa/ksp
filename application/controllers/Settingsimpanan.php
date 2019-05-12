@@ -102,7 +102,7 @@ class Settingsimpanan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('settingsimpanan/create_action'),
 	    'ses_id' => set_value('ses_id'),
 	    'ses_nama' => set_value('ses_nama'),

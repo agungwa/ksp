@@ -99,7 +99,7 @@ class Jenispelunasan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('jenispelunasan/create_action'),
     	    'jep_id' => set_value('jep_id'),
     	    'jep_jenis' => set_value('jep_jenis'),

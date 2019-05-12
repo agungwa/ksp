@@ -103,7 +103,7 @@ class Setoransimpanan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('setoransimpanan/create_action'),
 	    'ssi_id' => set_value('ssi_id'),
         'sim_kode' => set_value('sim_kode'),

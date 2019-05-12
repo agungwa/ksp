@@ -16,7 +16,7 @@
         <table class="table">
 	    <tr><td>Jenis Simpanan</td><td><?php echo $jsi_simpanan; ?></td></tr>
 	    <tr><td>Keterangan</td><td><?php echo $jsi_keterangan; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('jenissimpanan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('jenissimpanan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

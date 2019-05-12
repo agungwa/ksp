@@ -17,7 +17,7 @@
 	    <tr><td>Conf Name</td><td><?php echo $conf_name; ?></td></tr>
 	    <tr><td>Conf Val</td><td><?php echo $conf_val; ?></td></tr>
 	    <tr><td>Note</td><td><?php echo $note; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('sy_config') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('sy_config') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>
