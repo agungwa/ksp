@@ -12,7 +12,8 @@
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
-        <div class="ibox-content">
+        <div class="ibox-content col-md-12">
+        <div class="col-md-4">
 	    <div class="form-group">
             <label for="varchar">No KTP <?php echo form_error('pen_noktp') ?></label>
             <input type="text" class="form-control" name="pen_noktp" id="pen_noktp" placeholder="No KTP" value="<?php echo $pen_noktp; ?>" />
@@ -32,6 +33,7 @@
 	    <input type="hidden" name="pen_id" value="<?php echo $pen_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('penjamin') ?>" class="btn btn-default">Cancel</a>
+        </div>
 	</div>
             </form>
         </div>
