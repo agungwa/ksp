@@ -110,9 +110,6 @@ class Penjamin extends MY_Base
 	    'pen_nama' => set_value('pen_nama'),
 	    'pen_alamat' => set_value('pen_alamat'),
 	    'pen_nohp' => set_value('pen_nohp'),
-	    'pen_tgl' => set_value('pen_tgl'),
-	    'pen_flag' => set_value('pen_flag'),
-	    'pen_info' => set_value('pen_info'),
 	    'content' => 'backend/penjamin/penjamin_form',
 	);
         $this->load->view(layout(), $data);
@@ -130,9 +127,9 @@ class Penjamin extends MY_Base
 		'pen_nama' => $this->input->post('pen_nama',TRUE),
 		'pen_alamat' => $this->input->post('pen_alamat',TRUE),
 		'pen_nohp' => $this->input->post('pen_nohp',TRUE),
-		'pen_tgl' => $this->input->post('pen_tgl',TRUE),
-		'pen_flag' => $this->input->post('pen_flag',TRUE),
-		'pen_info' => $this->input->post('pen_info',TRUE),
+		'pen_tgl' => $this->tgl,
+		'pen_flag' => 0,
+		'pen_info' => "",
 	    );
 
             $this->Penjamin_model->insert($data);
@@ -154,9 +151,6 @@ class Penjamin extends MY_Base
 		'pen_nama' => set_value('pen_nama', $row->pen_nama),
 		'pen_alamat' => set_value('pen_alamat', $row->pen_alamat),
 		'pen_nohp' => set_value('pen_nohp', $row->pen_nohp),
-		'pen_tgl' => set_value('pen_tgl', $row->pen_tgl),
-		'pen_flag' => set_value('pen_flag', $row->pen_flag),
-		'pen_info' => set_value('pen_info', $row->pen_info),
 	    'content' => 'backend/penjamin/penjamin_form',
 	    );
             $this->load->view(layout(), $data);
@@ -178,9 +172,7 @@ class Penjamin extends MY_Base
 		'pen_nama' => $this->input->post('pen_nama',TRUE),
 		'pen_alamat' => $this->input->post('pen_alamat',TRUE),
 		'pen_nohp' => $this->input->post('pen_nohp',TRUE),
-		'pen_tgl' => $this->input->post('pen_tgl',TRUE),
-		'pen_flag' => $this->input->post('pen_flag',TRUE),
-		'pen_info' => $this->input->post('pen_info',TRUE),
+		'pen_flag' => 1,
 	    );
 
             $this->Penjamin_model->update($this->input->post('pen_id', TRUE), $data);
@@ -194,7 +186,10 @@ class Penjamin extends MY_Base
         $row = $this->Penjamin_model->get_by_id($id);
 
         if ($row) {
-            $this->Penjamin_model->delete($id);
+            $data = array (
+                'pen_flag' => 2,
+            );
+            $this->Penjamin_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('penjamin'));
         } else {
@@ -209,9 +204,6 @@ class Penjamin extends MY_Base
 	$this->form_validation->set_rules('pen_nama', 'pen nama', 'trim|required');
 	$this->form_validation->set_rules('pen_alamat', 'pen alamat', 'trim|required');
 	$this->form_validation->set_rules('pen_nohp', 'pen nohp', 'trim|required');
-	$this->form_validation->set_rules('pen_tgl', 'pen tgl', 'trim|required');
-	$this->form_validation->set_rules('pen_flag', 'pen flag', 'trim|required');
-	$this->form_validation->set_rules('pen_info', 'pen info', 'trim|required');
 
 	$this->form_validation->set_rules('pen_id', 'pen_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

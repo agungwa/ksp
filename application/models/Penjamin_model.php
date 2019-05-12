@@ -18,6 +18,7 @@ class Penjamin_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('pen_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
@@ -31,14 +32,8 @@ class Penjamin_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $this->db->like('pen_id', $q);
-	$this->db->or_like('pen_noktp', $q);
-	$this->db->or_like('pen_nama', $q);
-	$this->db->or_like('pen_alamat', $q);
-	$this->db->or_like('pen_nohp', $q);
-	$this->db->or_like('pen_tgl', $q);
-	$this->db->or_like('pen_flag', $q);
-	$this->db->or_like('pen_info', $q);
+        $where = "pen_noktp LIKE '%$q%' ESCAPE '!' AND pen_flag < 2";
+        $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
@@ -46,14 +41,8 @@ class Penjamin_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $this->db->like('pen_id', $q);
-	$this->db->or_like('pen_noktp', $q);
-	$this->db->or_like('pen_nama', $q);
-	$this->db->or_like('pen_alamat', $q);
-	$this->db->or_like('pen_nohp', $q);
-	$this->db->or_like('pen_tgl', $q);
-	$this->db->or_like('pen_flag', $q);
-	$this->db->or_like('pen_info', $q);
+        $where = "pen_noktp LIKE '%$q%' ESCAPE '!' AND pen_flag < 2";
+        $this->db->where($where);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
