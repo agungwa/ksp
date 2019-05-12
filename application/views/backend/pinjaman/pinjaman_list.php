@@ -48,9 +48,9 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-        		<th class="text-center">Pin Id</th>
-        		<th class="text-center">Ang No</th>
-        		<th class="text-center">Sea Id</th>
+        		<th class="text-center">Pinjaman</th>
+        		<th class="text-center">Anggota</th>
+        		<th class="text-center">Setting Angsuran</th>
         		<th class="text-center">Bup Id</th>
         		<th class="text-center">Pop Id</th>
         		<th class="text-center">Wil Kode</th>
