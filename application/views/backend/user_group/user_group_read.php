@@ -20,7 +20,7 @@
 	    <tr><td>Created At</td><td><?php echo $created_at; ?></td></tr>
 	    <tr><td>Updated By</td><td><?php echo $updated_by; ?></td></tr>
 	    <tr><td>Updated At</td><td><?php echo $updated_at; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('user_group') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('user_group') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

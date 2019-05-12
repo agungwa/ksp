@@ -27,7 +27,7 @@
         </div>
 	    <input type="hidden" name="id" value="<?php echo $id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('sy_config') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('sy_config') ?>" class="btn btn-default">Batal</a>
 	</div>
             </form>
         </div>

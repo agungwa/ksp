@@ -16,7 +16,7 @@
         <table class="table">
 	    <tr><td>Bunga</td><td><?php echo $biv_bunga; ?></td></tr>
 	    <tr><td>Keterangan</td><td><?php echo $biv_keterangan; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('bungainvestasi') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('bungainvestasi') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

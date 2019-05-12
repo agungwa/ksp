@@ -16,7 +16,7 @@
         <table class="table">
     	    <tr><td>Hari</td><td><?php echo $sed_hari; ?></td></tr>
     	    <tr><td>Denda</td><td><?php echo $sed_denda; ?></td></tr>
-    	    <tr><td></td><td><a href="<?php echo site_url('settingdenda') ?>" class="btn btn-default">Cancel</a></td></tr>
+    	    <tr><td></td><td><a href="<?php echo site_url('settingdenda') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

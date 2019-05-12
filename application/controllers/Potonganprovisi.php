@@ -98,7 +98,7 @@ class Potonganprovisi extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('potonganprovisi/create_action'),
     	    'pop_id' => set_value('pop_id'),
     	    'pop_potongan' => set_value('pop_potongan'),

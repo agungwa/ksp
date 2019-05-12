@@ -101,7 +101,7 @@ class Karyawan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('karyawan/create_action'),
     	    'kar_kode' => set_value('kar_kode'),
     	    'kar_nama' => set_value('kar_nama'),

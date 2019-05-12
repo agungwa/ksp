@@ -100,7 +100,7 @@ class Settingstatuspeminjam extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('settingstatuspeminjam/create_action'),
 	    'ssp_id' => set_value('ssp_id'),
 	    'ssp_namastatus' => set_value('ssp_namastatus'),

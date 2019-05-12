@@ -18,7 +18,7 @@
 	    <tr><td>Nama</td><td><?php echo $pen_nama; ?></td></tr>
 	    <tr><td>Alamat</td><td><?php echo $pen_alamat; ?></td></tr>
 	    <tr><td>No Handphone</td><td><?php echo $pen_nohp; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('penjamin') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('penjamin') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

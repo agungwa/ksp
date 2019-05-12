@@ -100,7 +100,7 @@ class Jenispenarikansimkesan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('jenispenarikansimkesan/create_action'),
     	    'jps_id' => set_value('jps_id'),
     	    'jps_jenis' => set_value('jps_jenis'),

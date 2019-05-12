@@ -102,7 +102,7 @@ class Jaminan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('jaminan/create_action'),
     	    'jam_id' => set_value('jam_id'),
     	    'pin_id' => set_value('pin_id'),

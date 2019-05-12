@@ -102,7 +102,7 @@ class Simpananpokok extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('simpananpokok/create_action'),
 	    'sip_id' => set_value('sip_id'),
 	    'nm_ang_no' => set_value('nm_ang_no'),

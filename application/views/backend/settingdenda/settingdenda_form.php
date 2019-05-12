@@ -24,7 +24,7 @@
         </div>
 	    <input type="hidden" name="sed_id" value="<?php echo $sed_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('settingdenda') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('settingdenda') ?>" class="btn btn-default">Batal</a>
         </div>
 	</div>
             </form>

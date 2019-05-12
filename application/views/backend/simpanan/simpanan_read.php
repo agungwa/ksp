@@ -23,7 +23,7 @@
 	    <tr><td>Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
 	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $sim_tglpendaftaran; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $sim_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('simpanan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('simpanan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

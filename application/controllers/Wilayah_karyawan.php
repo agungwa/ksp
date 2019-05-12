@@ -100,7 +100,7 @@ class Wilayah_karyawan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('wilayah_karyawan/create_action'),
     	    'wik_id' => set_value('wik_id'),
     	    'wil_kode' => set_value('wil_kode'),

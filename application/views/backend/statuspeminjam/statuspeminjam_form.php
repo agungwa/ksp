@@ -46,7 +46,7 @@
         </div>
 	    <input type="hidden" name="stp_id" value="<?php echo $stp_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('statuspeminjam') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('statuspeminjam') ?>" class="btn btn-default">Batal</a>
         </div>
 	</div>
             </form>

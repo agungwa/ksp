@@ -19,7 +19,7 @@
 	    <tr><td>Tanggal Bayar</td><td><?php echo $ssk_tglbayar; ?></td></tr>
 	    <tr><td>Jumlah Setor</td><td><?php echo $ssk_jmlsetor; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $ssk_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('setoransimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('setoransimkesan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

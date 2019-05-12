@@ -17,7 +17,7 @@
         <tr><td>Kode Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
 	    <tr><td>Nama Wilayah</td><td><?php echo $wil_nama; ?></td></tr>
 	    <tr><td>Tanggal</td><td><?php echo $wil_tgl; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('wilayah') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('wilayah') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

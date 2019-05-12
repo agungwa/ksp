@@ -27,7 +27,7 @@
         </div>
 	    <input type="hidden" name="jse_id" value="<?php echo $jse_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('jenissetoran') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('jenissetoran') ?>" class="btn btn-default">Batal</a>
 	</div>
             </form>
         </div>

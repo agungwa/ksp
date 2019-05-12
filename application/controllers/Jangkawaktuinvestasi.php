@@ -101,7 +101,7 @@ class Jangkawaktuinvestasi extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('jangkawaktuinvestasi/create_action'),
 	    'jwi_id' => set_value('jwi_id'),
 	    'jwi_jangkawaktu' => set_value('jwi_jangkawaktu'),

@@ -100,7 +100,7 @@ class Wilayah extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
                 'action' => site_url('wilayah/create_action'),
         	    'wil_kode' => set_value('wil_kode'),
         	    'wil_nama' => set_value('wil_nama'),

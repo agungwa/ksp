@@ -98,7 +98,7 @@ class Settingkategoripeminjam extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('settingkategoripeminjam/create_action'),
 	    'skp_id' => set_value('skp_id'),
 	    'skp_kategori' => set_value('skp_kategori'),

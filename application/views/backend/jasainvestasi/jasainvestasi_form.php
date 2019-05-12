@@ -24,7 +24,7 @@
         </div>
 	    <input type="hidden" name="jiv_id" value="<?php echo $jiv_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('jasainvestasi') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('jasainvestasi') ?>" class="btn btn-default">Batal</a>
         </div>
 	</div>
             </form>

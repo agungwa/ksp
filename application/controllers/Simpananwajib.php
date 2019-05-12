@@ -104,7 +104,7 @@ class Simpananwajib extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('simpananwajib/create_action'),
 	    'siw_id' => set_value('siw_id'),
 	    'ang_no' => set_value('ang_no'),

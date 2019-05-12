@@ -22,7 +22,7 @@
 	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $sik_tglpendaftaran; ?></td></tr>
 	    <tr><td>Tanggal Berakhir</td><td><?php echo $sik_tglberakhir; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $sik_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('simkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('simkesan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

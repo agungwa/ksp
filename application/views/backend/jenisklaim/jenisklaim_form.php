@@ -46,7 +46,7 @@
         </div>
 	    <input type="hidden" name="jkl_id" value="<?php echo $jkl_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('jenisklaim') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('jenisklaim') ?>" class="btn btn-default">Batal</a>
         </div>
 	</div>
             </form>

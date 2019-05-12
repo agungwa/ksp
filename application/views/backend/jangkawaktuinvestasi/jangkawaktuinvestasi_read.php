@@ -16,7 +16,7 @@
         <table class="table">
 	    <tr><td>Jangka Waktu</td><td><?php echo $jwi_jangkawaktu; ?></td></tr>
 	    <tr><td>Keterangan</td><td><?php echo $jwi_keterangan; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('jangkawaktuinvestasi') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('jangkawaktuinvestasi') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

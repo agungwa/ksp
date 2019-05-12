@@ -65,7 +65,7 @@ class Sy_config extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('sy_config/create_action'),
 	    'id' => set_value('id'),
 	    'conf_name' => set_value('conf_name'),

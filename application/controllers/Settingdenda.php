@@ -99,7 +99,7 @@ class Settingdenda extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('settingdenda/create_action'),
     	    'sed_id' => set_value('sed_id'),
     	    'sed_hari' => set_value('sed_hari'),

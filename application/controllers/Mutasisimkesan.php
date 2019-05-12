@@ -104,7 +104,7 @@ class Mutasisimkesan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('mutasisimkesan/create_action'),
     	    'msk_id' => set_value('msk_id'),
     	    'sik_kode' => set_value('sik_kode'),

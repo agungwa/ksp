@@ -17,7 +17,7 @@
 	    <tr><td>Plan Simkesan</td><td><?php echo $psk_plan; ?></td></tr>
 	    <tr><td>Setoran</td><td><?php echo $psk_setoran; ?></td></tr>
 	    <tr><td>Keterangan</td><td><?php echo $psk_keterangan; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('plansimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('plansimkesan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

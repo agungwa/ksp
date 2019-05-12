@@ -104,7 +104,7 @@ class Mutasiberjangka extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('mutasiberjangka/create_action'),
 	    'mib_id' => set_value('mib_id'),
 	    'ivb_kode' => set_value('ivb_kode'),

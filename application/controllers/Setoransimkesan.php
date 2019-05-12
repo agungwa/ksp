@@ -102,7 +102,7 @@ class Setoransimkesan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('setoransimkesan/create_action'),
     	    'ssk_id' => set_value('ssk_id'),
     	    'sik_kode' => set_value('sik_kode'),

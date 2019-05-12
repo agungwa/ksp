@@ -19,7 +19,7 @@
 	    <tr><td>Jumlah Titip</td><td><?php echo $tts_jmltitip; ?></td></tr>
 	    <tr><td>Jumlah Ambil</td><td><?php echo $tts_jmlambil; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $tts_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('titipansimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('titipansimkesan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

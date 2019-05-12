@@ -18,7 +18,7 @@
 	    <tr><td>Note</td><td><?php echo $note; ?></td></tr>
 	    <tr><td>Created At</td><td><?php echo $created_at; ?></td></tr>
 	    <tr><td>Created By</td><td><?php echo $created_by; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('master_access') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('master_access') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

@@ -17,7 +17,7 @@
 	    <tr><td>Rekening Simpanan</td><td><?php echo $sim_kode; ?></td></tr>
 	    <tr><td>Tanggal Penarikan</td><td><?php echo $pes_tglpenarikan; ?></td></tr>
 	    <tr><td>Jumlah</td><td><?php echo $pes_jumlah; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('penarikansimpanan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('penarikansimpanan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

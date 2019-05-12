@@ -103,7 +103,7 @@ class Penarikansimkesan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('penarikansimkesan/create_action'),
     	    'pns_id' => set_value('pns_id'),
     	    'sik_kode' => set_value('sik_kode'),

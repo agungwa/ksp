@@ -103,7 +103,7 @@ class User_access extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('user_access/create_action'),
 	    'id' => set_value('id'),
 	    'id_group' => set_value('id_group'),

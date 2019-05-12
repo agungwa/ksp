@@ -20,7 +20,7 @@
         <div class="clearfix"> </div>
 	    <input type="hidden" name="bus_id" value="<?php echo $bus_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('bungasimpanan') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('bungasimpanan') ?>" class="btn btn-default">Batal</a>
 	</div>
             </form>
         </div>

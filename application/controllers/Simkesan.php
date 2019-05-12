@@ -106,7 +106,7 @@ class Simkesan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('simkesan/create_action'),
     	    'sik_kode' => set_value('sik_kode'),
     	    'ang_no' => set_value('ang_no'),

@@ -40,7 +40,7 @@
 
 	    <input type="hidden" name="dnd_id" value="<?php echo $dnd_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('dendaangsuran') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('dendaangsuran') ?>" class="btn btn-default">Batal</a>
         </div>
 	</div>
             </form>

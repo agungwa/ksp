@@ -15,7 +15,7 @@
         
         <table class="table">
 	    <tr><td>Tenor</td><td><?php echo $sea_tenor; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('settingangsuran') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('settingangsuran') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

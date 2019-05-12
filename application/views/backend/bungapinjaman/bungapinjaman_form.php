@@ -20,7 +20,7 @@
         </div>
 	    <input type="hidden" name="bup_id" value="<?php echo $bup_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('bungapinjaman') ?>" class="btn btn-default">Cancel</a>
+	    <a href="<?php echo site_url('bungapinjaman') ?>" class="btn btn-default">Batal</a>
         </div>
 	</div>
             </form>

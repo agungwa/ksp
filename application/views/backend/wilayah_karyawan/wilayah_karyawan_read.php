@@ -17,7 +17,7 @@
 	    <tr><td>Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $status; ?></td></tr>
 	    <tr><td>Karyawan</td><td><?php echo $kar_kode; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('wilayah_karyawan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('wilayah_karyawan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

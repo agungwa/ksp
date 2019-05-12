@@ -19,7 +19,7 @@
 	    <tr><td>Asal</td><td><?php echo $msk_asal; ?></td></tr>
 	    <tr><td>Tujuan</td><td><?php echo $msk_tujuan; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $msk_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('mutasisimkesan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('mutasisimkesan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

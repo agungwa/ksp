@@ -19,7 +19,7 @@
 	    <tr><td>Wilayah Asal</td><td><?php echo $mus_asal; ?></td></tr>
 	    <tr><td>Wilayah Tujuan</td><td><?php echo $mus_tujuan; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $mus_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('mutasisimpanan') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('mutasisimpanan') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

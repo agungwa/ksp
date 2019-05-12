@@ -98,7 +98,7 @@ class Jabatan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('jabatan/create_action'),
     	    'jab_kode' => set_value('jab_kode'),
     	    'jab_nama' => set_value('jab_nama'),

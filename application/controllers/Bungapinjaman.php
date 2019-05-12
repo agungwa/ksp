@@ -98,7 +98,7 @@ class Bungapinjaman extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Create',
+            'button' => 'Simpan',
             'action' => site_url('bungapinjaman/create_action'),
 	    'bup_id' => set_value('bup_id'),
 	    'bup_bunga' => set_value('bup_bunga'),

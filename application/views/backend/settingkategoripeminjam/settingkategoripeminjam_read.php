@@ -15,7 +15,7 @@
         
         <table class="table">
 	    <tr><td>Kategori</td><td><?php echo $skp_kategori; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('settingkategoripeminjam') ?>" class="btn btn-default">Cancel</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('settingkategoripeminjam') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>
