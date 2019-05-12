@@ -8,13 +8,13 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2 style="margin-top:0px"><?php echo $button ?> Mutasipinjaman </h2>
+                    <h2 style="margin-top:0px"><?php echo $button ?> Mutasi Pinjaman </h2>
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
         <div class="form-group">
-            <label for="varchar">Pin Id <?php echo form_error('pin_id') ?></label>
+            <label for="varchar">Rekening Pinjaman <?php echo form_error('pin_id') ?></label>
             <div class="input-group">
             <!-- <input type="hidden" name="pin_id" id="pin_id" value="<?php echo $pin_id; ?>" /> -->
             <input type="hidden" name="pin_id" id="pin_id" value="69" />
@@ -26,20 +26,20 @@
         </div>
 
 	    <div class="form-group">
-            <label for="datetime">Mup Tglmutasi <?php echo form_error('mup_tglmutasi') ?></label>
-            <input type="date" class="form-control" name="mup_tglmutasi" id="mup_tglmutasi" placeholder="Mup Tglmutasi" value="<?php echo $mup_tglmutasi; ?>" />
+            <label for="datetime">Tanggal Mutasi <?php echo form_error('mup_tglmutasi') ?></label>
+            <input type="date" class="form-control" name="mup_tglmutasi" id="todays-date" placeholder="Tanggal Mutasi" value="<?php echo $mup_tglmutasi; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Mup Asal <?php echo form_error('mup_asal') ?></label>
-            <input type="text" class="form-control" name="mup_asal" id="mup_asal" placeholder="Mup Asal" value="<?php echo $mup_asal; ?>" />
+            <label for="varchar">Asal <?php echo form_error('mup_asal') ?></label>
+            <input type="text" class="form-control" name="mup_asal" id="mup_asal" placeholder="Asal" value="<?php echo $mup_asal; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Mup Tujuan <?php echo form_error('mup_tujuan') ?></label>
-            <input type="text" class="form-control" name="mup_tujuan" id="mup_tujuan" placeholder="Mup Tujuan" value="<?php echo $mup_tujuan; ?>" />
+            <label for="varchar">Tujuan <?php echo form_error('mup_tujuan') ?></label>
+            <input type="text" class="form-control" name="mup_tujuan" id="mup_tujuan" placeholder="Tujuan" value="<?php echo $mup_tujuan; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="tinyint">Mup Status <?php echo form_error('mup_status') ?></label>
-            <input type="text" class="form-control" name="mup_status" id="mup_status" placeholder="Mup Status" value="<?php echo $mup_status; ?>" />
+            <label for="tinyint">Status <?php echo form_error('mup_status') ?></label>
+            <input type="text" class="form-control" name="mup_status" id="mup_status" placeholder="Status" value="<?php echo $mup_status; ?>" />
         </div>
         
 	    <input type="hidden" name="mup_id" value="<?php echo $mup_id; ?>" /> 
