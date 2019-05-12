@@ -14,13 +14,13 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Pin Id</td><td><?php echo $pin_id; ?></td></tr>
-	    <tr><td>Ang Angsuranke</td><td><?php echo $ang_angsuranke; ?></td></tr>
-	    <tr><td>Ags Tgljatuhtempo</td><td><?php echo $ags_tgljatuhtempo; ?></td></tr>
-	    <tr><td>Ags Tglbayar</td><td><?php echo $ags_tglbayar; ?></td></tr>
-	    <tr><td>Ags Jmlpokok</td><td><?php echo $ags_jmlpokok; ?></td></tr>
-	    <tr><td>Ags Jmlbunga</td><td><?php echo $ags_jmlbunga; ?></td></tr>
-	    <tr><td>Ags Status</td><td><?php echo $this->statusAngsuran[$ags_status]; ?></td></tr>
+	    <tr><td>Rekening Pinjaman</td><td><?php echo $pin_id; ?></td></tr>
+	    <tr><td>Angsuranke</td><td><?php echo $ang_angsuranke; ?></td></tr>
+	    <tr><td>Jatuh Tempo</td><td><?php echo $ags_tgljatuhtempo; ?></td></tr>
+	    <tr><td>Tanggal Bayar</td><td><?php echo $ags_tglbayar; ?></td></tr>
+	    <tr><td>Jumlah Pokok</td><td><?php echo $ags_jmlpokok; ?></td></tr>
+	    <tr><td>Jumlah Bunga</td><td><?php echo $ags_jmlbunga; ?></td></tr>
+	    <tr><td>Status</td><td><?php echo $this->statusAngsuran[$ags_status]; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('angsuran') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
             </div>
