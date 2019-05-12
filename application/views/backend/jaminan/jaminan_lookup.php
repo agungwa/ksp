@@ -40,14 +40,12 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Pin Id</th>
-		<th class="text-center">Jej Id</th>
-		<th class="text-center">Jam Nomor</th>
-		<th class="text-center">Jam Keterangan</th>
-		<th class="text-center">Jam File</th>
-		<th class="text-center">Jam Tgl</th>
-		<th class="text-center">Jam Flag</th>
-		<th class="text-center">Jam Info</th></tr>
+        		<th class="text-center">Rekening Pinjaman</th>
+        		<th class="text-center">Jenis Jaminan</th>
+        		<th class="text-center">Nomor Jaminan</th>
+        		<th class="text-center">Keterangan</th>
+        		<th class="text-center">File</th>
+        		<th class="text-center">Tanggal</th></tr>
             </thead>
 			<tbody><?php
             foreach ($jaminan_data as $jaminan)
@@ -61,8 +59,6 @@
 			<td><?php echo $jaminan->jam_keterangan ?></td>
 			<td><?php echo $jaminan->jam_file ?></td>
 			<td><?php echo $jaminan->jam_tgl ?></td>
-			<td><?php echo $jaminan->jam_flag ?></td>
-			<td><?php echo $jaminan->jam_info ?></td>
 		</tr>
                 
                 <?php
