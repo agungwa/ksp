@@ -40,16 +40,13 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Pin Id</th>
-		<th class="text-center">Ang Angsuranke</th>
-		<th class="text-center">Ags Tgljatuhtempo</th>
-		<th class="text-center">Ags Tglbayar</th>
-		<th class="text-center">Ags Jmlpokok</th>
-		<th class="text-center">Ags Jmlbunga</th>
-		<th class="text-center">Ags Status</th>
-		<th class="text-center">Ags Tgl</th>
-		<th class="text-center">Ags Flag</th>
-		<th class="text-center">Ags Info</th></tr>
+		<th class="text-center">Rekening Pinjaman</th>
+		<th class="text-center">Angsuranke</th>
+		<th class="text-center">Jatuh Tempo</th>
+		<th class="text-center">Tanggal Bayar</th>
+		<th class="text-center">Jumlah Pokok</th>
+		<th class="text-center">Jumlah Bunga</th>
+		<th class="text-center">Status</th>></tr>
             </thead>
 			<tbody><?php
             foreach ($angsuran_data as $angsuran)
@@ -64,9 +61,6 @@
         			<td><?php echo $angsuran->ags_jmlpokok ?></td>
         			<td><?php echo $angsuran->ags_jmlbunga ?></td>
         			<td><?php echo $angsuran->ags_status ?></td>
-        			<td><?php echo $angsuran->ags_tgl ?></td>
-        			<td><?php echo $angsuran->ags_flag ?></td>
-        			<td><?php echo $angsuran->ags_info ?></td>
         		</tr>
                 
                 <?php

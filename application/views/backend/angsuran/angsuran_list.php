@@ -48,14 +48,14 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Pin Id</th>
-		<th class="text-center">Ang Angsuranke</th>
-		<th class="text-center">Ags Tgljatuhtempo</th>
-		<th class="text-center">Ags Tglbayar</th>
-		<th class="text-center">Ags Jmlpokok</th>
-		<th class="text-center">Ags Jmlbunga</th>
-		<th class="text-center">Ags Status</th>
-		<th class="text-center">Ags Tgl</th>
+		<th class="text-center">Rekening Pinjaman</th>
+		<th class="text-center">Angsuranke</th>
+		<th class="text-center">Jatuh Tempo</th>
+		<th class="text-center">Tanggal Bayar</th>
+		<th class="text-center">Jumlah Pokok</th>
+		<th class="text-center">Jumlah Bunga</th>
+		<th class="text-center">Status</th>
+		<th class="text-center">Tanggal</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
