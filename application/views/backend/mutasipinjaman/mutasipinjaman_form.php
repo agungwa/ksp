@@ -12,7 +12,8 @@
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
-        <div class="ibox-content">
+        <div class="ibox-content col-md-12">
+        <div class="col-md-4">
         <div class="form-group">
             <label for="varchar">Rekening Pinjaman <?php echo form_error('pin_id') ?></label>
             <div class="input-group">
@@ -45,6 +46,7 @@
 	    <input type="hidden" name="mup_id" value="<?php echo $mup_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('mutasipinjaman') ?>" class="btn btn-default">Batal</a>
+        </div>
 	</div>
             </form>
         </div>
