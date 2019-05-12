@@ -48,12 +48,12 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-        		<th class="text-center">Pin Id</th>
-        		<th class="text-center">Jej Id</th>
-        		<th class="text-center">Jam Nomor</th>
-        		<th class="text-center">Jam Keterangan</th>
-        		<th class="text-center">Jam File</th>
-        		<th class="text-center">Jam Tgl</th>
+        		<th class="text-center">Rekening Pinjaman</th>
+        		<th class="text-center">Jenis Jaminan</th>
+        		<th class="text-center">Nomor Jaminan</th>
+        		<th class="text-center">Keterangan</th>
+        		<th class="text-center">File</th>
+        		<th class="text-center">Tanggal</th>
         		<th class="text-center">Action</th>
             </tr>
             </thead>
