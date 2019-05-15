@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2019 at 02:56 AM
+-- Generation Time: May 15, 2019 at 06:07 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -56,6 +56,7 @@ CREATE TABLE `anggota` (
   `ang_nokk` varchar(25) DEFAULT NULL,
   `ang_nohp` varchar(15) NOT NULL,
   `ang_tgllahir` date NOT NULL,
+  `ang_status` tinyint(1) NOT NULL,
   `ang_tgl` datetime NOT NULL,
   `ang_flag` tinyint(2) NOT NULL,
   `ang_info` text NOT NULL
@@ -65,8 +66,9 @@ CREATE TABLE `anggota` (
 -- Dumping data for table `anggota`
 --
 
-INSERT INTO `anggota` (`ang_no`, `ang_nama`, `ang_alamat`, `ang_noktp`, `ang_nokk`, `ang_nohp`, `ang_tgllahir`, `ang_tgl`, `ang_flag`, `ang_info`) VALUES
-('AA11', 'Paijo', 'Magelang', '23455235', '4444', '908999', '2019-04-24', '2019-04-20 09:15:41', 0, '');
+INSERT INTO `anggota` (`ang_no`, `ang_nama`, `ang_alamat`, `ang_noktp`, `ang_nokk`, `ang_nohp`, `ang_tgllahir`, `ang_status`, `ang_tgl`, `ang_flag`, `ang_info`) VALUES
+('A1', 'Tukiman', 'Magelang', '03992990020', '0300939390', '0859398299', '2019-05-07', 0, '2019-05-07 18:51:05', 0, ''),
+('AA11', 'Paijo', 'Magelang', '23455235', '4444', '908999', '2019-04-24', 0, '2019-04-20 09:15:41', 0, '');
 
 -- --------------------------------------------------------
 
@@ -319,6 +321,7 @@ CREATE TABLE `jenissetoran` (
   `jse_id` int(11) NOT NULL,
   `jse_setoran` varchar(25) NOT NULL,
   `jse_keterangan` text,
+  `jse_min` float NOT NULL,
   `jse_tgl` datetime NOT NULL,
   `jse_flag` tinyint(2) NOT NULL,
   `jse_info` text NOT NULL
@@ -328,10 +331,10 @@ CREATE TABLE `jenissetoran` (
 -- Dumping data for table `jenissetoran`
 --
 
-INSERT INTO `jenissetoran` (`jse_id`, `jse_setoran`, `jse_keterangan`, `jse_tgl`, `jse_flag`, `jse_info`) VALUES
-(1, 'Harian', 'setoran harian', '2019-04-19 19:06:22', 0, ''),
-(2, 'Mingguan', 'Setoran Mingguan', '2019-04-19 19:06:37', 0, ''),
-(3, 'Bulanan', 'Setoran bulanan', '2019-04-19 19:06:49', 0, '');
+INSERT INTO `jenissetoran` (`jse_id`, `jse_setoran`, `jse_keterangan`, `jse_min`, `jse_tgl`, `jse_flag`, `jse_info`) VALUES
+(1, 'Harian', 'setoran harian', 20000, '2019-04-19 19:06:22', 1, ''),
+(2, 'Mingguan', 'Setoran Mingguan', 50000, '2019-04-19 19:06:37', 1, ''),
+(3, 'Bulanan', 'Setoran bulanan', 100000, '2019-04-19 19:06:49', 1, '');
 
 -- --------------------------------------------------------
 
@@ -648,6 +651,14 @@ CREATE TABLE `plansimkesan` (
   `psk_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `plansimkesan`
+--
+
+INSERT INTO `plansimkesan` (`psk_id`, `psk_plan`, `psk_setoran`, `psk_keterangan`, `psk_tgl`, `psk_flag`, `psk_info`) VALUES
+(1, 'Plan A', 50000, 'Plan A', '2019-05-08 14:11:42', 0, ''),
+(2, 'Plan B', 75000, 'Plan B', '2019-05-08 14:47:23', 0, '');
+
 -- --------------------------------------------------------
 
 --
@@ -761,7 +772,7 @@ CREATE TABLE `settingsimpanan` (
 --
 
 INSERT INTO `settingsimpanan` (`ses_id`, `ses_nama`, `ses_min`, `ses_max`, `ses_tgl`, `ses_flag`, `ses_info`) VALUES
-(1, 'Simpanan harian', 20000, 100000, '2019-04-20 05:20:42', 0, '');
+(1, 'Simpanan Wajib', 20000, 100000, '2019-04-20 05:20:42', 1, '');
 
 -- --------------------------------------------------------
 
@@ -834,6 +845,13 @@ CREATE TABLE `simpananpokok` (
   `sip_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `simpananpokok`
+--
+
+INSERT INTO `simpananpokok` (`sip_id`, `ang_no`, `ses_id`, `sip_tglbayar`, `sip_tgl`, `sip_flag`, `sip_info`) VALUES
+(1, 'AA11', 1, '2019-05-07 00:00:00', '2019-05-08 08:23:40', 0, '');
+
 -- --------------------------------------------------------
 
 --
@@ -902,7 +920,7 @@ INSERT INTO `sy_config` (`id`, `conf_name`, `conf_val`, `note`) VALUES
 
 CREATE TABLE `titipansimkesan` (
   `tts_id` int(11) NOT NULL,
-  `sik_id` int(11) NOT NULL COMMENT 'fk dr simkesan',
+  `sik_kode` int(11) NOT NULL COMMENT 'fk dr simkesan',
   `tts_tgltitip` datetime NOT NULL,
   `tts_jmltitip` float NOT NULL,
   `tts_jmlambil` float NOT NULL,
@@ -1026,6 +1044,14 @@ CREATE TABLE `wilayah` (
   `wil_flag` tinyint(2) NOT NULL,
   `wil_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `wilayah`
+--
+
+INSERT INTO `wilayah` (`wil_kode`, `wil_nama`, `wil_tgl`, `wil_flag`, `wil_info`) VALUES
+('bunga', 'Bunga', '2019-05-08 14:53:46', 1, ''),
+('Citra', 'Citra', '2019-05-08 14:54:00', 0, '');
 
 -- --------------------------------------------------------
 
@@ -1529,7 +1555,7 @@ ALTER TABLE `penjamin`
 -- AUTO_INCREMENT for table `plansimkesan`
 --
 ALTER TABLE `plansimkesan`
-  MODIFY `psk_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `psk_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `potonganprovisi`
@@ -1583,7 +1609,7 @@ ALTER TABLE `settingstatuspeminjam`
 -- AUTO_INCREMENT for table `simpananpokok`
 --
 ALTER TABLE `simpananpokok`
-  MODIFY `sip_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `sip_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `simpananwajib`
