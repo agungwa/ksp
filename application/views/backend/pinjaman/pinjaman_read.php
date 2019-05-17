@@ -7,7 +7,7 @@
     <div class="col-lg-12">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h2 style="margin-top:0px">Pinjaman Read</h2>
+            <h2 style="margin-top:0px">Detail Pinjaman</h2>
             <div class="ibox-tools">
             </div>
         </div>
@@ -30,7 +30,7 @@
 	    <tr><td>Surveyor</td><td><?php echo $pin_surveyor; ?></td></tr>
 	    <tr><td>Survey</td><td><?php echo $pin_survey; ?></td></tr>
 	    <tr><td>Status Pinjaman</td><td><?php echo $pin_statuspinjaman; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Batal</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('pinjaman/?p=4') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>
