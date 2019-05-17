@@ -191,9 +191,6 @@ lookup();
                                 <li>
                                     <a href="<?=base_url()?>jenisklaim">Jenis Klaim</a>
                                 </li>
-                                <li>
-                                    <a href="<?=base_url()?>jenisklaim">Plan Simkesan</a>
-                                </li>
                             </ul>
                         </li>
                         <li>
@@ -422,16 +419,11 @@ lookup();
                                     <a href="<?=base_url()?>Jaminan">Jaminan</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url()?>Pinjaman">Pengajuan Pinjaman</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>Pinjaman">Persetujuan Pinjaman</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>Penjamin">Penjamin</a>
+                                    <a href="<?=base_url()?>penjamin">Penjamin</a>
                                 </li>
                             </ul>
                         </li>
+                        <li><a href="<?=base_url()?>pinjaman">Pinjaman</a></li>
                         <li>
                             <a href="#" id="damian">Angsuran<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">

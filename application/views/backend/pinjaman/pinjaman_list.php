@@ -1,49 +1,50 @@
-<!doctype html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h2><b>List Pinjaman</b></h2>
-                    <?php if ($this->session->userdata('message') != '') {?>
-                    <div class="alert alert-success alert-dismissable">
-                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                <?=$this->session->userdata('message')?> <a class="alert-link" href="#"></a>
-                    </div>
-                 <?php }?>
-                </div>
-                <div class="ibox-content">
-        <div class="row" style="margin-bottom: 10px">
-            <div class="col-md-8">
-                <?php echo anchor(site_url('pinjaman/create'),'Create', 'class="btn btn-primary"'); ?>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+        <div class="ibox-content">
+        <div class="row" style="margin-bottom: 10px, margin-top:10px">
+            <form action="<?php echo base_url()?>pinjaman" class="form-inline" method="get">
+            <div class="col-md-8 text-right">
+                <input type="hidden" name="p" value="4">
+                <div class="col-md-2"><h3>Filter : </h3></div>
+                <select class="form-control col-md-3" name="status">
+                    <option value="">--Status--</option>
+                    <?php
+                        foreach ($this->statusPinjaman as $key => $value) { ?>
+                            <option value="<?= $key?>"><?= $value?></option>
+                    <?php        
+                        }
+                    ?>
+                </select>
+                <select class="form-control col-md-3" name="wilayah">
+                    <option value="">--Wilayah--</option>
+                    <?php
+                        foreach ($wilayah_data as $value) { ?>
+                            <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
+                    <?php        
+                        }
+                    ?>
+                </select>
             </div>
-            
-            
-            <div class="col-md-1 text-right">
-            </div>
-            <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('pinjaman/index'); ?>" class="form-inline" method="get">
+            <div class="col-md-4 text-right">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
+                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="No Pinjaman / No Anggota">
                         <span class="input-group-btn">
                             <?php 
                                 if ($q <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo site_url('pinjaman'); ?>" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo base_url()?>pinjaman/?p=4" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
-                          <button class="btn btn-primary" type="submit">Search</button>
+                          <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
+
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
@@ -55,14 +56,10 @@
         		<th class="text-center">Potongan Provisi</th>
         		<th class="text-center">Wilayah</th>
         		<th class="text-center">Kategori Peminjam</th>
-        		<th class="text-center">Penjamin</th>
         		<th class="text-center">Pengajuan</th>
         		<th class="text-center">Pinjaman</th>
         		<th class="text-center">Tanggal Pengajuan</th>
         		<th class="text-center">Tanggal Pencairan</th>
-        		<th class="text-center">Marketing</th>
-        		<th class="text-center">Surveyor</th>
-        		<th class="text-center">Survey</th>
         		<th class="text-center">Status Pinjaman</th>
         		<th class="text-center">Action</th>
             </tr>
@@ -80,14 +77,10 @@
     			<td><?php echo $pinjaman->pop_id ?></td>
     			<td><?php echo $pinjaman->wil_kode ?></td>
     			<td><?php echo $pinjaman->skp_id ?></td>
-    			<td><?php echo $pinjaman->pen_id ?></td>
     			<td><?php echo $pinjaman->pin_pengajuan ?></td>
     			<td><?php echo $pinjaman->pin_pinjaman ?></td>
     			<td><?php echo dateFormat($pinjaman->pin_tglpengajuan) ?></td>
     			<td><?php echo dateFormat($pinjaman->pin_tglpencairan) ?></td>
-    			<td><?php echo $pinjaman->pin_marketing ?></td>
-    			<td><?php echo $pinjaman->pin_surveyor ?></td>
-    			<td><?php echo $pinjaman->pin_survey ?></td>
     			<td><?php echo $pinjaman->pin_statuspinjaman ?></td>
     			<td style="text-align:center" width="200px">
 				<?php 
@@ -117,5 +110,3 @@
     </div>
     </div>
     </div>
-    </body>
-</html>

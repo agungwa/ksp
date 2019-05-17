@@ -3,87 +3,27 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Pinjaman extends MY_Base
+class PengajuanPinjaman extends MY_Base
 {
     function __construct()
     {
         parent::__construct();
         $this->load->model('Pinjaman_model');
-        $this->load->model('Wilayah_model');
         $this->load->library('form_validation');
     }
 
-    public function index(){
-        $active = urldecode($this->input->get('p', TRUE));
-    
-        switch ($active) {
-            case  1:
-                $this->pengajuan();
-                break;
-            case  2:
-                $this->survey();
-                break;
-            case  3:
-                $this->persetujuan();
-                break;
-            case  4:
-                $this->list();
-                break;
-
-            default:
-                $this->pengajuan();
-                break;
-        }
-    } 
-
-    public function pengajuan(){
-        $data = array(
-            'content' => 'backend/pinjaman/pinjaman',
-            'item'=> 'pengajuan/pengajuan.php',
-            'active' => 1
-        );
-
-        $this->load->view(layout(), $data);
-    }
-
-    public function survey(){        
-        $q = urldecode($this->input->get('q', TRUE));
-        
-        $data = array(
-            'content' => 'backend/pinjaman/pinjaman',
-            'item'=> 'survey/survey.php',
-            'q' => $q,
-            'active' => 2
-        );
-
-        $this->load->view(layout(), $data);
-    }
-
-    public function persetujuan(){
-        $q = urldecode($this->input->get('q', TRUE));
-
-        $data = array(
-            'content' => 'backend/pinjaman/pinjaman',
-            'item'=> 'persetujuan/persetujuan.php',
-            'q' => $q,
-            'active' => 3
-        );
-
-        $this->load->view(layout(), $data);
-    }
-
-    public function list()
+    public function index()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-        /*if ($q <> '') {
+        if ($q <> '') {
             $config['base_url'] = base_url() . 'pinjaman/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'pinjaman/index.html?q=' . urlencode($q);
         } else {
             $config['base_url'] = base_url() . 'pinjaman/index.html';
             $config['first_url'] = base_url() . 'pinjaman/index.html';
-        }*/
+        }
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
@@ -93,18 +33,13 @@ class Pinjaman extends MY_Base
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
-        $wilayah = $this->Wilayah_model->get_all();
-
         $data = array(
             'pinjaman_data' => $pinjaman,
-            'wilayah_data' => $wilayah,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'active' => 4,
-            'content' => 'backend/pinjaman/pinjaman',
-            'item'=> 'pinjaman_list.php',
+            'content' => 'backend/pinjaman/pengajuan/pengajuan_list',
         );
         $this->load->view(layout(), $data);
     }
