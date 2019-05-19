@@ -9,21 +9,49 @@ class Anggota extends MY_Base
     {
         parent::__construct();
         $this->load->model('Anggota_model');
+        $this->load->model('Wilayah_model');
         $this->load->library('form_validation');
     }
 
-    public function index()
+    public function index(){
+        $active = urldecode($this->input->get('p', TRUE));
+    
+        switch ($active) {
+            case  1:
+                $this->pendaftaran();
+                break;
+            case  2:
+                $this->listdata();
+                break;
+
+            default:
+                $this->pendaftaran();
+                break;
+        }
+    } 
+
+    public function pendaftaran(){
+        $data = array(
+            'content' => 'backend/anggota/anggota',
+            'item'=> 'pendaftaran/pendaftaran.php',
+            'active' => 1
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-        if ($q <> '') {
+        /*if ($q <> '') {
             $config['base_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q);
         } else {
             $config['base_url'] = base_url() . 'anggota/index.html';
             $config['first_url'] = base_url() . 'anggota/index.html';
-        }
+        }*/
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
@@ -33,13 +61,18 @@ class Anggota extends MY_Base
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
+        $wilayah = $this->Wilayah_model->get_all();
+
         $data = array(
             'anggota_data' => $anggota,
+            'wilayah_data' => $wilayah,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'content' => 'backend/anggota/anggota_list',
+            'active' => 4,
+            'content' => 'backend/anggota/anggota',
+            'item' => 'anggota_list.php',
         );
         $this->load->view(layout(), $data);
     }
