@@ -32,7 +32,7 @@ class Setoransimpananwajib_model extends CI_Model
     
     // get total rows
     function total_rows($q = NULL) {
-        $where = "(ssw_id LIKE '%$q%' ESCAPE '!' OR siw_id LIKE '%$q' ESCAPE '!') AND siw_flag < 2";
+        $where = "(ssw_id LIKE '%$q%' ESCAPE '!' OR siw_id LIKE '%$q%' ESCAPE '!') AND ssw_flag < 2";
         $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
@@ -41,7 +41,7 @@ class Setoransimpananwajib_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order); 
-        $where = "(ssw_id LIKE '%$q%' ESCAPE '!' OR siw_id LIKE '%$q' ESCAPE '!') AND siw_flag < 2";
+        $where = "(ssw_id LIKE '%$q%' ESCAPE '!' OR siw_id LIKE '%$q%' ESCAPE '!') AND ssw_flag < 2";
         $this->db->where($where);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();

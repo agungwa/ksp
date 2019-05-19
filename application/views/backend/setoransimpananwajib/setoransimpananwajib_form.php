@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2 style="margin-top:0px"><?php echo $button ?> Setoransimpananwajib </h2>
+                    <h2 style="margin-top:0px"><?php echo $button ?> Setoran Simpanan Wajib </h2>
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
