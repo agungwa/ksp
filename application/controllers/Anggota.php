@@ -23,7 +23,10 @@ class Anggota extends MY_Base
             case  2:
                 $this->listdata();
                 break;
-
+            /*case  3:
+                $this->tariksimpanan();
+                break;*/
+                    
             default:
                 $this->pendaftaran();
                 break;
@@ -32,13 +35,23 @@ class Anggota extends MY_Base
 
     public function pendaftaran(){
         $data = array(
-            'content' => 'backend/anggota/anggota',
-            'item'=> 'pendaftaran/pendaftaran.php',
+            'content' => 'backend/penarikansimpananwajib/penarikansimpananwajib',
+            'item'=> 'penarikansimpananwajib_form.php',
             'active' => 1
         );
 
         $this->load->view(layout(), $data);
     }
+
+  /*  public function tariksimpanan(){
+        $data = array(
+            'content' => 'backend/anggota/anggota',
+            'item'=> 'pendaftaran/pendaftaran.php',
+            'active' => 3
+        );
+
+        $this->load->view(layout(), $data);
+    }*/
 
     public function listdata()
     {

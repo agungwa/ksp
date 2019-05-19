@@ -126,6 +126,9 @@ lookup();
                                     <a href="<?=base_url()?>penarikansimpananwajib">Tarik Simpanan Wajib</a>
                                 </li>
                                 <li>
+                                    <a href="<?=base_url()?>setoransimpananwajib">Setoran Simpanan Wajib</a>
+                                </li>
+                                <li>
                                     <a href="<?=base_url()?>Simpanan/create">Simpanan</a>
                                 </li>
                             </ul>
