@@ -35,8 +35,8 @@ class Anggota extends MY_Base
 
     public function pendaftaran(){
         $data = array(
-            'content' => 'backend/penarikansimpananwajib/penarikansimpananwajib',
-            'item'=> 'penarikansimpananwajib_form.php',
+            'content' => 'backend/anggota/anggota',
+            'item'=> 'pendaftaran/pendaftaran.php',
             'active' => 1
         );
 
