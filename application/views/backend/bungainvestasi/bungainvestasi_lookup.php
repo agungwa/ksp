@@ -48,6 +48,7 @@
             {
                 ?>
                 <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$bungainvestasi->biv_id?>','<?=$bungainvestasi->biv_bunga?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $bungainvestasi->biv_bunga ?></td>
 			<td><?php echo $bungainvestasi->biv_keterangan ?></td>

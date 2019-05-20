@@ -200,9 +200,6 @@ class Penarikansimpananwajib extends CI_Controller
 	$this->form_validation->set_rules('siw_id', 'siw id', 'trim|required');
 	$this->form_validation->set_rules('psw_tglpenarikan', 'psw tglpenarikan', 'trim|required');
 	$this->form_validation->set_rules('psw_jumlah', 'psw jumlah', 'trim|required');
-	$this->form_validation->set_rules('psw_tgl', 'psw tgl', 'trim|required');
-	$this->form_validation->set_rules('psw_flag', 'psw flag', 'trim|required');
-	$this->form_validation->set_rules('psw_info', 'psw info', 'trim|required');
 
 	$this->form_validation->set_rules('psw_id', 'psw_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

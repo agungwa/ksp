@@ -9,21 +9,54 @@ class Simkesan extends MY_Base
     {
         parent::__construct();
         $this->load->model('Simkesan_model');
+        $this->load->model('Wilayah_model');
+        $this->load->model('Karyawan_model');
+        $this->load->model('Plansimkesan_model');
         $this->load->library('form_validation');
     }
 
-    public function index()
+    public function index(){
+        $active = urldecode($this->input->get('p', TRUE));
+    
+        switch ($active) {
+            case  1:
+                $this->pendaftaran();
+                break;
+            case  2:
+                $this->listdata();
+                break;
+            /*case  3:
+                $this->tariksimpanan();
+                break;*/
+                    
+            default:
+                $this->pendaftaran();
+                break;
+        }
+    } 
+
+    public function pendaftaran(){
+        $data = array(
+            'content' => 'backend/simkesan/simkesan',
+            'item'=> 'pendaftaran/pendaftaran.php',
+            'active' => 1,
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-        if ($q <> '') {
+       /* if ($q <> '') {
             $config['base_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
         } else {
             $config['base_url'] = base_url() . 'simkesan/index.html';
             $config['first_url'] = base_url() . 'simkesan/index.html';
-        }
+        }*/
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
@@ -32,14 +65,22 @@ class Simkesan extends MY_Base
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
+        $wilayah = $this->Wilayah_model->get_all();
+        $karyawan = $this->Karyawan_model->get_all();
+        $plansimkesan = $this->Plansimkesan_model->get_all();
 
         $data = array(
             'simkesan_data' => $simkesan,
+            'wilayah_data' => $wilayah,
+            'karyawan_data' => $karyawan,
+            'plansimkesan_data' => $plansimkesan,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'content' => 'backend/simkesan/simkesan_list',
+            'content' => 'backend/simkesan/simkesan',
+            'item' => 'simkesan_list.php',
+            'active' => 2,
         );
         $this->load->view(layout(), $data);
     }

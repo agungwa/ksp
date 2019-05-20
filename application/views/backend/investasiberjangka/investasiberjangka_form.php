@@ -57,7 +57,7 @@
             <input type="hidden" name="jwi_id" id="jwi_id" value="<?php echo $jwi_id; ?>" />
             <input type="text" class="form-control" name="nm_jwi_id" id="nm_jwi_id" placeholder="Jangka Waktu" value="<?php echo $nm_jwi_id; ?>" readonly/>
             <div class="input-group-addon">
-                <span onclick="lookup('<?=base_url()?>jangkawaktu/lookup','jwi_id');" style="cursor: pointer;">Cari</span>
+                <span onclick="lookup('<?=base_url()?>jangkawaktuinvestasi/lookup','jwi_id');" style="cursor: pointer;">Cari</span>
             </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
         </div>
        
         <div class="form-group">
-            <label for="int">Bunga Investasi <?php echo form_error('biv_id') ?></label>
+            <label for="int">Bunga (dalam persen) <?php echo form_error('biv_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="biv_id" id="biv_id" value="<?php echo $biv_id; ?>" />
             <input type="text" class="form-control" name="nm_biv_id" id="nm_biv_id" placeholder="Bunga Investasi" value="<?php echo $nm_biv_id; ?>" readonly/>

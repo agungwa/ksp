@@ -193,10 +193,6 @@ class Jasainvestasi extends MY_Base
     {
 	$this->form_validation->set_rules('jiv_jasa', 'jiv jasa', 'trim|required');
 	$this->form_validation->set_rules('jiv_keterangan', 'jiv keterangan', 'trim|required');
-	$this->form_validation->set_rules('jiv_tgl', 'jiv tgl', 'trim|required');
-	$this->form_validation->set_rules('jiv_flag', 'jiv flag', 'trim|required');
-	$this->form_validation->set_rules('jiv_info', 'jiv info', 'trim|required');
-
 	$this->form_validation->set_rules('jiv_id', 'jiv_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

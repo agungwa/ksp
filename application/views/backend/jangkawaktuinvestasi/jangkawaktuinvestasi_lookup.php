@@ -40,14 +40,14 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jangka Waktu</th>
+		<th class="text-center">Jangka (dalam bulan)</th>
 		<th class="text-center">Keterangan</th></tr>
             </thead>
 			<tbody><?php
             foreach ($jangkawaktuinvestasi_data as $jangkawaktuinvestasi)
             {
                 ?>
-                <tr>
+                <tr onclick="setVal('<?=$idhtml?>','<?=$jangkawaktuinvestasi->jwi_id?>','<?=$jangkawaktuinvestasi->jwi_jangkawaktu?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jangkawaktuinvestasi->jwi_jangkawaktu ?></td>
 			<td><?php echo $jangkawaktuinvestasi->jwi_keterangan ?></td>
