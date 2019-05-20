@@ -120,19 +120,13 @@ lookup();
                             <a href="#" id="damian">Set Up <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                             <li>
-                                    <a href="<?=base_url()?>Anggota/create">Anggota</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>anggota">Informasi Anggota</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>simpananpokok">Simpanan Pokok</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>simpananwajib">Simpanan Wajib</a>
+                                    <a href="<?=base_url()?>Anggota">Anggota</a>
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>penarikansimpananwajib">Tarik Simpanan Wajib</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>setoransimpananwajib">Setoran Simpanan Wajib</a>
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>Simpanan/create">Simpanan</a>

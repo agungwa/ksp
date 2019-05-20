@@ -27,7 +27,7 @@ class Pinjaman extends MY_Base
                 $this->persetujuan();
                 break;
             case  4:
-                $this->list();
+                $this->listdata();
                 break;
 
             default:
@@ -72,7 +72,7 @@ class Pinjaman extends MY_Base
         $this->load->view(layout(), $data);
     }
 
-    public function list()
+    public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
