@@ -6,6 +6,7 @@
                 <div class="row" style="margin-bottom: 10px, margin-top:10px">
 
                     <form action="<?php echo site_url('pinjaman/pengajuan_action'); ?>" method="POST">
+                    <div class="ibox-content col-md-12">
                         <div class="col-md-8">
                             <h3>Form Pengajuan</h3>
                             <div class="col-md-6">
@@ -26,7 +27,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="int">Setting Angsuran</label>
+                                <label for="int">Setting Angsuran (bulan)</label>
                                 <div class="input-group">
                                 <input type="hidden" name="sea_id" id="sea_id" value="" required="required" />
                                 <input type="text" class="form-control" name="nm_sea_id" id="nm_sea_id" placeholder="Setting Angsuran" value="" required="required" readonly/>
@@ -37,7 +38,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="int">Bunga Pinjaman</label>
+                                <label for="int">Bunga Pinjaman (persen)</label>
                                 <div class="input-group">
                                 <input type="hidden" name="bup_id" id="bup_id" value="" required="required" />
                                 <input type="text" class="form-control" name="nm_bup_id" id="nm_bup_id" placeholder="Bunga Pinjaman" value="" required="required" readonly/>
@@ -48,7 +49,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="int">Potongan Provisi</label>
+                                <label for="int">Potongan Provisi (persen)</label>
                                 <div class="input-group">
                                 <input type="hidden" name="pop_id" id="pop_id" value="" required="required" />
                                 <input type="text" class="form-control" name="nm_pop_id" id="nm_pop_id" placeholder="Potongan Provisi" value="" required="required" readonly/>

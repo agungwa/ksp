@@ -12,18 +12,44 @@ class Statuspeminjam extends MY_Base
         $this->load->library('form_validation');
     }
 
-    public function index()
+    public function index(){
+        $active = urldecode($this->input->get('p', TRUE));
+    
+        switch ($active) {
+            case  1:
+                $this->status();
+                break;
+            case  2:
+                $this->listdata();
+                break;
+            default:
+                $this->status();
+                break;
+        }
+    } 
+
+    public function status(){
+        $data = array(
+            'content' => 'backend/statuspeminjam/statuspeminjam',
+            'item'=> 'status/status.php',
+            'active' => 1,
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-        if ($q <> '') {
+       /* if ($q <> '') {
             $config['base_url'] = base_url() . 'statuspeminjam/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'statuspeminjam/index.html?q=' . urlencode($q);
         } else {
             $config['base_url'] = base_url() . 'statuspeminjam/index.html';
             $config['first_url'] = base_url() . 'statuspeminjam/index.html';
-        }
+        } */
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
@@ -39,7 +65,9 @@ class Statuspeminjam extends MY_Base
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'content' => 'backend/statuspeminjam/statuspeminjam_list',
+            'active' => 2,
+            'content' => 'backend/statuspeminjam/statuspeminjam',
+            'item' => 'statuspeminjam_list.php'
         );
         $this->load->view(layout(), $data);
     }
@@ -116,13 +144,8 @@ class Statuspeminjam extends MY_Base
         $this->load->view(layout(), $data);
     }
     
-    public function create_action() 
+    public function status_action() 
     {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
             $data = array(
 		'ang_no' => $this->input->post('ang_no',TRUE),
 		'ssp_id' => $this->input->post('ssp_id',TRUE),
@@ -134,8 +157,8 @@ class Statuspeminjam extends MY_Base
 
             $this->Statuspeminjam_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('statuspeminjam'));
-        }
+            redirect(site_url('statuspeminjam/?p=1'));
+        
     }
     
     public function update($id) 
