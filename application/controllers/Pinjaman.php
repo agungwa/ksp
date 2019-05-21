@@ -9,6 +9,8 @@ class Pinjaman extends MY_Base
     {
         parent::__construct();
         $this->load->model('Pinjaman_model');
+        $this->load->model('Jaminan_model');
+        $this->load->model('Penjamin_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Karyawan_model');
         $this->load->library('form_validation');
@@ -49,12 +51,37 @@ class Pinjaman extends MY_Base
 
     public function survey(){        
         $q = urldecode($this->input->get('q', TRUE));
-        
+        $survey = null;
+
+        if ($q<>''){
+            $row = $this->Pinjaman_model->get_by_id($q);
+             if ($row) {
+                $survey = array(
+                'pin_id' => $row->pin_id,
+                'ang_no' => $row->ang_no,
+                'sea_id' => $row->sea_id,
+                'bup_id' => $row->bup_id,
+                'pop_id' => $row->pop_id,
+                'wil_kode' => $row->wil_kode,
+                'skp_id' => $row->skp_id,
+                'pin_pengajuan' => $row->pin_pengajuan,
+                'pin_pinjaman' => $row->pin_pinjaman,
+                'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                'pin_tglpencairan' => $row->pin_tglpencairan,
+                'pin_marketing' => $row->pin_marketing,
+                'pin_surveyor' => $row->pin_surveyor,
+                'pin_survey' => $row->pin_survey,
+                'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman]
+                );
+            } 
+        }   
+
         $data = array(
             'content' => 'backend/pinjaman/pinjaman',
             'item'=> 'survey/survey.php',
             'q' => $q,
-            'active' => 2
+            'active' => 2,
+            'survey' => $survey
         );
 
         $this->load->view(layout(), $data);
@@ -62,15 +89,95 @@ class Pinjaman extends MY_Base
 
     public function persetujuan(){
         $q = urldecode($this->input->get('q', TRUE));
+        $persetujuan = null;
+
+        if ($q<>''){
+            $row = $this->Pinjaman_model->get_by_id($q);
+             if ($row) {
+                $persetujuan = array(
+                'pin_id' => $row->pin_id,
+                'ang_no' => $row->ang_no,
+                'sea_id' => $row->sea_id,
+                'bup_id' => $row->bup_id,
+                'pop_id' => $row->pop_id,
+                'wil_kode' => $row->wil_kode,
+                'skp_id' => $row->skp_id,
+                'pin_pengajuan' => $row->pin_pengajuan,
+                'pin_pinjaman' => $row->pin_pinjaman,
+                'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                'pin_tglpencairan' => $row->pin_tglpencairan,
+                'pin_marketing' => $row->pin_marketing,
+                'pin_surveyor' => $row->pin_surveyor,
+                'pin_survey' => $row->pin_survey,
+                'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman]
+                );
+            } 
+        }   
 
         $data = array(
             'content' => 'backend/pinjaman/pinjaman',
             'item'=> 'persetujuan/persetujuan.php',
             'q' => $q,
-            'active' => 3
+            'active' => 3,
+            'persetujuan' => $persetujuan
         );
 
         $this->load->view(layout(), $data);
+    }
+
+
+    public function pengajuan_action() 
+    {
+        //Butuh validasi input
+            $dataPengajuan = array(
+            'pin_id' => $this->input->post('pin_id',TRUE),
+            'ang_no' => $this->input->post('ang_no',TRUE),
+            'sea_id' => $this->input->post('sea_id',TRUE),
+            'bup_id' => $this->input->post('bup_id',TRUE),
+            'pop_id' => $this->input->post('pop_id',TRUE),
+            'wil_kode' => $this->input->post('wil_kode',TRUE),
+            'skp_id' => $this->input->post('skp_id',TRUE),
+            'pin_pengajuan' => $this->input->post('pin_pengajuan',TRUE),
+            'pin_pinjaman' => $this->input->post('pin_pinjaman',TRUE),
+            'pin_tglpengajuan' => $this->input->post('pin_tglpengajuan',TRUE),
+            'pin_marketing' => $this->input->post('pin_marketing',TRUE),
+            'pin_surveyor' => $this->input->post('pin_surveyor',TRUE),
+            'pin_statuspinjaman' => 0,
+            'pin_tgl' => $this->tgl,
+            'pin_flag' => 0,
+            'pin_info' => "",
+            );
+
+            $this->Pinjaman_model->savePengajuan($dataPengajuan);
+            //save jaminan
+            $dataJaminan = array(
+                'pin_id' => $this->input->post('pin_id',TRUE),
+                'jej_id' => $this->input->post('jej_id',TRUE),
+                'jam_nomor' => $this->input->post('jam_nomor',TRUE),
+                'jam_keterangan' => $this->input->post('jam_keterangan',TRUE),
+                'jam_file' => "",
+                'jam_tgl' => $this->tgl,
+                'jam_flag' => 0,
+                'jam_info' => "",
+            );
+            $this->Jaminan_model->insert($dataJaminan);
+
+            //save penjamin
+            $dataPenjamin = array(
+                'pin_id' => $this->input->post('pin_id',TRUE),
+                'pen_noktp' => $this->input->post('pen_noktp',TRUE),
+                'pen_nama' => $this->input->post('pen_nama',TRUE),
+                'pen_alamat' => $this->input->post('pen_alamat',TRUE),
+                'pen_nohp' => $this->input->post('pen_nohp',TRUE),
+                'pen_tgl' => $this->tgl,
+                'pen_flag' => 0,
+                'pen_info' => "",
+                );
+            $this->Penjamin_model->insert($dataPenjamin);
+
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('pinjaman/?p=1'));
+        
     }
 
     public function listdata()
@@ -158,7 +265,6 @@ class Pinjaman extends MY_Base
     		'pop_id' => $row->pop_id,
     		'wil_kode' => $row->wil_kode,
     		'skp_id' => $row->skp_id,
-    		'pen_id' => $row->pen_id,
     		'pin_pengajuan' => $row->pin_pengajuan,
     		'pin_pinjaman' => $row->pin_pinjaman,
     		'pin_tglpengajuan' => $row->pin_tglpengajuan,
@@ -195,8 +301,6 @@ class Pinjaman extends MY_Base
             'nm_wil_kode' => set_value('nm_wil_kode'),
     	    'skp_id' => set_value('skp_id'),
             'nm_skp_id' => set_value('nm_skp_id'),
-    	    'pen_id' => set_value('pen_id'),
-            'nm_pen_id' => set_value('nm_pen_id'),
     	    'pin_pengajuan' => set_value('pin_pengajuan'),
     	    'pin_pinjaman' => set_value('pin_pinjaman'),
     	    'pin_tglpengajuan' => set_value('pin_tglpengajuan'),
@@ -208,41 +312,6 @@ class Pinjaman extends MY_Base
     	    'content' => 'backend/pinjaman/pinjaman_form',
     	);
         $this->load->view(layout(), $data);
-    }
-    
-    public function create_action() 
-    {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-    		'pin_id' => $this->input->post('pin_id',TRUE),
-    		'ang_no' => $this->input->post('ang_no',TRUE),
-    		'sea_id' => $this->input->post('sea_id',TRUE),
-    		'bup_id' => $this->input->post('bup_id',TRUE),
-    		'pop_id' => $this->input->post('pop_id',TRUE),
-    		'wil_kode' => $this->input->post('wil_kode',TRUE),
-    		'skp_id' => $this->input->post('skp_id',TRUE),
-    		'pen_id' => $this->input->post('pen_id',TRUE),
-    		'pin_pengajuan' => $this->input->post('pin_pengajuan',TRUE),
-    		'pin_pinjaman' => $this->input->post('pin_pinjaman',TRUE),
-    		'pin_tglpengajuan' => $this->input->post('pin_tglpengajuan',TRUE),
-    		'pin_tglpencairan' => $this->input->post('pin_tglpencairan',TRUE),
-    		'pin_marketing' => $this->input->post('pin_marketing',TRUE),
-    		'pin_surveyor' => $this->input->post('pin_surveyor',TRUE),
-    		'pin_survey' => $this->input->post('pin_survey',TRUE),
-    		'pin_statuspinjaman' => $this->input->post('pin_statuspinjaman',TRUE),
-    		'pin_tgl' => $this->tgl,
-    		'pin_flag' => 0,
-    		'pin_info' => "",
-    	    );
-
-            $this->Pinjaman_model->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('pinjaman'));
-        }
     }
     
     public function update($id) 
@@ -266,8 +335,6 @@ class Pinjaman extends MY_Base
                 'nm_wil_kode' => set_value('wil_kode', $row->wil_kode),
         		'skp_id' => set_value('skp_id', $row->skp_id),
                 'nm_skp_id' => set_value('skp_id', $row->skp_id),
-        		'pen_id' => set_value('pen_id', $row->pen_id),
-                'nm_pen_id' => set_value('pen_id', $row->pen_id),
         		'pin_pengajuan' => set_value('pin_pengajuan', $row->pin_pengajuan),
         		'pin_pinjaman' => set_value('pin_pinjaman', $row->pin_pinjaman),
         		'pin_tglpengajuan' => set_value('pin_tglpengajuan', $row->pin_tglpengajuan),
@@ -299,7 +366,6 @@ class Pinjaman extends MY_Base
     		'pop_id' => $this->input->post('pop_id',TRUE),
     		'wil_kode' => $this->input->post('wil_kode',TRUE),
     		'skp_id' => $this->input->post('skp_id',TRUE),
-    		'pen_id' => $this->input->post('pen_id',TRUE),
     		'pin_pengajuan' => $this->input->post('pin_pengajuan',TRUE),
     		'pin_pinjaman' => $this->input->post('pin_pinjaman',TRUE),
     		'pin_tglpengajuan' => $this->input->post('pin_tglpengajuan',TRUE),
@@ -343,7 +409,6 @@ class Pinjaman extends MY_Base
 	$this->form_validation->set_rules('pop_id', 'pop id', 'trim|required');
 	$this->form_validation->set_rules('wil_kode', 'wil kode', 'trim|required');
 	$this->form_validation->set_rules('skp_id', 'skp id', 'trim|required');
-	$this->form_validation->set_rules('pen_id', 'pen id', 'trim|required');
 	$this->form_validation->set_rules('pin_pengajuan', 'pin pengajuan', 'trim|required');
 	$this->form_validation->set_rules('pin_pinjaman', 'pin pinjaman', 'trim|required');
 	$this->form_validation->set_rules('pin_tglpengajuan', 'pin tglpengajuan', 'trim|required');

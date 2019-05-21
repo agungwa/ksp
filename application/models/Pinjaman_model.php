@@ -64,6 +64,13 @@ class Pinjaman_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    // save pengajuan
+    function savePengajuan($data)
+    {
+        $this->db->insert($this->table, $data);
+        //return $this->db->insert_id();
+    }
+
     // insert data
     function insert($data)
     {
