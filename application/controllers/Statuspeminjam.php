@@ -12,81 +12,18 @@ class Statuspeminjam extends MY_Base
         $this->load->library('form_validation');
     }
 
-    public function index(){
-        $active = urldecode($this->input->get('p', TRUE));
-    
-        switch ($active) {
-            case  1:
-                $this->settingstatus();
-                break;
-            case  2:
-                $this->listdata();
-                break;
-            /*case  3:
-                $this->tariksimpanan();
-                break;*/
-                    
-            default:
-                $this->settingstatus();
-                break;
-        }
-    } 
-
-    
-    public function settingstatus() 
-    {
-        $data = array(
-            'button' => 'Simpan',
-            'action' => site_url('statuspeminjam/create_action'),
-	    'stp_id' => set_value('stp_id'),
-	    'ang_no' => set_value('ang_no'),
-	    'nm_ang_no' => set_value('nm_ang_no'),
-	    'ssp_id' => set_value('ssp_id'),
-	    'nm_ssp_id' => set_value('nm_ssp_id'),
-	    'pin_id' => set_value('pin_id'),
-        'nm_pin_id' => set_value('nm_pin_id'),
-        'active' => 1,
-        'content' => 'backend/statuspeminjam/statuspeminjam',
-        'item' => 'settingstatus/settingstatus.php'
-	);
-        $this->load->view(layout(), $data);
-    }
-    
-    public function create_action() 
-    {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
-		'ang_no' => $this->input->post('ang_no',TRUE),
-		'ssp_id' => $this->input->post('ssp_id',TRUE),
-		'pin_id' => $this->input->post('pin_id',TRUE),
-		'stp_tgl' => $this->tgl,
-		'stp_flag' => 0,
-		'stp_info' => "",
-	    );
-
-            $this->Statuspeminjam_model->insert($data);
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('statuspeminjam'));
-        }
-    }
-    
-
-    public function listdata()
+    public function index()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-      /*  if ($q <> '') {
+        if ($q <> '') {
             $config['base_url'] = base_url() . 'statuspeminjam/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'statuspeminjam/index.html?q=' . urlencode($q);
         } else {
             $config['base_url'] = base_url() . 'statuspeminjam/index.html';
             $config['first_url'] = base_url() . 'statuspeminjam/index.html';
-        }*/
+        }
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
@@ -102,9 +39,7 @@ class Statuspeminjam extends MY_Base
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'active' => 2,
-            'content' => 'backend/statuspeminjam/statuspeminjam',
-            'item' => 'statuspeminjam_list.php',
+            'content' => 'backend/statuspeminjam/statuspeminjam_list',
         );
         $this->load->view(layout(), $data);
     }
@@ -164,6 +99,45 @@ class Statuspeminjam extends MY_Base
         }
     }
 
+    public function create() 
+    {
+        $data = array(
+            'button' => 'Simpan',
+            'action' => site_url('statuspeminjam/create_action'),
+	    'stp_id' => set_value('stp_id'),
+	    'ang_no' => set_value('ang_no'),
+	    'nm_ang_no' => set_value('nm_ang_no'),
+	    'ssp_id' => set_value('ssp_id'),
+	    'nm_ssp_id' => set_value('nm_ssp_id'),
+	    'pin_id' => set_value('pin_id'),
+	    'nm_pin_id' => set_value('nm_pin_id'),
+	    'content' => 'backend/statuspeminjam/statuspeminjam_form',
+	);
+        $this->load->view(layout(), $data);
+    }
+    
+    public function create_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+        } else {
+            $data = array(
+		'ang_no' => $this->input->post('ang_no',TRUE),
+		'ssp_id' => $this->input->post('ssp_id',TRUE),
+		'pin_id' => $this->input->post('pin_id',TRUE),
+		'stp_tgl' => $this->tgl,
+		'stp_flag' => 0,
+		'stp_info' => "",
+	    );
+
+            $this->Statuspeminjam_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('statuspeminjam'));
+        }
+    }
+    
     public function update($id) 
     {
         $row = $this->Statuspeminjam_model->get_by_id($id);

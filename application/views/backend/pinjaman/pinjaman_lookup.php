@@ -42,13 +42,19 @@
                 <th class="text-center">No</th>
         		<th class="text-center">Pinjaman</th>
         		<th class="text-center">Anggota</th>
+        		<th class="text-center">Setting Angsuran</th>
+        		<th class="text-center">Bunga Pinjaman</th>
+        		<th class="text-center">Potongan Provisi</th>
         		<th class="text-center">Wilayah</th>
-        		<th class="text-center">Kategori Peminjam</th>   
+        		<th class="text-center">Kategori Peminjam</th>
+        		<th class="text-center">Penjamin</th>
+        		<th class="text-center">Pengajuan</th>
         		<th class="text-center">Pinjaman</th>
         		<th class="text-center">Tanggal Pengajuan</th>
         		<th class="text-center">Tanggal Pencairan</th>
         		<th class="text-center">Marketing</th>
         		<th class="text-center">Surveyor</th>
+        		<th class="text-center">Survey</th>
         		<th class="text-center">Status Pinjaman</th></tr>
             </thead>
 			<tbody><?php
@@ -59,15 +65,21 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $pinjaman->pin_id ?></td>
 			<td><?php echo $pinjaman->ang_no ?></td>
+			<td><?php echo $pinjaman->sea_id ?></td>
+			<td><?php echo $pinjaman->bup_id ?></td>
+			<td><?php echo $pinjaman->pop_id ?></td>
 			<td><?php echo $pinjaman->wil_kode ?></td>
 			<td><?php echo $pinjaman->skp_id ?></td>
+			<td><?php echo $pinjaman->pen_id ?></td>
+			<td><?php echo $pinjaman->pin_pengajuan ?></td>
 			<td><?php echo $pinjaman->pin_pinjaman ?></td>
 			<td><?php echo $pinjaman->pin_tglpengajuan ?></td>
 			<td><?php echo $pinjaman->pin_tglpencairan ?></td>
 			<td><?php echo $pinjaman->pin_marketing ?></td>
 			<td><?php echo $pinjaman->pin_surveyor ?></td>
+			<td><?php echo $pinjaman->pin_survey ?></td>
 			<td><?php echo $pinjaman->pin_statuspinjaman ?></td>
-        </tr>
+		</tr>
                 
                 <?php
             }

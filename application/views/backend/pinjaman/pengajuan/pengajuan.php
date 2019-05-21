@@ -6,7 +6,6 @@
                 <div class="row" style="margin-bottom: 10px, margin-top:10px">
 
                     <form action="<?php echo site_url('pinjaman/pengajuan_action'); ?>" method="POST">
-                    <div class="ibox-content col-md-12">
                         <div class="col-md-8">
                             <h3>Form Pengajuan</h3>
                             <div class="col-md-6">

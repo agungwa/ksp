@@ -49,7 +49,7 @@
             <tr>
                 <th class="text-center">No</th>
         		<th class="text-center">Hari</th>
-        		<th class="text-center">Denda (dalam persen)</th>
+        		<th class="text-center">Denda</th>
         		<th class="text-center">Tanggal</th>
         		<th class="text-center">Action</th>
             </tr>

@@ -14,7 +14,7 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Tenor (dalam bulan)</td><td><?php echo $sea_tenor; ?></td></tr>
+	    <tr><td>Tenor</td><td><?php echo $sea_tenor; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('settingangsuran') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>

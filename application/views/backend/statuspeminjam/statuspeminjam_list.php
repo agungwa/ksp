@@ -19,6 +19,7 @@
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
+                <?php echo anchor(site_url('statuspeminjam/create'),'Create', 'class="btn btn-primary"'); ?>
             </div>
             
             
@@ -37,7 +38,7 @@
                                     <?php
                                 }
                             ?>
-                          <button class="btn btn-primary" type="submit">Cari</button>
+                          <button class="btn btn-primary" type="submit">Search</button>
                         </span>
                     </div>
                 </form>

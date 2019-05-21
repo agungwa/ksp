@@ -41,7 +41,7 @@
             <tr>
                 <th class="text-center">No</th>
         		<th class="text-center">Hari</th>
-        		<th class="text-center">Denda (dalam persen)</th></tr>
+        		<th class="text-center">Denda</th></tr>
             </thead>
 			<tbody><?php
             foreach ($settingdenda_data as $settingdenda)

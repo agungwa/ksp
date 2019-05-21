@@ -83,7 +83,7 @@ class Anggota extends MY_Base
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'active' => 2,
+            'active' => 4,
             'content' => 'backend/anggota/anggota',
             'item' => 'anggota_list.php',
         );
