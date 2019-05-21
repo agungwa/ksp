@@ -48,7 +48,7 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jangka Waktu</th>
+		<th class="text-center">Jangka (dalam bulan)</th>
 		<th class="text-center">Keterangan</th>
 		<th class="text-center">Action</th>
             </tr>

@@ -25,6 +25,15 @@
                         }
                     ?>
                 </select>
+                <select class="form-control col-md-3" name="karyawan">
+                    <option value="">--Karyawan--</option>
+                    <?php
+                        foreach ($karyawan_data as $value) { ?>
+                            <option value="<?= $value->kar_kode?>"><?= $value->kar_nama?></option>
+                    <?php        
+                        }
+                    ?>
+                </select>
             </div>
             <div class="col-md-4 text-right">
                     <div class="input-group">

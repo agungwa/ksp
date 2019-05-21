@@ -37,7 +37,7 @@ class Anggota extends MY_Base
         $data = array(
             'content' => 'backend/anggota/anggota',
             'item'=> 'pendaftaran/pendaftaran.php',
-            'active' => 1
+            'active' => 1,
         );
 
         $this->load->view(layout(), $data);

@@ -14,8 +14,8 @@
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
 	    <div class="form-group col-xs-2">
-            <label for="float">Bunga <?php echo form_error('bus_bunga') ?></label>
-            <input class="form-control" type="number" step="0.01"  name="bus_bunga" id="bus_bunga" placeholder="Bunga" value="<?php echo $bus_bunga; ?>" />
+            <label for="float">Bunga (dalam %) <?php echo form_error('bus_bunga') ?></label>
+            <input class="form-control" type="number"  name="bus_bunga" id="bus_bunga" placeholder="Bunga" value="<?php echo $bus_bunga; ?>" />
         </div>
         <div class="clearfix"> </div>
 	    <input type="hidden" name="bus_id" value="<?php echo $bus_id; ?>" /> 

@@ -15,7 +15,7 @@
         <div class="ibox-content col-md-12">
         <div class="col-md-4">
 	    <div class="form-group">
-            <label for="float">Bunga Investasi <?php echo form_error('biv_bunga') ?></label>
+            <label for="float">Bunga Investasi (dalam persen) <?php echo form_error('biv_bunga') ?></label>
             <input type="number" step="0.01" class="form-control" name="biv_bunga" id="biv_bunga" placeholder="Bunga" value="<?php echo $biv_bunga; ?>" />
         </div>
 	    <div class="form-group">

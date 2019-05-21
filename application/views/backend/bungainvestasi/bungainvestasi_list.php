@@ -58,7 +58,7 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
+            <td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $bungainvestasi->biv_bunga ?></td>
 			<td><?php echo $bungainvestasi->biv_keterangan ?></td>
 			<td style="text-align:center" width="200px">

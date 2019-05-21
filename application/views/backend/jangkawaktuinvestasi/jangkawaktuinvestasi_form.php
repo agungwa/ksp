@@ -15,7 +15,7 @@
         <div class="ibox-content col-md-12">
         <div class="col-md-4">
 	    <div class="form-group">
-            <label for="tinyint">Jangka Waktu <?php echo form_error('jwi_jangkawaktu') ?></label>
+            <label for="tinyint">Jangka (dalam bulan) <?php echo form_error('jwi_jangkawaktu') ?></label>
             <input type="number" class="form-control" name="jwi_jangkawaktu" id="jwi_jangkawaktu" placeholder="Jangka Waktu" value="<?php echo $jwi_jangkawaktu; ?>" />
         </div>
 	    <div class="form-group">

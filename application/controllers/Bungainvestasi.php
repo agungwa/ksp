@@ -193,9 +193,6 @@ class Bungainvestasi extends MY_Base
     {
 	$this->form_validation->set_rules('biv_bunga', 'biv bunga', 'trim|required');
 	$this->form_validation->set_rules('biv_keterangan', 'biv keterangan', 'trim|required');
-	$this->form_validation->set_rules('biv_tgl', 'biv tgl', 'trim|required');
-	$this->form_validation->set_rules('biv_flag', 'biv flag', 'trim|required');
-	$this->form_validation->set_rules('biv_info', 'biv info', 'trim|required');
 
 	$this->form_validation->set_rules('biv_id', 'biv_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

@@ -10,6 +10,7 @@ class Pinjaman extends MY_Base
         parent::__construct();
         $this->load->model('Pinjaman_model');
         $this->load->model('Wilayah_model');
+        $this->load->model('Karyawan_model');
         $this->load->library('form_validation');
     }
 
@@ -94,10 +95,12 @@ class Pinjaman extends MY_Base
         $this->pagination->initialize($config);
 
         $wilayah = $this->Wilayah_model->get_all();
+        $karyawan = $this->Karyawan_model->get_all();
 
         $data = array(
             'pinjaman_data' => $pinjaman,
             'wilayah_data' => $wilayah,
+            'karyawan_data' => $karyawan,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],

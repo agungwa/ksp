@@ -9,21 +9,70 @@ class Simpanan extends MY_Base
     {
         parent::__construct();
         $this->load->model('Simpanan_model');
+        $this->load->model('Wilayah_model');
         $this->load->library('form_validation');
     }
 
-    public function index()
+    public function index(){
+        $active = urldecode($this->input->get('p', TRUE));
+    
+        switch ($active) {
+            case  1:
+                $this->pendaftaran();
+                break;
+            case  2:
+                $this->listdata();
+                break;
+            /*case  3:
+                $this->tariksimpanan();
+                break;*/
+                    
+            default:
+                $this->pendaftaran();
+                break;
+        }
+    } 
+
+    public function pendaftaran(){
+        $data = array(
+            'button' => 'Simpan',
+            'action' => site_url('simpanan/create_action'),
+	    'sim_kode' => set_value('sim_kode'),
+        'ang_no' => set_value('ang_no'),
+        'nm_ang_no' => set_value ('nm_ang_no'),
+        'kar_kode' => set_value('kar_kode'),
+        'nm_kar_kode' => set_value('nm_kar_kode'),
+	    'bus_id' => set_value('bus_id'),
+	    'nm_bus_id' => set_value('nm_bus_id'),
+	    'jsi_id' => set_value('jsi_id'),
+	    'nm_jsi_id' => set_value('nm_jsi_id'),
+	    'jse_id' => set_value('jse_id'),
+	    'nm_jse_id' => set_value('nm_jse_id'),
+	    'wil_kode' => set_value('wil_kode'),
+	    'nm_wil_kode' => set_value('nm_wil_kode'),
+	    'sim_tglpendaftaran' => set_value('sim_tglpendaftaran'),
+	    'sim_status' => set_value('sim_status'),
+	    //'content' => 'backend/simpanan/simpanan_form',
+        'content' => 'backend/simpanan/simpanan',
+        'item'=> 'pendaftaran/pendaftaran.php',
+        'active' => 1,
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-        if ($q <> '') {
+        /*if ($q <> '') {
             $config['base_url'] = base_url() . 'simpanan/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'simpanan/index.html?q=' . urlencode($q);
         } else {
             $config['base_url'] = base_url() . 'simpanan/index.html';
             $config['first_url'] = base_url() . 'simpanan/index.html';
-        }
+        }*/
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
@@ -32,14 +81,17 @@ class Simpanan extends MY_Base
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
-
+        $wilayah = $this->Wilayah_model->get_all();
         $data = array(
             'simpanan_data' => $simpanan,
+            'wilayah_data' => $wilayah,
             'q' => $q,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'content' => 'backend/simpanan/simpanan_list',
+            'active' => 2,
+            'content' => 'backend/simpanan/simpanan',
+            'item' => 'simpanan_list.php',
         );
         $this->load->view(layout(), $data);
     }
