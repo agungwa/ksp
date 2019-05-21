@@ -19,7 +19,7 @@
             <input type="number" class="form-control" name="sed_hari" id="sed_hari" placeholder="Hari" value="<?php echo $sed_hari; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="float">Denda <?php echo form_error('sed_denda') ?></label>
+            <label for="float">Denda (dalam persen)<?php echo form_error('sed_denda') ?></label>
             <input type="number" step='0.01' class="form-control" name="sed_denda" id="sed_denda" placeholder="Denda" value="<?php echo $sed_denda; ?>" />
         </div>
 	    <input type="hidden" name="sed_id" value="<?php echo $sed_id; ?>" /> 

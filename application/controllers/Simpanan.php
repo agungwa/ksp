@@ -261,7 +261,7 @@ class Simpanan extends MY_Base
 		'sim_flag' => 1,
 	    );
 
-            $this->Simpanan_model->update($this->input->post('', TRUE), $data);
+            $this->Simpanan_model->update($this->input->post('sim_kode', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('simpanan'));
         }

@@ -13,7 +13,7 @@
         
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content col-md-12">
-        <div class="col-md-4">
+        <div class="col-md-6">
 	    <div class="form-group">
             <label for="varchar">Rekening Pinjaman <?php echo form_error('pin_id') ?></label>
             <input type="text" class="form-control" name="pin_id" id="pin_id" placeholder="Rekening Pinjaman" value="<?php echo $pin_id; ?>" />
@@ -84,21 +84,8 @@
             </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <label for="int">Penjamin <?php echo form_error('pen_id') ?></label>
-            <div class="input-group">
-            <!-- <input type="hidden" name="pen_id" id="pen_id" value="<?php echo $pen_id; ?>" /> -->
-            <input type="hidden" name="pen_id" id="pen_id" value="69" />
-            <input type="text" class="form-control" name="nm_pen_id" id="nm_pen_id" placeholder="Penjamin" value="<?php echo $nm_pen_id; ?>" readonly/>
-            <div class="input-group-addon">
-                <span onclick="lookup('<?=base_url()?>penjamin/lookup','pen_id');" style="cursor: pointer;">Cari</span>
-            </div>
-            </div>
         </div>
-        </div>
-
-        <div class="col-md-4">
+        <div class="col-md-6">
 	    <div class="form-group">
             <label for="float">Pengajuan <?php echo form_error('pin_pengajuan') ?></label>
             <input type="number" class="form-control" name="pin_pengajuan" id="pin_pengajuan" placeholder="Pin Pengajuan" value="<?php echo $pin_pengajuan; ?>" />

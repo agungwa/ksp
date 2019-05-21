@@ -48,7 +48,7 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Tenor</th>
+		<th class="text-center">Tenor (dalam bulan)</th>
 		<th class="text-center">Tanggal</th>
 		<th class="text-center">Action</th>
             </tr>

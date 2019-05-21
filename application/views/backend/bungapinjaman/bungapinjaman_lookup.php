@@ -40,7 +40,7 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Bunga</th>
+		<th class="text-center">Bunga (dalam persen)</th>
 		<th class="text-center">Tanggal</th></tr>
             </thead>
 			<tbody><?php
