@@ -18,7 +18,7 @@
 						  <li role="presentation" class="<?= ($active==3)?'active':''?>"><a href="<?=base_url()?>pinjaman/?p=3">Persetujuan</a></li>
 						  <li role="presentation" class="<?= ($active==4)?'active':''?>"><a href="<?=base_url()?>pinjaman/?p=4">List Pinjaman</a></li>
 						</ul>
-						
+						<div class="clearfix"></div>
             			<?php
             				include($item);
             			?>
