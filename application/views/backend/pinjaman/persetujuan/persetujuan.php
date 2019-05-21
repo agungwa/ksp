@@ -5,11 +5,11 @@
         <div class="ibox-content">
         <div class="jumbotron">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
-            <form action="<?php echo site_url('pinjaman/index'); ?>" class="form-inline" method="get">
+            <form action="<?php echo site_url('pinjaman/persetujuan'); ?>" class="form-inline" method="get">
 
             <div class="col-md-4 text-left">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="No Pinjaman / No Anggota">
+                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="No Pinjaman">
                         <span class="input-group-btn">
                             <?php 
                                 if ($q <> '')
@@ -27,7 +27,29 @@
         </div>
 
 	    <div class="row" style="margin-top: 10px">
-	        	Tampilkan data disini
+	        	<?php 
+	        	if ($persetujuan != null) {
+	        	?>
+	        	<table class="table">
+				    <tr><td>Rekening Pinjaman</td><td><?php echo $persetujuan['pin_id']; ?></td></tr>
+				    <tr><td>Anggota</td><td><?php echo $persetujuan['ang_no']; ?></td></tr>
+				    <tr><td>Setting Angsuran</td><td><?php echo $persetujuan['sea_id']; ?></td></tr>
+				    <tr><td>Bunga Pinjaman</td><td><?php echo $persetujuan['bup_id']; ?></td></tr>
+				    <tr><td>Potongan Provisi</td><td><?php echo $persetujuan['pop_id']; ?></td></tr>
+				    <tr><td>Wilayah</td><td><?php echo $persetujuan['wil_kode']; ?></td></tr>
+				    <tr><td>Kategori Peminjam</td><td><?php echo $persetujuan['skp_id']; ?></td></tr>
+				    <tr><td>Pengajuan</td><td><?php echo $persetujuan['pin_pengajuan']; ?></td></tr>
+				    <tr><td>Pinjaman</td><td><?php echo $persetujuan['pin_pinjaman']; ?></td></tr>
+				    <tr><td>Tanggal Pengajuan</td><td><?php echo dateFormat($persetujuan['pin_tglpengajuan']); ?></td></tr>
+				    <tr><td>Tanggal Pencairan</td><td><?php echo dateFormat($persetujuan['pin_tglpencairan']); ?></td></tr>
+				    <tr><td>Marketing</td><td><?php echo $persetujuan['pin_marketing']; ?></td></tr>
+				    <tr><td>Surveyor</td><td><?php echo $persetujuan['pin_surveyor']; ?></td></tr>
+				    <tr><td>Survey</td><td><?php echo $persetujuan['pin_survey']; ?></td></tr>
+				    <tr><td>Status Pinjaman</td><td><?php echo $persetujuan['pin_statuspinjaman']; ?></td></tr>
+				    <tr><td></td><td><a href="<?php echo site_url('pinjaman/?p=3') ?>" class="btn btn-default">Batal</a></td></tr>
+				</table>
+	        	<?php
+	        	} ?>
 	    </div>
         </div>
         </div>
