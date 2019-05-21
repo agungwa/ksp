@@ -402,19 +402,7 @@ lookup();
                         <li><a href="<?=base_url()?>pinjaman">Pinjaman</a></li>
                         <li><a href="<?=base_url()?>Statuspeminjam">Status Peminjam</a></li>
                         <li>
-                            <a href="#" id="damian">Angsuran<span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="<?=base_url()?>Angsuran">Angsuran Awal</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>Angsuran">Angsuaran >4 Bulan</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>Dendaangsuran">Denda Angsuaran</a>
-                                </li>
-                            </ul>
-                        </li>
+                        <li><a href="<?=base_url()?>angsuran">Angsuran</a></li>
                         <li><a href="#">Penagihan</a></li>
                         <li><a href="<?=base_url()?>Pelunasan">Pelunasan</a></li>
                         <li><a href="#">Persentase</a></li>
