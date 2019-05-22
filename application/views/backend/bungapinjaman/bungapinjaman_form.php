@@ -15,7 +15,7 @@
         <div class="ibox-content col-md-12">
         <div class="col-md-4">
 	    <div class="form-group">
-            <label for="float">Bunga <?php echo form_error('bup_bunga') ?></label>
+            <label for="float">Bunga (persen)<?php echo form_error('bup_bunga') ?></label>
             <input type="number" step='0.01' class="form-control" name="bup_bunga" id="bup_bunga" placeholder="Bunga" value="<?php echo $bup_bunga; ?>" />
         </div>
 	    <input type="hidden" name="bup_id" value="<?php echo $bup_id; ?>" /> 

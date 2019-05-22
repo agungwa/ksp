@@ -31,7 +31,7 @@
         </div>
 
         <div class="form-group">
-            <label for="int">Setting Angsuran <?php echo form_error('sea_id') ?></label>
+            <label for="int">Setting Angsuran (dalam bulan)<?php echo form_error('sea_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="sea_id" id="sea_id" value="<?php echo $sea_id; ?>" />
             <input type="text" class="form-control" name="nm_sea_id" id="nm_sea_id" placeholder="Setting Angsuran" value="<?php echo $nm_sea_id; ?>" readonly/>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-group">
-            <label for="int">Bunga Pinjaman<?php echo form_error('bup_id') ?></label>
+            <label for="int">Bunga (dalam persen)<?php echo form_error('bup_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="bup_id" id="bup_id" value="<?php echo $bup_id; ?>" />
             <input type="text" class="form-control" name="nm_bup_id" id="nm_bup_id" placeholder="Bunga Pinjaman" value="<?php echo $nm_bup_id; ?>" readonly/>
@@ -53,7 +53,7 @@
         </div>
 
         <div class="form-group">
-            <label for="int">Potongan Provisi <?php echo form_error('pop_id') ?></label>
+            <label for="int">Potongan Provisi (dalam persen)<?php echo form_error('pop_id') ?></label>
             <div class="input-group">
             <input type="hidden" name="pop_id" id="pop_id" value="<?php echo $pop_id; ?>" />
             <input type="text" class="form-control" name="nm_pop_id" id="nm_pop_id" placeholder="Potongan Provisi" value="<?php echo $nm_pop_id; ?>" readonly/>
@@ -81,18 +81,6 @@
             <input type="text" class="form-control" name="nm_skp_id" id="nm_skp_id" placeholder="SKP Id" value="<?php echo $nm_skp_id; ?>" readonly/>
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>settingkategoripeminjam/lookup','skp_id');" style="cursor: pointer;">Cari</span>
-            </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="int">Penjamin <?php echo form_error('pen_id') ?></label>
-            <div class="input-group">
-            <!-- <input type="hidden" name="pen_id" id="pen_id" value="<?php echo $pen_id; ?>" /> -->
-            <input type="hidden" name="pen_id" id="pen_id" value="69" />
-            <input type="text" class="form-control" name="nm_pen_id" id="nm_pen_id" placeholder="Penjamin" value="<?php echo $nm_pen_id; ?>" readonly/>
-            <div class="input-group-addon">
-                <span onclick="lookup('<?=base_url()?>penjamin/lookup','pen_id');" style="cursor: pointer;">Cari</span>
             </div>
             </div>
         </div>

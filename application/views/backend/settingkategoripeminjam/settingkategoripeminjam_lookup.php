@@ -49,9 +49,6 @@
                 <tr onclick="setVal('<?=$idhtml?>','<?=$settingkategoripeminjam->skp_id?>','<?=$settingkategoripeminjam->skp_kategori?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $settingkategoripeminjam->skp_kategori ?></td>
-			<td><?php echo $settingkategoripeminjam->skp_tgl ?></td>
-			<td><?php echo $settingkategoripeminjam->skp_flag ?></td>
-			<td><?php echo $settingkategoripeminjam->skp_info ?></td>
 		</tr>
                 
                 <?php

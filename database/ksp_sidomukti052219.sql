@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2019 at 05:18 PM
+-- Generation Time: May 21, 2019 at 08:51 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -105,6 +105,15 @@ CREATE TABLE `bungainvestasi` (
   `biv_info` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `bungainvestasi`
+--
+
+INSERT INTO `bungainvestasi` (`biv_id`, `biv_bunga`, `biv_keterangan`, `biv_tgl`, `biv_flag`, `biv_info`) VALUES
+(1, 2, '2 %', '2019-05-21 01:18:09', 0, '0000-00-00'),
+(2, 1, '1 %', '2019-05-21 01:18:41', 0, '0000-00-00'),
+(3, 2.5, '2.5 %', '2019-05-21 01:19:47', 0, '0000-00-00');
+
 -- --------------------------------------------------------
 
 --
@@ -124,7 +133,7 @@ CREATE TABLE `bungapinjaman` (
 --
 
 INSERT INTO `bungapinjaman` (`bup_id`, `bup_bunga`, `bub_tgl`, `bub_flag`, `bup_info`) VALUES
-(1, 0.05, '2019-04-19 19:28:44', 0, '');
+(1, 1, '2019-04-19 19:28:44', 1, '');
 
 -- --------------------------------------------------------
 
@@ -145,7 +154,7 @@ CREATE TABLE `bungasimpanan` (
 --
 
 INSERT INTO `bungasimpanan` (`bus_id`, `bus_bunga`, `bus_tgl`, `bus_flag`, `bus_info`) VALUES
-(4, 0.02, '2019-04-20 05:24:43', 0, '');
+(4, 2, '2019-04-20 05:24:43', 1, '');
 
 -- --------------------------------------------------------
 
@@ -198,6 +207,13 @@ CREATE TABLE `jabatan` (
   `jab_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jabatan`
+--
+
+INSERT INTO `jabatan` (`jab_kode`, `jab_nama`, `jab_tgl`, `jab_flag`, `jab_info`) VALUES
+('JKB001', 'Kepala Bagian Simpanan', '2019-05-20 23:43:00', 0, '');
+
 -- --------------------------------------------------------
 
 --
@@ -216,6 +232,14 @@ CREATE TABLE `jaminan` (
   `jam_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jaminan`
+--
+
+INSERT INTO `jaminan` (`jam_id`, `pin_id`, `jej_id`, `jam_nomor`, `jam_keterangan`, `jam_file`, `jam_tgl`, `jam_flag`, `jam_info`) VALUES
+(1, 0, 1, '67890', 'BPKB mobil, atas nama sendiri', '', '2019-05-21 21:48:23', 0, ''),
+(2, 0, 2, '55555', 'atas nama sendiri, masih ada tanggungan pajak', '', '2019-05-22 00:13:53', 0, '');
+
 -- --------------------------------------------------------
 
 --
@@ -230,6 +254,16 @@ CREATE TABLE `jangkawaktuinvestasi` (
   `jwi_flag` tinyint(2) NOT NULL,
   `jwi_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jangkawaktuinvestasi`
+--
+
+INSERT INTO `jangkawaktuinvestasi` (`jwi_id`, `jwi_jangkawaktu`, `jwi_keterangan`, `jwi_tgl`, `jwi_flag`, `jwi_info`) VALUES
+(1, 3, '3 bulan', '2019-05-21 01:09:34', 0, ''),
+(2, 6, '6 bulan', '2019-05-21 01:12:08', 0, ''),
+(3, 9, '9 bulan', '2019-05-21 01:12:18', 0, ''),
+(4, 12, '12 bulan', '2019-05-21 01:12:30', 0, '');
 
 -- --------------------------------------------------------
 
@@ -246,6 +280,15 @@ CREATE TABLE `jasainvestasi` (
   `jiv_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jasainvestasi`
+--
+
+INSERT INTO `jasainvestasi` (`jiv_id`, `jiv_jasa`, `jiv_keterangan`, `jiv_tgl`, `jiv_flag`, `jiv_info`) VALUES
+(1, 'Hadiah', 'Ambil di depan', '2019-05-21 01:14:25', 0, ''),
+(2, 'Per Bulan', 'Ambil tiap bulan', '2019-05-21 01:15:11', 1, ''),
+(3, 'Belakang', 'Ambil di belakang', '2019-05-21 01:15:40', 0, '');
+
 -- --------------------------------------------------------
 
 --
@@ -260,6 +303,15 @@ CREATE TABLE `jenisjaminan` (
   `jej_flag` tinyint(2) NOT NULL,
   `jej_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jenisjaminan`
+--
+
+INSERT INTO `jenisjaminan` (`jej_id`, `jej_jaminan`, `jej_keterangan`, `jej_tgl`, `jej_flag`, `jej_info`) VALUES
+(1, 'BPKB', 'BPKB motor, mobil dll', '2019-05-21 14:05:31', 1, ''),
+(2, 'SERTIFIKAT', 'Sertifikat rumah, tanah dll', '2019-05-21 14:06:18', 0, ''),
+(3, 'IJASAH', 'Ijasah sekolah, kuliah dll', '2019-05-21 14:08:22', 1, '');
 
 -- --------------------------------------------------------
 
@@ -294,6 +346,15 @@ CREATE TABLE `jenispelunasan` (
   `jep_flag` tinyint(2) NOT NULL,
   `jep_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jenispelunasan`
+--
+
+INSERT INTO `jenispelunasan` (`jep_id`, `jep_jenis`, `jep_keterangan`, `jep_tgl`, `jep_flag`, `jep_info`) VALUES
+(1, 'Biasa', 'Pelunasan sesuai dengan jatuh tempo pelunasan', '2019-05-21 14:09:59', 0, ''),
+(2, 'Dipercepat', 'Pelunasan lebih awal dari tenor pelunasan pinjaman', '2019-05-21 14:10:32', 0, ''),
+(3, 'Macet', 'Pelunsan lebih dari jatuh tempo / tenor pelunasan', '2019-05-21 14:11:33', 0, '');
 
 -- --------------------------------------------------------
 
@@ -375,6 +436,13 @@ CREATE TABLE `karyawan` (
   `kar_flag` tinyint(2) NOT NULL,
   `kar_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `karyawan`
+--
+
+INSERT INTO `karyawan` (`kar_kode`, `kar_nama`, `jab_kode`, `kar_alamat`, `kar_nohp`, `kar_tgl`, `kar_flag`, `kar_info`) VALUES
+('KAR0001', 'Silvi', '1', 'Parakan', '085666677733', '2019-05-20 23:45:40', 0, '');
 
 -- --------------------------------------------------------
 
@@ -608,6 +676,14 @@ CREATE TABLE `penjamin` (
   `pen_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `penjamin`
+--
+
+INSERT INTO `penjamin` (`pen_id`, `pin_id`, `pen_noktp`, `pen_nama`, `pen_alamat`, `pen_nohp`, `pen_tgl`, `pen_flag`, `pen_info`) VALUES
+(1, 'KE19052119001', '12345', 'Jaelani', 'Temanggung', '0896738383', '2019-05-21 21:48:23', 0, ''),
+(2, 'KE19052119002', '44444', 'Kisminto', 'Parakan', '764664', '2019-05-22 00:13:53', 0, '');
+
 -- --------------------------------------------------------
 
 --
@@ -621,19 +697,27 @@ CREATE TABLE `pinjaman` (
   `bup_id` int(10) NOT NULL COMMENT 'fk dari bungapinjaman',
   `pop_id` int(10) NOT NULL COMMENT 'fk dari potonganprovisi',
   `wil_kode` varchar(10) NOT NULL COMMENT 'fk dari wilayah',
-  `skp_id` int(10) NOT NULL COMMENT 'fk dari settingkategoripeminjam',
-  `pin_pengajuan` float NOT NULL,
-  `pin_pinjaman` float NOT NULL,
+  `skp_id` int(10) DEFAULT NULL COMMENT 'fk dari settingkategoripeminjam',
+  `pin_pengajuan` float DEFAULT NULL,
+  `pin_pinjaman` float DEFAULT NULL,
   `pin_tglpengajuan` datetime NOT NULL,
-  `pin_tglpencairan` datetime NOT NULL,
-  `pin_marketing` varchar(20) NOT NULL,
-  `pin_surveyor` varchar(20) NOT NULL,
-  `pin_survey` varchar(20) NOT NULL,
-  `pin_statuspinjaman` varchar(20) NOT NULL,
-  `pin_tgl` datetime NOT NULL,
+  `pin_tglpencairan` datetime DEFAULT NULL,
+  `pin_marketing` varchar(20) DEFAULT NULL,
+  `pin_surveyor` varchar(20) DEFAULT NULL,
+  `pin_survey` varchar(20) DEFAULT NULL,
+  `pin_statuspinjaman` varchar(20) DEFAULT NULL,
+  `pin_tgl` datetime DEFAULT NULL,
   `pin_flag` tinyint(2) NOT NULL,
   `pin_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pinjaman`
+--
+
+INSERT INTO `pinjaman` (`pin_id`, `ang_no`, `sea_id`, `bup_id`, `pop_id`, `wil_kode`, `skp_id`, `pin_pengajuan`, `pin_pinjaman`, `pin_tglpengajuan`, `pin_tglpencairan`, `pin_marketing`, `pin_surveyor`, `pin_survey`, `pin_statuspinjaman`, `pin_tgl`, `pin_flag`, `pin_info`) VALUES
+('KE19052119001', 'AA11', 6, 1, 1, 'Citra', 1, 2600000, NULL, '2019-05-21 00:00:00', NULL, 'Bambang', 'Jayuri', NULL, '0', '2019-05-21 21:48:23', 0, ''),
+('KE19052119002', 'A1', 5, 1, 1, 'bunga', 1, 50000000, NULL, '2019-05-22 00:00:00', NULL, 'sugiyono', 'jumali', NULL, '0', '2019-05-22 00:13:53', 0, '');
 
 -- --------------------------------------------------------
 
@@ -672,6 +756,13 @@ CREATE TABLE `potonganprovisi` (
   `pop_flag` tinyint(2) NOT NULL,
   `pop_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `potonganprovisi`
+--
+
+INSERT INTO `potonganprovisi` (`pop_id`, `pop_potongan`, `pop_tgl`, `pop_flag`, `pop_info`) VALUES
+(1, 5, '2019-05-21 14:02:09', 0, '');
 
 -- --------------------------------------------------------
 
@@ -738,6 +829,18 @@ CREATE TABLE `settingangsuran` (
   `sea_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `settingangsuran`
+--
+
+INSERT INTO `settingangsuran` (`sea_id`, `sea_tenor`, `sea_tgl`, `sea_flag`, `sea_info`) VALUES
+(1, 1, '2019-05-21 13:38:38', 0, ''),
+(2, 2, '2019-05-21 13:38:43', 0, ''),
+(3, 3, '2019-05-21 13:38:47', 0, ''),
+(4, 6, '2019-05-21 13:38:51', 0, ''),
+(5, 12, '2019-05-21 13:38:55', 0, ''),
+(6, 24, '2019-05-21 13:39:29', 0, '');
+
 -- --------------------------------------------------------
 
 --
@@ -753,6 +856,13 @@ CREATE TABLE `settingdenda` (
   `sed_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `settingdenda`
+--
+
+INSERT INTO `settingdenda` (`sed_id`, `sed_hari`, `sed_denda`, `sed_tgl`, `sed_flag`, `sed_info`) VALUES
+(1, 1, 0.5, '2019-05-21 14:13:46', 0, '');
+
 -- --------------------------------------------------------
 
 --
@@ -766,6 +876,15 @@ CREATE TABLE `settingkategoripeminjam` (
   `skp_flag` tinyint(2) NOT NULL,
   `skp_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `settingkategoripeminjam`
+--
+
+INSERT INTO `settingkategoripeminjam` (`skp_id`, `skp_kategori`, `skp_tgl`, `skp_flag`, `skp_info`) VALUES
+(1, 'Umum', '2019-05-21 13:33:43', 1, ''),
+(2, 'Karyawan', '2019-05-21 13:33:51', 1, ''),
+(3, 'Khusus', '2019-05-21 13:36:45', 1, '');
 
 -- --------------------------------------------------------
 
@@ -803,6 +922,15 @@ CREATE TABLE `settingstatuspeminjam` (
   `ssp_flag` tinyint(2) NOT NULL,
   `ssp_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `settingstatuspeminjam`
+--
+
+INSERT INTO `settingstatuspeminjam` (`ssp_id`, `ssp_namastatus`, `ssp_tgl`, `ssp_flag`, `ssp_info`) VALUES
+(1, 'Lancar', '2019-05-21 13:45:59', 0, ''),
+(2, 'Agak Macet', '2019-05-21 13:46:06', 0, ''),
+(3, 'Macet', '2019-05-21 13:46:10', 0, '');
 
 -- --------------------------------------------------------
 
@@ -844,6 +972,13 @@ CREATE TABLE `simpanan` (
   `sim_flag` tinyint(2) NOT NULL,
   `sim_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `simpanan`
+--
+
+INSERT INTO `simpanan` (`sim_kode`, `ang_no`, `kar_kode`, `bus_id`, `jsi_id`, `jse_id`, `wil_kode`, `sim_tglpendaftaran`, `sim_status`, `sim_tgl`, `sim_flag`, `sim_info`) VALUES
+('KA190521001', 'AA11', 'KAR0001', 4, 1, 1, 'Citra', '2019-05-21 00:00:00', '1', '2019-05-20 23:47:41', 0, '');
 
 -- --------------------------------------------------------
 
@@ -908,6 +1043,15 @@ CREATE TABLE `statuspeminjam` (
   `stp_flag` tinyint(2) NOT NULL,
   `stp_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `statuspeminjam`
+--
+
+INSERT INTO `statuspeminjam` (`stp_id`, `ang_no`, `ssp_id`, `pin_id`, `stp_tgl`, `stp_flag`, `stp_info`) VALUES
+(1, 'AA11', 3, 'KE19052119001', '2019-05-21 22:57:13', 0, ''),
+(2, 'AA11', 3, 'KE19052119001', '2019-05-22 00:07:58', 0, ''),
+(3, 'A1', 2, 'KE19052119001', '2019-05-22 00:08:23', 0, '');
 
 -- --------------------------------------------------------
 
@@ -1434,7 +1578,7 @@ ALTER TABLE `angsuran`
 -- AUTO_INCREMENT for table `bungainvestasi`
 --
 ALTER TABLE `bungainvestasi`
-  MODIFY `biv_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `biv_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `bungapinjaman`
@@ -1458,25 +1602,25 @@ ALTER TABLE `dendaangsuran`
 -- AUTO_INCREMENT for table `jaminan`
 --
 ALTER TABLE `jaminan`
-  MODIFY `jam_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `jam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `jangkawaktuinvestasi`
 --
 ALTER TABLE `jangkawaktuinvestasi`
-  MODIFY `jwi_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `jwi_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `jasainvestasi`
 --
 ALTER TABLE `jasainvestasi`
-  MODIFY `jiv_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `jiv_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jenisjaminan`
 --
 ALTER TABLE `jenisjaminan`
-  MODIFY `jej_id` tinyint(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `jej_id` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jenisklaim`
@@ -1488,7 +1632,7 @@ ALTER TABLE `jenisklaim`
 -- AUTO_INCREMENT for table `jenispelunasan`
 --
 ALTER TABLE `jenispelunasan`
-  MODIFY `jep_id` tinyint(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `jep_id` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jenispenarikansimkesan`
@@ -1578,7 +1722,7 @@ ALTER TABLE `penarikansimpananwajib`
 -- AUTO_INCREMENT for table `penjamin`
 --
 ALTER TABLE `penjamin`
-  MODIFY `pen_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `plansimkesan`
@@ -1590,7 +1734,7 @@ ALTER TABLE `plansimkesan`
 -- AUTO_INCREMENT for table `potonganprovisi`
 --
 ALTER TABLE `potonganprovisi`
-  MODIFY `pop_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pop_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `setoransimkesan`
@@ -1614,19 +1758,19 @@ ALTER TABLE `setoransimpananwajib`
 -- AUTO_INCREMENT for table `settingangsuran`
 --
 ALTER TABLE `settingangsuran`
-  MODIFY `sea_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sea_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `settingdenda`
 --
 ALTER TABLE `settingdenda`
-  MODIFY `sed_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sed_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `settingkategoripeminjam`
 --
 ALTER TABLE `settingkategoripeminjam`
-  MODIFY `skp_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `skp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `settingsimpanan`
@@ -1638,7 +1782,7 @@ ALTER TABLE `settingsimpanan`
 -- AUTO_INCREMENT for table `settingstatuspeminjam`
 --
 ALTER TABLE `settingstatuspeminjam`
-  MODIFY `ssp_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ssp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `simpananpokok`
@@ -1656,7 +1800,7 @@ ALTER TABLE `simpananwajib`
 -- AUTO_INCREMENT for table `statuspeminjam`
 --
 ALTER TABLE `statuspeminjam`
-  MODIFY `stp_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `stp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sy_config`

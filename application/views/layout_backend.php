@@ -363,9 +363,6 @@ lookup();
                                     <a href="<?=base_url()?>SettingAngsuran">Setting Angsuran</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url()?>Statuspeminjam">Status Peminjam</a>
-                                </li>
-                                <li>
                                     <a href="<?=base_url()?>Bungapinjaman">Bunga Pinjaman</a>
                                 </li>
                                 <li>
@@ -403,6 +400,7 @@ lookup();
                             </ul>
                         </li>
                         <li><a href="<?=base_url()?>pinjaman">Pinjaman</a></li>
+                        <li><a href="<?=base_url()?>Statuspeminjam">Status Peminjam</a></li>
                         <li>
                             <a href="#" id="damian">Angsuran<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">

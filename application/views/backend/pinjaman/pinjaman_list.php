@@ -59,10 +59,11 @@
             <tr>
                 <th class="text-center">No</th>
         		<th class="text-center">Pinjaman</th>
-        		<th class="text-center">Anggota</th>
-        		<th class="text-center">Setting Angsuran</th>
-        		<th class="text-center">Bunga Pinjaman</th>
-        		<th class="text-center">Potongan Provisi</th>
+        		<th class="text-center">ID Anggota</th>
+        		<th class="text-center">Nama Anggota</th>
+        		<th class="text-center">Angsuran (bulan)</th>
+        		<th class="text-center">Bunga (persen)</th>
+        		<th class="text-center">Provisi (persen)</th>
         		<th class="text-center">Wilayah</th>
         		<th class="text-center">Kategori Peminjam</th>
         		<th class="text-center">Pengajuan</th>
@@ -76,16 +77,22 @@
 			<tbody><?php
             foreach ($pinjaman_data as $pinjaman)
             {
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $pinjaman->ang_no))->row();
+                $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $pinjaman->sea_id))->row();
+                $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $pinjaman->bup_id))->row();
+                $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $pinjaman->pop_id))->row();
+                $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $pinjaman->skp_id))->row();
                 ?>
                 <tr>
     			<td width="80px"><?php echo ++$start ?></td>
     			<td><?php echo $pinjaman->pin_id ?></td>
     			<td><?php echo $pinjaman->ang_no ?></td>
-    			<td><?php echo $pinjaman->sea_id ?></td>
-    			<td><?php echo $pinjaman->bup_id ?></td>
-    			<td><?php echo $pinjaman->pop_id ?></td>
+    			<td><?php echo $ang_no->ang_nama ?></td>
+    			<td><?php echo $sea_id->sea_tenor ?></td>
+    			<td><?php echo $bup_id->bup_bunga ?></td>
+    			<td><?php echo $pop_id->pop_potongan ?></td>
     			<td><?php echo $pinjaman->wil_kode ?></td>
-    			<td><?php echo $pinjaman->skp_id ?></td>
+    			<td><?php echo $skp_id->skp_kategori ?></td>
     			<td><?php echo $pinjaman->pin_pengajuan ?></td>
     			<td><?php echo $pinjaman->pin_pinjaman ?></td>
     			<td><?php echo dateFormat($pinjaman->pin_tglpengajuan) ?></td>
