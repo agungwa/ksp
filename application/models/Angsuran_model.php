@@ -29,6 +29,21 @@ class Angsuran_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    function get_by_pinjaman($q, $k)
+    {   
+        $where = "pin_id = $q AND ang_angsuranke = $k  AND ags_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->row();
+    }
+
+    function get_histori_angsuran($q)
+    {
+        $this->db->order_by($this->id, $this->order);
+         $where = "pin_id = $q AND ags_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

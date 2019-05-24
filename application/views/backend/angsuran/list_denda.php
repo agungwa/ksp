@@ -1,32 +1,17 @@
-<!doctype html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
+
     <div class="row">
         <div class="col-lg-12">
+
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h2><b>List Jenis Pelunasan</b></h2>
-                    <?php if ($this->session->userdata('message') != '') {?>
-                    <div class="alert alert-success alert-dismissable">
-                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                <?=$this->session->userdata('message')?> <a class="alert-link" href="#"></a>
-                    </div>
-                 <?php }?>
-                </div>
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-                <?php echo anchor(site_url('jenispelunasan/create'),'Create', 'class="btn btn-primary"'); ?>
             </div>
-            
-            
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('jenispelunasan/index'); ?>" class="form-inline" method="get">
+                <form action="<?php echo site_url('angsuran'); ?>" class="form-inline" method="get">
+                    <input type="hidden" name="p" value="3">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
@@ -34,7 +19,7 @@
                                 if ($q <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo site_url('jenispelunasan'); ?>" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo site_url('angsuran/?p=3'); ?>" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
@@ -48,28 +33,28 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-        		<th class="text-center">Jenis</th>
-        		<th class="text-center">Keterangan</th>
+        		<th class="text-center">Angsuran</th>
+        		<th class="text-center">Setting Denda</th>
         		<th class="text-center">Tanggal</th>
         		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
-            foreach ($jenispelunasan_data as $jenispelunasan)
+            foreach ($dendaangsuran_data as $dendaangsuran)
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $jenispelunasan->jep_jenis ?></td>
-			<td><?php echo $jenispelunasan->jep_keterangan ?></td>
-			<td><?php echo dateFormat($jenispelunasan->jep_tgl) ?></td>
-			<td style="text-align:center" width="200px">
+    			<td width="80px"><?php echo ++$start ?></td>
+    			<td><?php echo $dendaangsuran->ags_id ?></td>
+    			<td><?php echo $dendaangsuran->sed_id ?></td>
+    			<td><?php echo dateFormat($dendaangsuran->dnd_tgl) ?></td>
+    			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('jenispelunasan/read/'.$jenispelunasan->jep_id),'Read','class="text-navy"'); 
+				echo anchor(site_url('dendaangsuran/read/'.$dendaangsuran->dnd_id),'Read','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('jenispelunasan/update/'.$jenispelunasan->jep_id),'Update','class="text-navy"'); 
+				echo anchor(site_url('dendaangsuran/update/'.$dendaangsuran->dnd_id),'Update','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('jenispelunasan/delete/'.$jenispelunasan->jep_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('dendaangsuran/delete/'.$dendaangsuran->dnd_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>
 		</tr>
@@ -91,5 +76,5 @@
     </div>
     </div>
     </div>
-    </body>
-</html>
+    </div>
+    </div>

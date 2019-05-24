@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Pelunasan extends MY_Base
+class Pelunasan extends CI_Controller
 {
     function __construct()
     {
@@ -12,7 +12,75 @@ class Pelunasan extends MY_Base
         $this->load->library('form_validation');
     }
 
-    public function index()
+    public function index(){
+        $active = urldecode($this->input->get('p', TRUE));
+    
+        switch ($active) {
+            case  1:
+                $this->dipercepat();
+                break;
+            case  2:
+                $this->biasa();
+                break;
+            case  3:
+                $this->macet();
+                break;
+            case  4:
+                $this->listdata();
+                break;
+
+            default:
+                $this->dipercepat();
+                break;
+        }
+    } 
+
+    public function dipercepat(){
+        $q = urldecode($this->input->get('q', TRUE));
+        $pinjaman = null;
+
+        $data = array(
+            'q' => $q,
+            'pinjaman' => $pinjaman,
+            'content' => 'backend/pelunasan/index',
+            'item'=> 'dipercepat.php',
+            'active' => 1
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function biasa(){
+        $q = urldecode($this->input->get('q', TRUE));
+        $pinjaman = null;
+        
+        $data = array(
+            'q' => $q,
+            'pinjaman' => $pinjaman,
+            'content' => 'backend/pelunasan/index',
+            'item'=> 'biasa.php',
+            'active' => 2
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function macet(){
+        $q = urldecode($this->input->get('q', TRUE));
+        $pinjaman = null;
+        
+        $data = array(
+            'q' => $q,
+            'pinjaman' => $pinjaman,
+            'content' => 'backend/pelunasan/index',
+            'item'=> 'macet.php',
+            'active' => 3
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function listData()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
@@ -39,7 +107,9 @@ class Pelunasan extends MY_Base
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'content' => 'backend/pelunasan/pelunasan_list',
+            'content' => 'backend/pelunasan/index',
+            'item'=> 'pelunasan_list.php',
+            'active' => 4
         );
         $this->load->view(layout(), $data);
     }
@@ -84,8 +154,16 @@ class Pelunasan extends MY_Base
         if ($row) {
             $data = array(
 		'pel_id' => $row->pel_id,
-		'jep_id' => $row->jep_id,
 		'pin_id' => $row->pin_id,
+		'pel_jenis' => $row->pel_jenis,
+		'pel_tenor' => $row->pel_tenor,
+		'pel_angsuran' => $row->pel_angsuran,
+		'pel_bungaangsuran' => $row->pel_bungaangsuran,
+		'pel_totalkekuranganpokok' => $row->pel_totalkekuranganpokok,
+		'pel_totalbungapokok' => $row->pel_totalbungapokok,
+		'pel_bungatambahan' => $row->pel_bungatambahan,
+		'pel_totaldenda' => $row->pel_totaldenda,
+		'pel_tglpelunasan' => $row->pel_tglpelunasan,
 		'pel_tgl' => $row->pel_tgl,
 		'pel_flag' => $row->pel_flag,
 		'pel_info' => $row->pel_info,'content' => 'backend/pelunasan/pelunasan_read',
@@ -101,13 +179,22 @@ class Pelunasan extends MY_Base
     public function create() 
     {
         $data = array(
-            'button' => 'Simpan',
+            'button' => 'Create',
             'action' => site_url('pelunasan/create_action'),
 	    'pel_id' => set_value('pel_id'),
-	    'jep_id' => set_value('jep_id'),
-	    'nm_jep_id' => set_value('nm_jep_id'),
 	    'pin_id' => set_value('pin_id'),
-	    'nm_pin_id' => set_value('nm_pin_id'),
+	    'pel_jenis' => set_value('pel_jenis'),
+	    'pel_tenor' => set_value('pel_tenor'),
+	    'pel_angsuran' => set_value('pel_angsuran'),
+	    'pel_bungaangsuran' => set_value('pel_bungaangsuran'),
+	    'pel_totalkekuranganpokok' => set_value('pel_totalkekuranganpokok'),
+	    'pel_totalbungapokok' => set_value('pel_totalbungapokok'),
+	    'pel_bungatambahan' => set_value('pel_bungatambahan'),
+	    'pel_totaldenda' => set_value('pel_totaldenda'),
+	    'pel_tglpelunasan' => set_value('pel_tglpelunasan'),
+	    'pel_tgl' => set_value('pel_tgl'),
+	    'pel_flag' => set_value('pel_flag'),
+	    'pel_info' => set_value('pel_info'),
 	    'content' => 'backend/pelunasan/pelunasan_form',
 	);
         $this->load->view(layout(), $data);
@@ -121,11 +208,19 @@ class Pelunasan extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'jep_id' => $this->input->post('jep_id',TRUE),
 		'pin_id' => $this->input->post('pin_id',TRUE),
-		'pel_tgl' => $this->tgl,
-		'pel_flag' => 0,
-		'pel_info' => "",
+		'pel_jenis' => $this->input->post('pel_jenis',TRUE),
+		'pel_tenor' => $this->input->post('pel_tenor',TRUE),
+		'pel_angsuran' => $this->input->post('pel_angsuran',TRUE),
+		'pel_bungaangsuran' => $this->input->post('pel_bungaangsuran',TRUE),
+		'pel_totalkekuranganpokok' => $this->input->post('pel_totalkekuranganpokok',TRUE),
+		'pel_totalbungapokok' => $this->input->post('pel_totalbungapokok',TRUE),
+		'pel_bungatambahan' => $this->input->post('pel_bungatambahan',TRUE),
+		'pel_totaldenda' => $this->input->post('pel_totaldenda',TRUE),
+		'pel_tglpelunasan' => $this->input->post('pel_tglpelunasan',TRUE),
+		'pel_tgl' => $this->input->post('pel_tgl',TRUE),
+		'pel_flag' => $this->input->post('pel_flag',TRUE),
+		'pel_info' => $this->input->post('pel_info',TRUE),
 	    );
 
             $this->Pelunasan_model->insert($data);
@@ -143,10 +238,19 @@ class Pelunasan extends MY_Base
                 'button' => 'Update',
                 'action' => site_url('pelunasan/update_action'),
 		'pel_id' => set_value('pel_id', $row->pel_id),
-		'jep_id' => set_value('jep_id', $row->jep_id),
-		'nm_jep_id' => set_value('nm_jep_id', $row->jep_jenis),
 		'pin_id' => set_value('pin_id', $row->pin_id),
-		'nm_pin_id' => set_value('nm_pin_id', $row->pin_id),
+		'pel_jenis' => set_value('pel_jenis', $row->pel_jenis),
+		'pel_tenor' => set_value('pel_tenor', $row->pel_tenor),
+		'pel_angsuran' => set_value('pel_angsuran', $row->pel_angsuran),
+		'pel_bungaangsuran' => set_value('pel_bungaangsuran', $row->pel_bungaangsuran),
+		'pel_totalkekuranganpokok' => set_value('pel_totalkekuranganpokok', $row->pel_totalkekuranganpokok),
+		'pel_totalbungapokok' => set_value('pel_totalbungapokok', $row->pel_totalbungapokok),
+		'pel_bungatambahan' => set_value('pel_bungatambahan', $row->pel_bungatambahan),
+		'pel_totaldenda' => set_value('pel_totaldenda', $row->pel_totaldenda),
+		'pel_tglpelunasan' => set_value('pel_tglpelunasan', $row->pel_tglpelunasan),
+		'pel_tgl' => set_value('pel_tgl', $row->pel_tgl),
+		'pel_flag' => set_value('pel_flag', $row->pel_flag),
+		'pel_info' => set_value('pel_info', $row->pel_info),
 	    'content' => 'backend/pelunasan/pelunasan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -164,9 +268,19 @@ class Pelunasan extends MY_Base
             $this->update($this->input->post('pel_id', TRUE));
         } else {
             $data = array(
-		'jep_id' => $this->input->post('jep_id',TRUE),
 		'pin_id' => $this->input->post('pin_id',TRUE),
-		'pel_flag' => 1,
+		'pel_jenis' => $this->input->post('pel_jenis',TRUE),
+		'pel_tenor' => $this->input->post('pel_tenor',TRUE),
+		'pel_angsuran' => $this->input->post('pel_angsuran',TRUE),
+		'pel_bungaangsuran' => $this->input->post('pel_bungaangsuran',TRUE),
+		'pel_totalkekuranganpokok' => $this->input->post('pel_totalkekuranganpokok',TRUE),
+		'pel_totalbungapokok' => $this->input->post('pel_totalbungapokok',TRUE),
+		'pel_bungatambahan' => $this->input->post('pel_bungatambahan',TRUE),
+		'pel_totaldenda' => $this->input->post('pel_totaldenda',TRUE),
+		'pel_tglpelunasan' => $this->input->post('pel_tglpelunasan',TRUE),
+		'pel_tgl' => $this->input->post('pel_tgl',TRUE),
+		'pel_flag' => $this->input->post('pel_flag',TRUE),
+		'pel_info' => $this->input->post('pel_info',TRUE),
 	    );
 
             $this->Pelunasan_model->update($this->input->post('pel_id', TRUE), $data);
@@ -180,10 +294,7 @@ class Pelunasan extends MY_Base
         $row = $this->Pelunasan_model->get_by_id($id);
 
         if ($row) {
-            $data = array (
-                'pel_flag' => 2,
-            );
-            $this->Pelunasan_model->update($id, $data);
+            $this->Pelunasan_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
             redirect(site_url('pelunasan'));
         } else {
@@ -194,9 +305,20 @@ class Pelunasan extends MY_Base
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('jep_id', 'jep id', 'trim|required');
-    $this->form_validation->set_rules('pin_id', 'pin id', 'trim|required');
-    
+	$this->form_validation->set_rules('pin_id', 'pin id', 'trim|required');
+	$this->form_validation->set_rules('pel_jenis', 'pel jenis', 'trim|required');
+	$this->form_validation->set_rules('pel_tenor', 'pel tenor', 'trim|required');
+	$this->form_validation->set_rules('pel_angsuran', 'pel angsuran', 'trim|required');
+	$this->form_validation->set_rules('pel_bungaangsuran', 'pel bungaangsuran', 'trim|required');
+	$this->form_validation->set_rules('pel_totalkekuranganpokok', 'pel totalkekuranganpokok', 'trim|required');
+	$this->form_validation->set_rules('pel_totalbungapokok', 'pel totalbungapokok', 'trim|required');
+	$this->form_validation->set_rules('pel_bungatambahan', 'pel bungatambahan', 'trim|required');
+	$this->form_validation->set_rules('pel_totaldenda', 'pel totaldenda', 'trim|required');
+	$this->form_validation->set_rules('pel_tglpelunasan', 'pel tglpelunasan', 'trim|required');
+	$this->form_validation->set_rules('pel_tgl', 'pel tgl', 'trim|required');
+	$this->form_validation->set_rules('pel_flag', 'pel flag', 'trim|required');
+	$this->form_validation->set_rules('pel_info', 'pel info', 'trim|required');
+
 	$this->form_validation->set_rules('pel_id', 'pel_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
@@ -206,5 +328,5 @@ class Pelunasan extends MY_Base
 /* End of file Pelunasan.php */
 /* Location: ./application/controllers/Pelunasan.php */
 /* Please DO NOT modify this information : */
-/* Generated by Harviacode Codeigniter CRUD Generator 2019-03-26 13:59:49 */
+/* Generated by Harviacode Codeigniter CRUD Generator 2019-05-24 00:52:56 */
 /* http://harviacode.com */

@@ -9,21 +9,80 @@ class Angsuran extends MY_Base
     {
         parent::__construct();
         $this->load->model('Angsuran_model');
+        $this->load->model('Dendaangsuran_model');
         $this->load->library('form_validation');
     }
 
-    public function index()
+    public function index(){
+        $active = urldecode($this->input->get('p', TRUE));
+    
+        switch ($active) {
+            case  1:
+                $this->bayarAngsuran();
+                break;
+            case  2:
+                $this->listAngsuran();
+                break;
+            case  3:
+                $this->listDenda();
+                break;
+
+            default:
+                $this->bayarAngsuran();
+                break;
+        }
+    }
+
+    public function bayarAngsuran(){
+        $q = urldecode($this->input->get('q', TRUE));        
+        $k = urldecode($this->input->get('k', TRUE));
+        $angsuran = null;
+        $historiAngsuran = null;
+
+        if ($k == null) { $k=1;}
+
+        if ($q<>''){
+            $row = $this->Angsuran_model->get_by_pinjaman($q, $k);
+            $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
+             if ($row) {
+                $angsuran = array(
+                    'ags_id' => $row->ags_id,
+                    'pin_id' => $row->pin_id,
+                    'ang_angsuranke' => $row->ang_angsuranke,
+                    'ags_tgljatuhtempo' => $row->ags_tgljatuhtempo,
+                    'ags_tglbayar' => $row->ags_tglbayar,
+                    'ags_jmlpokok' => $row->ags_jmlpokok,
+                    'ags_jmlbunga' => $row->ags_jmlbunga,
+                    'ags_status' => $row->ags_status,
+                );
+            } 
+        }   
+
+        $data = array(
+            'q' => $q,
+            'k' => $k,
+            'content' => 'backend/angsuran/angsuran',
+            'item'=> 'bayar_angsuran.php',
+            'active' => 1,
+            'angsuran' => $angsuran,
+            'histori' => $historiAngsuran
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function listAngsuran()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-        if ($q <> '') {
+        /*if ($q <> '') {
             $config['base_url'] = base_url() . 'angsuran/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'angsuran/index.html?q=' . urlencode($q);
         } else {
             $config['base_url'] = base_url() . 'angsuran/index.html';
             $config['first_url'] = base_url() . 'angsuran/index.html';
-        }
+        }*/
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
@@ -39,7 +98,34 @@ class Angsuran extends MY_Base
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'content' => 'backend/angsuran/angsuran_list',
+            'active' => 2,
+            'content' => 'backend/angsuran/angsuran',
+            'item'=> 'list_angsuran.php',
+        );
+        $this->load->view(layout(), $data);
+    }
+
+    public function listDenda(){
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Dendaangsuran_model->total_rows($q);
+        $dendaangsuran = $this->Dendaangsuran_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'dendaangsuran_data' => $dendaangsuran,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+            'active' => 3,
+            'content' => 'backend/angsuran/angsuran',
+            'item'=> 'list_denda.php',
         );
         $this->load->view(layout(), $data);
     }
