@@ -9,19 +9,11 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h2><b>List Pelunasan</b></h2>
-                    <?php if ($this->session->userdata('message') != '') {?>
-                    <div class="alert alert-success alert-dismissable">
-                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                <?=$this->session->userdata('message')?> <a class="alert-link" href="#"></a>
-                    </div>
-                 <?php }?>
                 </div>
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-                <?php echo anchor(site_url('pelunasan/create'),'Create', 'class="btn btn-primary"'); ?>
             </div>
-            
             
             <div class="col-md-1 text-right">
             </div>
@@ -48,8 +40,16 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jenis Pelunasan</th>
-		<th class="text-center">Rekening Pinjaman</th>
+		<th class="text-center">Pin Id</th>
+		<th class="text-center">Pel Jenis</th>
+		<th class="text-center">Pel Totalkekuranganpokok</th>
+		<th class="text-center">Pel Totalbungapokok</th>
+		<th class="text-center">Pel Bungatambahan</th>
+		<th class="text-center">Pel Totaldenda</th>
+		<th class="text-center">Pel Tglpelunasan</th>
+		<th class="text-center">Pel Tgl</th>
+		<th class="text-center">Pel Flag</th>
+		<th class="text-center">Pel Info</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -59,8 +59,16 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $pelunasan->jep_id ?></td>
 			<td><?php echo $pelunasan->pin_id ?></td>
+			<td><?php echo $pelunasan->pel_jenis ?></td>
+			<td><?php echo $pelunasan->pel_totalkekuranganpokok ?></td>
+			<td><?php echo $pelunasan->pel_totalbungapokok ?></td>
+			<td><?php echo $pelunasan->pel_bungatambahan ?></td>
+			<td><?php echo $pelunasan->pel_totaldenda ?></td>
+			<td><?php echo $pelunasan->pel_tglpelunasan ?></td>
+			<td><?php echo $pelunasan->pel_tgl ?></td>
+			<td><?php echo $pelunasan->pel_flag ?></td>
+			<td><?php echo $pelunasan->pel_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('pelunasan/read/'.$pelunasan->pel_id),'Read','class="text-navy"'); 

@@ -40,8 +40,19 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jenis Pelunasan</th>
-		<th class="text-center">Rekening Pinjaman</th></tr>
+		<th class="text-center">Pin Id</th>
+		<th class="text-center">Pel Jenis</th>
+		<th class="text-center">Pel Tenor</th>
+		<th class="text-center">Pel Angsuran</th>
+		<th class="text-center">Pel Bungaangsuran</th>
+		<th class="text-center">Pel Totalkekuranganpokok</th>
+		<th class="text-center">Pel Totalbungapokok</th>
+		<th class="text-center">Pel Bungatambahan</th>
+		<th class="text-center">Pel Totaldenda</th>
+		<th class="text-center">Pel Tglpelunasan</th>
+		<th class="text-center">Pel Tgl</th>
+		<th class="text-center">Pel Flag</th>
+		<th class="text-center">Pel Info</th></tr>
             </thead>
 			<tbody><?php
             foreach ($pelunasan_data as $pelunasan)
@@ -49,8 +60,19 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $pelunasan->jep_id ?></td>
 			<td><?php echo $pelunasan->pin_id ?></td>
+			<td><?php echo $pelunasan->pel_jenis ?></td>
+			<td><?php echo $pelunasan->pel_tenor ?></td>
+			<td><?php echo $pelunasan->pel_angsuran ?></td>
+			<td><?php echo $pelunasan->pel_bungaangsuran ?></td>
+			<td><?php echo $pelunasan->pel_totalkekuranganpokok ?></td>
+			<td><?php echo $pelunasan->pel_totalbungapokok ?></td>
+			<td><?php echo $pelunasan->pel_bungatambahan ?></td>
+			<td><?php echo $pelunasan->pel_totaldenda ?></td>
+			<td><?php echo $pelunasan->pel_tglpelunasan ?></td>
+			<td><?php echo $pelunasan->pel_tgl ?></td>
+			<td><?php echo $pelunasan->pel_flag ?></td>
+			<td><?php echo $pelunasan->pel_info ?></td>
 		</tr>
                 
                 <?php
