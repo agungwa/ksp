@@ -47,6 +47,12 @@ class Anggota_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    // insert pendaftaran
+    function savePendaftaran($data)
+    {
+        $this->db->insert($this->table, $data);
+    }
+
     // insert data
     function insert($data)
     {

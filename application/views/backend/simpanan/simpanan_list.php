@@ -3,9 +3,9 @@
         <div class="ibox">
         <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
-            <form action="<?php echo base_url()?>anggota" class="form-inline" method="get">
+            <form action="<?php echo base_url()?>simpanan" class="form-inline" method="get">
             <div class="col-md-8 text-right">
-                <input type="hidden" name="p" value="4">
+                <input type="hidden" name="p" value="3">
                 <div class="col-md-2"><h3>Filter : </h3></div>
                 <select class="form-control col-md-3" name="wilayah">
                     <option value="">--Wilayah--</option>
@@ -25,7 +25,7 @@
                                 if ($q <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo base_url()?>simpanan/?p=2" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo base_url()?>simpanan/?p=3" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
