@@ -9,6 +9,8 @@ class Anggota extends MY_Base
     {
         parent::__construct();
         $this->load->model('Anggota_model');
+        $this->load->model('Simpananpokok_model');
+        $this->load->model('Simpananwajib_model');
         $this->load->model('Wilayah_model');
         $this->load->library('form_validation');
     }
@@ -52,6 +54,52 @@ class Anggota extends MY_Base
 
         $this->load->view(layout(), $data);
     }*/
+
+    public function pendaftaran_action() 
+    {
+            $dataPenfataran = array(
+                'ang_no' => $this->input->post('ang_no',TRUE),
+                'ang_nama' => $this->input->post('ang_nama',TRUE),
+                'ang_alamat' => $this->input->post('ang_alamat',TRUE),
+                'ang_noktp' => $this->input->post('ang_noktp',TRUE),
+                'ang_nokk' => $this->input->post('ang_nokk',TRUE),
+                'ang_nohp' => $this->input->post('ang_nohp',TRUE),
+                'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+                'ang_status' => $this->input->post('ang_status',TRUE),
+                'ang_tgl' => $this->tgl,
+                'ang_flag' => 0,
+                'ang_info' => "",
+	            );
+            $this->Anggota_model->savePendaftaran($dataPenfataran);
+
+            //save data simpanan pokok
+            $dataSimpananPokok = array(
+                'ang_no' => $this->input->post('ang_no',TRUE),
+                'ses_id' => $this->input->post('ses_id',TRUE),
+                'sip_tglbayar' => $this->input->post('sip_tglbayar',TRUE),
+                'sip_tgl' => $this->tgl,
+                'sip_flag' => 0,
+                'sip_info' => "",
+                );
+            $this->Simpananpokok_model->insert($dataSimpananPokok);
+
+            //save data simpanan wajib
+            $dataSimpananWajib = array(
+                'ang_no' => $this->input->post('ang_no',TRUE),
+                'ses_id' => $this->input->post('ses_id',TRUE),
+                'siw_tglbayar' => $this->input->post('siw_tglbayar',TRUE),
+                'siw_status' => $this->input->post('siw_status',TRUE),
+                'siw_tglambil' => $this->input->post('siw_tglambil',TRUE),
+                'siw_tgl' => $this->tgl,
+                'siw_flag' => 0,
+                'siw_info' => "",
+                );
+            $this->Simpananwajib_model->insert($dataSimpananPokok);            
+
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('anggota'));
+        
+    }
 
     public function listdata()
     {
