@@ -9,21 +9,83 @@ class Setoransimkesan extends MY_Base
     {
         parent::__construct();
         $this->load->model('Setoransimkesan_model');
+        $this->load->model('Titipansimkesan_model');
         $this->load->library('form_validation');
     }
 
-    public function index()
+    public function index(){
+        $active = urldecode($this->input->get('p', TRUE));
+    
+        switch ($active) {
+            case  1:
+                $this->setoran();
+                break;
+            case  2:
+                $this->titipan();
+                break;
+            case  3:
+                $this->listSetoran();
+                break;
+            case  4:
+                $this->listTitipan();
+                break;
+
+            default:
+                $this->setoran();
+                break;
+        }
+    } 
+
+    public function setoran(){
+        $data = array(
+            'content' => 'backend/setoransimkesan/index',
+            'item'=> 'setoransimkesan_form.php',
+            'active' => 1
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function titipan(){
+        $data = array(
+            'content' => 'backend/setoransimkesan/index',
+            'item'=> 'setoransimkesan_form.php',
+            'active' => 2
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function listSetoran()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'setoransimkesan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'setoransimkesan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'setoransimkesan/index.html';
-            $config['first_url'] = base_url() . 'setoransimkesan/index.html';
-        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Setoransimkesan_model->total_rows($q);
+        $setoransimkesan = $this->Setoransimkesan_model->get_limit_data($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+
+        $data = array(
+            'setoransimkesan_data' => $setoransimkesan,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,  
+            'active' => 3,          
+            'content' => 'backend/setoransimkesan/index',
+            'item'=> 'setoransimkesan_list.php',
+        );
+        $this->load->view(layout(), $data);
+    }
+
+
+    public function listTitipan(){
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
@@ -39,7 +101,9 @@ class Setoransimkesan extends MY_Base
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'content' => 'backend/setoransimkesan/setoransimkesan_list',
+            'active' => 4,
+            'content' => 'backend/setoransimkesan/index',
+            'item'=> 'setoransimkesan_list.php',
         );
         $this->load->view(layout(), $data);
     }

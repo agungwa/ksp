@@ -25,9 +25,6 @@ class Simkesan extends MY_Base
             case  2:
                 $this->listdata();
                 break;
-            /*case  3:
-                $this->tariksimpanan();
-                break;*/
                     
             default:
                 $this->pendaftaran();

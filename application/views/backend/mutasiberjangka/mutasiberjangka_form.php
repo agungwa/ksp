@@ -28,14 +28,28 @@
             <label for="datetime">Tanggal Mutasi <?php echo form_error('mib_tglmutasi') ?></label>
             <input type="date" class="form-control" name="mib_tglmutasi" id="todays-date" placeholder="Tanggal Mutasi" value="<?php echo $mib_tglmutasi; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="varchar">Asal<?php echo form_error('mib_asal') ?></label>
-            <input type="text" class="form-control" name="mib_asal" id="mib_asal" placeholder="Asal" value="<?php echo $mib_asal; ?>" />
+
+        <div class="form-group">
+            <label for="varchar">Wilayah Asal <?php echo form_error('mib_asal') ?></label>
+            <div class="input-group">
+            <input type="hidden" name="mib_asal" id="asal_id" value="<?php echo $mib_asal; ?>" />
+            <input type="text" class="form-control" name="nm_mib_asal" id="nm_asal_id" placeholder="Wilayah Asal" value="<?php echo $mib_asal; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>wilayah/lookup','asal_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
-	    <div class="form-group">
-            <label for="varchar">Tujuan <?php echo form_error('mib_tujuan') ?></label>
-            <input type="text" class="form-control" name="mib_tujuan" id="mib_tujuan" placeholder="Tujuan" value="<?php echo $mib_tujuan; ?>" />
+        <div class="form-group">
+            <label for="varchar">Wilayah Tujuan <?php echo form_error('mib_tujuan') ?></label>
+            <div class="input-group">
+            <input type="hidden" name="mib_tujuan" id="tujuan_id" value="<?php echo $mib_tujuan; ?>" />
+            <input type="text" class="form-control" name="nm_mib_tujuan" id="nm_tujuan_id" placeholder="Wilayah Tujuan" value="<?php echo $mib_tujuan; ?>" readonly/>
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>wilayah/lookup','tujuan_id');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
         </div>
+
 	    <div class="form-group">
             <label for="tinyint">Status <?php echo form_error('mib_status') ?></label>
             <input type="number" class="form-control" name="mib_status" id="mib_status" placeholder="Status" value="<?php echo $mib_status; ?>" />

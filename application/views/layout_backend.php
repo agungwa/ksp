@@ -208,15 +208,7 @@ lookup();
                             <a href="<?=base_url()?>Simkesan">Simkesan</a>
                         </li>
                         <li>
-                        <a href="#" id="damian">Setor Simkesan<span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="<?=base_url()?>Setoransimkesan">Setoran Simkesan</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>titipansimkesan">Titipan Simkesan</a>
-                                </li>
-                            </ul>
+                            <a href="<?=base_url()?>setoransimkesan" id="damian">Setoran Simkesan</a>
                         <li>
                             <a href="#" id="damian">Klaim<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
@@ -229,15 +221,7 @@ lookup();
                             </ul>
                         </li>
                         <li>
-                            <a href="#" id="damian">Penarikan<span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="<?=base_url()?>Penarikansimkesan">Penarikan Jangka 5 Tahun</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>Penarikansimkesan">Penarikan Jangka 10 Tahun</a>
-                                </li>
-                            </ul>
+                            <a href="<?=base_url()?>penarikansimkesan" id="damian">Penarikan</a>
                         </li>
                         <li>
                             <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>

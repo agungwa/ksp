@@ -78,6 +78,74 @@ class Wilayah extends MY_Base
         ob_end_clean();
     }
 
+    public function asal()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        $idhtml = $this->input->get('idhtml');
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'wilayah/index.html';
+            $config['first_url'] = base_url() . 'wilayah/index.html';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Wilayah_model->total_rows($q);
+        $wilayah = $this->Wilayah_model->get_limit_data($config['per_page'], $start, $q);
+
+
+        $data = array(
+            'wilayah_data' => $wilayah,
+            'idhtml' => $idhtml,
+            'q' => $q,
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+            'content' => 'backend/wilayah/wilayah_asal',
+        );
+        ob_start();
+        $this->load->view($data['content'], $data);
+        return ob_get_contents();
+        ob_end_clean();
+    }
+
+    public function tujuan()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        $idhtml = $this->input->get('idhtml');
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'wilayah/index.html';
+            $config['first_url'] = base_url() . 'wilayah/index.html';
+        }
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Wilayah_model->total_rows($q);
+        $wilayah = $this->Wilayah_model->get_limit_data($config['per_page'], $start, $q);
+
+
+        $data = array(
+            'wilayah_data' => $wilayah,
+            'idhtml' => $idhtml,
+            'q' => $q,
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+            'content' => 'backend/wilayah/wilayah_tujuan',
+        );
+        ob_start();
+        $this->load->view($data['content'], $data);
+        return ob_get_contents();
+        ob_end_clean();
+    }
+
     public function read($id) 
     {
         $row = $this->Wilayah_model->get_by_id($id);

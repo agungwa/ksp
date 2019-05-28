@@ -7,27 +7,18 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h2><b>Setoran Simkesan</b></h2>
-                    <?php if ($this->session->userdata('message') != '') {?>
-                    <div class="alert alert-success alert-dismissable">
-                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                <?=$this->session->userdata('message')?> <a class="alert-link" href="#"></a>
-                    </div>
-                 <?php }?>
-                </div>
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-                <?php echo anchor(site_url('setoransimkesan/create'),'Create', 'class="btn btn-primary"'); ?>
             </div>
             
             
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('setoransimkesan/index'); ?>" class="form-inline" method="get">
+                <form action="<?php echo site_url('setoransimkesan'); ?>" class="form-inline" method="get">
                     <div class="input-group">
+                        <input type="hidden" name="p" value="3">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
                             <?php 
@@ -97,5 +88,3 @@
     </div>
     </div>
     </div>
-    </body>
-</html>
