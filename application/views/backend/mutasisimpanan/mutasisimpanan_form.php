@@ -31,20 +31,20 @@
         <div class="form-group">
             <label for="varchar">Wilayah Asal <?php echo form_error('mus_asal') ?></label>
             <div class="input-group">
-            <input type="hidden" name="mus_asal" id="mus_asal" value="<?php echo $mus_asal; ?>" />
-            <input type="text" class="form-control" name="nm_mus_asal" id="nm_mus_asal" placeholder="Wilayah Asal" value="<?php echo $nm_mus_asal; ?>" readonly/>
+            <input type="hidden" name="asal_id" id="asal_id" value="<?php echo $mus_asal; ?>" />
+            <input type="text" class="form-control" name="nm_asal_id" id="nm_asal_id" placeholder="Wilayah Asal" value="<?php echo $nm_mus_asal; ?>" readonly/>
             <div class="input-group-addon">
-                <span onclick="lookup('<?=base_url()?>wilayah/lookup','wil_kode');" style="cursor: pointer;">Cari</span>
+                <span onclick="lookup('<?=base_url()?>wilayah/lookup','asal_id');" style="cursor: pointer;">Cari</span>
             </div>
             </div>
         </div>
         <div class="form-group">
             <label for="varchar">Wilayah Tujuan <?php echo form_error('mus_tujuan') ?></label>
             <div class="input-group">
-            <input type="hidden" name="mus_tujuan" id="mus_tujuan" value="<?php echo $mus_tujuan; ?>" />
-            <input type="text" class="form-control" name="nm_mus_tujuan" id="nm_mus_tujuan" placeholder="Wilayah Tujuan" value="<?php echo $nm_mus_tujuan; ?>" readonly/>
+            <input type="hidden" name="tujuan_id" id="tujuan_id" value="<?php echo $mus_tujuan; ?>" />
+            <input type="text" class="form-control" name="nm_tujuan_id" id="nm_tujuan_id" placeholder="Wilayah Tujuan" value="<?php echo $nm_mus_tujuan; ?>" readonly/>
             <div class="input-group-addon">
-                <span onclick="lookup('<?=base_url()?>wilayah/lookup','wil_kode');" style="cursor: pointer;">Cari</span>
+                <span onclick="lookup('<?=base_url()?>wilayah/lookup','tujuan_id');" style="cursor: pointer;">Cari</span>
             </div>
             </div>
         </div>

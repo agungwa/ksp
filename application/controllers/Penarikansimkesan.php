@@ -12,18 +12,50 @@ class Penarikansimkesan extends MY_Base
         $this->load->library('form_validation');
     }
 
-    public function index()
+    public function index(){
+        $active = urldecode($this->input->get('p', TRUE));
+    
+        switch ($active) {
+            case  1:
+                $this->limaTh();
+                break;
+            case  2:
+                $this->sepuluhTh();
+                break;
+            case  3:
+                $this->listPenarikan();
+                break;
+
+            default:
+                $this->limaTh();
+                break;
+        }
+    } 
+
+    public function limaTh(){
+        $data = array(
+            'content' => 'backend/penarikansimkesan/index',
+            'item'=> 'penarikan5.php',
+            'active' => 1
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function sepuluhTh(){
+        $data = array(
+            'content' => 'backend/penarikansimkesan/index',
+            'item'=> 'penarikan10.php',
+            'active' => 2
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function listPenarikan()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'penarikansimkesan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'penarikansimkesan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'penarikansimkesan/index.html';
-            $config['first_url'] = base_url() . 'penarikansimkesan/index.html';
-        }
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
@@ -39,7 +71,9 @@ class Penarikansimkesan extends MY_Base
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'content' => 'backend/penarikansimkesan/penarikansimkesan_list',
+            'content' => 'backend/penarikansimkesan/index',
+            'item'=> 'penarikansimkesan_list.php',
+            'active' => 3
         );
         $this->load->view(layout(), $data);
     }
