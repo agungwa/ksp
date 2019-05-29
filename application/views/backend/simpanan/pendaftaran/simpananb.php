@@ -68,7 +68,7 @@
         </div>
 	    <div class="form-group col-md-12">
             <label for="datetime">Tanggal Pendaftaran </label>
-            <input type="date" class="form-control" name="sim_tglpendaftaran" id="sim_tglpendaftaran" placeholder="Sim Tglpendaftaran" value="" required="required" />
+            <input type="date" class="form-control" name="sim_tglpendaftaran" id="todays-date" placeholder="Sim Tglpendaftaran" value="" required="required" />
         </div>
         </div>
         <div class="col-md-12">

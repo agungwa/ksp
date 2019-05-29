@@ -54,11 +54,9 @@ class Simpanan_model extends CI_Model
     }
     
     // input kode
-   public function simpananana($nowYear,$Nunit, $Nitem){
+   public function simpananana($nowYear){
         $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
-        $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%d') = ", $nowYear);
-        $Nunit = 'K';
-        $Nitem = 'A';  
+        $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%d') = ", $nowYear); 
         $this->db->limit(1);
         $this->db->order_by('sim_kode','DESC');       
         $query = $this->db->get('simpanan');  
@@ -75,11 +73,9 @@ class Simpanan_model extends CI_Model
             return $kodetampil;  
        }
 
-       public function simpanananb($nowYear,$Nunit, $Nitem){
+       public function simpanananb($nowYear){
         $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
         $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%d') = ", $nowYear);
-        $Nunit = 'K';
-        $Nitem = 'B';  
         $this->db->limit(1);
         $this->db->order_by('sim_kode','DESC');    
         $query = $this->db->get('simpanan');  
@@ -92,7 +88,7 @@ class Simpanan_model extends CI_Model
         }
             $tgl=date('dmy'); 
             $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
-            $kodetampil = $Nunit.$Nitem.$tgl.$batas;
+            $kodetampil = "K"."B".$tgl.$batas;
             return $kodetampil;  
        }
     

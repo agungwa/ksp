@@ -37,6 +37,7 @@ class Anggota extends MY_Base
 
     public function pendaftaran(){
         $data = array(
+            'ang_no' => $this->Anggota_model->anggotakode(),
             'content' => 'backend/anggota/anggota',
             'item'=> 'pendaftaran/pendaftaran.php',
             'active' => 1,
@@ -87,7 +88,7 @@ class Anggota extends MY_Base
             $dataSimpananWajib = array(
                 'ang_no' => $this->input->post('ang_no',TRUE),
                 'ses_id' => $this->input->post('ses_id',TRUE),
-                'siw_tglbayar' => $this->input->post('siw_tglbayar',TRUE),
+                'sip_tglbayar' => $this->input->post('siw_tglbayar',TRUE),
                 'siw_status' => $this->input->post('siw_status',TRUE),
                 'siw_tglambil' => $this->input->post('siw_tglambil',TRUE),
                 'siw_tgl' => $this->tgl,

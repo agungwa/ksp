@@ -73,6 +73,25 @@ class Anggota_model extends CI_Model
         $this->db->delete($this->table);
     }
 
+     // input kode
+   public function anggotakode(){
+    $this->db->select('RIGHT(anggota.ang_no,2) as ang_no', FALSE);
+    $this->db->limit(1);
+    $this->db->order_by('ang_no','DESC');       
+    $query = $this->db->get('anggota');  
+    if($query->num_rows() <> 0){          
+         $data = $query->row();      
+         $kode = intval($data->ang_no) + 1; 
+    }
+    else{      
+         $kode = 1;
+    }
+        $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+        $kodetampil = "K".$batas;
+        return $kodetampil;  
+   }
+
+
 }
 
 /* End of file Anggota_model.php */
