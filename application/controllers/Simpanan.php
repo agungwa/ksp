@@ -38,10 +38,8 @@ class Simpanan extends MY_Base
 
     public function simpanana(){
         $nowYear = date('d');
-        $Nunit = 'K';
-        $Nitem = 'A';
         $data = array(
-        'kode' => $this->Simpanan_model->simpananana($nowYear, $Nunit, $Nitem),
+        'kode' => $this->Simpanan_model->simpananana($nowYear),
         'content' => 'backend/simpanan/simpanan',
         'item'=> 'pendaftaran/simpanana.php',
         'active' => 1,
@@ -51,10 +49,8 @@ class Simpanan extends MY_Base
 
     public function simpananb(){
         $nowYear = date('d');
-        $Nunit = 'K';
-        $Nitem = 'B';
         $data = array(
-        'kode' => $this->Simpanan_model->simpanananb($nowYear, $Nunit, $Nitem),
+        'kode' => $this->Simpanan_model->simpanananb($nowYear),
         'content' => 'backend/simpanan/simpanan',
         'item'=> 'pendaftaran/simpananb.php',
         'active' => 2,
@@ -252,7 +248,7 @@ class Simpanan extends MY_Base
 		'nm_wil_kode' => set_value('wil_kode', $row->wil_nama),
 		'sim_tglpendaftaran' => set_value('sim_tglpendaftaran', $row->sim_tglpendaftaran),
 		'sim_status' => set_value('sim_status', $row->sim_status),
-	    'content' => 'backend/simpanan/simpanan_form',
+	    'content' => 'backend/simpanan/simpanan_form.php',
 	    );
             $this->load->view(layout(), $data);
         } else {

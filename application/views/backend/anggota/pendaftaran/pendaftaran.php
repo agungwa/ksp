@@ -13,7 +13,7 @@
 
         <div class="form-group">
             <label for="varchar">Nomor Anggota </label>
-            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Nomor Anggota" value="" required="required" ?>
+            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Nomor Anggota" value="<?php echo $ang_no; ?>" required="required" ?>
         </div>
 
 	    <div class="form-group">
@@ -79,17 +79,12 @@
         <div class="form-group">
             <label for="varchar">Setting Simpanan </label>
             <div class="input-group">
-            <input type="hidden" name="ses_id" id="ses_id" value="" required="required" />
+            <input type="hidden" name="ses_id" id="ses_id" value="" required="required"/>
             <input type="text" class="form-control" name="nm_ses_id" id="nm_ses_id" placeholder="Setting Simpanan" value="" required="required" readonly/>
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>settingsimpanan/lookup','ses_id');" style="cursor: pointer;">Cari</span>
             </div>
             </div>
-        </div>
-
-	    <div class="form-group">
-            <label for="datetime">Tanggal Bayar </label>
-            <input type="date" class="form-control" name="siw_tglbayar" id="todays-date" placeholder="Tanggal Bayar" value="" required="required" />
         </div>
 
 	    <!--<div class="form-group">
