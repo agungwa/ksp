@@ -64,10 +64,8 @@
 			<td><?php echo $setoransimpanan->sim_kode ?></td>
 			<td><?php echo $setoransimpanan->ssi_tglsetor ?></td>
 			<td><?php echo $setoransimpanan->ssi_jmlsetor ?></td>
-			<td><?php echo $setoransimpanan->ssi_jmlbunga ?></td>
-			<td><?php echo $setoransimpanan->ssi_tgl ?></td>
-			<td><?php echo $setoransimpanan->ssi_flag ?></td>
-			<td><?php echo $setoransimpanan->ssi_info ?></td>
+            <td><?php echo "baby, hold on"?></td>
+			<!--<td><?php echo $setoransimpanan->ssi_jmlbunga ?></td>-->
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('setoransimpanan/read/'.$setoransimpanan->ssi_id),'Read','class="text-navy"'); 

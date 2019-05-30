@@ -32,17 +32,31 @@
             <label for="float">Jumlah Setor <?php echo form_error('ssi_jmlsetor') ?></label>
             <input type="number" class="form-control" name="ssi_jmlsetor" id="ssi_jmlsetor" placeholder="Jumalah Setor" value="<?php echo $ssi_jmlsetor; ?>" />
         </div>
-	    <div class="form-group">
+	   <!--<div class="form-group">
             <label for="float">Jumlah Bunga <?php echo form_error('ssi_jmlbunga') ?></label>
-            <input type="number" step="0.01" class="form-control" name="ssi_jmlbunga" id="ssi_jmlbunga" placeholder="Jumlah Bunga" value="<?php echo $ssi_jmlbunga; ?>" />
-        </div>
+            <input type="number" class="form-control" name="ssi_jmlbunga" id="ssi_jmlbunga" placeholder="Jumlah Bunga" value="<?php echo $ssi_jmlbunga; ?>" />
+        </div>-->
+
 	    <input type="hidden" name="ssi_id" value="<?php echo $ssi_id; ?>" /> 
-	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
+        <!--<input type="button" name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-default" />
+        <input type="button" name="btn" value="Reset" onclick="window.location='fillup.php'" class="btn btn-default" data-modal-type="confirm"/>-->
+        <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
 	    <a href="<?php echo site_url('setoransimpanan') ?>" class="btn btn-default">Batal</a>
 	</div>
     </div>
             </form>
         </div>
         </div>
+        <!--<script>
+        $('#submitBtn').click(function() {
+            $('#lname').text($('#lastname').val());
+            $('#fname').text($('#firstname').val());
+             });
+
+        $('#submit').click(function(){
+            alert('submitting');
+            $('#formfield').submit();
+        });
+        </script>-->
     </body>
 </html>

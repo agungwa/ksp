@@ -80,10 +80,6 @@
             </div>
             </div>
         </div>
-	    <div class="form-group col-md-12">
-            <label for="datetime">Tanggal Pendaftaran <?php echo form_error('sim_tglpendaftaran') ?></label>
-            <input type="date" class="form-control" name="sim_tglpendaftaran" id="sim_tglpendaftaran" placeholder="Sim Tglpendaftaran" value="<?php echo $sim_tglpendaftaran; ?>" />
-        </div>
         </div>
         <div class="col-md-12">
 	    <div class="form-group col-md-3">

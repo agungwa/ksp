@@ -61,6 +61,7 @@
                 $bus_id = $this->db->get_where('bungasimpanan', array('bus_id' => $simpanan->bus_id))->row();
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $simpanan->ang_no))->row();
                 $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $simpanan->kar_kode))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $simpanan->wil_kode))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
@@ -71,12 +72,12 @@
 			<td><?php echo $bus_id->bus_bunga ?></td>
 			<td><?php echo $jsi_id->jsi_simpanan ?></td>
 			<td><?php echo $jse_id->jse_setoran ?></td>
-			<td><?php echo $simpanan->wil_kode ?></td>
+			<td><?php echo $wil_kode->wil_nama ?></td>
 			<td><?php echo $simpanan->sim_tglpendaftaran ?></td>
 			<td><?php echo $simpanan->sim_status ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('simpanan/read/'.$simpanan->sim_kode),'Read','class="text-navy"'); 
+				echo anchor(site_url('simpanan/read/'.$simpanan->sim_kode),'Detail','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('simpanan/update/'.$simpanan->sim_kode),'Update','class="text-navy"'); 
 				echo ' | '; 
