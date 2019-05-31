@@ -75,17 +75,17 @@
             <input type="date" class="form-control" name="sip_tglbayar" id="todays-date" placeholder="Sip Tglbayar" value="" required="required" />
         </div>
 
-        <h3>Form Simpanan Wajib</h3>
+        <!--<h3>Form Simpanan Wajib</h3>
         <div class="form-group">
             <label for="varchar">Setting Simpanan </label>
             <div class="input-group">
-            <input type="hidden" name="ses_id" id="ses_id" value="" required="required"/>
-            <input type="text" class="form-control" name="nm_ses_id" id="nm_ses_id" placeholder="Setting Simpanan" value="" required="required" readonly/>
+            <input type="hidden" name="sw_ses_id" id="sw_ses_id" value="" required="required"/>
+            <input type="text" class="form-control" name="nama_ses_id" id="nama_ses_id" placeholder="Setting Simpanan" value="" required="required" readonly/>
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>settingsimpanan/lookup','ses_id');" style="cursor: pointer;">Cari</span>
             </div>
             </div>
-        </div>
+        </div>-->
 
 	    <!--<div class="form-group">
             <label for="tinyint">Status</label>
@@ -96,6 +96,10 @@
             <label for="datetime">Tanggal Ambil</label>
             <input type="date" class="form-control" name="siw_tglambil" id="siw_tglambil" placeholder="Tanggal Ambil" value="" />
         </div>-->
+        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-primary">Submit Pendaftaran</button> 
+                            <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Batal</a>
+                        </div>
         </div>
 
                     </form>

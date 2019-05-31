@@ -135,7 +135,7 @@ class Setoransimpanan extends MY_Base
 
             $this->Setoransimpanan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('setoransimpanan'));
+            redirect(site_url('setoransimpanan/create'));
         }
     }
     

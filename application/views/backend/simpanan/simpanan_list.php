@@ -49,6 +49,7 @@
 		<th class="text-center">Jenis Setoran</th>
 		<th class="text-center">Wilayah</th>
 		<th class="text-center">Tanggal Pendaftaran</th>
+		<th class="text-center">Jatuh Tempo</th>
 		<th class="text-center">Status</th>
 		<th class="text-center">Action</th>
             </tr>
@@ -62,6 +63,7 @@
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $simpanan->ang_no))->row();
                 $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $simpanan->kar_kode))->row();
                 $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $simpanan->wil_kode))->row();
+                $tanggalDuedate = date("Y-m-d", strtotime($simpanan->sim_tglpendaftaran.' + '.$jsi_id->jsi_simpanan.' Months'));
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
@@ -74,6 +76,7 @@
 			<td><?php echo $jse_id->jse_setoran ?></td>
 			<td><?php echo $wil_kode->wil_nama ?></td>
 			<td><?php echo $simpanan->sim_tglpendaftaran ?></td>
+			<td><?php echo $tanggalDuedate?></td>
 			<td><?php echo $simpanan->sim_status ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 

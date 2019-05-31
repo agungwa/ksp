@@ -72,6 +72,18 @@
         </div>
         </div>
         <div class="col-md-12">
+        <div class="form-group col-md-3">
+        <label for="varchar">Status </label>
+        <select class="form-control col-md-3" name="status">
+                    <option value="">--Status--</option>
+                    <?php
+                        foreach ($this->statusSimpanan as $key => $value) { ?>
+                            <option value="<?= $key?>"><?= $value?></option>
+                    <?php        
+                        }
+                    ?>
+        </select>
+        </div>
 	    <!--<div class="form-group col-md-3">
             <label for="varchar">Status </label>
             <input type="text" class="form-control" name="sim_status" id="sim_status" placeholder="Sim Status" value="" required="required" />
