@@ -29,7 +29,8 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Setoran</th>
+        <th class="text-center">Setoran</th>
+		<th class="text-center">Tanggal Setoran</th>
 		<th class="text-center">Saldo</th>
 		<th class="text-center">Bunga</th>
 		<th class="text-center">Total</th>
@@ -43,13 +44,15 @@
             {
                 $total_setoran += $setoran->ssi_jmlsetor;
                 $bunga += $setoran->ssi_jmlsetor * $bus_id/100;
+                $totalsaldo = $total_setoran+$bunga;
             ?>
             <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $setoran->ssi_jmlsetor ?></td>
+			<td><?php echo $setoran->ssi_tglsetor ?></td>
 			<td><?php echo $total_setoran ?></td>
 			<td><?php echo $bunga ?></td>
-			<td><?php echo 'baby, hold on' ?></td>
+			<td><?php echo $totalsaldo?></td>
 		</tr>
 
             <?php

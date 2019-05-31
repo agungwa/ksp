@@ -77,7 +77,7 @@
 			<td><?php echo $simpanan->sim_status ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('simpanan/read/'.$simpanan->sim_kode),'Read','class="text-navy"'); 
+				echo anchor(site_url('simpanan/read/'.$simpanan->sim_kode),'Detail','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('simpanan/update/'.$simpanan->sim_kode),'Update','class="text-navy"'); 
 				echo ' | '; 
