@@ -32,9 +32,9 @@ class Setoransimpanan_model extends CI_Model
     }
 
     // get data by id
-    function get_data_setor($id)
+    function get_data_setor($sim_kode)
     {
-        $this->db->where('sim_kode !=',$id);
+        $this->db->where('sim_kode =',$sim_kode);
         return $this->db->get($this->table)->result();
     }
     
