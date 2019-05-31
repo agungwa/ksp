@@ -7,7 +7,7 @@ class Simpanan_model extends CI_Model
 {
 
     public $table = 'simpanan';
-    public $id = '';
+    public $id = 'sim_kode';
     public $order = 'DESC';
 
     function __construct()

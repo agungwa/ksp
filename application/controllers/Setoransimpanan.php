@@ -87,7 +87,7 @@ class Setoransimpanan extends MY_Base
 		'sim_kode' => $row->sim_kode,
 		'ssi_tglsetor' => $row->ssi_tglsetor,
 		'ssi_jmlsetor' => $row->ssi_jmlsetor,
-		'ssi_jmlbunga' => $row->ssi_jmlbunga,
+		//'ssi_jmlbunga' => $row->ssi_jmlbunga,
 		'ssi_tgl' => $row->ssi_tgl,
 		'ssi_flag' => $row->ssi_flag,
 		'ssi_info' => $row->ssi_info,'content' => 'backend/setoransimpanan/setoransimpanan_read',
@@ -110,7 +110,7 @@ class Setoransimpanan extends MY_Base
         'nm_sim_kode' => set_value('nm_sim_kode'),
 	    'ssi_tglsetor' => set_value('ssi_tglsetor'),
 	    'ssi_jmlsetor' => set_value('ssi_jmlsetor'),
-	    'ssi_jmlbunga' => set_value('ssi_jmlbunga'),
+	    //'ssi_jmlbunga' => set_value('ssi_jmlbunga'),
 	    'content' => 'backend/setoransimpanan/setoransimpanan_form',
 	);
         $this->load->view(layout(), $data);
@@ -127,7 +127,7 @@ class Setoransimpanan extends MY_Base
 		'sim_kode' => $this->input->post('sim_kode',TRUE),
 		'ssi_tglsetor' => $this->input->post('ssi_tglsetor',TRUE),
 		'ssi_jmlsetor' => $this->input->post('ssi_jmlsetor',TRUE),
-		'ssi_jmlbunga' => $this->input->post('ssi_jmlbunga',TRUE),
+		//'ssi_jmlbunga' => $this->input->post('ssi_jmlbunga',TRUE),
 		'ssi_tgl' => $this->tgl,
 		'ssi_flag' => 0,
 		'ssi_info' => "",
@@ -152,7 +152,7 @@ class Setoransimpanan extends MY_Base
         'nm_sim_kode' => set_value('nm_sim_kode', $row->sim_kode),
 		'ssi_tglsetor' => set_value('ssi_tglsetor', $row->ssi_tglsetor),
 		'ssi_jmlsetor' => set_value('ssi_jmlsetor', $row->ssi_jmlsetor),
-		'ssi_jmlbunga' => set_value('ssi_jmlbunga', $row->ssi_jmlbunga),
+		//'ssi_jmlbunga' => set_value('ssi_jmlbunga', $row->ssi_jmlbunga),
 	    'content' => 'backend/setoransimpanan/setoransimpanan_form',
 	    );
             $this->load->view(layout(), $data);
@@ -173,7 +173,7 @@ class Setoransimpanan extends MY_Base
 		'sim_kode' => $this->input->post('sim_kode',TRUE),
 		'ssi_tglsetor' => $this->input->post('ssi_tglsetor',TRUE),
 		'ssi_jmlsetor' => $this->input->post('ssi_jmlsetor',TRUE),
-		'ssi_jmlbunga' => $this->input->post('ssi_jmlbunga',TRUE),
+		//'ssi_jmlbunga' => $this->input->post('ssi_jmlbunga',TRUE),
 		'ssi_tgl' => $this->tgl,
 		'ssi_flag' => 1,
 	    );
@@ -206,7 +206,6 @@ class Setoransimpanan extends MY_Base
 	$this->form_validation->set_rules('sim_kode', 'sim kode', 'trim|required');
 	$this->form_validation->set_rules('ssi_tglsetor', 'ssi tglsetor', 'trim|required');
 	$this->form_validation->set_rules('ssi_jmlsetor', 'ssi jmlsetor', 'trim|required');
-	$this->form_validation->set_rules('ssi_jmlbunga', 'ssi jmlbunga', 'trim|required');
 
 	$this->form_validation->set_rules('ssi_id', 'ssi_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

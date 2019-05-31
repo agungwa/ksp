@@ -10,6 +10,7 @@ class Simpanan extends MY_Base
         parent::__construct();
         $this->load->model('Simpanan_model');
         $this->load->model('Wilayah_model');
+        $this->load->model('Setoransimpanan_model');
         $this->load->library('form_validation');
     }
 
@@ -130,28 +131,38 @@ class Simpanan extends MY_Base
 
     public function read($id) 
     {
+        
         $row = $this->Simpanan_model->get_by_id($id);
         if ($row) {
+            $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $row->jsi_id))->row();
+            $jse_id = $this->db->get_where('jenissetoran', array('jse_id' => $row->jse_id))->row();
+            $bus_id = $this->db->get_where('bungasimpanan', array('bus_id' => $row->bus_id))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $setoran = $this->Setoransimpanan_model->get_data_setor($id);
             $data = array(
+        'setoran_data' => $setoran,
 		'sim_kode' => $row->sim_kode,
-		'ang_no' => $row->ang_no,
-		'kar_kode' => $row->kar_kode,
-		'bus_id' => $row->bus_id,
-		'jsi_id' => $row->jsi_id,
-		'jse_id' => $row->jse_id,
-		'wil_kode' => $row->wil_kode,
+		'ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'bus_id' => $bus_id->bus_bunga,
+		'jsi_id' => $jsi_id->jsi_simpanan,
+		'jse_id' => $jse_id->jse_setoran,
+		'wil_kode' => $wil_kode->wil_nama,
 		'sim_tglpendaftaran' => $row->sim_tglpendaftaran,
-		'sim_status' => $row->sim_status,
+        'sim_status' => $row->sim_status,
 		'sim_tgl' => $row->sim_tgl,
 		'sim_flag' => $row->sim_flag,
 		'sim_info' => $row->sim_info,'content' => 'backend/simpanan/simpanan_read',
-	    );
+        );
             $this->load->view(
             layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('simpanan'));
         }
+        
     }
 
     public function create() 
@@ -235,18 +246,17 @@ class Simpanan extends MY_Base
                 'action' => site_url('simpanan/update_action'),
 		'sim_kode' => set_value('sim_kode', $row->sim_kode),
 		'ang_no' => set_value('ang_no', $row->ang_no),
-		'nm_ang_no' => set_value('nm_ang_no', $row->ang_nama),
+		'nm_ang_no' => set_value('nm_ang_no', $row->ang_no),
 		'kar_kode' => set_value('kar_kode', $row->kar_kode),
-		'nm_kar_kode' => set_value('kar_kode', $row->kar_nama),
+		'nm_kar_kode' => set_value('kar_kode', $row->kar_kode),
 		'bus_id' => set_value('bus_id', $row->bus_id),
-		'nm_bus_id' => set_value('bus_id', $row->bus_bunga),
+		'nm_bus_id' => set_value('bus_id', $row->bus_id),
 		'jsi_id' => set_value('jsi_id', $row->jsi_id),
-		'nm_jsi_id' => set_value('jsi_id', $row->jsi_simpanan),
+		'nm_jsi_id' => set_value('jsi_id', $row->jsi_id),
 		'jse_id' => set_value('jse_id', $row->jse_id),
-		'nm_jse_id' => set_value('jse_id', $row->jse_setoran),
+		'nm_jse_id' => set_value('jse_id', $row->jse_id),
 		'wil_kode' => set_value('wil_kode', $row->wil_kode),
-		'nm_wil_kode' => set_value('wil_kode', $row->wil_nama),
-		'sim_tglpendaftaran' => set_value('sim_tglpendaftaran', $row->sim_tglpendaftaran),
+		'nm_wil_kode' => set_value('wil_kode', $row->wil_kode),
 		'sim_status' => set_value('sim_status', $row->sim_status),
 	    'content' => 'backend/simpanan/simpanan_form.php',
 	    );

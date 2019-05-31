@@ -40,30 +40,36 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-        <th class="text-center">Kode Simpanan</th>
-		<th class="text-center">Anggota</th>
+		<th class="text-center">Kode Simpanan</th>
+		<th class="text-center">Kode Anggota</th>
+		<th class="text-center">Nama Anggota</th>
 		<th class="text-center">Karyawan</th>
-		<th class="text-center">Bunga</th>
+		<th class="text-center">Bunga (dalam %)</th>
 		<th class="text-center">Jenis Simpanan</th>
 		<th class="text-center">Jenis Setoran</th>
 		<th class="text-center">Wilayah</th>
 		<th class="text-center">Tanggal Pendaftaran</th>
 		<th class="text-center">Status</th>
-		<th class="text-center">Action</th>
             </thead>
 			<tbody><?php
             foreach ($simpanan_data as $simpanan)
             {
+                $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $simpanan->jsi_id))->row();
+                $jse_id = $this->db->get_where('jenissetoran', array('jse_id' => $simpanan->jse_id))->row();
+                $bus_id = $this->db->get_where('bungasimpanan', array('bus_id' => $simpanan->bus_id))->row();
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $simpanan->ang_no))->row();
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $simpanan->kar_kode))->row();
                 ?>
                 <tr>
                 <tr onclick="setVal('<?=$idhtml?>','<?=$simpanan->sim_kode?>','<?=$simpanan->sim_kode?>')" style="cursor: pointer;">
-			<td width="80px"><?php echo ++$start ?></td>
+                <td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $simpanan->sim_kode ?></td>
 			<td><?php echo $simpanan->ang_no ?></td>
-			<td><?php echo $simpanan->kar_kode ?></td>
-			<td><?php echo $simpanan->bus_id ?></td>
-			<td><?php echo $simpanan->jsi_id ?></td>
-			<td><?php echo $simpanan->jse_id ?></td>
+			<td><?php echo $ang_no->ang_nama ?></td>
+			<td><?php echo $kar_kode->kar_nama ?></td>
+			<td><?php echo $bus_id->bus_bunga ?></td>
+			<td><?php echo $jsi_id->jsi_simpanan ?></td>
+			<td><?php echo $jse_id->jse_setoran ?></td>
 			<td><?php echo $simpanan->wil_kode ?></td>
 			<td><?php echo $simpanan->sim_tglpendaftaran ?></td>
 			<td><?php echo $simpanan->sim_status ?></td>

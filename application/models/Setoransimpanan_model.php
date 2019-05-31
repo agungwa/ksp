@@ -8,6 +8,7 @@ class Setoransimpanan_model extends CI_Model
 
     public $table = 'setoransimpanan';
     public $id = 'ssi_id';
+    public $sim_kode = 'sim_kode';
     public $order = 'DESC';
 
     function __construct()
@@ -28,6 +29,13 @@ class Setoransimpanan_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
+    }
+
+    // get data by id
+    function get_data_setor($id)
+    {
+        $this->db->where('sim_kode !=',$id);
+        return $this->db->get($this->table)->result();
     }
     
     // get total rows
