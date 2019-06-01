@@ -133,7 +133,7 @@ lookup();
                         <li>
                             <a href="<?=base_url()?>Simpanan">Simpanan</a>
                         </li>
-                        <li><a href="<?=base_url()?>Setoransimpanan">Setoran</a></li>
+                        <li><a href="<?=base_url()?>Setoransimpanan/create">Setoran</a></li>
                         <li>
                             <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
@@ -148,7 +148,7 @@ lookup();
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="<?=base_url()?>Penarikansimpanan">Tarik Simpanan</a></li>
+                        <li><a href="<?=base_url()?>Penarikansimpanan/create">Tarik Simpanan</a></li>
                         <li>
                             <a href="#" id="damian">Data<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">

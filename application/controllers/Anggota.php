@@ -85,16 +85,16 @@ class Anggota extends MY_Base
             $this->Simpananpokok_model->insert($dataSimpananPokok);
 
             //save data simpanan wajib
-            $dataSimpananWajib = array(
+           /* $dataSimpananWajib = array(
                 'ang_no' => $this->input->post('ang_no',TRUE),
-                'ses_id' => $this->input->post('ses_id',TRUE),
+                'sw_ses_id' => $this->input->post('ses_id',TRUE),
                 'sip_tglbayar' => $this->input->post('siw_tglbayar',TRUE),
                 'siw_status' => $this->input->post('siw_status',TRUE),
                 'siw_tglambil' => $this->input->post('siw_tglambil',TRUE),
                 'siw_tgl' => $this->tgl,
                 'siw_flag' => 0,
                 'siw_info' => "",
-                );
+                );*/
             $this->Simpananwajib_model->insert($dataSimpananPokok);            
 
             $this->session->set_flashdata('message', 'Create Record Success');

@@ -10,6 +10,7 @@ class MY_Base extends CI_Controller {
     var $statusPinjaman;
     var $statusSimkesan;
     var $statusAnggota;
+    var $statusSimpanan;
 
 	function __construct()
     {
@@ -20,6 +21,7 @@ class MY_Base extends CI_Controller {
         $this->statusPinjaman = array(0=>"Pengajuan", 1=>"Disetujui", 2=>"Ditolak");
         $this->statusSimkesan = array(0=>"Baru");
         $this->statusAnggota = array(0=>"Belum Anggota", 1=>"Calon Anggota", 2=>"Anggota");
+        $this->statusSimpanan = array(0=>"Aktif", 1=>"Tidak Aktif");
         $this->load->vars($this->tgl, $this->flag, $this->statusAngsuran);
 
         if ($this->session->userdata('logged')!=TRUE){
