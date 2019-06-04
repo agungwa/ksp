@@ -70,11 +70,9 @@
             <label for="datetime">Tanggal Pendaftaran </label>
             <input type="date" class="form-control" name="sim_tglpendaftaran" id="todays-date" placeholder="Sim Tglpendaftaran" value="" required="required" />
         </div>
-        </div>
-        <div class="col-md-12">
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
         <label for="varchar">Status </label>
-        <select class="form-control col-md-3" name="status">
+        <select class="form-control col-md-3" name="sim_status" id="sim_status">
                     <option value="">--Status--</option>
                     <?php
                         foreach ($this->statusSimpanan as $key => $value) { ?>
@@ -84,14 +82,11 @@
                     ?>
         </select>
         </div>
-	    <!--<div class="form-group col-md-3">
-            <label for="varchar">Status </label>
-            <input type="text" class="form-control" name="sim_status" id="sim_status" placeholder="Sim Status" value="" required="required" />
-        </div>-->
         </div>
+        <div class="form-group col-md-3">
 	    <button type="submit" class="btn btn-primary">Proses Simpanan</button> 
 	    <a href="<?php echo site_url('simpanan') ?>" class="btn btn-default">Batal</a>
-        
+        </div>
 	</div>
             </form>
                 </div>

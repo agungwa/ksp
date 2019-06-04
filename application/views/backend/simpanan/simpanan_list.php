@@ -16,7 +16,17 @@
                         }
                     ?>
                 </select>
+                <select class="form-control col-md-3" name="status">
+                    <option value="">--Status--</option>
+                    <?php
+                        foreach ($this->statusSimpanan as $key => $value) { ?>
+                            <option value="<?= $key?>"><?= $value?></option>
+                    <?php        
+                        }
+                    ?>
+                </select>
             </div>
+            
             <div class="col-md-4 text-right">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="No simpanan/ No Anggota">
