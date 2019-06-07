@@ -3,30 +3,75 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Pengkodean_model extends CI_Model
+class Pengkodean extends CI_Model
 {
-
-    public $table = 'ahliwarissimkesan';
 
     function __construct()
     {
         parent::__construct();
     }
 
-    // get all
+    // input kode Anggota
 
-    // get data by id
-    
-    // get total rows
-    
-    // get data with limit and search
-    
-    // insert data
-    
-    // update data
-    
-    // delete data
-    
+        public function kode(){
+            $this->db->select('RIGHT(anggota.ang_no,2) as ang_no', FALSE);
+            $this->db->order_by('ang_no','DESC');    
+            $this->db->limit(1);    
+            $query = $this->db->get('anggota');  //cek dulu apakah ada sudah ada kode di tabel.    
+            if($query->num_rows() <> 0){      
+                //cek kode jika telah tersedia    
+                $data = $query->row();      
+                $kode = intval($data->ang_no) + 1; 
+            }
+            else{      
+                $kode = 1;  //cek jika kode belum terdapat pada table
+            }
+                $tgl=date('dmy'); 
+                $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+                $kodetampil = "K".$tgl.$batas;  //format kode
+                return $kodetampil;  
+        }
+
+    // input kode Simpanan Berjangka 9 Bulan
+        public function simpananana($nowYear){
+            $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
+            $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%d') = ", $nowYear); 
+            $this->db->limit(1);
+            $this->db->order_by('sim_kode','DESC');       
+            $query = $this->db->get('simpanan');  
+            if($query->num_rows() <> 0){          
+                $data = $query->row();      
+                $kode = intval($data->sim_kode) + 1; 
+            }
+            else{      
+                $kode = 1;
+            }
+                $tgl=date('dmy'); 
+                $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+                $kodetampil = "K"."A".$tgl.$batas;
+                return $kodetampil;  
+        }
+    // input kode simpanan berjangka 12 bulan
+       public function simpanananb($nowYear){
+            $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
+            $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%d') = ", $nowYear);
+            $this->db->limit(1);
+            $this->db->order_by('sim_kode','DESC');    
+            $query = $this->db->get('simpanan');  
+            if($query->num_rows() <> 0){          
+                $data = $query->row();      
+                $kode = intval($data->sim_kode) + 1; 
+            }
+            else{      
+                $kode = 1;
+            }
+                $tgl=date('dmy'); 
+                $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+                $kodetampil = "K"."B".$tgl.$batas;
+                return $kodetampil;  
+        }
+
+
 }
 
 /* End of file Ahliwarissimkesan_model.php */

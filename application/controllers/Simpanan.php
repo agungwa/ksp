@@ -11,6 +11,7 @@ class Simpanan extends MY_Base
         $this->load->model('Simpanan_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Setoransimpanan_model');
+        $this->load->model('Pengkodean');
         $this->load->library('form_validation');
     }
 
@@ -40,7 +41,7 @@ class Simpanan extends MY_Base
     public function simpanana(){
         $nowYear = date('d');
         $data = array(
-        'kode' => $this->Simpanan_model->simpananana($nowYear),
+        'kode' => $this->Pengkodean->simpananana($nowYear),
         'content' => 'backend/simpanan/simpanan',
         'item'=> 'pendaftaran/simpanana.php',
         'active' => 1,
@@ -51,7 +52,7 @@ class Simpanan extends MY_Base
     public function simpananb(){
         $nowYear = date('d');
         $data = array(
-        'kode' => $this->Simpanan_model->simpanananb($nowYear),
+        'kode' => $this->Pengkodean->simpanananb($nowYear),
         'content' => 'backend/simpanan/simpanan',
         'item'=> 'pendaftaran/simpananb.php',
         'active' => 2,

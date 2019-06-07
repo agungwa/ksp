@@ -52,45 +52,7 @@ class Simpanan_model extends CI_Model
     {
         $this->db->insert($this->table, $data);
     }
-    
-    // input kode
-   public function simpananana($nowYear){
-        $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
-        $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%d') = ", $nowYear); 
-        $this->db->limit(1);
-        $this->db->order_by('sim_kode','DESC');       
-        $query = $this->db->get('simpanan');  
-        if($query->num_rows() <> 0){          
-             $data = $query->row();      
-             $kode = intval($data->sim_kode) + 1; 
-        }
-        else{      
-             $kode = 1;
-        }
-            $tgl=date('dmy'); 
-            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
-            $kodetampil = "K"."A".$tgl.$batas;
-            return $kodetampil;  
-       }
 
-       public function simpanananb($nowYear){
-        $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
-        $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%d') = ", $nowYear);
-        $this->db->limit(1);
-        $this->db->order_by('sim_kode','DESC');    
-        $query = $this->db->get('simpanan');  
-        if($query->num_rows() <> 0){          
-             $data = $query->row();      
-             $kode = intval($data->sim_kode) + 1; 
-        }
-        else{      
-             $kode = 1;
-        }
-            $tgl=date('dmy'); 
-            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
-            $kodetampil = "K"."B".$tgl.$batas;
-            return $kodetampil;  
-       }
     
       /*  Function simpananana($nowYear, $Nunit, $Nitem){
         $nowMonthYear = date('dmy');

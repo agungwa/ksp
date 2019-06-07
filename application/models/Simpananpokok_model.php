@@ -8,6 +8,7 @@ class Simpananpokok_model extends CI_Model
 
     public $table = 'simpananpokok';
     public $id = 'sip_id';
+    public $ang_no = 'ang_no';
     public $order = 'DESC';
 
     function __construct()
@@ -29,7 +30,14 @@ class Simpananpokok_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
-    
+
+    // get data by ang no
+    function get_data_sip($ang_no)
+    {
+        $this->db->where('ang_no =',$ang_no);
+        return $this->db->get($this->table)->result();
+    }
+
     // get total rows
     function total_rows($q = NULL) {
         $where = "sip_id LIKE '%$q%' ESCAPE '!' AND sip_flag < 2";

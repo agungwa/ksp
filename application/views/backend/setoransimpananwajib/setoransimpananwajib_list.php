@@ -57,10 +57,11 @@
 			<tbody><?php
             foreach ($setoransimpananwajib_data as $setoransimpananwajib)
             {
+                $siw_id = $this->db->get_where('simpananwajib', array('siw_id' => $setoransimpananwajib->siw_id))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $setoransimpananwajib->siw_id ?></td>
+			<td><?php echo $siw_id->ang_no ?></td>
 			<td><?php echo $setoransimpananwajib->ssw_tglsetor ?></td>
 			<td><?php echo $setoransimpananwajib->ssw_jmlsetor ?></td>
 			<td style="text-align:center" width="200px">

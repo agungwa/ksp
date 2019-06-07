@@ -12,6 +12,7 @@ class Anggota extends MY_Base
         $this->load->model('Simpananpokok_model');
         $this->load->model('Simpananwajib_model');
         $this->load->model('Wilayah_model');
+        $this->load->model('Pengkodean');
         $this->load->library('form_validation');
     }
 
@@ -37,7 +38,7 @@ class Anggota extends MY_Base
 
     public function pendaftaran(){
         $data = array(
-            'ang_no' => $this->Anggota_model->anggotakode(),
+            'kode' => $this->Pengkodean->kode(),
             'content' => 'backend/anggota/anggota',
             'item'=> 'pendaftaran/pendaftaran.php',
             'active' => 1,
@@ -76,7 +77,7 @@ class Anggota extends MY_Base
             //save data simpanan pokok
             $dataSimpananPokok = array(
                 'ang_no' => $this->input->post('ang_no',TRUE),
-                'ses_id' => $this->input->post('ses_id',TRUE),
+                'ses_id' => 1,
                 'sip_tglbayar' => $this->input->post('sip_tglbayar',TRUE),
                 'sip_tgl' => $this->tgl,
                 'sip_flag' => 0,
@@ -85,17 +86,17 @@ class Anggota extends MY_Base
             $this->Simpananpokok_model->insert($dataSimpananPokok);
 
             //save data simpanan wajib
-           /* $dataSimpananWajib = array(
+            $dataSimpananWajib = array(
                 'ang_no' => $this->input->post('ang_no',TRUE),
-                'sw_ses_id' => $this->input->post('ses_id',TRUE),
-                'sip_tglbayar' => $this->input->post('siw_tglbayar',TRUE),
+                'ses_id' => 2,
+                'siw_tglbayar' => $this->tgl,
                 'siw_status' => $this->input->post('siw_status',TRUE),
                 'siw_tglambil' => $this->input->post('siw_tglambil',TRUE),
                 'siw_tgl' => $this->tgl,
                 'siw_flag' => 0,
                 'siw_info' => "",
-                );*/
-            $this->Simpananwajib_model->insert($dataSimpananPokok);            
+                );
+            $this->Simpananwajib_model->insert($dataSimpananWajib);            
 
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('anggota'));
@@ -175,9 +176,14 @@ class Anggota extends MY_Base
 
     public function read($id) 
     {
+        
         $row = $this->Anggota_model->get_by_id($id);
+        $simpananwajib = $this->Simpananwajib_model->get_data_siw($id);
+        $simpananpokok = $this->Simpananpokok_model->get_data_sip($id);
         if ($row) {
             $data = array(
+                'simpananwajib_data' => $simpananwajib,
+                'simpananpokok_data' => $simpananpokok,
 		'ang_no' => $row->ang_no,
 		'ang_nama' => $row->ang_nama,
 		'ang_alamat' => $row->ang_alamat,
@@ -246,12 +252,11 @@ class Anggota extends MY_Base
     public function update($id) 
     {
         $row = $this->Anggota_model->get_by_id($id);
-
+        $simpananpokok = $this->Simpananpokok_model->get_data_sip($id);
         if ($row) {
             $data = array(
-                'button' => 'Update',
-                'action' => site_url('anggota/update_action'),
-		'ang_no' => set_value('ang_no', $row->ang_no),
+                //'simpananpokok_data' => $simpananpokok,
+		'kode' => set_value('ang_no', $row->ang_no),
 		'ang_nama' => set_value('ang_nama', $row->ang_nama),
 		'ang_alamat' => set_value('ang_alamat', $row->ang_alamat),
 		'ang_noktp' => set_value('ang_noktp', $row->ang_noktp),
@@ -259,7 +264,9 @@ class Anggota extends MY_Base
 		'ang_nohp' => set_value('ang_nohp', $row->ang_nohp),
 		'ang_tgllahir' => set_value('ang_tgllahir', $row->ang_tgllahir),
 		'ang_status' => set_value('ang_status', $row->ang_tgllahir),
-	    'content' => 'backend/anggota/anggota_form',
+        'content' => 'backend/anggota/anggota',
+        'item'=> 'pendaftaran/pendaftaranedit.php',
+        'active' => 4,
 	    );
             $this->load->view(layout(), $data);
         } else {
