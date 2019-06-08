@@ -9,6 +9,7 @@ class Simpananwajib extends MY_Base
     {
         parent::__construct();
         $this->load->model('Simpananwajib_model');
+        $this->load->model('Setoransimpananwajib_model');
         $this->load->library('form_validation');
     }
 
@@ -81,8 +82,10 @@ class Simpananwajib extends MY_Base
     public function read($id) 
     {
         $row = $this->Simpananwajib_model->get_by_id($id);
+        $setoransimpananwajib = $this->Setoransimpananwajib_model->get_data_ssw($id);
         if ($row) {
             $data = array(
+                'setoransimpananwajib_data' => $setoransimpananwajib,
 		'siw_id' => $row->siw_id,
 		'ang_no' => $row->ang_no,
 		'ses_id' => $row->ses_id,

@@ -8,6 +8,7 @@ class Setoransimpananwajib_model extends CI_Model
 
     public $table = 'setoransimpananwajib';
     public $id = 'ssw_id';
+    public $siw_id= 'siw_id';
     public $order = 'DESC';
 
     function __construct()
@@ -28,6 +29,14 @@ class Setoransimpananwajib_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
+    }
+
+    // get data by siw_id
+    function get_data_ssw($siw_id)
+    {
+        //$this->load->model('Simpananwajib_model');
+        $this->db->where('siw_id =',$siw_id);
+        return $this->db->get($this->table)->result();
     }
     
     // get total rows

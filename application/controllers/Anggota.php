@@ -11,6 +11,7 @@ class Anggota extends MY_Base
         $this->load->model('Anggota_model');
         $this->load->model('Simpananpokok_model');
         $this->load->model('Simpananwajib_model');
+        $this->load->model('Setoransimpananwajib_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Pengkodean');
         $this->load->library('form_validation');
@@ -77,7 +78,7 @@ class Anggota extends MY_Base
             //save data simpanan pokok
             $dataSimpananPokok = array(
                 'ang_no' => $this->input->post('ang_no',TRUE),
-                'ses_id' => 1,
+                'ses_id' => 2,
                 'sip_tglbayar' => $this->input->post('sip_tglbayar',TRUE),
                 'sip_tgl' => $this->tgl,
                 'sip_flag' => 0,
@@ -88,7 +89,7 @@ class Anggota extends MY_Base
             //save data simpanan wajib
             $dataSimpananWajib = array(
                 'ang_no' => $this->input->post('ang_no',TRUE),
-                'ses_id' => 2,
+                'ses_id' => 1,
                 'siw_tglbayar' => $this->tgl,
                 'siw_status' => $this->input->post('siw_status',TRUE),
                 'siw_tglambil' => $this->input->post('siw_tglambil',TRUE),
@@ -176,7 +177,7 @@ class Anggota extends MY_Base
 
     public function read($id) 
     {
-        
+            
         $row = $this->Anggota_model->get_by_id($id);
         $simpananwajib = $this->Simpananwajib_model->get_data_siw($id);
         $simpananpokok = $this->Simpananpokok_model->get_data_sip($id);
