@@ -132,7 +132,7 @@ class Setoransimpananwajib extends MY_Base
 
             $this->Setoransimpananwajib_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('setoransimpananwajib'));
+            redirect(site_url('setoransimpananwajib/create'));
         }
     }
     

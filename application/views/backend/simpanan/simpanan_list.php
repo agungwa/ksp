@@ -67,6 +67,7 @@
 			<tbody><?php
             foreach ($simpanan_data as $simpanan)
             {
+                $sim_status = $this->statusSimpanan;
                 $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $simpanan->jsi_id))->row();
                 $jse_id = $this->db->get_where('jenissetoran', array('jse_id' => $simpanan->jse_id))->row();
                 $bus_id = $this->db->get_where('bungasimpanan', array('bus_id' => $simpanan->bus_id))->row();
@@ -87,7 +88,7 @@
 			<td><?php echo $wil_kode->wil_nama ?></td>
 			<td><?php echo $simpanan->sim_tglpendaftaran ?></td>
 			<td><?php echo $tanggalDuedate?></td>
-			<td><?php echo $simpanan->sim_status ?></td>
+			<td><?php echo $sim_status[$simpanan->sim_status]?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('simpanan/read/'.$simpanan->sim_kode),'Detail','class="text-navy"'); 

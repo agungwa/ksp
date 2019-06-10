@@ -15,6 +15,7 @@
         
         <table class="table">
 	    <tr><td>Anggota</td><td><?php echo $ang_no; ?></td></tr>
+	    <tr><td>Nama</td><td><?php echo $nama_ang_no; ?></td></tr>
 	    <tr><td>Tanggal Bayar</td><td><?php echo $siw_tglbayar; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $siw_status; ?></td></tr>
 	    <tr><td>Tanggal Ambil</td><td><?php echo $siw_tglambil; ?></td></tr>

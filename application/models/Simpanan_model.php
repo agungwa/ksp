@@ -103,7 +103,6 @@ class Simpanan_model extends CI_Model
         }
         return $nextnoreg;
        }*/
-     
 
     // update data
     function update($id, $data)

@@ -12,6 +12,7 @@ class Anggota extends MY_Base
         $this->load->model('Simpananpokok_model');
         $this->load->model('Simpananwajib_model');
         $this->load->model('Setoransimpananwajib_model');
+        $this->load->model('Penarikansimpananwajib_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Pengkodean');
         $this->load->library('form_validation');

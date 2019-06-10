@@ -85,9 +85,11 @@ class Simpananwajib extends MY_Base
         $setoransimpananwajib = $this->Setoransimpananwajib_model->get_data_ssw($id);
         if ($row) {
             $data = array(
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row(),
                 'setoransimpananwajib_data' => $setoransimpananwajib,
-		'siw_id' => $row->siw_id,
-		'ang_no' => $row->ang_no,
+        'siw_id' => $row->siw_id,
+		'ang_no' => $row->ang_no,        
+		'nama_ang_no' => $ang_no->ang_nama,
 		'ses_id' => $row->ses_id,
 		'siw_tglbayar' => $row->siw_tglbayar,
 		'siw_status' => $row->siw_status,

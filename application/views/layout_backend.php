@@ -148,7 +148,6 @@ lookup();
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="<?=base_url()?>Penarikansimpanan/create">Tarik Simpanan</a></li>
                         <li>
                             <a href="#" id="damian">Data<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">

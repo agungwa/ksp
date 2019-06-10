@@ -11,6 +11,7 @@ class Simpanan extends MY_Base
         $this->load->model('Simpanan_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Setoransimpanan_model');
+        $this->load->model('Penarikansimpanan_model');
         $this->load->model('Pengkodean');
         $this->load->library('form_validation');
     }
@@ -28,9 +29,12 @@ class Simpanan extends MY_Base
             case  3:
                 $this->listdata();
                 break;
-            /*case  3:
+            case  4:
                 $this->tariksimpanan();
-                break;*/
+                break;
+            case  5:
+                $this->setor();
+                break;
                     
             default:
                 $this->simpanana();
@@ -59,6 +63,135 @@ class Simpanan extends MY_Base
         );
 
         $this->load->view(layout(), $data);
+    }
+
+//setoranan Simpanan
+    public function setor(){
+        
+        $q = urldecode($this->input->get('q', TRUE));
+        $setor = null;
+        
+        //data simpanan
+        if ($q<>''){
+            $sim_status = $this->statusSimpanan;
+            $row = $this->Simpanan_model->get_by_id($q);
+            $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $row->jsi_id))->row();
+            $jse_id = $this->db->get_where('jenissetoran', array('jse_id' => $row->jse_id))->row();
+            $bus_id = $this->db->get_where('bungasimpanan', array('bus_id' => $row->bus_id))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $setoran = $this->Setoransimpanan_model->get_data_setor($q);
+            if ($row) {
+                $setor = array(
+                'setoran_data' => $setoran,
+                'sim_kode' => $row->sim_kode,
+                'ang_no' => $ang_no->ang_nama,
+                'kar_kode' => $kar_kode->kar_nama,
+                'bus_id' => $bus_id->bus_bunga,
+                'jsi_id' => $jsi_id->jsi_simpanan,
+                'jse_id' => $jse_id->jse_setoran,
+                'min_jse_id' => $jse_id->jse_min,
+                'wil_kode' => $wil_kode->wil_nama,
+                'sim_tglpendaftaran' => $row->sim_tglpendaftaran,
+                'sim_status' => $sim_status[$row->sim_status],
+	    );
+            }
+        }
+
+        $data = array(
+            'content' => 'backend/simpanan/simpanan',
+            'item'=> 'setoran/setoran.php',
+            'q' => $q,
+            'active' => 5,
+            'setor' => $setor,
+        );
+        
+    $this->load->view(layout(), $data);
+    }
+
+    public function setoran_action() 
+    {
+        //insert data setoran simpanan
+        $dataSetoran = array(
+            'sim_kode' => $this->input->post('sim_kode',TRUE),
+            'ssi_tglsetor' => $this->tgl,
+            'ssi_jmlsetor' => $this->input->post('ssi_jmlsetor',TRUE),
+            'ssi_tgl' => $this->tgl,
+            'ssi_flag' => 0,
+            'ssi_info' => "",
+            );
+                $this->Setoransimpanan_model->insert($dataSetoran);
+                $this->session->set_flashdata('message', 'Create Record Success');
+                redirect(site_url('simpanan/?p=5'));
+        
+    }
+
+//Tarik Simpanan
+    public function tariksimpanan(){
+        
+        $q = urldecode($this->input->get('q', TRUE));
+        $penarikan = null;
+        
+        //data simpanan
+        if ($q<>''){
+            $sim_status = $this->statusSimpanan;
+            $row = $this->Simpanan_model->get_by_id($q);
+            $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $row->jsi_id))->row();
+            $jse_id = $this->db->get_where('jenissetoran', array('jse_id' => $row->jse_id))->row();
+            $bus_id = $this->db->get_where('bungasimpanan', array('bus_id' => $row->bus_id))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $setoran = $this->Setoransimpanan_model->get_data_setor($q);
+            if ($row) {
+                $penarikan = array(
+                'setoran_data' => $setoran,
+                'sim_kode' => $row->sim_kode,
+                'ang_no' => $ang_no->ang_nama,
+                'kar_kode' => $kar_kode->kar_nama,
+                'bus_id' => $bus_id->bus_bunga,
+                'jsi_id' => $jsi_id->jsi_simpanan,
+                'jse_id' => $jse_id->jse_setoran,
+                'wil_kode' => $wil_kode->wil_nama,
+                'sim_tglpendaftaran' => $row->sim_tglpendaftaran,
+                'sim_status' => $sim_status[$row->sim_status],
+	    );
+            }
+        }
+
+        $data = array(
+            'content' => 'backend/simpanan/simpanan',
+            'item'=> 'penarikan/penarikan.php',
+            'q' => $q,
+            'active' => 4,
+            'penarikan' => $penarikan,
+        );
+        
+    $this->load->view(layout(), $data);
+    }
+
+    public function tariksimpanan_action() 
+    {
+        //update data simpanan
+        $dataSimpanan = array(
+            'sim_status' => 1,
+            'sim_flag' => 2,
+            );
+        $this->Simpanan_model->update($this->input->post('sim_kode', TRUE), $dataSimpanan);
+        //insert data tarik simpanan
+        $dataPenarikan = array(
+            'sim_kode' => $this->input->post('sim_kode',TRUE),
+            'pes_tglpenarikan' => $this->tgl,
+            'pes_jumlah' => $this->input->post('pes_jumlah',TRUE),
+            'pes_tgl' => $this->tgl,
+            'pes_flag' => 0,
+            'pes_info' => "",
+            );
+                $this->Penarikansimpanan_model->insert($dataPenarikan);
+                $this->session->set_flashdata('message', 'Create Record Success');
+                redirect(site_url('simpanan/?p=4'));
+        
     }
 
     public function listdata()
@@ -136,6 +269,7 @@ class Simpanan extends MY_Base
         $row = $this->Simpanan_model->get_by_id($id);
         $setoran = $this->Setoransimpanan_model->get_data_setor($id);
         if ($row) {
+            $sim_status = $this->statusSimpanan;
             $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $row->jsi_id))->row();
             $jse_id = $this->db->get_where('jenissetoran', array('jse_id' => $row->jse_id))->row();
             $bus_id = $this->db->get_where('bungasimpanan', array('bus_id' => $row->bus_id))->row();
@@ -152,7 +286,7 @@ class Simpanan extends MY_Base
 		'jse_id' => $jse_id->jse_setoran,
 		'wil_kode' => $wil_kode->wil_nama,
 		'sim_tglpendaftaran' => $row->sim_tglpendaftaran,
-        'sim_status' => $row->sim_status,
+        'sim_status' => $sim_status[$row->sim_status],
 		'sim_tgl' => $row->sim_tgl,
 		'sim_flag' => $row->sim_flag,
 		'sim_info' => $row->sim_info,'content' => 'backend/simpanan/simpanan_read',
