@@ -53,57 +53,6 @@ class Simpanan_model extends CI_Model
         $this->db->insert($this->table, $data);
     }
 
-    
-      /*  Function simpananana($nowYear, $Nunit, $Nitem){
-        $nowMonthYear = date('dmy');
-        $Nunit = 'K';
-        $Nitem = 'A';
-        $this->db->select_max("sim_kode");      // select max (id_no)
-        $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%y') = ", $nowYear);  // and month to year
-        $query = $this->db->get('simpanan');
-        
-        if(!empty($query)){
-         foreach ($query->result() as $value) {
-          $kode = $value->sim_kode;                 // contoh : X01.Y02.Z03.MMYY.0001
-                                             //no urut kode hanya diteruskan jika Nunit and Ndept and Nitem sudah pernah ada record sebelumnya
-          $lastkode = substr($kode,12,4);    // urutan digit mulai ke 17 sepanjang 4 karakter
-          $nextkode = $lastkode + 1; 
-          $tempnextno = $Nunit.$Nitem.$nowMonthYear;
-          $nextnoreg = $tempnextno.sprintf('%04s',$nextkode);    // %04s untuk penyesuaian 4 digit no urut
-         }
-        }else{
-                                     // jika kondisi  Nunit and Ndept and Nitem tidak dipenuhi maka no urut reset dari 1
-         $tempnextno = $Nunit.$Ndept.$Nitem.date('dym');
-         $nextnoreg = $tempnextno.sprintf('%04s',$nextkode);
-        }
-        return $nextnoreg;
-       }
-       
-       Function simpanananb($nowYear, $Nunit, $Nitem){
-        $nowMonthYear = date('dmy');
-        $Nunit = 'K';
-        $Nitem = 'B';
-        $this->db->select_max("sim_kode");      // select max (id_no)
-        $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%y') = ", $nowYear);  // and month to year
-        $query = $this->db->get('simpanan');
-        
-        if(!empty($query)){
-         foreach ($query->result() as $value) {
-          $kode = $value->sim_kode;                 // contoh : X01.Y02.Z03.MMYY.0001
-                                             //no urut kode hanya diteruskan jika Nunit and Ndept and Nitem sudah pernah ada record sebelumnya
-          $lastkode = substr($kode,12,4);    // urutan digit mulai ke 17 sepanjang 4 karakter
-          $nextkode = $lastkode + 1; 
-          $tempnextno = $Nunit.$Nitem.$nowMonthYear;
-          $nextnoreg = $tempnextno.sprintf('%04s',$nextkode);    // %04s untuk penyesuaian 4 digit no urut
-         }
-        }else{
-                                     // jika kondisi  Nunit and Ndept and Nitem tidak dipenuhi maka no urut reset dari 1
-         $tempnextno = $Nunit.$Ndept.$Nitem.date('dym');
-         $nextnoreg = $tempnextno.sprintf('%04s',$nextkode);
-        }
-        return $nextnoreg;
-       }*/
-
     // update data
     function update($id, $data)
     {

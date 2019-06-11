@@ -75,14 +75,14 @@ class Simpanan extends MY_Base
         if ($q<>''){
             $sim_status = $this->statusSimpanan;
             $row = $this->Simpanan_model->get_by_id($q);
+            $setoran = $this->Setoransimpanan_model->get_data_setor($q);
+            if ($row) {    
             $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $row->jsi_id))->row();
             $jse_id = $this->db->get_where('jenissetoran', array('jse_id' => $row->jse_id))->row();
             $bus_id = $this->db->get_where('bungasimpanan', array('bus_id' => $row->bus_id))->row();
             $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
             $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
             $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
-            $setoran = $this->Setoransimpanan_model->get_data_setor($q);
-            if ($row) {
                 $setor = array(
                 'setoran_data' => $setoran,
                 'sim_kode' => $row->sim_kode,
@@ -176,7 +176,7 @@ class Simpanan extends MY_Base
         //update data simpanan
         $dataSimpanan = array(
             'sim_status' => 1,
-            'sim_flag' => 2,
+            'sim_flag' => 1,
             );
         $this->Simpanan_model->update($this->input->post('sim_kode', TRUE), $dataSimpanan);
         //insert data tarik simpanan

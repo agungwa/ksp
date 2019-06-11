@@ -117,23 +117,12 @@ lookup();
                             </ul>
                         </li>
                     <li>
-                            <a href="#" id="damian">Set Up <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="<?=base_url()?>Anggota">Anggota</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>penarikansimpananwajib">Tarik Simpanan Wajib</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>setoransimpananwajib/create">Setoran Simpanan Wajib</a>
-                                </li>
-                            </ul>
+                        <li>
+                            <a href="<?=base_url()?>Anggota">Setup Anggota</a>
                         </li>
                         <li>
                             <a href="<?=base_url()?>Simpanan">Simpanan</a>
                         </li>
-                        <li><a href="<?=base_url()?>Setoransimpanan/create">Setoran</a></li>
                         <li>
                             <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
@@ -278,22 +267,8 @@ lookup();
                                 </li>
                             </ul>
                         </li>
-                    <li>
-                            <a href="#" id="damian">Set Up <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="<?=base_url()?>Anggota">Anggota</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>penarikansimpananwajib">Tarik Simpanan Wajib</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>setoransimpananwajib">Setoran Simpanan Wajib</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>Investasiberjangka">Investasi Berjangka</a>
-                                </li>
-                            </ul>
+                        <li>
+                            <a href="<?=base_url()?>Anggota">Setup Anggota</a>
                         </li>
                         <li>
                             <a href="<?=base_url()?>Investasiberjangka">Investasi Berjangka</a>

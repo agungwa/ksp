@@ -21,9 +21,9 @@
 	    <tr><td>Tanggal Ambil</td><td><?php echo $siw_tglambil; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('anggota/read/'.$ang_no) ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
-
 <!--tabel setoran simpanan wajib-->
-<form action="<?php echo site_url('simpananwajib/read_action'); ?>" method="post">
+
+<form action="<?php echo site_url('simpananwajib/tariksimpananwajib_action'); ?>" method="post">
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
@@ -50,18 +50,18 @@
 			<td><?php echo $kurang ?></td>
 		</tr>
         <?php
-            $no++;
+        $no++;
             }
             ?>
-        <div class="form-group col-md-4">
-            <label for="varchar">Jumlah Setoran</label>
-            <input type="number" class="form-control" name="ssw_jmlsetor" min="20000" max=<?= $kurang?> id="ssw_jmlsetor" placeholder="Jumlah Setor" value="" required="required" />
-            <input type="hidden" class="form-control" name="siw_id" id="siw_id" placeholder="siw_id" value="<?php echo $siw_id; ?>"/>
-        </div>
-        <div class="form-group col-md-12">
-            <button type="submit" class="btn btn-primary">setor</button> 
-            <a href="<?php echo site_url('anggota/read/'.$ang_no) ?>" class="btn btn-default">Batal</a>
-        </div>
+    <div class="form-group col-md-4">
+    <label for="varchar">Total Tarik</label>
+        <input type="number" class="form-control" name="psw_jumlah" id="psw_jumlah" placeholder="Jumlah" value="<?php echo $total; ?>" readonly required="required" />
+        <input type="hidden" class="form-control" name="siw_id" id="siw_id" placeholder="siw_id" value="<?php echo $siw_id; ?>"/>
+    </div>
+    <div class="form-group col-md-12">
+	    <button type="submit" class="btn btn-primary">Tarik Simpanan</button> 
+	    <a href="<?php echo site_url('anggota/read/'.$ang_no) ?>" class="btn btn-default">Batal</a>
+    </div>
 </form>
             </tbody>
         </table>

@@ -13,7 +13,7 @@
 
         <div class="form-group">
             <label for="varchar">Nomor Anggota </label>
-            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Nomor Anggota" value="<?php echo $kode; ?>" required="required" ?>
+            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Nomor Anggota" value="<?php echo $kode; ?>" readonly required="required" ?>
         </div>
 
 	    <div class="form-group">
@@ -30,15 +30,13 @@
             <label for="varchar">Nomor KTP </label>
             <input type="number" class="form-control" name="ang_noktp" id="ang_noktp" placeholder="Nomor KTP" value="" required="required" />
         </div>
-
+        </div>
+        
+        <div class="col-md-6">
 	    <div class="form-group">
             <label for="varchar">Nomor KK </label>
             <input type="number" class="form-control" name="ang_nokk" id="ang_nokk" placeholder="Nomor KK" value="" required="required" />
         </div>
-        </div>
-        
-        <div class="col-md-6">
-
 	    <div class="form-group">
             <label for="varchar">No Handphone </label>
             <input type="number" class="form-control" name="ang_nohp" id="ang_nohp" placeholder="08.." value="" required="required" />
@@ -83,16 +81,6 @@
                     ?>
                 </select>  </div>
         </div>
-
-	    <!--<div class="form-group">
-            <label for="tinyint">Status</label>
-            <input type="text" class="form-control" name="siw_status" id="siw_status" placeholder="Status" value="" />
-        </div>
-
-	    <div class="form-group">
-            <label for="datetime">Tanggal Ambil</label>
-            <input type="date" class="form-control" name="siw_tglambil" id="siw_tglambil" placeholder="Tanggal Ambil" value="" />
-        </div>-->
         <div class="col-lg-12">
                             <button type="submit" class="btn btn-primary">Submit Pendaftaran</button> 
                             <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Batal</a>

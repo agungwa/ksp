@@ -22,7 +22,7 @@
 	    <tr><td>Nomor Handphone</td><td><?php echo $ang_nohp; ?></td></tr>
 	    <tr><td>Tanggal Lahir</td><td><?php echo $ang_tgllahir; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $ang_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('anggota') ?>" class="btn btn-default">Batal</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo site_url('anggota/?p=2') ?>" class="btn btn-default">Batal</a></td></tr>
     </table>
 
     <!-- tabel simpanan pokok -->
@@ -68,6 +68,7 @@
             </thead>
             <tbody><?php
             $no=1;
+            $siw_status = $this->statusSimpananwajib;
             foreach ($simpananwajib_data as $simpananwajib)
             {
                 $ses_id = $this->db->get_where('settingsimpanan', array('ses_id' => $simpananwajib->ses_id))->row();
@@ -75,7 +76,7 @@
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $simpananwajib->siw_tglbayar ?></td>
-            <td><?php echo $simpananwajib->siw_status ?></td>
+            <td><?php echo $siw_status[$simpananwajib->siw_status] ?></td>
             <td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('simpananwajib/read/'.$simpananwajib->siw_id),'Detail','class="text-navy"');?>

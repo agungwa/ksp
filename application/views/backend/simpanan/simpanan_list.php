@@ -7,7 +7,7 @@
             <div class="col-md-8 text-right">
                 <input type="hidden" name="p" value="3">
                 <div class="col-md-2"><h3>Filter : </h3></div>
-                <select class="form-control col-md-3" name="wilayah">
+                <select class="form-control col-md-3"  name="wilayah">
                     <option value="">--Wilayah--</option>
                     <?php
                         foreach ($wilayah_data as $value) { ?>

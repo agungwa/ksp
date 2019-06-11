@@ -28,9 +28,12 @@ class Anggota extends MY_Base
             case  2:
                 $this->listdata();
                 break;
-            /*case  3:
-                $this->tariksimpanan();
-                break;*/
+            case  3:
+                $this->tariksiw();
+                break;
+            case  4:
+                $this->setorsiw();
+                break;
                     
             default:
                 $this->pendaftaran();
@@ -38,6 +41,7 @@ class Anggota extends MY_Base
         }
     } 
 
+    //pendaftaran anggota
     public function pendaftaran(){
         $data = array(
             'kode' => $this->Pengkodean->kode(),
@@ -49,15 +53,88 @@ class Anggota extends MY_Base
         $this->load->view(layout(), $data);
     }
 
-  /*  public function tariksimpanan(){
+    //setor simpanan wajib
+    public function setorsiw(){
+        
+        $q = urldecode($this->input->get('q', TRUE));
+        $setorsiw = null;
+        
+        //data simpanan
+        if ($q<>''){
+            $ang_status = $this->statusAnggota;
+            $row = $this->Anggota_model->get_by_id($q);
+            $simpananwajib = $this->Simpananwajib_model->get_data_siw($q);
+            $simpananpokok = $this->Simpananpokok_model->get_data_sip($q);
+            if ($row) {
+                $setorsiw = array(
+                    'simpananwajib_data' => $simpananwajib,
+                    'simpananpokok_data' => $simpananpokok,
+            'ang_no' => $row->ang_no,
+            'ang_nama' => $row->ang_nama,
+            'ang_alamat' => $row->ang_alamat,
+            'ang_noktp' => $row->ang_noktp,
+            'ang_nokk' => $row->ang_nokk,
+            'ang_nohp' => $row->ang_nohp,
+            'ang_tgllahir' => $row->ang_tgllahir,
+            'ang_status' => $ang_status[$row->ang_status],
+            'ang_tgl' => $row->ang_tgl,
+            'ang_flag' => $row->ang_flag,
+            'ang_info' => $row->ang_info,
+	    );
+            }
+        }
+
         $data = array(
             'content' => 'backend/anggota/anggota',
-            'item'=> 'pendaftaran/pendaftaran.php',
-            'active' => 3
+            'item'=> 'setorsiw/setorsiw.php',
+            'q' => $q,
+            'active' => 4,
+            'setorsiw' => $setorsiw,
         );
-
         $this->load->view(layout(), $data);
-    }*/
+    }
+
+    //tarik simpanan wajib
+    public function tariksiw(){
+        
+        $q = urldecode($this->input->get('q', TRUE));
+        $tariksiw = null;
+        
+        //data simpanan
+        if ($q<>''){
+            $ang_status = $this->statusAnggota;
+            $row = $this->Anggota_model->get_by_id($q);
+            $simpananwajib = $this->Simpananwajib_model->get_data_siw($q);
+            $simpananpokok = $this->Simpananpokok_model->get_data_sip($q);
+            if ($row) {
+                $tariksiw = array(
+                    'simpananwajib_data' => $simpananwajib,
+                    'simpananpokok_data' => $simpananpokok,
+            'ang_no' => $row->ang_no,
+            'ang_nama' => $row->ang_nama,
+            'ang_alamat' => $row->ang_alamat,
+            'ang_noktp' => $row->ang_noktp,
+            'ang_nokk' => $row->ang_nokk,
+            'ang_nohp' => $row->ang_nohp,
+            'ang_tgllahir' => $row->ang_tgllahir,
+            'ang_status' => $ang_status[$row->ang_status],
+            'ang_tgl' => $row->ang_tgl,
+            'ang_flag' => $row->ang_flag,
+            'ang_info' => $row->ang_info,
+	    );
+            }
+        }
+
+        $data = array(
+            'content' => 'backend/anggota/anggota',
+            'item'=> 'tariksiw/tariksiw.php',
+            'q' => $q,
+            'active' => 3,
+            'tariksiw' => $tariksiw,
+        );
+        $this->load->view(layout(), $data);
+    }
+
 
     public function pendaftaran_action() 
     {
@@ -135,7 +212,7 @@ class Anggota extends MY_Base
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'active' => 4,
+            'active' => 2,
             'content' => 'backend/anggota/anggota',
             'item' => 'anggota_list.php',
         );
@@ -182,6 +259,7 @@ class Anggota extends MY_Base
         $row = $this->Anggota_model->get_by_id($id);
         $simpananwajib = $this->Simpananwajib_model->get_data_siw($id);
         $simpananpokok = $this->Simpananpokok_model->get_data_sip($id);
+        $ang_status = $this->statusAnggota;
         if ($row) {
             $data = array(
                 'simpananwajib_data' => $simpananwajib,
@@ -193,7 +271,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => $row->ang_nokk,
 		'ang_nohp' => $row->ang_nohp,
 		'ang_tgllahir' => $row->ang_tgllahir,
-		'ang_status' => $row->ang_status,
+		'ang_status' => $ang_status[$row->ang_status],
 		'ang_tgl' => $row->ang_tgl,
 		'ang_flag' => $row->ang_flag,
 		'ang_info' => $row->ang_info,'content' => 'backend/anggota/anggota_read',

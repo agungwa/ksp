@@ -74,7 +74,6 @@
 			<td><?php echo 'Rp ',$total_setoran ?></td>
 			<td><?php echo 'Rp ',$bunga ?></td>
 			<td><?php echo 'Rp ',$pes_jumlah?></td>
-			<td><?php echo 'Rp ',$setor['min_jse_id']?></td>
            </tr>
                 
             <?php
@@ -83,7 +82,7 @@
             ?>
             
     <div class="form-group col-md-4">
-        <label for="varchar">Jumlah Setoran </label>
+        <label for="varchar">Jumlah Setoran <?php echo '(Min Setor Rp ',$setor['min_jse_id'],')'?></label>
         <input type="number" class="form-control" name="ssi_jmlsetor" min=<?= $setor['min_jse_id'] ?> id="ssi_jmlsetor" placeholder="Jumlah Setor" value="" required="required" />
         <input type="hidden" class="form-control" name="sim_kode" id="sim_kode" placeholder="sim_kode" value="<?php echo $sim_kode; ?>"/>
     </div>
