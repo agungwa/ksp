@@ -63,6 +63,7 @@
 			<tbody><?php
             foreach ($anggota_data as $anggota)
             {
+                $status = $this->statusAnggota;
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
@@ -73,10 +74,10 @@
 			<td><?php echo $anggota->ang_nokk ?></td>
 			<td><?php echo $anggota->ang_nohp ?></td>
 			<td><?php echo $anggota->ang_tgllahir ?></td>
-			<td><?php echo $anggota->ang_status ?></td>
+			<td><?php echo $status[$anggota->ang_status]?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('anggota/read/'.$anggota->ang_no),'Read','class="text-navy"'); 
+				echo anchor(site_url('anggota/read/'.$anggota->ang_no),'Detail','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('anggota/update/'.$anggota->ang_no),'Update','class="text-navy"'); 
 				echo ' | '; 

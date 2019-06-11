@@ -8,6 +8,7 @@ class Simpananwajib_model extends CI_Model
 
     public $table = 'simpananwajib';
     public $id = 'siw_id';
+    public $ang_no = 'ang_no';
     public $order = 'DESC';
 
     function __construct()
@@ -28,6 +29,13 @@ class Simpananwajib_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
+    }
+
+    // get data by ang no
+    function get_data_siw($ang_no)
+    {
+        $this->db->where('ang_no =',$ang_no);
+        return $this->db->get($this->table)->result();
     }
     
     // get total rows

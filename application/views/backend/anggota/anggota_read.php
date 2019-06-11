@@ -22,8 +22,73 @@
 	    <tr><td>Nomor Handphone</td><td><?php echo $ang_nohp; ?></td></tr>
 	    <tr><td>Tanggal Lahir</td><td><?php echo $ang_tgllahir; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $ang_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('anggota') ?>" class="btn btn-default">Batal</a></td></tr>
-	</table>
+	    <tr><td></td><td><a href="<?php echo site_url('anggota/?p=2') ?>" class="btn btn-default">Batal</a></td></tr>
+    </table>
+
+    <!-- tabel simpanan pokok -->
+    <h5>SIMPANAN POKOK</h5>
+    <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <thead class="thead-light">
+            <tr>
+                <th class="text-center">No</th>
+		<th class="text-center">Anggota</th>
+		<th class="text-center">Setting Simpanan</th>
+		<th class="text-center">Tanggal Bayar</th>
+            </tr>
+            </thead>
+            <tbody><?php
+             $no = 1;
+            foreach ($simpananpokok_data as $simpananpokok)
+            {
+                $ses_id = $this->db->get_where('settingsimpanan', array('ses_id' => $simpananpokok->ses_id))->row();
+                ?>
+                <tr>
+			<td width="80px"><?php echo $no ?></td>
+			<td><?php echo $simpananpokok->ang_no ?></td>
+			<td><?php echo $ses_id ->ses_nama ?></td>
+			<td><?php echo $simpananpokok->sip_tglbayar ?></td>
+		</tr>
+                
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+
+    <!-- tabel simpanan wajib -->
+    <h5>SIMPANAN WAJIB</h5>
+    <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <thead class="thead-light">
+            <tr>
+                <th class="text-center">No</th>
+		<th class="text-center">Tanggal Bayar</th>
+		<th class="text-center">Status</th>
+		<th class="text-center">Action</th>
+            </tr>
+            </thead>
+            <tbody><?php
+            $no=1;
+            $siw_status = $this->statusSimpananwajib;
+            foreach ($simpananwajib_data as $simpananwajib)
+            {
+                $ses_id = $this->db->get_where('settingsimpanan', array('ses_id' => $simpananwajib->ses_id))->row();
+                ?>
+                <tr>
+			<td width="80px"><?php echo $no ?></td>
+			<td><?php echo $simpananwajib->siw_tglbayar ?></td>
+            <td><?php echo $siw_status[$simpananwajib->siw_status] ?></td>
+            <td style="text-align:center" width="200px">
+				<?php 
+				echo anchor(site_url('simpananwajib/read/'.$simpananwajib->siw_id),'Detail','class="text-navy"');?>
+			</td>
+		</tr>
+                
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+
             </div>
         </div>
     </div>

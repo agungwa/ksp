@@ -30,7 +30,10 @@
         </div>
 	    <div class="form-group">
             <label for="float">Jumlah Setor <?php echo form_error('ssw_jmlsetor') ?></label>
-            <input type="number" class="form-control" name="ssw_jmlsetor" id="ssw_jmlsetor" placeholder="Jumlah Setor" value="<?php echo $ssw_jmlsetor; ?>" />
+            <?php
+             ?>
+            <input type="number" min="20000" max="100000" class="form-control" name="ssw_jmlsetor" id="ssw_jmlsetor" placeholder="Jumlah Setor" value="<?php echo $ssw_jmlsetor; ?>" />
+            
         </div>
 	    <input type="hidden" name="ssw_id" value="<?php echo $ssw_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

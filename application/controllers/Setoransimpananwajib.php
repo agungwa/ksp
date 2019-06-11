@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Setoransimpananwajib extends CI_Controller
+class Setoransimpananwajib extends MY_Base
 {
     function __construct()
     {
@@ -132,7 +132,7 @@ class Setoransimpananwajib extends CI_Controller
 
             $this->Setoransimpananwajib_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('setoransimpananwajib'));
+            redirect(site_url('setoransimpananwajib/create'));
         }
     }
     

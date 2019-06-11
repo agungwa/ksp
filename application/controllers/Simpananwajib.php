@@ -9,6 +9,8 @@ class Simpananwajib extends MY_Base
     {
         parent::__construct();
         $this->load->model('Simpananwajib_model');
+        $this->load->model('Setoransimpananwajib_model');
+        $this->load->model('Penarikansimpananwajib_model');
         $this->load->library('form_validation');
     }
 
@@ -78,16 +80,114 @@ class Simpananwajib extends MY_Base
         ob_end_clean();
     }
 
+    public function setorsimpananwajib($id) 
+    {
+        $row = $this->Simpananwajib_model->get_by_id($id);
+        $setoransimpananwajib = $this->Setoransimpananwajib_model->get_data_ssw($id);
+        $siw_status = $this->statusSimpananwajib;
+        if ($row) {
+            $data = array(
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row(),
+                'setoransimpananwajib_data' => $setoransimpananwajib,
+        'siw_id' => $row->siw_id,
+		'ang_no' => $row->ang_no,        
+		'nama_ang_no' => $ang_no->ang_nama,
+		'ses_id' => $row->ses_id,
+		'siw_tglbayar' => $row->siw_tglbayar,
+		'siw_status' => $siw_status[$row->siw_status],
+		'siw_tglambil' => $row->siw_tglambil,
+		'siw_tgl' => $row->siw_tgl,
+		'siw_flag' => $row->siw_flag,
+		'siw_info' => $row->siw_info,'content' => 'backend/simpananwajib/setorsimpananwajib',
+	    );
+            $this->load->view(
+            layout(), $data);
+        }
+    }
+
+    public function setorsimpananwajib_action()
+    {
+        //insert data setoran simpanan wajib
+        $dataSetoran = array(
+            'siw_id' => $this->input->post('siw_id',TRUE),
+            'ssw_tglsetor' => $this->tgl,
+            'ssw_jmlsetor' => $this->input->post('ssw_jmlsetor',TRUE),
+            'ssw_tgl' => $this->tgl,
+            'ssw_flag' => 0,
+            'ssw_info' => "",
+            );
+                $this->Setoransimpananwajib_model->insert($dataSetoran);
+                $this->session->set_flashdata('message', 'Create Record Success');
+                redirect(site_url('anggota/?p=4'));
+        
+    }
+
+    //tarik simpanan wajib
+    public function tariksimpananwajib($id) 
+    {
+        $row = $this->Simpananwajib_model->get_by_id($id);
+        $setoransimpananwajib = $this->Setoransimpananwajib_model->get_data_ssw($id);
+        $siw_status = $this->statusSimpananwajib;
+        if ($row) {
+            $data = array(
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row(),
+                'setoransimpananwajib_data' => $setoransimpananwajib,
+        'siw_id' => $row->siw_id,
+		'ang_no' => $row->ang_no,        
+		'nama_ang_no' => $ang_no->ang_nama,
+		'ses_id' => $row->ses_id,
+		'siw_tglbayar' => $row->siw_tglbayar,
+		'siw_status' => $siw_status[$row->siw_status],
+		'siw_tglambil' => $row->siw_tglambil,
+		'siw_tgl' => $row->siw_tgl,
+		'siw_flag' => $row->siw_flag,
+		'siw_info' => $row->siw_info,'content' => 'backend/simpananwajib/tariksimpananwajib',
+	    );
+            $this->load->view(
+            layout(), $data);
+        }
+    }
+
+    public function tariksimpananwajib_action()
+    {
+        //update data simpanan wajib
+        $dataSimpananwajib = array(
+            'siw_status' => 1,
+            'siw_flag' => 1,
+            'siw_tglambil' => $this->tgl,
+            );
+        $this->Simpananwajib_model->update($this->input->post('siw_id', TRUE), $dataSimpananwajib);
+        //insert data penarikan simpanan wajib
+        $dataPenarikansiw = array(
+            'siw_id' => $this->input->post('siw_id',TRUE),
+            'psw_tglpenarikan' => $this->tgl,
+            'psw_jumlah' => $this->input->post('psw_jumlah',TRUE),
+            'psw_tgl' => $this->tgl,
+            'psw_flag' => 0,
+            'psw_info' => "",
+            );
+                $this->Penarikansimpananwajib_model->insert($dataPenarikansiw);
+                $this->session->set_flashdata('message', 'Create Record Success');
+                redirect(site_url('anggota/?p=3'));
+        
+    }
+
+
     public function read($id) 
     {
         $row = $this->Simpananwajib_model->get_by_id($id);
+        $setoransimpananwajib = $this->Setoransimpananwajib_model->get_data_ssw($id);
+        $siw_status = $this->statusSimpananwajib;
         if ($row) {
             $data = array(
-		'siw_id' => $row->siw_id,
-		'ang_no' => $row->ang_no,
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row(),
+                'setoransimpananwajib_data' => $setoransimpananwajib,
+        'siw_id' => $row->siw_id,
+		'ang_no' => $row->ang_no,        
+		'nama_ang_no' => $ang_no->ang_nama,
 		'ses_id' => $row->ses_id,
 		'siw_tglbayar' => $row->siw_tglbayar,
-		'siw_status' => $row->siw_status,
+		'siw_status' => $siw_status[$row->siw_status],
 		'siw_tglambil' => $row->siw_tglambil,
 		'siw_tgl' => $row->siw_tgl,
 		'siw_flag' => $row->siw_flag,
@@ -95,11 +195,26 @@ class Simpananwajib extends MY_Base
 	    );
             $this->load->view(
             layout(), $data);
-        } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('simpananwajib'));
         }
     }
+
+    public function read_action() 
+    {
+        //insert data setoran simpanan wajib
+        $dataSetoran = array(
+            'siw_id' => $this->input->post('siw_id',TRUE),
+            'ssw_tglsetor' => $this->tgl,
+            'ssw_jmlsetor' => $this->input->post('ssw_jmlsetor',TRUE),
+            'ssw_tgl' => $this->tgl,
+            'ssw_flag' => 0,
+            'ssw_info' => "",
+            );
+                $this->Setoransimpananwajib_model->insert($dataSetoran);
+                $this->session->set_flashdata('message', 'Create Record Success');
+                redirect(site_url('anggota/?p=2'));
+        
+    }
+
 
     public function create() 
     {

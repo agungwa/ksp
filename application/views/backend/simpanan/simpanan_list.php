@@ -7,7 +7,7 @@
             <div class="col-md-8 text-right">
                 <input type="hidden" name="p" value="3">
                 <div class="col-md-2"><h3>Filter : </h3></div>
-                <select class="form-control col-md-3" name="wilayah">
+                <select class="form-control col-md-3"  name="wilayah">
                     <option value="">--Wilayah--</option>
                     <?php
                         foreach ($wilayah_data as $value) { ?>
@@ -16,7 +16,17 @@
                         }
                     ?>
                 </select>
+                <select class="form-control col-md-3" name="status">
+                    <option value="">--Status--</option>
+                    <?php
+                        foreach ($this->statusSimpanan as $key => $value) { ?>
+                            <option value="<?= $key?>"><?= $value?></option>
+                    <?php        
+                        }
+                    ?>
+                </select>
             </div>
+            
             <div class="col-md-4 text-right">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="No simpanan/ No Anggota">
@@ -57,6 +67,7 @@
 			<tbody><?php
             foreach ($simpanan_data as $simpanan)
             {
+                $sim_status = $this->statusSimpanan;
                 $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $simpanan->jsi_id))->row();
                 $jse_id = $this->db->get_where('jenissetoran', array('jse_id' => $simpanan->jse_id))->row();
                 $bus_id = $this->db->get_where('bungasimpanan', array('bus_id' => $simpanan->bus_id))->row();
@@ -77,7 +88,7 @@
 			<td><?php echo $wil_kode->wil_nama ?></td>
 			<td><?php echo $simpanan->sim_tglpendaftaran ?></td>
 			<td><?php echo $tanggalDuedate?></td>
-			<td><?php echo $simpanan->sim_status ?></td>
+			<td><?php echo $sim_status[$simpanan->sim_status]?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('simpanan/read/'.$simpanan->sim_kode),'Detail','class="text-navy"'); 
