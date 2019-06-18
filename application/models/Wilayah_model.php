@@ -67,6 +67,14 @@ class Wilayah_model extends CI_Model
         $this->db->delete($this->table);
     }
 
+    // get data by id
+    function get_wil_nama($id)
+    {
+        $this->db->where($this->id, $id);
+        $row = $this->db->get($this->table)->row();
+        return $row->wil_nama;
+    }
+
 }
 
 /* End of file Wilayah_model.php */

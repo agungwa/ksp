@@ -52,7 +52,6 @@
 		<th class="text-center">Tanggal Mutasi</th>
 		<th class="text-center">Wilayah Asal</th>
 		<th class="text-center">Wilayah Tujuan</th>
-		<th class="text-center">Status</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -63,10 +62,9 @@
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $mutasisimpanan->sim_kode ?></td>
-			<td><?php echo $mutasisimpanan->mus_tglmutasi ?></td>
-			<td><?php echo $mutasisimpanan->mus_asal ?></td>
-			<td><?php echo $mutasisimpanan->mus_tujuan ?></td>
-			<td><?php echo $mutasisimpanan->mus_status ?></td>
+			<td><?php echo dateFormat($mutasisimpanan->mus_tglmutasi) ?></td>
+			<td><?php echo $this->Wilayah_model->get_wil_nama($mutasisimpanan->mus_asal); ?></td>
+			<td><?php echo $this->Wilayah_model->get_wil_nama($mutasisimpanan->mus_tujuan); ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('mutasisimpanan/read/'.$mutasisimpanan->mus_id),'Read','class="text-navy"'); 

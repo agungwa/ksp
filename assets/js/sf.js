@@ -205,9 +205,23 @@ function html2popup(id) {
 
        
     function setVal(id,valid,valnm){
-        $('#'+id).val(valid); 
-        $('#nm_'+id).val(valnm); 
-        $('#lookup').modal('hide');
+        var noSame = true;
+        var asal = $('#asal_id').val();
+        var tujuan = $('#tujuan_id').val();
+
+        if (id === 'asal_id' && tujuan === valid) { 
+            noSame=false;
+        } else if (id === 'tujuan_id' && asal === valid) {
+            noSame=false;
+        }
+
+        if (noSame == false) { alert("Nilai Tidak Boleh Sama")}
+
+        if (noSame == true) {
+            $('#'+id).val(valid); 
+            $('#nm_'+id).val(valnm); 
+            $('#lookup').modal('hide');    
+        }
     }
 
     //===================================== END MODAL
