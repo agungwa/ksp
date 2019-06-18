@@ -48,10 +48,10 @@
             </div>
             </div>
         </div>
-	    <div class="form-group">
+	    <!-- <div class="form-group">
             <label for="tinyint">Status <?php echo form_error('mus_status') ?></label>
             <input type="number" class="form-control" name="mus_status" id="mus_status" placeholder="Status" value="<?php echo $mus_status; ?>" />
-        </div>
+        </div> -->
 	    <input type="hidden" name="mus_id" value="<?php echo $mus_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('mutasisimpanan') ?>" class="btn btn-default">Batal</a>
