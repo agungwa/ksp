@@ -11,6 +11,8 @@ class MY_Base extends CI_Controller {
     var $statusSimkesan;
     var $statusAnggota;
     var $statusSimpanan;
+    var $statusInvestasi;
+    var $statusSimpananwajib;
 
 	function __construct()
     {
@@ -22,6 +24,7 @@ class MY_Base extends CI_Controller {
         $this->statusSimkesan = array(0=>"Baru");
         $this->statusAnggota = array(0=>"Belum Anggota", 1=>"Calon Anggota", 2=>"Anggota");
         $this->statusSimpanan = array(0=>"Aktif", 1=>"Tidak Aktif");
+        $this->statusInvestasi = array(0=>"Aktif", 1=>"Tidak Aktif");
         $this->statusSimpananwajib = array(0=>"Aktif", 1=>"Ditarik", 2=>"Belum Dibayar");
         $this->load->vars($this->tgl, $this->flag, $this->statusAngsuran);
 
