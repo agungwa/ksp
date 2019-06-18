@@ -61,7 +61,8 @@
 		<th class="text-center">Tanggal Pendaftaran</th>
 		<th class="text-center">Jatuh Tempo</th>
 		<th class="text-center">Status</th>
-		<th class="text-center">Action</th>
+		<th class="text-center">Edit Simpanan</th>
+		<th class="text-center">Action Simpanan</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -97,6 +98,12 @@
 				echo ' | '; 
 				echo anchor(site_url('simpanan/delete/'.$simpanan->sim_kode),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
+			</td>
+            <td style="text-align:center" width="200px">
+				<?php 
+				echo anchor(site_url('simpanan/setor?q='.$simpanan->sim_kode),'Setor','class="text-navy"'); 
+				echo ' | '; 
+				echo anchor(site_url('simpanan/tariksimpanan?q='.$simpanan->sim_kode),'Tarik','class="text-navy"');?>
 			</td>
 		</tr>
                 
