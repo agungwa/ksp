@@ -70,18 +70,7 @@
             <label for="datetime">Tanggal Pendaftaran </label>
             <input type="date" class="form-control" name="sim_tglpendaftaran" id="todays-date" placeholder="Sim Tglpendaftaran" value="" required="required" />
         </div>
-        <div class="form-group col-md-4">
-        <label for="varchar">Status </label>
-        <select class="form-control col-md-3" name="sim_status" id="sim_status">
-                    <option value="">--Status--</option>
-                    <?php
-                        foreach ($this->statusSimpanan as $key => $value) { ?>
-                            <option value="<?= $key?>"><?= $value?></option>
-                    <?php        
-                        }
-                    ?>
-        </select>
-        </div>
+        <input type="hidden" class="form-control" name="sim_status" id="sim_status" placeholder="sim_status" value="" />
         </div>
         <div class="form-group col-md-3">
 	    <button type="submit" class="btn btn-primary">Proses Simpanan</button> 
