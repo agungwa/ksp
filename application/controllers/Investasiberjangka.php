@@ -10,6 +10,7 @@ class Investasiberjangka extends MY_Base
         parent::__construct();
         $this->load->model('Investasiberjangka_model');
         $this->load->model('Wilayah_model');
+        $this->load->model('Pengkodean');
         $this->load->library('form_validation');
     }
 
@@ -23,12 +24,12 @@ class Investasiberjangka extends MY_Base
             case  2:
                 $this->listdata();
                 break;
-            /*case  3:
-                $this->tariksiw();
+            case  3:
+                $this->tarikjasa();
                 break;
             case  4:
-                $this->setorsiw();
-                break;*/
+                $this->tarikinvestasi();
+                break;
                     
             default:
                 $this->pendaftaran();
@@ -38,10 +39,58 @@ class Investasiberjangka extends MY_Base
 
     //pendaftaran investasi
     public function pendaftaran(){
+        $nowYear = date('d');
         $data = array(
+            'kode' => $this->Pengkodean->investasiberjangka($nowYear),
             'content' => 'backend/investasiberjangka/investasiberjangka',
             'item'=> 'pendaftaran/pendaftaran.php',
             'active' => 1,
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+     //action pendaftaran investasi
+     public function pendaftaran_action() 
+     {
+             $dataPenfataran = array(
+                'ivb_kode' => $this->input->post('ivb_kode',TRUE),
+                'ang_no' => $this->input->post('ang_no',TRUE),
+                'kar_kode' => $this->input->post('kar_kode',TRUE),
+                'wil_kode' => $this->input->post('wil_kode',TRUE),
+                'jwi_id' => $this->input->post('jwi_id',TRUE),
+                'jiv_id' => $this->input->post('jiv_id',TRUE),
+                'biv_id' => $this->input->post('biv_id',TRUE),
+                'ivb_jumlah' => $this->input->post('ivb_jumlah',TRUE),
+                'ivb_tglpendaftaran' => $this->input->post('ivb_tglpendaftaran',TRUE),
+                //'ivb_tglperpanjangan' => $this->input->post('ivb_tglperpanjangan',TRUE),
+                'ivb_status' => 0,
+                'ivb_tgl' => $this->tgl,
+                'ivb_flag' => 0,
+                'ivb_info' => ""
+                 );
+             $this->Investasiberjangka_model->insert($dataPenfataran);
+             $this->session->set_flashdata('message', 'Create Record Success');
+             redirect(site_url('investasiberjangka'));
+    }
+
+    //tarik jasa investasi
+    public function tarikjasa(){
+        $data = array(
+            'content' => 'backend/investasiberjangka/investasiberjangka',
+            'item'=> 'tarikjasa/tarikjasa.php',
+            'active' => 3,
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    //tarik investasi
+    public function tarikinvestasi(){
+        $data = array(
+            'content' => 'backend/investasiberjangka/investasiberjangka',
+            'item'=> 'tarikinvestasi/tarikinvestasi.php',
+            'active' => 4,
         );
 
         $this->load->view(layout(), $data);
@@ -122,17 +171,28 @@ class Investasiberjangka extends MY_Base
     {
         $row = $this->Investasiberjangka_model->get_by_id($id);
         if ($row) {
+                $ivb_status = $this->statusInvestasi;                
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $row->jwi_id))->row();
+                $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $row->jiv_id))->row();
+                $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $row->biv_id))->row();
+                $tanggalDuedate = date("Y-m-d", strtotime($row->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
+
             $data = array(
 		'ivb_kode' => $row->ivb_kode,
 		'ang_no' => $row->ang_no,
-		'kar_kode' => $row->kar_kode,
-		'wil_kode' => $row->wil_kode,
-		'jwi_id' => $row->jwi_id,
-		'jiv_id' => $row->jiv_id,
-		'biv_id' => $row->biv_id,
+		'nama_ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'wil_kode' => $wil_kode->wil_nama,
+		'jwi_id' => $jwi_id->jwi_jangkawaktu,
+		'jiv_id' => $jiv_id->jiv_jasa,
+		'biv_id' => $biv_id->biv_bunga,
 		'ivb_tglpendaftaran' => $row->ivb_tglpendaftaran,
-		'ivb_tglperpanjangan' => $row->ivb_tglperpanjangan,
-		'ivb_status' => $row->ivb_status,
+        'ivb_tglperpanjangan' => $row->ivb_tglperpanjangan,
+        'jatuhtempo' => $tanggalDuedate,
+		'ivb_status' => $ivb_status[$row->ivb_status],
 		'ivb_tgl' => $row->ivb_tgl,
 		'ivb_flag' => $row->ivb_flag,
 		'ivb_info' => $row->ivb_info,'content' => 'backend/investasiberjangka/investasiberjangka_read',
@@ -285,8 +345,6 @@ class Investasiberjangka extends MY_Base
 	$this->form_validation->set_rules('biv_id', 'biv id', 'trim|required');
 	$this->form_validation->set_rules('ivb_tglpendaftaran', 'ivb tglpendaftaran', 'trim|required');
 	$this->form_validation->set_rules('ivb_tglperpanjangan', 'ivb tglperpanjangan', 'trim|required');
-	$this->form_validation->set_rules('ivb_status', 'ivb status', 'trim|required');
-
 	$this->form_validation->set_rules('ivb_kode', 'ivb_kode', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
