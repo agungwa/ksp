@@ -54,13 +54,14 @@
                 <th class="text-center">No</th>
         <th class="text-center">Rekening Investasi</th>
 		<th class="text-center">Anggota</th>
+		<th class="text-center">Nama Anggota</th>
 		<th class="text-center">Karyawan</th>
 		<th class="text-center">Wilayah</th>
 		<th class="text-center">Jangka Waktu</th>
 		<th class="text-center">Jasa</th>
 		<th class="text-center">Bunga</th>
 		<th class="text-center">Tanggal Pendaftaran</th>
-		<th class="text-center">Tanggal Perpanjangan</th>
+		<th class="text-center">Tanggal Jatuh Tempo</th>
 		<th class="text-center">Status</th>
 		<th class="text-center">Action</th>
             </tr>
@@ -68,19 +69,29 @@
 			<tbody><?php
             foreach ($investasiberjangka_data as $investasiberjangka)
             {
+                $ivb_status = $this->statusInvestasi;                
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $investasiberjangka->ang_no))->row();
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $investasiberjangka->kar_kode))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $investasiberjangka->wil_kode))->row();
+                $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $investasiberjangka->jwi_id))->row();
+                $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $investasiberjangka->jiv_id))->row();
+                $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $investasiberjangka->biv_id))->row();
+                $tanggalDuedate = date("Y-m-d", strtotime($investasiberjangka->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
+
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
             <td><?php echo $investasiberjangka->ivb_kode ?></td>
-			<td><?php echo $investasiberjangka->ang_no ?></td>
-			<td><?php echo $investasiberjangka->kar_kode ?></td>
-			<td><?php echo $investasiberjangka->wil_kode ?></td>
-			<td><?php echo $investasiberjangka->jwi_id ?></td>
-			<td><?php echo $investasiberjangka->jiv_id ?></td>
-			<td><?php echo $investasiberjangka->biv_id ?></td>
+            <td><?php echo $investasiberjangka->ang_no ?></td>
+			<td><?php echo $ang_no->ang_nama ?></td>
+			<td><?php echo $kar_kode->kar_nama ?></td>
+			<td><?php echo $wil_kode->wil_nama ?></td>
+			<td><?php echo $jwi_id->jwi_jangkawaktu , " Bulan" ?></td>
+			<td><?php echo $jiv_id->jiv_jasa ?></td>
+			<td><?php echo $biv_id->biv_bunga ," %" ?></td>
 			<td><?php echo $investasiberjangka->ivb_tglpendaftaran ?></td>
-			<td><?php echo $investasiberjangka->ivb_tglperpanjangan ?></td>
-			<td><?php echo $investasiberjangka->ivb_status ?></td>
+			<td><?php echo $tanggalDuedate ?></td>
+			<td><?php echo $ivb_status[$investasiberjangka->ivb_status] ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('investasiberjangka/read/'.$investasiberjangka->ivb_kode),'Read','class="text-navy"'); 

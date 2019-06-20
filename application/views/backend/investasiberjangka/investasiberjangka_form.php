@@ -91,11 +91,7 @@
 	    <div class="form-group">
             <label for="datetime">Tanggal Perpanjangan<?php echo form_error('ivb_tglperpanjangan') ?></label>
             <input type="date" class="form-control" name="ivb_tglperpanjangan" id="ivb_tglperpanjangan" placeholder="Tanggal Perpanjangan" value="<?php echo $ivb_tglperpanjangan; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Status <?php echo form_error('ivb_status') ?></label>
-            <input type="text" class="form-control" name="ivb_status" id="ivb_status" placeholder="Status" value="<?php echo $ivb_status; ?>" />
-        </div>
+        </div> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('investasiberjangka') ?>" class="btn btn-default">Batal</a>
         </div>

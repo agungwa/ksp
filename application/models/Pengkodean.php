@@ -71,6 +71,26 @@ class Pengkodean extends CI_Model
                 return $kodetampil;  
         }
 
+    // input kode investasi berjangka
+       public function investasiberjangka($nowYear){
+        $this->db->select('RIGHT(investasiberjangka.ivb_kode,2) as ivb_kode', FALSE);
+        $this->db->where("DATE_FORMAT(ivb_tglpendaftaran, '%d') = ", $nowYear);
+        $this->db->limit(1);
+        $this->db->order_by('ivb_kode','DESC');    
+        $query = $this->db->get('investasiberjangka');  
+        if($query->num_rows() <> 0){          
+            $data = $query->row();      
+            $kode = intval($data->ivb_kode) + 1; 
+        }
+        else{      
+            $kode = 1;
+        }
+            $tgl=date('dmy'); 
+            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+            $kodetampil = "K"."D".$tgl.$batas;
+            return $kodetampil;  
+    }
+
 
 }
 
