@@ -89,7 +89,7 @@
 			<td><?php echo $wil_kode->wil_nama ?></td>
 			<td><?php echo $simpanan->sim_tglpendaftaran ?></td>
 			<td><?php echo $tanggalDuedate?></td>
-			<td><?php echo $sim_status[$simpanan->sim_status]?></td>
+			<td><?php echo $this->statusSimpanan[$simpanan->sim_status]?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('simpanan/read/'.$simpanan->sim_kode),'Detail','class="text-navy"'); 

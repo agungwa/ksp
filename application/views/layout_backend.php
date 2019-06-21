@@ -141,7 +141,7 @@ lookup();
                             <a href="#" id="damian">Data<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="#">Data Jatuh Tempo</a>
+                                    <a href="<?=base_url()?>simpanan/jatuhtempo">Data Jatuh Tempo</a>
                                 </li>
                                 <li>
                                     <a href="<?=base_url()?>simpanan">Data Rekening</a>
