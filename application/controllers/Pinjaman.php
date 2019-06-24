@@ -13,6 +13,7 @@ class Pinjaman extends MY_Base
         $this->load->model('Penjamin_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Karyawan_model');
+        $this->load->model('Pengkodean');
         $this->load->library('form_validation');
     }
 
@@ -40,7 +41,9 @@ class Pinjaman extends MY_Base
     } 
 
     public function pengajuan(){
+        $nowYear = date('d');
         $data = array(
+            'kode' => $this->Pengkodean->pinjaman($nowYear),
             'content' => 'backend/pinjaman/pinjaman',
             'item'=> 'pengajuan/pengajuan.php',
             'active' => 1
@@ -49,6 +52,7 @@ class Pinjaman extends MY_Base
         $this->load->view(layout(), $data);
     }
 
+    //survey pinjaman
     public function survey(){        
         $q = urldecode($this->input->get('q', TRUE));
         $survey = null;
@@ -56,22 +60,32 @@ class Pinjaman extends MY_Base
         if ($q<>''){
             $row = $this->Pinjaman_model->get_by_id($q);
              if ($row) {
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+                $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+                $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
+                $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
+                $surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
+                   
                 $survey = array(
-                'pin_id' => $row->pin_id,
-                'ang_no' => $row->ang_no,
-                'sea_id' => $row->sea_id,
-                'bup_id' => $row->bup_id,
-                'pop_id' => $row->pop_id,
-                'wil_kode' => $row->wil_kode,
-                'skp_id' => $row->skp_id,
-                'pin_pengajuan' => $row->pin_pengajuan,
-                'pin_pinjaman' => $row->pin_pinjaman,
-                'pin_tglpengajuan' => $row->pin_tglpengajuan,
-                'pin_tglpencairan' => $row->pin_tglpencairan,
-                'pin_marketing' => $row->pin_marketing,
-                'pin_surveyor' => $row->pin_surveyor,
-                'pin_survey' => $row->pin_survey,
-                'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman]
+                    'pin_id' => $row->pin_id,
+                    'ang_no' => $row->ang_no,
+                    'nama_ang_no' => $ang_no->ang_nama,
+                    'sea_id' => $sea_id->sea_tenor,
+                    'bup_id' => $bup_id->bup_bunga,
+                    'pop_id' => $pop_id->pop_potongan,
+                    'wil_kode' => $wil_kode->wil_nama,
+                    'skp_id' => $skp_id->skp_kategori,
+                    'pin_pengajuan' => $row->pin_pengajuan,
+                    'pin_pinjaman' => $row->pin_pinjaman,
+                    'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                    'pin_tglpencairan' => $row->pin_tglpencairan,
+                    'pin_marketing' => $marketing->kar_nama,
+                    'pin_surveyor' => $surveyor->kar_nama,
+                    'pin_survey' => $row->pin_survey,
+                    'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman]
                 );
             } 
         }   
@@ -87,6 +101,29 @@ class Pinjaman extends MY_Base
         $this->load->view(layout(), $data);
     }
 
+    //survey setujui pinjaman action
+    public function action_surveysetuju(){
+        //update data pinjaman
+        $dataPinjaman = array(
+            'pin_statuspinjaman' => 1,
+            'pin_survey' => $this->input->post('pin_survey',TRUE),
+            );
+        $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
+        redirect(site_url('pinjaman/?p=2'));
+    }
+
+    //survey ditolak pinjaman action
+    public function action_surveytolak(){
+        //update data pinjaman
+        $dataPinjaman = array(
+            'pin_statuspinjaman' => 2,
+            'pin_survey' => $this->input->post('pin_survey',TRUE),
+            );
+        $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
+        $this->session->set_flashdata('message', 'Create Record Success');
+        redirect(site_url('pinjaman/?p=2'));
+    }
+
     public function persetujuan(){
         $q = urldecode($this->input->get('q', TRUE));
         $persetujuan = null;
@@ -94,22 +131,31 @@ class Pinjaman extends MY_Base
         if ($q<>''){
             $row = $this->Pinjaman_model->get_by_id($q);
              if ($row) {
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+                $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+                $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
+                $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
+                $surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
                 $persetujuan = array(
-                'pin_id' => $row->pin_id,
-                'ang_no' => $row->ang_no,
-                'sea_id' => $row->sea_id,
-                'bup_id' => $row->bup_id,
-                'pop_id' => $row->pop_id,
-                'wil_kode' => $row->wil_kode,
-                'skp_id' => $row->skp_id,
-                'pin_pengajuan' => $row->pin_pengajuan,
-                'pin_pinjaman' => $row->pin_pinjaman,
-                'pin_tglpengajuan' => $row->pin_tglpengajuan,
-                'pin_tglpencairan' => $row->pin_tglpencairan,
-                'pin_marketing' => $row->pin_marketing,
-                'pin_surveyor' => $row->pin_surveyor,
-                'pin_survey' => $row->pin_survey,
-                'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman]
+                    'pin_id' => $row->pin_id,
+                    'ang_no' => $row->ang_no,
+                    'nama_ang_no' => $ang_no->ang_nama,
+                    'sea_id' => $sea_id->sea_tenor,
+                    'bup_id' => $bup_id->bup_bunga,
+                    'pop_id' => $pop_id->pop_potongan,
+                    'wil_kode' => $wil_kode->wil_nama,
+                    'skp_id' => $skp_id->skp_kategori,
+                    'pin_pengajuan' => $row->pin_pengajuan,
+                    'pin_pinjaman' => $row->pin_pinjaman,
+                    'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                    'pin_tglpencairan' => $row->pin_tglpencairan,
+                    'pin_marketing' => $marketing->kar_nama,
+                    'pin_surveyor' => $surveyor->kar_nama,
+                    'pin_survey' => $row->pin_survey,
+                    'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman]
                 );
             } 
         }   
@@ -123,6 +169,19 @@ class Pinjaman extends MY_Base
         );
 
         $this->load->view(layout(), $data);
+    }
+
+    
+    //survey setujui pinjaman action
+    public function action_persetujuan(){
+        //update data pinjaman
+        $dataPinjaman = array(
+            'pin_pinjaman' => $this->input->post('pin_pinjaman',TRUE),
+            'pin_tglpencairan' => $this->tgl,
+            'sea_id' => $this->input->post('sea_id',TRUE),
+            );
+        $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
+        redirect(site_url('pinjaman/?p=2'));
     }
 
 
@@ -140,8 +199,8 @@ class Pinjaman extends MY_Base
             'pin_pengajuan' => $this->input->post('pin_pengajuan',TRUE),
             'pin_pinjaman' => $this->input->post('pin_pinjaman',TRUE),
             'pin_tglpengajuan' => $this->input->post('pin_tglpengajuan',TRUE),
-            'pin_marketing' => $this->input->post('pin_marketing',TRUE),
-            'pin_surveyor' => $this->input->post('pin_surveyor',TRUE),
+            'pin_marketing' => $this->input->post('mkar_kode',TRUE),
+            'pin_surveyor' => $this->input->post('skar_kode',TRUE),
             'pin_statuspinjaman' => 0,
             'pin_tgl' => $this->tgl,
             'pin_flag' => 0,
@@ -257,22 +316,33 @@ class Pinjaman extends MY_Base
     {
         $row = $this->Pinjaman_model->get_by_id($id);
         if ($row) {
+            $pin_statuspinjaman = $this->statusPinjaman;
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+            $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+            $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
+            $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
+            $surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
+               
             $data = array(
-    		'pin_id' => $row->pin_id,
-    		'ang_no' => $row->ang_no,
-    		'sea_id' => $row->sea_id,
-    		'bup_id' => $row->bup_id,
-    		'pop_id' => $row->pop_id,
-    		'wil_kode' => $row->wil_kode,
-    		'skp_id' => $row->skp_id,
-    		'pin_pengajuan' => $row->pin_pengajuan,
-    		'pin_pinjaman' => $row->pin_pinjaman,
-    		'pin_tglpengajuan' => $row->pin_tglpengajuan,
-    		'pin_tglpencairan' => $row->pin_tglpencairan,
-    		'pin_marketing' => $row->pin_marketing,
-    		'pin_surveyor' => $row->pin_surveyor,
-    		'pin_survey' => $row->pin_survey,
-    		'pin_statuspinjaman' => $row->pin_statuspinjaman,
+                'pin_id' => $row->pin_id,
+                'ang_no' => $row->ang_no,
+                'nama_ang_no' => $ang_no->ang_nama,
+                'sea_id' => $sea_id->sea_tenor,
+                'bup_id' => $bup_id->bup_bunga,
+                'pop_id' => $pop_id->pop_potongan,
+                'wil_kode' => $wil_kode->wil_nama,
+                'skp_id' => $skp_id->skp_kategori,
+                'pin_pengajuan' => $row->pin_pengajuan,
+                'pin_pinjaman' => $row->pin_pinjaman,
+                'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                'pin_tglpencairan' => $row->pin_tglpencairan,
+                'pin_marketing' => $marketing->kar_nama,
+                'pin_surveyor' => $surveyor->kar_nama,
+                'pin_survey' => $row->pin_survey,
+                'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman],
             'content' => 'backend/pinjaman/pinjaman_read',
     	    );
             $this->load->view(
