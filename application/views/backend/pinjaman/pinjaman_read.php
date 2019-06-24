@@ -14,16 +14,21 @@
         <div class="ibox-content">
         
         <table class="table">
+        <?php 
+        $angsuranbunga=$pin_pinjaman*$bup_id/100;
+        $provisi=$pin_pinjaman*$pop_id/100;
+        $pinjamanditerima=$pin_pinjaman-$provisi;
+        ?>
 	    <tr><td>Rekening Pinjaman</td><td><?php echo $pin_id; ?></td></tr>
 	    <tr><td>Anggota</td><td><?php echo $ang_no; ?></td></tr>
-	    <tr><td>Setting Angsuran</td><td><?php echo $sea_id; ?></td></tr>
-	    <tr><td>Bunga Pinjaman</td><td><?php echo $bup_id; ?></td></tr>
-	    <tr><td>Potongan Provisi</td><td><?php echo $pop_id; ?></td></tr>
+	    <tr><td>Tenor</td><td><?php echo $sea_id," Bulan"; ?></td></tr>
+	    <tr><td>Bunga Pinjaman</td><td><?php echo $bup_id," % (Bunga/bulan Rp ",$angsuranbunga,")"; ?></td></tr>
+	    <tr><td>Potongan Provisi</td><td><?php echo $pop_id," % (Potongan provisi Rp ",$provisi,")"; ?></td></tr>
 	    <tr><td>Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
 	    <tr><td>Kategori Peminjam</td><td><?php echo $skp_id; ?></td></tr>
-	    <tr><td>Penjamin</td><td><?php echo $pen_id; ?></td></tr>
-	    <tr><td>Pengajuan</td><td><?php echo $pin_pengajuan; ?></td></tr>
-	    <tr><td>Pinjaman</td><td><?php echo $pin_pinjaman; ?></td></tr>
+	    <tr><td>Pengajuan</td><td><?php echo "Rp ",$pin_pengajuan; ?></td></tr>
+	    <tr><td>Pinjaman</td><td><?php echo "Rp ",$pin_pinjaman; ?></td></tr>
+	    <tr><td>Pinjaman Diterima</td><td><?php echo "Rp ",$pinjamanditerima; ?></td></tr>
 	    <tr><td>Tanggal Pengajuan</td><td><?php echo dateFormat($pin_tglpengajuan); ?></td></tr>
 	    <tr><td>Tanggal Pencairan</td><td><?php echo dateFormat($pin_tglpencairan); ?></td></tr>
 	    <tr><td>Marketing</td><td><?php echo $pin_marketing; ?></td></tr>

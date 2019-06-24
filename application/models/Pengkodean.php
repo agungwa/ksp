@@ -91,6 +91,25 @@ class Pengkodean extends CI_Model
             return $kodetampil;  
     }
 
+    // input kode pinjaman
+    public function pinjaman($nowYear){
+        $this->db->select('RIGHT(pinjaman.pin_id,2) as pin_id', FALSE);
+        $this->db->where("DATE_FORMAT(pin_tglpengajuan, '%d') = ", $nowYear);
+        $this->db->limit(1);
+        $this->db->order_by('pin_id','DESC');    
+        $query = $this->db->get('pinjaman');  
+        if($query->num_rows() <> 0){          
+            $data = $query->row();      
+            $kode = intval($data->pin_id) + 1; 
+        }
+        else{      
+            $kode = 1;
+        }
+            $tgl=date('dmy'); 
+            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+            $kodetampil = "K"."E".$tgl.$batas;
+            return $kodetampil;  
+    }
 
 }
 
