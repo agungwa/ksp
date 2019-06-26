@@ -63,12 +63,7 @@
         		<th class="text-center">ID Anggota</th>
         		<th class="text-center">Nama Anggota</th>
         		<th class="text-center">Angsuran (bulan)</th>
-<<<<<<< HEAD
-        		<th class="text-center">wilayah</th>
-        		<th class="text-center">wilayah</th>
-=======
         		<th class="text-center">Wilayah</th>
->>>>>>> b1dcd7e56daf1c83fae5e5b0ecf5305aa1c2ef7e
         		<th class="text-center">Pengajuan</th>
         		<th class="text-center">Pinjaman</th>
         		<th class="text-center">Tanggal Pengajuan</th>
@@ -95,10 +90,6 @@
     			<td><?php echo $pinjaman->ang_no ?></td>
     			<td><?php echo $ang_no->ang_nama ?></td>
     			<td><?php echo $sea_id->sea_tenor," Bulan" ?></td>
-<<<<<<< HEAD
-    			<td><?php echo $pinjaman->wil_kode ?></td>
-=======
->>>>>>> b1dcd7e56daf1c83fae5e5b0ecf5305aa1c2ef7e
     			<td><?php echo $wil_kode->wil_nama ?></td>
     			<td><?php echo "Rp ",$pinjaman->pin_pengajuan ?></td>
     			<td><?php echo "Rp ",$pinjaman->pin_pinjaman ?></td>
