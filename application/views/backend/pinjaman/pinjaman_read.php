@@ -18,7 +18,10 @@
         $angsuranbunga=$pin_pinjaman*$bup_id/100;
         $provisi=$pin_pinjaman*$pop_id/100;
         $pinjamanditerima=$pin_pinjaman-$provisi;
+<<<<<<< HEAD
         $angsuran=($pin_pinjaman/$sea_id)+$angsuranbunga;
+=======
+>>>>>>> b1dcd7e56daf1c83fae5e5b0ecf5305aa1c2ef7e
         ?>
 	    <tr><td>Rekening Pinjaman</td><td><?php echo $pin_id; ?></td></tr>
 	    <tr><td>Anggota</td><td><?php echo $ang_no; ?></td></tr>

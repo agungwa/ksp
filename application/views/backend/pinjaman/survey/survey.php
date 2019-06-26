@@ -51,9 +51,16 @@
             <form action="<?php echo site_url('pinjaman/action_surveysetuju'); ?>" method="post">
             <?php
 	        	?>
+<<<<<<< HEAD
             <div class="col-md-4">
                 <label for="text">Disetujui</label>
                 <input type="file" class="form-control" name="pin_survey" id="pin_survey" placeholder="Survey" value="" required="required"/>
+=======
+            <h3> Hasil Survey Disetujui </h3>
+            <div class="col-md-4">
+                <label for="text">Hasil Survey</label>
+                <input type="text" class="form-control" name="pin_survey" id="pin_survey" placeholder="Survey" value="" required="required"/>
+>>>>>>> b1dcd7e56daf1c83fae5e5b0ecf5305aa1c2ef7e
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="<?php echo $survey['pin_id'];?>" required="required"/>            
 	            <button type="submit" class="btn btn-primary">Setujui</button> 
                 <a href="<?php echo site_url('pinjaman/?p=2') ?>" class="btn btn-default">Batal</a>
@@ -67,10 +74,18 @@
             <form action="<?php echo site_url('pinjaman/action_surveytolak'); ?>" method="post">
             <?php
 	        	?>
+<<<<<<< HEAD
             <div class="col-md-4">
                 <label for="text">Ditolak</label>
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="<?php echo $survey['pin_id'];?>" required="required"/>            
                 <input type="file" class="form-control" name="pin_survey" id="pin_survey" placeholder="Survey" value="" required="required"/>
+=======
+            <h3> Hasil Survey Ditolak </h3>
+            <div class="col-md-4">
+                <label for="text">Hasil Survey</label>
+                <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="<?php echo $survey['pin_id'];?>" required="required"/>            
+                <input type="text" class="form-control" name="pin_survey" id="pin_survey" placeholder="Survey" value="" required="required"/>
+>>>>>>> b1dcd7e56daf1c83fae5e5b0ecf5305aa1c2ef7e
 	            <button type="submit" class="btn btn-primary">Tolak</button> 
                 <a href="<?php echo site_url('pinjaman/?p=2') ?>" class="btn btn-default">Batal</a>
             </div>
