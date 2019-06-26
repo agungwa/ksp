@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox">
@@ -62,13 +63,15 @@
         		<th class="text-center">ID Anggota</th>
         		<th class="text-center">Nama Anggota</th>
         		<th class="text-center">Angsuran (bulan)</th>
-        		<th class="text-center">Wilayah</th>
+        		<th class="text-center">wilayah</th>
+        		<th class="text-center">wilayah</th>
         		<th class="text-center">Pengajuan</th>
         		<th class="text-center">Pinjaman</th>
         		<th class="text-center">Tanggal Pengajuan</th>
         		<th class="text-center">Tanggal Pencairan</th>
         		<th class="text-center">Status Pinjaman</th>
-        		<th class="text-center">Action</th>
+        		<th class="text-center">Edit Pinjaman</th>
+        		<th class="text-center">Action Pinjaman</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -88,6 +91,7 @@
     			<td><?php echo $pinjaman->ang_no ?></td>
     			<td><?php echo $ang_no->ang_nama ?></td>
     			<td><?php echo $sea_id->sea_tenor," Bulan" ?></td>
+    			<td><?php echo $pinjaman->wil_kode ?></td>
     			<td><?php echo $wil_kode->wil_nama ?></td>
     			<td><?php echo "Rp ",$pinjaman->pin_pengajuan ?></td>
     			<td><?php echo "Rp ",$pinjaman->pin_pinjaman ?></td>
@@ -102,7 +106,13 @@
 				echo ' | '; 
 				echo anchor(site_url('pinjaman/delete/'.$pinjaman->pin_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
-			</td>
+                </td>
+                <td style="text-align:center" width="200px">
+				<?php 
+				echo anchor(site_url('pinjaman/survey?q='.$pinjaman->pin_id),'Survey','class="text-navy"'); 
+				echo ' | '; 
+				echo anchor(site_url('pinjaman/persetujuan?q='.$pinjaman->pin_id),'Persetujuan','class="text-navy"');?>
+			    </td>
 		</tr>
                 
                 <?php
