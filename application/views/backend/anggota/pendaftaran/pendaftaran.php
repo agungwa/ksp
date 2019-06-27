@@ -46,20 +46,8 @@
             <label for="date">Tanggal Lahir </label>
             <input type="date" class="form-control" name="ang_tgllahir" id="ang_tgllahir" placeholder="Tgl Lahir" value="" required="required" />
         </div>
-
-	    <div class="form-group">
-            <label for="tinyint">Status </label>
-            <select class="form-control col-md-3" name="ang_status">
-                    <option value="">--Status--</option>
-                    <?php
-                        foreach ($this->statusAnggota as $key => $value) { ?>
-                            <option value="<?= $key?>"><?= $value?></option>
-                    <?php        
-                        }
-                    ?>
-                </select>  </div>
         </div>
-        </div>
+</div>
         
         <div class="col-md-4">
         <h3>Form Simpanan Pokok</h3>
@@ -67,24 +55,15 @@
             <label for="datetime">Tanggal Bayar </label>
             <input type="date" class="form-control" name="sip_tglbayar" id="todays-date" placeholder="tanggal bayar" value="" required="required" />
         </div>
-
-        <h3>Form Simpanan Wajib</h3>
         <div class="form-group">
-            <label for="tinyint">Status </label>
-            <select class="form-control col-md-3" name="siw_status">
-                    <option value="">--Status--</option>
-                    <?php
-                        foreach ($this->statusSimpananwajib as $key => $value) { ?>
-                            <option value="<?= $key?>"><?= $value?></option>
-                    <?php        
-                        }
-                    ?>
-                </select>  </div>
+            <label for="number">Setor Simpanan </label>
+            <input type="number" class="form-control" name="sip_setoran" id="sip_setoran" placeholder="10000" value="10000 readonly required="required" />
         </div>
+</div>
         <div class="col-lg-12">
-                            <button type="submit" class="btn btn-primary">Submit Pendaftaran</button> 
-                            <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Batal</a>
-                        </div>
+        <button type="submit" class="btn btn-primary">Submit Pendaftaran</button> 
+        <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Batal</a>
+        </div>
         </div>
 
                     </form>
