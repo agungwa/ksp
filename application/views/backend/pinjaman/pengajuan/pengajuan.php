@@ -74,7 +74,7 @@
                                 <label for="int">Kategori Peminjam</label>
                                 <div class="input-group">
                                 <input type="hidden" name="skp_id" id="skp_id" value="" />
-                                <input type="text" class="form-control" name="nm_skp_id" id="nm_skp_id" placeholder="SKP Id" value="" readonly/>
+                                <input type="text" class="form-control" name="nm_skp_id" id="nm_skp_id" placeholder="Kategori Peminjam" value="" readonly/>
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>settingkategoripeminjam/lookup','skp_id');" style="cursor: pointer;"><i class="glyphicon glyphicon-search"></i></span>
                                 </div>

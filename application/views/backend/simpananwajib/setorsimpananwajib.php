@@ -40,6 +40,10 @@
             foreach ($setoransimpananwajib_data as $setoransimpananwajib)
             {
                 $total += $setoransimpananwajib->ssw_jmlsetor;
+                $min = 20000;
+                if ($sisacicilan<$min){
+                    $min=$sisacicilan;
+                    }
                 $kurang = 200000-$total;
                 ?>
                 <tr>
@@ -55,7 +59,7 @@
             ?>
     <div class="form-group col-md-4">
         <label for="varchar">Jumlah Setoran</label>
-        <input type="number" class="form-control" name="ssw_jmlsetor" min="20000" max=<?= $kurang?> id="ssw_jmlsetor" placeholder="Jumlah Setor" value="" required="required" />
+        <input type="number" class="form-control" name="ssw_jmlsetor" min=<?= $min?> max=<?= $kurang?> id="ssw_jmlsetor" placeholder="Jumlah Setor" value="" required="required" />
         <input type="hidden" class="form-control" name="siw_id" id="siw_id" placeholder="siw_id" value="<?php echo $siw_id; ?>"/>
     </div>
     <div class="form-group col-md-12">
