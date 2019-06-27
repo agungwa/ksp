@@ -51,7 +51,7 @@ class Setoransimpanan_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         $where = "sim_kode LIKE '%$q%' ESCAPE '!' AND ssi_flag < 2";
         $this->db->where($where);
-	$this->db->limit($limit, $start);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 
