@@ -9,6 +9,7 @@ class DataRekening extends MY_Base
         parent::__construct();
         $this->load->model('Simpanan_model');
         $this->load->model('Setoransimpanan_model');
+        $this->load->model('Bungasetoransimpanan_model');
         $this->load->model('Penarikansimpanan_model');
         $this->load->model('Simpananwajib_model');
         $this->load->model('Setoransimpananwajib_model');
@@ -22,8 +23,10 @@ class DataRekening extends MY_Base
 
     	$simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
     	$simpananNonaktif = $this->Simpanan_model->get_simpanan_nonaktif();
+    	$bungaSetoranSimpanan = 
     	$setoransimpananwajib = $this->Setoransimpananwajib_model->get_all();    	
     	$simpananwajibDitarik = $this->Penarikansimpananwajib_model->get_all();
+    	$simpananPokok = $this->Simpananpokok_model->get_all();
 
     	$saldoSimpanan = 0;
     	$saldoSimpananDitarik = 0;
@@ -95,6 +98,18 @@ class DataRekening extends MY_Base
     			}
     		} else {
 				$saldoSimpananwajibDitarik += $value->psw_jumlah;
+    		}
+    	}
+
+    	//simpanan pokok
+    	foreach ($simpananPokok as $key => $value) {
+    		if ($f<>'' && $t<>'') {	
+    			$tgl = date("Y-m-d", strtotime($value->sip_tglbayar));
+    			if ($tgl >= $f && $tgl <= $t) {
+    				$saldoSimpananpokok += $value->sip_setoran;
+    			}
+    		} else {
+				$saldoSimpananpokok += $value->sip_setoran;
     		}
     	}
 
