@@ -9,6 +9,7 @@ class Anggota extends MY_Base
     {
         parent::__construct();
         $this->load->model('Anggota_model');
+        $this->load->model('Settingsimpanan_model');
         $this->load->model('Simpananpokok_model');
         $this->load->model('Simpananwajib_model');
         $this->load->model('Setoransimpananwajib_model');
@@ -35,6 +36,7 @@ class Anggota extends MY_Base
                 $this->setorsiw();
                 break;
                     
+                    
             default:
                 $this->pendaftaran();
                 break;
@@ -43,12 +45,24 @@ class Anggota extends MY_Base
 
     //pendaftaran anggota
     public function pendaftaran(){
-        $data = array(
+    
+        $row = $this->Settingsimpanan_model->get_by_id(2);
+        if ($row) {
+        $data = array (
+            'ses_min' => set_value('ses_min', $row->ses_min),
             'kode' => $this->Pengkodean->kode(),
             'content' => 'backend/anggota/anggota',
             'item'=> 'pendaftaran/pendaftaran.php',
             'active' => 1,
         );
+    };
+
+        /*$data = array( 
+        'kode' => $this->Pengkodean->kode(),
+        'content' => 'backend/anggota/anggota',
+        'item'=> 'pendaftaran/pendaftaran.php',
+        'active' => 1,
+    );*/
 
         $this->load->view(layout(), $data);
     }
@@ -146,7 +160,7 @@ class Anggota extends MY_Base
                 'ang_nokk' => $this->input->post('ang_nokk',TRUE),
                 'ang_nohp' => $this->input->post('ang_nohp',TRUE),
                 'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
-                'ang_status' => $this->input->post('ang_status',TRUE),
+                'ang_status' => 1,
                 'ang_tgl' => $this->tgl,
                 'ang_flag' => 0,
                 'ang_info' => "",
@@ -157,6 +171,7 @@ class Anggota extends MY_Base
             $dataSimpananPokok = array(
                 'ang_no' => $this->input->post('ang_no',TRUE),
                 'ses_id' => 2,
+                'sip_setoran' => $this->input->post('sip_setoran',TRUE),
                 'sip_tglbayar' => $this->input->post('sip_tglbayar',TRUE),
                 'sip_tgl' => $this->tgl,
                 'sip_flag' => 0,
@@ -169,13 +184,13 @@ class Anggota extends MY_Base
                 'ang_no' => $this->input->post('ang_no',TRUE),
                 'ses_id' => 1,
                 'siw_tglbayar' => $this->tgl,
-                'siw_status' => $this->input->post('siw_status',TRUE),
+                'siw_status' => 0,
                 'siw_tglambil' => $this->input->post('siw_tglambil',TRUE),
                 'siw_tgl' => $this->tgl,
                 'siw_flag' => 0,
                 'siw_info' => "",
                 );
-            $this->Simpananwajib_model->insert($dataSimpananWajib);            
+            $this->Simpananwajib_model->insert($dataSimpananWajib);   
 
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('anggota'));
@@ -332,26 +347,21 @@ class Anggota extends MY_Base
     public function update($id) 
     {
         $row = $this->Anggota_model->get_by_id($id);
-        $simpananpokok = $this->Simpananpokok_model->get_data_sip($id);
         if ($row) {
             $data = array(
-                //'simpananpokok_data' => $simpananpokok,
-		'kode' => set_value('ang_no', $row->ang_no),
+		'ang_no' => set_value('ang_no', $row->ang_no),
 		'ang_nama' => set_value('ang_nama', $row->ang_nama),
 		'ang_alamat' => set_value('ang_alamat', $row->ang_alamat),
 		'ang_noktp' => set_value('ang_noktp', $row->ang_noktp),
 		'ang_nokk' => set_value('ang_nokk', $row->ang_nokk),
 		'ang_nohp' => set_value('ang_nohp', $row->ang_nohp),
-		'ang_tgllahir' => set_value('ang_tgllahir', $row->ang_tgllahir),
-		'ang_status' => set_value('ang_status', $row->ang_tgllahir),
-        'content' => 'backend/anggota/anggota',
-        'item'=> 'pendaftaran/pendaftaranedit.php',
-        'active' => 4,
+        'ang_tgllahir' => set_value('ang_tgllahir', $row->ang_tgllahir),
+        'content' => 'backend/anggota/pendaftaran/pendaftaranedit',
 	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('anggota'));
+            redirect(site_url('anggota/?p=2'));
         }
     }
     
@@ -369,10 +379,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => $this->input->post('ang_nokk',TRUE),
 		'ang_nohp' => $this->input->post('ang_nohp',TRUE),
 		'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
-		'ang_status' => $this->input->post('ang_status',TRUE),
-		'ang_tgl' => $this->tgl,
 		'ang_flag' => 1,
-		'ang_info' => "",
 	    );
 
             $this->Anggota_model->update($this->input->post('ang_no', TRUE), $data);
@@ -406,8 +413,6 @@ class Anggota extends MY_Base
 	$this->form_validation->set_rules('ang_nokk', 'ang nokk', 'trim|required');
 	$this->form_validation->set_rules('ang_nohp', 'ang nohp', 'trim|required');
 	$this->form_validation->set_rules('ang_tgllahir', 'ang tgllahir', 'trim|required');
-	$this->form_validation->set_rules('ang_status', 'ang status', 'trim|required');
-
 	$this->form_validation->set_rules('ang_no', 'ang_no', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

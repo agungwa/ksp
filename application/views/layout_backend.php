@@ -144,7 +144,7 @@ lookup();
                                     <a href="<?=base_url()?>simpanan/jatuhtempo">Data Jatuh Tempo</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url()?>simpanan">Data Rekening</a>
+                                    <a href="<?=base_url()?>datarekening">Data Rekening</a>
                                 </li>
                                 <li>
                                     <a href="#">Neraca / Sirkulasi</a>

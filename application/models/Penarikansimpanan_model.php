@@ -47,6 +47,13 @@ class Penarikansimpanan_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+        // get data by sim_kode
+    function get_data_penarikan($sim_kode)
+    {
+        $this->db->where('sim_kode =',$sim_kode);
+        return $this->db->get($this->table)->result();
+    }
+
     // insert data
     function insert($data)
     {

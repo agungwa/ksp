@@ -83,8 +83,8 @@
 			<td><?php echo $simpanan->ang_no ?></td>
 			<td><?php echo $ang_no->ang_nama ?></td>
 			<td><?php echo $kar_kode->kar_nama ?></td>
-			<td><?php echo $bus_id->bus_bunga ?></td>
-			<td><?php echo $jsi_id->jsi_simpanan ?></td>
+			<td><?php echo $bus_id->bus_bunga," %" ?></td>
+			<td><?php echo $jsi_id->jsi_simpanan," Bulan" ?></td>
 			<td><?php echo $jse_id->jse_setoran ?></td>
 			<td><?php echo $wil_kode->wil_nama ?></td>
 			<td><?php echo $simpanan->sim_tglpendaftaran ?></td>

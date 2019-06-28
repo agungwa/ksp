@@ -55,6 +55,20 @@ class Simpanan_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_simpanan_aktif(){
+        $this->db->order_by($this->id, $this->order);
+        $where = "sim_status = 0 AND sim_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_simpanan_nonaktif(){
+        $this->db->order_by($this->id, $this->order);
+        $where = "sim_status = 1 AND sim_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->result();
+    }
+
     // insert data
     function insert($data)
     {

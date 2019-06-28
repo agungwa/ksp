@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox">
@@ -62,42 +63,39 @@
         		<th class="text-center">ID Anggota</th>
         		<th class="text-center">Nama Anggota</th>
         		<th class="text-center">Angsuran (bulan)</th>
-        		<th class="text-center">Bunga (persen)</th>
-        		<th class="text-center">Provisi (persen)</th>
         		<th class="text-center">Wilayah</th>
-        		<th class="text-center">Kategori Peminjam</th>
         		<th class="text-center">Pengajuan</th>
         		<th class="text-center">Pinjaman</th>
         		<th class="text-center">Tanggal Pengajuan</th>
         		<th class="text-center">Tanggal Pencairan</th>
         		<th class="text-center">Status Pinjaman</th>
-        		<th class="text-center">Action</th>
+        		<th class="text-center">Edit Pinjaman</th>
+        		<th class="text-center">Action Pinjaman</th>
             </tr>
             </thead>
 			<tbody><?php
             foreach ($pinjaman_data as $pinjaman)
             {
+                $pin_statuspinjaman = $this->statusPinjaman;
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $pinjaman->ang_no))->row();
                 $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $pinjaman->sea_id))->row();
                 $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $pinjaman->bup_id))->row();
                 $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $pinjaman->pop_id))->row();
                 $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $pinjaman->skp_id))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $pinjaman->wil_kode))->row();
                 ?>
                 <tr>
     			<td width="80px"><?php echo ++$start ?></td>
     			<td><?php echo $pinjaman->pin_id ?></td>
     			<td><?php echo $pinjaman->ang_no ?></td>
     			<td><?php echo $ang_no->ang_nama ?></td>
-    			<td><?php echo $sea_id->sea_tenor ?></td>
-    			<td><?php echo $bup_id->bup_bunga ?></td>
-    			<td><?php echo $pop_id->pop_potongan ?></td>
-    			<td><?php echo $pinjaman->wil_kode ?></td>
-    			<td><?php echo $skp_id->skp_kategori ?></td>
-    			<td><?php echo $pinjaman->pin_pengajuan ?></td>
-    			<td><?php echo $pinjaman->pin_pinjaman ?></td>
+    			<td><?php echo $sea_id->sea_tenor," Bulan" ?></td>
+    			<td><?php echo $wil_kode->wil_nama ?></td>
+    			<td><?php echo "Rp ",$pinjaman->pin_pengajuan ?></td>
+    			<td><?php echo "Rp ",$pinjaman->pin_pinjaman ?></td>
     			<td><?php echo dateFormat($pinjaman->pin_tglpengajuan) ?></td>
     			<td><?php echo dateFormat($pinjaman->pin_tglpencairan) ?></td>
-    			<td><?php echo $pinjaman->pin_statuspinjaman ?></td>
+    			<td><?php echo $pin_statuspinjaman[$pinjaman->pin_statuspinjaman] ?></td>
     			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('pinjaman/read/'.$pinjaman->pin_id),'Read','class="text-navy"'); 
@@ -106,7 +104,13 @@
 				echo ' | '; 
 				echo anchor(site_url('pinjaman/delete/'.$pinjaman->pin_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
-			</td>
+                </td>
+                <td style="text-align:center" width="200px">
+				<?php 
+				echo anchor(site_url('pinjaman/survey?q='.$pinjaman->pin_id),'Survey','class="text-navy"'); 
+				echo ' | '; 
+				echo anchor(site_url('pinjaman/persetujuan?q='.$pinjaman->pin_id),'Persetujuan','class="text-navy"');?>
+			    </td>
 		</tr>
                 
                 <?php

@@ -12,7 +12,7 @@
                             <div class="col-md-6">
                             <div class="form-group">
                                 <label for="varchar">Rekening Pinjaman</label>
-                                <input type="text" class="form-control" name="pin_id" id="pin_id" placeholder="Rekening Pinjaman" value="" required="required" />
+                                <input type="text" class="form-control" name="pin_id" id="pin_id" placeholder="Rekening Pinjaman" value="<?php echo $kode; ?>" readonly required="required" />
                             </div>
 
                             <div class="form-group">
@@ -74,7 +74,7 @@
                                 <label for="int">Kategori Peminjam</label>
                                 <div class="input-group">
                                 <input type="hidden" name="skp_id" id="skp_id" value="" />
-                                <input type="text" class="form-control" name="nm_skp_id" id="nm_skp_id" placeholder="SKP Id" value="" readonly/>
+                                <input type="text" class="form-control" name="nm_skp_id" id="nm_skp_id" placeholder="Kategori Peminjam" value="" readonly/>
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>settingkategoripeminjam/lookup','skp_id');" style="cursor: pointer;"><i class="glyphicon glyphicon-search"></i></span>
                                 </div>
@@ -85,7 +85,7 @@
                             <div class="col-md-6">
                             <div class="form-group">
                                 <label for="float">Pengajuan</label>
-                                <input type="number" class="form-control" name="pin_pengajuan" id="pin_pengajuan" placeholder="Jumlah Pengajuan" value="" />
+                                <input type="number" min="500000" class="form-control" name="pin_pengajuan" id="pin_pengajuan" placeholder="Jumlah Pengajuan" value="" />
                             </div>
                             <div class="form-group">
                                 <label for="datetime">Tanggal Pengajuan</label>
@@ -93,12 +93,23 @@
                             </div>
                             <div class="form-group">
                                 <label for="varchar">Marketing</label>
-                                <input type="text" class="form-control" name="pin_marketing" id="pin_marketing" placeholder="Marketing" value="" />
+                                <div class="input-group">
+                                <input type="hidden" name="mkar_kode" id="mkar_kode" value="" required="required" />
+                                <input type="text" class="form-control" name="nm_mkar_kode" id="nm_mkar_kode" placeholder="Karyawan" value="" required="required" readonly/>
+                                <div class="input-group-addon">
+                                    <span onclick="lookup('<?=base_url()?>karyawan/lookup','mkar_kode');" style="cursor: pointer;">Cari</span>
+                                </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="varchar">Surveyor</label>
-                                <input type="text" class="form-control" name="pin_surveyor" id="pin_surveyor" placeholder="Surveyor" value="" />
-                            </div>
+                                <div class="input-group">
+                                <input type="hidden" name="skar_kode" id="skar_kode" value="" required="required" />
+                                <input type="text" class="form-control" name="nm_skar_kode" id="nm_skar_kode" placeholder="Karyawan" value="" required="required" readonly/>
+                                <div class="input-group-addon">
+                                    <span onclick="lookup('<?=base_url()?>karyawan/lookup','skar_kode');" style="cursor: pointer;">Cari</span>
+                                </div>
+                                </div></div>
                         </div>
                         </div>
 
