@@ -33,8 +33,9 @@ class Settingsimpanan_model extends CI_Model
      // get data by id setoran pokok
      function get_datasetor()
     {
-        $query = $this->db->query("SELECT ses_min FROM settingsimpanan WHERE ses_id='2'");
-		return $query;
+        $this->db->where("ses_id",2);
+        $this->db->select("*");
+		return $this->db->get($this->table)->result();
         //$this->db->where('ses_id =',2);
         //return $this->db->get($this->table)->result();
     }

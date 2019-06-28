@@ -5,7 +5,7 @@
             
             <div class="jumbotron">
                 <div class="row" style="margin-bottom: 10px, margin-top:10px">
-                    <form action="<?php echo site_url('anggota/pendaftaran_action'); ?>" method="POST">
+                    <form action="<?php echo site_url('anggota/update_action'); ?>" method="POST">
         <div class="ibox-content col-md-12">
         <div class="col-md-8">
         <h3> Form Anggota </h3>
@@ -13,7 +13,7 @@
 
         <div class="form-group">
             <label for="varchar">Nomor Anggota </label>
-            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Nomor Anggota" value="<?php echo $kode; ?>" readonly required="required" ?>
+            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Nomor Anggota" value="<?php echo $ang_no; ?>" readonly required="required" ?>
         </div>
 
 	    <div class="form-group">
@@ -51,40 +51,9 @@
 
         </div>
         </div>
-        
-      <!--  <div class="col-md-4">
-        <h3>Form Simpanan Pokok</h3>
-	    <div class="form-group">
-            <label for="datetime">Tanggal Bayar </label>
-            <input type="date" class="form-control" name="sip_tglbayar" id="sip_tglbayar" placeholder="tanggal bayar" value="" required="required" />
-        </div>
-
-        <h3>Form Simpanan Wajib</h3>
-        <div class="form-group">
-            <label for="tinyint">Status </label>
-            <select class="form-control col-md-3" name="siw_status">
-                    <option value="">--Status--</option>
-                    <?php
-                        foreach ($this->statusSimpananwajib as $key => $value) { ?>
-                            <option value="<?= $key?>"><?= $value?></option>
-                    <?php        
-                        }
-                    ?>
-                </select>  </div>
-        </div>-->
-
-	    <!--<div class="form-group">
-            <label for="tinyint">Status</label>
-            <input type="text" class="form-control" name="siw_status" id="siw_status" placeholder="Status" value="" />
-        </div>
-
-	    <div class="form-group">
-            <label for="datetime">Tanggal Ambil</label>
-            <input type="date" class="form-control" name="siw_tglambil" id="siw_tglambil" placeholder="Tanggal Ambil" value="" />
-        </div>-->
         <div class="col-lg-12">
                             <button type="submit" class="btn btn-primary">Edit</button> 
-                            <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Batal</a>
+                            <a href="<?php echo site_url('anggota/?p=2') ?>" class="btn btn-default">Batal</a>
                         </div>
         </div>
 

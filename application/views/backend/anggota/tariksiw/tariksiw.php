@@ -115,7 +115,7 @@
 	</div>
     
     <div class="form-group col-md-12">
-	    <a href="<?php echo site_url('simpanan/?p=5') ?>" class="btn btn-default">Batal</a>
+	    <a href="<?php echo site_url('anggota/?p=2') ?>" class="btn btn-default">Batal</a>
     </div>
             </form>
 	        	<?php
