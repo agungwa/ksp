@@ -147,7 +147,7 @@ lookup();
                                     <a href="<?=base_url()?>datarekening">Data Rekening</a>
                                 </li>
                                 <li>
-                                    <a href="#">Neraca / Sirkulasi</a>
+                                    <a href="<?=base_url()?>neracasimpanan">Neraca / Sirkulasi</a>
                                 </li>
                             </ul>
                         </li>
