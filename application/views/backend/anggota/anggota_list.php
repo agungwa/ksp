@@ -5,7 +5,7 @@
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
             <form action="<?php echo base_url()?>anggota" class="form-inline" method="get">
             <div class="col-md-8 text-right">
-                <input type="hidden" name="p" value="4">
+                <input type="hidden" name="p" value="2">
                 <div class="col-md-2"><h3>Filter : </h3></div>
                 <select class="form-control col-md-3" name="status">
                     <option value="">--Status--</option>
