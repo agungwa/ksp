@@ -12,28 +12,42 @@
                 </div>
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
-            <div class="col-md-8">
-            </div>          
-            
-            <div class="col-md-1 text-right">
+            <form action="<?php echo base_url()?>datarekening" class="form-inline" method="get">
+            <div class="col-md-8 text-right">
+                <div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
+                <div class="col-md-3">
+                    <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
+                </div>
             </div>
-            <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('simpananpokok/index'); ?>" class="form-inline" method="get">
+            
+            <div class="col-md-4 text-right">
                     <div class="input-group">
+                        <span class="input-group-btn">
+                            <?php 
+                                if ($f <> '' || $t <> '')
+                                {
+                                    ?>
+                                    <a href="<?php echo base_url()?>datarekening" class="btn btn-default">Reset</a>
+                                    <?php
+                                }
+                            ?>
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
             <tr>
                 <td class="text-left">Saldo Simpanan</td>
-				<td class="text-center">RP <?= $saldosimpanan-$saldosimpananditarik;?></td>
+				<td class="text-center">RP <?= $saldosimpanan;?></td>
             </tr>
             <tr>
-                <td class="text-left">Saldo Simpanan Ditarik</td>
+                <td class="text-left">Simpanan Ditarik</td>
 				<td class="text-center">RP <?= $saldosimpananditarik;?></td>
             </tr>
             <tr>
@@ -45,8 +59,8 @@
 				<td class="text-center">RP <?= $saldosimpananwajib;?></td>
             </tr>
             <tr>
-                <td class="text-left">Saldo Simpanan Wajib Ditarik</td>
-				<td class="text-center">RP <?= $saldosimpananwajib;?></td>
+                <td class="text-left">Simpanan Wajib Ditarik</td>
+				<td class="text-center">RP <?= $saldosimpananwajibditarik;?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Simpanan Pokok</td>
