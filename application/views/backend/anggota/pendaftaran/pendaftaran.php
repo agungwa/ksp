@@ -28,18 +28,18 @@
 
 	    <div class="form-group">
             <label for="varchar">Nomor KTP </label>
-            <input type="number" class="form-control" name="ang_noktp" id="ang_noktp" placeholder="Nomor KTP" value="" required="required" />
+            <input type="number" class="form-control" name="ang_noktp" id="ang_noktp" placeholder="Nomor KTP" value="" />
         </div>
         </div>
         
         <div class="col-md-6">
 	    <div class="form-group">
             <label for="varchar">Nomor KK </label>
-            <input type="number" class="form-control" name="ang_nokk" id="ang_nokk" placeholder="Nomor KK" value="" required="required" />
+            <input type="number" class="form-control" name="ang_nokk" id="ang_nokk" placeholder="Nomor KK" value="" />
         </div>
 	    <div class="form-group">
             <label for="varchar">No Handphone </label>
-            <input type="number" class="form-control" name="ang_nohp" id="ang_nohp" placeholder="08.." value="" required="required" />
+            <input type="number" class="form-control" name="ang_nohp" id="ang_nohp" placeholder="08.." value="" />
         </div>
 
 	    <div class="form-group">
@@ -56,8 +56,8 @@
             <input type="date" class="form-control" name="sip_tglbayar" id="todays-date" placeholder="tanggal bayar" value="" required="required" />
         </div>
         <div class="form-group">
-            <label for="number">Setor Simpanan </label>
-            <input type="number" class="form-control" name="sip_setoran" id="sip_setoran" placeholder="10000" value="10000 readonly required="required" />
+            <label for="number">Setor Simpanan Pokok </label>
+            <input type="number" class="form-control" name="sip_setoran" id="sip_setoran" placeholder="<?php echo $ses_min; ?>" value="<?php echo $ses_min; ?>" readonly required="required" />
         </div>
 </div>
         <div class="col-lg-12">

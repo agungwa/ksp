@@ -57,7 +57,8 @@
 		<th class="text-center">Nomor Handphone</th>
 		<th class="text-center">Tanggal Lahir</th>
 		<th class="text-center">Status</th>
-		<th class="text-center">Action</th>
+		<th class="text-center">Edit Anggota</th>
+		<th class="text-center">Action Anggota</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -83,6 +84,12 @@
 				echo ' | '; 
 				echo anchor(site_url('anggota/delete/'.$anggota->ang_no),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
+            </td>
+            <td style="text-align:center" width="200px">
+				<?php 
+				echo anchor(site_url('anggota/setorsiw?q='.$anggota->ang_no),'Setor','class="text-navy"'); 
+				echo ' | '; 
+				echo anchor(site_url('anggota/tariksiw?q='.$anggota->ang_no),'Tarik','class="text-navy"');?>
 			</td>
 		</tr>
                 

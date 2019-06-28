@@ -19,7 +19,8 @@
 	    <tr><td>Tanggal Bayar</td><td><?php echo $siw_tglbayar; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $siw_status; ?></td></tr>
 	    <tr><td>Tanggal Ambil</td><td><?php echo $siw_tglambil; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('anggota/read/'.$ang_no) ?>" class="btn btn-default">Batal</a></td></tr>
+        <tr><td></td><td><a href="<?php echo site_url('anggota/tariksiw?q='.$ang_no) ?>" class="btn btn-default">Batal</a>
+        <a href="<?php echo site_url('anggota/?p=2') ?>" class="btn btn-default">Kembali List Anggota</a></td></tr>
 	</table>
 <!--tabel setoran simpanan wajib-->
 
@@ -40,7 +41,7 @@
             foreach ($setoransimpananwajib_data as $setoransimpananwajib)
             {
                 $total += $setoransimpananwajib->ssw_jmlsetor;
-                $kurang = 200000-$total;
+                $kurang = $settingsimpanan_data->ses_max-$total;
                 ?>
                 <tr>
 			<td width="80px"><?php echo $no ?></td>

@@ -19,7 +19,9 @@
 	    <tr><td>Tanggal Bayar</td><td><?php echo $siw_tglbayar; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $siw_status; ?></td></tr>
 	    <tr><td>Tanggal Ambil</td><td><?php echo $siw_tglambil; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('anggota/read/'.$ang_no) ?>" class="btn btn-default">Batal</a></td></tr>
+        <tr><td></td><td><a href="<?php echo site_url('anggota/setorsiw?q='.$ang_no) ?>" class="btn btn-default">Batal</a>
+        <a href="<?php echo site_url('anggota/?p=2') ?>" class="btn btn-default">Kembali List Anggota</a></td></tr>
+    </td></tr>
 	</table>
 <!--tabel setoran simpanan wajib-->
 
@@ -34,32 +36,35 @@
 		<th class="text-center">Kekurangan Setor</th>
             </tr>
             </thead>
-			<tbody><?php
+			<tbody>
+                <?php
             $no=1;
             $total=0;
             foreach ($setoransimpananwajib_data as $setoransimpananwajib)
             {
                 $total += $setoransimpananwajib->ssw_jmlsetor;
-                $min = 20000;
-                if ($sisacicilan<$min){
-                    $min=$sisacicilan;
-                    }
-                $kurang = 200000-$total;
+                $kurang = $settingsimpanan_data->ses_max-$total;
+                $min = $settingsimpanan_data->ses_min;
+            if ($kurang<$min){
+                $min=$kurang;
+                };
+                
+               
                 ?>
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $setoransimpananwajib->ssw_tglsetor ?></td>
 			<td><?php echo $setoransimpananwajib->ssw_jmlsetor ?></td>
 			<td><?php echo $total ?></td>
-			<td><?php echo $kurang ?></td>
+            <td><?php echo $kurang ?></td>
 		</tr>
         <?php
         $no++;
             }
             ?>
     <div class="form-group col-md-4">
-        <label for="varchar">Jumlah Setoran</label>
-        <input type="number" class="form-control" name="ssw_jmlsetor" min=<?= $min?> max=<?= $kurang?> id="ssw_jmlsetor" placeholder="Jumlah Setor" value="" required="required" />
+        <label for="varchar"> <?php echo "Jumlah Setoran" ?></label>
+        <input type="number" class="form-control" name="ssw_jmlsetor" min=<?= $min?> max=<?= $kurang?> id="ssw_jmlsetor" placeholder="Setor" value="" required="required" />
         <input type="hidden" class="form-control" name="siw_id" id="siw_id" placeholder="siw_id" value="<?php echo $siw_id; ?>"/>
     </div>
     <div class="form-group col-md-12">

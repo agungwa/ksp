@@ -12,7 +12,7 @@
         <div class="col-md-6">
 	    <div class="form-group col-md-12">
             <label for="varchar">Kode Simpanan</label>
-            <input type="text" class="form-control" name="sim_kode" id="sim_kode" placeholder="Kode Simpanan" value="<?php echo $kode; ?>" required="required" />
+            <input type="text" class="form-control" name="sim_kode" id="sim_kode" placeholder="Kode Simpanan" value="<?php echo $kode; ?>" readonly required="required" />
         </div>
         <div class="form-group col-md-12">
             <label for="varchar">Anggota </label>
