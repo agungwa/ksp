@@ -9,6 +9,7 @@ class Anggota extends MY_Base
     {
         parent::__construct();
         $this->load->model('Anggota_model');
+        $this->load->model('Settingsimpanan_model');
         $this->load->model('Simpananpokok_model');
         $this->load->model('Simpananwajib_model');
         $this->load->model('Setoransimpananwajib_model');
@@ -43,14 +44,18 @@ class Anggota extends MY_Base
 
     //pendaftaran anggota
     public function pendaftaran(){
-        $data = array(
-            'kode' => $this->Pengkodean->kode(),
-            'content' => 'backend/anggota/anggota',
-            'item'=> 'pendaftaran/pendaftaran.php',
-            'active' => 1,
-        );
+    $dt = $this->Settingsimpanan_model->get_datasetor()->row();
+        
+        $data = array( 
 
-        $this->load->view(layout(), $data);
+        //$row = $this->Settingsimpanan_model->get_datasetor(),
+        'kode' => $this->Pengkodean->kode(),
+        'content' => 'backend/anggota/anggota',
+        'item'=> 'pendaftaran/pendaftaran.php',
+        'active' => 1,
+    );
+
+        $this->load->view(layout(), $data,$dt);
     }
 
     //setor simpanan wajib
@@ -157,6 +162,7 @@ class Anggota extends MY_Base
             $dataSimpananPokok = array(
                 'ang_no' => $this->input->post('ang_no',TRUE),
                 'ses_id' => 2,
+                'sip_setoran' => $this->input->post('sip_setoran',TRUE),
                 'sip_tglbayar' => $this->input->post('sip_tglbayar',TRUE),
                 'sip_tgl' => $this->tgl,
                 'sip_flag' => 0,

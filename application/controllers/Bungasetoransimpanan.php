@@ -86,6 +86,7 @@ class Bungasetoransimpanan extends CI_Controller
 		'bss_id' => $row->bss_id,
 		'sim_kode' => $row->sim_kode,
 		'bss_saldosimpanan' => $row->bss_saldosimpanan,
+		'bss_bungabulanini' => $row->bss_bungabulanini,
 		'bss_saldobulanini' => $row->bss_saldobulanini,
 		'bss_tglbunga' => $row->bss_tglbunga,
 		'bss_tgl' => $row->bss_tgl,
@@ -108,6 +109,7 @@ class Bungasetoransimpanan extends CI_Controller
 	    'bss_id' => set_value('bss_id'),
 	    'sim_kode' => set_value('sim_kode'),
 	    'bss_saldosimpanan' => set_value('bss_saldosimpanan'),
+	    'bss_bungabulanini' => set_value('bss_bungabulanini'),
 	    'bss_saldobulanini' => set_value('bss_saldobulanini'),
 	    'bss_tglbunga' => set_value('bss_tglbunga'),
 	    'content' => 'backend/bungasetoransimpanan/bungasetoransimpanan_form',
@@ -125,6 +127,7 @@ class Bungasetoransimpanan extends CI_Controller
             $data = array(
 		'sim_kode' => $this->input->post('sim_kode',TRUE),
 		'bss_saldosimpanan' => $this->input->post('bss_saldosimpanan',TRUE),
+		'bss_bungabulanini' => $this->input->post('bss_bungabulanini',TRUE),
 		'bss_saldobulanini' => $this->input->post('bss_saldobulanini',TRUE),
 		'bss_tglbunga' => $this->input->post('bss_tglbunga',TRUE),
 		'bss_tgl' => $this->tgl,
@@ -149,6 +152,7 @@ class Bungasetoransimpanan extends CI_Controller
 		'bss_id' => set_value('bss_id', $row->bss_id),
 		'sim_kode' => set_value('sim_kode', $row->sim_kode),
 		'bss_saldosimpanan' => set_value('bss_saldosimpanan', $row->bss_saldosimpanan),
+		'bss_bungabulanini' => set_value('bss_bungabulanini', $row->bss_bungabulanini),
 		'bss_saldobulanini' => set_value('bss_saldobulanini', $row->bss_saldobulanini),
 		'bss_tglbunga' => set_value('bss_tglbunga', $row->bss_tglbunga),
 	    'content' => 'backend/bungasetoransimpanan/bungasetoransimpanan_form',
@@ -170,6 +174,7 @@ class Bungasetoransimpanan extends CI_Controller
             $data = array(
 		'sim_kode' => $this->input->post('sim_kode',TRUE),
 		'bss_saldosimpanan' => $this->input->post('bss_saldosimpanan',TRUE),
+		'bss_bungabulanini' => $this->input->post('bss_bungabulanini',TRUE),
 		'bss_saldobulanini' => $this->input->post('bss_saldobulanini',TRUE),
 		'bss_tglbunga' => $this->input->post('bss_tglbunga',TRUE),
 		'bss_flag' => 1,
@@ -202,6 +207,7 @@ class Bungasetoransimpanan extends CI_Controller
     {
 	$this->form_validation->set_rules('sim_kode', 'sim kode', 'trim|required');
 	$this->form_validation->set_rules('bss_saldosimpanan', 'bss saldosimpanan', 'trim|required');
+	$this->form_validation->set_rules('bss_bungabulanini', 'bss bungabulanini', 'trim|required');
 	$this->form_validation->set_rules('bss_saldobulanini', 'bss saldobulanini', 'trim|required');
 	$this->form_validation->set_rules('bss_tglbunga', 'bss tglbunga', 'trim|required');
 

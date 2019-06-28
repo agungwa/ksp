@@ -29,6 +29,15 @@ class Settingsimpanan_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+     // get data by id setoran pokok
+     function get_datasetor()
+    {
+        $query = $this->db->query("SELECT ses_min FROM settingsimpanan WHERE ses_id='2'");
+		return $query;
+        //$this->db->where('ses_id =',2);
+        //return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows($q = NULL) {
