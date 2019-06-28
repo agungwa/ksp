@@ -29,6 +29,11 @@ class Bungasetoransimpanan_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    function get_data_bungasetoran($sim_kode){
+        $this->db->where('sim_kode =',$sim_kode);
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

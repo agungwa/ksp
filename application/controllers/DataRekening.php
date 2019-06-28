@@ -23,7 +23,6 @@ class DataRekening extends MY_Base
 
     	$simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
     	$simpananNonaktif = $this->Simpanan_model->get_simpanan_nonaktif();
-    	$bungaSetoranSimpanan = 
     	$setoransimpananwajib = $this->Setoransimpananwajib_model->get_all();    	
     	$simpananwajibDitarik = $this->Penarikansimpananwajib_model->get_all();
     	$simpananPokok = $this->Simpananpokok_model->get_all();
@@ -73,6 +72,21 @@ class DataRekening extends MY_Base
 	    			$saldoSimpananDitarik += $item->pes_saldopokok;
 	    			$phBuku += $item->pes_phbuku;
 	    			$administrasi += $item->pes_administrasi;
+    			}
+    		}
+    	}
+
+    	//hitung bunga simpanan aktif
+    	foreach ($simpananAktif as $key => $value) {
+    		$bungaSetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($value->sim_kode);
+    		foreach ($bungaSetoran as $k => $item) {
+    			if ($f<>'' && $t<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
+    				if ($tgl >= $f && $tgl <= $t) {
+    					$bungaSimpanan += $item->bss_bungabulanini;
+    				}
+    			} else {
+    				$bungaSimpanan += $item->bss_bungabulanini;
     			}
     		}
     	}
