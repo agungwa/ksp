@@ -189,6 +189,7 @@ class Investasiberjangka extends MY_Base
 		'jwi_id' => $jwi_id->jwi_jangkawaktu,
 		'jiv_id' => $jiv_id->jiv_jasa,
 		'biv_id' => $biv_id->biv_bunga,
+		'ivb_jumlah' => $row->ivb_jumlah,
 		'ivb_tglpendaftaran' => $row->ivb_tglpendaftaran,
         'ivb_tglperpanjangan' => $row->ivb_tglperpanjangan,
         'jatuhtempo' => $tanggalDuedate,
