@@ -20,8 +20,10 @@
 	    <tr><td>Karyawan</td><td><?php echo $kar_kode; ?></td></tr>
 	    <tr><td>Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
 	    <tr><td>Jangka Waktu</td><td><?php echo $jwi_id, " Bulan"; ?></td></tr>
+	    <tr><td>Jumlah</td><td><?php echo "Rp ",$ivb_jumlah; ?></td></tr>
 	    <tr><td>Jasa</td><td><?php echo $jiv_id; ?></td></tr>
 	    <tr><td>Bunga</td><td><?php echo $biv_id, " %"; ?></td></tr>
+	    <tr><td>Jasa Total</td><td><?php echo "Rp ",$ivb_jumlah*$biv_id/100*$jwi_id; ?></td></tr>
 	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $ivb_tglpendaftaran; ?></td></tr>
 	    <tr><td>Tanggal Jatuh Tempo</td><td><?php echo $jatuhtempo; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $ivb_status; ?></td></tr>
