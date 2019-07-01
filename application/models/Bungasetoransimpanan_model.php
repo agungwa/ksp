@@ -34,6 +34,13 @@ class Bungasetoransimpanan_model extends CI_Model
         $this->db->where('sim_kode =',$sim_kode);
         return $this->db->get($this->table)->result();
     }
+
+    function get_data_bungasetoranTgl($sim_kode, $tgl){
+        $this->db->where('sim_kode =',$sim_kode);
+        $this->db->where("bss_tglbunga = '$tgl'");
+        $this->db->limit(1);
+        return $this->db->get($this->table)->row();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

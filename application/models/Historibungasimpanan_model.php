@@ -47,6 +47,13 @@ class Historibungasimpanan_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_data_terakhir(){
+        $limit = 1;
+        $this->db->order_by($this->id, $this->order);
+        $this->db->limit($limit);
+        return $this->db->get($this->table)->row();
+    }
+
     // insert data
     function insert($data)
     {
