@@ -88,6 +88,7 @@ class Bungasetoransimpanan extends CI_Controller
 		'bss_saldosimpanan' => $row->bss_saldosimpanan,
 		'bss_bungabulanini' => $row->bss_bungabulanini,
 		'bss_saldobulanini' => $row->bss_saldobulanini,
+		'bss_jumlahsetoranbulanan' => $row->bss_jumlahsetoranbulanan,
 		'bss_tglbunga' => $row->bss_tglbunga,
 		'bss_tgl' => $row->bss_tgl,
 		'bss_flag' => $row->bss_flag,
@@ -111,6 +112,7 @@ class Bungasetoransimpanan extends CI_Controller
 	    'bss_saldosimpanan' => set_value('bss_saldosimpanan'),
 	    'bss_bungabulanini' => set_value('bss_bungabulanini'),
 	    'bss_saldobulanini' => set_value('bss_saldobulanini'),
+	    'bss_jumlahsetoranbulanan' => set_value('bss_jumlahsetoranbulanan'),
 	    'bss_tglbunga' => set_value('bss_tglbunga'),
 	    'content' => 'backend/bungasetoransimpanan/bungasetoransimpanan_form',
 	);
@@ -129,6 +131,7 @@ class Bungasetoransimpanan extends CI_Controller
 		'bss_saldosimpanan' => $this->input->post('bss_saldosimpanan',TRUE),
 		'bss_bungabulanini' => $this->input->post('bss_bungabulanini',TRUE),
 		'bss_saldobulanini' => $this->input->post('bss_saldobulanini',TRUE),
+		'bss_jumlahsetoranbulanan' => $this->input->post('bss_jumlahsetoranbulanan',TRUE),
 		'bss_tglbunga' => $this->input->post('bss_tglbunga',TRUE),
 		'bss_tgl' => $this->tgl,
 		'bss_flag' => 0,
@@ -154,6 +157,7 @@ class Bungasetoransimpanan extends CI_Controller
 		'bss_saldosimpanan' => set_value('bss_saldosimpanan', $row->bss_saldosimpanan),
 		'bss_bungabulanini' => set_value('bss_bungabulanini', $row->bss_bungabulanini),
 		'bss_saldobulanini' => set_value('bss_saldobulanini', $row->bss_saldobulanini),
+		'bss_jumlahsetoranbulanan' => set_value('bss_jumlahsetoranbulanan', $row->bss_jumlahsetoranbulanan),
 		'bss_tglbunga' => set_value('bss_tglbunga', $row->bss_tglbunga),
 	    'content' => 'backend/bungasetoransimpanan/bungasetoransimpanan_form',
 	    );
@@ -176,6 +180,7 @@ class Bungasetoransimpanan extends CI_Controller
 		'bss_saldosimpanan' => $this->input->post('bss_saldosimpanan',TRUE),
 		'bss_bungabulanini' => $this->input->post('bss_bungabulanini',TRUE),
 		'bss_saldobulanini' => $this->input->post('bss_saldobulanini',TRUE),
+		'bss_jumlahsetoranbulanan' => $this->input->post('bss_jumlahsetoranbulanan',TRUE),
 		'bss_tglbunga' => $this->input->post('bss_tglbunga',TRUE),
 		'bss_flag' => 1,
 	    );
