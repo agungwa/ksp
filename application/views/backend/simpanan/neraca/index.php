@@ -16,7 +16,6 @@
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
             <form action="<?php echo base_url()?>neracasimpanan" class="form-inline" method="get">
             <div class="col-md-8 text-right">
-                <input type="hidden" name="p" value="3">
                 <div class="col-md-2"><h3>Filter : </h3></div>
                 <select class="form-control col-md-3"  name="w">
                     <option value="">Semua Wilayah</option>
@@ -87,7 +86,40 @@
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px; margin-top:10px">
             <thead class="thead-light">
             <tr>
-                <th></th>
+                <th class="text-left">Saldo Lalu</th>
+				<th class="text-center">RP </th>
+            </tr>
+            <tr>
+                <th class="text-left">Saldo Masuk</th>
+				<th class="text-center">RP </th>
+            </tr>
+            <tr>
+                <th class="text-left">Saldo Keluar</th>
+				<th class="text-center">RP </th>
+            </tr>
+            <tr>
+                <th class="text-left">Saldo Kini</th>
+				<th class="text-center">RP </th>
+            </tr>
+            <tr>
+                <th class="text-left">Lain-Lain</th>
+				<th class="text-center">RP <input type="number" /></th>
+            </tr>
+            <tr>
+                <th class="text-left">Mutasi Masuk</th>
+				<th class="text-center">RP </th>
+            </tr>
+            <tr>
+                <th class="text-left">Mutasi Keluar</th>
+				<th class="text-center">RP </th>
+            </tr>
+            <tr>
+                <th class="text-left">Bunga Keluar</th>
+				<th class="text-center">RP </th>
+            </tr>
+            <tr>
+                <th class="text-left">Bunga Tanggungan</th>
+				<th class="text-center">RP </th>
             </tr>
             </thead>
 			<tbody>
