@@ -15,9 +15,12 @@ class DataRekening extends MY_Base
         $this->load->model('Setoransimpananwajib_model');
         $this->load->model('Penarikansimpananwajib_model');
         $this->load->model('Simpananpokok_model');
+        $this->load->model('Wilayah_model');
     }
 
     public function index(){
+		
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
     	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
 
@@ -25,7 +28,8 @@ class DataRekening extends MY_Base
     	$simpananNonaktif = $this->Simpanan_model->get_simpanan_nonaktif();
     	$setoransimpananwajib = $this->Setoransimpananwajib_model->get_all();    	
     	$simpananwajibDitarik = $this->Penarikansimpananwajib_model->get_all();
-    	$simpananPokok = $this->Simpananpokok_model->get_all();
+		$simpananPokok = $this->Simpananpokok_model->get_all();
+        $wilayah = $this->Wilayah_model->get_all();		
 
     	$saldoSimpanan = 0;
     	$saldoSimpananDitarik = 0;
@@ -46,9 +50,10 @@ class DataRekening extends MY_Base
     	foreach ($simpananAktif as $key => $value) {
     		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
     		foreach ($setoran as $k => $item) {
-    			if ($f<>'' && $t<>'') {	
+				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+    			if ($f<>'' && $t<>'' && $w<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-    				if ($tgl >= $f && $tgl <= $t) {
+    				if ($tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == 'all' || $tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == $w) {
     					$saldoSimpanan += $item->ssi_jmlsetor;
     				}
     			} else {
@@ -63,7 +68,7 @@ class DataRekening extends MY_Base
     		foreach ($penarikan as $k => $item) {
     			if ($f<>'' && $t<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->pes_tglpenarikan));
-    				if ($tgl >= $f && $tgl <= $t) {
+    				if ( $tgl >= $f && $tgl <= $t && $item->wil_kode == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
     					$saldoSimpananDitarik += $item->pes_saldopokok;
 	    				$phBuku += $item->pes_phbuku;
 	    				$administrasi += $item->pes_administrasi;
@@ -82,7 +87,7 @@ class DataRekening extends MY_Base
     		foreach ($bungaSetoran as $k => $item) {
     			if ($f<>'' && $t<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
-    				if ($tgl >= $f && $tgl <= $t) {
+    				if ($tgl >= $f && $tgl <= $t && $item->wil_kode == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
     					$bungaSimpanan += $item->bss_bungabulanini;
     				}
     			} else {
@@ -128,6 +133,8 @@ class DataRekening extends MY_Base
     	}
 
 		$data = array(
+			
+            'wilayah_data' => $wilayah,
 			'saldosimpanan' => $saldoSimpanan,
 			'saldosimpananditarik' => $saldoSimpananDitarik,
 			'bungasimpanan' => $bungaSimpanan,
@@ -138,6 +145,7 @@ class DataRekening extends MY_Base
 			'administrasi' => $administrasi,
 			'f' => $f,
 			't' => $t,
+			'w' => $w,
 		    'content' => 'backend/simpanan/datarekening/index',
 		);
         $this->load->view(layout(), $data);

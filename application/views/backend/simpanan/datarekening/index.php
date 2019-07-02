@@ -21,7 +21,17 @@
                 <div class="col-md-3">
                     <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
                 </div>
+                <select class="form-control col-md-3"  name="w">
+                    <option value="all">Semua Wilayah</option>
+                    <?php
+                        foreach ($wilayah_data as $value) { ?>
+                            <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
+                    <?php        
+                        }
+                    ?>
+                </select>
             </div>
+           
             
             <div class="col-md-4 text-right">
                     <div class="input-group">
