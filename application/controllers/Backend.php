@@ -65,7 +65,8 @@ class Backend extends MY_Base {
 				//=saldo bulan lalu + jum setoran bulan ini + jum bunga
 				$saldoBaru = $saldoSetoranLalu + $jumSetorBaru + $bungaBaru;
 
-				echo "Setoran baru = ".$jumSetorBaru.'</br>' 
+				echo "</br>SIMPANAN : ".$value->sim_kode.'</br>'
+					."Setoran baru = ".$jumSetorBaru.'</br>' 
 					. "Setoran Lalu = ".$saldoSetoranLalu .'</br>'
 					. "Bunga = " .$bungaBaru .'</br>'
 					. "Saldo Baru = " .$saldoBaru . '</br>';
