@@ -35,6 +35,9 @@ class Simpanan extends MY_Base
             case  5:
                 $this->setor();
                 break;
+            case  6:
+                $this->listsetoran();
+                break;
                     
             default:
                 $this->simpanana();
@@ -123,7 +126,7 @@ class Simpanan extends MY_Base
             );
                 $this->Setoransimpanan_model->insert($dataSetoran);
                 $this->session->set_flashdata('message', 'Create Record Success');
-                redirect(site_url('simpanan/?p=5'));
+                redirect(site_url('simpanan/?p=3'));
         
     }
 
@@ -195,7 +198,7 @@ class Simpanan extends MY_Base
             );
                 $this->Penarikansimpanan_model->insert($dataPenarikan);
                 $this->session->set_flashdata('message', 'Create Record Success');
-                redirect(site_url('simpanan/?p=4'));
+                redirect(site_url('simpanan/?p=3'));
         
     }
 
@@ -230,6 +233,69 @@ class Simpanan extends MY_Base
             'active' => 3,
             'content' => 'backend/simpanan/simpanan',
             'item' => 'simpanan_list.php',
+        );
+        $this->load->view(layout(), $data);
+    }
+
+    public function listsetoran()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+        $start = intval($this->input->get('start'));
+        
+        /*if ($q <> '') {
+            $config['base_url'] = base_url() . 'simpanan/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'simpanan/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'simpanan/index.html';
+            $config['first_url'] = base_url() . 'simpanan/index.html';
+        }*/
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Setoransimpanan_model->total_rows($q);
+        $setoransimpanan = $this->Setoransimpanan_model->get_limit_data($config['per_page'], $start, $q, $f, $t);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+        $wilayah = $this->Wilayah_model->get_all();
+        $datasetoran = array();
+        foreach ($setoransimpanan as $key=>$item) {
+            $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+            //$wil_kode = $sim_kode->wil_kode;
+            $tanggalDuedate = $item->ssi_tglsetor;
+            $f = date("Y-m-d", strtotime($f));
+            $t = date("Y-m-d", strtotime($t));
+
+            if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sim_kode->wil_kode == $w)) {
+                $datasetoran[$key] = array('ssi_id' => $item->ssi_id,
+                'sim_kode' => $item->sim_kode,
+                'wil_kode' => $sim_kode->wil_kode,
+                'ssi_tglsetor' => $item->ssi_tglsetor,
+                'ssi_jmlsetor' => $item->ssi_jmlsetor,
+                //'ssi_jmlbunga' => $row->ssi_jmlbunga,
+                'ssi_tgl' => $item->ssi_tgl,
+                'ssi_flag' => $item->ssi_flag,
+                'ssi_info' => $item->ssi_info,
+                );
+            }
+        }
+        $data = array(
+            'datasetoran' => $datasetoran,
+            'setoransimpanan_data' => $setoransimpanan,
+            'wilayah_data' => $wilayah,
+            'q' => $q,
+            'w' => $w,
+            'f' => $f,
+            't' => $t,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+            'active' => 6,
+            'content' => 'backend/simpanan/simpanan',
+            'item' => 'setoransimpanan_list.php',
         );
         $this->load->view(layout(), $data);
     }

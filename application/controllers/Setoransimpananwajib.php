@@ -146,15 +146,14 @@ class Setoransimpananwajib extends MY_Base
                 'action' => site_url('setoransimpananwajib/update_action'),
 		'ssw_id' => set_value('ssw_id', $row->ssw_id),
 		'siw_id' => set_value('siw_id', $row->siw_id),
-		'nm_siw_id' => set_value('nm_siw_id', $row->ang_no),
 		'ssw_tglsetor' => set_value('ssw_tglsetor', $row->ssw_tglsetor),
 		'ssw_jmlsetor' => set_value('ssw_jmlsetor', $row->ssw_jmlsetor),
-	    'content' => 'backend/setoransimpananwajib/setoransimpananwajib_form',
+	    'content' => 'backend/setoransimpananwajib/setoransimpananwajib_edit',
 	    );
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('setoransimpananwajib'));
+            redirect(site_url('simpananwajib/setorsimpananwajib/'.$siw_id));
         }
     }
     
@@ -174,7 +173,7 @@ class Setoransimpananwajib extends MY_Base
 
             $this->Setoransimpananwajib_model->update($this->input->post('ssw_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('setoransimpananwajib'));
+            redirect(site_url('anggota/?p=2'));
         }
     }
     
