@@ -37,6 +37,16 @@ class Setoransimpanan_model extends CI_Model
         $this->db->where('sim_kode =',$sim_kode);
         return $this->db->get($this->table)->result();
     }
+
+    // get data by sim_kode & tgl
+    function get_data_setorTgl($sim_kode, $tglStart, $tglEnd)
+    {
+        //SELECT sum(ssi_jmlsetor) as jum FROM `setoransimpanan` where sim_kode = 'KA080619001' AND ssi_tglsetor BETWEEN '2019-06-01' and '2019-07-01'
+        $this->db->select("sum(ssi_jmlsetor) as jum_setor");
+        $this->db->where('sim_kode =',$sim_kode);
+        $this->db->where("ssi_tglsetor BETWEEN '$tglStart' AND '$tglEnd'");
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows($q = NULL) {
