@@ -51,29 +51,22 @@
         <th class="text-center">Setoran</th>
 		<th class="text-center">Tanggal Setoran</th>
 		<th class="text-center">Saldo</th>
-		<th class="text-center">Bunga</th>
-		<th class="text-center">Total</th>
             </tr>
             </thead>
 			<tbody><?php
             $no = 1;
             $total_setoran = 0;
-            $bunga = 0;
             foreach ($setor['setoran_data'] as $setorandata)
             {
                 $sim_kode = $setor['sim_kode'];
                 $total_setoran += $setorandata->ssi_jmlsetor;
-                $bunga += $setorandata->ssi_jmlsetor * $setor['bus_id']/100;
-                $pes_jumlah = $total_setoran+$bunga;
             ?>
             <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $sim_kode ?></td>
-			<td><?php echo 'Rp ',$setorandata->ssi_jmlsetor ?></td>
+			<td><?php echo 'Rp ',number_format($setorandata->ssi_jmlsetor, 0, ".", ".") ?></td>
 			<td><?php echo $setorandata->ssi_tglsetor ?></td>
-			<td><?php echo 'Rp ',$total_setoran ?></td>
-			<td><?php echo 'Rp ',$bunga ?></td>
-			<td><?php echo 'Rp ',$pes_jumlah?></td>
+			<td><?php echo 'Rp ',number_format($total_setoran, 0, ".", ".")?></td>
            </tr>
                 
             <?php
@@ -82,7 +75,7 @@
             ?>
             
     <div class="form-group col-md-4">
-        <label for="varchar">Jumlah Setoran <?php echo '(Min Setor Rp ',$setor['min_jse_id'],')'?></label>
+        <label for="varchar">Jumlah Setoran <?php echo '(Min Setor Rp ',number_format($setor['min_jse_id'], 0, ".", "."),')'?></label>
         <input type="number" class="form-control" name="ssi_jmlsetor" min=<?= $setor['min_jse_id'] ?> id="ssi_jmlsetor" placeholder="Jumlah Setor" value="" required="required" />
         <input type="hidden" class="form-control" name="sim_kode" id="sim_kode" placeholder="sim_kode" value="<?php echo $setor['sim_kode']; ?>"/>
     </div>
