@@ -34,6 +34,7 @@
 		<th class="text-center">Jumlah Setor</th>
 		<th class="text-center">Total Setor</th>
 		<th class="text-center">Kekurangan Setor</th>
+		<th class="text-center">Edit Data</th>
             </tr>
             </thead>
 			<tbody>
@@ -57,6 +58,10 @@
 			<td><?php echo $setoransimpananwajib->ssw_jmlsetor ?></td>
 			<td><?php echo $total ?></td>
             <td><?php echo $kurang ?></td>
+            <td style="text-align:center" width="200px">
+                <?php 
+				echo anchor(site_url('setoransimpananwajib/update/'.$setoransimpananwajib->ssw_id),'Update','class="text-navy" onclick="javascript: return confirm(\'Yakin Edit Data?\')"');                 				?>
+			</td>
 		</tr>
         <?php
         $no++;
