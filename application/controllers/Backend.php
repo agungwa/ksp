@@ -21,6 +21,7 @@ class Backend extends MY_Base {
 			'content'=>'backend/dashboard',
 
 		);
+		$this->hitungBungaSetoran();
 		$this->load->view('layout_backend.php',$data);
 	}
 
@@ -34,9 +35,9 @@ class Backend extends MY_Base {
 		}
 
 		$nowTgl = date("d");
-		//jika sekarang tgl 28 jalankan perhitungan
-		if ($nowTgl == "01") {
-			//echo $nowTgl;
+		$now = date("Y-m-d");
+		//jika sekarang tgl 28 jalankan perhitungan & tgl skrg lbh dr tgl trakhir di histori
+		if ($nowTgl == "28" && $now > $lastTgl) {
 			//ambil data simpanan aktif
 			$simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
 			foreach ($simpananAktif as $key => $value) {
@@ -50,7 +51,7 @@ class Backend extends MY_Base {
 				//ambil data bunga setoran dari bulan sebelumnya, ambil bss_saldobulanini
 				//ambil data setoran simpanan mulai tgl 28 s/d 27
 				//hitung total setoran setiap rekening simpanan
-				$jumSetor = $this->Setoransimpanan_model->get_data_setorTgl($value->sim_kode, "2019-06-01", "2019-07-01"); //$lastTgl,$nowTgl
+				$jumSetor = $this->Setoransimpanan_model->get_data_setorTgl($value->sim_kode, "2019-06-01", "2019-07-03"); //$lastTgl,$nowTgl
 				$jumSetorBaru = 0;
 				foreach ($jumSetor as $k => $item) {
 					if (!empty($item->jum_setor)) {
@@ -65,17 +66,35 @@ class Backend extends MY_Base {
 				//=saldo bulan lalu + jum setoran bulan ini + jum bunga
 				$saldoBaru = $saldoSetoranLalu + $jumSetorBaru + $bungaBaru;
 
-				echo "</br>SIMPANAN : ".$value->sim_kode.'</br>'
+				/*echo "</br>SIMPANAN : ".$value->sim_kode.'</br>'
 					."Setoran baru = ".$jumSetorBaru.'</br>' 
 					. "Setoran Lalu = ".$saldoSetoranLalu .'</br>'
 					. "Bunga = " .$bungaBaru .'</br>'
-					. "Saldo Baru = " .$saldoBaru . '</br>';
+					. "Saldo Baru = " .$saldoBaru . '</br>';*/
 
 				//simpan data bunga setoran ke tabel bungasetoransimpanan
-				
+				$dataBungaSetoran = array(
+						'sim_kode' => $value->sim_kode,
+						'bss_saldosimpanan' => $saldoSetoranLalu,
+						'bss_jumlahsetoranbulanan' => $jumSetorBaru,
+						'bss_bungabulanini' => $bungaBaru,
+						'bss_saldobulanini' => $saldoBaru,
+						'bss_tglbunga' => "2019-07-03",
+						'bss_tgl' => date("Y-m-d H:i:s"),
+						'bss_flag' => 0,
+						'bss_info' => ''
+					);
+				$this->Bungasetoransimpanan_model->insert($dataBungaSetoran);			
 			}
-
 			//simpan tgl terakhir perhitungan dijalankan di tabel histori bungasetoran	
+			$dataHistori = array(
+					'ang_no'=> $this->session->userdata('username'),
+					'hbs_tglterakhir' => $now,
+					'hbs_tgl' => $now,
+					'hbs_flag' => 0,
+					'hbs_info' => ''
+			);
+			$this->Historibungasimpanan_model->insert($dataHistori);
 		}
 	}
 }
