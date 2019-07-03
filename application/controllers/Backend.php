@@ -26,7 +26,7 @@ class Backend extends MY_Base {
 	}
 
 	public function hitungBungaSetoran(){
-		$lastmonth = mktime(0, 0, 0, date("m")-1, 27, date("Y"));
+		$lastmonth = mktime(0, 0, 0, date("m")-1, 28, date("Y"));
 		$lastTgl = date("Y-m-d",$lastmonth);
 		//cek tgl terakhir perhitungan dr tabel histori bungasetoran
 		$lastHistory = $this->Historibungasimpanan_model->get_data_terakhir();
@@ -51,7 +51,9 @@ class Backend extends MY_Base {
 				//ambil data bunga setoran dari bulan sebelumnya, ambil bss_saldobulanini
 				//ambil data setoran simpanan mulai tgl 28 s/d 27
 				//hitung total setoran setiap rekening simpanan
-				$jumSetor = $this->Setoransimpanan_model->get_data_setorTgl($value->sim_kode, $lastTgl,$nowTgl); //$lastTgl,$nowTgl
+				$tgl27Now = mktime(0, 0, 0, date("m"), 27, date("Y"));
+				$tgl27Now = date("Y-m-d", $tgl27Now);
+				$jumSetor = $this->Setoransimpanan_model->get_data_setorTgl($value->sim_kode, $lastTgl,$tgl27Now);
 				$jumSetorBaru = 0;
 				foreach ($jumSetor as $k => $item) {
 					if (!empty($item->jum_setor)) {
@@ -79,7 +81,7 @@ class Backend extends MY_Base {
 						'bss_jumlahsetoranbulanan' => $jumSetorBaru,
 						'bss_bungabulanini' => $bungaBaru,
 						'bss_saldobulanini' => $saldoBaru,
-						'bss_tglbunga' => "2019-07-03",
+						'bss_tglbunga' => $now,
 						'bss_tgl' => date("Y-m-d H:i:s"),
 						'bss_flag' => 0,
 						'bss_info' => ''
