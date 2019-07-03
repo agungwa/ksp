@@ -43,7 +43,7 @@ class Backend extends MY_Base {
 			foreach ($simpananAktif as $key => $value) {
 				$bungaSimpanan = $this->Bungasimpanan_model->get_by_id($value->bus_id);
 				$persenBunga = $bungaSimpanan->bus_bunga / 100;
-				$bungaSetoranLalu = $this->Bungasetoransimpanan_model->get_data_bungasetoranTgl($value->sim_kode, "2019-06-01");
+				$bungaSetoranLalu = $this->Bungasetoransimpanan_model->get_data_bungasetoranTgl($value->sim_kode, $lastTgl);
 				$saldoSetoranLalu = 0;
 				if (!empty($bungaSetoranLalu)) {
 					$saldoSetoranLalu = $bungaSetoranLalu->bss_saldobulanini;
@@ -51,7 +51,7 @@ class Backend extends MY_Base {
 				//ambil data bunga setoran dari bulan sebelumnya, ambil bss_saldobulanini
 				//ambil data setoran simpanan mulai tgl 28 s/d 27
 				//hitung total setoran setiap rekening simpanan
-				$jumSetor = $this->Setoransimpanan_model->get_data_setorTgl($value->sim_kode, "2019-06-01", "2019-07-03"); //$lastTgl,$nowTgl
+				$jumSetor = $this->Setoransimpanan_model->get_data_setorTgl($value->sim_kode, $lastTgl,$nowTgl); //$lastTgl,$nowTgl
 				$jumSetorBaru = 0;
 				foreach ($jumSetor as $k => $item) {
 					if (!empty($item->jum_setor)) {
