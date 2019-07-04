@@ -8,6 +8,7 @@ class Penarikaninvestasiberjangka_model extends CI_Model
 
     public $table = 'penarikaninvestasiberjangka';
     public $id = 'pib_id';
+    public $ivb_kode = 'ivb_kode';
     public $order = 'DESC';
 
     function __construct()
@@ -29,10 +30,17 @@ class Penarikaninvestasiberjangka_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+     // get data by ivb_kode
+     function get_data_ivb($ivb_kode)
+     {
+         $this->db->where('ivb_kode =', $ivb_kode);
+         return $this->db->get($this->table)->result();
+     }
     
     // get total rows
     function total_rows($q = NULL) {
-        $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND pib_flag < 2";
+        $where = "pib_id LIKE '%$q%' ESCAPE '!' AND pib_flag < 2";
         $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
@@ -41,7 +49,7 @@ class Penarikaninvestasiberjangka_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND pib_flag < 2";
+        $where = "pib_id LIKE '%$q%' ESCAPE '!' AND pib_flag < 2";
         $this->db->where($where);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();

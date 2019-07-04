@@ -34,7 +34,6 @@ class Setoransimpananwajib_model extends CI_Model
     // get data by siw_id
     function get_data_ssw($siw_id)
     {
-        //$this->load->model('Simpananwajib_model');
         $this->db->where('siw_id =',$siw_id);
         return $this->db->get($this->table)->result();
     }
