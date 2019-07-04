@@ -9,6 +9,7 @@ class Investasiberjangka extends MY_Base
     {
         parent::__construct();
         $this->load->model('Investasiberjangka_model');
+        $this->load->model('Penarikaninvestasiberjangka_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Pengkodean');
         $this->load->library('form_validation');
@@ -23,9 +24,6 @@ class Investasiberjangka extends MY_Base
                 break;
             case  2:
                 $this->listdata();
-                break;
-            case  3:
-                $this->tarikjasa();
                 break;
             case  4:
                 $this->tarikinvestasi();
@@ -74,26 +72,100 @@ class Investasiberjangka extends MY_Base
              redirect(site_url('investasiberjangka'));
     }
 
-    //tarik jasa investasi
-    public function tarikjasa(){
-        $data = array(
-            'content' => 'backend/investasiberjangka/investasiberjangka',
-            'item'=> 'tarikjasa/tarikjasa.php',
-            'active' => 3,
-        );
 
-        $this->load->view(layout(), $data);
-    }
-
-    //tarik investasi
+    //list tarik atau tutup investasi
     public function tarikinvestasi(){
-        $data = array(
-            'content' => 'backend/investasiberjangka/investasiberjangka',
-            'item'=> 'tarikinvestasi/tarikinvestasi.php',
-            'active' => 4,
-        );
+            {
+                $q = urldecode($this->input->get('q', TRUE));
+                $start = intval($this->input->get('start'));
+        
+                $config['per_page'] = 10;
+                $config['page_query_string'] = TRUE;
+                $config['total_rows'] = $this->Investasiberjangka_model->total_rows($q);
+                $investasiberjangka = $this->Investasiberjangka_model->get_limit_data($config['per_page'], $start, $q);
+        
+                $this->load->library('pagination');
+                $this->pagination->initialize($config);
+                
+                $wilayah = $this->Wilayah_model->get_all();
+        
+                $data = array(
+                    'wilayah_data' => $wilayah,
+                    'investasiberjangka_data' => $investasiberjangka,
+                    'q' => $q,
+                    'pagination' => $this->pagination->create_links(),
+                    'total_rows' => $config['total_rows'],
+                    'start' => $start,
+                    'content' => 'backend/investasiberjangka/investasiberjangka',
+                    'item'=> 'tarikinvestasi/tarikinvestasi.php',
+                    'active' => 4,
+                    );
+                $this->load->view(layout(), $data);
+            }
+    
+            $this->load->view(layout(), $data);
+        }
 
-        $this->load->view(layout(), $data);
+    //tarik atau tutup investasi berjangka
+    public function tarik() 
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $tarik = null;
+
+        if ($q<>''){
+                $row = $this->Investasiberjangka_model->get_by_id($q);
+                $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_data_ivb($q);
+                //var_dump($penarikaninvestasiberjangka);               
+                if ($row) {
+                $ivb_status = $this->statusInvestasi;                
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $row->jwi_id))->row();
+                $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $row->jiv_id))->row();
+                $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $row->biv_id))->row();
+                $tanggalDuedate = date("Y-m-d", strtotime($row->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
+
+                $tarik = array(
+                    'penarikaninvestasiberjangka_data' => $penarikaninvestasiberjangka,
+                    'ivb_kode' => $row->ivb_kode,
+                    'ang_no' => $row->ang_no,
+                    'nama_ang_no' => $ang_no->ang_nama,
+                    'kar_kode' => $kar_kode->kar_nama,
+                    'wil_kode' => $wil_kode->wil_nama,
+                    'jwi_id' => $jwi_id->jwi_jangkawaktu,
+                    'jiv_id' => $jiv_id->jiv_jasa,
+                    'biv_id' => $biv_id->biv_bunga,
+                    'ivb_jumlah' => $row->ivb_jumlah,
+                    'ivb_tglpendaftaran' => $row->ivb_tglpendaftaran,
+                    'ivb_tglperpanjangan' => $row->ivb_tglperpanjangan,
+                    'jatuhtempo' => $tanggalDuedate,
+                    'ivb_status' => $ivb_status[$row->ivb_status],
+                    'ivb_tgl' => $row->ivb_tgl,
+                    'ivb_flag' => $row->ivb_flag,
+                    'ivb_info' => $row->ivb_info,
+                    );
+                }
+            }
+            $data = array(
+                'content' => 'backend/investasiberjangka/investasiberjangka',
+                'item'=> 'tarikinvestasi/tarik.php',
+                'q' => $q,
+                'active' => 5,
+                'tarik' => $tarik,
+            );
+            $this->load->view(
+            layout(), $data);
+        }
+
+    //tutup investasi action
+    public function tarik_action(){
+        //update data investasi
+        $dataInvestasi = array(
+            'ivb_status' => 1,
+            );
+        $this->Investasiberjangka_model->update($this->input->post('ivb_kode', TRUE), $dataInvestasi);
+        redirect(site_url('investasiberjangka/?p=4'));
     }
 
     public function listdata()

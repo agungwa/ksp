@@ -14,8 +14,7 @@
         			<div class="row" style="margin-bottom: 10px">
         				<ul class="nav nav-tabs">
                         <li role="presentation" class="<?= ($active==1)?'active':''?>"><a href="<?=base_url()?>investasiberjangka/?p=1">Pendaftaran</a></li>
-                        <li role="presentation" class="<?= ($active==3)?'active':''?>"><a href="<?=base_url()?>investasiberjangka/?p=3">Penarikan Jasa Investasi</a></li>
-                        <li role="presentation" class="<?= ($active==4)?'active':''?>"><a href="<?=base_url()?>investasiberjangka/?p=4">Penarikan Investasi</a></li>
+                        <li role="presentation" class="<?= ($active==4)?'active':''?>"><a href="<?=base_url()?>investasiberjangka/?p=4">Tutup Investasi</a></li>
                         <li role="presentation" class="<?= ($active==2)?'active':''?>"><a href="<?=base_url()?>investasiberjangka/?p=2">List Investasi</a></li>
                         </ul>
 						

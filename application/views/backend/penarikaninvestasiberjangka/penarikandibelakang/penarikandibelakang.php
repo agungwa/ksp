@@ -3,7 +3,7 @@
         <div class="ibox">
         <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
-            <form action="<?php echo base_url()?>investasiberjangka/tarikinvestasi" class="form-inline" method="get">
+            <form action="<?php echo base_url()?>penarikaninvestasiberjangka/penarikandibelakang" class="form-inline" method="get">
             <div class="col-md-8 text-right">
                 <input type="hidden" name="p" value="3">
                 <div class="col-md-2"><h3>Filter : </h3></div>
@@ -30,7 +30,7 @@
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('investasiberjangka/tarikinvestasi'); ?>" class="form-inline" method="get">
+                <form action="<?php echo site_url('penarikaninvestasiberjangka/penarikandibelakang'); ?>" class="form-inline" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
@@ -38,7 +38,7 @@
                                 if ($q <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo site_url('investasiberjangka/tarikinvestasi'); ?>" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo site_url('penarikaninvestasiberjangka/penarikandibelakang'); ?>" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
@@ -48,7 +48,6 @@
                 </form>
             </div>
         </div>
-        
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
@@ -94,8 +93,9 @@
 			<td><?php echo $tanggalDuedate ?></td>
 			<td><?php echo $ivb_status[$investasiberjangka->ivb_status] ?></td>
 			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('investasiberjangka/tarik?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 
+                <?php 
+                echo anchor(site_url('penarikaninvestasiberjangka/tarikpenarikandibelakang?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 
+				
 				?>
 			</td>
 		</tr>
