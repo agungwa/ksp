@@ -70,6 +70,81 @@ class Penarikaninvestasiberjangka extends MY_Base
         $this->load->view(layout(), $data);
     }
 
+    public function tarikpenarikandidepan() 
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $tarikpenarikandidepan = null;
+
+        if ($q<>''){
+                $row = $this->Investasiberjangka_model->get_by_id($q);
+                $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_data_ivb($q);
+                //var_dump($penarikaninvestasiberjangka);               
+                if ($row) {
+                $ivb_status = $this->statusInvestasi;                
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $row->jwi_id))->row();
+                $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $row->jiv_id))->row();
+                $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $row->biv_id))->row();
+                $tanggalDuedate = date("Y-m-d", strtotime($row->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
+
+                $tarikpenarikandidepan = array(
+                    'penarikaninvestasiberjangka_data' => $penarikaninvestasiberjangka,
+                    'ivb_kode' => $row->ivb_kode,
+                    'ang_no' => $row->ang_no,
+                    'nama_ang_no' => $ang_no->ang_nama,
+                    'kar_kode' => $kar_kode->kar_nama,
+                    'wil_kode' => $wil_kode->wil_nama,
+                    'jwi_id' => $jwi_id->jwi_jangkawaktu,
+                    'jiv_id' => $jiv_id->jiv_jasa,
+                    'biv_id' => $biv_id->biv_bunga,
+                    'ivb_jumlah' => $row->ivb_jumlah,
+                    'ivb_tglpendaftaran' => $row->ivb_tglpendaftaran,
+                    'ivb_tglperpanjangan' => $row->ivb_tglperpanjangan,
+                    'jatuhtempo' => $tanggalDuedate,
+                    'ivb_status' => $ivb_status[$row->ivb_status],
+                    'ivb_tgl' => $row->ivb_tgl,
+                    'ivb_flag' => $row->ivb_flag,
+                    'ivb_info' => $row->ivb_info,
+                    );
+                }
+            }
+            $data = array(
+                'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka',
+                'item'=> 'penarikandidepan/tarik.php',
+                'q' => $q,
+                'active' => 5,
+                'tarikpenarikandidepan' => $tarikpenarikandidepan,
+            );
+            $this->load->view(
+            layout(), $data);
+        }
+
+        public function tarikpenarikandidepan_action() 
+    {
+        //insert data penarikan
+        $dataTarik = array(
+            'ivb_kode' => $this->input->post('ivb_kode',TRUE),
+            'pib_penarikanke' => $this->input->post('pib_penarikanke',TRUE),
+            'pib_jmlkeuntungan' => $this->input->post('pib_jmlkeuntungan',TRUE),
+            'pib_jmlditerima' => $this->input->post('pib_jmlditerima',TRUE),
+            'pib_tgl' => $this->tgl,
+            'pib_flag' => 0,
+            'pib_info' => "",
+            );
+                $this->Penarikaninvestasiberjangka_model->insert($dataTarik);
+                $this->session->set_flashdata('message', 'Create Record Success');
+
+        //update data pinjaman
+        $dataInvestasi = array(
+            'ivb_status' => 1,
+            );
+        $this->Investasiberjangka_model->update($this->input->post('ivb_kode', TRUE), $dataInvestasi);
+                redirect(site_url('penarikaninvestasiberjangka/?p=1'));
+        
+    }
+
     //penarikan investasi per bulan
     public function penarikanperbulan(){
         {
@@ -100,7 +175,6 @@ class Penarikaninvestasiberjangka extends MY_Base
             $this->load->view(layout(), $data);
         }
 
-        $this->load->view(layout(), $data);
     }
 
     public function tarikpenarikanperbulan() 
@@ -171,7 +245,6 @@ class Penarikaninvestasiberjangka extends MY_Base
                 redirect(site_url('penarikaninvestasiberjangka/?p=2'));
         
     }
-    
 
     //penarikan investasi dibelakang
     public function penarikandibelakang(){
@@ -201,6 +274,81 @@ class Penarikaninvestasiberjangka extends MY_Base
                 );
 
         $this->load->view(layout(), $data);
+    }
+
+    public function tarikpenarikandibelakang() 
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $tarikpenarikandibelakang = null;
+
+        if ($q<>''){
+                $row = $this->Investasiberjangka_model->get_by_id($q);
+                $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_data_ivb($q);
+                //var_dump($penarikaninvestasiberjangka);               
+                if ($row) {
+                $ivb_status = $this->statusInvestasi;                
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $row->jwi_id))->row();
+                $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $row->jiv_id))->row();
+                $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $row->biv_id))->row();
+                $tanggalDuedate = date("Y-m-d", strtotime($row->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
+
+                $tarikpenarikandibelakang = array(
+                    'penarikaninvestasiberjangka_data' => $penarikaninvestasiberjangka,
+                    'ivb_kode' => $row->ivb_kode,
+                    'ang_no' => $row->ang_no,
+                    'nama_ang_no' => $ang_no->ang_nama,
+                    'kar_kode' => $kar_kode->kar_nama,
+                    'wil_kode' => $wil_kode->wil_nama,
+                    'jwi_id' => $jwi_id->jwi_jangkawaktu,
+                    'jiv_id' => $jiv_id->jiv_jasa,
+                    'biv_id' => $biv_id->biv_bunga,
+                    'ivb_jumlah' => $row->ivb_jumlah,
+                    'ivb_tglpendaftaran' => $row->ivb_tglpendaftaran,
+                    'ivb_tglperpanjangan' => $row->ivb_tglperpanjangan,
+                    'jatuhtempo' => $tanggalDuedate,
+                    'ivb_status' => $ivb_status[$row->ivb_status],
+                    'ivb_tgl' => $row->ivb_tgl,
+                    'ivb_flag' => $row->ivb_flag,
+                    'ivb_info' => $row->ivb_info,
+                    );
+                }
+            }
+            $data = array(
+                'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka',
+                'item'=> 'penarikandibelakang/tarik.php',
+                'q' => $q,
+                'active' => 5,
+                'tarikpenarikandibelakang' => $tarikpenarikandibelakang,
+            );
+            $this->load->view(
+            layout(), $data);
+        }
+
+        public function tarikpenarikandibelakang_action() 
+    {
+        //insert data penarikan
+        $dataTarik = array(
+            'ivb_kode' => $this->input->post('ivb_kode',TRUE),
+            'pib_penarikanke' => $this->input->post('pib_penarikanke',TRUE),
+            'pib_jmlkeuntungan' => $this->input->post('pib_jmlkeuntungan',TRUE),
+            'pib_jmlditerima' => $this->input->post('pib_jmlditerima',TRUE),
+            'pib_tgl' => $this->tgl,
+            'pib_flag' => 0,
+            'pib_info' => "",
+            );
+                $this->Penarikaninvestasiberjangka_model->insert($dataTarik);
+                $this->session->set_flashdata('message', 'Create Record Success');
+
+        //update data pinjaman
+        $dataInvestasi = array(
+            'ivb_status' => 1,
+            );
+        $this->Investasiberjangka_model->update($this->input->post('ivb_kode', TRUE), $dataInvestasi);
+                redirect(site_url('penarikaninvestasiberjangka/?p=1'));
+        
     }
 
     public function listdata()
