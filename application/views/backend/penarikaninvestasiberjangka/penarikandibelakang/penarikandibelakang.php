@@ -93,12 +93,9 @@
 			<td><?php echo $tanggalDuedate ?></td>
 			<td><?php echo $ivb_status[$investasiberjangka->ivb_status] ?></td>
 			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('investasiberjangka/read/'.$investasiberjangka->ivb_kode),'Read','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('investasiberjangka/update/'.$investasiberjangka->ivb_kode),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('investasiberjangka/delete/'.$investasiberjangka->ivb_kode),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+                <?php 
+                echo anchor(site_url('penarikaninvestasiberjangka/tarikpenarikandibelakang?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 
+				
 				?>
 			</td>
 		</tr>

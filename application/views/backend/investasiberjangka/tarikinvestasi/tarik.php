@@ -47,7 +47,6 @@
 	    <tr><td>Status</td><td><?php echo $tarik['ivb_status']; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('investasiberjangka/?p=4') ?>" class="btn btn-default">Batal</a></td></tr>
     </table>
-    <form action="<?php echo site_url('investasiberjangka/tarik_action'); ?>" method="post">
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
                 <tr>
@@ -82,11 +81,21 @@
             </tbody>
             </div>
 	</div>
-    
-    <div class="form-group col-md-12">
-	    <button type="submit" class="btn btn-primary">tarik</button> 
-    </div>
+    <form action="<?php echo site_url('investasiberjangka/tarik_action'); ?>" method="post">
+            <?php
+	        	?>
+            <div class="col-md-4">
+                <input type="hidden" class="form-control" name="ivb_kode" id="ivb_kode" placeholder="ivb_kode" value="<?php echo $tarik['ivb_kode'];?>" required="required"/>            
+	            <button type="submit" class="btn btn-primary">tarik</button> 
+                <a href="<?php echo site_url('investasiberjangka/?p=4') ?>" class="btn btn-default">Batal</a>
+            </div>
+            <?php 
+	        	?>
             </form>
+            </div>
+
+            <div class="col-md-12">
+    
 	        	<?php
 	        	} ?>
 	    </div>

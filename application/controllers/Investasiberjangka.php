@@ -158,6 +158,16 @@ class Investasiberjangka extends MY_Base
             layout(), $data);
         }
 
+    //tutup investasi action
+    public function tarik_action(){
+        //update data investasi
+        $dataInvestasi = array(
+            'ivb_status' => 1,
+            );
+        $this->Investasiberjangka_model->update($this->input->post('ivb_kode', TRUE), $dataInvestasi);
+        redirect(site_url('investasiberjangka/?p=4'));
+    }
+
     public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
