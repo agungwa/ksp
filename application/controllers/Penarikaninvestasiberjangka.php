@@ -9,21 +9,211 @@ class Penarikaninvestasiberjangka extends MY_Base
     {
         parent::__construct();
         $this->load->model('Penarikaninvestasiberjangka_model');
+        $this->load->model('Investasiberjangka_model');
+        $this->load->model('Wilayah_model');
         $this->load->library('form_validation');
     }
 
-    public function index()
+
+    public function index(){
+        $active = urldecode($this->input->get('p', TRUE));
+    
+        switch ($active) {
+            case  1:
+                $this->penarikandidepan();
+                break;
+            case  2:
+                $this->penarikanperbulan();
+                break;
+            case  3:
+                $this->penarikandibelakang();
+                break;
+            case  4:
+                $this->listdata();
+                break;
+            case  5:
+                $this->tarikpenarikanperbulan();
+                break;
+                    
+            default:
+                $this->listdata();
+                break;
+        }
+    } 
+
+     //penarikan investasi didepan
+     public function penarikandidepan(){
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Investasiberjangka_model->total_rows($q);
+        $investasiberjangka = $this->Investasiberjangka_model->get_investasi_didepan($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+        
+        $wilayah = $this->Wilayah_model->get_all();
+
+        $data = array(
+            'wilayah_data' => $wilayah,
+            'investasiberjangka_data' => $investasiberjangka,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
+            'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka',
+            'item'=> 'penarikandidepan/penarikandidepan.php',
+            'active' => 1,
+            );
+        $this->load->view(layout(), $data);
+    }
+
+    //penarikan investasi per bulan
+    public function penarikanperbulan(){
+        {
+            $q = urldecode($this->input->get('q', TRUE));
+            $start = intval($this->input->get('start'));
+    
+            $config['per_page'] = 10;
+            $config['page_query_string'] = TRUE;
+            $config['total_rows'] = $this->Investasiberjangka_model->total_rows($q);
+            $investasiberjangka = $this->Investasiberjangka_model->get_investasi_perbulan($config['per_page'], $start, $q);
+    
+            $this->load->library('pagination');
+            $this->pagination->initialize($config);
+            
+            $wilayah = $this->Wilayah_model->get_all();
+    
+            $data = array(
+                'wilayah_data' => $wilayah,
+                'investasiberjangka_data' => $investasiberjangka,
+                'q' => $q,
+                'pagination' => $this->pagination->create_links(),
+                'total_rows' => $config['total_rows'],
+                'start' => $start,
+                'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka',
+                'item'=> 'penarikanperbulan/penarikanperbulan.php',
+                'active' => 2,
+                );
+            $this->load->view(layout(), $data);
+        }
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function tarikpenarikanperbulan() 
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $tarikpenarikanperbulan = null;
+
+        if ($q<>''){
+                $row = $this->Investasiberjangka_model->get_by_id($q);
+                $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_data_ivb($q);
+                //var_dump($penarikaninvestasiberjangka);               
+                if ($row) {
+                $ivb_status = $this->statusInvestasi;                
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $row->jwi_id))->row();
+                $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $row->jiv_id))->row();
+                $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $row->biv_id))->row();
+                $tanggalDuedate = date("Y-m-d", strtotime($row->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
+
+                $tarikpenarikanperbulan = array(
+                    'penarikaninvestasiberjangka_data' => $penarikaninvestasiberjangka,
+                    'ivb_kode' => $row->ivb_kode,
+                    'ang_no' => $row->ang_no,
+                    'nama_ang_no' => $ang_no->ang_nama,
+                    'kar_kode' => $kar_kode->kar_nama,
+                    'wil_kode' => $wil_kode->wil_nama,
+                    'jwi_id' => $jwi_id->jwi_jangkawaktu,
+                    'jiv_id' => $jiv_id->jiv_jasa,
+                    'biv_id' => $biv_id->biv_bunga,
+                    'ivb_jumlah' => $row->ivb_jumlah,
+                    'ivb_tglpendaftaran' => $row->ivb_tglpendaftaran,
+                    'ivb_tglperpanjangan' => $row->ivb_tglperpanjangan,
+                    'jatuhtempo' => $tanggalDuedate,
+                    'ivb_status' => $ivb_status[$row->ivb_status],
+                    'ivb_tgl' => $row->ivb_tgl,
+                    'ivb_flag' => $row->ivb_flag,
+                    'ivb_info' => $row->ivb_info,
+                    );
+                }
+            }
+            $data = array(
+                'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka',
+                'item'=> 'penarikanperbulan/tarik.php',
+                'q' => $q,
+                'active' => 5,
+                'tarikpenarikanperbulan' => $tarikpenarikanperbulan,
+            );
+            $this->load->view(
+            layout(), $data);
+        }
+
+        public function tarikpenarikanperbulan_action() 
+    {
+        //insert data penarikan
+        $dataSetoran = array(
+            'sim_kode' => $this->input->post('sim_kode',TRUE),
+            'ssi_tglsetor' => $this->tgl,
+            'ssi_jmlsetor' => $this->input->post('ssi_jmlsetor',TRUE),
+            'ssi_tgl' => $this->tgl,
+            'ssi_flag' => 0,
+            'ssi_info' => "",
+            );
+                $this->Setoransimpanan_model->insert($dataSetoran);
+                $this->session->set_flashdata('message', 'Create Record Success');
+                redirect(site_url('simpanan/?p=5'));
+        
+    }
+    
+
+    //penarikan investasi dibelakang
+    public function penarikandibelakang(){
+        $q = urldecode($this->input->get('q', TRUE));
+            $start = intval($this->input->get('start'));
+    
+            $config['per_page'] = 10;
+            $config['page_query_string'] = TRUE;
+            $config['total_rows'] = $this->Investasiberjangka_model->total_rows($q);
+            $investasiberjangka = $this->Investasiberjangka_model->get_investasi_dibelakang($config['per_page'], $start, $q);
+    
+            $this->load->library('pagination');
+            $this->pagination->initialize($config);
+            
+            $wilayah = $this->Wilayah_model->get_all();
+    
+            $data = array(
+                'wilayah_data' => $wilayah,
+                'investasiberjangka_data' => $investasiberjangka,
+                'q' => $q,
+                'pagination' => $this->pagination->create_links(),
+                'total_rows' => $config['total_rows'],
+                'start' => $start,
+                'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka',
+                'item'=> 'penarikandibelakang/penarikandibelakang.php',
+                'active' => 3,
+                );
+
+        $this->load->view(layout(), $data);
+    }
+
+    public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-        if ($q <> '') {
+       /* if ($q <> '') {
             $config['base_url'] = base_url() . 'penarikaninvestasiberjangka/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'penarikaninvestasiberjangka/index.html?q=' . urlencode($q);
         } else {
             $config['base_url'] = base_url() . 'penarikaninvestasiberjangka/index.html';
             $config['first_url'] = base_url() . 'penarikaninvestasiberjangka/index.html';
-        }
+        } */
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
@@ -39,7 +229,9 @@ class Penarikaninvestasiberjangka extends MY_Base
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka_list',
+            'active' => 4,
+            'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka',
+            'item' => 'penarikaninvestasiberjangka_list.php',
         );
         $this->load->view(layout(), $data);
     }
