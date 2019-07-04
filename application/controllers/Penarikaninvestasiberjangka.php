@@ -157,17 +157,18 @@ class Penarikaninvestasiberjangka extends MY_Base
         public function tarikpenarikanperbulan_action() 
     {
         //insert data penarikan
-        $dataSetoran = array(
-            'sim_kode' => $this->input->post('sim_kode',TRUE),
-            'ssi_tglsetor' => $this->tgl,
-            'ssi_jmlsetor' => $this->input->post('ssi_jmlsetor',TRUE),
-            'ssi_tgl' => $this->tgl,
-            'ssi_flag' => 0,
-            'ssi_info' => "",
+        $dataTarik = array(
+            'ivb_kode' => $this->input->post('ivb_kode',TRUE),
+            'pib_penarikanke' => $this->input->post('pib_penarikanke',TRUE),
+            'pib_jmlkeuntungan' => $this->input->post('pib_jmlkeuntungan',TRUE),
+            'pib_jmlditerima' => $this->input->post('pib_jmlditerima',TRUE),
+            'pib_tgl' => $this->tgl,
+            'pib_flag' => 0,
+            'pib_info' => "",
             );
-                $this->Setoransimpanan_model->insert($dataSetoran);
+                $this->Penarikaninvestasiberjangka_model->insert($dataTarik);
                 $this->session->set_flashdata('message', 'Create Record Success');
-                redirect(site_url('simpanan/?p=5'));
+                redirect(site_url('penarikaninvestasiberjangka/?p=2'));
         
     }
     
