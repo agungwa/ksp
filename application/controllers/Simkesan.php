@@ -8,6 +8,7 @@ class Simkesan extends MY_Base
     function __construct()
     {
         parent::__construct();
+        $this->load->model('Pengkodean');
         $this->load->model('Simkesan_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Karyawan_model');
@@ -33,7 +34,9 @@ class Simkesan extends MY_Base
     } 
 
     public function pendaftaran(){
+        $nowYear = date('d');
         $data = array(
+            'kode' => $this->Pengkodean->simkesan($nowYear),
             'content' => 'backend/simkesan/simkesan',
             'item'=> 'pendaftaran/pendaftaran.php',
             'active' => 1,
@@ -41,6 +44,28 @@ class Simkesan extends MY_Base
 
         $this->load->view(layout(), $data);
     }
+
+    public function pendaftaran_action() 
+    {
+            $data = array(
+            'ang_no' => $this->input->post('ang_no',TRUE),
+            'sik_kode'=> $this->input->post('sik_kode',TRUE),
+    		'kar_kode' => $this->input->post('kar_kode',TRUE),
+    		'psk_id' => $this->input->post('psk_id',TRUE),
+    		'wil_kode' => $this->input->post('wil_kode',TRUE),
+    		'sik_tglpendaftaran' => $this->input->post('sik_tglpendaftaran',TRUE),
+    		'sik_tglberakhir' => $this->input->post('sik_tglberakhir',TRUE),
+    		'sik_status' => 0,
+    		'sik_tgl' => $this->tgl,
+    		'sik_flag' => 0,
+    		'sik_info' => "",
+    	    );
+
+            $this->Simkesan_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('simkesan'));
+        }
+    
 
     public function listdata()
     {
@@ -119,15 +144,24 @@ class Simkesan extends MY_Base
     public function read($id) 
     {
         $row = $this->Simkesan_model->get_by_id($id);
+        $tahun = 5;
         if ($row) {
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
             $data = array(
 		'sik_kode' => $row->sik_kode,
-		'ang_no' => $row->ang_no,
-		'kar_kode' => $row->kar_kode,
-		'psk_id' => $row->psk_id,
-		'wil_kode' => $row->wil_kode,
+        'ang_no' => $row->ang_no,
+        'nm_ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'psk_id' => $psk_id->psk_plan,
+		'setor_psk_id' => $psk_id->psk_setoran,
+		'wil_kode' => $wil_kode->wil_nama,
 		'sik_tglpendaftaran' => $row->sik_tglpendaftaran,
-		'sik_tglberakhir' => $row->sik_tglberakhir,
+        'sik_tglberakhir' => $row->sik_tglberakhir,
+        'estimasi_berakhir' => $tanggalDuedate,
 		'sik_status' => $row->sik_status,
 		'sik_tgl' => $row->sik_tgl,
 		'sik_flag' => $row->sik_flag,
@@ -267,7 +301,6 @@ class Simkesan extends MY_Base
 	$this->form_validation->set_rules('psk_id', 'psk id', 'trim|required');
 	$this->form_validation->set_rules('wil_kode', 'wil kode', 'trim|required');
 	$this->form_validation->set_rules('sik_tglpendaftaran', 'sik tglpendaftaran', 'trim|required');
-	$this->form_validation->set_rules('sik_tglberakhir', 'sik tglberakhir', 'trim|required');
 	$this->form_validation->set_rules('sik_status', 'sik status', 'trim|required');
 	$this->form_validation->set_rules('sik_kode', 'sik_kode', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
