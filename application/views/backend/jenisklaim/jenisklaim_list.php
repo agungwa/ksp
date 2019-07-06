@@ -61,15 +61,16 @@
 			<tbody><?php
             foreach ($jenisklaim_data as $jenisklaim)
             {
+            $jkl_plan = $this->db->get_where('plansimkesan', array('psk_id' => $jenisklaim->jkl_plan))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $jenisklaim->jkl_keuntungan ?></td>
-			<td><?php echo $jenisklaim->jkl_plan ?></td>
+			<td><?php echo $jkl_plan->psk_plan?></td>
 			<td><?php echo $jenisklaim->jkl_tahunke ?></td>
-			<td><?php echo $jenisklaim->jkl_nominal ?></td>
+			<td><?php echo "Rp ",$jenisklaim->jkl_nominal ?></td>
 			<td><?php echo $jenisklaim->jkl_keterangan ?></td>
-			<td><?php echo $jenisklaim->jkl_administrasi ?></td>
+			<td><?php echo $jenisklaim->jkl_administrasi," %"?></td>
 			<td><?php echo dateFormat($jenisklaim->jkl_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 

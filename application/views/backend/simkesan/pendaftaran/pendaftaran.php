@@ -4,13 +4,15 @@
             <div class="ibox-content">
             
             <div class="jumbotron">
+            
                 <div class="row" style="margin-bottom: 10px, margin-top:10px">
-                    <form action="<?php echo site_url('simkesan/pendaftaran'); ?>" method="post">
+                    <form action="<?php echo site_url('simkesan/pendaftaran_action'); ?>" method="post">
+                    <div class="ibox-content col-md-12">
                     <div class="col-md-12"> 
                     <div class="col-md-6"> 
                     <div class="form-group">
                         <label for="tinyint">Rekening Simkesan</label>
-                        <input type="text" class="form-control" name="sik_kode" id="sik_kode" placeholder="Rekening Simkesan" value="" />
+                        <input type="text" class="form-control" name="sik_kode" id="sik_kode" placeholder="Rekening Simkesan" value="<?php echo $kode; ?>" readonly />
                     </div>
 
                     <div class="form-group">
@@ -62,10 +64,6 @@
                     <div class="form-group">
                         <label for="datetime">Tanggal Pendaftaran</label>
                         <input type="date" class="form-control" name="sik_tglpendaftaran" id="todays-date" placeholder="Tanggal Pendaftaran" value="" />
-                    </div>
-                    <div class="form-group">
-                        <label for="datetime">Tanggal Berakhir</label>
-                        <input type="date" class="form-control" name="sik_tglberakhir" id="sik_tglberakhir" placeholder="Tanggal Berakhir" value="" />
                     </div>
                     </div>
                     </div>
