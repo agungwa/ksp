@@ -58,7 +58,8 @@
             <tr>
                 <th class="text-center">No</th>
         <th class="text-center">Rekening Simkesan</th>
-		<th class="text-center">Angggota</th>
+		<th class="text-center">ID Angggota</th>
+		<th class="text-center">Nama</th>
 		<th class="text-center">Karyawan</th>
 		<th class="text-center">Plan Simkesan</th>
 		<th class="text-center">Wilayah</th>
@@ -72,17 +73,22 @@
 			<tbody><?php
             foreach ($simkesan_data as $simkesan)
             {
+                $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $simkesan->psk_id))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $simkesan->wil_kode))->row();
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $simkesan->ang_no))->row();
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $simkesan->kar_kode))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
             <td><?php echo $simkesan->sik_kode ?></td>
 			<td><?php echo $simkesan->ang_no ?></td>
-			<td><?php echo $simkesan->kar_kode ?></td>
-			<td><?php echo $simkesan->psk_id ?></td>
-			<td><?php echo $simkesan->wil_kode ?></td>
+			<td><?php echo $ang_no->ang_nama ?></td>
+			<td><?php echo $kar_kode->kar_nama ?></td>
+			<td><?php echo $psk_id->psk_plan ?></td>
+			<td><?php echo $wil_kode->wil_nama ?></td>
 			<td><?php echo $simkesan->sik_tglpendaftaran ?></td>
 			<td><?php echo $simkesan->sik_tglberakhir ?></td>
-			<td><?php echo $simkesan->sik_status ?></td>
+			<td><?php echo $this->statusSimkesan[$simkesan->sik_status] ?></td>
 			<td><?php echo dateFormat($simkesan->sik_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 

@@ -111,6 +111,26 @@ class Pengkodean extends CI_Model
             return $kodetampil;  
     }
 
+    // input kode simkesan
+    public function simkesan($nowYear){
+        $this->db->select('RIGHT(simkesan.sik_kode,2) as sik_kode', FALSE);
+        $this->db->where("DATE_FORMAT(sik_tglpendaftaran, '%d') = ", $nowYear);
+        $this->db->limit(1);
+        $this->db->order_by('sik_kode','DESC');    
+        $query = $this->db->get('simkesan');  
+        if($query->num_rows() <> 0){          
+            $data = $query->row();      
+            $kode = intval($data->sik_kode) + 1; 
+        }
+        else{      
+            $kode = 1;
+        }
+            $tgl=date('dmy'); 
+            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+            $kodetampil = "K"."E".$tgl.$batas;
+            return $kodetampil;  
+    }
+
 }
 
 /* End of file Ahliwarissimkesan_model.php */

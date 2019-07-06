@@ -21,7 +21,7 @@ class MY_Base extends CI_Controller {
        	$this->flag = array(0=>"New", 1=>"Updated", 2=>"Deleted");
         $this->statusAngsuran = array(0=>"Belum Bayar", 1=>"Bayar", 2=>"Telat");
         $this->statusPinjaman = array(0=>"Pengajuan", 1=>"Disetujui", 2=>"Ditolak");
-        $this->statusSimkesan = array(0=>"Baru");
+        $this->statusSimkesan = array(0=>"aktif", 1=>"Diklaim", 2=>"Ditarik", 3=>"Hangus");
         $this->statusAnggota = array(0=>"Belum Anggota", 1=>"Calon Anggota", 2=>"Anggota");
         $this->statusSimpanan = array(0=>"Aktif", 1=>"Tidak Aktif");
         $this->statusInvestasi = array(0=>"Aktif", 1=>"Tidak Aktif");

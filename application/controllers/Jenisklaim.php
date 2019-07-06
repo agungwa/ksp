@@ -82,10 +82,11 @@ class Jenisklaim extends MY_Base
     {
         $row = $this->Jenisklaim_model->get_by_id($id);
         if ($row) {
+            $jkl_plan = $this->db->get_where('plansimkesan', array('psk_id' => $row->jkl_plan))->row();
             $data = array(
     		'jkl_id' => $row->jkl_id,
     		'jkl_keuntungan' => $row->jkl_keuntungan,
-    		'jkl_plan' => $row->jkl_plan,
+    		'jkl_plan' => $jkl_plan->psk_plan,
     		'jkl_tahunke' => $row->jkl_tahunke,
     		'jkl_nominal' => $row->jkl_nominal,
     		'jkl_keterangan' => $row->jkl_keterangan,
@@ -154,7 +155,7 @@ class Jenisklaim extends MY_Base
         		'jkl_id' => set_value('jkl_id', $row->jkl_id),
         		'jkl_keuntungan' => set_value('jkl_keuntungan', $row->jkl_keuntungan),
         		'jkl_plan' => set_value('jkl_plan', $row->jkl_plan),
-        		'nm_jkl_plan' => set_value('nm_jkl_plan', $row->psk_plan),
+        		'nm_jkl_plan' => set_value('nm_jkl_plan', $row->jkl_plan),
         		'jkl_tahunke' => set_value('jkl_tahunke', $row->jkl_tahunke),
         		'jkl_nominal' => set_value('jkl_nominal', $row->jkl_nominal),
         		'jkl_keterangan' => set_value('jkl_keterangan', $row->jkl_keterangan),

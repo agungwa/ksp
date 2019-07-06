@@ -24,7 +24,7 @@
             <input type="hidden" name="jkl_plan" id="jkl_plan" value="<?php echo $jkl_plan; ?>" />
             <input type="text" class="form-control" name="nm_jkl_plan" id="nm_jkl_plan" placeholder="Plan Simkesan" value="<?php echo $nm_jkl_plan; ?>" readonly/>
             <div class="input-group-addon">
-                <span onclick="lookup('<?=base_url()?>plansimkesan/lookup','psk_id');" style="cursor: pointer;">Cari</span>
+                <span onclick="lookup('<?=base_url()?>plansimkesan/lookup','jkl_plan');" style="cursor: pointer;">Cari</span>
             </div>
             </div>
         </div>
