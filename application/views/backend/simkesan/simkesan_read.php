@@ -37,6 +37,7 @@
             </form>
         </td>
         </tr>
+        <!-- Penarikan -->
             <tr><td>Penarikan</td>
             <td>
             <form action="<?php echo site_url('simkesan/penarikansepuluh/'.$sik_kode); ?>" method="post">
@@ -55,9 +56,31 @@
 	        	?>
             </form>
             </td><td></td></tr>
-            <tr><td>Klaim</td>
+        
+        <!--Klaim Santunan Duka-->
+        <tr><td>Klaim Santunan Duka</td>
             <td>
-    <form action="<?php echo site_url('pinjaman/action_surveysetuju'); ?>" method="post">
+            <form action="<?php echo site_url('simkesan/penarikansepuluh/'.$sik_kode); ?>" method="post">
+            <div class="col-md-4">            
+	            <button type="submit" class="btn btn-primary">Penarikan 10</button> 
+            </div>
+            </form>
+            <form action="<?php echo site_url('simkesan/penarikanlima/'.$sik_kode); ?>" method="post">
+            <?php
+	        	?>
+            <div class="col-md-4">
+                <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="" required="required"/>            
+	            <button type="submit" class="btn btn-primary">Penarikan 5</button> 
+            </div>
+            <?php 
+	        	?>
+            </form>
+            </td><td></td></tr>
+
+        <!--Klaim Rawat Inap -->
+            <tr><td>Klaim Rawat Inap</td>
+            <td>
+    <form action="<?php echo site_url('simkesan/klaimtahunkedua/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
@@ -148,7 +171,7 @@
 	        	?>
             </form>
             </td></tr>
-    <tr><td></td><td><a href="<?php echo site_url('simkesan') ?>" class="btn btn-default">Batal</a> </td></tr>
+    <tr><td></td><td><a href="<?php echo site_url('simkesan/?p=2') ?>" class="btn btn-default">Batal</a> </td></tr>
 	</table>
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">

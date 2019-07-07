@@ -26,6 +26,7 @@
     <tr><td></td><td><a href="<?php echo site_url('simkesan/read/'.$sik_kode) ?>" class="btn btn-default">Batal</a> </td></tr>
 	</table>
 
+    <form action="<?php echo site_url('simkesan/penarikan_action'); ?>" method="post">
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
@@ -77,7 +78,6 @@
             </tbody>
         </table>
 
-    <form action="<?php echo site_url('simpanan/setoran_action'); ?>" method="post">
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
@@ -117,8 +117,9 @@
    </td>
    </tr>
     </div>
-            </form>
+            
             </table>
+            </form>
         </div>
     </div>
     </div>
