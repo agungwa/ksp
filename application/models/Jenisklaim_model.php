@@ -8,6 +8,8 @@ class Jenisklaim_model extends CI_Model
 
     public $table = 'jenisklaim';
     public $id = 'jkl_id';
+    public $jkl_tahunke = 'jkl_tahunke';
+    public $jkl_plan = 'jkl_plan';
     public $order = 'DESC';
 
     function __construct()
@@ -28,6 +30,14 @@ class Jenisklaim_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
+    }
+
+    // get data by id
+    function get_by_tahunke($jkl_tahunke,$jkl_plan)
+    {
+        $this->db->where('jkl_tahunke=', $jkl_tahunke);
+        $this->db->where('jkl_plan=',$jkl_plan );
+        return $this->db->get($this->table)->result();
     }
     
     // get total rows
