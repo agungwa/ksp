@@ -163,6 +163,358 @@ class Simkesan extends MY_Base
         }
     }
 
+    //Klaim simkesan
+    public function klaimtahunketiga($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+        $setoran = $this->Setoransimkesan_model->get_data_setor($id);
+        $tahun = 5;
+        $tahun10 = 10;
+        if ($row) { 
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
+            $klaim = $this->Jenisklaim_model->get_by_tahunke(3,$row->psk_id);
+            $data = array(
+                'klaim_data' => $klaim,
+                'setoran_data' => $setoran,
+		'sik_kode' => $row->sik_kode,
+        'ang_no' => $row->ang_no,
+        'nm_ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'psk_id' => $psk_id->psk_plan,
+		'setor_psk_id' => $psk_id->psk_setoran,
+		'wil_kode' => $wil_kode->wil_nama,
+		'sik_tglpendaftaran' => $row->sik_tglpendaftaran,
+        'sik_tglberakhir' => $row->sik_tglberakhir,
+        'estimasi_berakhir' => $tanggalDuedate,
+        'estimasi_pengembangan' => $tahun10,
+		'sik_status' => $row->sik_status,
+		'sik_tgl' => $row->sik_tgl,
+		'sik_flag' => $row->sik_flag,
+		'sik_info' => $row->sik_info,'content' => 'backend/simkesan/klaim/klaim',
+	    );
+            $this->load->view(
+            layout(), $data);
+        }
+    }
+
+    //Klaim simkesan
+    public function klaimtahunkeempat($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+        $setoran = $this->Setoransimkesan_model->get_data_setor($id);
+        $tahun = 5;
+        $tahun10 = 10;
+        if ($row) { 
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
+            $klaim = $this->Jenisklaim_model->get_by_tahunke(4,$row->psk_id);
+            $data = array(
+                'klaim_data' => $klaim,
+                'setoran_data' => $setoran,
+		'sik_kode' => $row->sik_kode,
+        'ang_no' => $row->ang_no,
+        'nm_ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'psk_id' => $psk_id->psk_plan,
+		'setor_psk_id' => $psk_id->psk_setoran,
+		'wil_kode' => $wil_kode->wil_nama,
+		'sik_tglpendaftaran' => $row->sik_tglpendaftaran,
+        'sik_tglberakhir' => $row->sik_tglberakhir,
+        'estimasi_berakhir' => $tanggalDuedate,
+        'estimasi_pengembangan' => $tahun10,
+		'sik_status' => $row->sik_status,
+		'sik_tgl' => $row->sik_tgl,
+		'sik_flag' => $row->sik_flag,
+		'sik_info' => $row->sik_info,'content' => 'backend/simkesan/klaim/klaim',
+	    );
+            $this->load->view(
+            layout(), $data);
+        }
+    }
+
+    //Klaim simkesan
+    public function klaimtahunkelima($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+        $setoran = $this->Setoransimkesan_model->get_data_setor($id);
+        $tahun = 5;
+        $tahun10 = 10;
+        if ($row) { 
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
+            $klaim = $this->Jenisklaim_model->get_by_tahunke(5,$row->psk_id);
+            $data = array(
+                'klaim_data' => $klaim,
+                'setoran_data' => $setoran,
+		'sik_kode' => $row->sik_kode,
+        'ang_no' => $row->ang_no,
+        'nm_ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'psk_id' => $psk_id->psk_plan,
+		'setor_psk_id' => $psk_id->psk_setoran,
+		'wil_kode' => $wil_kode->wil_nama,
+		'sik_tglpendaftaran' => $row->sik_tglpendaftaran,
+        'sik_tglberakhir' => $row->sik_tglberakhir,
+        'estimasi_berakhir' => $tanggalDuedate,
+        'estimasi_pengembangan' => $tahun10,
+		'sik_status' => $row->sik_status,
+		'sik_tgl' => $row->sik_tgl,
+		'sik_flag' => $row->sik_flag,
+		'sik_info' => $row->sik_info,'content' => 'backend/simkesan/klaim/klaim',
+	    );
+            $this->load->view(
+            layout(), $data);
+        }
+    }
+
+    //Klaim simkesan
+    public function klaimtahunkeenam($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+        $setoran = $this->Setoransimkesan_model->get_data_setor($id);
+        $tahun = 5;
+        $tahun10 = 10;
+        if ($row) { 
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
+            $klaim = $this->Jenisklaim_model->get_by_tahunke(6,$row->psk_id);
+            $data = array(
+                'klaim_data' => $klaim,
+                'setoran_data' => $setoran,
+		'sik_kode' => $row->sik_kode,
+        'ang_no' => $row->ang_no,
+        'nm_ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'psk_id' => $psk_id->psk_plan,
+		'setor_psk_id' => $psk_id->psk_setoran,
+		'wil_kode' => $wil_kode->wil_nama,
+		'sik_tglpendaftaran' => $row->sik_tglpendaftaran,
+        'sik_tglberakhir' => $row->sik_tglberakhir,
+        'estimasi_berakhir' => $tanggalDuedate,
+        'estimasi_pengembangan' => $tahun10,
+		'sik_status' => $row->sik_status,
+		'sik_tgl' => $row->sik_tgl,
+		'sik_flag' => $row->sik_flag,
+		'sik_info' => $row->sik_info,'content' => 'backend/simkesan/klaim/klaim',
+	    );
+            $this->load->view(
+            layout(), $data);
+        }
+    }
+
+    //Klaim simkesan
+    public function klaimtahunketujuh($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+        $setoran = $this->Setoransimkesan_model->get_data_setor($id);
+        $tahun = 5;
+        $tahun10 = 10;
+        if ($row) { 
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
+            $klaim = $this->Jenisklaim_model->get_by_tahunke(7,$row->psk_id);
+            $data = array(
+                'klaim_data' => $klaim,
+                'setoran_data' => $setoran,
+		'sik_kode' => $row->sik_kode,
+        'ang_no' => $row->ang_no,
+        'nm_ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'psk_id' => $psk_id->psk_plan,
+		'setor_psk_id' => $psk_id->psk_setoran,
+		'wil_kode' => $wil_kode->wil_nama,
+		'sik_tglpendaftaran' => $row->sik_tglpendaftaran,
+        'sik_tglberakhir' => $row->sik_tglberakhir,
+        'estimasi_berakhir' => $tanggalDuedate,
+        'estimasi_pengembangan' => $tahun10,
+		'sik_status' => $row->sik_status,
+		'sik_tgl' => $row->sik_tgl,
+		'sik_flag' => $row->sik_flag,
+		'sik_info' => $row->sik_info,'content' => 'backend/simkesan/klaim/klaim',
+	    );
+            $this->load->view(
+            layout(), $data);
+        }
+    }
+
+    //Klaim simkesan
+    public function klaimtahunkedelapan($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+        $setoran = $this->Setoransimkesan_model->get_data_setor($id);
+        $tahun = 5;
+        $tahun10 = 10;
+        if ($row) { 
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
+            $klaim = $this->Jenisklaim_model->get_by_tahunke(8,$row->psk_id);
+            $data = array(
+                'klaim_data' => $klaim,
+                'setoran_data' => $setoran,
+		'sik_kode' => $row->sik_kode,
+        'ang_no' => $row->ang_no,
+        'nm_ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'psk_id' => $psk_id->psk_plan,
+		'setor_psk_id' => $psk_id->psk_setoran,
+		'wil_kode' => $wil_kode->wil_nama,
+		'sik_tglpendaftaran' => $row->sik_tglpendaftaran,
+        'sik_tglberakhir' => $row->sik_tglberakhir,
+        'estimasi_berakhir' => $tanggalDuedate,
+        'estimasi_pengembangan' => $tahun10,
+		'sik_status' => $row->sik_status,
+		'sik_tgl' => $row->sik_tgl,
+		'sik_flag' => $row->sik_flag,
+		'sik_info' => $row->sik_info,'content' => 'backend/simkesan/klaim/klaim',
+	    );
+            $this->load->view(
+            layout(), $data);
+        }
+    }
+
+    //Klaim simkesan
+    public function klaimtahunkesembilan($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+        $setoran = $this->Setoransimkesan_model->get_data_setor($id);
+        $tahun = 5;
+        $tahun10 = 10;
+        if ($row) { 
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
+            $klaim = $this->Jenisklaim_model->get_by_tahunke(9,$row->psk_id);
+            $data = array(
+                'klaim_data' => $klaim,
+                'setoran_data' => $setoran,
+		'sik_kode' => $row->sik_kode,
+        'ang_no' => $row->ang_no,
+        'nm_ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'psk_id' => $psk_id->psk_plan,
+		'setor_psk_id' => $psk_id->psk_setoran,
+		'wil_kode' => $wil_kode->wil_nama,
+		'sik_tglpendaftaran' => $row->sik_tglpendaftaran,
+        'sik_tglberakhir' => $row->sik_tglberakhir,
+        'estimasi_berakhir' => $tanggalDuedate,
+        'estimasi_pengembangan' => $tahun10,
+		'sik_status' => $row->sik_status,
+		'sik_tgl' => $row->sik_tgl,
+		'sik_flag' => $row->sik_flag,
+		'sik_info' => $row->sik_info,'content' => 'backend/simkesan/klaim/klaim',
+	    );
+            $this->load->view(
+            layout(), $data);
+        }
+    }
+
+    //Klaim simkesan
+    public function klaimtahunkesepuluh($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+        $setoran = $this->Setoransimkesan_model->get_data_setor($id);
+        $tahun = 5;
+        $tahun10 = 10;
+        if ($row) { 
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
+            $klaim = $this->Jenisklaim_model->get_by_tahunke(10,$row->psk_id);
+            $data = array(
+                'klaim_data' => $klaim,
+                'setoran_data' => $setoran,
+		'sik_kode' => $row->sik_kode,
+        'ang_no' => $row->ang_no,
+        'nm_ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'psk_id' => $psk_id->psk_plan,
+		'setor_psk_id' => $psk_id->psk_setoran,
+		'wil_kode' => $wil_kode->wil_nama,
+		'sik_tglpendaftaran' => $row->sik_tglpendaftaran,
+        'sik_tglberakhir' => $row->sik_tglberakhir,
+        'estimasi_berakhir' => $tanggalDuedate,
+        'estimasi_pengembangan' => $tahun10,
+		'sik_status' => $row->sik_status,
+		'sik_tgl' => $row->sik_tgl,
+		'sik_flag' => $row->sik_flag,
+		'sik_info' => $row->sik_info,'content' => 'backend/simkesan/klaim/klaim',
+	    );
+            $this->load->view(
+            layout(), $data);
+        }
+    }
+
+    //Klaim simkesan
+    public function klaimtahunduka($id) 
+    {
+        $row = $this->Simkesan_model->get_by_id($id);
+        $setoran = $this->Setoransimkesan_model->get_data_setor($id);
+        $tahun = 5;
+        $tahun10 = 10;
+        if ($row) { 
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
+            $klaim = $this->Jenisklaim_model->get_by_tahunke(0,$row->psk_id);
+            $data = array(
+                'klaim_data' => $klaim,
+                'setoran_data' => $setoran,
+		'sik_kode' => $row->sik_kode,
+        'ang_no' => $row->ang_no,
+        'nm_ang_no' => $ang_no->ang_nama,
+		'kar_kode' => $kar_kode->kar_nama,
+		'psk_id' => $psk_id->psk_plan,
+		'setor_psk_id' => $psk_id->psk_setoran,
+		'wil_kode' => $wil_kode->wil_nama,
+		'sik_tglpendaftaran' => $row->sik_tglpendaftaran,
+        'sik_tglberakhir' => $row->sik_tglberakhir,
+        'estimasi_berakhir' => $tanggalDuedate,
+        'estimasi_pengembangan' => $tahun10,
+		'sik_status' => $row->sik_status,
+		'sik_tgl' => $row->sik_tgl,
+		'sik_flag' => $row->sik_flag,
+		'sik_info' => $row->sik_info,'content' => 'backend/simkesan/klaim/klaim',
+	    );
+            $this->load->view(
+            layout(), $data);
+        }
+    }
+
+
     //klaim action
     public function klaim_action()
         {
