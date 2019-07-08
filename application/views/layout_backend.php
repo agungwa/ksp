@@ -243,9 +243,9 @@ lookup();
                         <li>
                             <a href="<?=base_url()?>Investasiberjangka">Investasi Berjangka</a>
                         </li>
-                        <li><a href="<?=base_url()?>Penarikaninvestasiberjangka">Penarikan Jasa</a></li>
-                        <li><a href="<?=base_url()?>Keuntunganinvestasi">Keuntungan Investasi</a></li>
-                        <li><a href="<?=base_url()?>Tutupinvestasiberjangka">Tutup Investasi Berjangka</a></li>                        
+                        <li>
+                            <a href="<?=base_url()?>Penarikaninvestasiberjangka">Penarikan Jasa</a>
+                        </li>                      
                         <li>
                             <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
