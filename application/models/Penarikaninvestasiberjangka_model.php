@@ -38,6 +38,16 @@ class Penarikaninvestasiberjangka_model extends CI_Model
          return $this->db->get($this->table)->result();
      }
     
+    // get data by sim_kode & tgl
+    function get_data_tarikTgl($ivb_kode, $tglStart, $tglEnd)
+    {
+        //SELECT sum(ssi_jmlsetor) as jum FROM `setoransimpanan` where sim_kode = 'KA080619001' AND ssi_tglsetor BETWEEN '2019-06-01' and '2019-07-01'
+        $this->db->select("sum(ssi_jmlsetor) as jum_setor");
+        $this->db->where('ivb_kode =',$ivb_kode);
+        $this->db->where("pib_tgl BETWEEN '$tglStart' AND '$tglEnd'");
+        return $this->db->get($this->table)->result();
+    }
+
     // get total rows
     function total_rows($q = NULL) {
         $where = "pib_id LIKE '%$q%' ESCAPE '!' AND pib_flag < 2";
@@ -49,7 +59,7 @@ class Penarikaninvestasiberjangka_model extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $where = "pib_id LIKE '%$q%' ESCAPE '!' AND pib_flag < 2";
+        $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND pib_flag < 2";
         $this->db->where($where);
 	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();

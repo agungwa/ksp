@@ -137,10 +137,10 @@ class Penarikaninvestasiberjangka extends MY_Base
                 $this->session->set_flashdata('message', 'Create Record Success');
 
         //update data pinjaman
-        $dataInvestasi = array(
+       /* $dataInvestasi = array(
             'ivb_status' => 1,
             );
-        $this->Investasiberjangka_model->update($this->input->post('ivb_kode', TRUE), $dataInvestasi);
+        $this->Investasiberjangka_model->update($this->input->post('ivb_kode', TRUE), $dataInvestasi);*/
                 redirect(site_url('penarikaninvestasiberjangka/?p=1'));
         
     }
@@ -343,17 +343,21 @@ class Penarikaninvestasiberjangka extends MY_Base
                 $this->session->set_flashdata('message', 'Create Record Success');
 
         //update data pinjaman
-        $dataInvestasi = array(
+       /* $dataInvestasi = array(
             'ivb_status' => 1,
             );
-        $this->Investasiberjangka_model->update($this->input->post('ivb_kode', TRUE), $dataInvestasi);
+        $this->Investasiberjangka_model->update($this->input->post('ivb_kode', TRUE), $dataInvestasi);*/
                 redirect(site_url('penarikaninvestasiberjangka/?p=1'));
         
     }
 
     public function listdata()
     {
+        
         $q = urldecode($this->input->get('q', TRUE));
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
         
        /* if ($q <> '') {
@@ -367,14 +371,40 @@ class Penarikaninvestasiberjangka extends MY_Base
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Penarikaninvestasiberjangka_model->total_rows($q);
-        $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_limit_data($config['per_page'], $start, $q);
+        $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_limit_data($config['per_page'], $start, $q, $f, $t);
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
+        $wilayah = $this->Wilayah_model->get_all();
+        
+        $datapenarikan = array();
+        foreach ($penarikaninvestasiberjangka as $key=>$item) {
+            $ivb_kode = $this->db->get_where('investasiberjangka', array('ivb_kode' => $item->ivb_kode))->row();
+            $tanggalDuedate = $item->pib_tgl;
+            $f = date("Y-m-d", strtotime($f));
+            $t = date("Y-m-d", strtotime($t));
+            if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $ivb_kode->wil_kode == $w)) {
+                $datapenarikan[$key] = array(
+                    'pib_id' => $item->pib_id,
+                    'ivb_kode' => $item->ivb_kode,
+                    'pib_penarikanke' => $item->pib_penarikanke,
+                    'pib_jmlkeuntungan' => $item->pib_jmlkeuntungan,
+                    'pib_jmlditerima' => $item->pib_jmlditerima,
+                    'pib_tgl' => $item->pib_tgl,
+                    'pib_flag' => $item->pib_flag,
+                    'pib_info' => $item->pib_info,
+                    
+                );
+            }
+        }
 
         $data = array(
-            'penarikaninvestasiberjangka_data' => $penarikaninvestasiberjangka,
+            'penarikaninvestasiberjangka_data' => $datapenarikan,
+            'wilayah_data' => $wilayah,
             'q' => $q,
+            'w' => $w,
+            'f' => $f,
+            't' => $t,
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
