@@ -60,21 +60,14 @@
         <!--Klaim Santunan Duka-->
         <tr><td>Klaim Santunan Duka</td>
             <td>
-            <form action="<?php echo site_url('simkesan/penarikansepuluh/'.$sik_kode); ?>" method="post">
+            <form action="<?php echo site_url('simkesan/klaimtahunduka/'.$sik_kode); ?>" method="post">
             <div class="col-md-4">            
-	            <button type="submit" class="btn btn-primary">Penarikan 10</button> 
+	            <button type="submit" class="btn btn-primary">Santunan</button> 
             </div>
             </form>
             <form action="<?php echo site_url('simkesan/penarikanlima/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
-            <div class="col-md-4">
-                <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="" required="required"/>            
-	            <button type="submit" class="btn btn-primary">Penarikan 5</button> 
-            </div>
-            <?php 
-	        	?>
-            </form>
             </td><td></td></tr>
 
         <!--Klaim Rawat Inap -->
@@ -90,7 +83,7 @@
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('pinjaman/action_surveysetuju'); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaimtahunketiga/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
@@ -100,7 +93,7 @@
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('pinjaman/action_surveysetuju'); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaimtahunkeempat/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
@@ -110,7 +103,7 @@
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('pinjaman/action_surveysetuju'); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaimtahunkelima/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
@@ -120,7 +113,7 @@
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('pinjaman/action_surveysetuju'); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaimtahunkeenam/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
@@ -130,7 +123,7 @@
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('pinjaman/action_surveysetuju'); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaimtahunketujuh/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
@@ -140,7 +133,7 @@
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('pinjaman/action_surveysetuju'); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaimtahunkedelapan/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
@@ -150,7 +143,7 @@
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('pinjaman/action_surveysetuju'); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaimtahunkesembilan/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
@@ -160,7 +153,7 @@
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('pinjaman/action_surveysetuju'); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaimtahunkesepuluh/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
