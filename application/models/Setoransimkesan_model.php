@@ -8,6 +8,7 @@ class Setoransimkesan_model extends CI_Model
 
     public $table = 'setoransimkesan';
     public $id = 'ssk_id';
+    public $sik_kode = 'sik_kode';
     public $order = 'DESC';
 
     function __construct()
@@ -28,6 +29,14 @@ class Setoransimkesan_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
+    }
+
+    // get data by sik_kode
+    function get_data_setor($sik_kode)
+    {
+        $this->db->where('sik_kode=', $sik_kode);        
+        return $this->db->get($this->table)->result();
+
     }
     
     // get total rows
