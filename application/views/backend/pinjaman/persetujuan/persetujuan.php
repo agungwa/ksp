@@ -48,7 +48,7 @@
 				    <tr><td></td><td><a href="<?php echo site_url('pinjaman/?p=3') ?>" class="btn btn-default">Batal</a></td></tr>
 				</table>
                 <div class="col-md-12">
-            <form action="<?php echo site_url('pinjaman/action_persetujuan'); ?>" method="post">
+            <form action="<?php echo site_url('pinjaman/action_persetujuan/'.$persetujuan['pin_id']); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
