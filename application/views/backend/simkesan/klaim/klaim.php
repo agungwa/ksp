@@ -116,17 +116,12 @@
              <?php if ($this->tgl == $tanggalklaim && $totalsetor >= $totalsetorseharusnya){
                     echo '<button type="submit" class="btn btn-primary">Tarik</button>';
                 }
-<<<<<<< HEAD
                     else if ($klaim->jkl_tahunke == 0){
                     echo '<button type="submit" class="btn btn-primary">Tarik</button>';
                     }     
                     else if ($this->tgl < $tanggalklaim && $totalsetor < $totalsetorseharusnya){
                     echo '<td class = "danger">Belum Bisa Tarik Simkesan </td>
                     <td class = "danger">Tangggal Klaim '.$tanggalklaim.' </td>
-=======
-                    else if ($this->tgl < $estimasi_berakhir && $totalsetor < $totalsetorseharusnya){
-                    echo '<td class = "danger">Belum Bisa Tarik Simkesan </td>
->>>>>>> 0ab5c0c5ecc33411b8143ec9c30141128823131a
                     <td class = "info">(cek ada tungakan atau belum mencapai akhir pembayaran)</td>';
                     }
                 ?>
@@ -136,15 +131,10 @@
             <input type="hidden" class="form-control" name="ksi_jmlklaim" id="ksi_jmlklaim" placeholder="ksi_jmlklaim" value="<?php echo $klaim->jkl_nominal; ?>"/>
             <label> Total Klaim</label>
             <input type="number" class="form-control" name="ksi_jmlditerima" id="ksi_jmlditerima" placeholder="ksi_jmlditerima" value="<?php echo $jumlahditerima; ?>" readonly/>
-<<<<<<< HEAD
            
             <label> Jumlah Tunggakan (jika ada)</label>
             <input type="number" class="form-control" name="ksi_jmltunggakan" id="ksi_jmltunggakan" placeholder="Optional" value="<?= $tunggakan?>" readonly/>
         
-=======
-            <label> Jumlah Tunggakan (jika ada)</label>
-            <input type="number" class="form-control" name="ksi_jmltunggakan" id="ksi_jmltunggakan" placeholder="Optional" value="<?php echo $tunggakan; ?>" readonly/>
->>>>>>> 0ab5c0c5ecc33411b8143ec9c30141128823131a
             </div>
             </tbody>
         </table>
