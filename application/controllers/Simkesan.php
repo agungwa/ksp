@@ -17,6 +17,7 @@ class Simkesan extends MY_Base
         $this->load->model('Jenispenarikansimkesan_model');
         $this->load->model('Jenisklaim_model');
         $this->load->model('Klaimsimkesan_model');
+        $this->load->model('Titipansimkesan_model');
         $this->load->library('form_validation');
     }
 
@@ -29,6 +30,12 @@ class Simkesan extends MY_Base
                 break;
             case  2:
                 $this->listdata();
+                break;
+            case  3:
+                $this->listjatuhtempo();
+                break;
+            case  4:
+                $this->listsetoran();
                 break;
                     
             default:
@@ -73,6 +80,8 @@ class Simkesan extends MY_Base
      //Setoran simkesan
      public function setoransimkesan($id) 
      {
+         
+         $titipan = $this->Titipansimkesan_model->get_sikkode($id);
          $row = $this->Simkesan_model->get_by_id($id);
          $setoran = $this->Setoransimkesan_model->get_data_setor($id);
          $tahun = 5;
@@ -83,9 +92,10 @@ class Simkesan extends MY_Base
              $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
              $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
              $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
-             $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
+             $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years')); 
              $data = array(
-                 'setoran_data' => $setoran,
+                'setoran_data' => $setoran,
+                'titipan_data' => $titipan,
          'sik_kode' => $row->sik_kode,
          'ang_no' => $row->ang_no,
          'nm_ang_no' => $ang_no->ang_nama,
@@ -120,6 +130,50 @@ class Simkesan extends MY_Base
     		'ssk_info' => "",
              );
                  $this->Setoransimkesan_model->insert($dataSetor);
+                 redirect(site_url('simkesan/?p=2'));
+         }
+
+    public function titipsimkesan_action()
+         {
+             //insert data setor simkesan
+         $dataTitip = array(
+    		'sik_kode' => $this->input->post('sik_kode',TRUE),
+            'tts_tgltitip' => $this->tgl,
+            'tts_jmltitip' => $this->input->post('tts_jmltitip',TRUE),
+            'tts_jmlambil' => 0,
+            'tts_status' => "",
+            'tts_tgl' => $this->tgl,
+            'tts_flag' => 0,
+            'tts_info' => "",
+             );
+                 $this->Titipansimkesan_model->insert($dataTitip); 
+                 redirect(site_url('simkesan/?p=2'));
+         }
+
+         public function ambiltitipsimkesan_action()
+         {
+             //insert data setor simkesan
+         $dataTitip = array(
+    		'sik_kode' => $this->input->post('sik_kode',TRUE),
+            'tts_tgltitip' => $this->tgl,
+            'tts_jmltitip' => 0,
+            'tts_jmlambil' => $this->input->post('tts_jmlambil',TRUE),
+            'tts_status' => "",
+            'tts_tgl' => $this->tgl,
+            'tts_flag' => 0,
+            'tts_info' => "",
+             );
+                 $this->Titipansimkesan_model->insert($dataTitip);
+        $dataSetor = array(
+            'sik_kode' => $this->input->post('sik_kode',TRUE),
+            'ssk_tglsetoran' => $this->tgl,
+            'ssk_tglbayar' => $this->tgl,
+            'ssk_jmlsetor' => $this->input->post('tts_jmlambil',TRUE),
+            'ssk_tgl' => $this->tgl,
+            'ssk_flag' => 0,
+            'ssk_info' => "",
+                     );
+            $this->Setoransimkesan_model->insert($dataSetor);  
                  redirect(site_url('simkesan/?p=2'));
          }
 
@@ -680,6 +734,91 @@ class Simkesan extends MY_Base
             'content' => 'backend/simkesan/simkesan',
             'item' => 'simkesan_list.php',
             'active' => 2,
+        );
+        $this->load->view(layout(), $data);
+    }
+
+    public function listjatuhtempo()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Setoransimkesan_model->total_rows($q);
+        $setoransimkesan = $this->Setoransimkesan_model->get_group_bysikkode($config['per_page'], $start, $q);
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+        $data = array(
+            'setoransimkesan_data' => $setoransimkesan,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,  
+            'active' => 3,          
+            'content' => 'backend/simkesan/simkesan',
+            'item'=> 'jatuhtempo/simkesan_jatuhtempo.php',
+        );
+        $this->load->view(layout(), $data);
+    }
+
+    public function listSetoran()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+        $start = intval($this->input->get('start'));
+
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Setoransimkesan_model->total_rows($q);
+        $setoransimkesan = $this->Setoransimkesan_model->get_limit_data($config['per_page'], $start, $q, $f, $t);
+        
+
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
+        $wilayah = $this->Wilayah_model->get_all();
+        $datasetoran = array();
+        foreach ($setoransimkesan as $key=>$item) {
+            $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $sik_kode->ang_no))->row();
+
+            //$wil_kode = $sim_kode->wil_kode;
+            $tanggalDuedate = $item->ssk_tglsetoran;
+            $f = date("Y-m-d", strtotime($f));
+            $t = date("Y-m-d", strtotime($t));
+
+            if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w)) {
+                $datasetoran[$key] = array(
+                'ssk_id' => $item->ssk_id,
+                'sik_kode' => $item->sik_kode,
+                'nama_anggota' => $ang_no->ang_nama,
+                'wil_kode' => $sik_kode->wil_kode,
+                'ssk_tglsetoran' => $item->ssk_tglsetoran,
+                'ssk_jmlsetor' => $item->ssk_jmlsetor,
+                'ssk_tgl' => $item->ssk_tgl,
+                'ssk_flag' => $item->ssk_flag,
+                'ssk_info' => $item->ssk_info,
+                );
+            }
+        }
+
+        $data = array(
+            'datasetoran' => $datasetoran,
+            'setoransimkesan_data' => $setoransimkesan,
+            'wilayah_data' => $wilayah,
+            'q' => $q,
+            'w' => $w,
+            'f' => $f,
+            't' => $t,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,  
+            'active' => 4,          
+            'content' => 'backend/simkesan/simkesan',
+            'item'=> 'listsetoran/setoransimkesan_list.php',
         );
         $this->load->view(layout(), $data);
     }

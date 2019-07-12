@@ -116,8 +116,12 @@
              <?php if ($this->tgl == $tanggalklaim && $totalsetor >= $totalsetorseharusnya){
                     echo '<button type="submit" class="btn btn-primary">Tarik</button>';
                 }
-                    else if ($this->tgl < $estimasi_berakhir && $totalsetor < $totalsetorseharusnya){
+                    else if ($klaim->jkl_tahunke == 0){
+                    echo '<button type="submit" class="btn btn-primary">Tarik</button>';
+                    }     
+                    else if ($this->tgl < $tanggalklaim && $totalsetor < $totalsetorseharusnya){
                     echo '<td class = "danger">Belum Bisa Tarik Simkesan </td>
+                    <td class = "danger">Tangggal Klaim '.$tanggalklaim.' </td>
                     <td class = "info">(cek ada tungakan atau belum mencapai akhir pembayaran)</td>';
                     }
                 ?>
@@ -127,8 +131,10 @@
             <input type="hidden" class="form-control" name="ksi_jmlklaim" id="ksi_jmlklaim" placeholder="ksi_jmlklaim" value="<?php echo $klaim->jkl_nominal; ?>"/>
             <label> Total Klaim</label>
             <input type="number" class="form-control" name="ksi_jmlditerima" id="ksi_jmlditerima" placeholder="ksi_jmlditerima" value="<?php echo $jumlahditerima; ?>" readonly/>
+           
             <label> Jumlah Tunggakan (jika ada)</label>
-            <input type="number" class="form-control" name="ksi_jmltunggakan" id="ksi_jmltunggakan" placeholder="Optional" value="<?php echo $tunggakan; ?>" readonly/>
+            <input type="number" class="form-control" name="ksi_jmltunggakan" id="ksi_jmltunggakan" placeholder="Optional" value="<?= $tunggakan?>" readonly/>
+        
             </div>
             </tbody>
         </table>

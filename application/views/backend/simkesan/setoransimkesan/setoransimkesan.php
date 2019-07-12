@@ -41,6 +41,7 @@
 			<tbody><?php
             $no=1;
             $totalsetor=0;
+            $kekurangan=0;
             foreach ($setoran_data as $setoran)
             {
                 $totalsetor+=$setoran->ssk_jmlsetor;
@@ -73,10 +74,74 @@
             <input type="hidden" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode ?>" required="required" readonly />
         </div>
             </tbody>
-        </table>
-    </div>
             </form>
+    <form action="<?php echo site_url('simkesan/titipsimkesan_action'); ?>" method="post">
+        </table>
+    
+            <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <thead class="thead-light">
+            <tr>
+                <th class="text-center">No</th>
+		<th class="text-center">Tanggal Titip</th>
+		<th class="text-center">Jumlah Titip</th>
+		<th class="text-center">Jumlah Ambil</th>
+		<th class="text-center">Sisa Titip</th>
+            </tr>
+            </thead>
+			<tbody><?php
+            $no=1;
+            $sisa=0;
+            $totaltitip=0;
+            $totalambil=0;
+            foreach ($titipan_data as $titipansimkesan)
+            {
+                $totaltitip+=$titipansimkesan->tts_jmltitip;
+                $totalambil+=$titipansimkesan->tts_jmlambil;
+                $sisa=$totaltitip-$totalambil;
+                $amb=$sisa/$setor_psk_id;
+                $ang=($kekurangan-$sisa)/$setor_psk_id;
+                ?>
+                <tr>
+			<td width="80px"><?php echo $no ?></td>
+			<td><?php echo $titipansimkesan->tts_tgltitip ?></td>
+			<td><?php echo $totaltitip ?></td>
+			<td><?php echo $totalambil ?></td>
+			<td><?php echo $sisa ?></td>
+		</tr>
+        
+                <?php
+                $no++;
+            }
+            ?>
+            </tbody>
+            <div>
+            <label> Titip </label>
+            <select name="tts_jmltitip"> 
+            <option value="0">0</option> 
+            <?php for ($num=1; $num<$ang; $num++){ echo '
+                <option value="' .+$num*$setor_psk_id. '">' .$num*$setor_psk_id. '</option>'; }?> </select>
+            <input type="hidden" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode ?>" required="required" readonly />           
+            </div>
+            <button type="submit" class="btn btn-primary">Titip</button>
+        <div>
+        </form>
+    <form action="<?php echo site_url('simkesan/ambiltitipsimkesan_action'); ?>" method="post">
+    <label> Ambil </label>
+            <select name="tts_jmlambil"> 
+            <option value="0">0</option> 
+            <?php for ($num=1; $num<=$amb; $num++){ echo '
+                <option value="' .+$num*$setor_psk_id. '">' .$num*$setor_psk_id. '</option>'; }?> </select>
+            <input type="hidden" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode ?>" required="required" readonly />           
+            </div>
+            <button type="submit" class="btn btn-primary">Ambil Titipan</button>
+            </form>
+        </table>
+       
+    
+        
         </div>
+        
+    </div>
     </div>
     </div>
     </body>

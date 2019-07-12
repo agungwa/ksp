@@ -75,7 +75,7 @@ class Setoransimkesan extends MY_Base
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,  
-            'active' => 3,          
+            'active' => 4,          
             'content' => 'backend/setoransimkesan/index',
             'item'=> 'setoransimkesan_list.php',
         );
