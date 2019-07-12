@@ -13,6 +13,7 @@ class Pinjaman extends MY_Base
         $this->load->model('Penjamin_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Karyawan_model');
+        $this->load->model('Angsuran_model');
         $this->load->model('Pengkodean');
         $this->load->library('form_validation');
     }
@@ -130,6 +131,8 @@ class Pinjaman extends MY_Base
 
         if ($q<>''){
             $row = $this->Pinjaman_model->get_by_id($q);
+            
+        var_dump($row);
              if ($row) {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
                 $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
@@ -173,7 +176,8 @@ class Pinjaman extends MY_Base
 
     
     //survey setujui pinjaman action
-    public function action_persetujuan(){
+    public function action_persetujuan($id){
+        
         //update data pinjaman
         $dataPinjaman = array(
             'pin_pinjaman' => $this->input->post('pin_pinjaman',TRUE),
@@ -181,6 +185,38 @@ class Pinjaman extends MY_Base
             'sea_id' => $this->input->post('sea_id',TRUE),
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
+        $row = $this->Pinjaman_model->get_by_id($id);
+        var_dump($row);
+             if ($row) {
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+                $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+                $persetujuan = array(
+                    'pin_id' => $row->pin_id,
+                    'ang_no' => $row->ang_no,
+                    'nama_ang_no' => $ang_no->ang_nama,
+                    'sea_id' => $sea_id->sea_tenor,
+                    'pin_pinjaman' => $row->pin_pinjaman,
+                    'bup_id' => $bup_id->bup_bunga,
+                    'pin_tglpencairan' => $row->pin_tglpencairan,
+                );
+                $no=1;
+                $jatuhtempo=$row->pin_tglpencairan;
+                $jmlpokok=$row->pin_pinjaman/$sea_id->sea_tenor;
+                $bunga=$row->pin_pinjaman*$bup_id->bup_bunga/100;
+        for($num=1; $num<=$sea_id->sea_tenor; $num++){
+            $tanggalDuedate = date("Y-m-d", strtotime($jatuhtempo.' + '.$no.' Months'));
+            $dataAngsuran = array(
+                'ang_angsuranke' => $no,
+                'ags_tgljatuhtempo' => $tanggalDuedate,
+                'pin_id' => $row->pin_id,
+                'ags_jmlpokok' => $jmlpokok,
+                'ags_jmlbunga' => $bunga,
+                );
+            $this->Angsuran_model->insert($dataAngsuran);
+            $no++;
+             }
+            } 
         redirect(site_url('pinjaman/?p=2'));
     }
 
