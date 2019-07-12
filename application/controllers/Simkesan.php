@@ -17,10 +17,7 @@ class Simkesan extends MY_Base
         $this->load->model('Jenispenarikansimkesan_model');
         $this->load->model('Jenisklaim_model');
         $this->load->model('Klaimsimkesan_model');
-<<<<<<< HEAD
         $this->load->model('Titipansimkesan_model');
-=======
->>>>>>> 0ab5c0c5ecc33411b8143ec9c30141128823131a
         $this->load->library('form_validation');
     }
 
@@ -83,11 +80,8 @@ class Simkesan extends MY_Base
      //Setoran simkesan
      public function setoransimkesan($id) 
      {
-<<<<<<< HEAD
          
          $titipan = $this->Titipansimkesan_model->get_sikkode($id);
-=======
->>>>>>> 0ab5c0c5ecc33411b8143ec9c30141128823131a
          $row = $this->Simkesan_model->get_by_id($id);
          $setoran = $this->Setoransimkesan_model->get_data_setor($id);
          $tahun = 5;
@@ -98,16 +92,10 @@ class Simkesan extends MY_Base
              $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
              $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
              $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
-<<<<<<< HEAD
              $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years')); 
              $data = array(
                 'setoran_data' => $setoran,
                 'titipan_data' => $titipan,
-=======
-             $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
-             $data = array(
-                 'setoran_data' => $setoran,
->>>>>>> 0ab5c0c5ecc33411b8143ec9c30141128823131a
          'sik_kode' => $row->sik_kode,
          'ang_no' => $row->ang_no,
          'nm_ang_no' => $ang_no->ang_nama,
@@ -145,7 +133,6 @@ class Simkesan extends MY_Base
                  redirect(site_url('simkesan/?p=2'));
          }
 
-<<<<<<< HEAD
     public function titipsimkesan_action()
          {
              //insert data setor simkesan
@@ -190,8 +177,6 @@ class Simkesan extends MY_Base
                  redirect(site_url('simkesan/?p=2'));
          }
 
-=======
->>>>>>> 0ab5c0c5ecc33411b8143ec9c30141128823131a
 
     //Klaim simkesan
     public function klaimtahunkedua($id) 

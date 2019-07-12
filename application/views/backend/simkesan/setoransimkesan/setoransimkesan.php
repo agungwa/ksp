@@ -41,10 +41,7 @@
 			<tbody><?php
             $no=1;
             $totalsetor=0;
-<<<<<<< HEAD
             $kekurangan=0;
-=======
->>>>>>> 0ab5c0c5ecc33411b8143ec9c30141128823131a
             foreach ($setoran_data as $setoran)
             {
                 $totalsetor+=$setoran->ssk_jmlsetor;
@@ -77,7 +74,6 @@
             <input type="hidden" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode ?>" required="required" readonly />
         </div>
             </tbody>
-<<<<<<< HEAD
             </form>
     <form action="<?php echo site_url('simkesan/titipsimkesan_action'); ?>" method="post">
         </table>
@@ -146,12 +142,6 @@
         </div>
         
     </div>
-=======
-        </table>
-    </div>
-            </form>
-        </div>
->>>>>>> 0ab5c0c5ecc33411b8143ec9c30141128823131a
     </div>
     </div>
     </body>

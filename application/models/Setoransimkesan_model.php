@@ -9,10 +9,7 @@ class Setoransimkesan_model extends CI_Model
     public $table = 'setoransimkesan';
     public $id = 'ssk_id';
     public $sik_kode = 'sik_kode';
-<<<<<<< HEAD
     public $ssk_tglsetoran ='ssk_tglsetoran';
-=======
->>>>>>> 0ab5c0c5ecc33411b8143ec9c30141128823131a
     public $order = 'DESC';
 
     function __construct()
