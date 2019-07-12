@@ -9,6 +9,7 @@ class Setoransimkesan_model extends CI_Model
     public $table = 'setoransimkesan';
     public $id = 'ssk_id';
     public $sik_kode = 'sik_kode';
+    public $ssk_tglsetoran ='ssk_tglsetoran';
     public $order = 'DESC';
 
     function __construct()
@@ -21,6 +22,23 @@ class Setoransimkesan_model extends CI_Model
     {
         $this->db->where('ssk_flag<',2);
         $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get group by
+    function get_group_bysikkode($limit, $start = 0, $q = NULL)
+    {
+        $this->db->order_by($this->id, $this->ssk_tglsetoran);
+        $where = "sik_kode LIKE '%$q%' ESCAPE '!' AND ssk_flag < 2 ";
+        $this->db->where($where);
+        $this->db->limit($limit, $start);
+        
+        //$this->db->select_max($this->id);
+         //->from('setoransimkesan')
+         //->group_by($this->sik_kode);
+        //$this->db->select_max($this->id);
+        //$query = $this->db->get('setoransimkesan' );
+        $this->db->group_by($this->sik_kode);
         return $this->db->get($this->table)->result();
     }
 

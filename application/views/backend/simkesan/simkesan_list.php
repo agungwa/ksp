@@ -86,7 +86,7 @@
 			<td><?php echo $kar_kode->kar_nama ?></td>
 			<td><?php echo $psk_id->psk_plan ?></td>
 			<td><?php echo $wil_kode->wil_nama ?></td>
-			<td><?php echo $simkesan->sik_tglpendaftaran ?></td>
+			<td><?php echo date('d/m/Y', strtotime($simkesan->sik_tglpendaftaran)) ?></td>
 			<td><?php echo $simkesan->sik_tglberakhir ?></td>
 			<td><?php echo $this->statusSimkesan[$simkesan->sik_status] ?></td>
 			<td><?php echo dateFormat($simkesan->sik_tgl) ?></td>

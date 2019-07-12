@@ -8,6 +8,7 @@ class Titipansimkesan_model extends CI_Model
 
     public $table = 'titipansimkesan';
     public $id = 'tts_id';
+    public $sik_kode = 'sik_kode';
     public $order = 'DESC';
 
     function __construct()
@@ -20,6 +21,13 @@ class Titipansimkesan_model extends CI_Model
     {
         $this->db->where('tts_flag<',2);
         $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get by sik_kode
+    function get_sikkode($sik_kode)
+    {
+        $this->db->where('sik_kode =',$sik_kode);
         return $this->db->get($this->table)->result();
     }
 

@@ -64,10 +64,9 @@
             <div class="col-md-4">            
 	            <button type="submit" class="btn btn-primary">Santunan</button> 
             </div>
-            </form>
-            <form action="<?php echo site_url('simkesan/penarikanlima/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
+                </form>
             </td><td></td></tr>
 
         <!--Klaim Rawat Inap -->
