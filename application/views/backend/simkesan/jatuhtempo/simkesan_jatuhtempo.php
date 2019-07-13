@@ -1,39 +1,49 @@
-<!doctype html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-content">
-        <div class="row" style="margin-bottom: 10px">
-            <div class="col-md-8">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+            <div class="ibox-title">
+                    <h2><b>List Jatuh Tempo Simpanan</b></h2>
+                </div>
+        <div class="ibox-content">
+        <div class="row" style="margin-bottom: 10px, margin-top:10px">
+            <form action="<?php echo base_url()?>simkesan/listjatuhtempo" class="form-inline" method="get">
+            <div class="col-md-8 text-right">
+                <div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
+                <div class="col-md-3">
+                    <input class="form-control" type="date"  name="f" required="required" value="<?= $f;?>">
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
+                </div>
+                <select class="form-control col-md-3"  name="w">
+                    <option value="all">Semua Wilayah</option>
+                    <?php
+                        foreach ($wilayah_data as $value) { ?>
+                            <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
+                    <?php        
+                        }
+                    ?>
+                </select>
+
             </div>
             
-            
-            <div class="col-md-1 text-right">
-            </div>
-            <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('setoransimkesan'); ?>" class="form-inline" method="get">
+            <div class="col-md-4 text-right">
                     <div class="input-group">
-                        <input type="hidden" name="p" value="3">
-                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
+                      <!--   <input type="text" class="form-control" name="q" value="all" placeholder="No simpanan/ No Anggota">
                         <span class="input-group-btn">
-                            <?php 
+                             <?php 
                                 if ($q <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo site_url('setoransimkesan'); ?>" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo base_url()?>simkesan/?p=3" class="btn btn-default">Reset</a>
                                     <?php
                                 }
-                            ?>
-                          <button class="btn btn-primary" type="submit">Search</button>
+                            ?> -->
+                          <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
@@ -42,22 +52,22 @@
         		<th class="text-center">Rekening Simkesan</th>
         		<th class="text-center">Tanggal Setoran</th>
         		<th class="text-center">Jatuh Tempo</th>
-        		<th class="text-center">Jumlah Setor</th>
+        		<th class="text-center">Setor</th>
             </tr>
             </thead>
 			<tbody><?php
-            foreach ($setoransimkesan_data as $setoransimkesan)
+            foreach ($datajatuh as $key => $item)
             {
-                $tanggal = new DateTime($setoransimkesan->ssk_tglsetoran); 
+                $tanggal = new DateTime($item['ssk_tglsetoran']); 
                 $sekarang = new DateTime();
                 $perbedaan = $tanggal->diff($sekarang);
                 ?>
                 <tr>
     			<td width="80px"><?php echo ++$start ?></td>
-    			<td><?php echo $setoransimkesan->sik_kode ?></td>
-    			<td><?php echo $setoransimkesan->ssk_tglsetoran ?></td>
+    			<td><?php echo $item['sik_kode'] ?></td>
+    			<td><?php echo $item['ssk_tglsetoran'] ?></td>
     			<td><?php echo $perbedaan->m ?></td>
-    			<td><?php echo $setoransimkesan->ssk_jmlsetor ?></td>
+    			<td><?php echo $item['ssk_jmlsetor'] ?></td>
 		</tr>
                 
                 <?php
@@ -65,15 +75,7 @@
             ?>
             </tbody>
         </table>
-        <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
-        </div>
-        </div>
+      
     </div>
     </div>
     </div>

@@ -120,9 +120,13 @@
             <option value="0">0</option> 
             <?php for ($num=1; $num<$ang; $num++){ echo '
                 <option value="' .+$num*$setor_psk_id. '">' .$num*$setor_psk_id. '</option>'; }?> </select>
-            <input type="hidden" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode ?>" required="required" readonly />           
+            <input type="text" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode ?>" required="required" readonly />           
             </div>
-            <button type="submit" class="btn btn-primary">Titip</button>
+            <?php
+            if ($kekurangan  > 0){
+            echo '<button type="submit" class="btn btn-primary">Titip</button>';
+            }
+            ?>
         <div>
         </form>
     <form action="<?php echo site_url('simkesan/ambiltitipsimkesan_action'); ?>" method="post">
@@ -131,9 +135,14 @@
             <option value="0">0</option> 
             <?php for ($num=1; $num<=$amb; $num++){ echo '
                 <option value="' .+$num*$setor_psk_id. '">' .$num*$setor_psk_id. '</option>'; }?> </select>
-            <input type="hidden" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode ?>" required="required" readonly />           
+            <input type="text" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode ?>" required="required" readonly />           
             </div>
-            <button type="submit" class="btn btn-primary">Ambil Titipan</button>
+            <?php
+            if ($kekurangan  > 0){
+            echo '<button type="submit" class="btn btn-primary">Ambil Titipan</button>';
+            }
+            ?>
+            
             </form>
         </table>
        

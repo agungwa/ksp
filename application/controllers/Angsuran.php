@@ -84,19 +84,14 @@ class Angsuran extends MY_Base
             $config['first_url'] = base_url() . 'angsuran/index.html';
         }*/
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Angsuran_model->total_rows($q);
-        $angsuran = $this->Angsuran_model->get_limit_data($config['per_page'], $start, $q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
+        //$config['per_page'] = 10;
+        //$config['page_query_string'] = TRUE;
+        //$config['total_rows'] = $this->Angsuran_model->total_rows($q);
+        $angsuran = $this->Angsuran_model->get_limit_data($start, $q);
 
         $data = array(
             'angsuran_data' => $angsuran,
             'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'active' => 2,
             'content' => 'backend/angsuran/angsuran',
