@@ -36,7 +36,6 @@ class Anggota extends MY_Base
                 $this->setorsiw();
                 break;
                     
-                    
             default:
                 $this->pendaftaran();
                 break;
