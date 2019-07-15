@@ -32,7 +32,7 @@ class Angsuran_model extends CI_Model
 
     function get_by_pinjaman($q, $k)
     {   
-        $where = "pin_id = $q AND ang_angsuranke = $k  AND ags_flag < 2";
+        $where = "pin_id = '$q' AND ang_angsuranke = $k  AND ags_flag < 2";
         $this->db->where($where);
         return $this->db->get($this->table)->row();
     }
@@ -40,7 +40,7 @@ class Angsuran_model extends CI_Model
     function get_histori_angsuran($q)
     {
         $this->db->order_by($this->id, $this->order);
-         $where = "pin_id = $q AND ags_flag < 2";
+         $where = "pin_id = '$q' AND ags_flag < 2";
         $this->db->where($where);
         return $this->db->get($this->table)->result();
     }
