@@ -27,6 +27,9 @@ class Angsuran extends MY_Base
             case  3:
                 $this->listDenda();
                 break;
+            case  4:
+                $this->histori_angsuran();
+                break;
 
             default:
                 $this->bayarAngsuran();
@@ -112,6 +115,22 @@ class Angsuran extends MY_Base
         redirect(site_url('angsuran/?p=1&k='.$row->ang_angsuranke.'&q='.$row->pin_id.''));
     }
 
+    public function histori_angsuran() {
+        $q = urldecode($this->input->get('q', TRUE)); 
+        $settingdenda = $this->Settingdenda_model->get_by_id(1);
+        $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
+        $data = array(
+            'settingdenda_data' => $settingdenda,
+            'q' => $q,
+            'content' => 'backend/angsuran/angsuran',
+            'item'=> 'histori_angsuran.php',
+            'active' => 4,
+            'histori' => $historiAngsuran,
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
     public function denda($id) {
         $settingdenda = $this->Settingdenda_model->get_by_id(1);        
         $row = $this->Angsuran_model->get_by_id($id);
@@ -167,8 +186,9 @@ class Angsuran extends MY_Base
         
     }
 
+    
     public function denda_action() {
-        $i = urldecode($this->input->get('i', TRUE));
+       /* $i = urldecode($this->input->get('i', TRUE));
         $ags_id = urldecode($this->input->get('ags_id', TRUE));
         $b = urldecode($this->input->get('b', TRUE));
         $settingdenda = $this->Settingdenda_model->get_by_id(1);        
@@ -191,12 +211,13 @@ class Angsuran extends MY_Base
                'ags_status' => $row->ags_status,
                 
             );
-            $totalbayari=$b+$i;
+            $totalbayari=$b+$i;*/
             $dataAngsuran = array(
-                'ags_jmlbayar' => $totalbayari,
+                'ags_denda' => $this->input->post('ags_denda',TRUE),
+                'ags_bayartunggakan' => $this->input->post('ags_bayartunggakan',TRUE),
                 );
-            $this->Angsuran_model->update(13, $dataAngsuran);
-        }
+            $this->Angsuran_model->update($this->input->post('ags_id',TRUE), $dataAngsuran);
+        
         redirect(site_url('angsuran/'));
     }
 
