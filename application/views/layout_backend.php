@@ -300,6 +300,9 @@ lookup();
                                     <a href="<?=base_url()?>Jenisjaminan">Jenis Jaminan</a>
                                 </li>
                                 <li>
+                                    <a href="<?=base_url()?>Jenispelunasan">Jenis Pelunasan</a>
+                                </li>
+                                <li>
                                     <a href="<?=base_url()?>Settingdenda">Setting Denda</a>
                                 </li>
                             </ul>

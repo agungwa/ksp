@@ -85,6 +85,8 @@
 						<th class="text-center">Jumlah Bayar</th>
 						<th class="text-center">Kurang Setor</th>
 						<th class="text-center">Denda</th>
+						<th class="text-center">Bayar Tunggakan</th>
+						<th class="text-center">Kekurangan Tunggakan</th>
 						<th class="text-center">Status</th>
 		            </tr>
 		            </thead>
@@ -119,7 +121,11 @@
 						if ($this->tgl > $dendajatuhtempo && $item->ags_jmlbayar < $totalbayar && $item->ags_status < 2 ){
 							$denda = ($kurangsetor * ($settingdenda_data->sed_denda/100))*$perbedaan->d;
 						}
-						
+						if ($item->ags_bayartunggakan <= 0) {
+							$totalkekurangan = $kurangsetor + $denda;
+							} else {
+							$totalkekurangan = $kurangsetor + $item->ags_denda - $item->ags_bayartunggakan;
+							}
 		                ?>
 		                <tr>
 							<td><?php echo $item->ang_angsuranke ?></td>
@@ -130,9 +136,15 @@
 							<td><?php echo $totalbayar ?></td>
 							<td><?php echo $item->ags_jmlbayar ?></td>
 							<td><?php echo $kurangsetor ?></td>
-							<td><?php echo $denda?></td>
+							<?php if ($item->ags_bayartunggakan <= 0){
+							echo '<td>'.$denda.'</td>';
+							} else { 
+							echo '<td>'.$item->ags_denda.'</td>';
+							} ?>
+							<td><?php echo $item->ags_bayartunggakan?></td>
+							<td class='danger'><?php echo $totalkekurangan ?></td>
 							<td><?php 
-							if ($kurangsetor > 0 && $denda > 0 && $this->tgl > $item->ags_tgljatuhtempo){
+							if ($totalkekurangan > 0 && $denda > 0 && $this->tgl > $item->ags_tgljatuhtempo){
 								echo anchor(site_url('angsuran/denda/'.$item->ags_id),'Bayar','class="text-navy"');
 							} else {
 							echo $this->statusAngsuran[$item->ags_status];

@@ -16,7 +16,7 @@
 						  <li role="presentation" class="<?= ($active==1)?'active':''?>"><a href="<?=base_url()?>angsuran/?p=1">Bayar Angsuran</a></li>
 						  <li role="presentation" class="<?= ($active==2)?'active':''?>"><a href="<?=base_url()?>angsuran/?p=2">List Angsuran</a></li>
 						 <!-- <li role="presentation" class="<?= ($active==3)?'active':''?>"><a href="<?=base_url()?>angsuran/?p=3">Denda Angsuran</a></li> -->
-						  <li role="presentation" class="<?= ($active==4)?'active':''?>"><a href="<?=base_url()?>angsuran/?p=4">Histori Angsuran</a></li>
+						  <li role="presentation" class="<?= ($active==4)?'active':''?>"><a href="<?=base_url()?>angsuran/?p=4">List Pinjaman</a></li>
 						</ul>
 						<div class="clearfix"></div>
             			<?php
