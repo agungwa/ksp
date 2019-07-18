@@ -132,7 +132,7 @@ class Pinjaman extends MY_Base
         if ($q<>''){
             $row = $this->Pinjaman_model->get_by_id($q);
             
-        var_dump($row);
+       // var_dump($row);
              if ($row) {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
                 $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
@@ -186,7 +186,7 @@ class Pinjaman extends MY_Base
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
         $row = $this->Pinjaman_model->get_by_id($id);
-        var_dump($row);
+       // var_dump($row);
              if ($row) {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
                 $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
