@@ -28,31 +28,7 @@
 
 	    <div class="row" style="margin-top: 10px">
         <div class="ibox-content">
-	        	<?php 
-	        	if ($pinjaman != null) {
-	        	?><table class="table">
-                <tr><td>Rekening Pinjaman</td><td><?php echo $pinjaman['pin_id']; ?></td></tr>
-                <tr><td>Anggota</td><td><?php echo $pinjaman['ang_no']; ?></td></tr>
-                <tr><td>Tenor</td><td><?php echo $pinjaman['sea_id']," Bulan"; ?></td></tr>
-                <tr><td>Bunga Pinjaman</td><td><?php echo $pinjaman['bup_id']," %"; ?></td></tr>
-                <tr><td>Potongan Provisi</td><td><?php echo $pinjaman['pop_id']; ?></td></tr>
-                <tr><td>Wilayah</td><td><?php echo $pinjaman['wil_kode']; ?></td></tr>
-                <tr><td>Kategori Peminjam</td><td><?php echo $pinjaman['skp_id']; ?></td></tr>
-                <tr><td>Pengajuan</td><td><?php echo $pinjaman['pin_pengajuan']; ?></td></tr>
-                <tr><td>Pinjaman</td><td><?php echo $pinjaman['pin_pinjaman']; ?></td></tr>
-                <tr><td>Tanggal Pengajuan</td><td><?php echo dateFormat($pinjaman['pin_tglpengajuan']); ?></td></tr>
-                <tr><td>Tanggal Pencairan</td><td><?php echo dateFormat($pinjaman['pin_tglpencairan']); ?></td></tr>
-                <tr><td>Marketing</td><td><?php echo $pinjaman['pin_marketing']; ?></td></tr>
-                <tr><td>Surveyor</td><td><?php echo $pinjaman['pin_surveyor']; ?></td></tr>
-                <tr><td>Survey</td><td><?php echo $pinjaman['pin_survey']; ?></td></tr>
-                <tr><td>Status Pinjaman</td><td><?php echo $pinjaman['pin_statuspinjaman']; ?></td></tr>
-        
-        <div class="col-md-12">
-        <form action="<?php echo site_url('pelunasan/dipercepat_action/'); ?>" method="post">
-				    <tr><td></td><td><a href="<?php echo site_url('pelunasan/?p=1') ?>" class="btn btn-default">Batal</a></td></tr>
-            </table>
-	        	<?php
-	        	} ?>
+	        
         <h3>Histori Angsuran</h3>
 
 <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
@@ -69,6 +45,7 @@
         <th class="text-center">Denda</th>
         <th class="text-center">Bayar Tunggakan</th>
         <th class="text-center">Kekurangan Tunggakan</th>
+        <th class="text-center">Total Denda</th>
         <th class="text-center">Status</th>
     </tr>
     </thead>
@@ -76,7 +53,7 @@
     if ($histori != null) {
     $i = 1;
     $denda=0;
-    
+    $totaldenda=0;
     foreach ($histori as $item)
     {
         $d=2;
@@ -93,21 +70,24 @@
         }
         $totalbayar = $item->ags_jmlpokok + $item->ags_jmlbunga;
         if ($item->ags_jmlbayar < 1){
-            $kurangsetor = 0; 
+            $kurangsetor = $totalbayar; 
         }else {
             $kurangsetor = $totalbayar-$item->ags_jmlbayar;
         }
         if ($kurangsetor < 0){
             $kurangsetor = 0;
         }
-        if ($this->tgl > $dendajatuhtempo && $item->ags_jmlbayar < $totalbayar && $item->ags_status < 2 ){
+        if ($this->tgl > $dendajatuhtempo && $item->ags_jmlbayar < $totalbayar && $item->ags_status < 2 && $item->ags_bayartunggakan <= 0){
             $denda = ($kurangsetor * ($settingdenda_data->sed_denda/100))*$perbedaan->d;
+        } else {
+            $denda = $item->ags_denda;
         }
         if ($item->ags_bayartunggakan <= 0) {
             $totalkekurangan = $kurangsetor + $denda;
             } else {
             $totalkekurangan = $kurangsetor + $item->ags_denda - $item->ags_bayartunggakan;
             }
+        $totaldenda += $denda;
         ?>
         <tr>
             <td><?php echo $item->ang_angsuranke ?></td>
@@ -118,13 +98,10 @@
             <td><?php echo $totalbayar ?></td>
             <td><?php echo $item->ags_jmlbayar ?></td>
             <td><?php echo $kurangsetor ?></td>
-            <?php if ($item->ags_bayartunggakan <= 0){
-            echo '<td>'.$denda.'</td>';
-            } else { 
-            echo '<td>'.$item->ags_denda.'</td>';
-            } ?>
+            <td><?php echo $denda ?></td>
             <td><?php echo $item->ags_bayartunggakan?></td>
             <td class='danger'><?php echo $totalkekurangan ?></td>
+            <td><?php echo $totaldenda ?></td>
             <td><?php 
             if ($totalkekurangan > 0 && $denda > 0 && $this->tgl > $item->ags_tgljatuhtempo){
                 echo anchor(site_url('angsuran/denda/'.$item->ags_id),'Bayar','class="text-navy"');
@@ -140,6 +117,25 @@
             ?>
             </tbody>
         </table>
+        <div class="ibox-content">
+                <?php 
+                $jep_id = $this->db->get_where('jenispelunasan', array('jep_id' => $jenispelunasan->jep_id))->row();
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $pinjaman['ang_no']))->row();
+	        	if ($pinjaman != null) {
+	        	?><table class="table">
+                <tr><td>Rekening Pinjaman</td><td><input type="text" class="form-control" name="pin_id" id="pin_id" placeholder="<?php echo $pinjaman['pin_id']; ?>" value="<?php echo $pinjaman['pin_id']; ?>" readonly/> </td></tr>
+                <tr><td>Jenis Pelunasan</td><td><input type="text" class="form-control" name="pel_jenis" id="pel_jenis" placeholder="<?php echo $jenispelunasan->jep_jenis; ?>" value="<?php echo $jep_id->jep_jenis; ?>" readonly/> </td></tr>
+                <tr><td>Anggota</td><td><?php echo $ang_no->ang_nama; ?></td></tr>
+                <tr><td>Tenor</td><td><input type="text" class="form-control" name="pel_jenis" id="pel_jenis" placeholder="<?php echo $pinjaman['sea_id']; ?>" value="<?php echo $pinjaman['sea_id']; ?>" readonly/></td></tr>
+                <tr><td>Bunga Bulan Ini</td><td><input type="text" class="form-control" name="pel_bungaangsuran" id="pel_bungaangsuran" placeholder="<?php echo $item->ags_jmlbunga; ?>" value="<?php echo $item->ags_jmlbunga; ?>" readonly/></td></tr>
+                <tr><td>Bunga Denda</td><td><?php echo $item->ags_tgljatuhtempo; ?></td></tr>
+                <tr><td>Total Bunga</td><td><?php echo dateFormat($pinjaman['pin_tglpengajuan']); ?></td></tr>
+                <tr><td>Tanggal Pelunasan</td><td><?php echo dateFormat($this->tgl); ?></td></tr>
+                <tr><td>Marketing</td><td><?php echo $pinjaman['pin_marketing']; ?></td></tr>
+                <tr><td>Surveyor</td><td><?php echo $pinjaman['pin_surveyor']; ?></td></tr>
+                <?php
+	        	} ?>
+        <div class="col-md-12">
 	    </div>
         </div>
         </div>

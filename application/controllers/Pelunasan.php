@@ -14,6 +14,7 @@ class Pelunasan extends MY_Base
         $this->load->model('Wilayah_model');
         $this->load->model('Karyawan_model');
         $this->load->model('Settingdenda_model');
+        $this->load->model('Jenispelunasan_model');
         $this->load->library('form_validation');
     }
 
@@ -45,6 +46,7 @@ class Pelunasan extends MY_Base
         $pinjaman = null;
         
         $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
+        $jenispelunasan = $this->Jenispelunasan_model->get_by_id(2);
         $settingdenda = $this->Settingdenda_model->get_by_id(1);
         if ($q<>''){
             $row = $this->Pinjaman_model->get_by_id($q);
@@ -78,6 +80,7 @@ class Pelunasan extends MY_Base
             } 
         }
         $data = array(
+            'jenispelunasan' => $jenispelunasan,
             'settingdenda_data' => $settingdenda,
             'histori' => $historiAngsuran,
             'q' => $q,
@@ -89,6 +92,17 @@ class Pelunasan extends MY_Base
 
         $this->load->view(layout(), $data);
     }
+
+    /*public function dipercepat_action(){
+        $dataPeluanasan = array(
+            'pin_id' => $this->input->post('pin_id',TRUE),
+    		'ags_tglbayar' => $this->tgl,
+    		'ags_jmlbayar' => $this->input->post('ags_jmlbayar',TRUE),
+    		'ags_status' => $status,
+            );
+        $this->Angsuran_model->update($this->input->post('ags_id', TRUE), $dataAngsuran);
+        redirect(site_url('angsuran/?p=1&k='.$row->ang_angsuranke.'&q='.$row->pin_id.''));
+    }*/
 
     public function biasa(){
         $q = urldecode($this->input->get('q', TRUE));
