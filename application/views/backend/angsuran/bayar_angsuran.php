@@ -59,7 +59,7 @@
 					<input type="hidden" class="form-control" name="ags_id" id="ags_id" placeholder="ags_id" value="<?php echo $angsuran['ags_id']; ?>" required="required" />
 					<input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $angsuran['pin_id']; ?>" required="required" />
 					<input type="hidden" class="form-control" name="ags_id" id="ags_id" placeholder="ags_id" value="<?php echo $angsuran['ags_id']; ?>" required="required" />
-					<tr><td></td><td><a href="<?php echo site_url('angsuran') ?>" class="btn btn-default">Batal</a>
+					<tr><td></td><td><a href="<?php echo site_url('angsuran/?p=4') ?>" class="btn btn-default">Batal</a>
 					<?php if ($angsuran['ags_jmlbayar'] <= 0) {
 					echo '<button type="submit" class="btn btn-primary">Setor</button></td></tr>';
 				}
@@ -111,7 +111,7 @@
 						}
 						$totalbayar = $item->ags_jmlpokok + $item->ags_jmlbunga;
 						if ($item->ags_jmlbayar < 1){
-							$kurangsetor = 0; 
+							$kurangsetor = $totalbayar; 
 						}else {
 							$kurangsetor = $totalbayar-$item->ags_jmlbayar;
 						}

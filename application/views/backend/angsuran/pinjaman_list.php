@@ -95,10 +95,13 @@
     			<td><?php echo dateFormat($pinjaman->pin_tglpengajuan) ?></td>
     			<td><?php echo dateFormat($pinjaman->pin_tglpencairan) ?></td>
     			<td><?php echo $pin_statuspinjaman[$pinjaman->pin_statuspinjaman] ?></td>
-    			<td style="text-align:center" width="200px">
+                <td style="text-align:center" width="200px">
 				
-				<?php 
-				echo anchor(site_url('angsuran/bayarAngsuran?q='.$pinjaman->pin_id),'Angsuran','class="text-navy"'); ?>
+				<?php if ($pinjaman->pin_statuspinjaman < 2){
+                echo anchor(site_url('angsuran/bayarAngsuran?q='.$pinjaman->pin_id),'Angsuran','class="text-navy"');
+                 } else {
+                     echo "Sudah Lunas";
+                 } ?>
 			    </td>
 		</tr>
                 

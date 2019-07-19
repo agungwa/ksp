@@ -33,7 +33,7 @@ class Investasiberjangka_model extends CI_Model
     //get data investasi tarik di depan
     function get_investasi_didepan($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $where = "ivb_kode LIKE '%$q' ESCAPE '!' AND ivb_status = 0 AND jiv_id = 1 AND ivb_flag < 2";
+        $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND ivb_status = 0 AND jiv_id = 1 AND ivb_flag < 2";
         $this->db->where($where);
     $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
@@ -42,7 +42,7 @@ class Investasiberjangka_model extends CI_Model
     //get data investasi tarik per bulan
     function get_investasi_perbulan($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $where = "ivb_kode LIKE '%$q' ESCAPE '!' AND ivb_status = 0 AND jiv_id = 2 AND ivb_flag < 2";
+        $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND ivb_status = 0 AND jiv_id = 2 AND ivb_flag < 2";
         $this->db->where($where);
     $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
@@ -51,7 +51,7 @@ class Investasiberjangka_model extends CI_Model
     //get data investasi tarik di belakang
     function get_investasi_dibelakang($limit, $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $where = "ivb_kode LIKE '%$q' ESCAPE '!' AND ivb_status = 0 AND jiv_id = 3 AND ivb_flag < 2";
+        $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND ivb_status = 0 AND jiv_id = 3 AND ivb_flag < 2";
         $this->db->where($where);
     $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
@@ -60,18 +60,17 @@ class Investasiberjangka_model extends CI_Model
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('ivb_kode', $q);
-    $where = "ivb_kode LIKE '%$q' ESCAPE '!' AND ivb_flag < 2";
+    $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND ivb_flag < 2";
     $this->db->where($where);
 	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
-    function get_limit_data($limit, $start = 0, $q = NULL) {
+    function get_limit_data($start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
-        $where = "ivb_kode LIKE '%$q' ESCAPE '!' AND ivb_flag < 2";
+        $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND ivb_flag < 2";
         $this->db->where($where);
-	$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

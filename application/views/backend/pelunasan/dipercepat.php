@@ -5,7 +5,7 @@
         <div class="ibox-content">
         <div class="jumbotron">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
-            <form action="<?php echo site_url('pelunasan/'); ?>" class="form-inline" method="get">
+            <form action="<?php echo site_url('pelunasan/dipercepat/'); ?>" class="form-inline" method="get">
             <input type="hidden" name="p" value="1">
             <div class="col-md-4 text-left">
                     <div class="input-group">
@@ -30,7 +30,7 @@
         <div class="ibox-content">
 	        
         <h3>Histori Angsuran</h3>
-
+    <form action="<?php echo site_url('pelunasan/dipercepat_action/'); ?>" class="form-inline" method="post">
 <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
     <thead class="thead-light">
     <tr>
@@ -56,6 +56,7 @@
     $totaldenda=0;
     foreach ($histori as $item)
     {
+
         $d=2;
         $m=1;
         $dendajatuhtempo = date("Y-m-d", strtotime($item->ags_tgljatuhtempo.' + '.$d.' days'));
@@ -119,22 +120,42 @@
         </table>
         <div class="ibox-content">
                 <?php 
-                $jep_id = $this->db->get_where('jenispelunasan', array('jep_id' => $jenispelunasan->jep_id))->row();
+                if ($histori != null) {
+                
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $pinjaman['ang_no']))->row();
-	        	if ($pinjaman != null) {
+                if ($pinjaman != null) 
+                $kali=$pinjaman['sea_id']-$datatglsekarang->ang_angsuranke;
+                        if ($datatglsekarang->ags_jmlbunga - $datatglsekarang->ags_jmlbayar > 0){
+                            $sp = $datatglsekarang->ags_jmlpokok;
+                        } else {
+                            $sp = $datatglsekarang->ags_jmlpokok + $datatglsekarang->ags_jmlbunga - $datatglsekarang->ags_jmlbayar;
+                        }
+                        if ($this->tgl < $item->ags_tgljatuhtempo){
+                            $bungadenda=0;
+                        } else {
+                            $bungadenda=$item->ags_jmlbunga;
+                        }
+                {
 	        	?><table class="table">
                 <tr><td>Rekening Pinjaman</td><td><input type="text" class="form-control" name="pin_id" id="pin_id" placeholder="<?php echo $pinjaman['pin_id']; ?>" value="<?php echo $pinjaman['pin_id']; ?>" readonly/> </td></tr>
-                <tr><td>Jenis Pelunasan</td><td><input type="text" class="form-control" name="pel_jenis" id="pel_jenis" placeholder="<?php echo $jenispelunasan->jep_jenis; ?>" value="<?php echo $jep_id->jep_jenis; ?>" readonly/> </td></tr>
+                <tr><td>Jenis Pelunasan</td><td><?php echo $jenispelunasan->jep_jenis; ?><input type="hidden" class="form-control" name="pel_jenis" id="pel_jenis" placeholder="" value="<?php echo $jenispelunasan->jep_id; ?>" readonly/> </td></tr>
                 <tr><td>Anggota</td><td><?php echo $ang_no->ang_nama; ?></td></tr>
-                <tr><td>Tenor</td><td><input type="text" class="form-control" name="pel_jenis" id="pel_jenis" placeholder="<?php echo $pinjaman['sea_id']; ?>" value="<?php echo $pinjaman['sea_id']; ?>" readonly/></td></tr>
-                <tr><td>Bunga Bulan Ini</td><td><input type="text" class="form-control" name="pel_bungaangsuran" id="pel_bungaangsuran" placeholder="<?php echo $item->ags_jmlbunga; ?>" value="<?php echo $item->ags_jmlbunga; ?>" readonly/></td></tr>
-                <tr><td>Bunga Denda</td><td><?php echo $item->ags_tgljatuhtempo; ?></td></tr>
-                <tr><td>Total Bunga</td><td><?php echo dateFormat($pinjaman['pin_tglpengajuan']); ?></td></tr>
+                <tr><td>Tenor</td><td><input type="text" class="form-control" name="pel_tenor" id="pel_tenor" placeholder="<?php echo $pinjaman['sea_id']; ?>" value="<?php echo $pinjaman['sea_id']; ?>" readonly/></td></tr>
+                <tr><td>Pokok/Bulan</td><td><input type="text" class="form-control" name="pel_angsuran" id="pel_angsuran" placeholder="<?php echo $item->ags_jmlpokok; ?>" value="<?php echo $item->ags_jmlpokok; ?>" readonly/></td></tr>
+                <tr><td>Bunga/Bulan</td><td><input type="text" class="form-control" name="pel_bungaangsuran" id="pel_bungaangsuran" placeholder="<?php echo $item->ags_jmlbunga; ?>" value="<?php echo $item->ags_jmlbunga; ?>" readonly/></td></tr>
+                <tr><td>Total Kurang Pokok</td><td><input type="text" class="form-control" name="pel_totalkekuranganpokok" id="pel_totalkekuranganpokok" placeholder="<?php echo $item->ags_jmlpokok*$kali; ?>" value="<?php echo $item->ags_jmlpokok*$kali; ?>" readonly/></td></tr>
+                <tr><td>Total Bunga</td><td><input type="text" class="form-control" name="pel_totalbungapokok" id="pel_totalbungapokok" placeholder="<?php echo $item->ags_jmlbunga*$datatglsekarang->ang_angsuranke; ?>" value="<?php echo $item->ags_jmlbunga*$datatglsekarang->ang_angsuranke; ?>" readonly/></td></tr>
+                <tr><td>Bunga Denda</td><td><input type="text" class="form-control" name="pel_bungatambahan" id="pel_bungatambahan" placeholder="<?php echo $bungadenda; ?>" value="<?php echo $bungadenda; ?>" readonly/></td></tr>
+                <tr><td>Total Denda</td><td><input type="text" class="form-control" name="pel_totaldenda" id="pel_totaldenda" placeholder="<?php echo $totaldenda; ?>" value="<?php echo $totaldenda; ?>" readonly/></td></tr>
                 <tr><td>Tanggal Pelunasan</td><td><?php echo dateFormat($this->tgl); ?></td></tr>
                 <tr><td>Marketing</td><td><?php echo $pinjaman['pin_marketing']; ?></td></tr>
                 <tr><td>Surveyor</td><td><?php echo $pinjaman['pin_surveyor']; ?></td></tr>
+                <tr><td></td><td><a href="<?php echo site_url('pelunasan/?p=1') ?>" class="btn btn-default">Batal</a><button type="submit" class="btn btn-primary">Proses</button></td></tr>
+
                 <?php
+                }
 	        	} ?>
+                </table>
         <div class="col-md-12">
 	    </div>
         </div>

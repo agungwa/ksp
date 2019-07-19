@@ -45,6 +45,8 @@ class Pelunasan extends MY_Base
         $q = urldecode($this->input->get('q', TRUE));
         $pinjaman = null;
         
+        $datenow = date('n'); //var_dump($datenow);
+        $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
         $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
         $jenispelunasan = $this->Jenispelunasan_model->get_by_id(2);
         $settingdenda = $this->Settingdenda_model->get_by_id(1);
@@ -80,6 +82,7 @@ class Pelunasan extends MY_Base
             } 
         }
         $data = array(
+            'datatglsekarang' => $datatglsekarang,
             'jenispelunasan' => $jenispelunasan,
             'settingdenda_data' => $settingdenda,
             'histori' => $historiAngsuran,
@@ -93,22 +96,37 @@ class Pelunasan extends MY_Base
         $this->load->view(layout(), $data);
     }
 
-    /*public function dipercepat_action(){
+    public function dipercepat_action(){
         $dataPeluanasan = array(
-            'pin_id' => $this->input->post('pin_id',TRUE),
-    		'ags_tglbayar' => $this->tgl,
-    		'ags_jmlbayar' => $this->input->post('ags_jmlbayar',TRUE),
-    		'ags_status' => $status,
+        'pin_id' => $this->input->post('pin_id',TRUE),
+		'pel_jenis' => $this->input->post('pel_jenis',TRUE),
+		'pel_tenor' => $this->input->post('pel_tenor',TRUE),
+		'pel_angsuran' => $this->input->post('pel_angsuran',TRUE),
+		'pel_bungaangsuran' => $this->input->post('pel_bungaangsuran',TRUE),
+		'pel_totalkekuranganpokok' => $this->input->post('pel_totalkekuranganpokok',TRUE),
+		'pel_totalbungapokok' => $this->input->post('pel_totalbungapokok',TRUE),
+		'pel_bungatambahan' => $this->input->post('pel_bungatambahan',TRUE),
+		'pel_totaldenda' => $this->input->post('pel_totaldenda',TRUE),
+		'pel_tglpelunasan' => $this->tgl,
+		'pel_tgl' => $this->tgl,
+		'pel_flag' => 0,
+		'pel_info' => "",
             );
-        $this->Angsuran_model->update($this->input->post('ags_id', TRUE), $dataAngsuran);
-        redirect(site_url('angsuran/?p=1&k='.$row->ang_angsuranke.'&q='.$row->pin_id.''));
-    }*/
+            $this->Pelunasan_model->insert($dataPeluanasan);
+        $dataPinjaman = array(
+            'pin_statuspinjaman' => 3,
+        );
+        $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
+            redirect(site_url('pelunasan/?p=1'));
+    }
 
     public function biasa(){
         $q = urldecode($this->input->get('q', TRUE));
         $pinjaman = null;
-        
+        $datenow = date('n'); //var_dump($datenow);
+        $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
         $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
+        $jenispelunasan = $this->Jenispelunasan_model->get_by_id(1);
         $settingdenda = $this->Settingdenda_model->get_by_id(1);
         if ($q<>''){
             $row = $this->Pinjaman_model->get_by_id($q);
@@ -142,6 +160,8 @@ class Pelunasan extends MY_Base
             } 
         }
         $data = array(
+            'datatglsekarang' => $datatglsekarang,
+            'jenispelunasan' => $jenispelunasan,
             'settingdenda_data' => $settingdenda,
             'histori' => $historiAngsuran,
             'q' => $q,
@@ -157,7 +177,9 @@ class Pelunasan extends MY_Base
     public function macet(){
         $q = urldecode($this->input->get('q', TRUE));
         $pinjaman = null;
-        
+        $datenow = date('n'); //var_dump($datenow);
+        $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
+        $jenispelunasan = $this->Jenispelunasan_model->get_by_id(3);
         $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
         $settingdenda = $this->Settingdenda_model->get_by_id(1);
         if ($q<>''){
@@ -192,6 +214,8 @@ class Pelunasan extends MY_Base
             } 
         }
         $data = array(
+            'datatglsekarang' => $datatglsekarang,
+            'jenispelunasan' => $jenispelunasan,
             'settingdenda_data' => $settingdenda,
             'histori' => $historiAngsuran,
             'q' => $q,

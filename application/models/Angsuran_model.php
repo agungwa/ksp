@@ -30,6 +30,15 @@ class Angsuran_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
+    // get data by id
+    function get_by_tgl($p, $tgl)
+    {
+        $where = "pin_id = '$p' AND MONTH(ags_tgljatuhtempo) = $tgl AND ags_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->row();
+    }
+
+
     function get_by_pinjaman($q, $k)
     {   
         $where = "pin_id = '$q' AND ang_angsuranke = $k  AND ags_flag < 2";

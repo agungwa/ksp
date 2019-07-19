@@ -749,7 +749,7 @@ class Simkesan extends MY_Base
             }
         }
         
-        var_dump($datasimkesan);
+       // var_dump($datasimkesan);
         $data = array(
             'simkesan_data' => $simkesan,
             'datasimkesan' => $datasimkesan,
