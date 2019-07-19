@@ -3,12 +3,12 @@
         <div class="ibox">
         <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
-            <form action="<?php echo base_url()?>anggota" class="form-inline" method="get">
+            <form action="<?php echo base_url()?>anggota/listdata" class="form-inline" method="get">
             <div class="col-md-8 text-right">
                 <input type="hidden" name="p" value="2">
                 <div class="col-md-2"><h3>Filter : </h3></div>
-                <select class="form-control col-md-3" name="status">
-                    <option value="">--Status--</option>
+                <select class="form-control col-md-3" name="s">
+                    <option value="all">Semua Status</option>
                     <?php
                         foreach ($this->statusAnggota as $key => $value) { ?>
                             <option value="<?= $key?>"><?= $value?></option>
@@ -16,22 +16,13 @@
                         }
                     ?>
                 </select>
-               <!-- <select class="form-control col-md-3" name="wilayah">
-                    <option value="">--Wilayah--</option>
-                    <?php
-                        foreach ($wilayah_data as $value) { ?>
-                            <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
-                    <?php        
-                        }
-                    ?>
-                </select>-->
             </div>
             <div class="col-md-4 text-right">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="No Anggota">
+                        <input type="text" class="form-control" name="u" value="all" placeholder="No Anggota">
                         <span class="input-group-btn">
                             <?php 
-                                if ($q <> '')
+                                if ($u <> '')
                                 {
                                     ?>
                                     <a href="<?php echo base_url()?>anggota/?p=2" class="btn btn-default">Reset</a>
@@ -62,34 +53,38 @@
             </tr>
             </thead>
 			<tbody><?php
-            foreach ($anggota_data as $anggota)
+            
+            foreach ($dataanggota as $key=>$item)
             {
-                $status = $this->statusAnggota;
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-            <td><?php echo $anggota->ang_no ?></td>
-			<td><?php echo $anggota->ang_nama ?></td>
-			<td><?php echo $anggota->ang_alamat ?></td>
-			<td><?php echo $anggota->ang_noktp ?></td>
-			<td><?php echo $anggota->ang_nokk ?></td>
-			<td><?php echo $anggota->ang_nohp ?></td>
-			<td><?php echo $anggota->ang_tgllahir ?></td>
-			<td><?php echo $status[$anggota->ang_status]?></td>
+            <td><?php echo $item['ang_no'] ?></td>
+			<td><?php echo $item['ang_nama'] ?></td>
+			<td><?php echo $item['ang_alamat'] ?></td>
+			<td><?php echo $item['ang_noktp'] ?></td>
+			<td><?php echo $item['ang_nokk'] ?></td>
+			<td><?php echo $item['ang_nohp'] ?></td>
+			<td><?php echo $item['ang_tgllahir'] ?></td>
+			<td><?php echo $item['ang_status']?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('anggota/read/'.$anggota->ang_no),'Detail','class="text-navy"'); 
+				echo anchor(site_url('anggota/read/'.$item['ang_no']),'Detail','class="text-navy"'); 
+                echo ' | ';
+                if ($item['ang_status'] == 0) {
+				echo anchor(site_url('anggota/pengajuanupdate/'.$item['ang_no']),'Update','class="text-navy"');
+                } else {
+                echo anchor(site_url('anggota/update/'.$item['ang_no']),'Update','class="text-navy"');
+                } 
 				echo ' | '; 
-				echo anchor(site_url('anggota/update/'.$anggota->ang_no),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('anggota/delete/'.$anggota->ang_no),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('anggota/delete/'.$item['ang_no']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
             </td>
             <td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('anggota/setorsiw?q='.$anggota->ang_no),'Setor','class="text-navy"'); 
+				echo anchor(site_url('anggota/setorsiw?q='.$item['ang_no']),'Setor','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('anggota/tariksiw?q='.$anggota->ang_no),'Tarik','class="text-navy"');?>
+				echo anchor(site_url('anggota/tariksiw?q='.$item['ang_no']),'Tarik','class="text-navy"');?>
 			</td>
 		</tr>
                 

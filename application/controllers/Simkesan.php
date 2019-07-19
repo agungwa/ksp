@@ -709,20 +709,6 @@ class Simkesan extends MY_Base
         $r = urldecode($this->input->get('r', TRUE));
         $start = intval($this->input->get('start'));
         
-       /* if ($q <> '') {
-            $config['base_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'simkesan/index.html';
-            $config['first_url'] = base_url() . 'simkesan/index.html';
-        }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Simkesan_model->total_rows($q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);*/
         $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
         $wilayah = $this->Wilayah_model->get_all();
         $karyawan = $this->Karyawan_model->get_all();
@@ -762,6 +748,8 @@ class Simkesan extends MY_Base
                 );
             }
         }
+        
+        var_dump($datasimkesan);
         $data = array(
             'simkesan_data' => $simkesan,
             'datasimkesan' => $datasimkesan,
