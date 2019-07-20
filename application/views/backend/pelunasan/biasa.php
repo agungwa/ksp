@@ -30,7 +30,7 @@
         <div class="ibox-content">
 	        
         <h3>Histori Angsuran</h3>
-    <form action="<?php echo site_url('pelunasan/dipercepat_action/'); ?>" class="form-inline" method="post">
+    <form action="<?php echo site_url('pelunasan/pelunasan_action/'); ?>" class="form-inline" method="post">
 <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
     <thead class="thead-light">
     <tr>
@@ -145,7 +145,7 @@
                 <tr><td>Bunga/Bulan</td><td><input type="text" class="form-control" name="pel_bungaangsuran" id="pel_bungaangsuran" placeholder="<?php echo $item->ags_jmlbunga; ?>" value="<?php echo $item->ags_jmlbunga; ?>" readonly/></td></tr>
                 <tr><td>Total Kurang Pokok</td><td><input type="text" class="form-control" name="pel_totalkekuranganpokok" id="pel_totalkekuranganpokok" placeholder="<?php echo $item->ags_jmlpokok*$kali; ?>" value="<?php echo $item->ags_jmlpokok*$kali; ?>" readonly/></td></tr>
                 <tr><td>Total Bunga</td><td><input type="text" class="form-control" name="pel_totalbungapokok" id="pel_totalbungapokok" placeholder="<?php echo $item->ags_jmlbunga*$datatglsekarang->ang_angsuranke; ?>" value="<?php echo $item->ags_jmlbunga*$datatglsekarang->ang_angsuranke; ?>" readonly/></td></tr>
-                <tr><td>Bunga Denda</td><td><input type="text" class="form-control" name="pel_bungatambahan" id="pel_bungatambahan" placeholder="<?php echo $bungadenda; ?>" value="<?php echo $bungadenda; ?>" readonly/></td></tr>
+                <tr><td>Bunga Pelunasan</td><td><input type="text" class="form-control" name="pel_bungatambahan" id="pel_bungatambahan" placeholder="<?php echo $item->ags_jmlbunga; ?>" value="<?php echo $item->ags_jmlbunga; ?>" readonly/></td></tr>
                 <tr><td>Total Denda</td><td><input type="text" class="form-control" name="pel_totaldenda" id="pel_totaldenda" placeholder="<?php echo $totaldenda; ?>" value="<?php echo $totaldenda; ?>" readonly/></td></tr>
                 <tr><td>Tanggal Pelunasan</td><td><?php echo dateFormat($this->tgl); ?></td></tr>
                 <tr><td>Marketing</td><td><?php echo $pinjaman['pin_marketing']; ?></td></tr>

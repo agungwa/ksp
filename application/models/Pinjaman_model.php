@@ -60,7 +60,7 @@ class Pinjaman_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
 	    $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR ang_no LIKE '%$q%' ESCAPE '!') AND pin_flag < 2";
         $this->db->where($where);
-	    $this->db->limit($limit, $start);
+	    //$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

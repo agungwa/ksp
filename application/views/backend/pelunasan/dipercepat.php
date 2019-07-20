@@ -30,7 +30,7 @@
         <div class="ibox-content">
 	        
         <h3>Histori Angsuran</h3>
-    <form action="<?php echo site_url('pelunasan/dipercepat_action/'); ?>" class="form-inline" method="post">
+    <form action="<?php echo site_url('pelunasan/pelunasan_action/'); ?>" class="form-inline" method="post">
 <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
     <thead class="thead-light">
     <tr>

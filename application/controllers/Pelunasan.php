@@ -96,7 +96,7 @@ class Pelunasan extends MY_Base
         $this->load->view(layout(), $data);
     }
 
-    public function dipercepat_action(){
+    public function pelunasan_action(){
         $dataPeluanasan = array(
         'pin_id' => $this->input->post('pin_id',TRUE),
 		'pel_jenis' => $this->input->post('pel_jenis',TRUE),
@@ -106,6 +106,7 @@ class Pelunasan extends MY_Base
 		'pel_totalkekuranganpokok' => $this->input->post('pel_totalkekuranganpokok',TRUE),
 		'pel_totalbungapokok' => $this->input->post('pel_totalbungapokok',TRUE),
 		'pel_bungatambahan' => $this->input->post('pel_bungatambahan',TRUE),
+		'pel_biayapenarikan' => $this->input->post('pel_biayapenarikan',TRUE),
 		'pel_totaldenda' => $this->input->post('pel_totaldenda',TRUE),
 		'pel_tglpelunasan' => $this->tgl,
 		'pel_tgl' => $this->tgl,
