@@ -3,17 +3,16 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
-            <form action="<?php echo site_url('angsuran'); ?>" class="form-inline" method="get">
+            <form action="<?php echo site_url('angsuran/'); ?>" class="form-inline" method="get">
             <div class="col-md-8 text-right">
-                <input type="hidden" name="p" value="4">
+                <input type="hidden" name="p" value="2">
                 <label>Jatuh Tempo : </label>
-                <input type="date" class="form-control" name="jatuh_tempo" value="">
+                <input type="date" class="form-control" name="t" value="<?php echo $t ?>">
             </div>           
         
             <div class="col-md-4 text-right">
-                    <input type="hidden" name="p" value="2">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="No Pinjaman">
+                        <input type="text" class="form-control" name="u" value="all" placeholder="No Pinjaman">
                         <span class="input-group-btn">
                             <?php 
                                 if ($q <> '')
@@ -41,31 +40,29 @@
 		<th class="text-center">Jumlah Pokok</th>
 		<th class="text-center">Jumlah Bunga</th>
 		<th class="text-center">Status</th>
-		<th class="text-center">Tanggal</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
-            foreach ($angsuran_data as $angsuran)
+            foreach ($dataangsuran as $key=>$item)
             {
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $angsuran->pin_id ?></td>
-			<td><?php echo $angsuran->ang_angsuranke ?></td>
-			<td><?php echo $angsuran->ags_tgljatuhtempo ?></td>
-			<td><?php echo $angsuran->ags_tglbayar ?></td>
-			<td><?php echo $angsuran->ags_jmlpokok ?></td>
-			<td><?php echo $angsuran->ags_jmlbunga ?></td>
-			<td><?php echo $this->statusAngsuran[$angsuran->ags_status] ?></td>
-			<td><?php echo dateFormat($angsuran->ags_tgl) ?></td>
+			<td><?php echo $item['pin_id'] ?></td>
+			<td><?php echo $item['ang_angsuranke'] ?></td>
+			<td><?php echo $item['ags_tgljatuhtempo'] ?></td>
+			<td><?php echo $item['ags_tglbayar'] ?></td>
+			<td><?php echo $item['ags_jmlpokok'] ?></td>
+			<td><?php echo $item['ags_jmlbunga'] ?></td>
+			<td><?php echo $item['ags_status'] ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('angsuran/read/'.$angsuran->ags_id),'Read','class="text-navy"'); 
+				echo anchor(site_url('angsuran/read/'.$item['ags_id']),'Read','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('angsuran/update/'.$angsuran->ags_id),'Update','class="text-navy"'); 
+				echo anchor(site_url('angsuran/update/'.$item['ags_id']),'Update','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('angsuran/delete/'.$angsuran->ags_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('angsuran/delete/'.$item['ags_id']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>
 		</tr>

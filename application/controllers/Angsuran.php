@@ -360,13 +360,39 @@ class Angsuran extends MY_Base
     public function listAngsuran()
     {
         $q = urldecode($this->input->get('q', TRUE));
+        $u = urldecode($this->input->get('u', TRUE));
+        $t = urldecode($this->input->get('t', TRUE));
         $start = intval($this->input->get('start'));
-        
-        $angsuran = $this->Angsuran_model->get_limit_data($start, $q);
+        $datetoday = date("Y-m-d", strtotime($this->tgl));
+        $angsuran = $this->Angsuran_model->get_angsuran_data($start, $q, $t);
+        $dataangsuran = array();
+        if ($t == null) { $t=$datetoday ;}
+        foreach ($angsuran as $key=>$item) {
+            $t = date("Y-m-d", strtotime($t));
+            $jt = date("Y-m-d", strtotime($item->ags_tgljatuhtempo));
+            if (
+                ( $jt == $t && $u=='all') || 
+                ( $jt == $t && $item->pin_id == $u)) {
+
+                    $dataangsuran[$key] = array(
+                        'ags_id' => $item->ags_id,
+                        'pin_id' => $item->pin_id,
+                        'ang_angsuranke' => $item->ang_angsuranke,
+                        'ags_tgljatuhtempo' => $item->ags_tgljatuhtempo,
+                        'ags_tglbayar' => $item->ags_tglbayar,
+                        'ags_jmlpokok' => $item->ags_jmlpokok,
+                        'ags_jmlbunga' => $item->ags_jmlbunga,
+                        'ags_status' => $this->statusAngsuran[$item->ags_status],
+                    );
+            }
+        }
 
         $data = array(
+            'dataangsuran' => $dataangsuran,
             'angsuran_data' => $angsuran,
             'q' => $q,
+            'u' => $u,
+            't' => $t,
             'start' => $start,
             'active' => 2,
             'content' => 'backend/angsuran/angsuran',

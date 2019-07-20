@@ -313,7 +313,7 @@ lookup();
                         <li><a href="<?=base_url()?>pinjaman">Pinjaman</a></li>
                         <li><a href="<?=base_url()?>Statuspeminjam">Status Peminjam</a></li>
                         <li>
-                        <li><a href="<?=base_url()?>angsuran">Angsuran</a></li>
+                        <li><a href="<?=base_url()?>angsuran/?p=2">Angsuran</a></li>
                         <li><a href="<?=base_url()?>penagihan">Penagihan</a></li>
                         <li><a href="<?=base_url()?>Pelunasan">Pelunasan</a></li>
                         <li><a href="#">Persentase</a></li>

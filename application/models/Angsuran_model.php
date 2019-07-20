@@ -71,6 +71,28 @@ class Angsuran_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_angsuran_data( $start = 0, $q = NULL, $date = NULL) {
+        $this->db->order_by($this->id, $this->order);
+         $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR ags_tgljatuhtempo LIKE '%$q%' ESCAPE '!') AND ags_flag < 2";
+        $this->db->where($where);
+	    //$this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_penagihanawal_data( $start = 0, $q = NULL) {
+        $this->db->order_by($this->id, $this->order);
+         $where = "ang_angsuranke < 4 AND ags_status < 2 AND ags_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_penagihanakhir_data( $start = 0, $q = NULL) {
+        $this->db->order_by($this->id, $this->order);
+         $where = "ang_angsuranke > 3 AND ags_status < 2 AND ags_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->result();
+    }
+
     // insert data
     function insert($data)
     {
