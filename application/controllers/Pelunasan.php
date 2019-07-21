@@ -234,27 +234,13 @@ class Pelunasan extends MY_Base
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'pelunasan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pelunasan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'pelunasan/index.html';
-            $config['first_url'] = base_url() . 'pelunasan/index.html';
-        }
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Pelunasan_model->total_rows($q);
-        $pelunasan = $this->Pelunasan_model->get_limit_data($config['per_page'], $start, $q);
+        $pelunasan = $this->Pelunasan_model->get_limit_data($start, $q);
 
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
 
         $data = array(
             'pelunasan_data' => $pelunasan,
             'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/pelunasan/index',
             'item'=> 'pelunasan_list.php',

@@ -40,16 +40,14 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Pin Id</th>
-		<th class="text-center">Pel Jenis</th>
-		<th class="text-center">Pel Totalkekuranganpokok</th>
-		<th class="text-center">Pel Totalbungapokok</th>
-		<th class="text-center">Pel Bungatambahan</th>
-		<th class="text-center">Pel Totaldenda</th>
-		<th class="text-center">Pel Tglpelunasan</th>
-		<th class="text-center">Pel Tgl</th>
-		<th class="text-center">Pel Flag</th>
-		<th class="text-center">Pel Info</th>
+		<th class="text-center">Rekening Pinjaman</th>
+		<th class="text-center">Jenis Pelunasan</th>
+		<th class="text-center">Total Kekurangan Pokok</th>
+		<th class="text-center">Total Bunga Pokok</th>
+		<th class="text-center">Bunga Tambahan</th>
+		<th class="text-center">Total Denda</th>
+		<th class="text-center">Biaya Penarikan</th>
+		<th class="text-center">Tanggal Pelunasan</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -65,10 +63,8 @@
 			<td><?php echo $pelunasan->pel_totalbungapokok ?></td>
 			<td><?php echo $pelunasan->pel_bungatambahan ?></td>
 			<td><?php echo $pelunasan->pel_totaldenda ?></td>
+			<td><?php echo $pelunasan->pel_biayapenarikan ?></td>
 			<td><?php echo $pelunasan->pel_tglpelunasan ?></td>
-			<td><?php echo $pelunasan->pel_tgl ?></td>
-			<td><?php echo $pelunasan->pel_flag ?></td>
-			<td><?php echo $pelunasan->pel_info ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('pelunasan/read/'.$pelunasan->pel_id),'Read','class="text-navy"'); 
@@ -86,12 +82,6 @@
             </tbody>
         </table>
         <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
         </div>
         </div>
     </div>

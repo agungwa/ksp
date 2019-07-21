@@ -35,7 +35,7 @@ class Angsuran extends MY_Base
                 break;
 
             default:
-                $this->bayarAngsuran();
+                $this->listpinjaman();
                 break;
         }
     }
