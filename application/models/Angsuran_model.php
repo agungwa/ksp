@@ -23,6 +23,23 @@ class Angsuran_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
     
+    // get all angsuran bayar
+    function get_angsuran_bayar()
+    {
+        $where = "ags_status = 2 AND ags_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get all total angsuran
+    function get_angsuran_total()
+    {
+        $where = "ags_status > 0 AND ags_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
     // get all pokok
     function get_target()
     {

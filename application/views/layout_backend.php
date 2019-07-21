@@ -335,11 +335,9 @@ lookup();
                             <a href="#" id="damian">Data / Laporan<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="#">Data Pinjaman</a>
+                                    <a href="<?=base_url()?>Datapinjaman">Data Pinjaman / Sirkulasi</a>
                                 </li>
-                                <li>
-                                    <a href="#">Neraca / Sirkulasi</a>
-                                </li>
+                               
                                 
                             </ul>
                         </li>
