@@ -533,11 +533,14 @@ class Simpanan extends MY_Base
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
-
+        $satu =1;
         $simpanan = $this->Simpanan_model->get_jatuh_tempo($start, $q, $f, $t);
 
+        $datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
         $wilayah = $this->Wilayah_model->get_all();
         $datasimpanan = array();
+        if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
         foreach ($simpanan as $key=>$item) {
             $sim_status = $this->statusSimpanan;
             $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $item->jsi_id))->row();

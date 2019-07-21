@@ -316,7 +316,7 @@ lookup();
                         <li><a href="<?=base_url()?>angsuran/?p=2">Angsuran</a></li>
                         <li><a href="<?=base_url()?>penagihan">Penagihan</a></li>
                         <li><a href="<?=base_url()?>Pelunasan">Pelunasan</a></li>
-                        <li><a href="#">Persentase</a></li>
+                        <li><a href="<?=base_url()?>Persentase">Persentase</a></li>
                         <li>
                             <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
