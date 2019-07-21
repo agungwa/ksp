@@ -18,6 +18,7 @@ class Simkesan extends MY_Base
         $this->load->model('Jenisklaim_model');
         $this->load->model('Klaimsimkesan_model');
         $this->load->model('Titipansimkesan_model');
+        $this->load->model('Ahliwarissimkesan_model');
         $this->load->library('form_validation');
     }
 
@@ -58,7 +59,7 @@ class Simkesan extends MY_Base
 
     public function pendaftaran_action() 
     {
-            $data = array(
+            $dataSimkesan = array(
             'ang_no' => $this->input->post('ang_no',TRUE),
             'sik_kode'=> $this->input->post('sik_kode',TRUE),
     		'kar_kode' => $this->input->post('kar_kode',TRUE),
@@ -71,8 +72,21 @@ class Simkesan extends MY_Base
     		'sik_flag' => 0,
     		'sik_info' => "",
     	    );
-
-            $this->Simkesan_model->insert($data);
+            $this->Simkesan_model->insert($dataSimkesan);
+            
+            $dataAhliwaris = array(
+    		'sik_kode' => $this->input->post('sik_kode',TRUE),
+    		'aws_noid' => $this->input->post('aws_noid',TRUE),
+    		'aws_jenisid' => $this->input->post('aws_jenisid',TRUE),
+    		'aws_nama' => $this->input->post('aws_nama',TRUE),
+    		'aws_alamat' => $this->input->post('aws_alamat',TRUE),
+    		'aws_hubungan' => $this->input->post('aws_hubungan',TRUE),
+    		'aws_lampiran' => $this->input->post('aws_lampiran',TRUE),
+    		'aws_tgl' => $this->tgl,
+    		'aws_flag' => 0,
+    		'aws_info' => "",
+            );
+            $this->Ahliwarissimkesan_model->insert($dataAhliwaris);
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('simkesan'));
         }
@@ -85,7 +99,7 @@ class Simkesan extends MY_Base
          $row = $this->Simkesan_model->get_by_id($id);
          $setoran = $this->Setoransimkesan_model->get_data_setor($id);
          $titipan = $this->Titipansimkesan_model->get_sikkode($id);
-         var_dump($titipan);
+         //var_dump($titipan);
          $tahun = 5;
          $tahun10 = 10;
          if ($row) {
@@ -701,6 +715,75 @@ class Simkesan extends MY_Base
         }
 
     public function listdata()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $u = urldecode($this->input->get('u', TRUE));
+        $p = urldecode($this->input->get('p', TRUE));
+        $w = urldecode($this->input->get('w', TRUE));
+        $r = urldecode($this->input->get('r', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
+        $wilayah = $this->Wilayah_model->get_all();
+        $karyawan = $this->Karyawan_model->get_all();
+        $plansimkesan = $this->Plansimkesan_model->get_all();
+        $datasimkesan= array();
+        foreach ($simkesan as $key=>$item) {
+           
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $item->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $item->kar_kode))->row();
+            if (
+                ( $p=='all' && $w=='all' && $r=='all' && $u=='all') || 
+                ( $p=='all' && $w=='all' && $r=='all' && $item->sik_kode == $u) || 
+            ( $item->psk_id == $p && $w=='all' && $r=='all' ) || 
+            ( $item->psk_id == $p && $item->wil_kode == $w && $r=='all' ) || 
+            ( $item->psk_id == $p && $w=='all' && $item->kar_kode == $r ) ||
+            ( $p=='all' && $w=='all' && $item->kar_kode == $r ) ||
+            ( $p=='all' && $item->wil_kode == $w && $item->kar_kode == $r ) ||
+            ( $p=='all' && $item->wil_kode == $w && $r=='all' ) ||
+            ($item->psk_id == $p && $item->wil_kode == $w && $item->kar_kode == $r  )) {
+
+               $datasimkesan[$key] = array(
+                'sik_kode' => $item->sik_kode,
+                'ang_no' => $item->ang_no,
+                'nm_ang_no' => $ang_no->ang_nama,
+                'kar_kode' => $kar_kode->kar_nama,
+                'psk_id' => $psk_id->psk_plan,
+                'setor_psk_id' => $psk_id->psk_setoran,
+                'wil_kode' => $wil_kode->wil_nama,
+                'sik_tglpendaftaran' => $item->sik_tglpendaftaran,
+                'sik_tglberakhir' => $item->sik_tglberakhir,
+                'sik_status' => $this->statusSimkesan[$item->sik_status],
+                'sik_tgl' => $item->sik_tgl,
+                'sik_flag' => $item->sik_flag,
+                'sik_info' => $item->sik_info,
+                );
+            }
+        }
+        
+       // var_dump($datasimkesan);
+        $data = array(
+            'simkesan_data' => $simkesan,
+            'datasimkesan' => $datasimkesan,
+            'wilayah_data' => $wilayah,
+            'karyawan_data' => $karyawan,
+            'plansimkesan_data' => $plansimkesan,
+            'q' => $q,
+            'u' => $u,
+            'w' => $w,
+            'p' => $p,
+            'r' => $r,
+            'start' => $start,
+            'content' => 'backend/simkesan/simkesan',
+            'item' => 'simkesan_list.php',
+            'active' => 2,
+        );
+        $this->load->view(layout(), $data);
+    }
+
+    public function listdataberakhir()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $u = urldecode($this->input->get('u', TRUE));

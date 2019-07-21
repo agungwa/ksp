@@ -9,7 +9,7 @@
                     <form action="<?php echo site_url('simkesan/pendaftaran_action'); ?>" method="post">
                     <div class="ibox-content col-md-12">
                     <div class="col-md-12"> 
-                    <div class="col-md-6"> 
+                    <div class="col-md-6">
                     <div class="form-group">
                         <label for="tinyint">Rekening Simkesan</label>
                         <input type="text" class="form-control" name="sik_kode" id="sik_kode" placeholder="Rekening Simkesan" value="<?php echo $kode; ?>" readonly />
@@ -47,9 +47,7 @@
                         </div>
                         </div>
                     </div>
-                    </div>
-        
-                    <div class="col-md-6"> 
+                    
                     <div class="form-group">
                         <label for="varchar">Wilayah</label>
                         <div class="input-group">
@@ -65,18 +63,40 @@
                         <label for="datetime">Tanggal Pendaftaran</label>
                         <input type="date" class="form-control" name="sik_tglpendaftaran" id="todays-date" placeholder="Tanggal Pendaftaran" value="" />
                     </div>
+
+                    <div class="col-md-">
+                    <h3>Form Ahli Waris</h3>
+                    <div class="form-group">
+                        <label for="varchar">Nama</label>
+                        <input type="text" class="form-control" name="aws_nama" id="aws_nama" placeholder="Nama" value="" required="required"  />
+                    </div>
+                    <div class="form-group">
+                        <label for="varchar">Ahli Waris ID</label>
+                        <input type="text" class="form-control" name="aws_noid" id="aws_noid" placeholder="Ahli Waris ID" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="varchar">Jenis ID </label>
+                        <input type="text" class="form-control" name="aws_jenisid" id="aws_jenisid" placeholder="Jenis ID" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label for="aws_alamat">Alamat </label>
+                        <textarea class="form-control" rows="3" name="aws_alamat" id="aws_alamat" placeholder="Alamat" required="required" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="varchar">Hubungan </label>
+                        <input type="text" class="form-control" name="aws_hubungan" id="aws_hubungan" placeholder="Hubungan" value="" required="required" />
+                    </div>
+                    <div class="form-group">
+                        <label for="aws_lampiran">Lampiran</label>
+                        <textarea class="form-control" rows="3" name="aws_lampiran" id="aws_lampiran" placeholder="Lampiran" required="required" ></textarea>
                     </div>
                     </div>
-                    
                     <div class="col-md-8">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                     <a href="<?php echo site_url('simkesan/?p=1') ?>" class="btn btn-default">Batal</a>
                     </div>
                     </form>
-                </div>
+                    </div>
             </div>
             
-            </div>
-        </div>
-    </div>
 </div>

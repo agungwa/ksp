@@ -199,9 +199,6 @@ lookup();
                             <a href="#" id="damian">Data<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="#">Terlambat Jatuh Tempo</a>
-                                </li>
-                                <li>
                                     <a href="#">Rekening Simkesan Hangus</a>
                                 </li>
                                 <li>
