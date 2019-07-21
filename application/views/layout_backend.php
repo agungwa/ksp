@@ -264,7 +264,7 @@ lookup();
                             <a href="#" id="damian">Data<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="#">Data Investasi</a>
+                                    <a href="<?=base_url()?>datainvestasi">Data Investasi</a>
                                 </li>
                             </ul>
                         </li>

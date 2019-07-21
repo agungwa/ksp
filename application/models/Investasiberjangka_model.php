@@ -23,6 +23,24 @@ class Investasiberjangka_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    // get investasi aktif
+    function get_investasi_aktif()
+    {
+        $where = "ivb_status = 0 AND ivb_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get investasi nonaktif
+    function get_investasi_nonaktif()
+    {
+        $where = "ivb_status = 1 AND ivb_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
     // get data by id
     function get_by_id($id)
     {

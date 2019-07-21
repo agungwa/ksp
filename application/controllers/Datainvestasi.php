@@ -2,19 +2,14 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class DataRekening extends MY_Base
+class DataInvestasi extends MY_Base
 {
 	function __construct()
     {
         parent::__construct();
-        $this->load->model('Simpanan_model');
-        $this->load->model('Setoransimpanan_model');
-        $this->load->model('Bungasetoransimpanan_model');
-        $this->load->model('Penarikansimpanan_model');
-        $this->load->model('Simpananwajib_model');
-        $this->load->model('Setoransimpananwajib_model');
-        $this->load->model('Penarikansimpananwajib_model');
-        $this->load->model('Simpananpokok_model');
+        $this->load->model('Penarikaninvestasiberjangka_model');
+        $this->load->model('Tutupinvestasiberjangka_model');
+        $this->load->model('Investasiberjangka_model');
         $this->load->model('Wilayah_model');
     }
 
@@ -24,21 +19,15 @@ class DataRekening extends MY_Base
     	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
 
-    	$simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
-    	$simpananNonaktif = $this->Simpanan_model->get_simpanan_nonaktif();
-    	$setoransimpananwajib = $this->Setoransimpananwajib_model->get_all();    	
-    	$simpananwajibDitarik = $this->Penarikansimpananwajib_model->get_all();
-		$simpananPokok = $this->Simpananpokok_model->get_all();
+    	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
+    	$investasiNonaktif = $this->Investasiberjangka_model->get_investasi_nonaktif();
+    	$jasaDitarik = $this->Penarikaninvestasiberjangka_model->get_all();
         $wilayah = $this->Wilayah_model->get_all();		
 
-    	$saldoSimpanan = 0;
-    	$saldoSimpananDitarik = 0;
-    	$bungaSimpanan = 0;
-    	$saldoSimpananwajib = 0;
-    	$saldoSimpananwajibDitarik = 0;
-    	$saldoSimpananpokok = 0;
-    	$phBuku = 0;
-    	$administrasi = 0;
+    	$saldoInvestasi = 0;
+    	$saldoInvestasilalu = 0;
+    	$saldoInvestasiditarik = 0;
+    	$jasaInvestasiditarik = 0;
 
 
     	if ($f<>'' && $t<>'') {	
@@ -46,107 +35,72 @@ class DataRekening extends MY_Base
         	$t = date("Y-m-d", strtotime($t));
     	}
 
-    	//hitung saldo simpanan aktif
-    	foreach ($simpananAktif as $key => $value) {
-    		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
-    		foreach ($setoran as $k => $item) {
-				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
-    			if ($f<>'' && $t<>'' && $w<>'') {	
-    				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-    				if ($tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == 'all' || $tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == $w) {
-    					$saldoSimpanan += $item->ssi_jmlsetor;
+    	//hitung saldo investasi aktif
+    	foreach ($investasiAktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$jt = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
+    				$saldoInvestasi += $value->ivb_jumlah ;
+    			}
+			} else {
+				$saldoInvestasi += $value->ivb_jumlah;
+		}
+	}
+
+		//hitung saldo investasi aktif lalu
+    	foreach ($investasiAktif as $key => $value) {
+			if ($f<>'' && $w<>'') {	
+			$jt = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $value->wil_kode==$w))  {
+    				$saldoInvestasilalu += $value->ivb_jumlah ;
+    			}
+			} else {
+				$saldoInvestasilalu += $value->ivb_jumlah;
+		}
+	}
+
+		
+    	//hitung saldo investasi aktif lalu
+    	foreach ($investasiNonaktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$jt = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
+    				$saldoInvestasiditarik += $value->ivb_jumlah ;
+    			}
+			} else {
+				$saldoInvestasiditarik += $value->ivb_jumlah;
+		}
+	}
+
+    	//hitung saldo jasa ditarik
+    	foreach ($jasaDitarik as $key => $value) {
+			$ivb_kode = $this->db->get_where('investasiberjangka', array('ivb_kode' => $value->ivb_kode))->row();
+			if ($f<>'' && $t<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($value->pib_tgl));
+    				if (($tgl >= $f && $tgl <= $t && $w == 'all') || ($tgl >= $f && $tgl <= $t && $ivb_kode->wil_kode == $w)) {
+    					$jasaInvestasiditarik += $value->pib_jmlditerima;
     				}
     			} else {
-    				$saldoSimpanan += $item->ssi_jmlsetor;
+    				$jasaInvestasiditarik += $value->pib_jmlditerima;
     			}
-    		}
+    		
     	}
 
-    	//hitung saldo simpanan ditarik
-    	foreach ($simpananAktif as $key => $value) {
-    		$penarikan = $this->Penarikansimpanan_model->get_data_penarikan($value->sim_kode);
-    		foreach ($penarikan as $k => $item) {
-    			if ($f<>'' && $t<>'') {	
-    				$tgl = date("Y-m-d", strtotime($item->pes_tglpenarikan));
-    				if ( $tgl >= $f && $tgl <= $t && $item->wil_kode == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
-    					$saldoSimpananDitarik += $item->pes_saldopokok;
-	    				$phBuku += $item->pes_phbuku;
-	    				$administrasi += $item->pes_administrasi;
-    				}
-    			} else {
-	    			$saldoSimpananDitarik += $item->pes_saldopokok;
-	    			$phBuku += $item->pes_phbuku;
-	    			$administrasi += $item->pes_administrasi;
-    			}
-    		}
-    	}
-
-    	//hitung bunga simpanan aktif
-    	foreach ($simpananAktif as $key => $value) {
-    		$bungaSetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($value->sim_kode);
-    		foreach ($bungaSetoran as $k => $item) {
-    			if ($f<>'' && $t<>'') {	
-    				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
-    				if ($tgl >= $f && $tgl <= $t && $item->wil_kode == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
-    					$bungaSimpanan += $item->bss_bungabulanini;
-    				}
-    			} else {
-    				$bungaSimpanan += $item->bss_bungabulanini;
-    			}
-    		}
-    	}
-
-    	//simpanan wajib
-    	foreach ($setoransimpananwajib as $key => $value) {
-    		if ($f<>'' && $t<>'') {	
-    			$tgl = date("Y-m-d", strtotime($value->ssw_tglsetor));
-    			if ($tgl >= $f && $tgl <= $t) {
-    				$saldoSimpananwajib += $value->ssw_jmlsetor;
-    			}
-    		} else {
-    			$saldoSimpananwajib += $value->ssw_jmlsetor;
-    		}
-    	}
-
-    	//simpanan wajib ditarik
-    	foreach ($simpananwajibDitarik as $key => $value) {
-    		if ($f<>'' && $t<>'') {	
-    			$tgl = date("Y-m-d", strtotime($value->psw_tglpenarikan));
-    			if ($tgl >= $f && $tgl <= $t) {
-    				$saldoSimpananwajibDitarik += $value->psw_jumlah;
-    			}
-    		} else {
-				$saldoSimpananwajibDitarik += $value->psw_jumlah;
-    		}
-    	}
-
-    	//simpanan pokok
-    	foreach ($simpananPokok as $key => $value) {
-    		if ($f<>'' && $t<>'') {	
-    			$tgl = date("Y-m-d", strtotime($value->sip_tglbayar));
-    			if ($tgl >= $f && $tgl <= $t) {
-    				$saldoSimpananpokok += $value->sip_setoran;
-    			}
-    		} else {
-				$saldoSimpananpokok += $value->sip_setoran;
-    		}
-    	}
-
+    	
 		$data = array(
 			
             'wilayah_data' => $wilayah,
-			'saldosimpanan' => $saldoSimpanan,
-			'saldosimpananditarik' => $saldoSimpananDitarik,
-			'bungasimpanan' => $bungaSimpanan,
-			'saldosimpananwajib' => $saldoSimpananwajib,
-			'saldosimpananwajibditarik' => $saldoSimpananwajibDitarik,
-			'saldosimpananpokok' => $saldoSimpananpokok,
-			'phbuku' => $phBuku,
-			'administrasi' => $administrasi,
+			'jasainvestasiditarik' => $jasaInvestasiditarik,
+			'saldoinvestasiditarik' => $saldoInvestasiditarik,
+			'saldoinvestasilalu' => $saldoInvestasilalu,
+			'saldoinvestasi' => $saldoInvestasi,
 			'f' => $f,
 			't' => $t,
 			'w' => $w,
-		    'content' => 'backend/simpanan/datarekening/index',
+		    'content' => 'backend/investasiberjangka/datainvestasi/index',
 		);
         $this->load->view(layout(), $data);
     }
