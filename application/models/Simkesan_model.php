@@ -23,10 +23,10 @@ class Simkesan_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
-    // get simkesan aktif
-    function get_simkesan_aktif()
+    // get simkesan lunas
+    function get_simkesan_lunas()
     {
-        $where = "sik_status = 0 AND sik_flag < 2";
+        $where = "sik_status = 4 AND sik_flag < 2";
         $this->db->where($where);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();

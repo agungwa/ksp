@@ -65,20 +65,20 @@
 				<td class="text-center">RP <?= $pokokangsuran+$pokokangsuranpelunasan;?></td>
             </tr>
             <tr>
+                <td class="text-left">Saldo Kini</td>
+				<td class="text-center">RP <?= ($saldolalupinjaman+$saldodroppinjaman)-($pokokangsuran+$pokokangsuranpelunasan);?></td>
+            </tr>
+            <tr>
                 <td class="text-left">Bunga Angsuran</td>
-				<td class="text-center">RP <?= $bungaangsuran;?></td>
+				<td class="text-center">RP <?= $bungaangsuran + $bungadendapelunasan;?></td>
             </tr>
             <tr>
                 <td class="text-left">Denda Angsuran</td>
 				<td class="text-center">RP <?= $dendaangsuran;?></td>
             </tr>
             <tr>
-                <td class="text-left">Provisi</td>
+                <td class="text-left">Administrasi</td>
 				<td class="text-center">RP <?= $provisipinjaman;?></td>
-            </tr>
-            <tr>
-                <td class="text-left">Bunga Denda</td>
-				<td class="text-center">RP <?= $bungadendapelunasan;?></td>
             </tr>
             <tr class="danger">
                 <td class="text-left">Total Angsuran Masuk</td>

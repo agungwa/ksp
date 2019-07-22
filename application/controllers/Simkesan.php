@@ -146,6 +146,12 @@ class Simkesan extends MY_Base
     		'ssk_info' => "",
              );
                  $this->Setoransimkesan_model->insert($dataSetor);
+        $dataSimkesan = array(
+    		'sik_status' => $this->input->post('sik_status',TRUE),
+        );
+        
+        $this->Simkesan_model->update($this->input->post('sik_kode', TRUE), $dataSimkesan);
+
                  redirect(site_url('simkesan/?p=2'));
          }
 
@@ -717,10 +723,10 @@ class Simkesan extends MY_Base
     public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
-        $u = urldecode($this->input->get('u', TRUE));
-        $p = urldecode($this->input->get('p', TRUE));
-        $w = urldecode($this->input->get('w', TRUE));
-        $r = urldecode($this->input->get('r', TRUE));
+        $u = urldecode($this->input->get('u', TRUE)); //kode simkesan
+        $p = urldecode($this->input->get('p', TRUE)); //plan simkesan
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $r = urldecode($this->input->get('r', TRUE)); //karyawan
         $start = intval($this->input->get('start'));
         
         $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
@@ -783,75 +789,7 @@ class Simkesan extends MY_Base
         $this->load->view(layout(), $data);
     }
 
-    public function listdataberakhir()
-    {
-        $q = urldecode($this->input->get('q', TRUE));
-        $u = urldecode($this->input->get('u', TRUE));
-        $p = urldecode($this->input->get('p', TRUE));
-        $w = urldecode($this->input->get('w', TRUE));
-        $r = urldecode($this->input->get('r', TRUE));
-        $start = intval($this->input->get('start'));
-        
-        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
-        $wilayah = $this->Wilayah_model->get_all();
-        $karyawan = $this->Karyawan_model->get_all();
-        $plansimkesan = $this->Plansimkesan_model->get_all();
-        $datasimkesan= array();
-        foreach ($simkesan as $key=>$item) {
-           
-            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $item->psk_id))->row();
-            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item->wil_kode))->row();
-            $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
-            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $item->kar_kode))->row();
-            if (
-                ( $p=='all' && $w=='all' && $r=='all' && $u=='all') || 
-                ( $p=='all' && $w=='all' && $r=='all' && $item->sik_kode == $u) || 
-            ( $item->psk_id == $p && $w=='all' && $r=='all' ) || 
-            ( $item->psk_id == $p && $item->wil_kode == $w && $r=='all' ) || 
-            ( $item->psk_id == $p && $w=='all' && $item->kar_kode == $r ) ||
-            ( $p=='all' && $w=='all' && $item->kar_kode == $r ) ||
-            ( $p=='all' && $item->wil_kode == $w && $item->kar_kode == $r ) ||
-            ( $p=='all' && $item->wil_kode == $w && $r=='all' ) ||
-            ($item->psk_id == $p && $item->wil_kode == $w && $item->kar_kode == $r  )) {
-
-               $datasimkesan[$key] = array(
-                'sik_kode' => $item->sik_kode,
-                'ang_no' => $item->ang_no,
-                'nm_ang_no' => $ang_no->ang_nama,
-                'kar_kode' => $kar_kode->kar_nama,
-                'psk_id' => $psk_id->psk_plan,
-                'setor_psk_id' => $psk_id->psk_setoran,
-                'wil_kode' => $wil_kode->wil_nama,
-                'sik_tglpendaftaran' => $item->sik_tglpendaftaran,
-                'sik_tglberakhir' => $item->sik_tglberakhir,
-                'sik_status' => $this->statusSimkesan[$item->sik_status],
-                'sik_tgl' => $item->sik_tgl,
-                'sik_flag' => $item->sik_flag,
-                'sik_info' => $item->sik_info,
-                );
-            }
-        }
-        
-       // var_dump($datasimkesan);
-        $data = array(
-            'simkesan_data' => $simkesan,
-            'datasimkesan' => $datasimkesan,
-            'wilayah_data' => $wilayah,
-            'karyawan_data' => $karyawan,
-            'plansimkesan_data' => $plansimkesan,
-            'q' => $q,
-            'u' => $u,
-            'w' => $w,
-            'p' => $p,
-            'r' => $r,
-            'start' => $start,
-            'content' => 'backend/simkesan/simkesan',
-            'item' => 'simkesan_list.php',
-            'active' => 2,
-        );
-        $this->load->view(layout(), $data);
-    }
-
+    
     public function listjatuhtempo()
     {
         $q = urldecode($this->input->get('q', TRUE));
@@ -860,10 +798,7 @@ class Simkesan extends MY_Base
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Setoransimkesan_model->total_rows($q);
-        $setoransimkesan = $this->Setoransimkesan_model->get_group_bysikkode($config['per_page'], $start, $q, $f, $t);
+        $setoransimkesan = $this->Setoransimkesan_model->get_group_bysikkode($start, $q, $f, $t);
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
@@ -976,26 +911,13 @@ class Simkesan extends MY_Base
         $start = intval($this->input->get('start'));
         $idhtml = $this->input->get('idhtml');
         
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'simkesan/index.html';
-            $config['first_url'] = base_url() . 'simkesan/index.html';
-        }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Simkesan_model->total_rows($q);
-        $simkesan = $this->Simkesan_model->get_limit_data($config['per_page'], $start, $q);
+        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
 
 
         $data = array(
             'simkesan_data' => $simkesan,
             'idhtml' => $idhtml,
             'q' => $q,
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
             'content' => 'backend/simkesan/simkesan_lookup',
         );
         ob_start();

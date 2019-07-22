@@ -53,6 +53,10 @@
 				<td class="text-center">RP <?= $jmlbayar;?></td>
             </tr>
             <tr>
+                <td class="text-left">Tidak Tertagih</td>
+				<td class="text-center">RP <?= $saldopokok-$jmlbayar;?></td>
+            </tr>
+            <tr>
                 <td class="text-left">Persentase</td>
 				<td class="text-center"><?= ($jmlbayar/$saldopokok)*100;?> %</td>
             </tr>

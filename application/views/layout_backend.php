@@ -196,18 +196,8 @@ lookup();
                             </ul>
                         </li>
                         <li>
-                            <a href="#" id="damian">Data<span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="#">Rekening Simkesan Hangus</a>
-                                </li>
-                                <li>
-                                    <a href="#">Simkesan Lunas </a>
-                                </li>
-                                <li>
-                                    <a href="#">Simkesan Masa Berakhir</a>
-                                </li>
-                            </ul>
+                            <a href="<?=base_url()?>Simkesandata" id="damian">Data Simkesan</a>
+                            
                         </li>
                         <li><a href="#">Neraca / Sirkulasi</a></li>
                     </ul>
