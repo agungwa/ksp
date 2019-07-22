@@ -103,8 +103,8 @@ class Simkesandata extends MY_Base
             'p' => $p,
             'r' => $r,
             'start' => $start,
-            'content' => 'backend/simkesan/simkesan',
-            'item' => 'simkesandata/simkesanlunas.php',
+            'content' => 'backend/simkesandata/simkesandata',
+            'item' => 'simkesanlunas.php',
             'active' => 1,
         );
         $this->load->view(layout(), $data);
@@ -181,7 +181,7 @@ class Simkesandata extends MY_Base
         if ($t == null ) {$t=$datetoday;}
         foreach ($simkesan as $key=>$item) {
             
-            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
+            $tanggalDuedate = date("Y-m-d", strtotime($item->sik_tglpendaftaran.' + '.$tahun10.' Years'));
             $t = date("Y-m-d", strtotime($t));
            
             $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $item->psk_id))->row();
@@ -222,11 +222,11 @@ class Simkesandata extends MY_Base
             'u' => $u,
             'w' => $w,
             'p' => $p,
-            'r' => $r,
+            't' => $t,
             'start' => $start,
-            'content' => 'backend/simkesan/simkesan',
-            'item' => 'simkesandata/simkesanlunas.php',
-            'active' => 1,
+            'content' => 'backend/simkesandata/simkesandata',
+            'item' => 'simkesanmasaberakhir.php',
+            'active' => 3,
         );
         $this->load->view(layout(), $data);
     }
