@@ -17,27 +17,11 @@ class Karyawan extends MY_Base
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'karyawan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'karyawan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'karyawan/index.html';
-            $config['first_url'] = base_url() . 'karyawan/index.html';
-        }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Karyawan_model->total_rows($q);
-        $karyawan = $this->Karyawan_model->get_limit_data($config['per_page'], $start, $q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
+        $karyawan = $this->Karyawan_model->get_limit_data( $start, $q);
 
         $data = array(
             'karyawan_data' => $karyawan,
             'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/karyawan/karyawan_list',
         );
@@ -50,25 +34,13 @@ class Karyawan extends MY_Base
         $start = intval($this->input->get('start'));
         $idhtml = $this->input->get('idhtml');
         
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'karyawan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'karyawan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'karyawan/index.html';
-            $config['first_url'] = base_url() . 'karyawan/index.html';
-        }
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Karyawan_model->total_rows($q);
-        $karyawan = $this->Karyawan_model->get_limit_data($config['per_page'], $start, $q);
-
+        $karyawan = $this->Karyawan_model->get_limit_data( $start, $q);
 
         $data = array(
             'karyawan_data' => $karyawan,
             'idhtml' => $idhtml,
             'q' => $q,
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/karyawan/karyawan_lookup',
         );
@@ -109,6 +81,7 @@ class Karyawan extends MY_Base
             'nm_jab_kode' => set_value('nm_jab_kode'),
     	    'kar_alamat' => set_value('kar_alamat'),
     	    'kar_nohp' => set_value('kar_nohp'),
+    	    'kar_simpanan' => set_value('kar_simpanan'),
     	    'kar_tgl' => set_value('kar_tgl'),
     	    'kar_flag' => set_value('kar_flag'),
     	    'kar_info' => set_value('kar_info'),
@@ -130,6 +103,7 @@ class Karyawan extends MY_Base
     		'jab_kode' => $this->input->post('jab_kode',TRUE),
     		'kar_alamat' => $this->input->post('kar_alamat',TRUE),
     		'kar_nohp' => $this->input->post('kar_nohp',TRUE),
+    		'kar_simpanan' => $this->input->post('kar_simpanan',TRUE),
     		'kar_tgl' => $this->tgl,
     		'kar_flag' => 0,
     		'kar_info' => "",
@@ -155,6 +129,7 @@ class Karyawan extends MY_Base
                 'nm_jab_kode' => set_value('jab_kode', $row->jab_kode),
         		'kar_alamat' => set_value('kar_alamat', $row->kar_alamat),
         		'kar_nohp' => set_value('kar_nohp', $row->kar_nohp),
+        		'kar_simpanan' => set_value('kar_nohp', $row->kar_simpanan),
         	    'content' => 'backend/karyawan/karyawan_form',
         	    );
             $this->load->view(layout(), $data);
@@ -176,6 +151,7 @@ class Karyawan extends MY_Base
     		'jab_kode' => $this->input->post('jab_kode',TRUE),
     		'kar_alamat' => $this->input->post('kar_alamat',TRUE),
     		'kar_nohp' => $this->input->post('kar_nohp',TRUE),
+    		'kar_simpanan' => $this->input->post('kar_simpanan',TRUE),
     		'kar_flag' => 1,
     	    );
 

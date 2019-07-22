@@ -3,23 +3,17 @@
         <div class="ibox">
         <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
-            <form action="<?php echo base_url()?>simkesandata/simkesanlunas/" class="form-inline" method="get">
+            <form action="<?php echo base_url()?>simkesandata/simkesanhangus/" class="form-inline" method="get">
             <div class="col-md-8 text-right">
-                <div class="col-md-2"><h3>Filter : </h3></div>
+                <div class="col-md-3"><h4>Tanggal : </h4></div>
+                <div class="col-md-3">
+                    <input class="form-control" type="date" name="t" required="required" value="<?= $t;?>">
+                </div>
                 <select class="form-control col-md-3" name="w">
                     <option value="all">Semua Wilayah</option>
                     <?php
                         foreach ($wilayah_data as $value) { ?>
                             <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
-                    <?php        
-                        }
-                    ?>
-                </select>
-                <select class="form-control col-md-3" name="r">
-                    <option value="all">Semua Karyawan</option>
-                    <?php
-                        foreach ($karyawan_data as $value) { ?>
-                            <option value="<?= $value->kar_kode?>"><?= $value->kar_nama?></option>
                     <?php        
                         }
                     ?>
@@ -37,13 +31,12 @@
             <div class="col-md-4 text-right">
                     <div class="input-group">
                     
-                    <input type="text" class="form-control" name="u" value="all" placeholder="No simkesan">
                         <span class="input-group-btn">
                             <?php 
-                                if ($u <> '')
+                                if ($p <> '' && $w <> '' && $t <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo base_url()?>simkesandata/?p=1" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo base_url()?>simkesandata/?p=2" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
@@ -85,7 +78,6 @@
 			<td><?php echo $item['sik_tglberakhir'] ?></td>
 			<td><?php echo $item['sik_status'] ?></td>
 			<td><?php echo dateFormat($item['sik_tgl']) ?></td>
-			
 		</tr>
                 
                 <?php

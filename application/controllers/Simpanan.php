@@ -9,6 +9,7 @@ class Simpanan extends MY_Base
     {
         parent::__construct();
         $this->load->model('Simpanan_model');
+        $this->load->model('Bungasetoransimpanan_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Setoransimpanan_model');
         $this->load->model('Penarikansimpanan_model');
@@ -147,8 +148,10 @@ class Simpanan extends MY_Base
             $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
             $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
             $setoran = $this->Setoransimpanan_model->get_data_setor($q);
+            $bungasetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($q);
             if ($row) {
-                $penarikan = array(
+                $penarikan = array(  
+                'bungasetoran' => $bungasetoran,
                 'setoran_data' => $setoran,
                 'sim_kode' => $row->sim_kode,
                 'ang_no' => $ang_no->ang_nama,
@@ -164,6 +167,7 @@ class Simpanan extends MY_Base
         }
 
         $data = array(
+            
             'content' => 'backend/simpanan/simpanan',
             'item'=> 'penarikan/penarikan.php',
             'q' => $q,
@@ -269,21 +273,12 @@ class Simpanan extends MY_Base
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
         
-        /*if ($q <> '') {
-            $config['base_url'] = base_url() . 'simpanan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'simpanan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'simpanan/index.html';
-            $config['first_url'] = base_url() . 'simpanan/index.html';
-        }*/
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Setoransimpanan_model->total_rows($q);
-        $setoransimpanan = $this->Setoransimpanan_model->get_limit_data($config['per_page'], $start, $q, $f, $t);
+        $setoransimpanan = $this->Setoransimpanan_model->get_limit_data($start, $q, $f, $t);
 
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
         $wilayah = $this->Wilayah_model->get_all();
         $datasetoran = array();
         foreach ($setoransimpanan as $key=>$item) {
@@ -314,8 +309,6 @@ class Simpanan extends MY_Base
             'w' => $w,
             'f' => $f,
             't' => $t,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'active' => 6,
             'content' => 'backend/simpanan/simpanan',

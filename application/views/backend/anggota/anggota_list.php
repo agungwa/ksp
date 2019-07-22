@@ -85,12 +85,14 @@
 				echo anchor(site_url('anggota/setorsiw?q='.$item['ang_no']),'Setor','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('anggota/tariksiw?q='.$item['ang_no']),'Tarik','class="text-navy"');?>
-			</td>
+            </td>
+            
 		</tr>
                 
                 <?php
             }
             ?>
+
             </tbody>
         </table>
        

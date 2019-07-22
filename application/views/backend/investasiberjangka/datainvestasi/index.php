@@ -57,15 +57,19 @@
 				<td class="text-center">RP <?= $saldoinvestasilalu;?></td>
             </tr>
             <tr>
-                <td class="text-left">Saldo Kini</td>
+                <td class="text-left">Saldo Masuk</td>
 				<td class="text-center">RP <?= $saldoinvestasi;?></td>
             </tr>
             <tr>
-                <td class="text-left">Saldo Investasi Ditarik</td>
+                <td class="text-left">Saldo Investasi Keluar</td>
 				<td class="text-center">RP <?= $saldoinvestasiditarik;?></td>
             </tr>
+            <tr>
+                <td class="text-left">Saldo Investasi Kini</td>
+				<td class="text-center">RP <?= ($saldoinvestasilalu + $saldoinvestasi)-$saldoinvestasiditarik;?></td>
+            </tr>
             <tr>  
-                <td class="text-left">Jasa Ditarik</td>
+                <td class="text-left">Jasa Keluar</td>
 				<td class="text-center">RP <?= $jasainvestasiditarik;?></td>
             </tr>
             

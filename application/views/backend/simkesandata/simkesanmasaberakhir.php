@@ -36,7 +36,7 @@
                                 if ($p <> '' && $w <> '' && $t <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo base_url()?>simkesandata/?p=2" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo base_url()?>simkesandata/?p=3" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
@@ -60,7 +60,6 @@
 		<th class="text-center">Tanggal Berakhir</th>
 		<th class="text-center">Status</th>
 		<th class="text-center">Tanggal</th>
-		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -79,15 +78,6 @@
 			<td><?php echo $item['sik_tglberakhir'] ?></td>
 			<td><?php echo $item['sik_status'] ?></td>
 			<td><?php echo dateFormat($item['sik_tgl']) ?></td>
-			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('simkesan/read/'.$item['sik_kode']),'Read','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('simkesan/update/'.$item['sik_kode']),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('simkesan/delete/'.$item['sik_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-				?>
-			</td>
 		</tr>
                 
                 <?php

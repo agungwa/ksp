@@ -23,17 +23,20 @@ class DataInvestasi extends MY_Base
     	$investasiNonaktif = $this->Investasiberjangka_model->get_investasi_nonaktif();
     	$jasaDitarik = $this->Penarikaninvestasiberjangka_model->get_all();
         $wilayah = $this->Wilayah_model->get_all();		
-
+		$satu = 1;
     	$saldoInvestasi = 0;
     	$saldoInvestasilalu = 0;
     	$saldoInvestasiditarik = 0;
     	$jasaInvestasiditarik = 0;
-
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
     	if ($f<>'' && $t<>'') {	
         	$f = date("Y-m-d", strtotime($f));
         	$t = date("Y-m-d", strtotime($t));
-    	}
+		}
+
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 
     	//hitung saldo investasi aktif
     	foreach ($investasiAktif as $key => $value) {
@@ -62,7 +65,7 @@ class DataInvestasi extends MY_Base
 	}
 
 		
-    	//hitung saldo investasi aktif lalu
+    	//hitung saldo investasi nonaktif
     	foreach ($investasiNonaktif as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
