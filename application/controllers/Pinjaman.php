@@ -135,10 +135,25 @@ class Pinjaman extends MY_Base
 
     //survey ditolak pinjaman action
     public function action_surveytolak(){
+        $config['max_size']=2048;
+		$config['allowed_types']="png|jpg|jpeg|gif";
+		$config['remove_spaces']=TRUE;
+        $config['overwrite']=TRUE;
+        $new_name = time().$_FILES["userfiles"]['name'];
+        $config['file_name'] = $new_name;
+        $config['upload_path']='./upload/survey';
+        $this->load->library('upload',$config);
+
+		//ambil data image
+        $this->upload->do_upload('pin_survey');
+        $file=$this->upload->data('file_name');
+        //$data_image = array('upload_data' => $this->upload->data());
+		$location=base_url().'upload/survey';
+        //$pict=$location.$data_image;
         //update data pinjaman
         $dataPinjaman = array(
             'pin_statuspinjaman' => 2,
-            'pin_survey' => $this->Pinjaman_model->_uploadImage(),
+            'pin_survey' => $file,
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
         $this->session->set_flashdata('message', 'Create Record Success');
