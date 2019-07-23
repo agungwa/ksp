@@ -64,6 +64,7 @@
         		<th class="text-center">Angsuran (bulan)</th>
         		<th class="text-center">Wilayah</th>
         		<th class="text-center">Pengajuan</th>
+        		<th class="text-center">Survey</th>
         		<th class="text-center">Pinjaman</th>
         		<th class="text-center">Tanggal Pengajuan</th>
         		<th class="text-center">Tanggal Pencairan</th>
@@ -89,6 +90,11 @@
     			<td><?php echo $item['sea_id']," Bulan" ?></td>
     			<td><?php echo $item['wil_kode'] ?></td>
     			<td><?php echo "Rp ",$item['pin_pengajuan'] ?></td>
+                <td>
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                <img src="<?php echo $item['pin_survey'] ?>" alt="" class="img-responsive">
+                </button>
+                </td>
     			<td><?php echo "Rp ",$item['pin_pinjaman'] ?></td>
     			<td><?php echo dateFormat($item['pin_tglpengajuan']); ?></td>
     			<td><?php echo dateFormat($item['pin_tglpencairan']); ?></td>
@@ -115,6 +121,20 @@
             ?>
             </tbody>
         </table>
+        
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cara Membuat Pop UP Gambar dengan Bootstrap</h4>
+                </div>
+                <div class="modal-body">
+                        <img src="<?php echo $item['pin_survey'] ?>" alt="" class="img-responsive">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>	
         <div class="row">
             
         </div>

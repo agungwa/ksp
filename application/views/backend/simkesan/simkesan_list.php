@@ -74,6 +74,10 @@
 			<tbody><?php
             foreach ($datasimkesan as $key=>$item)
             {
+                $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $simkesan->psk_id))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $simkesan->wil_kode))->row();
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $simkesan->ang_no))->row();
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $simkesan->kar_kode))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
