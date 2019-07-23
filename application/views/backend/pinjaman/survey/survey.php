@@ -65,7 +65,7 @@
             </div>
 
             <div class="col-md-12">
-            <?php echo form_open_multipart('pinjaman/action_surveysetuju');?>
+            <?php echo form_open_multipart('pinjaman/action_surveytolak');?>
             <?php
 	        	?>
             <div class="col-md-4">
