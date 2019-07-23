@@ -3,12 +3,18 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Pelunasan extends CI_Controller
+class Pelunasan extends MY_Base
 {
     function __construct()
     {
         parent::__construct();
         $this->load->model('Pelunasan_model');
+        $this->load->model('Pinjaman_model');
+        $this->load->model('Angsuran_model');
+        $this->load->model('Wilayah_model');
+        $this->load->model('Karyawan_model');
+        $this->load->model('Settingdenda_model');
+        $this->load->model('Jenispelunasan_model');
         $this->load->library('form_validation');
     }
 
@@ -38,8 +44,48 @@ class Pelunasan extends CI_Controller
     public function dipercepat(){
         $q = urldecode($this->input->get('q', TRUE));
         $pinjaman = null;
-
+        
+        $datenow = date('n'); //var_dump($datenow);
+        $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
+        $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
+        $jenispelunasan = $this->Jenispelunasan_model->get_by_id(2);
+        $settingdenda = $this->Settingdenda_model->get_by_id(1);
+        if ($q<>''){
+            $row = $this->Pinjaman_model->get_by_id($q);
+             if ($row) {
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+                $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+                $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
+                $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
+                $surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
+                $pinjaman = array(
+                    'pin_id' => $row->pin_id,
+                    'ang_no' => $row->ang_no,
+                    'nama_ang_no' => $ang_no->ang_nama,
+                    'sea_id' => $sea_id->sea_tenor,
+                    'bup_id' => $bup_id->bup_bunga,
+                    'pop_id' => $pop_id->pop_potongan,
+                    'wil_kode' => $wil_kode->wil_nama,
+                    'skp_id' => $skp_id->skp_kategori,
+                    'pin_pengajuan' => $row->pin_pengajuan,
+                    'pin_pinjaman' => $row->pin_pinjaman,
+                    'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                    'pin_tglpencairan' => $row->pin_tglpencairan,
+                    'pin_marketing' => $marketing->kar_nama,
+                    'pin_surveyor' => $surveyor->kar_nama,
+                    'pin_survey' => $row->pin_survey,
+                    'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman],
+                );
+            } 
+        }
         $data = array(
+            'datatglsekarang' => $datatglsekarang,
+            'jenispelunasan' => $jenispelunasan,
+            'settingdenda_data' => $settingdenda,
+            'histori' => $historiAngsuran,
             'q' => $q,
             'pinjaman' => $pinjaman,
             'content' => 'backend/pelunasan/index',
@@ -50,11 +96,75 @@ class Pelunasan extends CI_Controller
         $this->load->view(layout(), $data);
     }
 
+    public function pelunasan_action(){
+        $dataPeluanasan = array(
+        'pin_id' => $this->input->post('pin_id',TRUE),
+		'pel_jenis' => $this->input->post('pel_jenis',TRUE),
+		'pel_tenor' => $this->input->post('pel_tenor',TRUE),
+		'pel_angsuran' => $this->input->post('pel_angsuran',TRUE),
+		'pel_bungaangsuran' => $this->input->post('pel_bungaangsuran',TRUE),
+		'pel_totalkekuranganpokok' => $this->input->post('pel_totalkekuranganpokok',TRUE),
+		'pel_totalbungapokok' => $this->input->post('pel_totalbungapokok',TRUE),
+		'pel_bungatambahan' => $this->input->post('pel_bungatambahan',TRUE),
+		'pel_biayapenarikan' => $this->input->post('pel_biayapenarikan',TRUE),
+		'pel_totaldenda' => $this->input->post('pel_totaldenda',TRUE),
+		'pel_tglpelunasan' => $this->tgl,
+		'pel_tgl' => $this->tgl,
+		'pel_flag' => 0,
+		'pel_info' => "",
+            );
+            $this->Pelunasan_model->insert($dataPeluanasan);
+        $dataPinjaman = array(
+            'pin_statuspinjaman' => 3,
+        );
+        $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
+            redirect(site_url('pelunasan/?p=1'));
+    }
+
     public function biasa(){
         $q = urldecode($this->input->get('q', TRUE));
         $pinjaman = null;
-        
+        $datenow = date('n'); //var_dump($datenow);
+        $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
+        $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
+        $jenispelunasan = $this->Jenispelunasan_model->get_by_id(1);
+        $settingdenda = $this->Settingdenda_model->get_by_id(1);
+        if ($q<>''){
+            $row = $this->Pinjaman_model->get_by_id($q);
+             if ($row) {
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+                $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+                $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
+                $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
+                $surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
+                $pinjaman = array(
+                    'pin_id' => $row->pin_id,
+                    'ang_no' => $row->ang_no,
+                    'nama_ang_no' => $ang_no->ang_nama,
+                    'sea_id' => $sea_id->sea_tenor,
+                    'bup_id' => $bup_id->bup_bunga,
+                    'pop_id' => $pop_id->pop_potongan,
+                    'wil_kode' => $wil_kode->wil_nama,
+                    'skp_id' => $skp_id->skp_kategori,
+                    'pin_pengajuan' => $row->pin_pengajuan,
+                    'pin_pinjaman' => $row->pin_pinjaman,
+                    'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                    'pin_tglpencairan' => $row->pin_tglpencairan,
+                    'pin_marketing' => $marketing->kar_nama,
+                    'pin_surveyor' => $surveyor->kar_nama,
+                    'pin_survey' => $row->pin_survey,
+                    'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman],
+                );
+            } 
+        }
         $data = array(
+            'datatglsekarang' => $datatglsekarang,
+            'jenispelunasan' => $jenispelunasan,
+            'settingdenda_data' => $settingdenda,
+            'histori' => $historiAngsuran,
             'q' => $q,
             'pinjaman' => $pinjaman,
             'content' => 'backend/pelunasan/index',
@@ -68,8 +178,47 @@ class Pelunasan extends CI_Controller
     public function macet(){
         $q = urldecode($this->input->get('q', TRUE));
         $pinjaman = null;
-        
+        $datenow = date('n'); //var_dump($datenow);
+        $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
+        $jenispelunasan = $this->Jenispelunasan_model->get_by_id(3);
+        $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
+        $settingdenda = $this->Settingdenda_model->get_by_id(1);
+        if ($q<>''){
+            $row = $this->Pinjaman_model->get_by_id($q);
+             if ($row) {
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+                $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+                $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
+                $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
+                $surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
+                $pinjaman = array(
+                    'pin_id' => $row->pin_id,
+                    'ang_no' => $row->ang_no,
+                    'nama_ang_no' => $ang_no->ang_nama,
+                    'sea_id' => $sea_id->sea_tenor,
+                    'bup_id' => $bup_id->bup_bunga,
+                    'pop_id' => $pop_id->pop_potongan,
+                    'wil_kode' => $wil_kode->wil_nama,
+                    'skp_id' => $skp_id->skp_kategori,
+                    'pin_pengajuan' => $row->pin_pengajuan,
+                    'pin_pinjaman' => $row->pin_pinjaman,
+                    'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                    'pin_tglpencairan' => $row->pin_tglpencairan,
+                    'pin_marketing' => $marketing->kar_nama,
+                    'pin_surveyor' => $surveyor->kar_nama,
+                    'pin_survey' => $row->pin_survey,
+                    'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman],
+                );
+            } 
+        }
         $data = array(
+            'datatglsekarang' => $datatglsekarang,
+            'jenispelunasan' => $jenispelunasan,
+            'settingdenda_data' => $settingdenda,
+            'histori' => $historiAngsuran,
             'q' => $q,
             'pinjaman' => $pinjaman,
             'content' => 'backend/pelunasan/index',
@@ -85,27 +234,13 @@ class Pelunasan extends CI_Controller
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'pelunasan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pelunasan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'pelunasan/index.html';
-            $config['first_url'] = base_url() . 'pelunasan/index.html';
-        }
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Pelunasan_model->total_rows($q);
-        $pelunasan = $this->Pelunasan_model->get_limit_data($config['per_page'], $start, $q);
+        $pelunasan = $this->Pelunasan_model->get_limit_data($start, $q);
 
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
 
         $data = array(
             'pelunasan_data' => $pelunasan,
             'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/pelunasan/index',
             'item'=> 'pelunasan_list.php',

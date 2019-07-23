@@ -75,7 +75,6 @@
             foreach ($datasimkesan as $key=>$item)
             {
                 ?>
-            
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
             <td><?php echo $item['sik_kode'] ?></td>

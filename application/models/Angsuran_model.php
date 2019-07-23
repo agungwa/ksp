@@ -22,6 +22,42 @@ class Angsuran_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
+    
+    // get all angsuran bayar
+    function get_angsuran_bayar()
+    {
+        $where = "ags_status = 2 AND ags_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get all total angsuran
+    function get_angsuran_total()
+    {
+        $where = "ags_status > 0 AND ags_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+    // get all pokok
+    function get_target()
+    {
+        $where = "ang_angsuranke > 3 AND ags_status = 0 AND ags_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+    
+    // get all jumlahbayar
+    function get_tertagih()
+    {
+        $where = "ang_angsuranke > 3 AND ags_status = 1 AND ags_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
 
     // get data by id
     function get_by_id($id)
@@ -30,9 +66,18 @@ class Angsuran_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
+    // get data by id
+    function get_by_tgl($p, $tgl)
+    {
+        $where = "pin_id = '$p' AND MONTH(ags_tgljatuhtempo) = $tgl AND ags_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->row();
+    }
+
+
     function get_by_pinjaman($q, $k)
     {   
-        $where = "pin_id = $q AND ang_angsuranke = $k  AND ags_flag < 2";
+        $where = "pin_id = '$q' AND ang_angsuranke = $k  AND ags_flag < 2";
         $this->db->where($where);
         return $this->db->get($this->table)->row();
     }
@@ -40,7 +85,7 @@ class Angsuran_model extends CI_Model
     function get_histori_angsuran($q)
     {
         $this->db->order_by($this->id, $this->order);
-         $where = "pin_id = $q AND ags_flag < 2";
+         $where = "pin_id = '$q' AND ags_flag < 2";
         $this->db->where($where);
         return $this->db->get($this->table)->result();
     }
@@ -59,6 +104,28 @@ class Angsuran_model extends CI_Model
          $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR ags_tgljatuhtempo LIKE '%$q%' ESCAPE '!') AND ags_flag < 2";
         $this->db->where($where);
 	    //$this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_angsuran_data( $start = 0, $q = NULL, $date = NULL) {
+        $this->db->order_by($this->id, $this->order);
+         $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR ags_tgljatuhtempo LIKE '%$q%' ESCAPE '!') AND ags_flag < 2";
+        $this->db->where($where);
+	    //$this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_penagihanawal_data( $start = 0, $q = NULL) {
+        $this->db->order_by($this->id, $this->order);
+         $where = "ang_angsuranke < 4 AND ags_status < 2 AND ags_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_penagihanakhir_data( $start = 0, $q = NULL) {
+        $this->db->order_by($this->id, $this->order);
+         $where = "ang_angsuranke > 3 AND ags_status < 2 AND ags_flag < 2";
+        $this->db->where($where);
         return $this->db->get($this->table)->result();
     }
 

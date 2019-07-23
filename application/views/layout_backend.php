@@ -196,21 +196,8 @@ lookup();
                             </ul>
                         </li>
                         <li>
-                            <a href="#" id="damian">Data<span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="#">Terlambat Jatuh Tempo</a>
-                                </li>
-                                <li>
-                                    <a href="#">Rekening Simkesan Hangus</a>
-                                </li>
-                                <li>
-                                    <a href="#">Simkesan Lunas </a>
-                                </li>
-                                <li>
-                                    <a href="#">Simkesan Masa Berakhir</a>
-                                </li>
-                            </ul>
+                            <a href="<?=base_url()?>Simkesandata" id="damian">Data Simkesan</a>
+                            
                         </li>
                         <li><a href="#">Neraca / Sirkulasi</a></li>
                     </ul>
@@ -264,7 +251,7 @@ lookup();
                             <a href="#" id="damian">Data<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="#">Data Investasi</a>
+                                    <a href="<?=base_url()?>datainvestasi">Data Investasi</a>
                                 </li>
                             </ul>
                         </li>
@@ -300,6 +287,9 @@ lookup();
                                     <a href="<?=base_url()?>Jenisjaminan">Jenis Jaminan</a>
                                 </li>
                                 <li>
+                                    <a href="<?=base_url()?>Jenispelunasan">Jenis Pelunasan</a>
+                                </li>
+                                <li>
                                     <a href="<?=base_url()?>Settingdenda">Setting Denda</a>
                                 </li>
                             </ul>
@@ -310,10 +300,10 @@ lookup();
                         <li><a href="<?=base_url()?>pinjaman">Pinjaman</a></li>
                         <li><a href="<?=base_url()?>Statuspeminjam">Status Peminjam</a></li>
                         <li>
-                        <li><a href="<?=base_url()?>angsuran">Angsuran</a></li>
+                        <li><a href="<?=base_url()?>angsuran/?p=2">Angsuran</a></li>
                         <li><a href="<?=base_url()?>penagihan">Penagihan</a></li>
                         <li><a href="<?=base_url()?>Pelunasan">Pelunasan</a></li>
-                        <li><a href="#">Persentase</a></li>
+                        <li><a href="<?=base_url()?>Persentase">Persentase</a></li>
                         <li>
                             <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
@@ -332,11 +322,9 @@ lookup();
                             <a href="#" id="damian">Data / Laporan<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="#">Data Pinjaman</a>
+                                    <a href="<?=base_url()?>Datapinjaman">Data Pinjaman / Sirkulasi</a>
                                 </li>
-                                <li>
-                                    <a href="#">Neraca / Sirkulasi</a>
-                                </li>
+                               
                                 
                             </ul>
                         </li>

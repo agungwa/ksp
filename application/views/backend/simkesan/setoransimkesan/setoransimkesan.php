@@ -71,6 +71,11 @@
             ?>
             <div class='col-md-4'>
             <input type="number" class="form-control" name="ssk_jmlsetor" id="ssk_jmlsetor" placeholder="Setor" value="<?php echo $setor_psk_id ?>" required="required" readonly />
+            <?php if($kekurangan == $setor_psk_id) { 
+            echo '<td class = "danger">Setoran Terakhir</td><input type="hidden" class="form-control" name="sik_status" id="sik_status" placeholder="sik_status" value="4" required="required" readonly />';
+            } else {
+                echo'<input type="hidden" class="form-control" name="sik_status" id="sik_status" placeholder="sik_status" value="0" required="required" readonly />';
+            }?>
             <input type="hidden" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode ?>" required="required" readonly />
         </div>
             </tbody>
@@ -89,6 +94,7 @@
             </tr>
             </thead>
 			<tbody><?php
+            
             $no=1;
             $sisa=0;
             $totaltitip=0;
@@ -98,8 +104,9 @@
                 $totaltitip+=$titipansimkesan->tts_jmltitip;
                 $totalambil+=$titipansimkesan->tts_jmlambil;
                 $sisa=$totaltitip-$totalambil;
-                $amb=$sisa/$setor_psk_id;
                 $ang=($kekurangan-$sisa)/$setor_psk_id;
+                $amb=$sisa/$setor_psk_id;
+                
                 ?>
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
@@ -108,7 +115,6 @@
 			<td><?php echo $totalambil ?></td>
 			<td><?php echo $sisa ?></td>
 		</tr>
-        
                 <?php
                 $no++;
             }
@@ -117,8 +123,9 @@
             <div>
             <label> Titip </label>
             <select name="tts_jmltitip"> 
-            <option value="0">0</option> 
-            <?php for ($num=1; $num<$ang; $num++){ echo '
+            <option value="0">0 </option> 
+            <?php
+        for ($num=1; $num<$ang; $num++){ echo '
                 <option value="' .+$num*$setor_psk_id. '">' .$num*$setor_psk_id. '</option>'; }?> </select>
             <input type="text" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode ?>" required="required" readonly />           
             </div>

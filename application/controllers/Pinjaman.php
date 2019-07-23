@@ -107,7 +107,7 @@ class Pinjaman extends MY_Base
         //update data pinjaman
         $dataPinjaman = array(
             'pin_statuspinjaman' => 1,
-            'pin_survey' => $this->input->post('pin_survey',TRUE),
+            'pin_survey' => $this->Pinjaman_model->_uploadImage(),
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
         redirect(site_url('pinjaman/?p=2'));
@@ -118,7 +118,7 @@ class Pinjaman extends MY_Base
         //update data pinjaman
         $dataPinjaman = array(
             'pin_statuspinjaman' => 2,
-            'pin_survey' => $this->input->post('pin_survey',TRUE),
+            'pin_survey' => $this->Pinjaman_model->_uploadImage(),
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
         $this->session->set_flashdata('message', 'Create Record Success');
@@ -132,7 +132,7 @@ class Pinjaman extends MY_Base
         if ($q<>''){
             $row = $this->Pinjaman_model->get_by_id($q);
             
-        var_dump($row);
+       // var_dump($row);
              if ($row) {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
                 $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
@@ -186,7 +186,7 @@ class Pinjaman extends MY_Base
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
         $row = $this->Pinjaman_model->get_by_id($id);
-        var_dump($row);
+       // var_dump($row);
              if ($row) {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
                 $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
@@ -217,7 +217,7 @@ class Pinjaman extends MY_Base
             $no++;
              }
             } 
-        redirect(site_url('pinjaman/?p=2'));
+        redirect(site_url('pinjaman/?p=4'));
     }
 
 
@@ -278,34 +278,74 @@ class Pinjaman extends MY_Base
     public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
+        $w = urldecode($this->input->get('w', TRUE));
+        $s = urldecode($this->input->get('s', TRUE));
+        $k = urldecode($this->input->get('k', TRUE));
+        $u = urldecode($this->input->get('u', TRUE));
         $start = intval($this->input->get('start'));
         
-        /*if ($q <> '') {
-            $config['base_url'] = base_url() . 'pinjaman/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pinjaman/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'pinjaman/index.html';
-            $config['first_url'] = base_url() . 'pinjaman/index.html';
-        }*/
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Pinjaman_model->total_rows($q);
-        $pinjaman = $this->Pinjaman_model->get_limit_data($config['per_page'], $start, $q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
+        $pinjaman = $this->Pinjaman_model->get_limit_data( $start, $q);
 
         $wilayah = $this->Wilayah_model->get_all();
         $karyawan = $this->Karyawan_model->get_all();
+        $datapinjaman=array();
+        foreach ($pinjaman as $key=>$item) {
+            if (
+                ( $w=='all' && $s=='all' && $k=='all' && $u=='all') || 
+                ( $w==$item->wil_kode && $s=='all' && $k=='all' && $u=='all') || 
+                ( $w=='all' && $s==$item->pin_statuspinjaman && $k=='all' && $u=='all') || 
+                ( $w=='all' && $s=='all' && $k==$item->pin_marketing && $u=='all') || 
+                ( $w=='all' && $s=='all' && $k=='all' && $u==$item->pin_id) ||  
+                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k=='all' && $u=='all') || 
+                ( $w==$item->wil_kode && $s=='all' && $k==$item->pin_marketing && $u=='all') || 
+                ( $w==$item->wil_kode && $s=='all' && $k=='all' && $u==$item->pin_id) || 
+                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u=='all') || 
+                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k=='all' && $u==$item->pin_id) || 
+                ( $w=='all' && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u=='all') || 
+                ( $w=='all' && $s==$item->pin_statuspinjaman && $k=='all' && $u==$item->pin_id) || 
+                ( $w=='all' && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u==$item->pin_id) || 
+                ( $w=='all' && $s=='all' && $k==$item->pin_marketing && $u==$item->pin_id) || 
+                ( $w==$item->wil_kode && $s=='all' && $k==$item->pin_marketing && $u==$item->pin_id) || 
+                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u==$item->pin_id))
+                {
+                    $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
+                    $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $item->sea_id))->row();
+                    $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $item->bup_id))->row();
+                    $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $item->pop_id))->row();
+                    $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $item->skp_id))->row();
+                    $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item->wil_kode))->row();
+                    $marketing = $this->db->get_where('karyawan', array('kar_kode' => $item->pin_marketing))->row();
+                    $surveyor = $this->db->get_where('karyawan', array('kar_kode' => $item->pin_surveyor))->row();
+                    $datapinjaman[$key] = array(
+                        'pin_id' => $item->pin_id,
+                        'ang_no' => $item->ang_no,
+                        'nama_ang_no' => $ang_no->ang_nama,
+                        'sea_id' => $sea_id->sea_tenor,
+                        'bup_id' => $bup_id->bup_bunga,
+                        'pop_id' => $pop_id->pop_potongan,
+                        'wil_kode' => $wil_kode->wil_nama,
+                        'skp_id' => $skp_id->skp_kategori,
+                        'pin_pengajuan' => $item->pin_pengajuan,
+                        'pin_pinjaman' => $item->pin_pinjaman,
+                        'pin_tglpengajuan' => $item->pin_tglpengajuan,
+                        'pin_tglpencairan' => $item->pin_tglpencairan,
+                        'pin_marketing' => $marketing->kar_nama,
+                        'pin_surveyor' => $surveyor->kar_nama,
+                        'pin_survey' => $item->pin_survey,
+                        'pin_statuspinjaman' => $this->statusPinjaman[$item->pin_statuspinjaman],
+
+                    );
+            }
+        }
+        
 
         $data = array(
+            'datapinjaman' => $datapinjaman,
             'pinjaman_data' => $pinjaman,
             'wilayah_data' => $wilayah,
             'karyawan_data' => $karyawan,
             'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'active' => 4,
             'content' => 'backend/pinjaman/pinjaman',
@@ -320,25 +360,13 @@ class Pinjaman extends MY_Base
         $start = intval($this->input->get('start'));
         $idhtml = $this->input->get('idhtml');
         
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'pinjaman/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'pinjaman/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'pinjaman/index.html';
-            $config['first_url'] = base_url() . 'pinjaman/index.html';
-        }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Pinjaman_model->total_rows($q);
-        $pinjaman = $this->Pinjaman_model->get_limit_data($config['per_page'], $start, $q);
+        $pinjaman = $this->Pinjaman_model->get_limit_data($start, $q);
 
 
         $data = array(
             'pinjaman_data' => $pinjaman,
             'idhtml' => $idhtml,
             'q' => $q,
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/pinjaman/pinjaman_lookup',
         );

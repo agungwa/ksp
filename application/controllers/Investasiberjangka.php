@@ -171,32 +171,60 @@ class Investasiberjangka extends MY_Base
     public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $s = urldecode($this->input->get('s', TRUE)); //status
+        $u = urldecode($this->input->get('u', TRUE)); //no rekening
         $start = intval($this->input->get('start'));
         
-       /* if ($q <> '') {
-            $config['base_url'] = base_url() . 'investasiberjangka/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'investasiberjangka/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'investasiberjangka/index.html';
-            $config['first_url'] = base_url() . 'investasiberjangka/index.html';
-        } */
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Investasiberjangka_model->total_rows($q);
-        $investasiberjangka = $this->Investasiberjangka_model->get_limit_data($config['per_page'], $start, $q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
-        
+        $investasiberjangka = $this->Investasiberjangka_model->get_limit_data( $start, $q);
         $wilayah = $this->Wilayah_model->get_all();
-
+        $datainvest = array();
+        foreach ($investasiberjangka as $key=>$item) {
+            if (
+                ( $u=='all' && $s=='all' && $w=='all') || 
+                ( $u=='all' && $s=='all' && $w == $item->wil_kode) || 
+                ( $u=='all' && $s == $item->ivb_status && $w=='all') || 
+                ( $u == $item->ivb_kode && $s=='all' && $w=='all') || 
+                ( $u == $item->ivb_kode && $s == $item->ivb_status && $w=='all') || 
+                ( $u == $item->ivb_kode && $s=='all' && $w == $item->wil_kode) || 
+                ( $u == $item->ivb_kode && $s == $item->ivb_status && $w == $item->wil_kode) || 
+                ( $u=='all' && $s == $item->ivb_status && $w == $item->wil_kode)) {
+                    $ivb_status = $this->statusInvestasi;                
+                    $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
+                    $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $item->kar_kode))->row();
+                    $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item->wil_kode))->row();
+                    $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $item->jwi_id))->row();
+                    $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $item->jiv_id))->row();
+                    $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $item->biv_id))->row();
+                    $tanggalDuedate = date("Y-m-d", strtotime($item->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
+                $datainvest[$key] = array(
+            'ivb_kode' => $item->ivb_kode,
+            'ang_no' => $item->ang_no,
+            'nama_ang_no' => $ang_no->ang_nama,
+            'kar_kode' => $kar_kode->kar_nama,
+            'wil_kode' => $wil_kode->wil_nama,
+            'jwi_id' => $jwi_id->jwi_jangkawaktu,
+            'jiv_id' => $jiv_id->jiv_jasa,
+            'biv_id' => $biv_id->biv_bunga,
+            'ivb_jumlah' => $item->ivb_jumlah,
+            'ivb_tglpendaftaran' => $item->ivb_tglpendaftaran,
+            'ivb_tglperpanjangan' => $item->ivb_tglperpanjangan,
+            'jatuhtempo' => $tanggalDuedate,
+            'ivb_status' => $ivb_status[$item->ivb_status],
+            'ivb_tgl' => $item->ivb_tgl,
+            'ivb_flag' => $item->ivb_flag,
+            'ivb_info' => $item->ivb_info,
+                );
+                
+                }
+            }
         $data = array(
+            'datainvest' => $datainvest,
             'wilayah_data' => $wilayah,
-            'investasiberjangka_data' => $investasiberjangka,
             'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
+            'w' => $w,
+            's' => $s,
+            'u' => $u,
             'start' => $start,
             'active' => 2,
             'content' => 'backend/investasiberjangka/investasiberjangka',
@@ -211,25 +239,13 @@ class Investasiberjangka extends MY_Base
         $start = intval($this->input->get('start'));
         $idhtml = $this->input->get('idhtml');
         
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'investasiberjangka/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'investasiberjangka/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'investasiberjangka/index.html';
-            $config['first_url'] = base_url() . 'investasiberjangka/index.html';
-        }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Investasiberjangka_model->total_rows($q);
-        $investasiberjangka = $this->Investasiberjangka_model->get_limit_data($config['per_page'], $start, $q);
+        $investasiberjangka = $this->Investasiberjangka_model->get_limit_data( $start, $q);
 
 
         $data = array(
             'investasiberjangka_data' => $investasiberjangka,
             'idhtml' => $idhtml,
             'q' => $q,
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/investasiberjangka/investasiberjangka_lookup',
         );

@@ -23,6 +23,14 @@ class Pinjaman_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    // get pinjaman aktif
+    function get_pinjaman_aktif()
+    {
+        $where = "pin_statuspinjaman = 1 AND pin_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
     //get all pengajuan
     function get_all_pengajuan()
     {
@@ -60,7 +68,7 @@ class Pinjaman_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
 	    $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR ang_no LIKE '%$q%' ESCAPE '!') AND pin_flag < 2";
         $this->db->where($where);
-	    $this->db->limit($limit, $start);
+	    //$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 
@@ -91,6 +99,24 @@ class Pinjaman_model extends CI_Model
         $this->db->delete($this->table);
     }
 
+    function _uploadImage()
+    {
+        $config['upload_path']          = './upload/survey/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg|pdf';
+        $config['file_name']            = $this->id;
+        $config['overwrite']			= true;
+        $config['max_size']             = 1024; // 1MB
+        // $config['max_width']            = 1024;
+        // $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('image')) {
+            return $this->upload->data("file_name");
+        }
+        
+        return "default.jpg";
+    }
 }
 
 /* End of file Pinjaman_model.php */

@@ -32,27 +32,20 @@
         <th class="text-center">Setoran</th>
 		<th class="text-center">Tanggal Setoran</th>
 		<th class="text-center">Saldo</th>
-		<th class="text-center">Bunga</th>
-		<th class="text-center">Total</th>
             </tr>
             </thead>
 			<tbody><?php
             $no = 1;
             $total_setoran = 0;
-            $bunga = 0;
             foreach ($setoran_data as $setoran)
             {
                 $total_setoran += $setoran->ssi_jmlsetor;
-                $bunga += $setoran->ssi_jmlsetor * $bus_id/100;
-                $totalsaldo = $total_setoran+$bunga;
             ?>
             <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo 'Rp ',$setoran->ssi_jmlsetor ?></td>
 			<td><?php echo $setoran->ssi_tglsetor ?></td>
 			<td><?php echo 'Rp ',$total_setoran ?></td>
-			<td><?php echo 'Rp ',$bunga ?></td>
-			<td><?php echo 'Rp ',$totalsaldo?></td>
 		</tr>
 
             <?php

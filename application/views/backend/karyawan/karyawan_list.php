@@ -48,12 +48,12 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-                <th class="text-center">Kar Kode</th>
-        		<th class="text-center">Kar Nama</th>
-        		<th class="text-center">Jab Kode</th>
-        		<th class="text-center">Kar Alamat</th>
-        		<th class="text-center">Kar Nohp</th>
-        		<th class="text-center">Kar Tgl</th>
+                <th class="text-center">Kode</th>
+        		<th class="text-center">Nama</th>
+        		<th class="text-center">Kode</th>
+        		<th class="text-center">Alamat</th>
+        		<th class="text-center">No Handphone</th>
+        		<th class="text-center">Tanggal</th>
         		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -86,12 +86,7 @@
             </tbody>
         </table>
         <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
+            
         </div>
         </div>
     </div>

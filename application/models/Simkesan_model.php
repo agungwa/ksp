@@ -18,6 +18,25 @@ class Simkesan_model extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where('sik_flag<',2);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get simkesan lunas
+    function get_simkesan_lunas()
+    {
+        $where = "sik_status = 4 AND sik_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get simkesan hangus
+    function get_simkesan_hangus()
+    {
+        $where = "sik_status = 3 AND sik_flag < 2";
+        $this->db->where($where);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }

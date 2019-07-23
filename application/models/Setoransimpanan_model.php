@@ -57,11 +57,11 @@ class Setoransimpanan_model extends CI_Model
     }
 
     // get data with limit and search
-    function get_limit_data($limit, $start = 0, $q = NULL) {
+    function get_limit_data($start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
         $where = "sim_kode LIKE '%$q%' ESCAPE '!' AND ssi_flag < 2";
         $this->db->where($where);
-	    $this->db->limit($limit, $start);
+	    //$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

@@ -35,12 +35,122 @@ class Anggota extends MY_Base
             case  4:
                 $this->setorsiw();
                 break;
+            case  5:
+                $this->pengajuan();
+                break;
                     
             default:
                 $this->pendaftaran();
                 break;
         }
-    } 
+    }
+
+    //Pengajuan anggota
+    public function pengajuan(){
+        
+        $row = $this->Settingsimpanan_model->get_by_id(2);
+        if ($row) {
+        $data = array (
+            'ses_min' => set_value('ses_min', $row->ses_min),
+            'kode' => $this->Pengkodean->kode(),
+            'content' => 'backend/anggota/anggota',
+            'item'=> 'pendaftaran/pengajuan.php',
+            'active' => 5,
+        );
+    };
+        $this->load->view(layout(), $data);
+    }
+
+    public function pengajuan_action() 
+    {
+            $dataPenfataran = array(
+                'ang_no' => $this->input->post('ang_no',TRUE),
+                'ang_nama' => $this->input->post('ang_nama',TRUE),
+                'ang_alamat' => $this->input->post('ang_alamat',TRUE),
+                'ang_noktp' => $this->input->post('ang_noktp',TRUE),
+                'ang_nokk' => $this->input->post('ang_nokk',TRUE),
+                'ang_nohp' => $this->input->post('ang_nohp',TRUE),
+                'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+                'ang_status' => 0,
+                'ang_tgl' => $this->tgl,
+                'ang_flag' => 0,
+                'ang_info' => "",
+	            );
+            $this->Anggota_model->savePendaftaran($dataPenfataran);
+
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('anggota'));
+        
+    }
+
+    
+    public function pengajuanupdate($id) 
+    {
+        $setting = $this->Settingsimpanan_model->get_by_id(2);
+        $row = $this->Anggota_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+                'setting_data' => $setting,
+		'ang_no' => set_value('ang_no', $row->ang_no),
+		'ang_nama' => set_value('ang_nama', $row->ang_nama),
+		'ang_alamat' => set_value('ang_alamat', $row->ang_alamat),
+		'ang_noktp' => set_value('ang_noktp', $row->ang_noktp),
+		'ang_nokk' => set_value('ang_nokk', $row->ang_nokk),
+		'ang_nohp' => set_value('ang_nohp', $row->ang_nohp),
+        'ang_tgllahir' => set_value('ang_tgllahir', $row->ang_tgllahir),
+        'content' => 'backend/anggota/pendaftaran/pengajuanupdate',
+	    );
+            $this->load->view(layout(), $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('anggota/?p=2'));
+        }
+    }
+    
+    public function pengajuanupdate_action() 
+    {
+          $data = array(
+		'ang_nama' => $this->input->post('ang_nama',TRUE),
+		'ang_alamat' => $this->input->post('ang_alamat',TRUE),
+		'ang_noktp' => $this->input->post('ang_noktp',TRUE),
+		'ang_nokk' => $this->input->post('ang_nokk',TRUE),
+		'ang_nohp' => $this->input->post('ang_nohp',TRUE),
+        'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+        'ang_status' => 1,
+		'ang_flag' => 1,
+	    );
+            $this->Anggota_model->update($this->input->post('ang_no', TRUE), $data);
+            
+        //save data simpanan pokok
+        $dataSimpananPokok = array(
+            'ang_no' => $this->input->post('ang_no',TRUE),
+            'ses_id' => 2,
+            'sip_setoran' => $this->input->post('sip_setoran',TRUE),
+            'sip_tglbayar' => $this->input->post('sip_tglbayar',TRUE),
+            'sip_tgl' => $this->tgl,
+            'sip_flag' => 0,
+            'sip_info' => "",
+            );
+        $this->Simpananpokok_model->insert($dataSimpananPokok);
+
+        //save data simpanan wajib
+        $dataSimpananWajib = array(
+            'ang_no' => $this->input->post('ang_no',TRUE),
+            'ses_id' => 1,
+            'siw_tglbayar' => $this->tgl,
+            'siw_status' => 0,
+            'siw_tglambil' => $this->input->post('siw_tglambil',TRUE),
+            'siw_tgl' => $this->tgl,
+            'siw_flag' => 0,
+            'siw_info' => "",
+            );
+        $this->Simpananwajib_model->insert($dataSimpananWajib);   
+
+            $this->session->set_flashdata('message', 'Update Record Success');
+        
+            redirect(site_url('anggota/?p=2'));
+        
+    }
 
     //pendaftaran anggota
     public function pendaftaran(){
@@ -55,15 +165,54 @@ class Anggota extends MY_Base
             'active' => 1,
         );
     };
-
-        /*$data = array( 
-        'kode' => $this->Pengkodean->kode(),
-        'content' => 'backend/anggota/anggota',
-        'item'=> 'pendaftaran/pendaftaran.php',
-        'active' => 1,
-    );*/
-
         $this->load->view(layout(), $data);
+    }
+
+    public function pendaftaran_action() 
+    {
+            $dataPenfataran = array(
+                'ang_no' => $this->input->post('ang_no',TRUE),
+                'ang_nama' => $this->input->post('ang_nama',TRUE),
+                'ang_alamat' => $this->input->post('ang_alamat',TRUE),
+                'ang_noktp' => $this->input->post('ang_noktp',TRUE),
+                'ang_nokk' => $this->input->post('ang_nokk',TRUE),
+                'ang_nohp' => $this->input->post('ang_nohp',TRUE),
+                'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+                'ang_status' => 1,
+                'ang_tgl' => $this->tgl,
+                'ang_flag' => 0,
+                'ang_info' => "",
+	            );
+            $this->Anggota_model->savePendaftaran($dataPenfataran);
+
+            //save data simpanan pokok
+            $dataSimpananPokok = array(
+                'ang_no' => $this->input->post('ang_no',TRUE),
+                'ses_id' => 2,
+                'sip_setoran' => $this->input->post('sip_setoran',TRUE),
+                'sip_tglbayar' => $this->input->post('sip_tglbayar',TRUE),
+                'sip_tgl' => $this->tgl,
+                'sip_flag' => 0,
+                'sip_info' => "",
+                );
+            $this->Simpananpokok_model->insert($dataSimpananPokok);
+
+            //save data simpanan wajib
+            $dataSimpananWajib = array(
+                'ang_no' => $this->input->post('ang_no',TRUE),
+                'ses_id' => 1,
+                'siw_tglbayar' => $this->tgl,
+                'siw_status' => 0,
+                'siw_tglambil' => $this->input->post('siw_tglambil',TRUE),
+                'siw_tgl' => $this->tgl,
+                'siw_flag' => 0,
+                'siw_info' => "",
+                );
+            $this->Simpananwajib_model->insert($dataSimpananWajib);   
+
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('anggota'));
+        
     }
 
     //setor simpanan wajib
@@ -149,82 +298,47 @@ class Anggota extends MY_Base
     }
 
 
-    public function pendaftaran_action() 
-    {
-            $dataPenfataran = array(
-                'ang_no' => $this->input->post('ang_no',TRUE),
-                'ang_nama' => $this->input->post('ang_nama',TRUE),
-                'ang_alamat' => $this->input->post('ang_alamat',TRUE),
-                'ang_noktp' => $this->input->post('ang_noktp',TRUE),
-                'ang_nokk' => $this->input->post('ang_nokk',TRUE),
-                'ang_nohp' => $this->input->post('ang_nohp',TRUE),
-                'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
-                'ang_status' => 1,
-                'ang_tgl' => $this->tgl,
-                'ang_flag' => 0,
-                'ang_info' => "",
-	            );
-            $this->Anggota_model->savePendaftaran($dataPenfataran);
-
-            //save data simpanan pokok
-            $dataSimpananPokok = array(
-                'ang_no' => $this->input->post('ang_no',TRUE),
-                'ses_id' => 2,
-                'sip_setoran' => $this->input->post('sip_setoran',TRUE),
-                'sip_tglbayar' => $this->input->post('sip_tglbayar',TRUE),
-                'sip_tgl' => $this->tgl,
-                'sip_flag' => 0,
-                'sip_info' => "",
-                );
-            $this->Simpananpokok_model->insert($dataSimpananPokok);
-
-            //save data simpanan wajib
-            $dataSimpananWajib = array(
-                'ang_no' => $this->input->post('ang_no',TRUE),
-                'ses_id' => 1,
-                'siw_tglbayar' => $this->tgl,
-                'siw_status' => 0,
-                'siw_tglambil' => $this->input->post('siw_tglambil',TRUE),
-                'siw_tgl' => $this->tgl,
-                'siw_flag' => 0,
-                'siw_info' => "",
-                );
-            $this->Simpananwajib_model->insert($dataSimpananWajib);   
-
-            $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('anggota'));
-        
-    }
+    
 
     public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
+        $s = urldecode($this->input->get('s', TRUE));
+        $u = urldecode($this->input->get('u', TRUE));
         $start = intval($this->input->get('start'));
+
+        $anggota = $this->Anggota_model->get_limit_data($start, $q);
         
-        /*if ($q <> '') {
-            $config['base_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'anggota/index.html';
-            $config['first_url'] = base_url() . 'anggota/index.html';
-        }*/
+        $dataanggota = array();
+        foreach ($anggota as $key=>$item) {
+            if (
+                ( $u=='all' && $s=='all') || 
+                ( $u=='all' && $item->ang_status == $s) || 
+                ( $item->ang_no == $u && $s=='all') || 
+                ( $item->ang_no == $u && $item->ang_status == $s)) {
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Anggota_model->total_rows($q);
-        $anggota = $this->Anggota_model->get_limit_data($config['per_page'], $start, $q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
-
-        $wilayah = $this->Wilayah_model->get_all();
-
+                    $dataanggota[$key] = array(
+                        'ang_no' => $item->ang_no,
+                        'ang_nama' => $item->ang_nama,
+                        'ang_alamat' => $item->ang_alamat,
+                        'ang_noktp' => $item->ang_noktp,
+                        'ang_nokk' => $item->ang_nokk,
+                        'ang_nohp' => $item->ang_nohp,
+                        'ang_tgllahir' => $item->ang_tgllahir,
+                        'ang_status' => $this->statusAnggota[$item->ang_status],
+                        'ang_tgl' => $item->ang_tgl,
+                        'ang_flag' => $item->ang_flag,
+                        'ang_info' => $item->ang_info,
+                    );
+            }
+        }
+        
         $data = array(
             'anggota_data' => $anggota,
-            'wilayah_data' => $wilayah,
+            'dataanggota' => $dataanggota,
+            'u' => $u,
+            's' => $s,
             'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'active' => 2,
             'content' => 'backend/anggota/anggota',
@@ -247,17 +361,13 @@ class Anggota extends MY_Base
             $config['first_url'] = base_url() . 'anggota/index.html';
         }
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Anggota_model->total_rows($q);
-        $anggota = $this->Anggota_model->get_limit_data($config['per_page'], $start, $q);
+        $anggota = $this->Anggota_model->get_limit_data($start, $q);
 
 
         $data = array(
             'anggota_data' => $anggota,
             'idhtml' => $idhtml,
             'q' => $q,
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/anggota/anggota_lookup',
         );

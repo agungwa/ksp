@@ -18,6 +18,7 @@ class Simkesan extends MY_Base
         $this->load->model('Jenisklaim_model');
         $this->load->model('Klaimsimkesan_model');
         $this->load->model('Titipansimkesan_model');
+        $this->load->model('Ahliwarissimkesan_model');
         $this->load->library('form_validation');
     }
 
@@ -58,7 +59,7 @@ class Simkesan extends MY_Base
 
     public function pendaftaran_action() 
     {
-            $data = array(
+            $dataSimkesan = array(
             'ang_no' => $this->input->post('ang_no',TRUE),
             'sik_kode'=> $this->input->post('sik_kode',TRUE),
     		'kar_kode' => $this->input->post('kar_kode',TRUE),
@@ -71,8 +72,21 @@ class Simkesan extends MY_Base
     		'sik_flag' => 0,
     		'sik_info' => "",
     	    );
-
-            $this->Simkesan_model->insert($data);
+            $this->Simkesan_model->insert($dataSimkesan);
+            
+            $dataAhliwaris = array(
+    		'sik_kode' => $this->input->post('sik_kode',TRUE),
+    		'aws_noid' => $this->input->post('aws_noid',TRUE),
+    		'aws_jenisid' => $this->input->post('aws_jenisid',TRUE),
+    		'aws_nama' => $this->input->post('aws_nama',TRUE),
+    		'aws_alamat' => $this->input->post('aws_alamat',TRUE),
+    		'aws_hubungan' => $this->input->post('aws_hubungan',TRUE),
+    		'aws_lampiran' => $this->input->post('aws_lampiran',TRUE),
+    		'aws_tgl' => $this->tgl,
+    		'aws_flag' => 0,
+    		'aws_info' => "",
+            );
+            $this->Ahliwarissimkesan_model->insert($dataAhliwaris);
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('simkesan'));
         }
@@ -85,7 +99,7 @@ class Simkesan extends MY_Base
          $row = $this->Simkesan_model->get_by_id($id);
          $setoran = $this->Setoransimkesan_model->get_data_setor($id);
          $titipan = $this->Titipansimkesan_model->get_sikkode($id);
-         var_dump($titipan);
+         //var_dump($titipan);
          $tahun = 5;
          $tahun10 = 10;
          if ($row) {
@@ -132,6 +146,12 @@ class Simkesan extends MY_Base
     		'ssk_info' => "",
              );
                  $this->Setoransimkesan_model->insert($dataSetor);
+        $dataSimkesan = array(
+    		'sik_status' => $this->input->post('sik_status',TRUE),
+        );
+        
+        $this->Simkesan_model->update($this->input->post('sik_kode', TRUE), $dataSimkesan);
+
                  redirect(site_url('simkesan/?p=2'));
          }
 
@@ -703,26 +723,12 @@ class Simkesan extends MY_Base
     public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
-        $u = urldecode($this->input->get('u', TRUE));
-        $p = urldecode($this->input->get('p', TRUE));
-        $w = urldecode($this->input->get('w', TRUE));
-        $r = urldecode($this->input->get('r', TRUE));
+        $u = urldecode($this->input->get('u', TRUE)); //kode simkesan
+        $p = urldecode($this->input->get('p', TRUE)); //plan simkesan
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $r = urldecode($this->input->get('r', TRUE)); //karyawan
         $start = intval($this->input->get('start'));
         
-       /* if ($q <> '') {
-            $config['base_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'simkesan/index.html';
-            $config['first_url'] = base_url() . 'simkesan/index.html';
-        }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Simkesan_model->total_rows($q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);*/
         $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
         $wilayah = $this->Wilayah_model->get_all();
         $karyawan = $this->Karyawan_model->get_all();
@@ -762,6 +768,8 @@ class Simkesan extends MY_Base
                 );
             }
         }
+        
+       // var_dump($datasimkesan);
         $data = array(
             'simkesan_data' => $simkesan,
             'datasimkesan' => $datasimkesan,
@@ -781,6 +789,7 @@ class Simkesan extends MY_Base
         $this->load->view(layout(), $data);
     }
 
+    
     public function listjatuhtempo()
     {
         $q = urldecode($this->input->get('q', TRUE));
@@ -789,10 +798,7 @@ class Simkesan extends MY_Base
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Setoransimkesan_model->total_rows($q);
-        $setoransimkesan = $this->Setoransimkesan_model->get_group_bysikkode($config['per_page'], $start, $q, $f, $t);
+        $setoransimkesan = $this->Setoransimkesan_model->get_group_bysikkode($start, $q, $f, $t);
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
@@ -905,26 +911,13 @@ class Simkesan extends MY_Base
         $start = intval($this->input->get('start'));
         $idhtml = $this->input->get('idhtml');
         
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'simkesan/index.html';
-            $config['first_url'] = base_url() . 'simkesan/index.html';
-        }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Simkesan_model->total_rows($q);
-        $simkesan = $this->Simkesan_model->get_limit_data($config['per_page'], $start, $q);
+        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
 
 
         $data = array(
             'simkesan_data' => $simkesan,
             'idhtml' => $idhtml,
             'q' => $q,
-            'total_rows' => $config['total_rows'],
-            'start' => $start,
             'content' => 'backend/simkesan/simkesan_lookup',
         );
         ob_start();
