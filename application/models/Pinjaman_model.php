@@ -99,6 +99,24 @@ class Pinjaman_model extends CI_Model
         $this->db->delete($this->table);
     }
 
+    function _uploadImage()
+    {
+        $config['upload_path']          = './upload/survey/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg|pdf';
+        $config['file_name']            = $this->id;
+        $config['overwrite']			= true;
+        $config['max_size']             = 1024; // 1MB
+        // $config['max_width']            = 1024;
+        // $config['max_height']           = 768;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('image')) {
+            return $this->upload->data("file_name");
+        }
+        
+        return "default.jpg";
+    }
 }
 
 /* End of file Pinjaman_model.php */

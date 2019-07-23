@@ -107,7 +107,7 @@ class Pinjaman extends MY_Base
         //update data pinjaman
         $dataPinjaman = array(
             'pin_statuspinjaman' => 1,
-            'pin_survey' => $this->input->post('pin_survey',TRUE),
+            'pin_survey' => $this->Pinjaman_model->_uploadImage(),
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
         redirect(site_url('pinjaman/?p=2'));
@@ -118,7 +118,7 @@ class Pinjaman extends MY_Base
         //update data pinjaman
         $dataPinjaman = array(
             'pin_statuspinjaman' => 2,
-            'pin_survey' => $this->input->post('pin_survey',TRUE),
+            'pin_survey' => $this->Pinjaman_model->_uploadImage(),
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
         $this->session->set_flashdata('message', 'Create Record Success');
