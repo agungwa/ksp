@@ -48,19 +48,20 @@
                 </table>
             
             <div class="col-md-12">
-            <form action="<?php echo site_url('pinjaman/action_surveysetuju'); ?>" method="post">
+            <?php echo form_open_multipart('pinjaman/action_surveysetuju');?>
             <?php
 	        	?>
             <div class="col-md-4">
                 <label for="text">Disetujui</label>
-                <input type="file" class="form-control" name="pin_survey" id="pin_survey" placeholder="Survey" value="" required="required"/>
+                <input type="file" class="file" name="pin_survey" id="pin_survey" placeholder="Survey" required="required"/>
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="<?php echo $survey['pin_id'];?>" required="required"/>            
 	            <button type="submit" class="btn btn-primary">Setujui</button> 
                 <a href="<?php echo site_url('pinjaman/?p=2') ?>" class="btn btn-default">Batal</a>
             </div>
+            
             <?php 
 	        	?>
-            </form>
+            <?php echo form_close(); ?>
             </div>
 
             <div class="col-md-12">

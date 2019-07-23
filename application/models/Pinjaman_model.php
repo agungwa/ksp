@@ -99,7 +99,7 @@ class Pinjaman_model extends CI_Model
         $this->db->delete($this->table);
     }
 
-    function _uploadImage()
+  /*  function _uploadImage()
     {
         $config['upload_path']          = './upload/survey/';
         $config['allowed_types']        = 'gif|jpg|png|jpeg|pdf';
@@ -116,7 +116,7 @@ class Pinjaman_model extends CI_Model
         }
         
         return "default.jpg";
-    }
+    }*/
 }
 
 /* End of file Pinjaman_model.php */

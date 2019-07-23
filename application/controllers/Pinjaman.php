@@ -104,11 +104,31 @@ class Pinjaman extends MY_Base
 
     //survey setujui pinjaman action
     public function action_surveysetuju(){
-        //update data pinjaman
+                       
+		//upload photo
+		$config['max_size']=2048;
+		$config['allowed_types']="png|jpg|jpeg|gif";
+		$config['remove_spaces']=TRUE;
+        $config['overwrite']=TRUE;
+        $new_name = time().$_FILES["userfiles"]['name'];
+        $config['file_name'] = $new_name;
+        $config['upload_path']='./upload/survey';
+
+		$this->load->library('upload',$config);
+
+		//ambil data image
+        $this->upload->do_upload('pin_survey');
+        $file=$this->upload->data('file_name');
+        //$data_image = array('upload_data' => $this->upload->data());
+		$location=base_url().'upload/survey';
+        //$pict=$location.$data_image;
+        var_dump($file);
         $dataPinjaman = array(
+            'pin_survey' => $file,
             'pin_statuspinjaman' => 1,
-            'pin_survey' => $this->Pinjaman_model->_uploadImage(),
             );
+            
+        //var_dump($this->upload->do_upload('pin_survey'));
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
         redirect(site_url('pinjaman/?p=2'));
     }
@@ -317,6 +337,9 @@ class Pinjaman extends MY_Base
                     $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item->wil_kode))->row();
                     $marketing = $this->db->get_where('karyawan', array('kar_kode' => $item->pin_marketing))->row();
                     $surveyor = $this->db->get_where('karyawan', array('kar_kode' => $item->pin_surveyor))->row();
+                    
+                    $location=base_url().'upload/survey/';
+                    $pict=$location.$item->pin_survey;
                     $datapinjaman[$key] = array(
                         'pin_id' => $item->pin_id,
                         'ang_no' => $item->ang_no,
@@ -332,7 +355,7 @@ class Pinjaman extends MY_Base
                         'pin_tglpencairan' => $item->pin_tglpencairan,
                         'pin_marketing' => $marketing->kar_nama,
                         'pin_surveyor' => $surveyor->kar_nama,
-                        'pin_survey' => $item->pin_survey,
+                        'pin_survey' => $pict,
                         'pin_statuspinjaman' => $this->statusPinjaman[$item->pin_statuspinjaman],
 
                     );
