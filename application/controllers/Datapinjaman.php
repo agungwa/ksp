@@ -27,6 +27,7 @@ class Datapinjaman extends MY_Base
         $wilayah = $this->Wilayah_model->get_all();
         $provisi = $this->Potonganprovisi_model->get_by_id(1);		
 
+		$satu = 1;
 		$saldoDroppinjaman = 0;
     	$saldoLalupinjaman = 0;
     	$pokokAngsuran = 0;
@@ -37,13 +38,14 @@ class Datapinjaman extends MY_Base
     	$bungaDendapelunasan = 0;
     	$totalAngsuran = 0;
     	$totalAngsurantunggakan = 0;
-
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+		$tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
     	if ($f<>'' && $t<>'') {	
         	$f = date("Y-m-d", strtotime($f));
         	$t = date("Y-m-d", strtotime($t));
     	}
-
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
     	//hitung saldo pinjaman kini
     	foreach ($pinjamanAktif as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	

@@ -94,7 +94,7 @@
     			<td><?php echo $item['pin_statuspinjaman'] ?></td>
     			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('angsuran/?q='.$item['pin_id']),'Angsur','class="text-navy"'); 
+				echo anchor(site_url('angsuran/bayarAngsuran?q='.$item['pin_id']),'Angsur','class="text-navy"'); 
 				?>
                 </td>
 		</tr>
