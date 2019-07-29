@@ -30,7 +30,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" id="q" value="<?php echo @$_GET['q']; ?>">
                         <span class="input-group-btn">
-                          <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>anggota/lookup')" >Search</button>
+                          <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>anggota/lookup', '<?= @$_GET['idhtml']?>')" >Search</button>
                         </span>
                     </div>
                 </form>
