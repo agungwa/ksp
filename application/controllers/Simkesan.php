@@ -800,8 +800,6 @@ class Simkesan extends MY_Base
 
         $setoransimkesan = $this->Setoransimkesan_model->get_group_bysikkode($start, $q, $f, $t);
 
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
         $wilayah = $this->Wilayah_model->get_all();
         $datajatuh = array();
         foreach ($setoransimkesan as $key=>$item) {
@@ -835,8 +833,6 @@ class Simkesan extends MY_Base
             'w' => $w,
             'f' => $f,
             't' => $t,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,  
             'active' => 3,          
             'content' => 'backend/simkesan/simkesan',
