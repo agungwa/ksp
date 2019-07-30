@@ -37,8 +37,8 @@
 				    <tr><td>Potongan Provisi</td><td><?php echo $survey['pop_id']; ?></td></tr>
 				    <tr><td>Wilayah</td><td><?php echo $survey['wil_kode']; ?></td></tr>
 				    <tr><td>Kategori Peminjam</td><td><?php echo $survey['skp_id']; ?></td></tr>
-				    <tr><td>Pengajuan</td><td><?php echo $survey['pin_pengajuan']; ?></td></tr>
-				    <tr><td>Pinjaman</td><td><?php echo $survey['pin_pinjaman']; ?></td></tr>
+				    <tr><td>Pengajuan</td><td><?php echo rupiah($survey['pin_pengajuan']); ?></td></tr>
+				    <tr><td>Pinjaman</td><td><?php echo rupiah($survey['pin_pinjaman']); ?></td></tr>
 				    <tr><td>Tanggal Pengajuan</td><td><?php echo dateFormat($survey['pin_tglpengajuan']); ?></td></tr>
 				    <tr><td>Tanggal Pencairan</td><td><?php echo dateFormat($survey['pin_tglpencairan']); ?></td></tr>
 				    <tr><td>Marketing</td><td><?php echo $survey['pin_marketing']; ?></td></tr>

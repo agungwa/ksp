@@ -89,13 +89,13 @@
     			<td><?php echo $item['ang_no'] ?></td>
     			<td><?php echo $item['sea_id']," Bulan" ?></td>
     			<td><?php echo $item['wil_kode'] ?></td>
-    			<td><?php echo "Rp ",$item['pin_pengajuan'] ?></td>
+    			<td><?php echo rupiah($item['pin_pengajuan']) ?></td>
                 <td>
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                 <img src="<?php echo $item['pin_survey'] ?>" alt="" class="img-responsive">
                 </button>
                 </td>
-    			<td><?php echo "Rp ",$item['pin_pinjaman'] ?></td>
+    			<td><?php echo rupiah($item['pin_pinjaman']) ?></td>
     			<td><?php echo dateFormat($item['pin_tglpengajuan']); ?></td>
     			<td><?php echo dateFormat($item['pin_tglpencairan']); ?></td>
     			<td><?php echo $item['pin_statuspinjaman'] ?></td>
@@ -128,7 +128,7 @@
                 <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Cara Membuat Pop UP Gambar dengan Bootstrap</h4>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
                 </div>
                 <div class="modal-body">
                         <img src="<?php echo $item['pin_survey'] ?>" alt="" class="img-responsive">

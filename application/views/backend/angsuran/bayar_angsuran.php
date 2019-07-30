@@ -47,20 +47,22 @@
 				    <tr><td>Angsuranke</td><td><?php echo $angsuran['ang_angsuranke']; ?></td></tr>
 				    <tr><td>Jatuh Tempo</td><td><?php echo $angsuran['ags_tgljatuhtempo']; ?></td></tr>
 				    <tr><td>Tanggal Bayar</td><td><?php echo $angsuran['ags_tglbayar']; ?></td></tr>
-				    <tr><td>Jumlah Pokok</td><td><?php echo $angsuran['ags_jmlpokok']; ?></td></tr>
-				    <tr><td>Jumlah Bunga</td><td><?php echo $angsuran['ags_jmlbunga']; ?></td></tr>
-				    <tr><td>Total</td><td><?php echo $angsuran['totalbayar']; ?></td></tr>
-				    <tr><td>Jumlah Bayar</td><td><?php echo $angsuran['ags_jmlbayar']; ?></td></tr>
+				    <tr><td>Jumlah Pokok</td><td><?php echo rupiah($angsuran['ags_jmlpokok']); ?></td></tr>
+				    <tr><td>Jumlah Bunga</td><td><?php echo rupiah($angsuran['ags_jmlbunga']); ?></td></tr>
+				    <tr><td>Total</td><td><?php echo rupiah($angsuran['totalbayar']); ?></td></tr>
+				    <tr><td>Jumlah Bayar</td><td><?php echo rupiah($angsuran['ags_jmlbayar']); ?></td></tr>
 					<tr><td>Status</td><td><?php echo $this->statusAngsuran[$angsuran['ags_status']]; ?></td></tr>
-					<?php if ($angsuran['ags_jmlbayar'] <= 0) {
+					<?php if ($angsuran['ags_jmlbayar'] <= 0 && $this->tgl <= $angsuran['tgldenda']) {
 					echo '<tr><td>Input Angsuran</td><td><input type="number" class="form-control" name="ags_jmlbayar" id="ags_jmlbayar" placeholder="Bayar" value="" required="required" /></td></tr>';
+					} else if ($angsuran['ags_jmlbayar'] > 0 && $angsuran['ags_jmlbayar'] < $angsuran['totalbayar'] && $this->tgl <= $angsuran['tgldenda']) {
+					echo '<tr><td>Input Tambahan</td><td><input type="number" class="form-control" name="tambah" id="tambah" placeholder="Bayar" value="" required="required" /></td></tr>';
 					}
 					?>
 					<input type="hidden" class="form-control" name="ags_id" id="ags_id" placeholder="ags_id" value="<?php echo $angsuran['ags_id']; ?>" required="required" />
 					<input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $angsuran['pin_id']; ?>" required="required" />
 					<input type="hidden" class="form-control" name="ags_id" id="ags_id" placeholder="ags_id" value="<?php echo $angsuran['ags_id']; ?>" required="required" />
 					<tr><td></td><td><a href="<?php echo site_url('angsuran/?p=4') ?>" class="btn btn-default">Batal</a>
-					<?php if ($angsuran['ags_jmlbayar'] <= 0) {
+					<?php if ($this->tgl <= $angsuran['tgldenda']) {
 					echo '<button type="submit" class="btn btn-primary">Setor</button></td></tr>';
 				}
 				?>
@@ -71,6 +73,7 @@
 		</div>
 		
 		</form>
+		
         <h3>Histori Angsuran</h3>
 
 	        	<table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
@@ -131,18 +134,18 @@
 							<td><?php echo $item->ang_angsuranke ?></td>
 							<td><?php echo date("Y-m-d",strtotime($item->ags_tgljatuhtempo)) ?></td>
 							<td><?php echo $item->ags_tglbayar?></td>
-							<td><?php echo $item->ags_jmlpokok ?></td>
-							<td><?php echo $item->ags_jmlbunga ?></td>
-							<td><?php echo $totalbayar ?></td>
-							<td><?php echo $item->ags_jmlbayar ?></td>
-							<td><?php echo $kurangsetor ?></td>
+							<td><?php echo rupiah($item->ags_jmlpokok) ?></td>
+							<td><?php echo rupiah($item->ags_jmlbunga) ?></td>
+							<td><?php echo rupiah($totalbayar) ?></td>
+							<td><?php echo rupiah($item->ags_jmlbayar) ?></td>
+							<td><?php echo rupiah($kurangsetor) ?></td>
 							<?php if ($item->ags_bayartunggakan <= 0){
-							echo '<td>'.$denda.'</td>';
+							echo '<td>'.rupiah($denda).'</td>';
 							} else { 
-							echo '<td>'.$item->ags_denda.'</td>';
+							echo '<td>'.rupiah($item->ags_denda).'</td>';
 							} ?>
-							<td><?php echo $item->ags_bayartunggakan?></td>
-							<td class='danger'><?php echo $totalkekurangan ?></td>
+							<td><?php echo rupiah($item->ags_bayartunggakan)?></td>
+							<td class='danger'><?php echo rupiah($totalkekurangan) ?></td>
 							<td><?php 
 							if ($totalkekurangan > 0 && $denda > 0 && $this->tgl > $item->ags_tgljatuhtempo){
 								echo anchor(site_url('angsuran/denda/'.$item->ags_id),'Bayar','class="text-navy"');
@@ -158,7 +161,6 @@
 		            ?>
 		            </tbody>
 		        </table>
-
         </div>
     </div>
 </div>

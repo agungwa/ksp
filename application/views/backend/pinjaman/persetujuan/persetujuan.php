@@ -37,8 +37,8 @@
 				    <tr><td>Potongan Provisi</td><td><?php echo $persetujuan['pop_id']," %"; ?></td></tr>
 				    <tr><td>Wilayah</td><td><?php echo $persetujuan['wil_kode']; ?></td></tr>
 				    <tr><td>Kategori Peminjam</td><td><?php echo $persetujuan['skp_id']; ?></td></tr>
-				    <tr><td>Pengajuan</td><td><?php echo "Rp ",$persetujuan['pin_pengajuan']; ?></td></tr>
-				    <tr><td>Pinjaman</td><td><?php echo "Rp ",$persetujuan['pin_pinjaman']; ?></td></tr>
+				    <tr><td>Pengajuan</td><td><?php echo rupiah($persetujuan['pin_pengajuan']); ?></td></tr>
+				    <tr><td>Pinjaman</td><td><?php echo rupiah($persetujuan['pin_pinjaman']); ?></td></tr>
 				    <tr><td>Tanggal Pengajuan</td><td><?php echo dateFormat($persetujuan['pin_tglpengajuan']); ?></td></tr>
 				    <tr><td>Tanggal Pencairan</td><td><?php echo dateFormat($persetujuan['pin_tglpencairan']); ?></td></tr>
 				    <tr><td>Marketing</td><td><?php echo $persetujuan['pin_marketing']; ?></td></tr>
@@ -55,6 +55,7 @@
                 <label for="text">Persetujuan</label>
                 <input type="number" class="form-control" name="pin_pinjaman" id="pin_pinjaman" placeholder="Persetujuan" value="" required="required"/>
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $persetujuan['pin_id'];?>" required="required"/>            
+                <input type="date" class="form-control" name="pin_tglpencairan" id="pin_tglpencairan" placeholder="pin_tglpencairan" value="" required="required"/>            
                 
                 <label for="int">Tenor (bulan)</label>
                 <div class="input-group">

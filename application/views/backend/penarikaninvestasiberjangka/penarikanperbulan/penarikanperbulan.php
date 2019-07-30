@@ -6,25 +6,8 @@
             <form action="<?php echo base_url()?>penarikaninvestasiberjangka/penarikanperbulan" class="form-inline" method="get">
             <div class="col-md-8 text-right">
                 <input type="hidden" name="p" value="3">
-                <div class="col-md-2"><h3>Filter : </h3></div>
-                <select class="form-control col-md-3"  name="wilayah">
-                    <option value="">--Wilayah--</option>
-                    <?php
-                        foreach ($wilayah_data as $value) { ?>
-                            <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
-                    <?php        
-                        }
-                    ?>
-                </select>
-                <select class="form-control col-md-3" name="status">
-                    <option value="">--Status--</option>
-                    <?php
-                        foreach ($this->statusInvestasi as $key => $value) { ?>
-                            <option value="<?= $key?>"><?= $value?></option>
-                    <?php        
-                        }
-                    ?>
-                </select>
+                <div class="col-md-2"></div>
+                
             </div>
             
             <div class="col-md-1 text-right">
@@ -106,12 +89,6 @@
             </tbody>
         </table>
         <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
         </div>
         </div>
     </div>

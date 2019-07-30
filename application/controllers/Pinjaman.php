@@ -216,7 +216,7 @@ class Pinjaman extends MY_Base
         //update data pinjaman
         $dataPinjaman = array(
             'pin_pinjaman' => $this->input->post('pin_pinjaman',TRUE),
-            'pin_tglpencairan' => $this->tgl,
+            'pin_tglpencairan' => $this->input->post('pin_tglpencairan',TRUE),
             'sea_id' => $this->input->post('sea_id',TRUE),
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);

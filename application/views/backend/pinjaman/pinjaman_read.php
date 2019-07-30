@@ -23,13 +23,13 @@
 	    <tr><td>Rekening Pinjaman</td><td><?php echo $pin_id; ?></td></tr>
 	    <tr><td>Anggota</td><td><?php echo $ang_no; ?></td></tr>
 	    <tr><td>Tenor</td><td><?php echo $sea_id," Bulan"; ?></td></tr>
-	    <tr><td>Bunga Pinjaman</td><td><?php echo $bup_id," % (Bunga/bulan Rp ",$angsuranbunga,")"; ?></td></tr>
-	    <tr><td>Potongan Provisi</td><td><?php echo $pop_id," % (Potongan provisi Rp ",$provisi,")"; ?></td></tr>
+	    <tr><td>Bunga Pinjaman</td><td><?php echo $bup_id," % (Bunga/bulan ",rupiah($angsuranbunga),")"; ?></td></tr>
+	    <tr><td>Potongan Provisi</td><td><?php echo $pop_id," % (Potongan provisi ",rupiah($provisi),")"; ?></td></tr>
 	    <tr><td>Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
 	    <tr><td>Kategori Peminjam</td><td><?php echo $skp_id; ?></td></tr>
-	    <tr><td>Pengajuan</td><td><?php echo "Rp ",$pin_pengajuan; ?></td></tr>
-	    <tr><td>Pinjaman</td><td><?php echo "Rp ",$pin_pinjaman; ?></td></tr>
-	    <tr><td>Pinjaman Diterima</td><td><?php echo "Rp ",$pinjamanditerima; ?></td></tr>
+	    <tr><td>Pengajuan</td><td><?php echo rupiah($pin_pengajuan); ?></td></tr>
+	    <tr><td>Pinjaman</td><td><?php echo rupiah($pin_pinjaman); ?></td></tr>
+	    <tr><td>Pinjaman Diterima</td><td><?php echo rupiah($pinjamanditerima); ?></td></tr>
 	    <tr><td>Tanggal Pengajuan</td><td><?php echo dateFormat($pin_tglpengajuan); ?></td></tr>
 	    <tr><td>Tanggal Pencairan</td><td><?php echo dateFormat($pin_tglpencairan); ?></td></tr>
 	    <tr><td>Angsuran Perbulan</td><td><?php echo round($angsuran,-3) ; ?></td></tr>

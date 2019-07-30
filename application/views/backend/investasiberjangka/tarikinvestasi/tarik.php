@@ -38,10 +38,10 @@
 	    <tr><td>Karyawan</td><td><?php echo $tarik['kar_kode']; ?></td></tr>
 	    <tr><td>Wilayah</td><td><?php echo $tarik['wil_kode']; ?></td></tr>
 	    <tr><td>Jangka Waktu</td><td><?php echo $tarik['jwi_id'], " Bulan"; ?></td></tr>
-	    <tr><td>Jumlah</td><td><?php echo "Rp ",number_format($tarik['ivb_jumlah'], 0, ".", "."); ?></td></tr>
+	    <tr><td>Jumlah</td><td><?php echo rupiahsimpanan($tarik['ivb_jumlah']); ?></td></tr>
 	    <tr><td>Jasa</td><td><?php echo $tarik['jiv_id']; ?></td></tr>
 	    <tr><td>Bunga</td><td><?php echo $tarik['biv_id'], " %"; ?></td></tr>
-	    <tr><td>Jasa Total</td><td><?php echo "Rp ",number_format($tarik['ivb_jumlah']*$tarik['biv_id']/100*$tarik['jwi_id'], 0, ".", "."); ?></td></tr>
+	    <tr><td>Jasa Total</td><td><?php echo rupiahsimpanan($tarik['ivb_jumlah']*$tarik['biv_id']/100*$tarik['jwi_id']); ?></td></tr>
 	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $tarik['ivb_tglpendaftaran']; ?></td></tr>
 	    <tr><td>Tanggal Jatuh Tempo</td><td><?php echo $tarik['jatuhtempo']; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $tarik['ivb_status']; ?></td></tr>
@@ -70,8 +70,8 @@
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $penarikaninvestasiberjangka->ivb_kode ?></td>
 			<td><?php echo $penarikaninvestasiberjangka->pib_penarikanke ?></td>
-			<td><?php echo $totaljasa ?></td>
-			<td><?php echo $penarikaninvestasiberjangka->pib_jmlditerima ?></td>
+			<td><?php echo rupiahsimpanan($totaljasa) ?></td>
+			<td><?php echo rupiahsimpanan($penarikaninvestasiberjangka->pib_jmlditerima) ?></td>
 		</tr>
 
             <?php

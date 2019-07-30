@@ -43,6 +43,7 @@ class Angsuran extends MY_Base
     public function bayarAngsuran(){
         $q = urldecode($this->input->get('q', TRUE));        
         $k = urldecode($this->input->get('k', TRUE));
+        $d = 2;
         $angsuran = null;
         $historiAngsuran = null;
 
@@ -54,8 +55,9 @@ class Angsuran extends MY_Base
             $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
              if ($row) {
                  $totalbayar = $row->ags_jmlpokok + $row->ags_jmlbunga;
-                $angsuran = array(
-                    
+                 $tgldenda = date("Y-m-d", strtotime($row->ags_tgljatuhtempo.' + '.$d.' days'));
+                 $angsuran = array(
+                    'tgldenda' => $tgldenda,
                     'ags_id' => $row->ags_id,
                     'pin_id' => $row->pin_id,
                     'ang_angsuranke' => $row->ang_angsuranke,
@@ -108,10 +110,16 @@ class Angsuran extends MY_Base
        } else if ($row->ags_jmlbayar >= $totalbayar){
            $status = 2;
        }
+
+       if ($row->ags_jmlbayar < 0){
+        $z= $this->input->post('ags_jmlbayar',TRUE);
+    } else if ($row->ags_bayartunggakan > 0){
+        $z= $row->ags_jmlbayar+$this->input->post('tambah',TRUE);
+    }
         $dataAngsuran = array(
             'pin_id' => $this->input->post('pin_id',TRUE),
     		'ags_tglbayar' => $this->tgl,
-    		'ags_jmlbayar' => $this->input->post('ags_jmlbayar',TRUE),
+    		'ags_jmlbayar' => $z,
     		'ags_status' => $status,
             );
         $this->Angsuran_model->update($this->input->post('ags_id', TRUE), $dataAngsuran);
@@ -232,7 +240,7 @@ class Angsuran extends MY_Base
 						}
 						$totalbayar = $row->ags_jmlpokok + $row->ags_jmlbunga;
 						if ($row->ags_jmlbayar < 1){
-							$kurangsetor = 0; 
+							$kurangsetor = $totalbayar; 
 						}else {
 							$kurangsetor = $totalbayar-$row->ags_jmlbayar;
 						}
@@ -354,7 +362,7 @@ class Angsuran extends MY_Base
                 );
             $this->Angsuran_model->update($this->input->post('ags_id',TRUE), $dataAngsuran);
         
-        redirect(site_url('angsuran/'));
+        redirect(site_url('angsuran/bayarAngsuran?q='.$row->pin_id));
     }
     }
     public function listAngsuran()

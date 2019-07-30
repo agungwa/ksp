@@ -127,7 +127,7 @@ class Simpanan extends MY_Base
             );
                 $this->Setoransimpanan_model->insert($dataSetoran);
                 $this->session->set_flashdata('message', 'Create Record Success');
-                redirect(site_url('simpanan/?p=3'));
+                redirect(site_url('simpanan/?p=5'));
         
     }
 

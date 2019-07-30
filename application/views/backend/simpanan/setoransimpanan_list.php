@@ -63,7 +63,7 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $item['sim_kode'] ?></td>
 			<td><?php echo $item['ssi_tglsetor'] ?></td>
-			<td><?php echo $item['ssi_jmlsetor'] ?></td>
+			<td><?php echo rupiahsimpanan($item['ssi_jmlsetor']) ?></td>
 			<!--<td><?php echo $setoransimpanan->ssi_jmlbunga ?></td>-->
 			<!--<td style="text-align:center" width="200px">
 				<?php 
@@ -78,12 +78,6 @@
             </tbody>
         </table>
         <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
         </div>
         </div>
     </div>
