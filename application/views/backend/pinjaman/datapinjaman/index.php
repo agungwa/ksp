@@ -57,45 +57,55 @@
             <tbody class="thead-light">
             <tr>
                 <td class="text-left">Saldo Pinjaman Lalu</td>
-				<td class="text-center">RP <?= $saldolalupinjaman;?></td>
+				<td class="text-center"><?= neraca($saldolalupinjaman);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Drop</td>
-				<td class="text-center">RP <?= $saldodroppinjaman;?></td>
+				<td class="text-center"><?= neraca($saldodroppinjaman);?></td>
             </tr>
             <tr>
                 <td class="text-left">Angsuran Masuk (pokok)</td>
-				<td class="text-center">RP <?= $pokokangsuran+$pokokangsuranpelunasan;?></td>
+				<td class="text-center"><?= neraca($pokokangsuran+$pokokangsuranpelunasan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Kini</td>
-				<td class="text-center">RP <?= ($saldolalupinjaman+$saldodroppinjaman)-($pokokangsuran+$pokokangsuranpelunasan);?></td>
+				<td class="text-center"><?= neraca(($saldolalupinjaman+$saldodroppinjaman)-($pokokangsuran+$pokokangsuranpelunasan));?></td>
             </tr>
             <tr>
                 <td class="text-left">Bunga Angsuran</td>
-				<td class="text-center">RP <?= $bungaangsuran + $bungadendapelunasan;?></td>
+				<td class="text-center"><?= neraca($bungaangsuran + $bungadendapelunasan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Denda Angsuran</td>
-				<td class="text-center">RP <?= $dendaangsuran;?></td>
+				<td class="text-center"><?= neraca($dendaangsuran);?></td>
             </tr>
             <tr>
                 <td class="text-left">Administrasi</td>
-				<td class="text-center">RP <?= $provisipinjaman;?></td>
+				<td class="text-center"><?= neraca($provisipinjaman);?></td>
             </tr>
             <tr class="danger">
                 <td class="text-left">Total Angsuran Masuk</td>
-				<td class="text-center">RP <?= $totalangsuran+$totalangsurantunggakan;?></td>
+				<td class="text-center"><?= neraca($totalangsuran+$totalangsurantunggakan);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Lalu</td>
+				<td class="text-center"><?= neraca($totalrekening);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Masuk</td>
+				<td class="text-center"><?= neraca($totalrekeninglalu);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Keluar</td>
+				<td class="text-center"><?= neraca($totalrekeningkeluar);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Kini</td>
+				<td class="text-center"><?= neraca($totalrekeninglalu+$totalrekening-$totalrekeningkeluar);?></td>
             </tr>
             </tbody>
         </table>
         <div class="row">
-            <div class="col-md-6">
-                <!-- <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a> -->
-	    </div>
-            <div class="col-md-6 text-right">
-                <!-- <?php echo $pagination ?> -->
-            </div>
         </div>
         </div>
     </div>

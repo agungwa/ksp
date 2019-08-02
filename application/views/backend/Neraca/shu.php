@@ -12,7 +12,7 @@
                 </div>
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
-            <form action="<?php echo base_url()?>datapinjaman" class="form-inline" method="get">
+            <form action="<?php echo base_url()?>shu/perhitungan" class="form-inline" method="get">
             <div class="col-md-8 text-right">
                 <div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
                 <div class="col-md-3">
@@ -40,14 +40,15 @@
                                 if ($f <> '' || $t <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo base_url()?>datapinjaman" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo base_url()?>shu/perhitungan" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
                         </span>
+                        <!--
                         <span class="input-group-btn">
                                     <a href="<?php echo base_url()?>PrintPinjaman/printsirkulasipinjaman?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
-                        </span>
+                        </span>-->
                         <button class="btn btn-primary" type="submit">Tampilkan</button>
                     </div>
             </div>
@@ -55,39 +56,41 @@
         </div>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
+            <h3> Pendapatan </h3>
             <tr>
-                <td class="text-left">Saldo Pinjaman Lalu</td>
-				<td class="text-center">RP <?= $saldolalupinjaman;?></td>
-            </tr>
-            <tr>
-                <td class="text-left">Saldo Drop</td>
-				<td class="text-center">RP <?= $saldodroppinjaman;?></td>
-            </tr>
-            <tr>
-                <td class="text-left">Angsuran Masuk (pokok)</td>
-				<td class="text-center">RP <?= $pokokangsuran+$pokokangsuranpelunasan;?></td>
-            </tr>
-            <tr>
-                <td class="text-left">Saldo Kini</td>
-				<td class="text-center">RP <?= ($saldolalupinjaman+$saldodroppinjaman)-($pokokangsuran+$pokokangsuranpelunasan);?></td>
-            </tr>
-            <tr>
-                <td class="text-left">Bunga Angsuran</td>
-				<td class="text-center">RP <?= $bungaangsuran + $bungadendapelunasan;?></td>
-            </tr>
-            <tr>
-                <td class="text-left">Denda Angsuran</td>
-				<td class="text-center">RP <?= $dendaangsuran;?></td>
+                <td class="text-left">Jasa Pinjaman</td>
+				<td class="text-center"><?= neraca($bungaangsuran + $bungadendapelunasan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Administrasi</td>
-				<td class="text-center">RP <?= $provisipinjaman;?></td>
+				<td class="text-center"><?= neraca($provisipinjaman);?></td>
             </tr>
-            <tr class="danger">
-                <td class="text-left">Total Angsuran Masuk</td>
-				<td class="text-center">RP <?= $totalangsuran+$totalangsurantunggakan;?></td>
+            <tr>
+                <td class="text-left">Pinalti</td>
+				<td class="text-center"><?= neraca($dendaangsuran);?></td>
             </tr>
+            
             </tbody>
+            
+        </table>
+        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <tbody class="thead-light">
+            <h3> Pengeluaran </h3>
+            <tr>
+                <td class="text-left">Bunga Simpanan</td>
+				<td class="text-center"><?= neraca($bungasimpanan);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Bunga Investasi</td>
+				<td class="text-center"><?= neraca($jasainvestasiditarik);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Pengeluaran</td>
+				<td class="text-center"><?= neraca($jasainvestasiditarik);?></td>
+            </tr>
+            
+            </tbody>
+            
         </table>
         <div class="row">
             <div class="col-md-6">

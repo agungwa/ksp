@@ -31,6 +31,16 @@ class Pinjaman_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
+
+    // get pinjaman non aktif
+    function get_pinjaman_nonaktif()
+    {
+        $where = "pin_statuspinjaman = 3 AND pin_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
     //get all pengajuan
     function get_all_pengajuan()
     {

@@ -26,12 +26,17 @@ class PrintPinjaman extends MY_Base
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
 
     	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
+    	$pinjamanNonaktif = $this->Pinjaman_model->get_pinjaman_nonaktif();
     	$angsuranBayar = $this->Angsuran_model->get_angsuran_bayar();
     	$angsuranTotal = $this->Angsuran_model->get_angsuran_total();
     	$pelunasanPinjaman = $this->Pelunasan_model->get_all(); 
         $wilayah = $this->Wilayah_model->get_all();
         $provisi = $this->Potonganprovisi_model->get_by_id(1);		
 
+		
+		$totalRekening = 0;
+		$totalRekeninglalu = 0;
+		$totalRekeningkeluar = 0;
 		$satu = 1;
 		$saldoDroppinjaman = 0;
     	$saldoLalupinjaman = 0;
@@ -51,6 +56,7 @@ class PrintPinjaman extends MY_Base
         	$t = date("Y-m-d", strtotime($t));
     	}
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+
     	//hitung saldo pinjaman kini
     	foreach ($pinjamanAktif as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
@@ -69,7 +75,7 @@ class PrintPinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $value->wil_kode==$w))  {
+    			if (($jt < $f && 'all'==$w) || ($jt < $f && $value->wil_kode==$w))  {
     				$saldoLalupinjaman += $value->pin_pinjaman ;
     			}
 			} else {
@@ -204,8 +210,50 @@ class PrintPinjaman extends MY_Base
 		}
 	}
 
+	//Rekening pinjaman kini
+	foreach ($pinjamanAktif as $key => $value) {
+		if ($f<>'' && $t<>'' && $w<>'') {	
+		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
+		//var_dump($value->ags_id);
+			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
+				$$totalRekening++ ;
+			}
+		} else {
+			$$totalRekening++;
+	}
+}
+
+	//Rekening pinjaman lalu
+	foreach ($pinjamanNonaktif as $key => $value) {
+		if ($f<>'' && $t<>'' && $w<>'') {	
+		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
+		//var_dump($value->ags_id);
+			if (($jt < $f && 'all'==$w) || ($jt < $f && $value->wil_kode==$w))  {
+				$totalRekeninglalu++ ;
+			}
+		} else {
+			$totalRekeninglalu++;
+	}
+}
+
+	//Rekening pinjaman Keluar
+	foreach ($pinjamanAktif as $key => $value) {
+		if ($f<>'' && $t<>'' && $w<>'') {	
+		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
+		//var_dump($value->ags_id);
+			if (($jt < $f && 'all'==$w) || ($jt < $f && $value->wil_kode==$w))  {
+				$totalRekeningkeluar++ ;
+			}
+		} else {
+			$totalRekeningkeluar++;
+	}
+}
+
 		$data = array(
 			
+			'totalrekening' => $totalRekening,
+			'totalrekeninglalu' => $totalRekeninglalu,
+			'totalrekeningkeluar' => $totalRekeningkeluar,
             'wilayah_data' => $wilayah,
 			'saldodroppinjaman' => $saldoDroppinjaman,
 			'saldolalupinjaman' => $saldoLalupinjaman,

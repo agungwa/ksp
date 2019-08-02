@@ -57,6 +57,22 @@ th {
                 <td>Total Angsuran Masuk</td>
 				<td>RP <?= $totalangsuran+$totalangsurantunggakan;?></td>
             </tr>
+            <tr>
+                <td>Rekening Lalu</td>
+				<td><?= $totalrekening;?></td>
+            </tr>
+            <tr>
+                <td>Rekening Masuk</td>
+				<td><?= $totalrekeninglalu;?></td>
+            </tr>
+            <tr>
+                <td>Rekening Keluar</td>
+				<td><?= $totalrekeningkeluar;?></td>
+            </tr>
+            <tr>
+                <td>Rekening Kini</td>
+				<td><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar;?></td>
+            </tr>
             </tbody>
         </table>
         
