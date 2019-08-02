@@ -58,43 +58,43 @@
             <tbody class="thead-light">
             <tr>
                 <td class="text-left">Saldo Simpanan Lalu</td>
-				<td class="text-center"><?= rupiahsimpanan($saldosimpananlalu);?></td>
+				<td class="text-center"><?= neraca($saldosimpananlalu);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Simpanan Masuk</td>
-				<td class="text-center"><?= rupiahsimpanan($saldosimpanan);?></td>
+				<td class="text-center"><?= neraca($saldosimpanan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Penarikan Simpanan</td>
-				<td class="text-center"><?= rupiahsimpanan($saldosimpananditarik);?></td>
+				<td class="text-center"><?= neraca($saldosimpananditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Simpanan Kini</td>
-				<td class="text-center"><?= rupiahsimpanan($saldosimpanan+$saldosimpananlalu-$saldosimpananditarik);?></td>
+				<td class="text-center"><?= neraca($saldosimpanan+$saldosimpananlalu-$saldosimpananditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Bunga Simpanan</td>
-				<td class="text-center"><?= rupiahsimpanan($bungasimpanan);?></td>
+				<td class="text-center"><?= neraca($bungasimpanan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Simpanan Wajib</td>
-				<td class="text-center"><?= rupiahsimpanan($saldosimpananwajib);?></td>
+				<td class="text-center"><?= neraca($saldosimpananwajib);?></td>
             </tr>
             <tr>
                 <td class="text-left">Simpanan Wajib Ditarik</td>
-				<td class="text-center"><?= rupiahsimpanan($saldosimpananwajibditarik);?></td>
+				<td class="text-center"><?= neraca($saldosimpananwajibditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Simpanan Pokok</td>
-				<td class="text-center"><?= rupiahsimpanan($saldosimpananpokok);?></td>
+				<td class="text-center"><?= neraca($saldosimpananpokok);?></td>
             </tr>
             <tr>
                 <td class="text-left">PH Buku</td>
-				<td class="text-center"><?= rupiahsimpanan($phbuku);?></td>
+				<td class="text-center"><?= neraca($phbuku);?></td>
             </tr>
             <tr>
                 <td class="text-left">Administrasi</td>
-				<td class="text-center"><?= rupiahsimpanan($administrasi);?></td>
+				<td class="text-center"><?= neraca($administrasi);?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Lalu</td>

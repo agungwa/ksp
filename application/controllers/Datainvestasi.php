@@ -19,18 +19,20 @@ class DataInvestasi extends MY_Base
     	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
 
-		$totalRekening = 0;
-		$totalRekeninglalu = 0;
-		$totalRekeningkeluar = 0;
     	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
     	$investasiNonaktif = $this->Investasiberjangka_model->get_investasi_nonaktif();
     	$jasaDitarik = $this->Penarikaninvestasiberjangka_model->get_all();
-        $wilayah = $this->Wilayah_model->get_all();		
-		$satu = 1;
+		$wilayah = $this->Wilayah_model->get_all();	
+		
+		$totalRekening = 0;
+		$totalRekeninglalu = 0;
+		$totalRekeningkeluar = 0;
     	$saldoInvestasi = 0;
     	$saldoInvestasilalu = 0;
     	$saldoInvestasiditarik = 0;
-    	$jasaInvestasiditarik = 0;
+		$jasaInvestasiditarik = 0;
+		
+		$satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
         $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
