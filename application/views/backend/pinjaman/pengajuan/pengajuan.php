@@ -19,7 +19,7 @@
                                 <label for="varchar">Anggota</label>
                                 <div class="input-group">
                                 <input type="hidden" name="ang_no" id="ang_no" value="" required="required"/>
-                                <input type="text" class="form-control" name="nm_ang_no" id="nm_ang_no" placeholder="Anggota" value="" readonly required="required"/>
+                                <input type="text" class="form-control" name="nm_ang_no" id="nm_ang_no" placeholder="Anggota" value=""  required="required"/>
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>anggota/lookup','ang_no');" style="cursor: pointer;"><i class="glyphicon glyphicon-search"></i></span>
                                 </div>
@@ -30,7 +30,7 @@
                                 <label for="int">Setting Angsuran (bulan)</label>
                                 <div class="input-group">
                                 <input type="hidden" name="sea_id" id="sea_id" value="" required="required" />
-                                <input type="text" class="form-control" name="nm_sea_id" id="nm_sea_id" placeholder="Setting Angsuran" value="" required="required" readonly/>
+                                <input type="text" class="form-control" name="nm_sea_id" id="nm_sea_id" placeholder="Setting Angsuran" value="" required="required" />
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>settingangsuran/lookup','sea_id');" style="cursor: pointer;"><i class="glyphicon glyphicon-search"></i></span>
                                 </div>
@@ -41,7 +41,7 @@
                                 <label for="int">Bunga Pinjaman (persen)</label>
                                 <div class="input-group">
                                 <input type="hidden" name="bup_id" id="bup_id" value="" required="required" />
-                                <input type="text" class="form-control" name="nm_bup_id" id="nm_bup_id" placeholder="Bunga Pinjaman" value="" required="required" readonly/>
+                                <input type="text" class="form-control" name="nm_bup_id" id="nm_bup_id" placeholder="Bunga Pinjaman" value="" required="required" />
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>bungapinjaman/lookup','bup_id');" style="cursor: pointer;"><i class="glyphicon glyphicon-search"></i></span>
                                 </div>
@@ -52,7 +52,7 @@
                                 <label for="int">Potongan Provisi (persen)</label>
                                 <div class="input-group">
                                 <input type="hidden" name="pop_id" id="pop_id" value="" required="required" />
-                                <input type="text" class="form-control" name="nm_pop_id" id="nm_pop_id" placeholder="Potongan Provisi" value="" required="required" readonly/>
+                                <input type="text" class="form-control" name="nm_pop_id" id="nm_pop_id" placeholder="Potongan Provisi" value="" required="required" />
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>potonganprovisi/lookup','pop_id');" style="cursor: pointer;"><i class="glyphicon glyphicon-search"></i></span>
                                 </div>
@@ -63,7 +63,7 @@
                                 <label for="varchar">Wilayah</label>
                                 <div class="input-group">
                                 <input type="hidden" name="wil_kode" id="wil_kode" value="" />
-                                <input type="text" class="form-control" name="nm_wil_kode" id="nm_wil_kode" placeholder="Wilayah" value="" readonly/>
+                                <input type="text" class="form-control" name="nm_wil_kode" id="nm_wil_kode" placeholder="Wilayah" value="" />
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>wilayah/lookup','wil_kode');" style="cursor: pointer;"><i class="glyphicon glyphicon-search"></i></span>
                                 </div>
@@ -74,7 +74,7 @@
                                 <label for="int">Kategori Peminjam</label>
                                 <div class="input-group">
                                 <input type="hidden" name="skp_id" id="skp_id" value="" />
-                                <input type="text" class="form-control" name="nm_skp_id" id="nm_skp_id" placeholder="Kategori Peminjam" value="" readonly/>
+                                <input type="text" class="form-control" name="nm_skp_id" id="nm_skp_id" placeholder="Kategori Peminjam" value="" />
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>settingkategoripeminjam/lookup','skp_id');" style="cursor: pointer;"><i class="glyphicon glyphicon-search"></i></span>
                                 </div>
@@ -95,7 +95,7 @@
                                 <label for="varchar">Marketing</label>
                                 <div class="input-group">
                                 <input type="hidden" name="mkar_kode" id="mkar_kode" value="" required="required" />
-                                <input type="text" class="form-control" name="nm_mkar_kode" id="nm_mkar_kode" placeholder="Karyawan" value="" required="required" readonly/>
+                                <input type="text" class="form-control" name="nm_mkar_kode" id="nm_mkar_kode" placeholder="Karyawan" value="" required="required" />
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>karyawan/lookup','mkar_kode');" style="cursor: pointer;">Cari</span>
                                 </div>
@@ -105,7 +105,7 @@
                                 <label for="varchar">Surveyor</label>
                                 <div class="input-group">
                                 <input type="hidden" name="skar_kode" id="skar_kode" value="" required="required" />
-                                <input type="text" class="form-control" name="nm_skar_kode" id="nm_skar_kode" placeholder="Karyawan" value="" required="required" readonly/>
+                                <input type="text" class="form-control" name="nm_skar_kode" id="nm_skar_kode" placeholder="Karyawan" value="" required="required" />
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>karyawan/lookup','skar_kode');" style="cursor: pointer;">Cari</span>
                                 </div>
@@ -119,7 +119,7 @@
                                 <label for="varchar">Jenis Jaminan</label>
                                 <div class="input-group">
                                 <input type="hidden" name="jej_id" id="jej_id" value="" />
-                                <input type="text" class="form-control" name="nm_jej_id" id="nm_jej_id" placeholder="Jenis Jaminan" value="" readonly/>
+                                <input type="text" class="form-control" name="nm_jej_id" id="nm_jej_id" placeholder="Jenis Jaminan" value="" />
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>jenisjaminan/lookup','jej_id');" style="cursor: pointer;"><i class="glyphicon glyphicon-search"></i></span>
                                 </div>

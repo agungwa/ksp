@@ -335,6 +335,12 @@ lookup();
                     <a href="index.html"><i class="fa fa-list"></i> <span class="nav-label">Neraca</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
+                        <li><a href="<?=site_url('phu')?>">Biaya PHU</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=site_url('shu')?>">SHU</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
                         <li><a href="<?=site_url('backend')?>">Neraca Dashboard</a></li>
                     </ul>
                 </li>

@@ -87,6 +87,10 @@ class Printsimpanan extends MY_Base
 		$simpananPokok = $this->Simpananpokok_model->get_all();
         $wilayah = $this->Wilayah_model->get_all();		
 
+		$saldoSimpananlalu = 0;
+		$totalRekening = 0;
+		$totalRekeninglalu = 0;
+		$totalRekeningkeluar = 0;
     	$saldoSimpanan = 0;
     	$saldoSimpananDitarik = 0;
     	$bungaSimpanan = 0;
@@ -121,6 +125,24 @@ class Printsimpanan extends MY_Base
     				$saldoSimpanan += $item->ssi_jmlsetor;
 				}
 				
+				
+			}
+			
+		}
+
+		foreach ($simpananAktif as $key => $value) {
+    		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
+    		foreach ($setoran as $k => $item) {
+				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+				
+    			if ($f<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
+    				if ($tgl < $f && 'all' == $w || $tgl < $f && $sim_kode->wil_kode == $w) {
+						$saldoSimpananlalu += $item->ssi_jmlsetor;
+    				}
+    			} else {
+    				$saldoSimpananlalu += $item->ssi_jmlsetor;
+				}
 				
 			}
 			
@@ -194,10 +216,52 @@ class Printsimpanan extends MY_Base
     		} else {
 				$saldoSimpananpokok += $value->sip_setoran;
     		}
-    	}
+		}	
+		
+		//rekening simpanan lalu
+		foreach ($simpananAktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sim_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl < $f && 'all'==$w) || ($tgl < $f && $value->wil_kode==$w))  {
+    				$totalRekeninglalu++ ;
+    			}
+			} else {
+					$totalRekeninglalu++ ;
+		}
+		}
+
+		//rekening simpanan masuk
+		foreach ($simpananAktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sim_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+    				$totalRekening++ ;
+    			}
+			} else {
+					$totalRekening++ ;
+		}
+		}
+
+		//rekening simpanan keluar
+		foreach ($simpananNonaktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sim_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+    				$totalRekeningkeluar++ ;
+    			}
+			} else {
+					$totalRekeningkeluar++ ;
+		}
+		}
 
 		$data = array(
-			
+			'totalrekeninglalu' => $totalRekeninglalu,
+			'totalrekeningkeluar' => $totalRekeningkeluar,
+			'saldosimpananlalu' => $saldoSimpananlalu,
+			'totalrekening' => $totalRekening,
             'wilayah_data' => $wilayah,
 			'saldosimpanan' => $saldoSimpanan,
 			'saldosimpananditarik' => $saldoSimpananDitarik,
@@ -210,7 +274,8 @@ class Printsimpanan extends MY_Base
 			'f' => $f,
 			't' => $t,
 			'w' => $w,
-        );
+		    'content' => 'backend/simpanan/datarekening/index',
+		);
         $mpdf = new \Mpdf\Mpdf();
         $html = $this->load->view('backend/simpanan/printsimpanan/sirkulasisimpanan.php',$data,true);
         //echo $html;

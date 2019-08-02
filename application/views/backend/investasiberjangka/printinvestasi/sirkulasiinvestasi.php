@@ -44,6 +44,22 @@ th {
                 <td >Jasa Keluar</td>
 				<td >RP <?= $jasainvestasiditarik;?></td>
             </tr>
+            <tr>
+                <td>Rekening Lalu</td>
+				<td><?= $totalrekening;?></td>
+            </tr>
+            <tr>
+                <td>Rekening Masuk</td>
+				<td><?= $totalrekeninglalu;?></td>
+            </tr>
+            <tr>
+                <td>Rekening Keluar</td>
+				<td><?= $totalrekeningkeluar;?></td>
+            </tr>
+            <tr>
+                <td>Rekening Kini</td>
+				<td><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar;?></td>
+            </tr>
             
             </tbody>
         </table>

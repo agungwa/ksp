@@ -24,12 +24,20 @@ th {
         <table>
             <tbody>
             <tr>
-                <td>Saldo Simpanan</td>
-				<td >RP <?= $saldosimpanan;?></td>
+                <td>Saldo Simpanan Lalu</td>
+				<td><?= rupiahsimpanan($saldosimpananlalu);?></td>
+            </tr>
+            <tr>
+                <td>Saldo Simpanan Masuk</td>
+				<td><?= rupiahsimpanan($saldosimpanan);?></td>
             </tr>
             <tr>
                 <td>Penarikan Simpanan</td>
-				<td>RP <?= $saldosimpananditarik;?></td>
+				<td><?= rupiahsimpanan($saldosimpananditarik);?></td>
+            </tr>
+            <tr>
+                <td>Saldo Simpanan Kini</td>
+				<td><?= rupiahsimpanan($saldosimpanan+$saldosimpananlalu-$saldosimpananditarik);?></td>
             </tr>
             <tr>
                 <td>Bunga Simpanan</td>
@@ -54,6 +62,22 @@ th {
             <tr>
                 <td>Administrasi</td>
 				<td>RP <?= $administrasi;?></td>
+            </tr>
+            <tr>
+                <td>Rekening Lalu</td>
+				<td ><?= $totalrekening;?></td>
+            </tr>
+            <tr>
+                <td>Rekening Masuk</td>
+				<td ><?= $totalrekeninglalu;?></td>
+            </tr>
+            <tr>
+                <td>Rekening Keluar</td>
+				<td ><?= $totalrekeningkeluar;?></td>
+            </tr>
+            <tr>
+                <td>Rekening Kini</td>
+				<td ><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar;?></td>
             </tr>
             </tbody>
         </table>

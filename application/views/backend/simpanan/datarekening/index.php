@@ -57,12 +57,20 @@
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
             <tr>
-                <td class="text-left">Saldo Simpanan</td>
+                <td class="text-left">Saldo Simpanan Lalu</td>
+				<td class="text-center"><?= rupiahsimpanan($saldosimpananlalu);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Saldo Simpanan Masuk</td>
 				<td class="text-center"><?= rupiahsimpanan($saldosimpanan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Penarikan Simpanan</td>
 				<td class="text-center"><?= rupiahsimpanan($saldosimpananditarik);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Saldo Simpanan Kini</td>
+				<td class="text-center"><?= rupiahsimpanan($saldosimpanan+$saldosimpananlalu-$saldosimpananditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Bunga Simpanan</td>
@@ -89,8 +97,20 @@
 				<td class="text-center"><?= rupiahsimpanan($administrasi);?></td>
             </tr>
             <tr>
+                <td class="text-left">Rekening Lalu</td>
+				<td class="text-center"><?= $totalrekening;?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Masuk</td>
+				<td class="text-center"><?= $totalrekeninglalu;?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Keluar</td>
+				<td class="text-center"><?= $totalrekeningkeluar;?></td>
+            </tr>
+            <tr>
                 <td class="text-left">Rekening Kini</td>
-				<td class="text-center"><?= rupiahsimpanan($totalrekening);?></td>
+				<td class="text-center"><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar;?></td>
             </tr>
             </tbody>
         </table>

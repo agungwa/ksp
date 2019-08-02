@@ -21,6 +21,9 @@ class PrintInvestasiberjangka extends MY_Base
     	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
 
+		$totalRekening = 0;
+		$totalRekeninglalu = 0;
+		$totalRekeningkeluar = 0;
     	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
     	$investasiNonaktif = $this->Investasiberjangka_model->get_investasi_nonaktif();
     	$jasaDitarik = $this->Penarikaninvestasiberjangka_model->get_all();
@@ -43,9 +46,9 @@ class PrintInvestasiberjangka extends MY_Base
     	//hitung saldo investasi aktif
     	foreach ($investasiAktif as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
 			//var_dump($value->ags_id);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
     				$saldoInvestasi += $value->ivb_jumlah ;
     			}
 			} else {
@@ -56,9 +59,9 @@ class PrintInvestasiberjangka extends MY_Base
 		//hitung saldo investasi aktif lalu
     	foreach ($investasiAktif as $key => $value) {
 			if ($f<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $value->wil_kode==$w))  {
+    			if (($tgl < $f && 'all'==$w) || ($tgl < $f && $value->wil_kode==$w))  {
     				$saldoInvestasilalu += $value->ivb_jumlah ;
     			}
 			} else {
@@ -70,9 +73,9 @@ class PrintInvestasiberjangka extends MY_Base
     	//hitung saldo investasi nonaktif
     	foreach ($investasiNonaktif as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
 			//var_dump($value->ags_id);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
     				$saldoInvestasiditarik += $value->ivb_jumlah ;
     			}
 			} else {
@@ -94,9 +97,51 @@ class PrintInvestasiberjangka extends MY_Base
     		
     	}
 
+		//Rekening investasi kini
+    	foreach ($investasiAktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+    				$totalRekening++;
+    			}
+			} else {
+				$totalRekening++;
+		}
+	}
+
+		//Rekening investasi aktif lalu
+    	foreach ($investasiAktif as $key => $value) {
+			if ($f<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl < $f && 'all'==$w) || ($tgl < $f && $value->wil_kode==$w))  {
+    				$totalRekeninglalu++ ;
+    			}
+			} else {
+				$totalRekeninglalu++;
+		}
+	}
+
+		
+    	//Rekening investasi nonaktif
+    	foreach ($investasiNonaktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+    				$totalRekeningkeluar++ ;
+    			}
+			} else {
+				$totalRekeningkeluar++;
+		}
+	}
     	
 		$data = array(
 			
+			'totalrekening' => $totalRekening,
+			'totalrekeninglalu' => $totalRekeninglalu,
+			'totalrekeningkeluar' => $totalRekeningkeluar,
             'wilayah_data' => $wilayah,
 			'jasainvestasiditarik' => $jasaInvestasiditarik,
 			'saldoinvestasiditarik' => $saldoInvestasiditarik,
@@ -105,7 +150,8 @@ class PrintInvestasiberjangka extends MY_Base
 			'f' => $f,
 			't' => $t,
 			'w' => $w,
-        );
+		    'content' => 'backend/investasiberjangka/datainvestasi/index',
+		);
         
     $mpdf = new \Mpdf\Mpdf();
     $html = $this->load->view('backend/investasiberjangka/printinvestasi/sirkulasiinvestasi.php',$data,true);
