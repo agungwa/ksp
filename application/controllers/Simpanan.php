@@ -272,15 +272,16 @@ class Simpanan extends MY_Base
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
-        
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Setoransimpanan_model->total_rows($q);
         $setoransimpanan = $this->Setoransimpanan_model->get_limit_data($start, $q, $f, $t);
 
         $wilayah = $this->Wilayah_model->get_all();
         $datasetoran = array();
+        
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
         foreach ($setoransimpanan as $key=>$item) {
             $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
             //$wil_kode = $sim_kode->wil_kode;
@@ -301,6 +302,7 @@ class Simpanan extends MY_Base
                 );
             }
         }
+       // var_dump($datasetoran);
         $data = array(
             'datasetoran' => $datasetoran,
             'setoransimpanan_data' => $setoransimpanan,
@@ -467,7 +469,6 @@ class Simpanan extends MY_Base
 		'nm_jse_id' => set_value('jse_id', $row->jse_id),
 		'wil_kode' => set_value('wil_kode', $row->wil_kode),
 		'nm_wil_kode' => set_value('wil_kode', $row->wil_kode),
-		'sim_status' => set_value('sim_status', $row->sim_status),
 	    'content' => 'backend/simpanan/simpanan_form.php',
 	    );
             $this->load->view(layout(), $data);
@@ -493,7 +494,6 @@ class Simpanan extends MY_Base
 		'jse_id' => $this->input->post('jse_id',TRUE),
 		'wil_kode' => $this->input->post('wil_kode',TRUE),
 		'sim_tglpendaftaran' => $this->input->post('sim_tglpendaftaran',TRUE),
-		'sim_status' => $this->input->post('sim_status',TRUE),
 		'sim_flag' => 1,
 	    );
 

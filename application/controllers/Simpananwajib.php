@@ -182,16 +182,15 @@ class Simpananwajib extends MY_Base
     public function read($id) 
     {
         
-        $settingsimpanan = $this->Simpananwajib_model->get_by_id(1);
+        $settingsimpanan = $this->Settingsimpanan_model->get_by_id(1);
         $row = $this->Simpananwajib_model->get_by_id($id);
         $setoransimpananwajib = $this->Setoransimpananwajib_model->get_data_ssw($id);
         $siw_status = $this->statusSimpananwajib;
-     
         if ($row) {
             $data = array(
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row(),
                 'setoransimpananwajib_data' => $setoransimpananwajib,
-                //'id' => $id,
+                'settingsimpanan_data' => $settingsimpanan,
         'siw_id' => $row->siw_id,
 		'ang_no' => $row->ang_no,        
 		'nama_ang_no' => $ang_no->ang_nama,

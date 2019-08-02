@@ -1,24 +1,80 @@
 <?php
+
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class DataRekening extends MY_Base
+class Printsimpanan extends MY_Base
 {
-	function __construct()
+    function __construct()
     {
         parent::__construct();
-        $this->load->model('Simpanan_model');
-        $this->load->model('Setoransimpanan_model');
+        
         $this->load->model('Bungasetoransimpanan_model');
-        $this->load->model('Penarikansimpanan_model');
         $this->load->model('Simpananwajib_model');
         $this->load->model('Setoransimpananwajib_model');
         $this->load->model('Penarikansimpananwajib_model');
         $this->load->model('Simpananpokok_model');
+        $this->load->model('Simpanan_model');
         $this->load->model('Wilayah_model');
+        $this->load->model('Setoransimpanan_model');
+        $this->load->model('Penarikansimpanan_model');
+        $this->load->model('Pengkodean');
+        $this->load->library('form_validation');
+    }
+   
+    public function printlistsetoran()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+        $start = intval($this->input->get('start'));
+        
+        $setoransimpanan = $this->Setoransimpanan_model->get_limit_data($start, $q, $f, $t);
+
+        $wilayah = $this->Wilayah_model->get_all();
+        $datasetoran = array();
+        foreach ($setoransimpanan as $key=>$item) {
+            $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+            //$wil_kode = $sim_kode->wil_kode;
+            $tanggalDuedate = $item->ssi_tglsetor;
+            $f = date("Y-m-d", strtotime($f));
+            $t = date("Y-m-d", strtotime($t));
+
+            if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sim_kode->wil_kode == $w)) {
+                $datasetoran[$key] = array('ssi_id' => $item->ssi_id,
+                'sim_kode' => $item->sim_kode,
+                'wil_kode' => $sim_kode->wil_kode,
+                'ssi_tglsetor' => $item->ssi_tglsetor,
+                'ssi_jmlsetor' => $item->ssi_jmlsetor,
+                //'ssi_jmlbunga' => $row->ssi_jmlbunga,
+                'ssi_tgl' => $item->ssi_tgl,
+                'ssi_flag' => $item->ssi_flag,
+                'ssi_info' => $item->ssi_info,
+                );
+            }
+        }
+        $data = array(
+            'datasetoran' => $datasetoran,
+            'setoransimpanan_data' => $setoransimpanan,
+            'wilayah_data' => $wilayah,
+            'q' => $q,
+            'w' => $w,
+            'f' => $f,
+            't' => $t,
+            'start' => $start,
+        );
+        //var_dump($data);
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('backend/simpanan/printsimpanan/setoransimpananprint.php',$data,true);
+        //echo $html;
+        $mpdf->WriteHTML($html);
+        //$mpdf->Output(); // opens in browser
+        $mpdf->Output('listsetoransimpanan.pdf','D'); // it downloads the file into the user system, with give name
+    
     }
 
-    public function index(){
+    public function printsirkulasisimpanan(){
 		
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
     	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
@@ -31,7 +87,6 @@ class DataRekening extends MY_Base
 		$simpananPokok = $this->Simpananpokok_model->get_all();
         $wilayah = $this->Wilayah_model->get_all();		
 
-		$totalRekening = 0;
     	$saldoSimpanan = 0;
     	$saldoSimpananDitarik = 0;
     	$bungaSimpanan = 0;
@@ -139,23 +194,10 @@ class DataRekening extends MY_Base
     		} else {
 				$saldoSimpananpokok += $value->sip_setoran;
     		}
-		}	
-		
-		//rekening simpanan aktif
-		foreach ($simpananAktif as $key => $value) {
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->sim_tglpendaftaran));
-			//var_dump($value->ags_id);
-    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
-    				$totalRekening++ ;
-    			}
-			} else {
-					$totalRekening++ ;
-		}
-		}
+    	}
 
 		$data = array(
-			'totalrekening' => $totalRekening,
+			
             'wilayah_data' => $wilayah,
 			'saldosimpanan' => $saldoSimpanan,
 			'saldosimpananditarik' => $saldoSimpananDitarik,
@@ -168,9 +210,14 @@ class DataRekening extends MY_Base
 			'f' => $f,
 			't' => $t,
 			'w' => $w,
-		    'content' => 'backend/simpanan/datarekening/index',
-		);
-        $this->load->view(layout(), $data);
+        );
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('backend/simpanan/printsimpanan/sirkulasisimpanan.php',$data,true);
+        //echo $html;
+        $mpdf->WriteHTML($html);
+        //$mpdf->Output(); // opens in browser
+        $mpdf->Output('sirkulasisimpanan.pdf','D'); // it downloads the file into the user system, with give name
+    
     }
 
     public function dataAll(){
@@ -180,4 +227,11 @@ class DataRekening extends MY_Base
     public function dataRentang($f, $t){
 
     }
+
 }
+
+/* End of file Simpanan.php */
+/* Location: ./application/controllers/Simpanan.php */
+/* Please DO NOT modify this information : */
+/* Generated by Harviacode Codeigniter CRUD Generator 2019-03-26 14:02:35 */
+/* http://harviacode.com */

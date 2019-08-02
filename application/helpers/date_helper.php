@@ -6,6 +6,12 @@ function dateFormat($inputDate) {
     return date_format($date, "d-m-Y H:i:s");
 }
 
+function dateFormataja($inputDate) {
+    $date = date_create($inputDate);
+
+    return date_format($date, "d-m-Y");
+}
+
 if( !function_exists('ceiling') )
         {
             function ceiling($number, $significance = 1)

@@ -81,12 +81,6 @@
             </div>
         </div>
         </div>
-        <div class="col-md-12">
-	    <div class="form-group col-md-3">
-            <label for="varchar">Status <?php echo form_error('sim_status') ?></label>
-            <input type="text" class="form-control" name="sim_status" id="sim_status" placeholder="Sim Status" value="<?php echo $sim_status; ?>" />
-        </div>
-        </div>
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('simpanan') ?>" class="btn btn-default">Batal</a>
         

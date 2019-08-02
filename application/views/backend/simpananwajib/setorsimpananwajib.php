@@ -55,9 +55,9 @@
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $setoransimpananwajib->ssw_tglsetor ?></td>
-			<td><?php echo $setoransimpananwajib->ssw_jmlsetor ?></td>
-			<td><?php echo $total ?></td>
-            <td><?php echo $kurang ?></td>
+			<td><?php echo rupiahsimpanan($setoransimpananwajib->ssw_jmlsetor) ?></td>
+			<td><?php echo rupiahsimpanan($total) ?></td>
+            <td><?php echo rupiahsimpanan($kurang) ?></td>
             <td style="text-align:center" width="200px">
                 <?php 
 				echo anchor(site_url('setoransimpananwajib/update/'.$setoransimpananwajib->ssw_id),'Update','class="text-navy" onclick="javascript: return confirm(\'Yakin Edit Data?\')"');                 				?>

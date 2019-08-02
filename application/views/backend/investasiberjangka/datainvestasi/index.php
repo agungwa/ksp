@@ -44,8 +44,11 @@
                                     <?php
                                 }
                             ?>
-                          <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
+                        <span class="input-group-btn">
+                                    <a href="<?php echo base_url()?>PrintInvestasiberjangka/printsirkulasiinvestasi?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                        </span>
+                        <button class="btn btn-primary" type="submit">Tampilkan</button>
                     </div>
             </div>
             </form>

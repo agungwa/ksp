@@ -34,15 +34,14 @@
             </div>
             <div class="col-md-4 text-left">
                     <div class="input-group">
+                        
+                        <span class="input-group-btn">
+                            <a href="<?php echo base_url()?>PrintPinjaman/printpenagihanawal?t=<?=$t?>&y=<?=$y?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                        </span>
                         <span class="input-group-btn">
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
-                    <!--<div class="input-group">
-                        <span class="input-group-btn">
-                          <button class="btn btn-warning" type="submit">Cetak</button>
-                        </span>
-                    </div>-->
             </div>
             </form>
         </div>

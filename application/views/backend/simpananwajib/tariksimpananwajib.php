@@ -46,9 +46,9 @@
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $setoransimpananwajib->ssw_tglsetor ?></td>
-			<td><?php echo $setoransimpananwajib->ssw_jmlsetor ?></td>
-			<td><?php echo $total ?></td>
-			<td><?php echo $kurang ?></td>
+			<td><?php echo rupiahsimpanan($setoransimpananwajib->ssw_jmlsetor) ?></td>
+			<td><?php echo rupiahsimpanan($total) ?></td>
+			<td><?php echo rupiahsimpanan($kurang) ?></td>
 		</tr>
         <?php
         $no++;

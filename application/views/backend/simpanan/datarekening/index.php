@@ -44,8 +44,12 @@
                                     <?php
                                 }
                             ?>
-                          <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
+                        <span class="input-group-btn">
+                                    <a href="<?php echo base_url()?>printsimpanan/printsirkulasisimpanan?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                        </span>
+                          <button class="btn btn-primary" type="submit">Tampilkan</button>
+                       
                     </div>
             </div>
             </form>
@@ -54,45 +58,43 @@
             <tbody class="thead-light">
             <tr>
                 <td class="text-left">Saldo Simpanan</td>
-				<td class="text-center">RP <?= $saldosimpanan;?></td>
+				<td class="text-center"><?= rupiahsimpanan($saldosimpanan);?></td>
             </tr>
             <tr>
-                <td class="text-left">Simpanan Ditarik</td>
-				<td class="text-center">RP <?= $saldosimpananditarik;?></td>
+                <td class="text-left">Penarikan Simpanan</td>
+				<td class="text-center"><?= rupiahsimpanan($saldosimpananditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Bunga Simpanan</td>
-				<td class="text-center">RP <?= $bungasimpanan;?></td>
+				<td class="text-center"><?= rupiahsimpanan($bungasimpanan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Simpanan Wajib</td>
-				<td class="text-center">RP <?= $saldosimpananwajib;?></td>
+				<td class="text-center"><?= rupiahsimpanan($saldosimpananwajib);?></td>
             </tr>
             <tr>
                 <td class="text-left">Simpanan Wajib Ditarik</td>
-				<td class="text-center">RP <?= $saldosimpananwajibditarik;?></td>
+				<td class="text-center"><?= rupiahsimpanan($saldosimpananwajibditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Simpanan Pokok</td>
-				<td class="text-center">RP <?= $saldosimpananpokok;?></td>
+				<td class="text-center"><?= rupiahsimpanan($saldosimpananpokok);?></td>
             </tr>
             <tr>
                 <td class="text-left">PH Buku</td>
-				<td class="text-center">RP <?= $phbuku;?></td>
+				<td class="text-center"><?= rupiahsimpanan($phbuku);?></td>
             </tr>
             <tr>
                 <td class="text-left">Administrasi</td>
-				<td class="text-center">RP <?= $administrasi;?></td>
+				<td class="text-center"><?= rupiahsimpanan($administrasi);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Kini</td>
+				<td class="text-center"><?= rupiahsimpanan($totalrekening);?></td>
             </tr>
             </tbody>
         </table>
         <div class="row">
-            <div class="col-md-6">
-                <!-- <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a> -->
-	    </div>
-            <div class="col-md-6 text-right">
-                <!-- <?php echo $pagination ?> -->
-            </div>
         </div>
         </div>
     </div>
