@@ -199,6 +199,7 @@ class DataRekening extends MY_Base
 			} else {
 					$totalRekeningkeluar++ ;
 		}
+		
 		}
 
 		$data = array(

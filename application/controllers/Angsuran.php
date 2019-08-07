@@ -105,17 +105,19 @@ class Angsuran extends MY_Base
            );
        }
 
-       if ($row->ags_jmlbayar-1 < $totalbayar){
+
+            if ($row->ags_jmlbayar < 1){
+                $z= $this->input->post('ags_jmlbayar',TRUE);
+            } else if ($row->ags_jmlbayar > 1){
+                $z= $row->ags_jmlbayar+$this->input->post('tambah',TRUE);
+            }
+
+       if ($z < $totalbayar){
            $status = 1;
-       } else if ($row->ags_jmlbayar >= $totalbayar){
+       } else if ($z > $totalbayar){
            $status = 2;
        }
-
-       if ($row->ags_jmlbayar < 0){
-        $z= $this->input->post('ags_jmlbayar',TRUE);
-    } else if ($row->ags_bayartunggakan > 0){
-        $z= $row->ags_jmlbayar+$this->input->post('tambah',TRUE);
-    }
+        //var_dump($totalbayar);
         $dataAngsuran = array(
             'pin_id' => $this->input->post('pin_id',TRUE),
     		'ags_tglbayar' => $this->tgl,

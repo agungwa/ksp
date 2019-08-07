@@ -54,7 +54,7 @@
 					<tr><td>Status</td><td><?php echo $this->statusAngsuran[$angsuran['ags_status']]; ?></td></tr>
 					<?php if ($angsuran['ags_jmlbayar'] <= 0 && $this->tgl <= $angsuran['tgldenda']) {
 					echo '<tr><td>Input Angsuran</td><td><input type="number" class="form-control" name="ags_jmlbayar" id="ags_jmlbayar" placeholder="Bayar" value="" required="required" /></td></tr>';
-					} else if ($angsuran['ags_jmlbayar'] > 0 && $angsuran['ags_jmlbayar'] < $angsuran['totalbayar'] && $this->tgl <= $angsuran['tgldenda']) {
+					} else if ($angsuran['ags_status'] < 2 && $this->tgl <= $angsuran['tgldenda']) {
 					echo '<tr><td>Input Tambahan</td><td><input type="number" class="form-control" name="tambah" id="tambah" placeholder="Bayar" value="" required="required" /></td></tr>';
 					}
 					?>

@@ -29,6 +29,13 @@ class Jaminan_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    // get data by pin_kode
+    function get_by_pin($pin_id)
+    {
+        $this->db->where('pin_id', $pin_id);
+        return $this->db->get($this->table)->row();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

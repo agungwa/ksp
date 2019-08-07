@@ -109,10 +109,14 @@
 				?>
                 </td>
                 <td style="text-align:center" width="200px">
-				<?php 
+                <?php
+                if ($item['pin_statusid'] < 1) {
 				echo anchor(site_url('pinjaman/survey?q='.$item['pin_id']),'Survey','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('pinjaman/persetujuan?q='.$item['pin_id']),'Persetujuan','class="text-navy"');?>
+                echo anchor(site_url('pinjaman/persetujuan?q='.$item['pin_id']),'Persetujuan','class="text-navy"');
+                } else {
+                    echo 'Telah Disetujui';
+                }?>
 			    </td>
 		</tr>
                 

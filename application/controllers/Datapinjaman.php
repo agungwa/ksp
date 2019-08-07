@@ -23,7 +23,8 @@ class Datapinjaman extends MY_Base
     	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
     	$pinjamanNonaktif = $this->Pinjaman_model->get_pinjaman_nonaktif();
     	$angsuranBayar = $this->Angsuran_model->get_angsuran_bayar();
-    	$angsuranTotal = $this->Angsuran_model->get_angsuran_total();
+		$angsuranTotal = $this->Angsuran_model->get_angsuran_total();
+		$angsuranKurang = $this->Angsuran_model->get_angsuran_total();
     	$pelunasanPinjaman = $this->Pelunasan_model->get_all(); 
         $wilayah = $this->Wilayah_model->get_all();
         $provisi = $this->Potonganprovisi_model->get_by_id(1);		
@@ -61,7 +62,7 @@ class Datapinjaman extends MY_Base
     				$saldoDroppinjaman += $value->pin_pinjaman ;
     			}
 			} else {
-				$saldoDroppinjaman += $value->pin_pinjaman;
+				$saldoDroppinjaman == 0;
 		}
 	}
 
@@ -84,7 +85,7 @@ class Datapinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$pokokAngsuran += $value->ags_jmlpokok ;
     			}
 			} else {
@@ -98,7 +99,7 @@ class Datapinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->pel_tglpelunasan));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$pokokAngsuranpelunasan += $value->pel_totalkekuranganpokok ;
     			}
 			} else {
@@ -112,7 +113,7 @@ class Datapinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$bungaAngsuran += $value->ags_jmlbunga ;
     			}
 			} else {
@@ -126,11 +127,25 @@ class Datapinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t  && $pin_id->wil_kode==$w))  {
     				$dendaAngsuran += $value->ags_denda ;
     			}
 			} else {
 				$dendaAngsuran += $value->ags_denda;
+		}
+	}
+
+		//hitung bunga angsuran status kurang improvement
+		foreach ($angsuranKurang as $key => $value) {
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$jt = date("Y-m-d", strtotime($value->ags_tgl));
+			//var_dump($value->ags_id);
+				if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+					$bungaAngsuran += $value->ags_jmlbunga ;
+				}
+			} else {
+				$bungaAngsuran += $value->ags_jmlbunga;
 		}
 	}
 	
@@ -154,7 +169,7 @@ class Datapinjaman extends MY_Base
 		if ($f<>'' && $t<>'' && $w<>'') {	
 		$jt = date("Y-m-d", strtotime($value->pel_tglpelunasan));
 		//var_dump($value->ags_id);
-			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
 				$pokokAngsuranpelunasan += $value->pel_totalkekuranganpokok ;
 			}
 		} else {
@@ -168,7 +183,7 @@ class Datapinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->pel_tglpelunasan));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$bungaDendapelunasan += $value->pel_bungatambahan ;
     			}
 			} else {
@@ -176,13 +191,13 @@ class Datapinjaman extends MY_Base
 		}
 	}
 	
-		//hitung Total saldo angsuran pokok dari angsuran jumlah bayar
+		//hitung Total saldo angsuran total dari angsuran
     	foreach ($angsuranTotal as $key => $value) {
 			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$totalAngsuran += $value->ags_jmlbayar ;
     			}
 			} else {
@@ -197,7 +212,7 @@ class Datapinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$totalAngsurantunggakan += $value->ags_bayartunggakan ;
     			}
 			} else {
@@ -211,15 +226,15 @@ class Datapinjaman extends MY_Base
 		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
 		//var_dump($value->ags_id);
 			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
-				$$totalRekening++ ;
+				$totalRekening++ ;
 			}
 		} else {
-			$$totalRekening++;
+			$totalRekening=0;
 	}
 }
 
 	//Rekening pinjaman lalu
-	foreach ($pinjamanNonaktif as $key => $value) {
+	foreach ($pinjamanAktif as $key => $value) {
 		if ($f<>'' && $t<>'' && $w<>'') {	
 		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
 		//var_dump($value->ags_id);
@@ -232,7 +247,7 @@ class Datapinjaman extends MY_Base
 }
 
 	//Rekening pinjaman Keluar
-	foreach ($pinjamanAktif as $key => $value) {
+	foreach ($pinjamanNonaktif as $key => $value) {
 		if ($f<>'' && $t<>'' && $w<>'') {	
 		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
 		//var_dump($value->ags_id);

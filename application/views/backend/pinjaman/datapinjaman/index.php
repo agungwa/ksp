@@ -89,19 +89,19 @@
             </tr>
             <tr>
                 <td class="text-left">Rekening Lalu</td>
-				<td class="text-center"><?= neraca($totalrekening);?></td>
+				<td class="text-center"><?= $totalrekeninglalu;?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Masuk</td>
-				<td class="text-center"><?= neraca($totalrekeninglalu);?></td>
+				<td class="text-center"><?= $totalrekening;?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Keluar</td>
-				<td class="text-center"><?= neraca($totalrekeningkeluar);?></td>
+				<td class="text-center"><?= $totalrekeningkeluar;?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Kini</td>
-				<td class="text-center"><?= neraca($totalrekeninglalu+$totalrekening-$totalrekeningkeluar);?></td>
+				<td class="text-center"><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar;?></td>
             </tr>
             </tbody>
         </table>
