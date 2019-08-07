@@ -147,7 +147,6 @@ class Anggota extends MY_Base
         $this->Simpananwajib_model->insert($dataSimpananWajib);   
 
             $this->session->set_flashdata('message', 'Update Record Success');
-        
             redirect(site_url('anggota/?p=2'));
         
     }

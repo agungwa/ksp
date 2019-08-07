@@ -1,267 +1,202 @@
 <?php
+
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Shu extends MY_Base
+class Shu extends CI_Controller
 {
-	function __construct()
+    function __construct()
     {
-		parent::__construct();
-
-		//investasi
-        $this->load->model('Penarikaninvestasiberjangka_model');
-        $this->load->model('Tutupinvestasiberjangka_model');
-        $this->load->model('Investasiberjangka_model');
-
-		//simpanan
-        $this->load->model('Simpanan_model');
-        $this->load->model('Setoransimpanan_model');
-        $this->load->model('Bungasetoransimpanan_model');
-        $this->load->model('Penarikansimpanan_model');
-        $this->load->model('Simpananwajib_model');
-        $this->load->model('Setoransimpananwajib_model');
-        $this->load->model('Penarikansimpananwajib_model');
-		$this->load->model('Simpananpokok_model');
-		
-		//pinjaman
-        $this->load->model('Pinjaman_model');
-        $this->load->model('Angsuran_model');
-        $this->load->model('Pelunasan_model');
-        $this->load->model('Potonganprovisi_model');
-        $this->load->model('Wilayah_model');
+        parent::__construct();
+        $this->load->model('Shu_model');
+        $this->load->library('form_validation');
     }
 
-    public function Perhitungan(){
-		
-        $w = urldecode($this->input->get('w', TRUE)); //wilayah
-    	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
-		$t = urldecode($this->input->get('t', TRUE)); //smpai tgl
-		
-		//model
+    public function index()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        $shu = $this->Shu_model->get_limit_data( $start, $q);
 
-		//investasi
-    	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
-    	$investasiNonaktif = $this->Investasiberjangka_model->get_investasi_nonaktif();
-    	$jasaDitarik = $this->Penarikaninvestasiberjangka_model->get_all();
-        $wilayah = $this->Wilayah_model->get_all();		
-    	
-		//simpanan
-    	$simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
-    	$simpananNonaktif = $this->Simpanan_model->get_simpanan_nonaktif();
-    	$setoransimpananwajib = $this->Setoransimpananwajib_model->get_all();    	
-    	$simpananwajibDitarik = $this->Penarikansimpananwajib_model->get_all();
-		$simpananPokok = $this->Simpananpokok_model->get_all();
-
-		//pinjaman
-    	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
-    	$pinjamanNonaktif = $this->Pinjaman_model->get_pinjaman_nonaktif();
-    	$angsuranBayar = $this->Angsuran_model->get_angsuran_bayar();
-    	$angsuranTotal = $this->Angsuran_model->get_angsuran_total();
-    	$pelunasanPinjaman = $this->Pelunasan_model->get_all(); 
-        $wilayah = $this->Wilayah_model->get_all();
-        $provisi = $this->Potonganprovisi_model->get_by_id(1);		
-
-		//variable
-
-		//investasi
-		$saldoInvestasi = 0;
-    	$saldoInvestasilalu = 0;
-    	$saldoInvestasiditarik = 0;
-    	$jasaInvestasiditarik = 0;
-
-		//simpanan
-		$saldoSimpananlalu = 0;
-    	$saldoSimpanan = 0;
-    	$saldoSimpananDitarik = 0;
-    	$bungaSimpanan = 0;
-    	$saldoSimpananwajib = 0;
-    	$saldoSimpananwajibDitarik = 0;
-    	$saldoSimpananpokok = 0;
-    	$phBuku = 0;
-		$administrasi = 0;
-		
-		//pinjaman
-		$saldoDroppinjaman = 0;
-    	$saldoLalupinjaman = 0;
-    	$pokokAngsuran = 0;
-    	$pokokAngsuranpelunasan = 0;
-    	$bungaAngsuran = 0;
-    	$dendaAngsuran = 0;
-    	$provisiPinjaman = 0;
-    	$bungaDendapelunasan = 0;
-    	$totalAngsuran = 0;
-		$totalAngsurantunggakan = 0;
-		
-		$satu = 1;
-		$datetoday = date("Y-m-d", strtotime($this->tgl));
-		$tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
-
-    	if ($f<>'' && $t<>'') {	
-        	$f = date("Y-m-d", strtotime($f));
-        	$t = date("Y-m-d", strtotime($t));
-    	}
-		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
-
-    	//hitung bunga angsuran status bayar
-    	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
-    				$bungaAngsuran += $value->ags_jmlbunga ;
-    			}
-			} else {
-				$bungaAngsuran += $value->ags_jmlbunga;
-		}
-	}
-	
-    	//hitung denda angsuran status bayar
-    	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
-    				$dendaAngsuran += $value->ags_denda ;
-    			}
-			} else {
-				$dendaAngsuran += $value->ags_denda;
-		}
-	}
-	
-	
-    	//hitung saldo potongan provisi
-    	foreach ($pinjamanAktif as $key => $value) {
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
-			//var_dump($value->ags_id);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
-    				$provisiPinjaman += $value->pin_pinjaman*$provisi->pop_potongan/100 ;
-    			}
-			} else {
-				$provisiPinjaman += $value->pin_pinjaman*$provisi->pop_potongan/100;
-		}
-	}
-
-		   	//hitung saldo bunga denda pelunasan
-    	foreach ($pelunasanPinjaman as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->pel_tglpelunasan));
-			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
-    				$bungaDendapelunasan += $value->pel_bungatambahan ;
-    			}
-			} else {
-				$bungaDendapelunasan += $value->pel_bungatambahan;
-		}
-	}
-	
-		//hitung Total saldo angsuran pokok dari angsuran jumlah bayar
-    	foreach ($angsuranTotal as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
-    				$totalAngsuran += $value->ags_jmlbayar ;
-    			}
-			} else {
-				$totalAngsuran += $value->ags_jmlbayar;
-		}
-	}
-			
-	
-		//hitung Total saldo angsuran pokok dari angsuran tunggakan
-    	foreach ($angsuranTotal as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
-    				$totalAngsurantunggakan += $value->ags_bayartunggakan ;
-    			}
-			} else {
-				$totalAngsurantunggakan += $value->ags_bayartunggakan;
-		}
-	}
-
-
-	//hitung bunga simpanan aktif
-	foreach ($simpananNonaktif as $key => $value) {
-		$bungaSetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($value->sim_kode);
-		foreach ($bungaSetoran as $k => $item) {
-			if ($f<>'' && $t<>'') {	
-				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
-				if ($tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
-					$bungaSimpanan += $item->bss_bungabulanini;
-				}
-			} else {
-				$bungaSimpanan += $item->bss_bungabulanini;
-			}
-		}
-	}
-
-    	//hitung saldo jasa ditarik
-    	foreach ($jasaDitarik as $key => $value) {
-			$ivb_kode = $this->db->get_where('investasiberjangka', array('ivb_kode' => $value->ivb_kode))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-    				$tgl = date("Y-m-d", strtotime($value->pib_tgl));
-    				if (($tgl >= $f && $tgl <= $t && $w == 'all') || ($tgl >= $f && $tgl <= $t && $ivb_kode->wil_kode == $w)) {
-    					$jasaInvestasiditarik += $value->pib_jmlditerima;
-    				}
-    			} else {
-    				$jasaInvestasiditarik += $value->pib_jmlditerima;
-    			}
-    		
-    	}
-
-		$data = array(
-
-			//investasi
-			'jasainvestasiditarik' => $jasaInvestasiditarik,
-			'saldoinvestasiditarik' => $saldoInvestasiditarik,
-			'saldoinvestasilalu' => $saldoInvestasilalu,
-			'saldoinvestasi' => $saldoInvestasi,
-			
-			//simpanan
-			'saldosimpananlalu' => $saldoSimpananlalu,
-            'wilayah_data' => $wilayah,
-			'saldosimpanan' => $saldoSimpanan,
-			'saldosimpananditarik' => $saldoSimpananDitarik,
-			'bungasimpanan' => $bungaSimpanan,
-			'saldosimpananwajib' => $saldoSimpananwajib,
-			'saldosimpananwajibditarik' => $saldoSimpananwajibDitarik,
-			'saldosimpananpokok' => $saldoSimpananpokok,
-			'phbuku' => $phBuku,
-			'administrasi' => $administrasi,
-			
-			//pinjaman
-            'wilayah_data' => $wilayah,
-			'saldodroppinjaman' => $saldoDroppinjaman,
-			'saldolalupinjaman' => $saldoLalupinjaman,
-			'pokokangsuran' => $pokokAngsuran,
-			'pokokangsuranpelunasan' => $pokokAngsuranpelunasan,
-			'bungaangsuran' => $bungaAngsuran,
-			'bungadendapelunasan' => $bungaDendapelunasan,
-			'dendaangsuran' => $dendaAngsuran,
-			'provisipinjaman' => $provisiPinjaman,
-			'totalangsuran' => $totalAngsuran,
-			'totalangsurantunggakan' => $totalAngsurantunggakan,
-			'f' => $f,
-			't' => $t,
-			'w' => $w,
-		    'content' => 'backend/neraca/shu',
-		);
+        $data = array(
+            'shu_data' => $shu,
+            'q' => $q,,
+            'start' => $start,
+            'content' => 'backend/shu/shu_list',
+        );
         $this->load->view(layout(), $data);
     }
 
-    public function dataAll(){
-    	return $data;
+    public function lookup()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        $idhtml = $this->input->get('idhtml');
+        
+        $shu = $this->Shu_model->get_limit_data( $start, $q);
+
+
+        $data = array(
+            'shu_data' => $shu,
+            'idhtml' => $idhtml,
+            'q' => $q,
+            'start' => $start,
+            'content' => 'backend/shu/shu_lookup',
+        );
+        ob_start();
+        $this->load->view($data['content'], $data);
+        return ob_get_contents();
+        ob_end_clean();
     }
 
-    public function dataRentang($f, $t){
-
+    public function read($id) 
+    {
+        $row = $this->Shu_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+		'shu_id' => $row->shu_id,
+		'shu_pendapatan' => $row->shu_pendapatan,
+		'shu_pengeluaran' => $row->shu_pengeluaran,
+		'shu_jumlah' => $row->shu_jumlah,
+		'shu_tanggal' => $row->shu_tanggal,
+		'shu_tgl' => $row->shu_tgl,
+		'shu_flag' => $row->shu_flag,
+		'shu_info' => $row->shu_info,
+		'phu_id' => $row->phu_id,
+		'psis_id' => $row->psis_id,'content' => 'backend/shu/shu_read',
+	    );
+            $this->load->view(
+            layout(), $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('shu'));
+        }
     }
+
+    public function create() 
+    {
+        $data = array(
+            'button' => 'Create',
+            'action' => site_url('shu/create_action'),
+	    'shu_id' => set_value('shu_id'),
+	    'shu_pendapatan' => set_value('shu_pendapatan'),
+	    'shu_pengeluaran' => set_value('shu_pengeluaran'),
+	    'shu_jumlah' => set_value('shu_jumlah'),
+	    'shu_tanggal' => set_value('shu_tanggal'),
+	    'phu_id' => set_value('phu_id'),
+	    'psis_id' => set_value('psis_id'),
+	    'content' => 'backend/shu/shu_form',
+	);
+        $this->load->view(layout(), $data);
+    }
+    
+    public function create_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+        } else {
+            $data = array(
+		'shu_pendapatan' => $this->input->post('shu_pendapatan',TRUE),
+		'shu_pengeluaran' => $this->input->post('shu_pengeluaran',TRUE),
+		'shu_jumlah' => $this->input->post('shu_jumlah',TRUE),
+		'shu_tanggal' => $this->input->post('shu_tanggal',TRUE),
+		'shu_tgl' => $this->tgl,
+		'shu_flag' => 0,
+		'shu_info' => "",
+		'phu_id' => $this->input->post('phu_id',TRUE),
+		'psis_id' => $this->input->post('psis_id',TRUE),
+	    );
+
+            $this->Shu_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('shu'));
+        }
+    }
+    
+    public function update($id) 
+    {
+        $row = $this->Shu_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('shu/update_action'),
+		'shu_id' => set_value('shu_id', $row->shu_id),
+		'shu_pendapatan' => set_value('shu_pendapatan', $row->shu_pendapatan),
+		'shu_pengeluaran' => set_value('shu_pengeluaran', $row->shu_pengeluaran),
+		'shu_jumlah' => set_value('shu_jumlah', $row->shu_jumlah),
+		'shu_tanggal' => set_value('shu_tanggal', $row->shu_tanggal),
+		'phu_id' => set_value('phu_id', $row->phu_id),
+		'psis_id' => set_value('psis_id', $row->psis_id),
+	    'content' => 'backend/shu/shu_form',
+	    );
+            $this->load->view(layout(), $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('shu'));
+        }
+    }
+    
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('shu_id', TRUE));
+        } else {
+            $data = array(
+		'shu_pendapatan' => $this->input->post('shu_pendapatan',TRUE),
+		'shu_pengeluaran' => $this->input->post('shu_pengeluaran',TRUE),
+		'shu_jumlah' => $this->input->post('shu_jumlah',TRUE),
+		'shu_tanggal' => $this->input->post('shu_tanggal',TRUE),
+		'shu_flag' => 1,
+		'phu_id' => $this->input->post('phu_id',TRUE),
+		'psis_id' => $this->input->post('psis_id',TRUE),
+	    );
+
+            $this->Shu_model->update($this->input->post('shu_id', TRUE), $data);
+            $this->session->set_flashdata('message', 'Update Record Success');
+            redirect(site_url('shu'));
+        }
+    }
+    
+    public function delete($id) 
+    {
+        $row = $this->Shu_model->get_by_id($id);
+
+        if ($row) {
+            $data = array (
+                'shu_flag' => 2,
+            );
+            $this->Shu_model->update($id,$data);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('shu'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('shu'));
+        }
+    }
+
+    public function _rules() 
+    {
+	$this->form_validation->set_rules('shu_pendapatan', 'shu pendapatan', 'trim|required');
+	$this->form_validation->set_rules('shu_pengeluaran', 'shu pengeluaran', 'trim|required');
+	$this->form_validation->set_rules('shu_jumlah', 'shu jumlah', 'trim|required');
+	$this->form_validation->set_rules('shu_tanggal', 'shu tanggal', 'trim|required');
+	$this->form_validation->set_rules('phu_id', 'phu id', 'trim|required');
+	$this->form_validation->set_rules('psis_id', 'psis id', 'trim|required');
+
+	$this->form_validation->set_rules('shu_id', 'shu_id', 'trim');
+	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
 }
+
+/* End of file Shu.php */
+/* Location: ./application/controllers/Shu.php */
+/* Please DO NOT modify this information : */
+/* Generated by Harviacode Codeigniter CRUD Generator 2019-08-07 03:51:20 */
+/* http://harviacode.com */

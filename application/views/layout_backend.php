@@ -338,7 +338,7 @@ lookup();
                         <li><a href="<?=site_url('phu')?>">Biaya PHU</a></li>
                     </ul>
                     <ul class="nav nav-second-level">
-                        <li><a href="<?=site_url('shu/perhitungan/')?>">SHU</a></li>
+                        <li><a href="<?=site_url('neraca/perhitungan/')?>">Hitung SHU/Bulan</a></li>
                     </ul>
                     <ul class="nav nav-second-level">
                         <li><a href="<?=site_url('backend')?>">Neraca Dashboard</a></li>
