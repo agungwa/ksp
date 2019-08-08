@@ -651,7 +651,7 @@ table#02 {
                 <td colspan="2" style="width:152.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:8pt"><span
                             style="font-family:Cambria">Temanggung, </span>
-                        <span style="font-family:Cambria">.............................................</span></p>
+                        <span style="font-family:Cambria"><?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?></span></p>
                 </td>
             </tr>
             <tr style="height:74.5pt">
