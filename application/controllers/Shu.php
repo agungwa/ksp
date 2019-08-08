@@ -21,7 +21,7 @@ class Shu extends CI_Controller
 
         $data = array(
             'shu_data' => $shu,
-            'q' => $q,,
+            'q' => $q,
             'start' => $start,
             'content' => 'backend/shu/shu_list',
         );
