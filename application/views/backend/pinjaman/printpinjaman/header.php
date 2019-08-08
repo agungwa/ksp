@@ -6,7 +6,7 @@ table#01 {
 }
 
  </style>
-</head>
+ 
     <div>
         <div style="-aw-headerfooter-type:header-primary">
         <table id="01" cellspacing="0" cellpadding="0"  style="border-collapse:collapse">

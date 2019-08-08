@@ -448,10 +448,15 @@ class PrintPinjaman extends MY_Base
                 'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman],
     	    );
             
-				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Letter', [216, 330]]);
+				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Letter', [216, 350]]);
+				//$header = $this->load->view('backend/pinjaman/printpinjaman/header2.php',$data,true);
 				$html = $this->load->view('backend/pinjaman/printpinjaman/bpkb.php',$data,true);
+				$html1 = $this->load->view('backend/pinjaman/printpinjaman/beritaacara.php',$data,true);
+				//$mpdf->SetHeader($header);
 				//echo $html;
 				$mpdf->WriteHTML($html);
+				$mpdf->AddPage();
+				$mpdf->WriteHTML($html1);
 				//$mpdf->Output(); // opens in browser
 				$mpdf->Output('pencairan.pdf','D'); // it downloads the file into the user system, with give name
     

@@ -6,7 +6,7 @@ table#02 {
 }
 </style>
 
-<?php include('header2.php');?>
+<?php include('header1.php');?>
 <?php 
         $angsuranbunga=$pin_pinjaman*$bup_id/100;
         $provisi=$pin_pinjaman*$pop_id/100;
@@ -351,7 +351,7 @@ table#02 {
                 </td>
                 <td colspan="3" style="width:302.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt">
-                        <span style="font-family:Cambria"><?php echo dateFormataja($pin_tglpencairan) ?></span></p>
+                        <span style="font-family:Cambria"><?php echo dateFormataja($tgl_pelunasan) ?></span></p>
                 </td>
             </tr>
             <tr>
