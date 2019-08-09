@@ -57,6 +57,7 @@
             $no++;
             }
             ?>
+            <!--
         <div class="form-group col-md-4">
             <label for="varchar">Jumlah Setoran</label>
             <input type="number" class="form-control" name="ssw_jmlsetor" min=<?= $min?> max=<?= $kurang?> id="ssw_jmlsetor" placeholder="Jumlah Setor" value="" required="required" />
@@ -65,7 +66,7 @@
         <div class="form-group col-md-12">
             <button type="submit" class="btn btn-primary">setor</button> 
             <a href="<?php echo site_url('anggota/read/'.$ang_no) ?>" class="btn btn-default">Batal</a>
-        </div>
+        </div> -->
 </form>
             </tbody>
         </table>

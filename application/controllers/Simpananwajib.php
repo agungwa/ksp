@@ -8,6 +8,7 @@ class Simpananwajib extends MY_Base
     function __construct()
     {
         parent::__construct();
+        $this->load->model('Anggota_model');
         $this->load->model('Simpananwajib_model');
         $this->load->model('Settingsimpanan_model');
         $this->load->model('Setoransimpananwajib_model');
@@ -111,6 +112,16 @@ class Simpananwajib extends MY_Base
 
     public function setorsimpananwajib_action()
     {
+        $total = $this->input->post('total',TRUE)+$this->input->post('ssw_jmlsetor',TRUE);
+        $max = $this->input->post('max',TRUE);
+        if ($total < $max){
+            $statusanggota = 1;
+        } else if ($total == $max){
+            $statusanggota = 2;
+        }
+        var_dump($total);
+        var_dump($max);
+        var_dump($statusanggota);
         //insert data setoran simpanan wajib
         $dataSetoran = array(
             'siw_id' => $this->input->post('siw_id',TRUE),
@@ -120,9 +131,15 @@ class Simpananwajib extends MY_Base
             'ssw_flag' => 0,
             'ssw_info' => "",
             );
-                $this->Setoransimpananwajib_model->insert($dataSetoran);
-                $this->session->set_flashdata('message', 'Create Record Success');
-                redirect(site_url('anggota/?p=4'));
+            $this->Setoransimpananwajib_model->insert($dataSetoran);
+
+        $dataAnggota = array(
+            'ang_no' => $this->input->post('ang_no',TRUE),
+            'ang_status' => $statusanggota,
+             );
+            $this->Anggota_model->update($this->input->post('ang_no', TRUE), $dataAnggota);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('anggota/?p=4'));
         
     }
 
