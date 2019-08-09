@@ -8,6 +8,7 @@ class Pinjaman_model extends CI_Model
 
     public $table = 'pinjaman';
     public $id = 'pin_id';
+    public $skp_id = 'skp_id';
     public $order = 'DESC';
 
     function __construct()
@@ -19,6 +20,33 @@ class Pinjaman_model extends CI_Model
     function get_all()
     {
         $this->db->where('pin_flag<',2);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get pinjaman umum
+    function get_pinjaman_umum()
+    {
+        $where = "pin_statuspinjaman = 1 AND skp_id = 1 AND pin_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get pinjaman karyawan
+    function get_pinjaman_karyawan()
+    {
+        $where = "pin_statuspinjaman = 1 AND skp_id = 2 AND pin_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get pinjaman khusus
+    function get_pinjaman_khusus()
+    {
+        $where = "pin_statuspinjaman = 1 AND skp_id = 3 AND pin_flag < 2";
+        $this->db->where($where);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }

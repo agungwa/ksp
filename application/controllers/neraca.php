@@ -14,6 +14,7 @@ class Neraca extends MY_Base
         $this->load->model('Phu_model');
         $this->load->model('Phu_sistem_model');
         $this->load->model('Shu_model');
+        $this->load->model('Neracakasbank_model');
 
 		//investasi
         $this->load->model('Penarikaninvestasiberjangka_model');
@@ -52,6 +53,7 @@ class Neraca extends MY_Base
         $phu = $this->Phu_model->get_all();		
         $phuSistem = $this->Phu_sistem_model->get_all();		
         $Shu = $this->Shu_model->get_all();		
+        $kasBank = $this->Neracakasbank_model->get_all();		
 		
 		//investasi
     	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
@@ -68,6 +70,9 @@ class Neraca extends MY_Base
 
 		//pinjaman
     	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
+    	$pinjamanUmumaktif = $this->Pinjaman_model->get_pinjaman_umum();
+    	$pinjamanKaryawanaktif = $this->Pinjaman_model->get_pinjaman_karyawan();
+    	$pinjamanKhususaktif = $this->Pinjaman_model->get_pinjaman_khusus();
     	$pinjamanNonaktif = $this->Pinjaman_model->get_pinjaman_nonaktif();
     	$angsuranBayar = $this->Angsuran_model->get_angsuran_bayar();
     	$angsuranTotal = $this->Angsuran_model->get_angsuran_total();
@@ -80,6 +85,7 @@ class Neraca extends MY_Base
 		//neraca
 		$dataphu = array();
 		$shuData = 0;
+		$kasBankdata = 0;
 		
 		//investasi
 		$saldoInvestasi = 0;
@@ -99,6 +105,9 @@ class Neraca extends MY_Base
 		$administrasi = 0;
 		
 		//pinjaman
+		$saldoPinjamanumum = 0;
+		$saldoPinjamankaryawan = 0;
+		$saldoPinjamankhusus = 0;
 		$saldoDroppinjaman = 0;
     	$saldoLalupinjaman = 0;
     	$pokokAngsuran = 0;
@@ -120,7 +129,7 @@ class Neraca extends MY_Base
     	}
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 
-    		//hitung saldo simpanan aktif masuk
+    	//hitung saldo simpanan aktif
     	foreach ($simpananAktif as $key => $value) {
     		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
     		foreach ($setoran as $k => $item) {
@@ -139,6 +148,45 @@ class Neraca extends MY_Base
 			}
 			
 		}
+
+    	//hitung saldo pinjaman umum
+    	foreach ($pinjamanUmumaktif as $key => $value) {
+			if ($f<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->pin_tglpencairan));
+			//var_dump($value->ags_id);
+    			if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w)  {
+    				$saldoPinjamanumum += $value->pin_pinjaman ;
+    			}
+			} else {
+				$saldoPinjamanumum == $value->pin_pinjaman;
+		}
+	}
+
+		//hitung saldo pinjaman karyawan
+		foreach ($pinjamanKaryawanaktif as $key => $value) {
+			if ($f<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->pin_tglpencairan));
+			//var_dump($value->ags_id);
+				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w)  {
+					$saldoPinjamankaryawan += $value->pin_pinjaman;
+				}
+			} else {
+				$saldoPinjamankaryawan == $value->pin_pinjaman;
+		}
+	}
+
+		//hitung saldo pinjaman khusus
+		foreach ($pinjamanKhususaktif as $key => $value) {
+			if ($f<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->pin_tglpencairan));
+			//var_dump($value->ags_id);
+				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w)  {
+					$saldoPinjamankhusus += $value->pin_pinjaman ;
+				}
+			} else {
+				$saldoPinjamankhusus == $value->pin_pinjaman;
+		}
+	}
 
 		//hitung saldo angsuran pokok dari angsuran status bayar
     	foreach ($angsuranBayar as $key => $value) {
@@ -196,6 +244,19 @@ class Neraca extends MY_Base
 		}
 	}
 
+	//hitung Neraca Kas Bank
+    	foreach ($kasBank as $key => $value) {
+			if ($f<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->nkb_tanggal));
+			//var_dump($value->ags_id);
+    			if ($tgl <= $f)  {
+    				$kasBankdata += $value->nkb_jumlah;
+    			}
+			} else {
+				$kasBankdata += $value->nkb_jumlah;
+		}
+	}
+
 		$data = array(
 
 			'kode' => $this->Pengkodean->psis($nowYear),
@@ -203,6 +264,7 @@ class Neraca extends MY_Base
 			//neraca
 			'dataphu' => $dataphu,
 			'shudata' => $shuData,
+			'kasbankdata' => $kasBankdata,
 
 			//investasi
 			'jasainvestasiditarik' => $jasaInvestasiditarik,
@@ -223,6 +285,9 @@ class Neraca extends MY_Base
 			'administrasi' => $administrasi,
 			
 			//pinjaman
+			'saldopinjamankhusus' => $saldoPinjamankhusus,
+			'saldopinjamankaryawan' => $saldoPinjamankaryawan,
+			'saldopinjamanumum' => $saldoPinjamanumum,
             'wilayah_data' => $wilayah,
 			'saldodroppinjaman' => $saldoDroppinjaman,
 			'saldolalupinjaman' => $saldoLalupinjaman,
