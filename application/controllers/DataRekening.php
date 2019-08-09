@@ -73,6 +73,7 @@ class DataRekening extends MY_Base
 			}
 			
 		}
+		
 		//hitung saldo simpanan aktif lalu
 		foreach ($simpananAktif as $key => $value) {
     		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);

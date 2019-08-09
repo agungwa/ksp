@@ -344,6 +344,9 @@ lookup();
                         <li><a href="<?=site_url('neracakasbank/create')?>">Input Kas Bank</a></li>
                     </ul>
                     <ul class="nav nav-second-level">
+                        <li><a href="<?=site_url('neracaaktivatetap/create')?>">Input Aktiva Tetap</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
                         <li><a href="<?=site_url('neraca/neraca')?>">Neraca</a></li>
                     </ul>
                 </li>

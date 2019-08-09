@@ -15,6 +15,8 @@ class Neraca extends MY_Base
         $this->load->model('Phu_sistem_model');
         $this->load->model('Shu_model');
         $this->load->model('Neracakasbank_model');
+        $this->load->model('Neracaaktivatetap_model');
+        $this->load->model('Karyawan_model');
 
 		//investasi
         $this->load->model('Penarikaninvestasiberjangka_model');
@@ -54,6 +56,8 @@ class Neraca extends MY_Base
         $phuSistem = $this->Phu_sistem_model->get_all();		
         $Shu = $this->Shu_model->get_all();		
         $kasBank = $this->Neracakasbank_model->get_all();		
+        $aktivaTetap = $this->Neracaaktivatetap_model->get_all();		
+        $simpananKaryawan = $this->Karyawan_model->get_all();		
 		
 		//investasi
     	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
@@ -86,6 +90,13 @@ class Neraca extends MY_Base
 		$dataphu = array();
 		$shuData = 0;
 		$kasBankdata = 0;
+		$aktivaTetaptanah = 0;
+		$aktivaTetapbangunan = 0;
+		$aktivaTetapelektronik = 0;
+		$aktivaTetapkendaraan= 0;
+		$aktivaTetapperalatan = 0;
+		$aktivaTetappenyusutan= 0;
+		$simpananKaryawandata= 0;
 		
 		//investasi
 		$saldoInvestasi = 0;
@@ -257,6 +268,91 @@ class Neraca extends MY_Base
 		}
 	}
 
+	//hitung Neraca Aktiva Tetap
+    	foreach ($aktivaTetap as $key => $value) {
+			if ($f<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->nat_tanggal));
+			//var_dump($value->ags_id);
+    			if ($tgl <= $f)  {
+					$aktivaTetaptanah += $value->nat_tanah;
+					$aktivaTetapbangunan += $value->nat_bangunan;
+					$aktivaTetapelektronik += $value->nat_elektronik;
+					$aktivaTetapkendaraan += $value->nat_kendaraan;
+					$aktivaTetapperalatan += $value->nat_peralatan;
+					$aktivaTetappenyusutan += $value->nat_akumulasipenyusutan;
+    			}
+			} else {
+				$aktivaTetaptanah += $value->nat_tanah;
+				$aktivaTetapbangunan += $value->nat_bangunan;
+				$aktivaTetapelektronik += $value->nat_elektronik;
+				$aktivaTetapkendaraan += $value->nat_kendaraan;
+				$aktivaTetapperalatan += $value->nat_peralatan;
+				$aktivaTetappenyusutan += $value->nat_akumulasipenyusutan;
+		}
+	}
+
+	//hitung bunga simpanan aktif
+	foreach ($simpananAktif as $key => $value) {
+		$bungaSetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($value->sim_kode);
+		foreach ($bungaSetoran as $k => $item) {
+			if ($f<>'' && $t<>'') {	
+				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
+				if ($tgl <= $f && $w == 'all' || $tgl <= $f && $item->wil_kode == $w) {
+					$bungaSimpanan += $item->bss_bungabulanini;
+				}
+			} else {
+				$bungaSimpanan += $item->bss_bungabulanini;
+			}
+		}
+	}
+
+	//hitung saldo simpanan aktif masuk
+	foreach ($simpananAktif as $key => $value) {
+		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
+		foreach ($setoran as $k => $item) {
+			$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+			
+			if ($f<>'' && $t<>'' && $w<>'') {	
+				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
+				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w) {
+					$saldoSimpanan += $item->ssi_jmlsetor;
+				}
+			} else {
+				$saldoSimpanan += $item->ssi_jmlsetor;
+			}
+			
+			
+		}
+		
+	}
+
+		//hitung saldo investasi aktif
+		foreach ($investasiAktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			//var_dump($value->ags_id);
+				if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $value->wil_kode==$w))  {
+					$saldoInvestasi += $value->ivb_jumlah ;
+				}
+			} else {
+				$saldoInvestasi += $value->ivb_jumlah;
+		}
+	}
+
+	//hitung simpanan karyawan
+	foreach ($simpananKaryawan as $key => $value) {
+		if ($f<>'' && $t<>'' && $w<>'') {	
+		$tgl = date("Y-m-d", strtotime($value->kar_tgl));
+		//var_dump($value->ags_id);
+			if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $value->wil_kode==$w))  {
+				$simpananKaryawandata += $value->kar_simpanan ;
+			}
+		} else {
+			$simpananKaryawandata += $value->kar_simpanan;
+	}
+}
+		
+
 		$data = array(
 
 			'kode' => $this->Pengkodean->psis($nowYear),
@@ -265,6 +361,13 @@ class Neraca extends MY_Base
 			'dataphu' => $dataphu,
 			'shudata' => $shuData,
 			'kasbankdata' => $kasBankdata,
+			'aktivatetaptanah' => $aktivaTetaptanah,
+			'aktivatetapbangunan' => $aktivaTetapbangunan,
+			'aktivatetapelektronik' => $aktivaTetapelektronik,
+			'aktivatetapkendaraan' => $aktivaTetapkendaraan,
+			'aktivatetapperalatan' => $aktivaTetapperalatan,
+			'aktivatetappenyusutan' => $aktivaTetappenyusutan,
+			'simpanankaryawandata' => $simpananKaryawandata,
 
 			//investasi
 			'jasainvestasiditarik' => $jasaInvestasiditarik,
