@@ -49,19 +49,27 @@
                         <span class="input-group-btn">
                                     <a href="<?php echo base_url()?>PrintPinjaman/printsirkulasipinjaman?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
                         </span>-->
-                        <button class="btn btn-primary" type="submit">Tampilkan</button>
+                        <button class="btn btn-info" type="submit">Tampilkan</button>
                     </div>
             </div>
             </form>
         </div>
         <!--<form action="<?php echo site_url('neraca/perhitungan_action'); ?>" method="post"> -->
+        <?php
+        $kas=$shudata + $saldoinvestasi + $pokokangsuranpelunasan + $pokokangsuran + $saldosimpanan;
+        $jal=$kasbankdata + $saldopinjamanumum + $saldopinjamankaryawan+$saldopinjamanumum + $shudata + $saldoinvestasi + $pokokangsuranpelunasan + $pokokangsuran + $saldosimpanan;
+        $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
+        $jkl=$saldosimpanan+$bungasimpanan;
+        $jkp=$saldosimpanan+$bungasimpanan+$rekeningkoran+$modalpenyertaan;
+        $jek=$saldosimpananwajib+$saldosimpananpokok+$simpanancdr+$donasi;
+        ?>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
             <h3> AKTIVA </h3>
             <h4> AKTIVA LANCAR </h4>
             <tr>
                 <td class="text-left">Kas</td>
-				<td class="text-left"><?= neraca($shudata + $saldoinvestasi + $pokokangsuranpelunasan + $pokokangsuran + $saldosimpanan);?></td>
+				<td class="text-left" ><?= neraca($kas);?></td>
             </tr>
             <tr>
                 <td class="text-left">Kas diBank</td>
@@ -79,9 +87,9 @@
                 <td class="text-left">Piutang Umum</td>
 				<td class="text-left"><?= neraca($saldopinjamankhusus);?></td>
             </tr>
-            <tr class='danger'>
+            <tr class='info'>
             <td class="text-left">Jumlah Aktiva Lancar</td>
-                <td class="text-left"><?= neraca($kasbankdata + $saldopinjamanumum + $saldopinjamankaryawan+$saldopinjamanumum + $shudata + $saldoinvestasi + $pokokangsuranpelunasan + $pokokangsuran + $saldosimpanan);?></td>
+                <td class="text-left" width="380px"><?= neraca($jal);?></td>
             </td>
             </tr>
             </tbody>
@@ -91,7 +99,7 @@
             <tbody class="thead-light">
             <h4> AKTIVA TETAP </h4>
             <tr>
-                <td class="text-left">Tanah</td>
+                <td class="text-left" width="660px">Tanah</td>
 				<td class="text-left"><?= neraca($aktivatetaptanah);?></td>
             </tr>
             <tr>
@@ -114,9 +122,16 @@
                 <td class="text-left">Akumulasi Penyusutan AT</td>
 				<td class="text-left"><?= neraca($aktivatetappenyusutan);?></td>
             </tr>
-            <tr class='danger'>
+            <tr class='info'>
                 <td class="text-left">Jumlah Aktiva Tetap</td>
-				<td class="text-left"><?= neraca($aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan);?></td>
+				<td class="text-left"><?= neraca($jat);?></td>
+            </tr>
+            </tbody>
+            <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <tbody class="thead-light">
+            <tr class='danger'>
+                <td class="text-left">Jumlah</td>
+				<td class="text-left"><?= neraca($jat+$jal);?></td>
             </tr>
             </tbody>
         </table>
@@ -125,16 +140,16 @@
             <h3> PASIVA </h3>
             <h4> KEWAJIBAN LANCAR</h4>
             <tr>
-                <td class="text-left">Simpanan Berjangka</td>
+                <td class="text-left" width="660px">Simpanan Berjangka</td>
 				<td class="text-left"><?= neraca($saldosimpanan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Utang Pihak Ketiga</td>
 				<td class="text-left"><?= neraca($bungasimpanan);?></td>
             </tr>
-            <tr class='danger'>
+            <tr class='info'>
                 <td class="text-left">Jumalah Kewajiban Lancar</td>
-				<td class="text-left"><?= neraca($saldosimpanan+$bungasimpanan);?></td>
+				<td class="text-left"><?= neraca($jkl);?></td>
             </tr>
             </tbody>
         </table>
@@ -142,16 +157,57 @@
             <tbody class="thead-light">
             <h4> KEWAJIBAN JANGKA PANJANG</h4>
             <tr>
-                <td class="text-left">Investasi Berjangka</td>
+                <td class="text-left" width="660px">Investasi Berjangka</td>
 				<td class="text-left"><?= neraca($saldoinvestasi);?></td>
             </tr>
             <tr>
                 <td class="text-left">Simpanan Karyawan</td>
 				<td class="text-left"><?= neraca($simpanankaryawandata);?></td>
             </tr>
+            <tr>
+                <td class="text-left">Rekening Koran (BRI)</td>
+				<td class="text-left"><?= neraca($rekeningkoran);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Modal Penyertaan</td>
+				<td class="text-left"><?= neraca($modalpenyertaan);?></td>
+            </tr>
+            <tr class='info'>
+                <td class="text-left">Jumlah Kewajiban Lancar</td>
+				<td class="text-left"><?= neraca($jkp);?></td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <tbody class="thead-light">
+            <h4> EKUITAS</h4>
+            <tr>
+                <td class="text-left" width="660px">Simpanan Wajib</td>
+				<td class="text-left"><?= neraca($saldosimpananwajib);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Simpanan Pokok</td>
+				<td class="text-left"><?= neraca($saldosimpananpokok);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Simpanan CDR</td>
+				<td class="text-left"><?= neraca($simpanancdr);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Donasi</td>
+				<td class="text-left"><?= neraca($donasi);?></td>
+            </tr>
+            <tr class='info'>
+                <td class="text-left">Jumlah Ekuitas</td>
+				<td class="text-left"><?= neraca($jek);?></td>
+            </tr>
+            </tbody>
+        </table>
+            <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <tbody class="thead-light">
             <tr class='danger'>
-                <td class="text-left">Jumalah Kewajiban Lancar</td>
-				<td class="text-left"><?= neraca($saldosimpanan+$bungasimpanan);?></td>
+                <td class="text-left">Jumlah</td>
+				<td class="text-left"><?= neraca($jek+$jkl+$jkp);?></td>
             </tr>
             </tbody>
         </table>

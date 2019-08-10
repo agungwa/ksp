@@ -17,6 +17,8 @@ class Neraca extends MY_Base
         $this->load->model('Neracakasbank_model');
         $this->load->model('Neracaaktivatetap_model');
         $this->load->model('Karyawan_model');
+        $this->load->model('Neracakewajibanjangkapanjang_model');
+        $this->load->model('Neracaekuitas_model');
 
 		//investasi
         $this->load->model('Penarikaninvestasiberjangka_model');
@@ -58,6 +60,8 @@ class Neraca extends MY_Base
         $kasBank = $this->Neracakasbank_model->get_all();		
         $aktivaTetap = $this->Neracaaktivatetap_model->get_all();		
         $simpananKaryawan = $this->Karyawan_model->get_all();		
+        $kewJangkapanjang= $this->Neracakewajibanjangkapanjang_model->get_all();		
+        $ekuitas= $this->Neracaekuitas_model->get_all();		
 		
 		//investasi
     	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
@@ -95,8 +99,12 @@ class Neraca extends MY_Base
 		$aktivaTetapelektronik = 0;
 		$aktivaTetapkendaraan= 0;
 		$aktivaTetapperalatan = 0;
-		$aktivaTetappenyusutan= 0;
-		$simpananKaryawandata= 0;
+		$aktivaTetappenyusutan = 0;
+		$simpananKaryawandata = 0;
+		$rekeningKoran = 0;
+		$modalPenyertaan = 0;
+		$simpananCdr = 0;
+		$donasi = 0;
 		
 		//investasi
 		$saldoInvestasi = 0;
@@ -244,7 +252,7 @@ class Neraca extends MY_Base
 
 	//hitung SHU
     	foreach ($Shu as $key => $value) {
-			if ($f<>'' && $w<>'') {	
+			if ($f<>'') {	
 			$tgl = date("Y-m-d", strtotime($value->shu_tanggal));
 			//var_dump($value->ags_id);
     			if ($tgl <= $f)  {
@@ -257,7 +265,7 @@ class Neraca extends MY_Base
 
 	//hitung Neraca Kas Bank
     	foreach ($kasBank as $key => $value) {
-			if ($f<>'' && $w<>'') {	
+			if ($f<>'') {	
 			$tgl = date("Y-m-d", strtotime($value->nkb_tanggal));
 			//var_dump($value->ags_id);
     			if ($tgl <= $f)  {
@@ -267,6 +275,37 @@ class Neraca extends MY_Base
 				$kasBankdata += $value->nkb_jumlah;
 		}
 	}
+
+	//hitung kewajiban jangkapanjang
+    	foreach ($kewJangkapanjang as $key => $value) {
+			if ($f<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->njp_tanggal));
+			//var_dump($value->ags_id);
+    			if ($tgl <= $f)  {
+    				$rekeningKoran += $value->njp_rekeningkoran;
+    				$modalPenyertaan += $value->njp_modalpenyertaan;
+    			}
+			} else {
+				$rekeningKoran += $value->njp_rekeningkoran;
+				$modalPenyertaan += $value->njp_modalpenyertaan;
+		}
+	}
+
+	//hitung ekuitas
+    	foreach ($ekuitas as $key => $value) {
+			if ($f<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->nek_tanggal));
+			//var_dump($value->ags_id);
+    			if ($tgl <= $f)  {
+    				$simpananCdr += $value->nek_simpanancdr;
+    				$donasi += $value->nek_donasi;
+    			}
+			} else {
+				$simpananCdr += $value->nek_simpanancdr;
+				$donasi += $value->nek_donasi;
+		}
+	}
+
 
 	//hitung Neraca Aktiva Tetap
     	foreach ($aktivaTetap as $key => $value) {
@@ -351,6 +390,30 @@ class Neraca extends MY_Base
 			$simpananKaryawandata += $value->kar_simpanan;
 	}
 }
+
+    	//simpanan wajib
+    	foreach ($setoransimpananwajib as $key => $value) {
+    		if ($f<>'' && $t<>'') {	
+    			$tgl = date("Y-m-d", strtotime($value->ssw_tglsetor));
+    			if ($tgl >= $f && $tgl <= $t) {
+    				$saldoSimpananwajib += $value->ssw_jmlsetor;
+    			}
+    		} else {
+    			$saldoSimpananwajib += $value->ssw_jmlsetor;
+    		}
+    	}
+
+    	//simpanan pokok
+    	foreach ($simpananPokok as $key => $value) {
+    		if ($f<>'' && $t<>'') {	
+    			$tgl = date("Y-m-d", strtotime($value->sip_tglbayar));
+    			if ($tgl >= $f && $tgl <= $t) {
+    				$saldoSimpananpokok += $value->sip_setoran;
+    			}
+    		} else {
+				$saldoSimpananpokok += $value->sip_setoran;
+    		}
+		}	
 		
 
 		$data = array(
@@ -368,6 +431,10 @@ class Neraca extends MY_Base
 			'aktivatetapperalatan' => $aktivaTetapperalatan,
 			'aktivatetappenyusutan' => $aktivaTetappenyusutan,
 			'simpanankaryawandata' => $simpananKaryawandata,
+			'rekeningkoran' => $rekeningKoran,
+			'modalpenyertaan' => $modalPenyertaan,
+			'simpanancdr' => $simpananCdr,
+			'donasi' => $donasi,
 
 			//investasi
 			'jasainvestasiditarik' => $jasaInvestasiditarik,
