@@ -59,7 +59,7 @@ class Auth extends CI_Controller {
                 'telp' => $row->telp,
                 'email' => $row->email,
                 'foto' => $row->foto,
-                'level' => $grup
+                'level' => $row->id_group
             );
             $this->session->set_userdata($data);
 

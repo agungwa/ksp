@@ -95,7 +95,7 @@ lookup();
                 <!-- MENU SIMPANAN BERJANGKA -->
                 
                 <li class="">
-                    <?php if(is_allow('M_USER')): ?>
+                    <?php if(is_allow('M_SIMPANAN')): ?>
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simpanan Berjangka</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
@@ -154,7 +154,7 @@ lookup();
                 <!-- MENU SIMKESAN -->
 
                 <li class="">
-                    <?php if(is_allow('M_USER')): ?>
+                    <?php if(is_allow('M_SIMKESAN')): ?>
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simkesan</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
@@ -203,7 +203,7 @@ lookup();
                 <!-- MENU INVESTASI BERJANGKA -->
                 
                 <li class="">
-                    <?php if(is_allow('M_USER')): ?>
+                    <?php if(is_allow('M_INVESTASI')): ?>
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Investasi Berjangka</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
@@ -258,7 +258,7 @@ lookup();
                 <!-- MENU PINJAMAN -->
 
                 <li class="">
-                    <?php if(is_allow('M_USER')): ?>
+                    <?php if(is_allow('M_PINJAMAN')): ?>
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Pinjaman</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
