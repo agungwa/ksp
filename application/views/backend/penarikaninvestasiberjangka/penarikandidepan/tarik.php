@@ -38,10 +38,10 @@
 	    <tr><td>Karyawan</td><td><?php echo $tarikpenarikandidepan['kar_kode']; ?></td></tr>
 	    <tr><td>Wilayah</td><td><?php echo $tarikpenarikandidepan['wil_kode']; ?></td></tr>
 	    <tr><td>Jangka Waktu</td><td><?php echo $tarikpenarikandidepan['jwi_id'], " Bulan"; ?></td></tr>
-	    <tr><td>Jumlah</td><td><?php echo "Rp ",number_format($tarikpenarikandidepan['ivb_jumlah'], 0, ".", "."); ?></td></tr>
+	    <tr><td>Jumlah</td><td><?php echo rupiahsimpanan($tarikpenarikandidepan['ivb_jumlah']); ?></td></tr>
 	    <tr><td>Jasa</td><td><?php echo $tarikpenarikandidepan['jiv_id']; ?></td></tr>
 	    <tr><td>Bunga</td><td><?php echo $tarikpenarikandidepan['biv_id'], " %"; ?></td></tr>
-	    <tr><td>Jasa Total</td><td><?php echo "Rp ",number_format($tarikpenarikandidepan['ivb_jumlah']*$tarikpenarikandidepan['biv_id']/100*$tarikpenarikandidepan['jwi_id'], 0, ".", "."); ?></td></tr>
+	    <tr><td>Jasa Total</td><td><?php echo rupiahsimpanan($tarikpenarikandidepan['ivb_jumlah']*$tarikpenarikandidepan['biv_id']/100*$tarikpenarikandidepan['jwi_id']); ?></td></tr>
 	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $tarikpenarikandidepan['ivb_tglpendaftaran']; ?></td></tr>
 	    <tr><td>Tanggal Jatuh Tempo</td><td><?php echo $tarikpenarikandidepan['jatuhtempo']; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $tarikpenarikandidepan['ivb_status']; ?></td></tr>
@@ -72,9 +72,9 @@
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $penarikaninvestasiberjangka->ivb_kode ?></td>
 			<td><?php echo $penarikaninvestasiberjangka->pib_penarikanke ?></td>
-			<td><?php echo $totaljasa ?></td>
-			<td><?php echo $penarikaninvestasiberjangka->pib_jmlditerima ?></td>
-			<td><?php echo $total-$penarikaninvestasiberjangka->pib_jmlditerima ?></td>
+			<td><?php echo rupiahsimpanan($totaljasa) ?></td>
+			<td><?php echo rupiahsimpanan($penarikaninvestasiberjangka->pib_jmlditerima) ?></td>
+			<td><?php echo rupiahsimpanan($total-$penarikaninvestasiberjangka->pib_jmlditerima) ?></td>
 		</tr>
 
             <?php

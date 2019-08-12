@@ -81,10 +81,11 @@
 				?>
             </td>
             <td style="text-align:center" width="200px">
-				<?php 
+                <?php
 				echo anchor(site_url('anggota/setorsiw?q='.$item['ang_no']),'Setor','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('anggota/tariksiw?q='.$item['ang_no']),'Tarik','class="text-navy"');?>
+                echo anchor(site_url('anggota/tariksiw?q='.$item['ang_no']),'Tarik','class="text-navy"');
+                ?>
             </td>
             
 		</tr>

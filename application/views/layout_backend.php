@@ -144,10 +144,7 @@ lookup();
                                     <a href="<?=base_url()?>simpanan/jatuhtempo">Data Jatuh Tempo</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url()?>datarekening">Data Rekening</a>
-                                </li>
-                                <li>
-                                    <a href="#">Neraca / Sirkulasi</a>
+                                    <a href="<?=base_url()?>datarekening">Neraca / Sirkulasi</a>
                                 </li>
                             </ul>
                         </li>
@@ -335,12 +332,41 @@ lookup();
                 <!-- MENU NERACA -->
                 <li class="">
                     <?php if(is_allow('M_LAPORAN')): ?>
-                    <a href="index.html"><i class="fa fa-list"></i> <span class="nav-label">Neraca</span> <span class="fa arrow"></span></a>
+                <a href="index.html"><i class="fa fa-list"></i> <span class="nav-label">Neraca</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
-                        <li><a href="<?=site_url('backend')?>">Neraca Dashboard</a></li>
+                        <li><a href="<?=site_url('phu')?>">Biaya PHU</a></li>
                     </ul>
-                </li>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=site_url('neraca/perhitungan/')?>">Hitung SHU/Bulan</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                    <li>
+                            <a href="#" id="damian">Input Aktiva<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a href="<?=site_url('neracakasbank/create')?>">Input Kas Bank</a></li>
+                                <li><a href="<?=site_url('neracaaktivatetap/create')?>">Input Aktiva Tetap</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                    <li>
+                            <a href="#" id="damian">Input Pasiva<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>neracaekuitas/create">Neraca Ekuitas</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>neracakewajibanjangkapanjang/create">Kewajiban Jangka Panjang</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=site_url('neraca/neraca')?>">Neraca</a></li>
+                    </ul>
+                    </li></li>
 
                 <!-- MENU KARYAWAN -->
                <li class="">

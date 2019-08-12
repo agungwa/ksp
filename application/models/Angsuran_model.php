@@ -32,6 +32,15 @@ class Angsuran_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    // get all angsuran kurang
+    function get_angsuran_kurang()
+    {
+        $where = "ags_status = 1 AND ags_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
     // get all total angsuran
     function get_angsuran_total()
     {

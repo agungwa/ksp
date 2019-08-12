@@ -44,8 +44,11 @@
                                     <?php
                                 }
                             ?>
-                          <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
+                        <span class="input-group-btn">
+                                    <a href="<?php echo base_url()?>PrintInvestasiberjangka/printsirkulasiinvestasi?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                        </span>
+                        <button class="btn btn-primary" type="submit">Tampilkan</button>
                     </div>
             </div>
             </form>
@@ -54,34 +57,44 @@
             <tbody class="thead-light">
             <tr>
                 <td class="text-left">Saldo Lalu</td>
-				<td class="text-center">RP <?= $saldoinvestasilalu;?></td>
+				<td class="text-center">RP <?= neraca($saldoinvestasilalu);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Masuk</td>
-				<td class="text-center">RP <?= $saldoinvestasi;?></td>
+				<td class="text-center">RP <?= neraca($saldoinvestasi);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Investasi Keluar</td>
-				<td class="text-center">RP <?= $saldoinvestasiditarik;?></td>
+				<td class="text-center">RP <?= neraca($saldoinvestasiditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Investasi Kini</td>
-				<td class="text-center">RP <?= ($saldoinvestasilalu + $saldoinvestasi)-$saldoinvestasiditarik;?></td>
+				<td class="text-center">RP <?= neraca(($saldoinvestasilalu + $saldoinvestasi)-$saldoinvestasiditarik);?></td>
             </tr>
             <tr>  
                 <td class="text-left">Jasa Keluar</td>
-				<td class="text-center">RP <?= $jasainvestasiditarik;?></td>
+				<td class="text-center">RP <?= neraca($jasainvestasiditarik);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Lalu</td>
+				<td class="text-center"><?= $totalrekening;?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Masuk</td>
+				<td class="text-center"><?= $totalrekeninglalu;?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Keluar</td>
+				<td class="text-center"><?= $totalrekeningkeluar;?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Kini</td>
+				<td class="text-center"><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar;?></td>
             </tr>
             
             </tbody>
         </table>
         <div class="row">
-            <div class="col-md-6">
-                <!-- <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a> -->
-	    </div>
-            <div class="col-md-6 text-right">
-                <!-- <?php echo $pagination ?> -->
-            </div>
         </div>
         </div>
     </div>

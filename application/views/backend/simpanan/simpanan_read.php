@@ -43,9 +43,9 @@
             ?>
             <tr>
 			<td width="80px"><?php echo $no ?></td>
-			<td><?php echo 'Rp ',$setoran->ssi_jmlsetor ?></td>
+			<td><?php echo rupiahsimpanan($setoran->ssi_jmlsetor) ?></td>
 			<td><?php echo $setoran->ssi_tglsetor ?></td>
-			<td><?php echo 'Rp ',$total_setoran ?></td>
+			<td><?php echo rupiahsimpanan($total_setoran) ?></td>
 		</tr>
 
             <?php

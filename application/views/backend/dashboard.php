@@ -16,8 +16,34 @@
             <div class="col-lg-2">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
+                        <span class="label label-success pull-right">Data</span>
+                        <h5>Simpanan</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">Data </h1>
+                        <div class="stat-percent font-bold text-success">98 <i class="fa fa-bolt"></i></div>
+                        <small>Dalam juta </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-success pull-right">Data</span>
+                        <h5>SHU</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">Data </h1>
+                        <div class="stat-percent font-bold text-success">98 <i class="fa fa-bolt"></i></div>
+                        <small>Dalam juta </small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
                         <span class="label label-info pull-right"></span>
-                        <h5>Simkesan</h5>
+                        <h5>Angsuran Pokok</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">Data </h1>
@@ -54,7 +80,7 @@
             <div class="col-lg-4">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Jumlah Simpanan</h5>
+                        <h5>Jumlah Kas</h5>
                         <div class="ibox-tools">
                             <span class="label label-primary">Hingga 01 Februari 2019</span>
                         </div>

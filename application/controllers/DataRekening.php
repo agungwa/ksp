@@ -31,6 +31,10 @@ class DataRekening extends MY_Base
 		$simpananPokok = $this->Simpananpokok_model->get_all();
         $wilayah = $this->Wilayah_model->get_all();		
 
+		$saldoSimpananlalu = 0;
+		$totalRekening = 0;
+		$totalRekeninglalu = 0;
+		$totalRekeningkeluar = 0;
     	$saldoSimpanan = 0;
     	$saldoSimpananDitarik = 0;
     	$bungaSimpanan = 0;
@@ -39,6 +43,9 @@ class DataRekening extends MY_Base
     	$saldoSimpananpokok = 0;
     	$phBuku = 0;
     	$administrasi = 0;
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
 
     	if ($f<>'' && $t<>'') {	
@@ -46,29 +53,53 @@ class DataRekening extends MY_Base
         	$t = date("Y-m-d", strtotime($t));
     	}
 
-    	//hitung saldo simpanan aktif
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+    	//hitung saldo simpanan aktif masuk
     	foreach ($simpananAktif as $key => $value) {
     		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
     		foreach ($setoran as $k => $item) {
 				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+				
     			if ($f<>'' && $t<>'' && $w<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-    				if ($tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == 'all' || $tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == $w) {
-    					$saldoSimpanan += $item->ssi_jmlsetor;
+    				if ($tgl >= $f && $tgl <= $t && 'all' == $w || $tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == $w) {
+						$saldoSimpanan += $item->ssi_jmlsetor;
     				}
     			} else {
     				$saldoSimpanan += $item->ssi_jmlsetor;
-    			}
-    		}
-    	}
-
+				}
+				
+				
+			}
+			
+		}
+		
+		//hitung saldo simpanan aktif lalu
+		foreach ($simpananAktif as $key => $value) {
+    		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
+    		foreach ($setoran as $k => $item) {
+				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+				
+    			if ($f<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
+    				if ($tgl < $f && 'all' == $w || $tgl < $f && $sim_kode->wil_kode == $w) {
+						$saldoSimpananlalu += $item->ssi_jmlsetor;
+    				}
+    			} else {
+    				$saldoSimpananlalu += $item->ssi_jmlsetor;
+				}
+				
+			}
+			
+		}
+		
     	//hitung saldo simpanan ditarik
     	foreach ($simpananAktif as $key => $value) {
     		$penarikan = $this->Penarikansimpanan_model->get_data_penarikan($value->sim_kode);
     		foreach ($penarikan as $k => $item) {
     			if ($f<>'' && $t<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->pes_tglpenarikan));
-    				if ( $tgl >= $f && $tgl <= $t && $item->wil_kode == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
+    				if ( $tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
     					$saldoSimpananDitarik += $item->pes_saldopokok;
 	    				$phBuku += $item->pes_phbuku;
 	    				$administrasi += $item->pes_administrasi;
@@ -87,7 +118,7 @@ class DataRekening extends MY_Base
     		foreach ($bungaSetoran as $k => $item) {
     			if ($f<>'' && $t<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
-    				if ($tgl >= $f && $tgl <= $t && $item->wil_kode == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
+    				if ($tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
     					$bungaSimpanan += $item->bss_bungabulanini;
     				}
     			} else {
@@ -130,10 +161,53 @@ class DataRekening extends MY_Base
     		} else {
 				$saldoSimpananpokok += $value->sip_setoran;
     		}
-    	}
+		}	
+		
+		//rekening simpanan lalu
+		foreach ($simpananAktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sim_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl < $f && 'all'==$w) || ($tgl < $f && $value->wil_kode==$w))  {
+    				$totalRekeninglalu++ ;
+    			}
+			} else {
+					$totalRekeninglalu++ ;
+		}
+		}
+
+		//rekening simpanan masuk
+		foreach ($simpananAktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sim_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+    				$totalRekening++ ;
+    			}
+			} else {
+					$totalRekening++ ;
+		}
+		}
+
+		//rekening simpanan keluar
+		foreach ($simpananNonaktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sim_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+    				$totalRekeningkeluar++ ;
+    			}
+			} else {
+					$totalRekeningkeluar++ ;
+		}
+		
+		}
 
 		$data = array(
-			
+			'totalrekeninglalu' => $totalRekeninglalu,
+			'totalrekeningkeluar' => $totalRekeningkeluar,
+			'saldosimpananlalu' => $saldoSimpananlalu,
+			'totalrekening' => $totalRekening,
             'wilayah_data' => $wilayah,
 			'saldosimpanan' => $saldoSimpanan,
 			'saldosimpananditarik' => $saldoSimpananDitarik,

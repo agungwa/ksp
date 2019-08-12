@@ -40,8 +40,8 @@
             foreach ($setoransimpananwajib_data as $setoransimpananwajib)
             {
                 $total += $setoransimpananwajib->ssw_jmlsetor;
-                $kurang = 200000-$total;
-                $min = 20000;
+                $kurang = $settingsimpanan_data->ses_max-$total;
+                $min = $settingsimpanan_data->ses_min;
                 if ($kurang<$min){
                     $min=$kurang;
                     }
@@ -49,14 +49,15 @@
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $setoransimpananwajib->ssw_tglsetor ?></td>
-			<td><?php echo $setoransimpananwajib->ssw_jmlsetor ?></td>
-			<td><?php echo $total ?></td>
-			<td><?php echo $kurang ?></td>
+			<td><?php echo rupiahsimpanan($setoransimpananwajib->ssw_jmlsetor) ?></td>
+			<td><?php echo rupiahsimpanan($total) ?></td>
+			<td><?php echo rupiahsimpanan($kurang) ?></td>
 		</tr>
         <?php
             $no++;
             }
             ?>
+            <!--
         <div class="form-group col-md-4">
             <label for="varchar">Jumlah Setoran</label>
             <input type="number" class="form-control" name="ssw_jmlsetor" min=<?= $min?> max=<?= $kurang?> id="ssw_jmlsetor" placeholder="Jumlah Setor" value="" required="required" />
@@ -65,7 +66,7 @@
         <div class="form-group col-md-12">
             <button type="submit" class="btn btn-primary">setor</button> 
             <a href="<?php echo site_url('anggota/read/'.$ang_no) ?>" class="btn btn-default">Batal</a>
-        </div>
+        </div> -->
 </form>
             </tbody>
         </table>

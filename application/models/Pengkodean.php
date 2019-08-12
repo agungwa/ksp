@@ -131,6 +131,26 @@ class Pengkodean extends CI_Model
             return $kodetampil;  
     }
 
+    // input kode phu sistem
+    public function psis($nowYear){
+        $this->db->select('RIGHT(phu_sistem.psis_id,2) as psis_id', FALSE);
+        $this->db->where("DATE_FORMAT(psis_tgl, '%d') = ", $nowYear);
+        $this->db->limit(1);
+        $this->db->order_by('psis_id','DESC');    
+        $query = $this->db->get('phu_sistem');  
+        if($query->num_rows() <> 0){          
+            $data = $query->row();      
+            $kode = intval($data->psis_id) + 1; 
+        }
+        else{      
+            $kode = 1;
+        }
+            $tgl=date('dmy'); 
+            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+            $kodetampil = "phu".$tgl.$batas;
+            return $kodetampil;  
+    }
+
 }
 
 /* End of file Ahliwarissimkesan_model.php */

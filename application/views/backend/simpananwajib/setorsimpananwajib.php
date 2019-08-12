@@ -21,6 +21,7 @@
 	    <tr><td>Tanggal Ambil</td><td><?php echo $siw_tglambil; ?></td></tr>
         <tr><td></td><td><a href="<?php echo site_url('anggota/setorsiw?q='.$ang_no) ?>" class="btn btn-default">Batal</a>
         <a href="<?php echo site_url('anggota/?p=2') ?>" class="btn btn-default">Kembali List Anggota</a></td></tr>
+
     </td></tr>
 	</table>
 <!--tabel setoran simpanan wajib-->
@@ -55,9 +56,9 @@
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $setoransimpananwajib->ssw_tglsetor ?></td>
-			<td><?php echo $setoransimpananwajib->ssw_jmlsetor ?></td>
-			<td><?php echo $total ?></td>
-            <td><?php echo $kurang ?></td>
+			<td><?php echo rupiahsimpanan($setoransimpananwajib->ssw_jmlsetor) ?></td>
+			<td><?php echo rupiahsimpanan($total) ?></td>
+            <td><?php echo rupiahsimpanan($kurang) ?></td>
             <td style="text-align:center" width="200px">
                 <?php 
 				echo anchor(site_url('setoransimpananwajib/update/'.$setoransimpananwajib->ssw_id),'Update','class="text-navy" onclick="javascript: return confirm(\'Yakin Edit Data?\')"');                 				?>
@@ -71,6 +72,9 @@
         <label for="varchar"> <?php echo "Jumlah Setoran" ?></label>
         <input type="number" class="form-control" name="ssw_jmlsetor" min=<?= $min?> max=<?= $kurang?> id="ssw_jmlsetor" placeholder="Setor" value="" required="required" />
         <input type="hidden" class="form-control" name="siw_id" id="siw_id" placeholder="siw_id" value="<?php echo $siw_id; ?>"/>
+        <input type="hidden" class="form-control" name="total" id="total" placeholder="total" value="<?php echo $total; ?>"/>
+        <input type="hidden" class="form-control" name="ang_no" id="ang_no" placeholder="ang_no" value="<?php echo $ang_no; ?>"/>
+        <input type="hidden" class="form-control" name="max" id="max" placeholder="max" value="<?php echo $settingsimpanan_data->ses_max; ?>"/>
     </div>
     <div class="form-group col-md-12">
 	    <button type="submit" class="btn btn-primary">setor</button> 

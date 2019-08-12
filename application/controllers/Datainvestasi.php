@@ -22,12 +22,17 @@ class DataInvestasi extends MY_Base
     	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
     	$investasiNonaktif = $this->Investasiberjangka_model->get_investasi_nonaktif();
     	$jasaDitarik = $this->Penarikaninvestasiberjangka_model->get_all();
-        $wilayah = $this->Wilayah_model->get_all();		
-		$satu = 1;
+		$wilayah = $this->Wilayah_model->get_all();	
+		
+		$totalRekening = 0;
+		$totalRekeninglalu = 0;
+		$totalRekeningkeluar = 0;
     	$saldoInvestasi = 0;
     	$saldoInvestasilalu = 0;
     	$saldoInvestasiditarik = 0;
-    	$jasaInvestasiditarik = 0;
+		$jasaInvestasiditarik = 0;
+		
+		$satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
         $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
@@ -41,9 +46,9 @@ class DataInvestasi extends MY_Base
     	//hitung saldo investasi aktif
     	foreach ($investasiAktif as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
 			//var_dump($value->ags_id);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
     				$saldoInvestasi += $value->ivb_jumlah ;
     			}
 			} else {
@@ -54,9 +59,9 @@ class DataInvestasi extends MY_Base
 		//hitung saldo investasi aktif lalu
     	foreach ($investasiAktif as $key => $value) {
 			if ($f<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $value->wil_kode==$w))  {
+    			if (($tgl < $f && 'all'==$w) || ($tgl < $f && $value->wil_kode==$w))  {
     				$saldoInvestasilalu += $value->ivb_jumlah ;
     			}
 			} else {
@@ -68,9 +73,9 @@ class DataInvestasi extends MY_Base
     	//hitung saldo investasi nonaktif
     	foreach ($investasiNonaktif as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
 			//var_dump($value->ags_id);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
     				$saldoInvestasiditarik += $value->ivb_jumlah ;
     			}
 			} else {
@@ -92,9 +97,51 @@ class DataInvestasi extends MY_Base
     		
     	}
 
+		//Rekening investasi kini
+    	foreach ($investasiAktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+    				$totalRekening++;
+    			}
+			} else {
+				$totalRekening++;
+		}
+	}
+
+		//Rekening investasi aktif lalu
+    	foreach ($investasiAktif as $key => $value) {
+			if ($f<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl < $f && 'all'==$w) || ($tgl < $f && $value->wil_kode==$w))  {
+    				$totalRekeninglalu++ ;
+    			}
+			} else {
+				$totalRekeninglalu++;
+		}
+	}
+
+		
+    	//Rekening investasi nonaktif
+    	foreach ($investasiNonaktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+    				$totalRekeningkeluar++ ;
+    			}
+			} else {
+				$totalRekeningkeluar++;
+		}
+	}
     	
 		$data = array(
 			
+			'totalrekening' => $totalRekening,
+			'totalrekeninglalu' => $totalRekeninglalu,
+			'totalrekeningkeluar' => $totalRekeningkeluar,
             'wilayah_data' => $wilayah,
 			'jasainvestasiditarik' => $jasaInvestasiditarik,
 			'saldoinvestasiditarik' => $saldoInvestasiditarik,

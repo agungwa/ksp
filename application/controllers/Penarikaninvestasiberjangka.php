@@ -46,13 +46,7 @@ class Penarikaninvestasiberjangka extends MY_Base
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Investasiberjangka_model->total_rows($q);
-        $investasiberjangka = $this->Investasiberjangka_model->get_investasi_didepan($config['per_page'], $start, $q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
+        $investasiberjangka = $this->Investasiberjangka_model->get_investasi_didepan($start, $q);
         
         $wilayah = $this->Wilayah_model->get_all();
 
@@ -60,8 +54,6 @@ class Penarikaninvestasiberjangka extends MY_Base
             'wilayah_data' => $wilayah,
             'investasiberjangka_data' => $investasiberjangka,
             'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka',
             'item'=> 'penarikandidepan/penarikandidepan.php',
@@ -151,13 +143,7 @@ class Penarikaninvestasiberjangka extends MY_Base
             $q = urldecode($this->input->get('q', TRUE));
             $start = intval($this->input->get('start'));
     
-            $config['per_page'] = 10;
-            $config['page_query_string'] = TRUE;
-            $config['total_rows'] = $this->Investasiberjangka_model->total_rows($q);
-            $investasiberjangka = $this->Investasiberjangka_model->get_investasi_perbulan($config['per_page'], $start, $q);
-    
-            $this->load->library('pagination');
-            $this->pagination->initialize($config);
+            $investasiberjangka = $this->Investasiberjangka_model->get_investasi_perbulan($start, $q);
             
             $wilayah = $this->Wilayah_model->get_all();
     
@@ -165,8 +151,6 @@ class Penarikaninvestasiberjangka extends MY_Base
                 'wilayah_data' => $wilayah,
                 'investasiberjangka_data' => $investasiberjangka,
                 'q' => $q,
-                'pagination' => $this->pagination->create_links(),
-                'total_rows' => $config['total_rows'],
                 'start' => $start,
                 'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka',
                 'item'=> 'penarikanperbulan/penarikanperbulan.php',
@@ -248,25 +232,17 @@ class Penarikaninvestasiberjangka extends MY_Base
 
     //penarikan investasi dibelakang
     public function penarikandibelakang(){
-        $q = urldecode($this->input->get('q', TRUE));
+            $q = urldecode($this->input->get('q', TRUE));
             $start = intval($this->input->get('start'));
     
-            $config['per_page'] = 10;
-            $config['page_query_string'] = TRUE;
-            $config['total_rows'] = $this->Investasiberjangka_model->total_rows($q);
-            $investasiberjangka = $this->Investasiberjangka_model->get_investasi_dibelakang($config['per_page'], $start, $q);
+            $investasiberjangka = $this->Investasiberjangka_model->get_investasi_dibelakang($start, $q);
     
-            $this->load->library('pagination');
-            $this->pagination->initialize($config);
-            
             $wilayah = $this->Wilayah_model->get_all();
     
             $data = array(
                 'wilayah_data' => $wilayah,
                 'investasiberjangka_data' => $investasiberjangka,
                 'q' => $q,
-                'pagination' => $this->pagination->create_links(),
-                'total_rows' => $config['total_rows'],
                 'start' => $start,
                 'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka',
                 'item'=> 'penarikandibelakang/penarikandibelakang.php',
@@ -368,13 +344,8 @@ class Penarikaninvestasiberjangka extends MY_Base
             $config['first_url'] = base_url() . 'penarikaninvestasiberjangka/index.html';
         } */
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Penarikaninvestasiberjangka_model->total_rows($q);
-        $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_limit_data($config['per_page'], $start, $q, $f, $t);
+        $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_limit_data($start, $q, $f, $t);
 
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
         $wilayah = $this->Wilayah_model->get_all();
         
         $datapenarikan = array();
@@ -405,8 +376,6 @@ class Penarikaninvestasiberjangka extends MY_Base
             'w' => $w,
             'f' => $f,
             't' => $t,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'active' => 4,
             'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka',
@@ -429,17 +398,13 @@ class Penarikaninvestasiberjangka extends MY_Base
             $config['first_url'] = base_url() . 'penarikaninvestasiberjangka/index.html';
         }
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Penarikaninvestasiberjangka_model->total_rows($q);
-        $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_limit_data($config['per_page'], $start, $q);
+        $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_limit_data($start, $q);
 
 
         $data = array(
             'penarikaninvestasiberjangka_data' => $penarikaninvestasiberjangka,
             'idhtml' => $idhtml,
             'q' => $q,
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka_lookup',
         );

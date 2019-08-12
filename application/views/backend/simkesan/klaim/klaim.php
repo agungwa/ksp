@@ -82,11 +82,7 @@
             </tr>
             </thead>
 			<tbody><?php
-            
             $no=1;
-            
-            
-        //var_dump($klaim_data);
             foreach ($klaim_data as $klaim)
             {
             $tahunklaim=$klaim->jkl_tahunke-1;

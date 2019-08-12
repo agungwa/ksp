@@ -78,14 +78,8 @@ class Investasiberjangka extends MY_Base
             {
                 $q = urldecode($this->input->get('q', TRUE));
                 $start = intval($this->input->get('start'));
-        
-                $config['per_page'] = 10;
-                $config['page_query_string'] = TRUE;
-                $config['total_rows'] = $this->Investasiberjangka_model->total_rows($q);
-                $investasiberjangka = $this->Investasiberjangka_model->get_limit_data($config['per_page'], $start, $q);
-        
-                $this->load->library('pagination');
-                $this->pagination->initialize($config);
+    
+                $investasiberjangka = $this->Investasiberjangka_model->get_investasi_ditarik($start, $q);
                 
                 $wilayah = $this->Wilayah_model->get_all();
         
@@ -93,8 +87,6 @@ class Investasiberjangka extends MY_Base
                     'wilayah_data' => $wilayah,
                     'investasiberjangka_data' => $investasiberjangka,
                     'q' => $q,
-                    'pagination' => $this->pagination->create_links(),
-                    'total_rows' => $config['total_rows'],
                     'start' => $start,
                     'content' => 'backend/investasiberjangka/investasiberjangka',
                     'item'=> 'tarikinvestasi/tarikinvestasi.php',

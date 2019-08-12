@@ -130,7 +130,7 @@ class Pinjaman extends MY_Base
             
         //var_dump($this->upload->do_upload('pin_survey'));
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
-        redirect(site_url('pinjaman/?p=2'));
+        redirect(site_url('pinjaman/persetujuan?q='.$this->input->post('pin_id')));
     }
 
     //survey ditolak pinjaman action
@@ -216,7 +216,7 @@ class Pinjaman extends MY_Base
         //update data pinjaman
         $dataPinjaman = array(
             'pin_pinjaman' => $this->input->post('pin_pinjaman',TRUE),
-            'pin_tglpencairan' => $this->tgl,
+            'pin_tglpencairan' => $this->input->post('pin_tglpencairan',TRUE),
             'sea_id' => $this->input->post('sea_id',TRUE),
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
@@ -372,6 +372,7 @@ class Pinjaman extends MY_Base
                         'pin_surveyor' => $surveyor->kar_nama,
                         'pin_survey' => $pict,
                         'pin_statuspinjaman' => $this->statusPinjaman[$item->pin_statuspinjaman],
+                        'pin_statusid' => $item->pin_statuspinjaman,
 
                     );
             }

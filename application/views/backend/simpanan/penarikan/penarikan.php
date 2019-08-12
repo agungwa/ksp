@@ -54,7 +54,11 @@
             </tr>
             </thead>
 			<tbody><?php
+
+
             $no = 1;
+            $coba = 40000/3;
+            $coba2 = 25355.555;
             $total_setoran = 0;
             foreach ($penarikan['setoran_data'] as $setoran)
             {
@@ -64,9 +68,9 @@
             <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $sim_kode ?></td>
-			<td><?php echo 'Rp ',$setoran->ssi_jmlsetor ?></td>
+			<td><?php echo rupiahsimpanan($setoran->ssi_jmlsetor) ?></td>
 			<td><?php echo $setoran->ssi_tglsetor ?></td>
-			<td><?php echo 'Rp ',ceil($total_setoran) ?></td>
+			<td><?php echo rupiahsimpanan($total_setoran) ?></td>
             
 		</tr>
 

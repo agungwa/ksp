@@ -44,8 +44,12 @@
                                     <?php
                                 }
                             ?>
-                          <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
+                        <span class="input-group-btn">
+                                    <a href="<?php echo base_url()?>printsimpanan/printsirkulasisimpanan?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                        </span>
+                          <button class="btn btn-primary" type="submit">Tampilkan</button>
+                       
                     </div>
             </div>
             </form>
@@ -53,46 +57,64 @@
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
             <tr>
-                <td class="text-left">Saldo Simpanan</td>
-				<td class="text-center">RP <?= $saldosimpanan;?></td>
+                <td class="text-left">Saldo Simpanan Lalu</td>
+				<td class="text-center"><?= neraca($saldosimpananlalu);?></td>
             </tr>
             <tr>
-                <td class="text-left">Simpanan Ditarik</td>
-				<td class="text-center">RP <?= $saldosimpananditarik;?></td>
+                <td class="text-left">Saldo Simpanan Masuk</td>
+				<td class="text-center"><?= neraca($saldosimpanan);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Penarikan Simpanan</td>
+				<td class="text-center"><?= neraca($saldosimpananditarik);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Saldo Simpanan Kini</td>
+				<td class="text-center"><?= neraca($saldosimpanan+$saldosimpananlalu-$saldosimpananditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Bunga Simpanan</td>
-				<td class="text-center">RP <?= $bungasimpanan;?></td>
+				<td class="text-center"><?= neraca($bungasimpanan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Simpanan Wajib</td>
-				<td class="text-center">RP <?= $saldosimpananwajib;?></td>
+				<td class="text-center"><?= neraca($saldosimpananwajib);?></td>
             </tr>
             <tr>
                 <td class="text-left">Simpanan Wajib Ditarik</td>
-				<td class="text-center">RP <?= $saldosimpananwajibditarik;?></td>
+				<td class="text-center"><?= neraca($saldosimpananwajibditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Simpanan Pokok</td>
-				<td class="text-center">RP <?= $saldosimpananpokok;?></td>
+				<td class="text-center"><?= neraca($saldosimpananpokok);?></td>
             </tr>
             <tr>
                 <td class="text-left">PH Buku</td>
-				<td class="text-center">RP <?= $phbuku;?></td>
+				<td class="text-center"><?= neraca($phbuku);?></td>
             </tr>
             <tr>
                 <td class="text-left">Administrasi</td>
-				<td class="text-center">RP <?= $administrasi;?></td>
+				<td class="text-center"><?= neraca($administrasi);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Lalu</td>
+				<td class="text-center"><?= $totalrekening;?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Masuk</td>
+				<td class="text-center"><?= $totalrekeninglalu;?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Keluar</td>
+				<td class="text-center"><?= $totalrekeningkeluar;?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Kini</td>
+				<td class="text-center"><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar;?></td>
             </tr>
             </tbody>
         </table>
         <div class="row">
-            <div class="col-md-6">
-                <!-- <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a> -->
-	    </div>
-            <div class="col-md-6 text-right">
-                <!-- <?php echo $pagination ?> -->
-            </div>
         </div>
         </div>
     </div>

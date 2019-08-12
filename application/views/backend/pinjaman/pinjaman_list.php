@@ -89,13 +89,13 @@
     			<td><?php echo $item['ang_no'] ?></td>
     			<td><?php echo $item['sea_id']," Bulan" ?></td>
     			<td><?php echo $item['wil_kode'] ?></td>
-    			<td><?php echo "Rp ",$item['pin_pengajuan'] ?></td>
+    			<td><?php echo rupiah($item['pin_pengajuan']) ?></td>
                 <td>
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                 <img src="<?php echo $item['pin_survey'] ?>" alt="" class="img-responsive">
                 </button>
                 </td>
-    			<td><?php echo "Rp ",$item['pin_pinjaman'] ?></td>
+    			<td><?php echo rupiah($item['pin_pinjaman']) ?></td>
     			<td><?php echo dateFormat($item['pin_tglpengajuan']); ?></td>
     			<td><?php echo dateFormat($item['pin_tglpencairan']); ?></td>
     			<td><?php echo $item['pin_statuspinjaman'] ?></td>
@@ -109,10 +109,14 @@
 				?>
                 </td>
                 <td style="text-align:center" width="200px">
-				<?php 
+                <?php
+                if ($item['pin_statusid'] < 1) {
 				echo anchor(site_url('pinjaman/survey?q='.$item['pin_id']),'Survey','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('pinjaman/persetujuan?q='.$item['pin_id']),'Persetujuan','class="text-navy"');?>
+                echo anchor(site_url('pinjaman/persetujuan?q='.$item['pin_id']),'Persetujuan','class="text-navy"');
+                } else {
+                    echo 'Telah Disetujui';
+                }?>
 			    </td>
 		</tr>
                 
@@ -128,7 +132,7 @@
                 <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Cara Membuat Pop UP Gambar dengan Bootstrap</h4>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
                 </div>
                 <div class="modal-body">
                         <img src="<?php echo $item['pin_survey'] ?>" alt="" class="img-responsive">

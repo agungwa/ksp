@@ -64,9 +64,9 @@
             <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $sim_kode ?></td>
-			<td><?php echo 'Rp ',number_format($setorandata->ssi_jmlsetor, 0, ".", ".") ?></td>
+			<td><?php echo rupiahsimpanan($setorandata->ssi_jmlsetor) ?></td>
 			<td><?php echo $setorandata->ssi_tglsetor ?></td>
-			<td><?php echo 'Rp ',number_format($total_setoran, 0, ".", ".")?></td>
+			<td><?php echo rupiahsimpanan($total_setoran)?></td>
            </tr>
                 
             <?php
