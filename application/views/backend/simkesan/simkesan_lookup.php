@@ -50,11 +50,12 @@
 		<th class="text-center">Status</th></tr>
             </thead>
 			<tbody><?php
+            $no = 1;
             foreach ($simkesan_data as $simkesan)
             {
                 ?>
                 <tr onclick="setVal('<?=$idhtml?>','<?=$simkesan->sik_kode?>','<?=$simkesan->sik_kode?>')" style="cursor: pointer;">
-        			<td width="80px"><?php echo ++$start ?></td>
+        			<td width="80px"><?php echo $no ?></td>
         			<td><?php echo $simkesan->sik_kode ?></td>
         			<td><?php echo $simkesan->ang_no ?></td>
         			<td><?php echo $simkesan->kar_kode ?></td>
@@ -66,6 +67,7 @@
         		</tr>
                 
                 <?php
+                $no++;
             }
             ?>
             </tbody>

@@ -17,6 +17,7 @@
 						<li role="presentation" class="<?= ($active==2)?'active':''?>"><a href="<?=base_url()?>simkesan/?p=2">Filter Simkesan</a></li>
 						<li role="presentation" class="<?= ($active==3)?'active':''?>"><a href="<?=base_url()?>simkesan/?p=3">List Jatuh Tempo</a></li>
 						<li role="presentation" class="<?= ($active==4)?'active':''?>"><a href="<?=base_url()?>simkesan/?p=4">List Setoran</a></li>
+						<li role="presentation" class="<?= ($active==5)?'active':''?>"><a href="<?=base_url()?>simkesan/?p=5">Cari Simkesan</a></li>
 						</ul>
 						
             			<?php
