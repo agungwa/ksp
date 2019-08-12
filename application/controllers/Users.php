@@ -143,8 +143,8 @@ class Users extends MY_Base
 		'username' => $this->input->post('username',TRUE),
 		'password' => md5($this->input->post('password',TRUE)),
 		'email' => $this->input->post('email',TRUE),
-        // 'id_group' => $this->input->post('id_group',TRUE),
-		'id_group' => 1,//dev
+        'id_group' => $this->input->post('id_group',TRUE),
+		//'id_group' => 1,//dev
 		'foto' => $this->input->post('foto',TRUE),
 		'telp' => $this->input->post('telp',TRUE),
 		'note' => $this->input->post('note',TRUE),

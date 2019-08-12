@@ -123,7 +123,7 @@
             <div>
             <label> Titip </label>
             <select name="tts_jmltitip"> 
-            <option value="0">0 </option> 
+            <option value="<?= $setor_psk_id ?>"><?= $setor_psk_id ?></option> 
             <?php
         for ($num=1; $num<$ang; $num++){ echo '
                 <option value="' .+$num*$setor_psk_id. '">' .$num*$setor_psk_id. '</option>'; }?> </select>

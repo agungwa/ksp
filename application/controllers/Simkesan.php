@@ -38,6 +38,9 @@ class Simkesan extends MY_Base
             case  4:
                 $this->listsetoran();
                 break;
+            case  5:
+                $this->simkesanlist();
+                break;
                     
             default:
                 $this->pendaftaran();
@@ -169,7 +172,7 @@ class Simkesan extends MY_Base
             'tts_info' => "",
              );
                  $this->Titipansimkesan_model->insert($dataTitip); 
-                 redirect(site_url('simkesan/?p=2'));
+                 redirect(site_url('simkesan/setoransimkesan/'.$this->input->post('sik_kode',TRUE)));
          }
 
          public function ambiltitipsimkesan_action()
@@ -196,7 +199,7 @@ class Simkesan extends MY_Base
             'ssk_info' => "",
                      );
             $this->Setoransimkesan_model->insert($dataSetor);  
-                 redirect(site_url('simkesan/?p=2'));
+                 redirect(site_url('simkesan/setoransimkesan/'.$this->input->post('sik_kode',TRUE)));
          }
 
 
@@ -789,6 +792,23 @@ class Simkesan extends MY_Base
         $this->load->view(layout(), $data);
     }
 
+    public function simkesanlist()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+
+        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
+       
+        $data = array(
+            'simkesan_data' => $simkesan,
+            'q' => $q,
+            'start' => $start,
+            'content' => 'backend/simkesan/simkesan',
+            'item' => 'simkesanlist.php',
+            'active' => 5,
+        );
+        $this->load->view(layout(), $data);
+    }
     
     public function listjatuhtempo()
     {
@@ -797,11 +817,16 @@ class Simkesan extends MY_Base
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+		$tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
         $setoransimkesan = $this->Setoransimkesan_model->get_group_bysikkode($start, $q, $f, $t);
 
         $wilayah = $this->Wilayah_model->get_all();
         $datajatuh = array();
+        
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
         foreach ($setoransimkesan as $key=>$item) {
             $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
             $ang_no = $this->db->get_where('anggota', array('ang_no' => $sik_kode->ang_no))->row();
@@ -848,17 +873,16 @@ class Simkesan extends MY_Base
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+		$tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Setoransimkesan_model->total_rows($q);
-        $setoransimkesan = $this->Setoransimkesan_model->get_limit_data($config['per_page'], $start, $q, $f, $t);
+        $setoransimkesan = $this->Setoransimkesan_model->get_limit_data( $start, $q, $f, $t);
         
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
         $wilayah = $this->Wilayah_model->get_all();
         $datasetoran = array();
+        
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
         foreach ($setoransimkesan as $key=>$item) {
             $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
             $ang_no = $this->db->get_where('anggota', array('ang_no' => $sik_kode->ang_no))->row();
@@ -891,8 +915,6 @@ class Simkesan extends MY_Base
             'w' => $w,
             'f' => $f,
             't' => $t,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,  
             'active' => 4,          
             'content' => 'backend/simkesan/simkesan',
