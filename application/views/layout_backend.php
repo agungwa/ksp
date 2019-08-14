@@ -196,7 +196,7 @@ lookup();
                             <a href="<?=base_url()?>Simkesandata" id="damian">Data Simkesan</a>
                             
                         </li>
-                        <li><a href="#">Neraca / Sirkulasi</a></li>
+                        <li><a href="<?=base_url()?>Datasimkesan">Neraca / Sirkulasi</a></li>
                     </ul>
                 </li>
 

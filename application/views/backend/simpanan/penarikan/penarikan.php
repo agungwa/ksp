@@ -95,6 +95,7 @@
             </tr>
             </thead>
             <tbody><?php
+            $no =1;
             $phbuku = 20000;
             $administasi = 1/100;
             $totalsaldo = 0;
@@ -106,7 +107,7 @@
                 $bunga = $totalsaldo-$total_setoran;
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
+			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $databunga->sim_kode ?></td>
 			<td><?php echo $databunga->bss_saldosimpanan ?></td>
 			<td><?php echo $databunga->bss_saldobulanini ?></td>
@@ -119,11 +120,13 @@
             <input type="hidden" class="form-control" name="pes_administrasi" id="pes_administrasi" placeholder="pes_administrasi" value="<?php echo $pes_administrasi; ?>" />
             <input type="hidden" class="form-control" name="pes_jmltarik" id="pes_jmltarik" placeholder="pes_jmltarik" value="<?php echo $pes_jmltarik; ?>" />
             <input type="hidden" class="form-control" name="pes_bunga" id="pes_bunga" placeholder="pes_bunga" value="<?php echo $bunga; ?>" />
-            <input type="hidden" class="form-control" name="sim_kode" id="sim_kode" placeholder="sim_kode" value="<?php echo $sim_kode; ?>" />
-            <input type="hidden" class="form-control" name="pes_saldopokok" id="pes_saldopokok" placeholder="pes_saldopokok" value="<?php echo $total_setoran; ?>" />
                 <?php
+                $no++;
             }
+            
             ?>
+            <input type="hidden" class="form-control" name="pes_saldopokok" id="pes_saldopokok" placeholder="pes_saldopokok" value="<?php echo $total_setoran; ?>" />
+            <input type="hidden" class="form-control" name="sim_kode" id="sim_kode" placeholder="sim_kode" value="<?php echo $sim_kode; ?>" />
             </tbody>
         </table>
     <div>
