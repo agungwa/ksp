@@ -55,10 +55,7 @@
     			<td><?php echo $totalsetor ?></td>
     			<td><?php echo $kekurangan ?></td>
 		</tr>
-                
-                
-            
-                
+                   
                 <?php
                 $no++;
             }
@@ -125,6 +122,8 @@
             <input type="hidden" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode; ?>" required="required" />
             <input type="hidden" class="form-control" name="jkl_id" id="jkl_id" placeholder="jkl_id" value=""/>
             <input type="hidden" class="form-control" name="ksi_jmlklaim" id="ksi_jmlklaim" placeholder="ksi_jmlklaim" value="<?php echo $klaim->jkl_nominal; ?>"/>
+            <input type="hidden" class="form-control" name="ksi_administrasi" id="ksi_administrasi" placeholder="ksi_administrasi" value="<?php echo $administrasi; ?>"/>
+            <input type="hidden" class="form-control" name="ksi_totalsetor" id="ksi_totalsetor" placeholder="ksi_totalsetor" value="<?php echo $totalsetor; ?>"/>
             <label> Total Klaim</label>
             <input type="number" class="form-control" name="ksi_jmlditerima" id="ksi_jmlditerima" placeholder="ksi_jmlditerima" value="<?php echo $jumlahditerima; ?>" readonly/>
            

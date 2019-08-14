@@ -94,7 +94,7 @@ class DataRekening extends MY_Base
 		}
 		
     	//hitung saldo simpanan ditarik
-    	foreach ($simpananAktif as $key => $value) {
+    	foreach ($simpananNonaktif as $key => $value) {
     		$penarikan = $this->Penarikansimpanan_model->get_data_penarikan($value->sim_kode);
     		foreach ($penarikan as $k => $item) {
     			if ($f<>'' && $t<>'') {	

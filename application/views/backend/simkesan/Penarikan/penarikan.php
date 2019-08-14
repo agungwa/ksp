@@ -107,6 +107,8 @@
         <input type="hidden" class="form-control" name="jps_id" id="jps_id" placeholder="jps_id" value="<?php echo $penarikan_data->jps_id; ?>"/>
         <input type="hidden" class="form-control" name="pns_jmlsimkesan" id="pns_jmlsimkesan" placeholder="pns_jmlsimkesan" value="<?php echo $pengembangan; ?>"/>
         <input type="hidden" class="form-control" name="pns_jmlpenarikan" id="pns_jmlpenarikan" placeholder="pns_jmlpenarikan" value="<?php echo $totalpenarikan; ?>"/>
+        <input type="hidden" class="form-control" name="pns_totalsetor" id="pns_totalsetor" placeholder="pns_totalsetor" value="<?php echo $totalsetor; ?>"/>
+        <input type="hidden" class="form-control" name="pns_administrasi" id="pns_administrasi" placeholder="pns_administrasi" value="<?php echo $administrasi; ?>"/>
     </div>
             </tbody>
             </div>
