@@ -383,7 +383,7 @@ lookup();
 
                 <!-- MENU USER MANAGEMENT -->
                <li class="">
-                    <?php if(is_allow('M_USER')): ?>
+                    <?php if(is_allow('M_SISTEM')): ?>
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">MANAJEMEN USER</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
