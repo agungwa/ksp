@@ -60,7 +60,7 @@
         $jal=$kasbankdata + $saldopinjamanumum + $saldopinjamankaryawan+$saldopinjamanumum + $shudata + $saldoinvestasi + $pokokangsuranpelunasan + $pokokangsuran + $saldosimpanan;
         $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
         $jkl=$saldosimpanan+$bungasimpanan;
-        $jkp=$saldosimpanan+$bungasimpanan+$rekeningkoran+$modalpenyertaan;
+        $jkp=$saldoinvestasi+$simpanankaryawandata+$rekeningkoran+$modalpenyertaan;
         $jek=$saldosimpananwajib+$saldosimpananpokok+$simpanancdr+$donasi;
         ?>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
@@ -76,7 +76,7 @@
 				<td class="text-left"><?= neraca($kasbankdata);?></td>
             </tr>
             <tr>
-                <td class="text-left">Piutang Umum</td>
+                <td class="text-left">Piutang Anggota</td>
 				<td class="text-left"><?= neraca($saldopinjamanumum);?></td>
             </tr>
             <tr>
@@ -84,7 +84,7 @@
 				<td class="text-left"><?= neraca($saldopinjamankaryawan);?></td>
             </tr>
             <tr>
-                <td class="text-left">Piutang Umum</td>
+                <td class="text-left">Piutang Khusus</td>
 				<td class="text-left"><?= neraca($saldopinjamankhusus);?></td>
             </tr>
             <tr class='info'>
@@ -175,6 +175,7 @@
             <tr class='info'>
                 <td class="text-left">Jumlah Kewajiban Lancar</td>
 				<td class="text-left"><?= neraca($jkp);?></td>
+                
             </tr>
             </tbody>
         </table>

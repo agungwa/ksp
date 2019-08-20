@@ -98,11 +98,11 @@
             </tr>
             <tr>
                 <td class="text-left">Rekening Lalu</td>
-				<td class="text-center"><?= $totalrekening;?></td>
+				<td class="text-center"><?= $totalrekeninglalu;?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Masuk</td>
-				<td class="text-center"><?= $totalrekeninglalu;?></td>
+				<td class="text-center"><?= $totalrekening;?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Keluar</td>

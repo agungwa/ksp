@@ -12,19 +12,16 @@
                 </div>
         
         <form action="<?php echo $action; ?>" method="post">
-        <div class="ibox-content">
-        <?php if ($button == 'Create') { ?>
+        
+        <h3 style="margin-top:0px">Data Karyawan </h2>
+        <div class="col-lg-4">
         <div class="form-group">
-            <label for="varchar">Kode <?php echo form_error('kar_kode') ?></label>
-            <input type="text" class="form-control" name="kar_kode" id="kar_kode" placeholder="Kar Kode" value="<?php echo $kar_kode; ?>" />
+            <label for="varchar">Kode</label>
+            <input type="text" class="form-control" name="kar_kode" id="kar_kode" placeholder="Kode" value="<?php echo $kode; ?>" />
         </div>
-        <?php } else {?>
-            <input type="hidden" name="kar_kode" value="<?php echo $kar_kode; ?>" /> 
-        <?php } ?>
-
 	    <div class="form-group">
-            <label for="varchar">Nama <?php echo form_error('kar_nama') ?></label>
-            <input type="text" class="form-control" name="kar_nama" id="kar_nama" placeholder="Kar Nama" value="<?php echo $kar_nama; ?>" />
+            <label for="varchar">Nama</label>
+            <input type="text" class="form-control" name="kar_nama" id="kar_nama" placeholder="Nama" required />
         </div>
 
         <div class="form-group">
@@ -44,16 +41,76 @@
         </div>
 	    <div class="form-group">
             <label for="varchar">Nomor Handphone <?php echo form_error('kar_nohp') ?></label>
-            <input type="text" class="form-control" name="kar_nohp" id="kar_nohp" placeholder="Kar Nohp" value="<?php echo $kar_nohp; ?>" />
+            <input type="text" class="form-control numeric" name="kar_nohp" id="kar_nohp" placeholder="Kar Nohp" value="<?php echo $kar_nohp; ?>" />
         </div>
-	    
+
+        <!-- simpanan karyawan -->
 	    <div class="form-group">
-            <label for="varchar">Simpanan <?php echo form_error('kar_simpanan') ?></label>
-            <input type="text" class="form-control" name="kar_simpanan" id="kar_simpanan" placeholder="kar_simpanan" value="<?php echo $kar_simpanan; ?>" />
+            <label for="float">Simpanan</label>
+            <input type="text" class="form-control numeric" name="ksi_simpanan" id="ksi_simpanan" placeholder="Ksi Simpanan" required>
         </div>
+        </div>
+
+        <!-- ijasah karyawan -->
+        
+        <h3 style="margin-top:0px">Ijasah Karyawan </h2>
+        <div class="col-lg-4">
+	    <div class="form-group">
+            <label for="varchar">Ijasah Sd</label>
+            <input type="text" class="form-control" name="kij_sd" id="kij_sd" placeholder="Ijasah Sd" required />
+        </div>
+	    <div class="form-group">
+            <label for="varchar">Ijasah Smp</label>
+            <input type="text" class="form-control" name="kij_smp" id="kij_smp" placeholder="Ijasah Smp" />
+        </div>
+	    <div class="form-group">
+            <label for="varchar">Ijasah Sma </label>
+            <input type="text" class="form-control" name="kij_sma" id="kij_sma" placeholder="Ijasah Sma" />
+        </div>
+	    <div class="form-group">
+            <label for="varchar">Ijasah D3  </label>
+            <input type="text" class="form-control" name="kij_d3" id="kij_d3" placeholder="Ijasah D3" />
+        </div>
+	    <div class="form-group">
+            <label for="varchar">Ijasah S1 </label>
+            <input type="text" class="form-control" name="kij_s1" id="kij_s1" placeholder="Ijasah S1" />
+        </div>
+	    <div class="form-group">
+            <label for="varchar">Ijasah S2 </label>
+            <input type="text" class="form-control" name="kij_s2" id="kij_s2" placeholder="Ijasah S2" />
+        </div>
+	    <div class="form-group">
+            <label for="varchar">Ijasah S3 </label>
+            <input type="text" class="form-control" name="kij_s3" id="kij_s3" placeholder="Ijasah S3" />
+        </div>
+	    <div class="form-group">
+            <label for="varchar">Ijasah Lainlain </label>
+            <input type="text" class="form-control" name="kij_lainlain" id="kij_lainlain" placeholder="Ijasah Lainlain" />
+        </div>
+        </div>
+
+        <!-- keluarga karyawan -->
+        <h3 style="margin-top:0px">Keluarga Karyawan </h2>
+        <div class="col-lg-4">
+	    <div class="form-group">
+            <label for="varchar">Nama</label>
+            <input type="text" class="form-control" name="kka_nama" id="kka_nama" placeholder="Kka Nama" required />
+        </div>
+	    <div class="form-group">
+            <label for="kka_alamat">Alamat </label>
+            <textarea class="form-control" rows="3" name="kka_alamat" id="kka_alamat" placeholder="Kka Alamat" required> </textarea>
+        </div>
+	    <div class="form-group">
+            <label for="varchar">No Handphone</label>
+            <input type="number" class="form-control numeric" name="kka_nohp" id="kka_nohp" placeholder="Kka Nohp" required />
+        </div>
+        </div>
+
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('karyawan') ?>" class="btn btn-default">Batal</a>
 	</div>
+
+
             </form>
         </div>
         </div>
