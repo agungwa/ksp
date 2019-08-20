@@ -45,7 +45,7 @@ lookup();
                         <?php  if($this->session->userdata('foto')!='' && file_exists(FCPATH."assets/foto_users/".$this->session->userdata('foto'))){ //die('a');?>
                             <img alt="image" class="img-circle" src="<?=base_url()?>assets/foto_users/<?=$this->session->userdata('foto')?>" style="width: 45px;" />
                         <?php }else{ //die('b');?>
-                            <img alt="image" class="img-circle" src="<?=base_url()?>assets/foto_users/  _user.png" style="width: 45px;" />
+                            <img alt="image" class="img-circle" src="<?=base_url()?>assets/foto_users/icon_user.png" style="width: 45px;" />
                         <?php } ?>
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -96,7 +96,7 @@ lookup();
                 
                 <li class="">
                     <?php if(is_allow('M_USER')): ?>
-                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simpanan Berjangka (edit)</span> <span class="fa arrow"></span></a>
+                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simpanan Berjangka (EDIT)</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
                     <li>
@@ -155,7 +155,7 @@ lookup();
 
                 <li class="">
                     <?php if(is_allow('M_USER')): ?>
-                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simkesan (edit)</span> <span class="fa arrow"></span></a>
+                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simkesan</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
                         <li>
@@ -204,7 +204,7 @@ lookup();
                 
                 <li class="">
                     <?php if(is_allow('M_USER')): ?>
-                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Investasi Berjangka (edit)</span> <span class="fa arrow"></span></a>
+                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Investasi Berjangka</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
                     <li>
@@ -259,7 +259,7 @@ lookup();
 
                 <li class="">
                     <?php if(is_allow('M_USER')): ?>
-                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Pinjaman (edit)</span> <span class="fa arrow"></span></a>
+                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Pinjaman</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
                         <li>
@@ -332,7 +332,7 @@ lookup();
                 <!-- MENU NERACA -->
                 <li class="">
                     <?php if(is_allow('M_LAPORAN')): ?>
-                <a href="index.html"><i class="fa fa-list"></i> <span class="nav-label">Neraca (edit)</span> <span class="fa arrow"></span></a>
+                <a href="index.html"><i class="fa fa-list"></i> <span class="nav-label">Neraca</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
                         <li><a href="<?=site_url('phu')?>">Biaya PHU</a></li>
