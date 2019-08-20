@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Jabatan</b></h2>
+                    <h2><b>List Karyawanijasah</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -19,14 +19,14 @@
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-                <?php echo anchor(site_url('jabatan/create'),'Create', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('karyawanijasah/create'),'Create', 'class="btn btn-primary"'); ?>
             </div>
             
             
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('jabatan/index'); ?>" class="form-inline" method="get">
+                <form action="<?php echo site_url('karyawanijasah/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
@@ -34,7 +34,7 @@
                                 if ($q <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo site_url('jabatan'); ?>" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo site_url('karyawanijasah'); ?>" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
@@ -48,24 +48,48 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-        		<th class="text-center">Jab Nama</th>
-        		<th class="text-center">Action</th>
+		<th class="text-center">Kar Kode</th>
+		<th class="text-center">Kij Sd</th>
+		<th class="text-center">Kij Smp</th>
+		<th class="text-center">Kij Sma</th>
+		<th class="text-center">Kij D3</th>
+		<th class="text-center">Kij S1</th>
+		<th class="text-center">Kij S2</th>
+		<th class="text-center">Kij S3</th>
+		<th class="text-center">Kij Lainlain</th>
+		<th class="text-center">Kij Status</th>
+		<th class="text-center">Kij Tgl</th>
+		<th class="text-center">Kij Flag</th>
+		<th class="text-center">Kij Info</th>
+		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
-            foreach ($jabatan_data as $jabatan)
+            foreach ($karyawanijasah_data as $karyawanijasah)
             {
                 ?>
                 <tr>
-    			<td width="80px"><?php echo ++$start ?></td>
-    			<td><?php echo $jabatan->jab_nama ?></td>
-    			<td style="text-align:center" width="200px">
+			<td width="80px"><?php echo ++$start ?></td>
+			<td><?php echo $karyawanijasah->kar_kode ?></td>
+			<td><?php echo $karyawanijasah->kij_sd ?></td>
+			<td><?php echo $karyawanijasah->kij_smp ?></td>
+			<td><?php echo $karyawanijasah->kij_sma ?></td>
+			<td><?php echo $karyawanijasah->kij_d3 ?></td>
+			<td><?php echo $karyawanijasah->kij_s1 ?></td>
+			<td><?php echo $karyawanijasah->kij_s2 ?></td>
+			<td><?php echo $karyawanijasah->kij_s3 ?></td>
+			<td><?php echo $karyawanijasah->kij_lainlain ?></td>
+			<td><?php echo $karyawanijasah->kij_status ?></td>
+			<td><?php echo $karyawanijasah->kij_tgl ?></td>
+			<td><?php echo $karyawanijasah->kij_flag ?></td>
+			<td><?php echo $karyawanijasah->kij_info ?></td>
+			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('jabatan/read/'.$jabatan->jab_kode),'Read','class="text-navy"'); 
+				echo anchor(site_url('karyawanijasah/read/'.$karyawanijasah->kij_id),'Read','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('jabatan/update/'.$jabatan->jab_kode),'Update','class="text-navy"'); 
+				echo anchor(site_url('karyawanijasah/update/'.$karyawanijasah->kij_id),'Update','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('jabatan/delete/'.$jabatan->jab_kode),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('karyawanijasah/delete/'.$karyawanijasah->kij_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>
 		</tr>
