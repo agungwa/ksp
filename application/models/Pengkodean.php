@@ -151,6 +151,28 @@ class Pengkodean extends CI_Model
             return $kodetampil;  
     }
 
+    
+    // input kode Karyawan
+    public function karyawan($nowYear){
+        $this->db->select('RIGHT(karyawan.kar_kode,2) as kar_kode', FALSE);
+        $this->db->where("DATE_FORMAT(kar_tgl, '%d') = ", $nowYear);
+        $this->db->limit(1);
+        $this->db->order_by('kar_kode','DESC');    
+        $query = $this->db->get('karyawan');  
+        if($query->num_rows() <> 0){          
+            $data = $query->row();      
+            $kode = intval($data->kar_kode) + 1; 
+        }
+        else{      
+            $kode = 1;
+        }
+            $tgl=date('dmy'); 
+            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);
+            $kodetampil = $tgl.$batas;
+            return $kodetampil;  
+    }
+
+
 }
 
 /* End of file Ahliwarissimkesan_model.php */

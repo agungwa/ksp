@@ -9,6 +9,9 @@ class Karyawan extends MY_Base
     {
         parent::__construct();
         $this->load->model('Karyawan_model');
+        $this->load->model('Karyawansimpanan_model');
+        $this->load->model('Karyawanijasah_model');
+        $this->load->model('Pengkodean');
         $this->load->library('form_validation');
     }
 
@@ -72,7 +75,9 @@ class Karyawan extends MY_Base
 
     public function create() 
     {
+        $nowYear = date('d');
         $data = array(
+            'kode' => $this->Pengkodean->karyawan($nowYear),
             'button' => 'Simpan',
             'action' => site_url('karyawan/create_action'),
     	    'kar_kode' => set_value('kar_kode'),
@@ -92,27 +97,49 @@ class Karyawan extends MY_Base
     
     public function create_action() 
     {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
-        } else {
-            $data = array(
+            $dataKaryawan = array(
             'kar_kode' => $this->input->post('kar_kode',TRUE),
     		'kar_nama' => $this->input->post('kar_nama',TRUE),
     		'jab_kode' => $this->input->post('jab_kode',TRUE),
     		'kar_alamat' => $this->input->post('kar_alamat',TRUE),
     		'kar_nohp' => $this->input->post('kar_nohp',TRUE),
     		'kar_simpanan' => $this->input->post('kar_simpanan',TRUE),
+    		'kar_status' => 0,
     		'kar_tgl' => $this->tgl,
     		'kar_flag' => 0,
-    		'kar_info' => "",
-    	    );
+            'kar_info' => "",
+            );
+            $this->Karyawan_model->insert($dataKaryawan);
 
-            $this->Karyawan_model->insert($data);
+            $dataSimpanankaryawan = array(
+                'kar_kode' => $this->input->post('kar_kode',TRUE),
+                'ksi_simpanan' => $this->input->post('ksi_simpanan',TRUE),
+                'ksi_status' => 0,
+                'ksi_tgl' => $this->tgl,
+                'ksi_flag' => 0,
+                'ksi_info' => "",
+            );
+            $this->Karyawansimpanan_model->insert($dataSimpanankaryawan);
+
+            $dataIjasah = array(
+                'kar_kode' => $this->input->post('kar_kode',TRUE),
+                'kij_sd' => $this->input->post('kij_sd',TRUE),
+                'kij_smp' => $this->input->post('kij_smp',TRUE),
+                'kij_sma' => $this->input->post('kij_sma',TRUE),
+                'kij_d3' => $this->input->post('kij_d3',TRUE),
+                'kij_s1' => $this->input->post('kij_s1',TRUE),
+                'kij_s2' => $this->input->post('kij_s2',TRUE),
+                'kij_s3' => $this->input->post('kij_s3',TRUE),
+                'kij_lainlain' => $this->input->post('kij_lainlain',TRUE),
+                'kij_status' => 0,
+                'kij_tgl' => $this->tgl,
+                'kij_flag' => 0,
+                'kij_info' => "",
+                );
+            $this->Karyawanijasah_model->insert($dataIjasah);
+            
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('karyawan'));
-        }
     }
     
     public function update($id) 

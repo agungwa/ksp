@@ -666,9 +666,10 @@ class Neraca extends MY_Base
 	foreach ($simpananNonaktif as $key => $value) {
 		$bungaSetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($value->sim_kode);
 		foreach ($bungaSetoran as $k => $item) {
+		$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
 			if ($f<>'' && $t<>'') {	
 				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
-				if ($tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
+				if ($tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == $w) {
 					$bungaSimpanan += $item->bss_bungabulanini;
 				}
 			} else {
