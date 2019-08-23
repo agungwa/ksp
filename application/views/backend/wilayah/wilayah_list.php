@@ -48,7 +48,6 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-                <th class="text-center">Kode Wilayah</th>
         		<th class="text-center">Nama Wilayah</th>
         		<th class="text-center">Tanggal</th>
         		<th class="text-center">Action</th>
@@ -60,7 +59,6 @@
                 ?>
                 <tr>
     			<td width="80px"><?php echo ++$start ?></td>
-                <td><?php echo $wilayah->wil_kode ?></td>
     			<td><?php echo $wilayah->wil_nama ?></td>
     			<td><?php echo dateFormat($wilayah->wil_tgl) ?></td>
     			<td style="text-align:center" width="200px">
