@@ -56,15 +56,15 @@
         <h3 style="margin-top:0px">Ijasah Karyawan </h2>
         <div class="col-lg-4">
 	    <div class="form-group">
-            <label for="varchar">Ijasah Sd</label>
+            <label for="varchar">Ijasah SD/MI</label>
             <input type="text" class="form-control" name="kij_sd" id="kij_sd" placeholder="Ijasah Sd" required />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Ijasah Smp</label>
+            <label for="varchar">Ijasah SMP/MTs</label>
             <input type="text" class="form-control" name="kij_smp" id="kij_smp" placeholder="Ijasah Smp" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Ijasah Sma </label>
+            <label for="varchar">Ijasah SMA/MA/SMK </label>
             <input type="text" class="form-control" name="kij_sma" id="kij_sma" placeholder="Ijasah Sma" />
         </div>
 	    <div class="form-group">
@@ -82,11 +82,11 @@
 	    <div class="form-group">
             <label for="varchar">Ijasah S3 </label>
             <input type="text" class="form-control" name="kij_s3" id="kij_s3" placeholder="Ijasah S3" />
-        </div>
+        </div><!--
 	    <div class="form-group">
             <label for="varchar">Ijasah Lainlain </label>
             <input type="text" class="form-control" name="kij_lainlain" id="kij_lainlain" placeholder="Ijasah Lainlain" />
-        </div>
+        </div>-->
         </div>
 
         <!-- keluarga karyawan -->
@@ -95,6 +95,10 @@
 	    <div class="form-group">
             <label for="varchar">Nama</label>
             <input type="text" class="form-control" name="kka_nama" id="kka_nama" placeholder="Kka Nama" required />
+        </div>
+        <div class="form-group">
+            <label for="varchar">Hubungan</label>
+            <input type="text" class="form-control" name="kka_hubungan" id="kka_hubungan" placeholder="Hubungan" required />
         </div>
 	    <div class="form-group">
             <label for="kka_alamat">Alamat </label>

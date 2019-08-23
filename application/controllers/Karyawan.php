@@ -137,6 +137,19 @@ class Karyawan extends MY_Base
                 'kij_info' => "",
                 );
             $this->Karyawanijasah_model->insert($dataIjasah);
+
+            $dataKeluarga = array(
+                'kar_kode' => $this->input->post('kar_kode',TRUE),
+                'kka_nama' => $this->input->post('kka_nama',TRUE),
+                'kka_hubungan' => $this->input->post('kka_hubungan',TRUE),
+                'kka_alamat' => $this->input->post('kka_alamat',TRUE),
+                'kka_nohp' => $this->input->post('kka_nohp',TRUE),
+                'kka_tgl' => $this->tgl,
+                'kka_flag' => 0,
+                'kka_info' => "",
+                );
+        
+                    $this->Keluargakaryawan_model->insert($dataKeluarga);
             
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('karyawan'));
