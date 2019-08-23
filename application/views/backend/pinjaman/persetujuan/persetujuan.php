@@ -54,8 +54,17 @@
             <div class="col-md-4">
                 <label for="text">Persetujuan</label>
                 <input type="number" class="form-control" name="pin_pinjaman" id="pin_pinjaman" placeholder="Persetujuan" value="" required="required"/>
+                <?php if ($jaminan_data->jej_id == 1){
+                    echo'
+                <input type="text" class="form-control" name="jam_unit" id="jam_unit" placeholder="Unit" value=""/>
+                <input type="text" class="form-control" name="jam_noregistrasi" id="jam_noregistrasi" placeholder="No Registrasi" value=""/>
+                <input type="text" class="form-control" name="jam_tahunpembuatan" id="jam_tahunpembuatan" placeholder="Tahun Pembuatan" value=""/>
+                <input type="text" class="form-control" name="jam_atasnama" id="jam_atasnama" placeholder="Atas Nama" value=""/>
+                <input type="hidden" class="form-control" name="jam_id" id="jam_id" placeholder="jam_id" value="'.$jaminan_data->jam_id.'"/>
+                ';
+                } ?>
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $persetujuan['pin_id'];?>" required="required"/>            
-                <input type="date" class="form-control" name="pin_tglpencairan" id="pin_tglpencairan" placeholder="pin_tglpencairan" value="" required="required"/>            
+                <input type="date" class="form-control" name="pin_tglpencairan" id="todays-date" placeholder="pin_tglpencairan" value="" required="required"/>            
                 
                 <label for="int">Tenor (bulan)</label>
                 <div class="input-group">
