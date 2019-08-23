@@ -8,6 +8,7 @@ class Jaminan_model extends CI_Model
 
     public $table = 'jaminan';
     public $id = 'jam_id';
+    public $pin_id = 'pin_id';
     public $order = 'DESC';
 
     function __construct()
@@ -27,6 +28,13 @@ class Jaminan_model extends CI_Model
     function get_by_id($id)
     {
         $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row();
+    }
+
+    // get data by rekening
+    function get_by_rek($pin_id)
+    {
+        $this->db->where('pin_id', $pin_id);
         return $this->db->get($this->table)->row();
     }
 
@@ -60,6 +68,13 @@ class Jaminan_model extends CI_Model
         $this->db->insert($this->table, $data);
     }
 
+    // update data jaminan
+    function updaterek($pin_id, $data)
+    {
+        $this->db->where('pin_id', $pin_id);
+        $this->db->update($this->table, $data);
+    }
+    
     // update data
     function update($id, $data)
     {
