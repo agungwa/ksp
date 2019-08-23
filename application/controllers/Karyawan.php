@@ -11,6 +11,7 @@ class Karyawan extends MY_Base
         $this->load->model('Karyawan_model');
         $this->load->model('Karyawansimpanan_model');
         $this->load->model('Karyawanijasah_model');
+        $this->load->model('Keluargakaryawan_model');
         $this->load->model('Pengkodean');
         $this->load->library('form_validation');
     }
