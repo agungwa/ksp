@@ -220,6 +220,15 @@ class Pinjaman extends MY_Base
             'sea_id' => $this->input->post('sea_id',TRUE),
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
+        $dataJaminan = array(
+            'jam_unit' => $this->input->post('jam_unit',TRUE),
+            'jam_noregistrasi' => $this->input->post('jam_noregistrasi',TRUE),
+            'jam_tahunpembuatan' => $this->input->post('jam_tahunpembuatan',TRUE),
+            'jam_atasnama' => $this->input->post('jam_atasnama',TRUE),
+            'jam_alamat' => $this->input->post('jam_alamat',TRUE),
+        );
+        $this->Jaminan_model->update($this->input->post('jam_id', TRUE), $dataJaminan);
+
         $row = $this->Pinjaman_model->get_by_id($id);
        // var_dump($row);
              if ($row) {

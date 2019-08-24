@@ -409,7 +409,7 @@ class PrintPinjaman extends MY_Base
 	public function pencairan($id) 
     {
 		$row = $this->Pinjaman_model->get_by_id($id);
-		$jaminan = $this->Jaminan_model->get_by_pin($id);
+		$jaminan = $this->Jaminan_model->get_by_rek($id);
         if ($row) {
             $pin_statuspinjaman = $this->statusPinjaman;
             $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();

@@ -124,7 +124,7 @@ table#02 {
                         </p>
                     </td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td style="width:116.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:8pt"><span
                                 style="font-family:'Calibri Light'">Pekerjaan</span></p>
@@ -138,7 +138,7 @@ table#02 {
                                 style="font-family:'Calibri Light'">........................................................</span>
                         </p>
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td style="width:116.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:8pt"><span
@@ -324,7 +324,7 @@ table#02 {
                     </td>
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt"><span
-                                style="font-family:'Calibri Light'">...........................................</span>
+                                style="font-family:'Calibri Light'"><?php echo ' ',$jaminan_data->jam_unit ?></span>
                         </p>
                     </td>
                 </tr>
@@ -343,7 +343,7 @@ table#02 {
                     </td>
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt"><span
-                                style="font-family:'Calibri Light'">...........................................</span>
+                                style="font-family:'Calibri Light'"><?php echo $jaminan_data->jam_noregistrasi ?></span>
                         </p>
                     </td>
                 </tr>
@@ -362,7 +362,7 @@ table#02 {
                     </td>
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt"><span
-                                style="font-family:'Calibri Light'">...........................................</span>
+                                style="font-family:'Calibri Light'"><?php echo $jaminan_data->jam_nomor ?></span>
                         </p>
                     </td>
                 </tr>
@@ -381,7 +381,7 @@ table#02 {
                     </td>
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt"><span
-                                style="font-family:'Calibri Light'">...........................................</span>
+                                style="font-family:'Calibri Light'"><?php echo $jaminan_data->jam_tahunpembuatan ?></span>
                         </p>
                     </td>
                 </tr>
@@ -400,7 +400,7 @@ table#02 {
                     </td>
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt"><span
-                                style="font-family:'Calibri Light'">...........................................</span>
+                                style="font-family:'Calibri Light'"><?php echo $jaminan_data->jam_atasnama ?></span>
                         </p>
                     </td>
                 </tr>
@@ -419,7 +419,7 @@ table#02 {
                     </td>
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt"><span
-                                style="font-family:'Calibri Light'">...........................................</span>
+                                style="font-family:'Calibri Light'"><?php echo $jaminan_data->jam_alamat ?></span>
                         </p>
                     </td>
                 </tr>
