@@ -99,7 +99,7 @@ table#02 {
                         <span style="font-family:Cambria"><?php echo $ang_alamat ?></span></p>
                 </td>
             </tr>
-            <tr>
+            <!--<tr>
                 <td style="width:116.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:8pt"><span
                             style="font-family:Cambria">Pekerjaan</span>
@@ -114,7 +114,7 @@ table#02 {
                             style="font-family:Cambria">........................................................</span>
                     </p>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td style="width:116.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:8pt">
@@ -397,7 +397,7 @@ table#02 {
                 <td colspan="4" style="width:316.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt">
                         <span
-                            style="font-family:Cambria">.........................&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            style="font-family:Cambria">&nbsp;<?php echo ' ',$jaminan_data->jam_unit ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </span></p>
                 </td>
             </tr>
@@ -420,7 +420,7 @@ table#02 {
                 </td>
                 <td colspan="4" style="width:316.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt">
-                        <span style="font-family:Cambria">&nbsp;</span></p>
+                        <span style="font-family:Cambria">&nbsp;<?php echo $jaminan_data->jam_noregistrasi ?></span></p>
                 </td>
             </tr>
             <tr>
@@ -464,7 +464,7 @@ table#02 {
                 </td>
                 <td colspan="4" style="width:316.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt">
-                        <span style="font-family:Cambria">&nbsp;</span></p>
+                        <span style="font-family:Cambria">&nbsp;<?php echo $jaminan_data->jam_tahunpembuatan ?></span></p>
                 </td>
             </tr>
             <tr>
@@ -486,7 +486,7 @@ table#02 {
                 </td>
                 <td colspan="4" style="width:316.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt">
-                        <span style="font-family:Cambria">&nbsp;</span></p>
+                        <span style="font-family:Cambria">&nbsp;<?php echo $jaminan_data->jam_atasnama ?></span></p>
                 </td>
             </tr>
             <tr>
@@ -508,7 +508,7 @@ table#02 {
                 </td>
                 <td colspan="4" style="width:316.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:8pt">
-                        <span style="font-family:Cambria">&nbsp;</span></p>
+                        <span style="font-family:Cambria">&nbsp;<?php echo $jaminan_data->jam_alamat ?></span></p>
                 </td>
             </tr>
             <tr>
@@ -613,7 +613,7 @@ table#02 {
                         <span style="font-family:Cambria">Apabila
                             dalam 2 (dua) bulan berturut-turut&nbsp; saya tidak bisa memenuhi
                             kewajiban mengangsur/membayar angsuran , maka Satu Unit </span>
-                        <span style="font-family:Cambria">..................................</span>
+                        <span style="font-family:Cambria"><?php echo $jaminan_data->jam_unit ?></span>
                         <span style="font-family:Cambria">&nbsp; Beserta Surat Kelengapanya tersebut akan Saya
                             serahkan&nbsp; kepada KSP Sido Mukti Makmur untuk proses selanjutnya.</span></p>
                 </td>
