@@ -163,10 +163,10 @@ class Pinjaman extends MY_Base
     public function persetujuan(){
         $q = urldecode($this->input->get('q', TRUE));
         $persetujuan = null;
-
+        $jaminan = array();
         if ($q<>''){
             $row = $this->Pinjaman_model->get_by_id($q);
-            
+            $jaminan = $this->Jaminan_model->get_by_rek($q);
        // var_dump($row);
              if ($row) {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
@@ -177,7 +177,7 @@ class Pinjaman extends MY_Base
                 $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
                 $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
                 $surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
-                $persetujuan = array(
+                $persetujuan = array( 
                     'pin_id' => $row->pin_id,
                     'ang_no' => $row->ang_no,
                     'nama_ang_no' => $ang_no->ang_nama,
@@ -203,6 +203,7 @@ class Pinjaman extends MY_Base
             'item'=> 'persetujuan/persetujuan.php',
             'q' => $q,
             'active' => 3,
+            'jaminan_data' => $jaminan,
             'persetujuan' => $persetujuan
         );
 
@@ -220,6 +221,15 @@ class Pinjaman extends MY_Base
             'sea_id' => $this->input->post('sea_id',TRUE),
             );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
+        $dataJaminan = array(
+            'jam_unit' => $this->input->post('jam_unit',TRUE),
+            'jam_noregistrasi' => $this->input->post('jam_noregistrasi',TRUE),
+            'jam_tahunpembuatan' => $this->input->post('jam_tahunpembuatan',TRUE),
+            'jam_atasnama' => $this->input->post('jam_atasnama',TRUE),
+            'jam_alamat' => $this->input->post('jam_alamat',TRUE),
+        );
+        $this->Jaminan_model->update($this->input->post('jam_id', TRUE), $dataJaminan);
+
         $row = $this->Pinjaman_model->get_by_id($id);
        // var_dump($row);
              if ($row) {
@@ -239,16 +249,16 @@ class Pinjaman extends MY_Base
                 $jatuhtempo=$row->pin_tglpencairan;
                 $jmlpokok=$row->pin_pinjaman/$sea_id->sea_tenor;
                 $bunga=$row->pin_pinjaman*$bup_id->bup_bunga/100;
-        for($num=1; $num<=$sea_id->sea_tenor; $num++){
-            $tanggalDuedate = date("Y-m-d", strtotime($jatuhtempo.' + '.$no.' Months'));
-            $dataAngsuran = array(
-                'ang_angsuranke' => $no,
-                'ags_tgljatuhtempo' => $tanggalDuedate,
-                'pin_id' => $row->pin_id,
-                'ags_jmlpokok' => $jmlpokok,
-                'ags_jmlbunga' => $bunga,
-                );
-            $this->Angsuran_model->insert($dataAngsuran);
+                for($num=1; $num<=$sea_id->sea_tenor; $num++){
+                    $tanggalDuedate = date("Y-m-d", strtotime($jatuhtempo.' + '.$no.' Months'));
+                    $dataAngsuran = array(
+                        'ang_angsuranke' => $no,
+                        'ags_tgljatuhtempo' => $tanggalDuedate,
+                        'pin_id' => $row->pin_id,
+                        'ags_jmlpokok' => $jmlpokok,
+                        'ags_jmlbunga' => $bunga,
+                        );
+                    $this->Angsuran_model->insert($dataAngsuran);
             $no++;
              }
             } 
