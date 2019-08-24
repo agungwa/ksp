@@ -61,6 +61,7 @@
                 <input type="text" class="form-control" name="jam_tahunpembuatan" id="jam_tahunpembuatan" placeholder="Tahun Pembuatan" value=""/>
                 <input type="text" class="form-control" name="jam_atasnama" id="jam_atasnama" placeholder="Atas Nama" value=""/>
                 <input type="hidden" class="form-control" name="jam_id" id="jam_id" placeholder="jam_id" value="'.$jaminan_data->jam_id.'"/>
+                <textarea class="form-control" rows="3" name="jam_alamat" id="jam_alamat" placeholder="Alamat"></textarea>
                 ';
                 } ?>
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $persetujuan['pin_id'];?>" required="required"/>            
