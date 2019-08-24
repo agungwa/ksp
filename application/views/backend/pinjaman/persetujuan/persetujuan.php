@@ -65,7 +65,7 @@
                 ';
                 } ?>
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $persetujuan['pin_id'];?>" required="required"/>            
-                <input type="date" class="form-control" name="pin_tglpencairan" id="pin_tglpencairan" placeholder="pin_tglpencairan" value="" required="required"/>            
+                <input type="date" class="form-control" name="pin_tglpencairan" id="todays-date" placeholder="pin_tglpencairan" value="" required="required"/>            
                 
                 <label for="int">Tenor (bulan)</label>
                 <div class="input-group">

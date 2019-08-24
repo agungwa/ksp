@@ -453,7 +453,7 @@ class PrintPinjaman extends MY_Base
 				$html = $this->load->view('backend/pinjaman/printpinjaman/bpkb.php',$data,true);
 				$html1 = $this->load->view('backend/pinjaman/printpinjaman/beritaacara.php',$data,true);
 				//$mpdf->SetHeader($header);
-				//echo $html;
+				//echo $html,$html1;
 				$mpdf->WriteHTML($html);
 				$mpdf->AddPage();
 				$mpdf->WriteHTML($html1);
