@@ -57,13 +57,22 @@ class Karyawan extends MY_Base
     public function read($id) 
     {
         $row = $this->Karyawan_model->get_by_id($id);
+        $karyawansimpanan = $this->Karyawansimpanan_model->get_by_kar($id);
+        $karyawanijasah = $this->Karyawanijasah_model->get_by_kar($id);
+        $karyawankeluarga = $this->Keluargakaryawan_model->get_by_kar($id);
         if ($row) {
+			$jab_kode = $this->db->get_where('jabatan', array('jab_kode' => $row->jab_kode))->row();
             $data = array(
+                'karyawansimpanan' => $karyawansimpanan,
+                'karyawanijasah' => $karyawanijasah,
+                'karyawankeluarga' => $karyawankeluarga,
 		'kar_kode' => $row->kar_kode,
 		'kar_nama' => $row->kar_nama,
-		'jab_kode' => $row->jab_kode,
+		'kar_nik' => $row->kar_nik,
+		'jab_kode' => $jab_kode->jab_nama,
 		'kar_alamat' => $row->kar_alamat,
 		'kar_nohp' => $row->kar_nohp,
+		'kar_status' => $row->kar_status,
         'content' => 'backend/karyawan/karyawan_read',
 	    );
             $this->load->view(

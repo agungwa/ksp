@@ -70,7 +70,7 @@
 			<td width="80px"><?php echo ++$start ?></td>
             <td><?php echo $item['ivb_kode'] ?></td>
             <td><?php echo $item['ang_no'] ?></td>
-			<td><?php echo $item['ang_no'] ?></td>
+			<td><?php echo $item['nama_ang_no'] ?></td>
 			<td><?php echo $item['kar_kode'] ?></td>
 			<td><?php echo $item['wil_kode'] ?></td>
 			<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
