@@ -61,7 +61,7 @@
         $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
         $jkl=$saldosimpananneraca+$bungasimpanan;
         $jkp=$saldoinvestasi+$simpanankaryawandata+$rekeningkoran+$modalpenyertaan;
-        $jek=$saldosimpananwajib+$saldosimpananpokok+$simpanancdr+$donasi;
+        $jek=$saldosimpananwajib+$saldosimpananpokok+$simpanancdr+$donasi+$shudata;
         ?>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
@@ -197,6 +197,10 @@
             <tr>
                 <td class="text-left">Donasi</td>
 				<td class="text-left"><?= neraca($donasi);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">SHU</td>
+				<td class="text-left"><?= neraca($shudata);?></td>
             </tr>
             <tr class='info'>
                 <td class="text-left">Jumlah Ekuitas</td>
