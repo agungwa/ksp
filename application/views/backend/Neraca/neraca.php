@@ -57,7 +57,7 @@
         <!--<form action="<?php echo site_url('neraca/perhitungan_action'); ?>" method="post"> -->
         <?php
         $kas=$shudata + $saldoinvestasi + $pokokangsuranpelunasan + $pokokangsuran + $saldosimpanan;
-        $jal=$kasbankdata + $saldopinjamanumum + $saldopinjamankaryawan+$saldopinjamanumum + $shudata + $saldoinvestasi + $pokokangsuranpelunasan + $pokokangsuran + $saldosimpanan;
+        $jal=$kas + $kasbankdata - $saldopinjamanumum - $saldopinjamankaryawan-$saldopinjamankhusus;
         $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
         $jkl=$saldosimpanan+$bungasimpanan;
         $jkp=$saldoinvestasi+$simpanankaryawandata+$rekeningkoran+$modalpenyertaan;
