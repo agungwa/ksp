@@ -76,9 +76,8 @@ class Karyawan extends MY_Base
 
     public function create() 
     {
-        $nowYear = date('d');
         $data = array(
-            'kode' => $this->Pengkodean->karyawan($nowYear),
+            'kode' => $this->Pengkodean->karyawan(),
             'button' => 'Simpan',
             'action' => site_url('karyawan/create_action'),
     	    'kar_kode' => set_value('kar_kode'),
@@ -101,6 +100,7 @@ class Karyawan extends MY_Base
             $dataKaryawan = array(
             'kar_kode' => $this->input->post('kar_kode',TRUE),
     		'kar_nama' => $this->input->post('kar_nama',TRUE),
+    		'kar_nik' => $this->input->post('kar_nik',TRUE),
     		'jab_kode' => $this->input->post('jab_kode',TRUE),
     		'kar_alamat' => $this->input->post('kar_alamat',TRUE),
     		'kar_nohp' => $this->input->post('kar_nohp',TRUE),
