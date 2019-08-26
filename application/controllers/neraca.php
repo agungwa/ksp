@@ -357,8 +357,9 @@ class Neraca extends MY_Base
 					$saldoSimpanan += $item->ssi_jmlsetor;
 				}
 			} else {
-				$saldoSimpanan += $item->ssi_jmlsetor;
+				$saldoSimpanan += 0;
 			}
+			var_dump($item->ssi_jmlsetor);
 			
 			
 		}
@@ -374,7 +375,7 @@ class Neraca extends MY_Base
 					$saldoInvestasi += $value->ivb_jumlah ;
 				}
 			} else {
-				$saldoInvestasi += $value->ivb_jumlah;
+				$saldoInvestasi += 0;
 		}
 	}
 
@@ -445,7 +446,7 @@ class Neraca extends MY_Base
 			//simpanan
 			'saldosimpananlalu' => $saldoSimpananlalu,
             'wilayah_data' => $wilayah,
-			'saldosimpanan' => $saldoSimpanan,
+			'saldosimpananneraca' => $saldoSimpanan,
 			'saldosimpananditarik' => $saldoSimpananDitarik,
 			'bungasimpanan' => $bungaSimpanan,
 			'saldosimpananwajib' => $saldoSimpananwajib,

@@ -56,10 +56,10 @@
         </div>
         <!--<form action="<?php echo site_url('neraca/perhitungan_action'); ?>" method="post"> -->
         <?php
-        $kas=$shudata + $saldoinvestasi + $pokokangsuranpelunasan + $pokokangsuran + $saldosimpanan;
-        $jal=$kas + $kasbankdata - $saldopinjamanumum - $saldopinjamankaryawan-$saldopinjamankhusus;
+        $kas=$shudata + $saldoinvestasi + $pokokangsuranpelunasan + $pokokangsuran + $saldosimpananneraca - $saldopinjamanumum - $saldopinjamankaryawan-$saldopinjamankhusus;
+        $jal=$kas + $kasbankdata + $saldopinjamanumum + $saldopinjamankaryawan+$saldopinjamankhusus;
         $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
-        $jkl=$saldosimpanan+$bungasimpanan;
+        $jkl=$saldosimpananneraca+$bungasimpanan;
         $jkp=$saldoinvestasi+$simpanankaryawandata+$rekeningkoran+$modalpenyertaan;
         $jek=$saldosimpananwajib+$saldosimpananpokok+$simpanancdr+$donasi;
         ?>
@@ -141,7 +141,7 @@
             <h4> KEWAJIBAN LANCAR</h4>
             <tr>
                 <td class="text-left" width="660px">Simpanan Berjangka</td>
-				<td class="text-left"><?= neraca($saldosimpanan);?></td>
+				<td class="text-left"><?= neraca($saldosimpananneraca);?></td>
             </tr>
             <tr>
                 <td class="text-left">Utang Pihak Ketiga</td>
