@@ -542,6 +542,7 @@ class Simpanan extends MY_Base
             $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
             $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $item->kar_kode))->row();
             $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item->wil_kode))->row();
+            
             $tanggalDuedate = date("Y-m-d", strtotime($item->sim_tglpendaftaran.' + '.$jsi_id->jsi_simpanan.' Months'));
             $f = date("Y-m-d", strtotime($f));
             $t = date("Y-m-d", strtotime($t));
@@ -550,10 +551,12 @@ class Simpanan extends MY_Base
                 $datasimpanan[$key] = array('sim_kode' => $item->sim_kode,
                                         'ang_no' => $item->ang_no,
                                         'ang_nama' => $ang_no->ang_nama,
+                                        'ang_alamat' => $ang_no->ang_alamat,
                                         'kar_nama' => $kar_kode->kar_nama ,
                                         'bus_bunga' => $bus_id->bus_bunga,
                                         'jsi_simpanan' => $jsi_id->jsi_simpanan,
                                         'jse_setoran' => $jse_id->jse_setoran ,
+                                        'wil_nama' => $wil_kode->wil_nama,
                                         'wil_nama' => $wil_kode->wil_nama,
                                         'sim_tglpendaftaran' => $item->sim_tglpendaftaran ,
                                         'tanggalDuedate' => $tanggalDuedate,

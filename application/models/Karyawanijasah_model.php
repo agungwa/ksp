@@ -8,6 +8,7 @@ class Karyawanijasah_model extends CI_Model
 
     public $table = 'karyawanijasah';
     public $id = 'kij_id';
+    public $kar_kode = 'kar_kode';
     public $order = 'DESC';
 
     function __construct()
@@ -21,6 +22,13 @@ class Karyawanijasah_model extends CI_Model
         $this->db->where('kij_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
+    }
+
+    // get data by kar
+    function get_by_kar($kar_kode)
+    {
+        $this->db->where('kar_kode', $kar_kode);
+        return $this->db->get($this->table)->row();
     }
 
     // get data by id

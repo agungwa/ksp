@@ -8,6 +8,7 @@ class Karyawansimpanan_model extends CI_Model
 
     public $table = 'karyawansimpanan';
     public $id = 'ksi_id';
+    public $kar_kode = 'kar_kode';
     public $order = 'DESC';
 
     function __construct()
@@ -27,6 +28,13 @@ class Karyawansimpanan_model extends CI_Model
     function get_by_id($id)
     {
         $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row();
+    }
+
+    // get data by kar
+    function get_by_kar($kar_kode)
+    {
+        $this->db->where('kar_kode', $kar_kode);
         return $this->db->get($this->table)->row();
     }
     
