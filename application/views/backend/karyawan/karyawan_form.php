@@ -23,6 +23,10 @@
             <label for="varchar">Nama</label>
             <input type="text" class="form-control" name="kar_nama" id="kar_nama" placeholder="Nama" required />
         </div>
+	    <div class="form-group">
+            <label for="varchar">No KTP</label>
+            <input type="text" class="form-control" name="kar_nik" id="kar_nik" placeholder="NO KTP" required />
+        </div>
 
         <div class="form-group">
             <label for="varchar">jabatan <?php echo form_error('jab_kode') ?></label>
@@ -53,34 +57,34 @@
 
         <!-- ijasah karyawan -->
         
-        <h3 style="margin-top:0px">Ijasah Karyawan </h2>
+        <h3 style="margin-top:0px">Ijazah Karyawan </h2>
         <div class="col-lg-4">
 	    <div class="form-group">
-            <label for="varchar">Ijasah SD/MI</label>
+            <label for="varchar">Ijazah SD/MI</label>
             <input type="text" class="form-control" name="kij_sd" id="kij_sd" placeholder="Ijasah Sd" required />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Ijasah SMP/MTs</label>
+            <label for="varchar">Ijazah SMP/MTs</label>
             <input type="text" class="form-control" name="kij_smp" id="kij_smp" placeholder="Ijasah Smp" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Ijasah SMA/MA/SMK </label>
+            <label for="varchar">Ijazah SMA/MA/SMK </label>
             <input type="text" class="form-control" name="kij_sma" id="kij_sma" placeholder="Ijasah Sma" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Ijasah D3  </label>
+            <label for="varchar">Ijazah D3  </label>
             <input type="text" class="form-control" name="kij_d3" id="kij_d3" placeholder="Ijasah D3" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Ijasah S1 </label>
+            <label for="varchar">Ijazah S1 </label>
             <input type="text" class="form-control" name="kij_s1" id="kij_s1" placeholder="Ijasah S1" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Ijasah S2 </label>
+            <label for="varchar">Ijazah S2 </label>
             <input type="text" class="form-control" name="kij_s2" id="kij_s2" placeholder="Ijasah S2" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Ijasah S3 </label>
+            <label for="varchar">Ijazah S3 </label>
             <input type="text" class="form-control" name="kij_s3" id="kij_s3" placeholder="Ijasah S3" />
         </div><!--
 	    <div class="form-group">
