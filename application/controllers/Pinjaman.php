@@ -307,6 +307,7 @@ class Pinjaman extends MY_Base
                 'pin_id' => $this->input->post('pin_id',TRUE),
                 'pen_noktp' => $this->input->post('pen_noktp',TRUE),
                 'pen_nama' => $this->input->post('pen_nama',TRUE),
+                'pen_hubungan' => $this->input->post('pen_hubungan',TRUE),
                 'pen_alamat' => $this->input->post('pen_alamat',TRUE),
                 'pen_nohp' => $this->input->post('pen_nohp',TRUE),
                 'pen_tgl' => $this->tgl,

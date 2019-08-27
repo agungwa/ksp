@@ -396,11 +396,11 @@ class Neraca extends MY_Base
     	foreach ($setoransimpananwajib as $key => $value) {
     		if ($f<>'' && $t<>'') {	
     			$tgl = date("Y-m-d", strtotime($value->ssw_tglsetor));
-    			if ($tgl >= $f && $tgl <= $t) {
+    			if ($tgl <= $f) {
     				$saldoSimpananwajib += $value->ssw_jmlsetor;
     			}
     		} else {
-    			$saldoSimpananwajib += $value->ssw_jmlsetor;
+    			$saldoSimpananwajib += 0;
     		}
     	}
 
@@ -408,11 +408,11 @@ class Neraca extends MY_Base
     	foreach ($simpananPokok as $key => $value) {
     		if ($f<>'' && $t<>'') {	
     			$tgl = date("Y-m-d", strtotime($value->sip_tglbayar));
-    			if ($tgl >= $f && $tgl <= $t) {
+    			if ($tgl <= $f) {
     				$saldoSimpananpokok += $value->sip_setoran;
     			}
     		} else {
-				$saldoSimpananpokok += $value->sip_setoran;
+				$saldoSimpananpokok += 0;
     		}
 		}	
 		
