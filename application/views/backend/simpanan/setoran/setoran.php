@@ -1,3 +1,4 @@
+
   <div class="row">
     <div class="col-lg-12">
         <div class="ibox">
@@ -8,7 +9,7 @@
 
             <div class="col-md-4 text-left">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="No Simpanan">
+                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="No Simpanan" autofocus>
                         <span class="input-group-btn">
                             <?php 
                                 if ($q <> '')
@@ -33,14 +34,10 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Kode Simpanan</td><td><?php echo $setor['sim_kode']; ?></td></tr>
-	    <tr><td>Angggota</td><td><?php echo $setor['ang_no']; ?></td></tr>
-	    <tr><td>Bunga</td><td><?php echo $setor['bus_id'],' %'; ?></td></tr>
-	    <tr><td>Jenis Simpanan</td><td><?php echo $setor['jsi_id'],' bulan'; ?></td></tr>
-	    <tr><td>Jenis Setoran</td><td><?php echo $setor['jse_id']; ?></td></tr>
-	    <tr><td>Wilayah</td><td><?php echo $setor['wil_kode']; ?></td></tr>
-        <tr><td>Tanggal Pendaftaran</td><td><?php echo $setor['sim_tglpendaftaran']; ?></td></tr>
-        <tr><td>Status</td><td><?php echo $setor['sim_status']; ?></td></tr>
+	    <tr><td class='active'>Kode Simpanan</td><td><?php echo $setor['sim_kode']; ?></td><td class='active'>Angggota</td><td><?php echo $setor['ang_no']; ?></td></tr>
+	    <tr><td class='active'>Bunga</td><td><?php echo $setor['bus_id'],' %'; ?></td><td class='active'>Jenis Simpanan</td><td><?php echo $setor['jsi_id'],' bulan'; ?></td></tr>
+	    <tr><td class='active'>Jenis Setoran</td><td><?php echo $setor['jse_id']; ?><td class='active'>Wilayah</td><td><?php echo $setor['wil_kode']; ?></td></td></tr>
+        <tr><td class='active'>Tanggal Pendaftaran</td><td><?php echo $setor['sim_tglpendaftaran']; ?></td><td class='active'>Status</td><td><?php echo $setor['sim_status']; ?></td></tr>
 	</table>
     <form action="<?php echo site_url('simpanan/setoran_action'); ?>" method="post">
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
@@ -76,7 +73,7 @@
             
     <div class="form-group col-md-4">
         <label for="varchar">Jumlah Setoran <?php echo '(Min Setor Rp ',number_format($setor['min_jse_id'], 0, ".", "."),')'?></label>
-        <input type="number" class="form-control" name="ssi_jmlsetor" min=<?= $setor['min_jse_id'] ?> id="ssi_jmlsetor" placeholder="Jumlah Setor" value="" required="required" />
+        <input type="number" class="form-control" name="ssi_jmlsetor" min=<?= $setor['min_jse_id'] ?> id="theFieldID" placeholder="Jumlah Setor" value="" required="required" autofocus  />
         <input type="hidden" class="form-control" name="sim_kode" id="sim_kode" placeholder="sim_kode" value="<?php echo $setor['sim_kode']; ?>"/>
     </div>
             </tbody>
