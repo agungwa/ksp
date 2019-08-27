@@ -657,7 +657,7 @@ table#03 {
                     </td>
                 <td colspan="2" style="width:152.2pt; padding-right:3.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
-                    <span style="font-family:Cambria">Temanggung, <?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?></span></p>
+                    <span style="font-family:Cambria">Temanggung, <?php echo hari_ini(),',',dateFormataja($this->tgl) ?></span></p>
                 </td>
             </tr>
             <tr style="height:74.5pt">
@@ -667,6 +667,8 @@ table#03 {
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria">KSP Sido Mukti </span><span
                             style="font-family:Cambria">Makmur</span></p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
@@ -688,6 +690,8 @@ table#03 {
                             style="font-family:Cambria; font-weight:bold">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                             style="font-family:Cambria; font-weight:bold">&nbsp;</span></p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
 
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria; font-weight:bold">&nbsp;</span></p>
@@ -704,6 +708,8 @@ table#03 {
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
 
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria; font-weight:bold">&nbsp;</span></p>
@@ -733,6 +739,10 @@ table#03 {
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria; font-weight:bold">(……………………………………)</span></p>
                 </td>
                 <td style="width:153.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
@@ -757,6 +767,10 @@ table#03 {
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria">&nbsp;</span>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria; font-weight:bold">(</span><span
                             style="font-family:Cambria; font-weight:bold">................................</span><span

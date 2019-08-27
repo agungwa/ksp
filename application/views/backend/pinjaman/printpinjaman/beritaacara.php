@@ -4,6 +4,9 @@ table#02 {
     width: 100%;
     text-align: center;
 }
+table#04 {
+    text-align: justify;
+}
 </style>
 
 <?php 
@@ -179,6 +182,10 @@ table#02 {
                                 style="font-family:'Calibri Light'">Selanjutnya disebut </span><span
                                 style="font-family:'Calibri Light'; font-weight:bold">PIHAK PERTAMA</span></p>
                     </td>
+                </tr>
+                <tr>
+        <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
+                style="font-family:'Calibri Light'">&nbsp;</span></p>
                 </tr>
                 <tr>
                     <td style="width:528.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
@@ -517,7 +524,7 @@ table#02 {
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:'Calibri Light'">&nbsp;</span></p>
                     </td>
-                    <td colspan="2" style="width:116.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td colspan="2" style="width:150.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:'Calibri Light'">Jatuh Tempo Pembayaran</span></p>
                     </td>
@@ -537,7 +544,7 @@ table#02 {
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:'Calibri Light'">&nbsp;</span></p>
                     </td>
-                    <td colspan="2" style="width:116.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td colspan="2" style="width:150.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:'Calibri Light'">Waktu Pelunasan Maksimal</span></p>
                     </td>
@@ -560,7 +567,7 @@ table#02 {
                 style="font-family:'Calibri Light'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </span><span style="font-family:'Calibri Light'"> </span><span
                 style="width:34.67pt; text-indent:0pt; display:inline-block">&nbsp;</span></p>
-        <table style="border-collapse:collapse" cellspacing="0" cellpadding="0">
+        <table id="04" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
                     <td style="width:528.95pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
@@ -612,6 +619,10 @@ table#02 {
                             <span style="font-family:'Calibri Light'">PIHAK PERTAMA</span></p>
                         <p style="margin-top:0pt; margin-bottom:10pt; line-height:115%; font-size:10pt"><span
                                 style="font-family:'Calibri Light'">&nbsp;</span></p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
                         <p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:10pt">
                             <span style="font-family:'Calibri Light'">&nbsp;</span></p>
@@ -632,6 +643,10 @@ table#02 {
                             <span style="font-family:'Calibri Light'">PIHAK KEDUA</span></p>
                         <p style="margin-top:0pt; margin-bottom:10pt; line-height:115%; font-size:10pt"><span
                                 style="font-family:'Calibri Light'; font-weight:bold">&nbsp;</span></p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
                         <p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:10pt">
                             <span style="font-family:'Calibri Light'; font-weight:bold">&nbsp;</span></p>
