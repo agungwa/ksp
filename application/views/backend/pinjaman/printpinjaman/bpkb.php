@@ -4,6 +4,9 @@ table#02 {
     width: 100%;
     text-align: center;
 }
+table#03 {
+    text-align: justify;
+}
 </style>
 
 <?php include('header1.php');?>
@@ -156,7 +159,7 @@ table#02 {
             ini membuat pernyataan sebagai berikut:
         </span></p>
     <p style="margin-top:0pt; margin-bottom:0pt; font-size:3pt"><span style="font-family:Calibri">&nbsp;</span></p>
-    <table style="border-collapse:collapse" cellspacing="0" cellpadding="0">
+    <table id="03" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
         <tbody>
             <tr>
                 <td style="width:45.65pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
@@ -644,23 +647,28 @@ table#02 {
     <table style="border-collapse:collapse" cellspacing="0" cellpadding="0">
         <tbody>
             <tr>
-                <td colspan="3" style="width:343.6pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:right; font-size:10pt">
-                        <span style="font-family:Cambria">&nbsp;</span></p>
-                </td>
-                <td colspan="2" style="width:152.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                            style="font-family:Cambria">Temanggung, </span>
-                        <span style="font-family:Cambria"><?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?></span></p>
+                    <td style="width:169pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:right; font-size:10pt"><span
+                                style="font-family:'Calibri Light'">&nbsp;</span></p>
+                    </td>
+                    <td style="width:169.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:right; font-size:10pt"><span
+                                style="font-family:'Calibri Light'">&nbsp;</span></p>
+                    </td>
+                <td colspan="2" style="width:152.2pt; padding-right:3.4pt; padding-left:5.4pt; vertical-align:top">
+                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
+                    <span style="font-family:Cambria">Temanggung, <?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?></span></p>
                 </td>
             </tr>
             <tr style="height:74.5pt">
                 <td style="width:153.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                            style="font-family:Cambria">a.n </span><span style="font-family:Cambria">Direktur</span></p>
+                            style="font-family:Cambria">&nbsp;&nbsp;&nbsp;a.n </span><span style="font-family:Cambria">Direktur</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria">KSP Sido Mukti </span><span
                             style="font-family:Cambria">Makmur</span></p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
@@ -741,7 +749,7 @@ table#02 {
                             <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria">&nbsp;</span>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                            style="font-family:Cambria"><?php echo $penjamin_data->pen_hubungan</span></p>
+                            style="font-family:Cambria"><?php echo $penjamin_data->pen_hubungan ?></span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
