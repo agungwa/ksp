@@ -518,6 +518,31 @@ class Neraca extends MY_Base
 
 		//variable
 
+		//phu
+		$phuGaji = 0;
+		$phuOprasional = 0;
+		$phuLps = 0;
+		$phuKomunikasi = 0;
+		$phuPerlengkapan = 0;
+		$phuPenyusutan = 0;
+		$phuAsuransi = 0;
+		$phuIsentif = 0;
+		$phuPajakkendaraan = 0;
+		$phuRapat = 0;
+		$phuAtk = 0;
+		$phuKeamanan = 0;
+		$phuPhpinjaman = 0;
+		$phuSosial = 0;
+		$phuTasyakuran = 0;
+		$phuKoran = 0;
+		$phuPajakkoprasi = 0;
+		$phuServicekendaraan = 0;
+		$phuKonsumsi = 0;
+		$phuRat = 0;
+		$phuThr = 0;
+		$phuNonoprasional = 0;
+		$phuPerawatankantor = 0;
+
 		//neraca
 		$dataphu = array();
 		
@@ -693,9 +718,65 @@ class Neraca extends MY_Base
     		
 		}
 		
+		//hitung PHU
+		foreach ($phu as $key => $value) {
+			if ($f<>'' && $t<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->phu_tanggal));
+				if ($tgl >= $f && $tgl <= $t)  {
+					$
+					$phuGaji += $value->phu_gaji;
+					$phuOprasional += $value->phu_operasional;
+					$phuLps += $value->phu_lps;
+					$phuKomunikasi += $value->phu_komunikasi;
+					$phuPerlengkapan += $value->phu_perlengkapan;
+					$phuPenyusutan += $value->phu_penyusutan;
+					$phuAsuransi += $value->phu_asuransi;
+					$phuIsentif += $value->phu_insentif;
+					$phuPajakkendaraan += $value->phu_pajakkendaraan;
+					$phuRapat += $value->phu_rapat;
+					$phuAtk += $value->phu_atk;
+					$phuKeamanan += $value->phu_keamanan;
+					$phuPhpinjaman += $value->phu_phpinjaman;
+					$phuSosial += $value->phu_sosial;
+					$phuTasyakuran += $value->phu_tayakuran;
+					$phuKoran += $value->phu_koran;
+					$phuPajakkoprasi += $value->phu_pajakkoprasi;
+					$phuServicekendaraan += $value->phu_servicekendaraan;
+					$phuKonsumsi += $value->phu_rapat;
+					$phuRat += $value->phu_rat;
+					$phuThr += $value->phu_thr;
+					$phuNonoprasional += $value->phu_nonoprasional;
+					$phuPerawatankantor += $value->phu_perawatankantor;
+				}
+			} else {
+				$phuGaji = 0;
+				$phuOprasional = 0;
+				$phuLps = 0;
+				$phuKomunikasi = 0;
+				$phuPerlengkapan = 0;
+				$phuPenyusutan = 0;
+				$phuAsuransi = 0;
+				$phuIsentif = 0;
+				$phuPajakkendaraan = 0;
+				$phuRapat = 0;
+				$phuAtk = 0;
+				$phuKeamanan = 0;
+				$phuPhpinjaman = 0;
+				$phuSosial = 0;
+				$phuTasyakuran = 0;
+				$phuKoran = 0;
+				$phuPajakkoprasi = 0;
+				$phuServicekendaraan = 0;
+				$phuKonsumsi = 0;
+				$phuRat = 0;
+				$phuThr = 0;
+				$phuNonoprasional = 0;
+				$phuPerawatankantor = 0;
+		}
+	}
 		
     	//hitung data phu
-    	foreach ($phu as $key => $item) {
+    	/*foreach ($phu as $key => $item) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->phu_tanggal));
     				if ($tgl >= $f && $tgl <= $t) {
@@ -729,13 +810,37 @@ class Neraca extends MY_Base
 						);
     				}
 			}
-		
-    		
-		}
+    	
+		}*/
 
 		$data = array(
 
 			'kode' => $this->Pengkodean->psis($nowYear),
+
+			//phu		
+			'phugaji' => $phuGaji,
+			'phuoprasional' =>$phuOprasional,
+			'phulps' => $phuLps,
+			'phukomunikasi' => $phuKomunikasi,
+			'phuperlengkapan' => $phuPerlengkapan,
+			'phupenyusutan' => $phuPenyusutan,
+			'phuasuransi' => $phuAsuransi,
+			'phuisentif' => $phuIsentif,
+			'phupajakkendaraan' => $phuPajakkendaraan,
+			'phurapat' => $phuRapat,
+			'phuatk' => $phuAtk,
+			'phukeamanan' => $phuKeamanan,
+			'phuphpinjaman' => $phuPhpinjaman,
+			'phusosial' => $phuSosial,
+			'phutasyakuran' => $phuTasyakuran,
+			'phukoran' => $phuKoran,
+			'phupajakkoprasi' => $phuPajakkoprasi,
+			'phuservicekendaraan' => $phuServicekendaraan,
+			'phukonsumsi' => $phuKonsumsi,
+			'phurat' => $phuRat,
+			'phuthr' => $phuThr,
+			'phunonoprasional' => $phuNonoprasional,
+			'phuperawatankantor' => $phuPerawatankantor,
 
 			//neraca
 			'dataphu' => $dataphu,
