@@ -71,13 +71,12 @@
 			<td><?php echo $karyawan->kar_nik ?></td>
 			<td><?php echo $jab_kode->jab_nama ?></td>
 			<td><?php echo $karyawan->kar_alamat ?></td>
-			<td><?php echo $karyawan->kar_status?></td>
+			<td><?php echo $karyawan->kar_nohp ?></td>
+			<td><?php echo $this->statusKaryawan[$karyawan->kar_status]?></td>
 			<td><?php echo dateFormat($karyawan->kar_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('karyawan/read/'.$karyawan->kar_kode),'Read','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('karyawan/update/'.$karyawan->kar_kode),'Update','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('karyawan/delete/'.$karyawan->kar_kode),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>

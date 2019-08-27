@@ -97,18 +97,110 @@
                 <td class="text-left">Bunga Investasi</td>
 				<td class="text-left"><?= neraca($jasainvestasiditarik);?></td>
             </tr>
-            <?php
-            $totalphu=0;
-            $item = array ();
-            foreach ($dataphu as $key => $item)
-            {
-                $totalphu = $item['phu_gaji']+$item['phu_operasional']+$item['phu_lps']
-                +$item['phu_komunikasi']+$item['phu_perlengkapan']+$item['phu_penyusutan']
-                +$item['phu_asuransi']+$item['phu_insentif']+$item['phu_pajakkendaraan']+$item['phu_rapat']
-                +$item['phu_atk']+$item['phu_keamanan']+$item['phu_phpinjaman']+$item['phu_sosial']
-                +$item['phu_sosial']+$item['phu_tayakuran']+$item['phu_koran']+$item['phu_pajakkoprasi']
-                +$item['phu_servicekendaraan']+$item['phu_konsumsi']+$item['phu_rat']+$item['phu_thr']
-                +$item['phu_nonoprasional']+$item['phu_perawatankantor'];
+            <tr>
+                <td class="text-left">Gaji</td>
+				<td class="text-left"><?= neraca($phugaji);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Listrik</td>
+				<td class="text-left"><?= neraca($phulps);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Komunikasi</td>
+				<td class="text-left"><?= neraca($phukomunikasi);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Perlengkapan</td>
+				<td class="text-left"><?= neraca($phuperlengkapan);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Penyusutan</td>
+				<td class="text-left"><?= neraca($phupenyusutan);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Asuransi</td>
+				<td class="text-left"><?= neraca($phuasuransi);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Isentif</td>
+				<td class="text-left"><?= neraca($phuisentif);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Pajak Kendaraan</td>
+				<td class="text-left"><?= neraca($phupajakkendaraan);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rapat</td>
+				<td class="text-left"><?= neraca($phurapat);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">ATK</td>
+				<td class="text-left"><?= neraca($phuatk);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Keamanan</td>
+				<td class="text-left"><?= neraca($phukeamanan);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">PH Pinjaman</td>
+				<td class="text-left"><?= neraca($phuphpinjaman);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Sosial</td>
+				<td class="text-left"><?= neraca($phusosial);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Tasyakuran</td>
+				<td class="text-left"><?= neraca($phutasyakuran);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Koran</td>
+				<td class="text-left"><?= neraca($phukoran);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Pajak Koprasi</td>
+				<td class="text-left"><?= neraca($phupajakkoprasi);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Service Kendaraan</td>
+				<td class="text-left"><?= neraca($phuservicekendaraan);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Konsumsi</td>
+				<td class="text-left"><?= neraca($phukonsumsi);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">RAT</td>
+				<td class="text-left"><?= neraca($phurat);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">THR</td>
+				<td class="text-left"><?= neraca($phuthr);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Non Oprasional</td>
+				<td class="text-left"><?= neraca($phunonoprasional);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Perawatan Kantor</td>
+				<td class="text-left"><?= neraca($phuperawatankantor);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Bunga Investasi</td>
+				<td class="text-left"><?= neraca($jasainvestasiditarik);?></td>
+            </tr>
+            <!--<?php
+            //$totalphu=0;
+            //$item = array ();
+            //foreach ($dataphu as $key => $item)
+            //{
+                //$totalphu = $item['phu_gaji']+$item['phu_operasional']+$item['phu_lps']
+                //+$item['phu_komunikasi']+$item['phu_perlengkapan']+$item['phu_penyusutan']
+                //+$item['phu_asuransi']+$item['phu_insentif']+$item['phu_pajakkendaraan']+$item['phu_rapat']
+                //+$item['phu_atk']+$item['phu_keamanan']+$item['phu_phpinjaman']+$item['phu_sosial']
+                //+$item['phu_sosial']+$item['phu_tayakuran']+$item['phu_koran']+$item['phu_pajakkoprasi']
+                //+$item['phu_servicekendaraan']+$item['phu_konsumsi']+$item['phu_rat']+$item['phu_thr']
+                //+$item['phu_nonoprasional']+$item['phu_perawatankantor'];
                 ?>
                 <tr>   
 		    <td class="text-left">Phu Gaji</td>
@@ -211,11 +303,12 @@
 		</tr>
                 
                 <?php
-            }
-            ?>
+            //}
+            ?>-->
             </tbody>
         </table>
         <?php
+        $totalphu = $phugaji+ $phuoprasional + $phulps + $phukomunikasi + $phuperlengkapan + $phupenyusutan + $phuasuransi + $phuisentif + $phupajakkendaraan + $phurapat + $phuatk + $phukeamanan + $phuphpinjaman + $phusosial +$phutasyakuran + $phukoran + $phupajakkoprasi + $phuservicekendaraan + $phukonsumsi + $phurat + $phuthr + $phunonoprasional + $phuperawatankantor; 
             $pengeluaranpsis = $bungasimpanan+$jasainvestasiditarik;
             $totalpengeluaran = $totalphu+$bungasimpanan+$jasainvestasiditarik;
             $totalpendapatan = $bungaangsuran + $bungadendapelunasan + $provisipinjaman + $dendaangsuran + $administrasi + $phbuku;
