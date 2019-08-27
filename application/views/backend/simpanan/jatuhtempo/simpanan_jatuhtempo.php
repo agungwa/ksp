@@ -92,7 +92,7 @@
                     <td><?php echo $item['wil_nama'] ?></td>
                     <td><?php echo $item['sim_tglpendaftaran'] ?></td>
                     <td><?php echo $item['tanggalDuedate']?></td>
-                    <td><?php echo $totalsetoran[0]->ssi_jmlsetor?></td>
+                    <td><?php echo rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor)?></td>
                     <td><?php echo $item['statusSimpanan']?></td>
                 </tr>
             
