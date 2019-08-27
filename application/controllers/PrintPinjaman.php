@@ -410,6 +410,7 @@ class PrintPinjaman extends MY_Base
     {
 		$row = $this->Pinjaman_model->get_by_id($id);
 		$jaminan = $this->Jaminan_model->get_by_rek($id);
+		$penjamin = $this->Penjamin_model->get_by_rek($id);
         if ($row) {
             $pin_statuspinjaman = $this->statusPinjaman;
             $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
@@ -424,6 +425,7 @@ class PrintPinjaman extends MY_Base
 		//var_dump($jaminan);
             $data = array(
 				'jaminan_data' => $jaminan,
+				'penjamin_data' => $penjamin,
 				'ang_nama' => $ang_no->ang_nama,
 				'ang_tgllahir' => $ang_no->ang_tgllahir,
 				'ang_alamat' => $ang_no->ang_alamat,
@@ -448,7 +450,7 @@ class PrintPinjaman extends MY_Base
                 'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman],
     	    );
             
-				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Letter', [216, 350]]);
+				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Legal', [216, 356]]);
 				//$header = $this->load->view('backend/pinjaman/printpinjaman/header2.php',$data,true);
 				$html = $this->load->view('backend/pinjaman/printpinjaman/bpkb.php',$data,true);
 				$html1 = $this->load->view('backend/pinjaman/printpinjaman/beritaacara.php',$data,true);

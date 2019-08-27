@@ -8,6 +8,7 @@ class Penjamin_model extends CI_Model
 
     public $table = 'penjamin';
     public $id = 'pen_id';
+    public $pin_id = 'pin_id';
     public $order = 'DESC';
 
     function __construct()
@@ -21,6 +22,13 @@ class Penjamin_model extends CI_Model
         $this->db->where('pen_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
+    }
+
+    // get data by rekening
+    function get_by_rek($pin_id)
+    {
+        $this->db->where('pin_id', $pin_id);
+        return $this->db->get($this->table)->row();
     }
 
     // get data by id
