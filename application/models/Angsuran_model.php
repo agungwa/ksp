@@ -8,6 +8,7 @@ class Angsuran_model extends CI_Model
 
     public $table = 'angsuran';
     public $id = 'ags_id';
+    public $pin_id = 'pin_id';
     public $order = 'DESC';
 
     function __construct()
@@ -47,6 +48,14 @@ class Angsuran_model extends CI_Model
         $where = "ags_status > 0 AND ags_flag < 2";
         $this->db->where($where);
         $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get angsuran belum bayar
+    function get_angsuran_belum($pin_id)
+    {
+        $where = "ags_status = 0 AND pin_id = '$pin_id' AND ags_flag < 2";
+        $this->db->where($where);
         return $this->db->get($this->table)->result();
     }
     // get all pokok

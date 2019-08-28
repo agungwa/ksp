@@ -137,6 +137,10 @@ class Neraca extends MY_Base
     	$bungaDendapelunasan = 0;
     	$totalAngsuran = 0;
 		$totalAngsurantunggakan = 0;
+		$pokokAngsuranbelum  = 0;		
+		$saldoPinjamankhususbelum = 0;
+		$saldoPinjamankaryawanbelum = 0;
+		$saldoPinjamanumumbelum = 0;
 		
 		$satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
@@ -221,7 +225,89 @@ class Neraca extends MY_Base
 		}
 	}
 
+	//angsuran pinjaman anggota/umum belum dibayar
+	foreach ($pinjamanUmumaktif as $key => $value) {
+    	$angsuranBelumbayar = $this->Angsuran_model->get_angsuran_belum($value->pin_id);
+		foreach ($angsuranBelumbayar as $k => $item) {
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
+			
+			if ($f<>'' && $w<>'') {	
+				$tgl = date("Y-m-d", strtotime($item->ags_tgl));
+				//var_dump($value->ags_id);
+					if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
+						$saldoPinjamanumumbelum += $item->ags_jmlpokok ;
+					}
+				} else {
+					$saldoPinjamanumumbelum += $item->ags_jmlpokok;
+			
+			
+		}
+		
+	}
+}
+	//angsuran pinjaman karyawan belum dibayar
+	foreach ($pinjamanKaryawanaktif as $key => $value) {
+    	$angsuranBelumbayar = $this->Angsuran_model->get_angsuran_belum($value->pin_id);
+		foreach ($angsuranBelumbayar as $k => $item) {
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
+			
+			if ($f<>'' && $w<>'') {	
+				$tgl = date("Y-m-d", strtotime($item->ags_tgl));
+				//var_dump($value->ags_id);
+					if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
+						$saldoPinjamankaryawanbelum += $item->ags_jmlpokok ;
+					}
+				} else {
+					$saldoPinjamankaryawanbelum += $item->ags_jmlpokok;
+			
+			
+		}
+		
+	}
+}
+
+//angsuran pinjaman khusus belum dibayar
+foreach ($pinjamanKhususaktif as $key => $value) {
+	$angsuranBelumbayar = $this->Angsuran_model->get_angsuran_belum($value->pin_id);
+	foreach ($angsuranBelumbayar as $k => $item) {
+		$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
+		
+		if ($f<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($item->ags_tgl));
+			//var_dump($value->ags_id);
+				if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
+					$saldoPinjamankhususbelum += $item->ags_jmlpokok ;
+				}
+			} else {
+				$saldoPinjamankhususbelum += $item->ags_jmlpokok;
+		
+		
+	}
 	
+}
+}
+
+//angsuran pinjaman belum dibayar
+	foreach ($pinjamanAktif as $key => $value) {
+    	$angsuranBelumbayar = $this->Angsuran_model->get_angsuran_belum($value->pin_id);
+		foreach ($angsuranBelumbayar as $k => $item) {
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
+			
+			if ($f<>'' && $w<>'') {	
+				$tgl = date("Y-m-d", strtotime($item->ags_tgl));
+				//var_dump($value->ags_id);
+					if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
+						$pokokAngsuranbelum += $item->ags_jmlpokok ;
+					}
+				} else {
+					$pokokAngsuranbelum += $item->ags_jmlpokok;
+			
+			
+		}
+		
+	}
+}
+
     	//hitung saldo angsuran pokok dari pelunasan
     	foreach ($pelunasanPinjaman as $key => $value) {
 			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
@@ -470,6 +556,10 @@ class Neraca extends MY_Base
 			'provisipinjaman' => $provisiPinjaman,
 			'totalangsuran' => $totalAngsuran,
 			'totalangsurantunggakan' => $totalAngsurantunggakan,
+			'pokokangsuranbelum' => $pokokAngsuranbelum,
+			'saldopinjamankhususbelum' => $saldoPinjamankhususbelum,
+			'saldopinjamankaryawanbelum' => $saldoPinjamankaryawanbelum,
+			'saldopinjamanumumbelum' => $saldoPinjamanumumbelum,
 			'f' => $f,
 			't' => $t,
 			'w' => $w,
