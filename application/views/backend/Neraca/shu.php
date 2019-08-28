@@ -82,13 +82,16 @@
                 <td class="text-left">Lain-lain</td>
                 <td class="text-left" width="660px"><input type="number" class="form-control" name="psis_lainlain" id="psis_lainlain" placeholder="lain-lain" value="" required/></td>  
             </td>
+            <tr>
+                <td class="text-left">Jumlah</td>
+				<td class="text-left"><?= neraca($bungaangsuran + $bungadendapelunasan+$provisipinjaman+$dendaangsuran+$administrasi+$phbuku);?></td></td>
             </tr>
             </tbody>
             
         </table>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
-            <h3> Pengeluaran </h3>
+            <h3> Biaya </h3>
             <tr>
                 <td class="text-left">Bunga Simpanan</td>
 				<td class="text-left"><?= neraca($bungasimpanan);?></td>
@@ -184,10 +187,6 @@
             <tr>
                 <td class="text-left">Perawatan Kantor</td>
 				<td class="text-left"><?= neraca($phuperawatankantor);?></td>
-            </tr>
-            <tr>
-                <td class="text-left">Bunga Investasi</td>
-				<td class="text-left"><?= neraca($jasainvestasiditarik);?></td>
             </tr>
             <!--<?php
             //$totalphu=0;
@@ -305,8 +304,7 @@
                 <?php
             //}
             ?>-->
-            </tbody>
-        </table>
+            
         <?php
         $totalphu = $phugaji+ $phuoprasional + $phulps + $phukomunikasi + $phuperlengkapan + $phupenyusutan + $phuasuransi + $phuisentif + $phupajakkendaraan + $phurapat + $phuatk + $phukeamanan + $phuphpinjaman + $phusosial +$phutasyakuran + $phukoran + $phupajakkoprasi + $phuservicekendaraan + $phukonsumsi + $phurat + $phuthr + $phunonoprasional + $phuperawatankantor; 
             $pengeluaranpsis = $bungasimpanan+$jasainvestasiditarik;
@@ -314,6 +312,12 @@
             $totalpendapatan = $bungaangsuran + $bungadendapelunasan + $provisipinjaman + $dendaangsuran + $administrasi + $phbuku;
            $jumlahshu = $totalpendapatan - $totalpengeluaran;
         ?>
+            <tr>
+                <td class="text-left">Total Biaya</td>
+				<td class="text-left"><?= neraca($totalpengeluaran);?></td>
+            </tr>
+            </tbody>
+        </table>
    
         <input type="hidden" class="form-control" name="shu_pendapatan" id="shu_pendapatan" placeholder="shu_pendapatan" value="<?php echo $totalpendapatan ?>" required="required" />
         <input type="hidden" class="form-control" name="shu_pengeluaran" id="shu_pengeluaran" placeholder="shu_pengeluaran" value="<?php echo $totalpengeluaran ?>" required="required" />

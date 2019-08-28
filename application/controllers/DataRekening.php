@@ -25,6 +25,7 @@ class DataRekening extends MY_Base
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
 
     	$simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
+    	$simpananAll = $this->Simpanan_model->get_simpanan_all();
     	$simpananNonaktif = $this->Simpanan_model->get_simpanan_nonaktif();
     	$setoransimpananwajib = $this->Setoransimpananwajib_model->get_all();    	
     	$simpananwajibDitarik = $this->Penarikansimpananwajib_model->get_all();
@@ -75,7 +76,7 @@ class DataRekening extends MY_Base
 		}
 		
 		//hitung saldo simpanan aktif lalu
-		foreach ($simpananAktif as $key => $value) {
+		foreach ($simpananAll as $key => $value) {
     		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
     		foreach ($setoran as $k => $item) {
 				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
@@ -97,9 +98,11 @@ class DataRekening extends MY_Base
     	foreach ($simpananNonaktif as $key => $value) {
     		$penarikan = $this->Penarikansimpanan_model->get_data_penarikan($value->sim_kode);
     		foreach ($penarikan as $k => $item) {
+				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+				$wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $sim_kode->wil_kode))->row();
     			if ($f<>'' && $t<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->pes_tglpenarikan));
-    				if ( $tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
+    				if ( $tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $wil_kode->wil_nama == $w) {
     					$saldoSimpananDitarik += $item->pes_saldopokok;
 	    				$phBuku += $item->pes_phbuku;
 	    				$administrasi += $item->pes_administrasi;
@@ -116,9 +119,11 @@ class DataRekening extends MY_Base
     	foreach ($simpananAktif as $key => $value) {
     		$bungaSetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($value->sim_kode);
     		foreach ($bungaSetoran as $k => $item) {
+				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+				$wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $sim_kode->wil_kode))->row();
     			if ($f<>'' && $t<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
-    				if ($tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
+    				if ($tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $wil_kode->wil_nama == $w) {
     					$bungaSimpanan += $item->bss_bungabulanini;
     				}
     			} else {

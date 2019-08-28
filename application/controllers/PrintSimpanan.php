@@ -129,7 +129,8 @@ class Printsimpanan extends MY_Base
 			}
 			
 		}
-
+		
+		//hitung saldo simpanan aktif lalu
 		foreach ($simpananAktif as $key => $value) {
     		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
     		foreach ($setoran as $k => $item) {
@@ -149,12 +150,14 @@ class Printsimpanan extends MY_Base
 		}
 		
     	//hitung saldo simpanan ditarik
-    	foreach ($simpananAktif as $key => $value) {
+    	foreach ($simpananNonaktif as $key => $value) {
     		$penarikan = $this->Penarikansimpanan_model->get_data_penarikan($value->sim_kode);
     		foreach ($penarikan as $k => $item) {
+				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+				$wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $sim_kode->wil_kode))->row();
     			if ($f<>'' && $t<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->pes_tglpenarikan));
-    				if ( $tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
+    				if ( $tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $wil_kode->wil_nama == $w) {
     					$saldoSimpananDitarik += $item->pes_saldopokok;
 	    				$phBuku += $item->pes_phbuku;
 	    				$administrasi += $item->pes_administrasi;
@@ -171,9 +174,11 @@ class Printsimpanan extends MY_Base
     	foreach ($simpananAktif as $key => $value) {
     		$bungaSetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($value->sim_kode);
     		foreach ($bungaSetoran as $k => $item) {
+				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+				$wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $sim_kode->wil_kode))->row();
     			if ($f<>'' && $t<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
-    				if ($tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
+    				if ($tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $wil_kode->wil_nama == $w) {
     					$bungaSimpanan += $item->bss_bungabulanini;
     				}
     			} else {
@@ -255,6 +260,7 @@ class Printsimpanan extends MY_Base
 			} else {
 					$totalRekeningkeluar++ ;
 		}
+		
 		}
 
 		$data = array(

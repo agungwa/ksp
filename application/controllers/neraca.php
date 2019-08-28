@@ -336,7 +336,7 @@ class Neraca extends MY_Base
 		foreach ($bungaSetoran as $k => $item) {
 			if ($f<>'' && $t<>'') {	
 				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
-				if ($tgl <= $f && $w == 'all' || $tgl <= $f && $item->wil_kode == $w) {
+				if ($tgl <= $f) {
 					$bungaSimpanan += $item->bss_bungabulanini;
 				}
 			} else {
@@ -674,12 +674,12 @@ class Neraca extends MY_Base
 
 	
     	//hitung saldo simpanan ditarik
-    	foreach ($simpananAktif as $key => $value) {
+    	foreach ($simpananNonaktif as $key => $value) {
     		$penarikan = $this->Penarikansimpanan_model->get_data_penarikan($value->sim_kode);
     		foreach ($penarikan as $k => $item) {
     			if ($f<>'' && $t<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->pes_tglpenarikan));
-    				if ( $tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $item->wil_kode == $w) {
+    				if ( $tgl >= $f && $tgl <= $t|| $tgl >= $f && $tgl <= $t) {
 	    				$phBuku += $item->pes_phbuku;
 	    				$administrasi += $item->pes_administrasi;
     				}
