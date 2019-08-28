@@ -89,9 +89,7 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Saldo simpanan</th>
 		<th class="text-center">Saldo Sekarang (Pokok+Bunga)</th>
-		<th class="text-center">Total Saldo</th>
 		<th class="text-center">Tanggal Bunga</th>
-		<th class="text-center">Action</th>
             </tr>
             </thead>
             <tbody><?php
@@ -109,9 +107,7 @@
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $databunga->sim_kode ?></td>
-			<td><?php echo $databunga->bss_saldosimpanan ?></td>
 			<td><?php echo $databunga->bss_saldobulanini ?></td>
-			<td><?php echo $totalsaldo ?></td>
 			<td><?php echo $databunga->bss_tglbunga ?></td>
             </td>
             </tr>
