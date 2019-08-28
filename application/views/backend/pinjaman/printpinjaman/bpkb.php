@@ -7,6 +7,12 @@ table#02 {
 table#03 {
     text-align: justify;
 }
+table#05 {
+    text-align: center;
+}
+table#06 {
+    text-align: right;
+}
 </style>
 
 <?php include('header1.php');?>
@@ -644,22 +650,19 @@ table#03 {
     </table>
     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
         <span style="width:36pt; display:inline-block">&nbsp;</span></p>
-    <table style="border-collapse:collapse" cellspacing="0" cellpadding="0">
-        <tbody>
-            <tr>
-                    <td style="width:169pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+   
+        <table id="06" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td style="width:528.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:right; font-size:10pt"><span
-                                style="font-family:'Calibri Light'">&nbsp;</span></p>
+                                style="font-family:Cambria">Temanggung,
+                                <?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?>.</span></p>
                     </td>
-                    <td style="width:169.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:right; font-size:10pt"><span
-                                style="font-family:'Calibri Light'">&nbsp;</span></p>
-                    </td>
-                <td colspan="2" style="width:152.2pt; padding-right:3.4pt; padding-left:5.4pt; vertical-align:top">
-                    <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
-                    <span style="font-family:Cambria">Temanggung, <?php echo hari_ini(),',',dateFormataja($this->tgl) ?></span></p>
-                </td>
-            </tr>
+                </tr>
+            </tbody>
+        </table>
+<table id="05" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tr style="height:74.5pt">
                 <td style="width:153.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
@@ -685,6 +688,8 @@ table#03 {
                 </td>
                 <td style="width:153.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria; font-weight:bold">&nbsp;</span></p>
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria">Kepala Bagian Pinjaman</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria; font-weight:bold">&nbsp;</span></p>
@@ -701,6 +706,8 @@ table#03 {
                             style="font-family:Cambria; font-weight:bold">(Vika Amelia N, S.E)</span></p>
                 </td>
                 <td colspan="2" style="width:153.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                            style="font-family:Cambria; font-weight:bold">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria">Yang Menyatakan</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
