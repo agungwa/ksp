@@ -454,11 +454,14 @@ class PrintPinjaman extends MY_Base
 				//$header = $this->load->view('backend/pinjaman/printpinjaman/header2.php',$data,true);
 				$html = $this->load->view('backend/pinjaman/printpinjaman/bpkb.php',$data,true);
 				$html1 = $this->load->view('backend/pinjaman/printpinjaman/beritaacara.php',$data,true);
+				$html2 = $this->load->view('backend/pinjaman/printpinjaman/pengambilanunit.php',$data,true);
 				//$mpdf->SetHeader($header);
 				//echo $html,$html1;
 				$mpdf->WriteHTML($html);
 				$mpdf->AddPage();
 				$mpdf->WriteHTML($html1);
+				$mpdf->AddPage();
+				$mpdf->WriteHTML($html2);
 				//$mpdf->Output(); // opens in browser
 				$mpdf->Output('pencairan.pdf','D'); // it downloads the file into the user system, with give name
     

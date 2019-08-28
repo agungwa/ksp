@@ -7,6 +7,9 @@ table#02 {
 table#04 {
     text-align: justify;
 }
+table#05 {
+    text-align: center;
+}
 </style>
 
 <?php 
@@ -435,9 +438,9 @@ table#04 {
                         <p
                             style="margin-top:0pt; margin-left:70.9pt; margin-bottom:0pt; text-indent:-70.9pt; text-align:justify; font-size:10pt">
                             <span style="font-family:'Calibri Light'">BPKB tersebut diatas digunakan sebagai Jaminan
-                                Hutang pada KSP Sido Mukti Makmur senilai:&nbsp;<?php echo rupiah($pinjamanditerima) ?> </span><span
+                                Hutang pada KSP Sido Mukti Makmur senilai:&nbsp;<?php echo rupiah($pin_pinjaman) ?> </span><span
                                 style="font-family:'Calibri Light'">- </span><span
-                                style="font-family:'Calibri Light'; font-style:italic">(<?php echo terbilang($pinjamanditerima) ?>&nbsp;Rupiah)</span></p>
+                                style="font-family:'Calibri Light'; font-style:italic">(<?php echo terbilang($pin_pinjaman) ?>&nbsp;Rupiah)</span></p>
                     </td>
                 </tr>
                 <tr>
@@ -612,6 +615,9 @@ table#04 {
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:'Calibri Light'">Temanggung,<?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?></span>
                 </tr>
+        </table>
+        
+        <table id="05" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
                 <tr>
                     <td style="width:169pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p
