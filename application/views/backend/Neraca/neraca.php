@@ -57,7 +57,7 @@
         <!--<form action="<?php echo site_url('neraca/perhitungan_action'); ?>" method="post"> -->
         <?php
         $kas=$shudata + $bungasimpanan +$saldoinvestasi + $saldosimpananwajib+$saldosimpananpokok+ $pokokangsuranpelunasan + $pokokangsuran + $saldosimpananneraca - $saldopinjamanumum - $saldopinjamankaryawan-$saldopinjamankhusus;
-        $jal=$kas + $kasbankdata + $saldopinjamanumum + $saldopinjamankaryawan+$saldopinjamankhusus;
+        $jal=$kas + $kasbankdata + $saldopinjamanumumbelum + $saldopinjamankaryawanbelum+$saldopinjamankhususbelum;
         $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
         $jkl=$saldosimpananneraca+$bungasimpanan;
         $jkp=$saldoinvestasi+$simpanankaryawandata+$rekeningkoran+$modalpenyertaan;
@@ -77,15 +77,15 @@
             </tr>
             <tr>
                 <td class="text-left">Piutang Anggota</td>
-				<td class="text-left"><?= neraca($saldopinjamanumum);?></td>
+				<td class="text-left"><?= neraca($saldopinjamanumumbelum);?></td>
             </tr>
             <tr>
                 <td class="text-left">Piutang Karyawan</td>
-				<td class="text-left"><?= neraca($saldopinjamankaryawan);?></td>
+				<td class="text-left"><?= neraca($saldopinjamankaryawanbelum);?></td>
             </tr>
             <tr>
                 <td class="text-left">Piutang Khusus</td>
-				<td class="text-left"><?= neraca($saldopinjamankhusus);?></td>
+				<td class="text-left"><?= neraca($saldopinjamankhususbelum);?></td>
             </tr>
             <tr class='info'>
             <td class="text-left">Jumlah Aktiva Lancar</td>

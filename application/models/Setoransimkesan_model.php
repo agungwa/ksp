@@ -26,12 +26,11 @@ class Setoransimkesan_model extends CI_Model
     }
 
     // get group by
-    function get_group_bysikkode($limit, $start = 0, $q = NULL)
+    function get_group_bysikkode($start = 0, $q = NULL)
     {
         $this->db->order_by($this->id, $this->ssk_tglsetoran);
-        $where = "sik_kode LIKE '%$q%' ESCAPE '!' AND ssk_flag < 2 ";
+        $where = "ssk_flag < 2 ";
         $this->db->where($where);
-        $this->db->limit($limit, $start);
         
         //$this->db->select_max($this->id);
          //->from('setoransimkesan')

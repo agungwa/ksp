@@ -99,6 +99,7 @@ lookup();
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simpanan Berjangka</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
+                    <?php if(is_allow('M_UTILITAS')): ?>
                     <li>
                             <a href="#" id="damian">Utilitas Simpanan <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
@@ -117,6 +118,7 @@ lookup();
                             </ul>
                         </li>
                     <li>
+                    <?php endif; ?>
                         <li>
                             <a href="<?=base_url()?>Anggota">Setup Anggota</a>
                         </li>
@@ -158,7 +160,9 @@ lookup();
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simkesan</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
-                        <li>
+                       
+                    <?php if(is_allow('M_UTILITAS')): ?>
+                     <li>
                             <a href="#" id="damian">Utilitas Simkesan<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
@@ -171,7 +175,8 @@ lookup();
                                     <a href="<?=base_url()?>jenisklaim">Jenis Klaim</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> 
+                        <?php endif; ?>
                         <li>
                             <a href="<?=base_url()?>Anggota">Setup Anggota</a>
                         </li>
@@ -207,6 +212,7 @@ lookup();
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Investasi Berjangka</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
+                    <?php if(is_allow('M_UTILITAS')): ?>
                     <li>
                             <a href="#" id="damian">Utilitas Investasi <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
@@ -220,7 +226,8 @@ lookup();
                                     <a href="<?=base_url()?>bungainvestasi">Bunga Investasi</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>   
+                        <?php endif; ?>
                         <li>
                             <a href="<?=base_url()?>Anggota">Setup Anggota</a>
                         </li>
@@ -262,6 +269,7 @@ lookup();
                     <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Pinjaman</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
+                    <?php if(is_allow('M_UTILITAS')): ?>
                         <li>
                             <a href="#" id="damian">Utilitas Pinjaman<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
@@ -291,6 +299,7 @@ lookup();
                                 </li>
                             </ul>
                         </li>
+                        <?php endif; ?>
                         <li>
                             <a href="<?=base_url()?>Anggota">Setup Anggota</a>
                         </li>
