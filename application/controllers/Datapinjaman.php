@@ -152,14 +152,15 @@ class Datapinjaman extends MY_Base
 	
     	//hitung saldo potongan provisi
     	foreach ($pinjamanAktif as $key => $value) {
+			$pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $value->pop_id))->row();
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
 			//var_dump($value->ags_id);
     			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
-    				$provisiPinjaman += $value->pin_pinjaman*$provisi->pop_potongan/100 ;
+    				$provisiPinjaman += $value->pin_pinjaman*$pop_id->pop_potongan/100 ;
     			}
 			} else {
-				$provisiPinjaman += $value->pin_pinjaman*$provisi->pop_potongan/100;
+				$provisiPinjaman += $value->pin_pinjaman*$pop_id->pop_potongan/100;
 		}
 	}
 
