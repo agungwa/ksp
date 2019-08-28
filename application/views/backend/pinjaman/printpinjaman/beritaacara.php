@@ -537,9 +537,8 @@ table#05 {
                     </td>
                     <td style="width:323.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
-                                style="font-family:'Calibri Light'">Tanggal </span><span
-                                style="font-family:'Calibri Light'"><?php echo dateFormatTanggal($pin_tglpencairan) ?></span><span
-                                style="font-family:'Calibri Light'"> Tiap Bulan</span></p>
+                                style="font-family:'Calibri Light'">: Tanggal <?php echo dateFormatTanggal($pin_tglpencairan) ?> Tiap Bulan</span>
+                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -636,7 +635,7 @@ table#05 {
                                 style="font-family:'Calibri Light'">&nbsp;</span></p>
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                                 style="font-family:'Calibri Light'; font-weight:bold">(</span><span
-                                style="font-family:'Calibri Light'; font-weight:bold">........................................</span><span
+                                style="font-family:'Calibri Light'; font-weight:bold"> <?php echo $ang_nama ?> </span><span
                                 style="font-family:'Calibri Light'; font-weight:bold">)</span></p>
                     </td>
                     <td style="width:169.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">

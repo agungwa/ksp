@@ -316,7 +316,7 @@ table#06 {
                         <span style="font-family:Cambria">Bulan</span></p>
                 </td>
             </tr>
-            <tr style="height:12.55pt">
+            <tr>
                 <td style="width:45.65pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria">&nbsp;</span></p>
@@ -325,20 +325,17 @@ table#06 {
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria">&nbsp;</span></p>
                 </td>
-                <td style="width:116.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                <td colspan="2" style="width:130.95pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria">Jatuh Tempo Pembayaran</span></p>
                 </td>
-                <td style="width:3.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                <td style="width:3.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria">:</span></p>
                 </td>
-                <td colspan="4" style="width:316.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                    <p
-                        style="margin-top:0pt; margin-left:70.9pt; margin-bottom:0pt; text-indent:-70.9pt; text-align:justify; font-size:10pt">
-                        <span style="font-family:Cambria">Tanggal </span>
-                        <span style="font-family:Cambria"><?php echo dateFormatTanggal($pin_tglpencairan) ?></span>
-                        <span style="font-family:Cambria"> Tiap Bulan</span></p>
+                <td colspan="3" style="width:302.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
+                        <span style="font-family:Cambria">Tanggal <?php echo dateFormatTanggal($pin_tglpencairan) ?> Tiap Bulan</span></p>
                 </td>
             </tr>
             <tr>
@@ -372,7 +369,7 @@ table#06 {
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria">:</span></p>
                 </td>
-                <td colspan="4" style="width:208.9pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                <td colspan="4" style="width:300.9pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria">Atas hutang&nbsp; tersebut di atas, saya menjaminkan</span>
                     </p>
@@ -723,9 +720,9 @@ table#06 {
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria; font-weight:bold">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                            style="font-family:Cambria; font-weight:bold">(</span><span
-                            style="font-family:Cambria; font-weight:bold">.................................</span><span
-                            style="font-family:Cambria; font-weight:bold">)</span></p>
+                            style="font-family:Cambria; font-weight:bold">( </span><span
+                            style="font-family:Cambria; font-weight:bold"><?php echo $ang_nama ?></span><span
+                            style="font-family:Cambria; font-weight:bold"> )</span></p>
                 </td>
                 <td style="vertical-align:top"></td>
             </tr>
@@ -780,7 +777,7 @@ table#06 {
                             style="font-family:Cambria">&nbsp;</span></p>
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                             style="font-family:Cambria; font-weight:bold">(</span><span
-                            style="font-family:Cambria; font-weight:bold">................................</span><span
+                            style="font-family:Cambria; font-weight:bold"><?php echo $penjamin_data->pen_nama ?></span><span
                             style="font-family:Cambria; font-weight:bold">)</span></p>
                 </td>
                 <td style="vertical-align:top"></td>

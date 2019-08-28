@@ -41,8 +41,13 @@
 	    <tr><td>Status Pinjaman</td><td><?php echo $pin_statuspinjaman; ?></td></tr>
         <tr><td></td><td>
             <a href="<?php echo site_url('pinjaman/?p=4') ?>" class="btn btn-default">Kembali</a>
-            <a href="<?php echo site_url("PrintPinjaman/pencairan/".$pin_id)?>" class="btn btn-default">Print Pencairan</a>
-        </td></tr>
+            <?php if ($jaminan_data->jej_id == 1){
+                echo '
+            <a href="'.site_url("PrintPinjaman/pencairan/".$pin_id).'" class="btn btn-default">Print Pencairan</a>';
+            } else if ($jaminan_data->jej_id == 5){
+                echo '
+            <a href="'.site_url("PrintPinjaman/pencairandeposito/".$pin_id).'") class="btn btn-default">Print PK Deposito</a>';
+            } ?></td></tr>
 	</table>
             </div>
         </div>
