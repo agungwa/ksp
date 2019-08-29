@@ -181,7 +181,7 @@ class Neraca extends MY_Base
     				$saldoPinjamanumum += $value->pin_pinjaman ;
     			}
 			} else {
-				$saldoPinjamanumum == $value->pin_pinjaman;
+				$saldoPinjamanumum += $value->pin_pinjaman;
 		}
 	}
 
@@ -194,7 +194,7 @@ class Neraca extends MY_Base
 					$saldoPinjamankaryawan += $value->pin_pinjaman;
 				}
 			} else {
-				$saldoPinjamankaryawan == $value->pin_pinjaman;
+				$saldoPinjamankaryawan += $value->pin_pinjaman;
 		}
 	}
 
@@ -207,7 +207,7 @@ class Neraca extends MY_Base
 					$saldoPinjamankhusus += $value->pin_pinjaman ;
 				}
 			} else {
-				$saldoPinjamankhusus == $value->pin_pinjaman;
+				$saldoPinjamankhusus += $value->pin_pinjaman;
 		}
 	}
 
