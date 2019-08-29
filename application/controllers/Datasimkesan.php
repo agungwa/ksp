@@ -9,6 +9,7 @@ class DataSimkesan extends MY_Base
         parent::__construct();
         $this->load->model('Simkesan_model');
         $this->load->model('Setoransimkesan_model');
+        $this->load->model('Titipansimkesan_model');
         $this->load->model('Penarikansimkesan_model');
         $this->load->model('Klaimsimkesan_model');
         $this->load->model('Wilayah_model');
@@ -44,6 +45,9 @@ class DataSimkesan extends MY_Base
 		$saldoTunggakantarik = 0;
 		$saldoJumlahtarik = 0;
 		$administrasiTarik = 0;
+		//titipan simkesan
+		$saldoTitipan = 0;
+		$saldoAmbiltitipan = 0;
 
         $satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
@@ -69,6 +73,28 @@ class DataSimkesan extends MY_Base
     				}
     			} else {
     				$saldoSimkesan += $item->ssk_jmlsetor;
+				}
+				
+				
+			}
+			
+		}
+
+		//hitung saldo titipan simkesan
+    	foreach ($simkesanAktif as $key => $value) {
+    		$titipan = $this->Titipansimkesan_model->get_sikkode($value->sik_kode);
+    		foreach ($titipan as $k => $item) {
+				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
+				
+    			if ($f<>'' && $t<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->tts_tgl));
+    				if ($tgl >= $f && $tgl <= $t && 'all' == $w || $tgl >= $f && $tgl <= $t && $sik_kode->wil_kode == $w) {
+						$saldoTitipan += $item->tts_jmltitip;
+						$saldoAmbiltitipan += $item->tts_jmlambil;
+    				}
+    			} else {
+					$saldoTitipan += $item->tts_jmltitip;
+					$saldoAmbiltitipan += $item->tts_jmlambil;
 				}
 				
 				
@@ -213,6 +239,10 @@ class DataSimkesan extends MY_Base
 			'saldotunggakantarik' => $saldoTunggakantarik,
 			'saldojumlahtarik' => $saldoJumlahtarik,
 			'administrasitarik' => $administrasiTarik,
+
+			//data titipan simkesan	
+			'saldotitipan' => $saldoTitipan,
+			'saldoambiltitipan' => $saldoAmbiltitipan,
 
 			//data titipan
             'wilayah_data' => $wilayah,

@@ -58,11 +58,11 @@
             <tbody class="thead-light">
             <tr>
                 <td class="text-left">Saldo simkesan Lalu</td>
-				<td class="text-center"><?= neraca($saldosimkesanlalu);?></td>
+				<td class="text-center"><?= neraca($saldosimkesanlalu + $saldotitipan - $saldoambiltitipan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo simkesan Masuk</td>
-				<td class="text-center"><?= neraca($saldosimkesan);?></td>
+				<td class="text-center"><?= neraca($saldosimkesan + $saldotitipan - $saldoambiltitipan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Penarikan simkesan</td>
