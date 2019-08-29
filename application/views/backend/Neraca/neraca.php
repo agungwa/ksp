@@ -67,7 +67,7 @@
             <tbody class="thead-light">
             <h3> AKTIVA </h3>
             <h4> AKTIVA LANCAR </h4>
-            <tr><?= neraca($saldopinjamanumum);?>
+            <tr>
                 <td class="text-left">Kas</td>
 				<td class="text-left" ><?= neraca($kas);?></td>
             </tr>
