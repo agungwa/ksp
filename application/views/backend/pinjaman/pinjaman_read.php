@@ -46,7 +46,10 @@
             <a href="'.site_url("PrintPinjaman/pencairan/".$pin_id).'" class="btn btn-default">Print Pencairan</a>';
             } else if ($jaminan_data->jej_id == 5){
                 echo '
-            <a href="'.site_url("PrintPinjaman/pencairandeposito/".$pin_id).'") class="btn btn-default">Print PK Deposito</a>';
+            <a href="'.site_url("PrintPinjaman/pencairandeposito/".$pin_id).'") class="btn btn-default">Print Pencairan</a>';
+            } else if ($jaminan_data->jej_id == 2){
+                echo '
+            <a href="'.site_url("PrintPinjaman/pencairansertifikat/".$pin_id).'") class="btn btn-default">Print Pencairan</a>';
             } ?></td></tr>
 	</table>
             </div>
