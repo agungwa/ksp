@@ -78,7 +78,7 @@
 			<td><?php echo $ivb_status[$investasiberjangka->ivb_status] ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('investasiberjangka/tarik?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 
+				echo anchor(site_url('investasiberjangka/tarik?q='.$investasiberjangka->ivb_kode),'Tutup','class="text-navy"'); 
 				?>
 			</td>
 		</tr>
