@@ -86,7 +86,7 @@
 	        	?>
             <div class="col-md-4">
                 <input type="hidden" class="form-control" name="ivb_kode" id="ivb_kode" placeholder="ivb_kode" value="<?php echo $tarik['ivb_kode'];?>" required="required"/>            
-	            <button type="submit" class="btn btn-primary">tarik</button> 
+	            <button type="submit" class="btn btn-primary">Tutup</button> 
                 <a href="<?php echo site_url('investasiberjangka/?p=4') ?>" class="btn btn-default">Batal</a>
             </div>
             <?php 
