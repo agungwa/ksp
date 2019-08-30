@@ -145,6 +145,10 @@
                                 <input type="text" class="form-control" name="pen_nama" id="pen_nama" placeholder="Nama" value="" />
                             </div>
                             <div class="form-group">
+                                <label for="varchar">Hubungan</label>
+                                <input type="text" class="form-control" name="pen_hubungan" id="pen_hubungan" placeholder="Hubungan" value="" />
+                            </div>
+                            <div class="form-group">
                                 <label for="pen_alamat">Alamat</label>
                                 <textarea class="form-control" rows="3" name="pen_alamat" id="pen_alamat" placeholder="Alamat"></textarea>
                             </div>

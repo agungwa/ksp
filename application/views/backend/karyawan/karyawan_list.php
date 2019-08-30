@@ -50,9 +50,11 @@
                 <th class="text-center">No</th>
                 <th class="text-center">Kode</th>
         		<th class="text-center">Nama</th>
+        		<th class="text-center">NO KTP</th>
         		<th class="text-center">Kode</th>
         		<th class="text-center">Alamat</th>
         		<th class="text-center">No Handphone</th>
+        		<th class="text-center">Status</th>
         		<th class="text-center">Tanggal</th>
         		<th class="text-center">Action</th>
             </tr>
@@ -60,20 +62,21 @@
 			<tbody><?php
             foreach ($karyawan_data as $karyawan)
             {
+			$jab_kode = $this->db->get_where('jabatan', array('jab_kode' => $karyawan->jab_kode))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
             <td><?php echo $karyawan->kar_kode ?></td>
 			<td><?php echo $karyawan->kar_nama ?></td>
-			<td><?php echo $karyawan->jab_kode ?></td>
+			<td><?php echo $karyawan->kar_nik ?></td>
+			<td><?php echo $jab_kode->jab_nama ?></td>
 			<td><?php echo $karyawan->kar_alamat ?></td>
 			<td><?php echo $karyawan->kar_nohp ?></td>
+			<td><?php echo $this->statusKaryawan[$karyawan->kar_status]?></td>
 			<td><?php echo dateFormat($karyawan->kar_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('karyawan/read/'.$karyawan->kar_kode),'Read','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('karyawan/update/'.$karyawan->kar_kode),'Update','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('karyawan/delete/'.$karyawan->kar_kode),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>

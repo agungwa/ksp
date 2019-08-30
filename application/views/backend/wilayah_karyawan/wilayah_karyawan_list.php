@@ -58,12 +58,15 @@
 			<tbody><?php
             foreach ($wilayah_karyawan_data as $wilayah_karyawan)
             {
+                $kar_kode = $this->db->get_where('kayawan', array('kar_kode' => $wilayah_karyawan->kar_kode))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $wilayah_karyawan->wil_kode))->row();
+
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $wilayah_karyawan->wil_kode ?></td>
+			<td><?php echo $wilayah_karyawan->wil_nama ?></td>
 			<td><?php echo $wilayah_karyawan->status ?></td>
-			<td><?php echo $wilayah_karyawan->kar_kode ?></td>
+			<td><?php echo $kar_kode->kar_nama ?></td>
 			<td><?php echo dateFormat($wilayah_karyawan->wik_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 

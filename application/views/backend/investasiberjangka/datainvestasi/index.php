@@ -57,31 +57,31 @@
             <tbody class="thead-light">
             <tr>
                 <td class="text-left">Saldo Lalu</td>
-				<td class="text-center">RP <?= neraca($saldoinvestasilalu);?></td>
+				<td class="text-center"><?= neraca($saldoinvestasilalu);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Masuk</td>
-				<td class="text-center">RP <?= neraca($saldoinvestasi);?></td>
+				<td class="text-center"><?= neraca($saldoinvestasi);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Investasi Keluar</td>
-				<td class="text-center">RP <?= neraca($saldoinvestasiditarik);?></td>
+				<td class="text-center"><?= neraca($saldoinvestasiditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Investasi Kini</td>
-				<td class="text-center">RP <?= neraca(($saldoinvestasilalu + $saldoinvestasi)-$saldoinvestasiditarik);?></td>
+				<td class="text-center"><?= neraca(($saldoinvestasilalu + $saldoinvestasi)-$saldoinvestasiditarik);?></td>
             </tr>
             <tr>  
                 <td class="text-left">Jasa Keluar</td>
-				<td class="text-center">RP <?= neraca($jasainvestasiditarik);?></td>
+				<td class="text-center"><?= neraca($jasainvestasiditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Lalu</td>
-				<td class="text-center"><?= $totalrekening;?></td>
+				<td class="text-center"><?= $totalrekeninglalu;?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Masuk</td>
-				<td class="text-center"><?= $totalrekeninglalu;?></td>
+				<td class="text-center"><?= $totalrekening;?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Keluar</td>

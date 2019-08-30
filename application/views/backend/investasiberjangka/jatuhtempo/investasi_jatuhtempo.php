@@ -1,9 +1,3 @@
-<!doctype html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox">
@@ -12,7 +6,7 @@
                 </div>
         <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
-            <form action="<?php echo base_url()?>simpanan/jatuhtempo" class="form-inline" method="get">
+            <form action="<?php echo base_url()?>investasiberjangka/jatuhtempo" class="form-inline" method="get">
             <div class="col-md-8 text-right">
                 <div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
                 <div class="col-md-3">
@@ -50,58 +44,52 @@
                     </div>
             </div>
             </form>
-        </div>
-
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Kode Simpanan</th>
-		<th class="text-center">Kode Anggota</th>
+        <th class="text-center">Rekening Investasi</th>
+		<th class="text-center">Anggota</th>
 		<th class="text-center">Nama Anggota</th>
-		<th class="text-center">Alamat Anggota</th>
 		<th class="text-center">Karyawan</th>
-		<th class="text-center">Bunga (dalam %)</th>
-		<th class="text-center">Jenis Simpanan</th>
-		<th class="text-center">Jenis Setoran</th>
 		<th class="text-center">Wilayah</th>
+		<th class="text-center">Jangka Waktu</th>
+		<th class="text-center">Jasa</th>
+		<th class="text-center">Bunga</th>
+		<th class="text-center">Investasi</th>
 		<th class="text-center">Tanggal Pendaftaran</th>
-		<th class="text-center">Jatuh Tempo</th>
-		<th class="text-center">Total Setoran </th>
+		<th class="text-center">Tanggal Jatuh Tempo</th>
 		<th class="text-center">Status</th>
-
             </tr>
             </thead>
 			<tbody><?php
-            foreach ($datasimpanan as $key => $item)
-            {
-                 $totalsetoran = $this->Setoransimpanan_model->get_totalsetoran($item['sim_kode']);
-                 
-       // var_dump($totalsetoran);
-                ?>
-                <tr>
-                    <td width="80px"><?php echo ++$start ?></td>
-                    <td><?php echo $item['sim_kode'] ?></td>
-                    <td><?php echo $item['ang_no'] ?></td>
-                    <td><?php echo $item['ang_nama'] ?></td>
-                    <td><?php echo $item['ang_alamat'] ?></td>
-                    <td><?php echo $item['kar_nama'] ?></td>
-                    <td><?php echo $item['bus_bunga'] ?></td>
-                    <td><?php echo $item['jsi_simpanan'] ?></td>
-                    <td><?php echo $item['jse_setoran'] ?></td>
-                    <td><?php echo $item['wil_nama'] ?></td>
-                    <td><?php echo $item['sim_tglpendaftaran'] ?></td>
-                    <td><?php echo $item['tanggalDuedate']?></td>
-                    <td><?php echo rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor)?></td>
-                    <td><?php echo $item['statusSimpanan']?></td>
-                </tr>
             
-            <?php 
+             foreach ($datainvestasi as $key=>$item)
+             {
+                 ?>
+                <tr>
+			<td width="80px"><?php echo ++$start ?></td>
+            <td><?php echo $item['ivb_kode'] ?></td>
+            <td><?php echo $item['ang_no'] ?></td>
+			<td><?php echo $item['nama_ang_no'] ?></td>
+			<td><?php echo $item['kar_kode'] ?></td>
+			<td><?php echo $item['wil_kode'] ?></td>
+			<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
+			<td><?php echo $item['jiv_id'] ?></td>
+			<td><?php echo $item['biv_id'] ," %" ?></td>
+			<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
+			<td><?php echo $item['ivb_tglpendaftaran'] ?></td>
+			<td><?php echo $item['jatuhtempo'] ?></td>
+			<td><?php echo $item['ivb_status'] ?></td>
+		</tr>
+                
+                <?php
             }
             ?>
             </tbody>
         </table>
         <div class="row">
+            
         </div>
         </div>
     </div>

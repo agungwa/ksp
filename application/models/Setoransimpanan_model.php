@@ -38,6 +38,12 @@ class Setoransimpanan_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_totalsetoran($sim_kode){
+        $this->db->select_sum('ssi_jmlsetor');
+        $this->db->where('sim_kode =',$sim_kode);
+        return $this->db->get($this->table)->result();
+    }
+
     // get data by sim_kode & tgl
     function get_data_setorTgl($sim_kode, $tglStart, $tglEnd)
     {

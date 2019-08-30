@@ -55,6 +55,7 @@
 		<th class="text-center">Jangka Waktu</th>
 		<th class="text-center">Jasa</th>
 		<th class="text-center">Bunga</th>
+		<th class="text-center">Investasi</th>
 		<th class="text-center">Tanggal Pendaftaran</th>
 		<th class="text-center">Tanggal Jatuh Tempo</th>
 		<th class="text-center">Status</th>
@@ -70,12 +71,13 @@
 			<td width="80px"><?php echo ++$start ?></td>
             <td><?php echo $item['ivb_kode'] ?></td>
             <td><?php echo $item['ang_no'] ?></td>
-			<td><?php echo $item['ang_no'] ?></td>
+			<td><?php echo $item['nama_ang_no'] ?></td>
 			<td><?php echo $item['kar_kode'] ?></td>
 			<td><?php echo $item['wil_kode'] ?></td>
 			<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
 			<td><?php echo $item['jiv_id'] ?></td>
 			<td><?php echo $item['biv_id'] ," %" ?></td>
+			<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
 			<td><?php echo $item['ivb_tglpendaftaran'] ?></td>
 			<td><?php echo $item['jatuhtempo'] ?></td>
 			<td><?php echo $item['ivb_status'] ?></td>

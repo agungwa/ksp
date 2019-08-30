@@ -307,6 +307,7 @@ class Pinjaman extends MY_Base
                 'pin_id' => $this->input->post('pin_id',TRUE),
                 'pen_noktp' => $this->input->post('pen_noktp',TRUE),
                 'pen_nama' => $this->input->post('pen_nama',TRUE),
+                'pen_hubungan' => $this->input->post('pen_hubungan',TRUE),
                 'pen_alamat' => $this->input->post('pen_alamat',TRUE),
                 'pen_nohp' => $this->input->post('pen_nohp',TRUE),
                 'pen_tgl' => $this->tgl,
@@ -428,6 +429,8 @@ class Pinjaman extends MY_Base
     public function read($id) 
     {
         $row = $this->Pinjaman_model->get_by_id($id);
+		$jaminan = $this->Jaminan_model->get_by_rek($id);
+		$penjamin = $this->Penjamin_model->get_by_rek($id);
         if ($row) {
             $pin_statuspinjaman = $this->statusPinjaman;
             $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
@@ -440,6 +443,8 @@ class Pinjaman extends MY_Base
             $surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
                
             $data = array(
+				'jaminan_data' => $jaminan,
+				'penjamin_data' => $penjamin,
                 'pin_id' => $row->pin_id,
                 'ang_no' => $row->ang_no,
                 'nama_ang_no' => $ang_no->ang_nama,

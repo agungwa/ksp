@@ -57,13 +57,22 @@ class Karyawan extends MY_Base
     public function read($id) 
     {
         $row = $this->Karyawan_model->get_by_id($id);
+        $karyawansimpanan = $this->Karyawansimpanan_model->get_by_kar($id);
+        $karyawanijasah = $this->Karyawanijasah_model->get_by_kar($id);
+        $karyawankeluarga = $this->Keluargakaryawan_model->get_by_kar($id);
         if ($row) {
+			$jab_kode = $this->db->get_where('jabatan', array('jab_kode' => $row->jab_kode))->row();
             $data = array(
+                'karyawansimpanan' => $karyawansimpanan,
+                'karyawanijasah' => $karyawanijasah,
+                'karyawankeluarga' => $karyawankeluarga,
 		'kar_kode' => $row->kar_kode,
 		'kar_nama' => $row->kar_nama,
-		'jab_kode' => $row->jab_kode,
+		'kar_nik' => $row->kar_nik,
+		'jab_kode' => $jab_kode->jab_nama,
 		'kar_alamat' => $row->kar_alamat,
 		'kar_nohp' => $row->kar_nohp,
+		'kar_status' => $row->kar_status,
         'content' => 'backend/karyawan/karyawan_read',
 	    );
             $this->load->view(
@@ -76,9 +85,8 @@ class Karyawan extends MY_Base
 
     public function create() 
     {
-        $nowYear = date('d');
         $data = array(
-            'kode' => $this->Pengkodean->karyawan($nowYear),
+            'kode' => $this->Pengkodean->karyawan(),
             'button' => 'Simpan',
             'action' => site_url('karyawan/create_action'),
     	    'kar_kode' => set_value('kar_kode'),
@@ -101,6 +109,7 @@ class Karyawan extends MY_Base
             $dataKaryawan = array(
             'kar_kode' => $this->input->post('kar_kode',TRUE),
     		'kar_nama' => $this->input->post('kar_nama',TRUE),
+    		'kar_nik' => $this->input->post('kar_nik',TRUE),
     		'jab_kode' => $this->input->post('jab_kode',TRUE),
     		'kar_alamat' => $this->input->post('kar_alamat',TRUE),
     		'kar_nohp' => $this->input->post('kar_nohp',TRUE),
