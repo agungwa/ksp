@@ -146,7 +146,7 @@ lookup();
                                     <a href="<?=base_url()?>simpanan/jatuhtempo">Data Jatuh Tempo</a>
                                 </li>
                                 <li>
-                                    <a href="<?=base_url()?>datarekening">Neraca / Sirkulasi</a>
+                                    <a href="<?=base_url()?>datarekening">Sirkulasi</a>
                                 </li>
                             </ul>
                         </li>
@@ -201,7 +201,7 @@ lookup();
                             <a href="<?=base_url()?>Simkesandata" id="damian">Data Simkesan</a>
                             
                         </li>
-                        <li><a href="<?=base_url()?>Datasimkesan">Neraca / Sirkulasi</a></li>
+                        <li><a href="<?=base_url()?>Datasimkesan">Sirkulasi</a></li>
                     </ul>
                 </li>
 
@@ -255,7 +255,7 @@ lookup();
                             <a href="#" id="damian">Data<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="<?=base_url()?>datainvestasi">Data Investasi</a>
+                                    <a href="<?=base_url()?>datainvestasi">Sirkulasi</a>
                                 </li>
                             </ul>
                         </li>
@@ -328,7 +328,7 @@ lookup();
                             <a href="#" id="damian">Data / Laporan<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
-                                    <a href="<?=base_url()?>Datapinjaman">Data Pinjaman / Sirkulasi</a>
+                                    <a href="<?=base_url()?>Datapinjaman">Sirkulasi</a>
                                 </li>
                                
                                 
@@ -374,6 +374,45 @@ lookup();
                     </ul>
                     <ul class="nav nav-second-level">
                         <li><a href="<?=site_url('neraca/neraca')?>">Neraca</a></li>
+                    </ul>
+                    </li></li>
+
+                <!-- MENU NERACA SIMKESAN -->
+                <li class="">
+                    <?php if(is_allow('M_LAPORAN')): ?>
+                <a href="index.html"><i class="fa fa-list"></i> <span class="nav-label">Neraca Simkesan</span> <span class="fa arrow"></span></a>
+                <?php endif; ?>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=site_url('phusimkesan')?>">Biaya PHU Simkesan</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=site_url('datasimkesan/hitungphu/')?>">Hitung SHU/Bulan</a></li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                    <li>
+                            <a href="#" id="damian">Input Aktiva<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a href="<?=site_url('neracakasbank/')?>">Input Kas Bank</a></li>
+                                <li><a href="<?=site_url('neracaaktivatetap/')?>">Input Aktiva Tetap</a></li>
+                            </ul>
+                        </li>
+                    <li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                    <li>
+                            <a href="#" id="damian">Input Pasiva<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="<?=base_url()?>neracaekuitas/">Neraca Ekuitas</a>
+                                </li>
+                                <li>
+                                    <a href="<?=base_url()?>neracakewajibanjangkapanjang/">Kewajiban Jangka Panjang</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-second-level">
+                        <li><a href="<?=site_url('neraca/neraca')?>">Neraca Simkesan</a></li>
                     </ul>
                     </li></li>
 
@@ -505,6 +544,7 @@ lookup();
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/chartJs/Chart.min.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/toastr/toastr.min.js"></script>
     <script src="<?=base_url()?>assets/js/sf.js"></script>
+    <script type="text/javascript" src="<?=base_url()?>assets/js/my.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -525,6 +565,59 @@ lookup();
         var yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd ;
         $("#todays-date").attr("value", today)
+
+        
+         /* Tanpa Rupiah */
+    var tanpa_rupiah = document.getElementById('tanpa-rupiah');
+    tanpa_rupiah.addEventListener('keyup', function(e)
+    {
+        tanpa_rupiah.value = formatRupiah(this.value);
+    });
+    
+    /* Dengan Rupiah */
+    var dengan_rupiah = document.getElementById('dengan-rupiah');
+    dengan_rupiah.addEventListener('keyup', function(e)
+    {
+        dengan_rupiah.value = formatRupiah(this.value, 'Rp. ');
+    });
+    
+    /* Fungsi */
+    function formatRupiah(angka, prefix)
+    {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split    = number_string.split(','),
+            sisa     = split[0].length % 3,
+            rupiah     = split[0].substr(0, sisa),
+            ribuan     = split[0].substr(sisa).match(/\d{3}/gi);
+            
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+        
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
+
+            function harga()
+        {
+        var angka = bersihPemisah(bersihPemisah(bersihPemisah(bersihPemisah(document.getElementById('harga').value)))); //input ke dalam angka tanpa titik
+        if (document.getElementById('harga').value == "")
+        {
+            alert("Jangan Dikosongi");
+            document.getElementById('harga').focus();
+            return false;
+        }
+            else
+            if (angka >= 1)
+            {
+            alert("angka aslinya : "+angka);
+            document.getElementById('harga').focus();
+            document.getElementById('harga').value = tandaPemisahTitik(angka);
+            return false;
+            }
+        }
+
     </script>
 </body>
 </html>
