@@ -49,6 +49,15 @@ class Simkesan_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
+    
+    // get simkesan aktif plan
+    function get_simkesan_plan($psk_id)
+    {
+        $where = "sik_status = 0 AND psk_id = '$psk_id' AND sik_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
 
     // get simkesan nonaktif
     function get_simkesan_nonaktif()
