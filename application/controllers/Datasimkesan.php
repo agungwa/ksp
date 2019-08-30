@@ -88,7 +88,7 @@ class DataSimkesan extends MY_Base
 				
     			if ($f<>'' && $t<>'' && $w<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->tts_tgl));
-    				if ($tgl >= $f && $tgl <= $t && 'all' == $w || $tgl >= $f && $tgl <= $t && $sik_kode->wil_kode == $w) {
+    				if ($tgl <= $f && $tgl <= $t && 'all' == $w || $tgl >= $f && $tgl <= $t && $sik_kode->wil_kode == $w) {
 						$saldoTitipan += $item->tts_jmltitip;
 						$saldoAmbiltitipan += $item->tts_jmlambil;
     				}
