@@ -392,27 +392,13 @@ lookup();
                     <li>
                             <a href="#" id="damian">Input Aktiva<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-                                <li><a href="<?=site_url('neracakasbank/')?>">Input Kas Bank</a></li>
-                                <li><a href="<?=site_url('neracaaktivatetap/')?>">Input Aktiva Tetap</a></li>
+                                <li><a href="<?=site_url('neracakasbanksimkesan/')?>">Input Kas Bank</a></li>
                             </ul>
                         </li>
                     <li>
                     </ul>
                     <ul class="nav nav-second-level">
-                    <li>
-                            <a href="#" id="damian">Input Pasiva<span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="<?=base_url()?>neracaekuitas/">Neraca Ekuitas</a>
-                                </li>
-                                <li>
-                                    <a href="<?=base_url()?>neracakewajibanjangkapanjang/">Kewajiban Jangka Panjang</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-second-level">
-                        <li><a href="<?=site_url('neraca/neraca')?>">Neraca Simkesan</a></li>
+                        <li><a href="<?=site_url('datasimkesan/neraca')?>">Neraca Simkesan</a></li>
                     </ul>
                     </li></li>
 

@@ -15,6 +15,7 @@ class DataSimkesan extends MY_Base
         $this->load->model('Phusimkesan_model');
         $this->load->model('Phusimkesanpendapatan_model');
         $this->load->model('Shusimkesan_model');
+        $this->load->model('Neracakasbanksimkesan_model');
         $this->load->model('Wilayah_model');
     }
 
@@ -268,6 +269,10 @@ class DataSimkesan extends MY_Base
     	$simkesanKlaim = $this->Klaimsimkesan_model->get_all();    	
     	$simkesanDitarik = $this->Penarikansimkesan_model->get_all();
     	$shuSimkesan = $this->Shusimkesan_model->get_all();
+    	$rekeningplanA = $this->Simkesan_model->get_simkesan_plan(1);
+    	$rekeningplanB = $this->Simkesan_model->get_simkesan_plan(2);
+    	$rekeningplanC = $this->Simkesan_model->get_simkesan_plan(3);
+    	$kasBank = $this->Neracakasbanksimkesan_model->get_all();
         $wilayah = $this->Wilayah_model->get_all();		
 
 		//rekening simkesan
@@ -299,6 +304,19 @@ class DataSimkesan extends MY_Base
 		//shu simkesan
 		$shuSimkesandata = 0;
 
+		//kas bank
+		$kasBankdata = 0;
+
+		//data rekening plan
+		$totalRekeningA = 0;
+		$totalRekeningB = 0;
+		$totalRekeningC = 0;
+
+		//data setoran plan
+		$saldoSimkesanA = 0;
+		$saldoSimkesanB = 0;
+		$saldoSimkesanC = 0;
+
         $satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
         $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
@@ -316,7 +334,7 @@ class DataSimkesan extends MY_Base
     		foreach ($setoran as $k => $item) {
 				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
 				
-    			if ($f<>'' && $t<>'' && $w<>'') {	
+    			if ($f<>'' && $w<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->ssk_tglsetoran));
     				if ($tgl <= $f &&'all' == $w || $tgl <= $f && $sik_kode->wil_kode == $w) {
 						$saldoSimkesan += $item->ssk_jmlsetor;
@@ -329,8 +347,106 @@ class DataSimkesan extends MY_Base
 			}
 			
 		}
-
+		
+    	//hitung saldo simkesan aktif plan a
+    	foreach ($rekeningplanA as $key => $value) {
+    		$setoran = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
+    		foreach ($setoran as $k => $item) {
+				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
 				
+    			if ($f<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->ssk_tglsetoran));
+    				if ($tgl <= $f &&'all' == $w || $tgl <= $f && $sik_kode->wil_kode == $w) {
+						$saldoSimkesanA += $item->ssk_jmlsetor;
+    				}
+    			} else {
+    				$saldoSimkesanA += $item->ssk_jmlsetor;
+				}
+				
+				
+			}
+			
+		}
+
+    	//hitung saldo simkesan aktif plan b
+    	foreach ($rekeningplanB as $key => $value) {
+    		$setoran = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
+    		foreach ($setoran as $k => $item) {
+				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
+				
+    			if ($f<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->ssk_tglsetoran));
+    				if ($tgl <= $f &&'all' == $w || $tgl <= $f && $sik_kode->wil_kode == $w) {
+						$saldoSimkesanB += $item->ssk_jmlsetor;
+    				}
+    			} else {
+    				$saldoSimkesanB += $item->ssk_jmlsetor;
+				}
+				
+				
+			}
+			
+		}
+
+    	//hitung saldo simkesan aktif plan c
+    	foreach ($rekeningplanC as $key => $value) {
+    		$setoran = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
+    		foreach ($setoran as $k => $item) {
+				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
+				
+    			if ($f<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->ssk_tglsetoran));
+    				if ($tgl <= $f &&'all' == $w || $tgl <= $f && $sik_kode->wil_kode == $w) {
+						$saldoSimkesanC += $item->ssk_jmlsetor;
+    				}
+    			} else {
+    				$saldoSimkesanC += $item->ssk_jmlsetor;
+				}
+				
+				
+			}
+			
+		}
+
+		//rekening simkesan plan A
+		foreach ($rekeningplanA as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+					$totalRekeningA++ ;
+    			}
+			} else {
+					$totalRekeningA++ ;
+		}
+		}
+
+		//rekening simkesan plan B
+		foreach ($rekeningplanB as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+					$totalRekeningB++ ;
+    			}
+			} else {
+					$totalRekeningB++ ;
+		}
+		}
+
+		//rekening simkesan plan C
+		foreach ($rekeningplanC as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+					$totalRekeningC++ ;
+    			}
+			} else {
+					$totalRekeningC++ ;
+		}
+		}
+		
 		//shu
     	foreach ($shuSimkesan as $key => $value) {
 			if ($f<>'' && $w<>'') {	
@@ -343,6 +459,19 @@ class DataSimkesan extends MY_Base
 				$shuSimkesandata += $value->shus_jumlah;
 		}
 	}
+				
+		//kas bank
+		foreach ($kasBank as $key => $value) {
+			if ($f<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->nkbs_tanggal));
+			//var_dump($value->ags_id);
+				if (($tgl <= $f) )  {
+					$kasBankdata += $value->nkbs_jumlah;
+				}
+			} else {
+				$kasBankdata += $value->nkbs_jumlah;
+		}
+	}
 
 
 		//hitung saldo titipan simkesan
@@ -353,7 +482,7 @@ class DataSimkesan extends MY_Base
 				
     			if ($f<>'' && $t<>'' && $w<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->tts_tgl));
-    				if ($tgl <= $f && $tgl <= $t && 'all' == $w || $tgl >= $f && $tgl <= $t && $sik_kode->wil_kode == $w) {
+    				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sik_kode->wil_kode == $w) {
 						$saldoTitipan += $item->tts_jmltitip;
 						$saldoAmbiltitipan += $item->tts_jmlambil;
     				}
@@ -398,7 +527,20 @@ class DataSimkesan extends MY_Base
 
 			//data shu
 			'shusimkesandata' => $shuSimkesandata,
-			
+
+			//data kas bank
+			'kasbankdata' => $kasBankdata,
+
+			//data rekening
+			'totalRekeninga' => $totalRekeningA,
+			'totalRekeningb' => $totalRekeningB,
+			'totalRekeningc' => $totalRekeningC,
+
+			//data setoran plan
+			'saldoSimkesana' => $saldoSimkesanA,
+			'saldoSimkesanb' => $saldoSimkesanB,
+			'saldoSimkesanc' => $saldoSimkesanC,
+
             'wilayah_data' => $wilayah,
 			'f' => $f,
 			't' => $t,
@@ -489,6 +631,8 @@ class DataSimkesan extends MY_Base
 			}
 			
 		}
+
+		
 
 		//hitung saldo titipan simkesan
     	foreach ($simkesanAktif as $key => $value) {
@@ -625,7 +769,6 @@ class DataSimkesan extends MY_Base
 				$phuLainlain += 0;
 		}
 	}
-
 
 		//rekening simkesan lalu
 		foreach ($simkesanAktif as $key => $value) {
