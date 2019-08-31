@@ -59,18 +59,22 @@
         $pihutanga = ($totalRekeninga*3000000)-$saldoSimkesana;
         $pihutangb = ($totalRekeningb*5000000)-$saldoSimkesanb;
         $pihutangc = ($totalRekeningc*9000000)-$saldoSimkesanc;
-        $kas=$saldosimkesan + $saldotitipan - $saldoambiltitipan + $shusimkesandata - $pihutanga - $pihutangb - $pihutangc;
+        $kas=$saldosimkesan + $saldotitipan - $saldoambiltitipan + $shusimkesandata;
         $jal=$kas + $kasbankdata +$pihutanga + $pihutangb + $pihutangc;
+        $jumlahpihutang= $pihutanga + $pihutangb + $pihutangc;
 
         $hutanga = ($saldoSimkesana/50000) * 17000;
         $hutangb = ($saldoSimkesanb/100000) * 34000;
         $hutangc = ($saldoSimkesanc/150000) * 50000;
-        $jkl=$hutanga+$hutangb+$hutangc;
+        $jkl=$saldoSimkesana+$saldoSimkesanb+$saldoSimkesanc;
 
         $titipantotal = $saldotitipan - $saldoambiltitipan;
-        $pasiva = $jkl + $titipantotal + $shusimkesandata;
-        $jkp=$jal- $pasiva;
-        $jumlahpasiva=$pasiva+$jkp;
+        
+        $hutangjangka=$hutanga+$hutangb+$hutangc;
+        $jkp=$hutangjangka;
+        $pasiva = $jkp+$titipantotal+$shusimkesandata;
+        $estimasi=$jal- $pasiva;
+        $jumlahpasiva=$jkp+$estimasi+$titipantotal+$shusimkesandata;
         ?>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
@@ -85,6 +89,9 @@
 				<td class="text-left"><?= neraca($kasbankdata);?></td>
             </tr>
             <tr>
+                <td class="text-left">PIUTANG</td>
+            </tr>
+            <tr>
                 <td class="text-left">Plan A</td>
 				<td class="text-left"><?= rupiah($pihutanga);?></td>
             </tr>
@@ -97,6 +104,10 @@
 				<td class="text-left"><?= rupiah($pihutangc);?></td>
             </tr>
             <tr class='info'>
+                <td class="text-left">Jumlah Pihutang</td>
+				<td class="text-left"><?= neraca($jumlahpihutang);?></td>
+            </tr>
+            <tr class='danger'>
             <td class="text-left">Jumlah Aktiva Lancar</td>
                 <td class="text-left" width="380px"><?= rupiah($jal);?></td>
             </td>
@@ -111,6 +122,27 @@
             <h4> Hutang Pokok</h4>
             <tr>
                 <td class="text-left" width="660px">Plan A</td>
+				<td class="text-left"><?= neraca($saldoSimkesana);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Plan B</td>
+				<td class="text-left"><?= neraca($saldoSimkesanb);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Plan C</td>
+				<td class="text-left"><?= neraca($saldoSimkesanc);?></td>
+            </tr>
+            <tr class='info'>
+                <td class="text-left">Jumlah Hutang Pokok</td>
+				<td class="text-left"><?= neraca($jkl);?></td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <tbody class="thead-light">
+            <h4> KEWAJIBAN MASA DEPAN</h4>
+            <tr>
+                <td class="text-left" width="660px">Plan A</td>
 				<td class="text-left"><?= neraca($hutanga);?></td>
             </tr>
             <tr>
@@ -122,22 +154,16 @@
 				<td class="text-left"><?= neraca($hutangc);?></td>
             </tr>
             <tr class='info'>
-                <td class="text-left">Jumlah Kewajiban</td>
-				<td class="text-left"><?= neraca($jkl);?></td>
+                <td class="text-left">Jumlah Kewajiban Manfaat Masadepan</td>
+				<td class="text-left"><?= neraca($jkp);?></td>
             </tr>
-            </tbody>
-        </table>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <tbody class="thead-light">
-            <h4> KEWAJIBAN MASA DEPAN</h4>
             <tr>
                 <td class="text-left" width="660px">Estimasi Kewajiban Klaim</td>
-				<td class="text-left"><?= neraca($jkp);?></td>
+				<td class="text-left"><?= neraca($estimasi);?></td>
             </tr>
             <tr class='info'>
-                <td class="text-left">Jumlah Kewajiban Lancar</td>
-				<td class="text-left"><?= neraca($jkp);?></td>
-                
+                <td class="text-left" width="660px">Jumlah Kewajiban Lancar</td>
+				<td class="text-left"><?= neraca($estimasi+$jkp);?></td>
             </tr>
             <tr>
                 <td class="text-left">Titipan</td>
@@ -161,7 +187,7 @@
             <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
             <tr class='danger'>
-                <td class="text-left">Jumlah</td>
+                <td class="text-left">Jumlah Pasiva</td>
 				<td class="text-left"><?= neraca($jumlahpasiva);?></td>
             </tr>
             </tbody>

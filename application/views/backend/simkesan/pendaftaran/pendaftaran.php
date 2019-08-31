@@ -86,10 +86,6 @@
                         <label for="varchar">Hubungan </label>
                         <input type="text" class="form-control" name="aws_hubungan" id="aws_hubungan" placeholder="Hubungan" value="" required="required" />
                     </div>
-                    <div class="form-group">
-                        <label for="aws_lampiran">Lampiran</label>
-                        <textarea class="form-control" rows="3" name="aws_lampiran" id="aws_lampiran" placeholder="Lampiran" required="required" ></textarea>
-                    </div>
                     </div>
                     <div class="col-md-8">
                         <button type="submit" class="btn btn-primary">Simpan</button>

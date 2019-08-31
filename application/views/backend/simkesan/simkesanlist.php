@@ -56,7 +56,7 @@
 		<th class="text-center">Karyawan</th>
 		<th class="text-center">Plan Simkesan</th>
 		<th class="text-center">Wilayah</th>
-		<th class="text-center">Titipan</th>
+		<th class="text-center">Lampiran</th>
 		<th class="text-center">Tanggal Pendaftaran</th>
 		<th class="text-center">Tanggal Berakhir</th>
 		<th class="text-center">Status</th>
