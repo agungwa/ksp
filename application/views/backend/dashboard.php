@@ -4,7 +4,7 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <span class="label label-success pull-right">Data</span>
-                        <h5>Deposito</h5>
+                        <h5>Investasi Berjangka</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">Data </h1>
@@ -56,8 +56,8 @@
             <div class="col-lg-4">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-primary pull-right"> Data Nasabah</span>
-                        <h5>Nasabah</h5>
+                        <span class="label label-primary pull-right"> Data Anggota</span>
+                        <h5>Anggota/Calon Anggota</h5>
                     </div>
                     <div class="ibox-content">
                         <div class="row">
@@ -69,7 +69,7 @@
                             <div class="col-md-6">
                                 <h1 class="no-margins">Data </h1>
                                 <div class="stat-percent font-bold text-info">11% <i class="fa fa-level-up"></i> 
-                                </div><small>Non Anggota</small>
+                                </div><small>Calon Anggota</small>
                             </div>
                         </div>
 
@@ -105,7 +105,7 @@
                                             Rata-rata: 86%
                                         </span>
                             <h3 class="font-bold no-margins">
-                                Data Pinjaman Nasabah
+                                Data Pinjaman Anggota
                             </h3>
                             <small>Tahun <?=date('Y')?></small>
                         </div>

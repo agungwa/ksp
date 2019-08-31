@@ -55,10 +55,11 @@
             </form>
         </div>
         <?php
+        $pendapatansimkesan = ($saldosimkesan + $saldotitipan) * 2/100;
         $pendapatanklaim = $saldosetorklaim + $saldotunggakanklaim - $saldojumlahklaim;
         $pendapatantarik = $saldosetortarik + $saldotunggakantarik - $saldojumlahtarik;
         $administrasiall = $administrasiklaim + $administrasitarik;
-        $pendapatanjumlah = $pendapatanklaim + $pendapatantarik + $saldosimkesanhangus;
+        $pendapatanjumlah = $pendapatanklaim + $pendapatantarik + $saldosimkesanhangus + $pendapatansimkesan;
         ?>
         <form action="<?php echo site_url('datasimkesan/hitungphu_action'); ?>" method="post">
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
@@ -79,6 +80,10 @@
             <tr>
                 <td class="text-left">Administrasi</td>
 				<td class="text-left"><?= neraca($administrasiall);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Pendapatan Simkesan</td>
+				<td class="text-left"><?= neraca($pendapatansimkesan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Lain-lain</td>
