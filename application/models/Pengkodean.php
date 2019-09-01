@@ -8,15 +8,18 @@ class Pengkodean extends CI_Model
 
     function __construct()
     {
+        
+        $this->load->model('Kantorksp_model');
         parent::__construct();
     }
 
     // input kode Anggota
 
         public function kode(){
+            $kantorksp = $this->Kantorksp_model->get_by_id(1);  
             $this->db->select('RIGHT(anggota.ang_no,2) as ang_no', FALSE);
             $this->db->order_by('ang_no','DESC');    
-            $this->db->limit(1);    
+            $this->db->limit(1);  
             $query = $this->db->get('anggota');  //cek dulu apakah ada sudah ada kode di tabel.    
             if($query->num_rows() <> 0){      
                 //cek kode jika telah tersedia    
@@ -28,12 +31,13 @@ class Pengkodean extends CI_Model
             }
                 $tgl=date('dmy'); 
                 $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
-                $kodetampil = "K".$tgl.$batas;  //format kode
+                $kodetampil = "$kantorksp->kks_kode".$tgl.$batas;  //format kode
                 return $kodetampil;  
         }
 
     // input kode Simpanan Berjangka 9 Bulan
         public function simpananana($nowYear){
+            $kantorksp = $this->Kantorksp_model->get_by_id(1);  
             $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
             $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%d') = ", $nowYear); 
             $this->db->limit(1);
@@ -48,11 +52,12 @@ class Pengkodean extends CI_Model
             }
                 $tgl=date('dmy'); 
                 $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
-                $kodetampil = "K"."A".$tgl.$batas;
+                $kodetampil = "$kantorksp->kks_kode"."A".$tgl.$batas;
                 return $kodetampil;  
         }
     // input kode simpanan berjangka 12 bulan
        public function simpanananb($nowYear){
+        $kantorksp = $this->Kantorksp_model->get_by_id(1); 
             $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
             $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%d') = ", $nowYear);
             $this->db->limit(1);
@@ -67,12 +72,13 @@ class Pengkodean extends CI_Model
             }
                 $tgl=date('dmy'); 
                 $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
-                $kodetampil = "K"."B".$tgl.$batas;
+                $kodetampil = "$kantorksp->kks_kode"."B".$tgl.$batas;
                 return $kodetampil;  
         }
 
     // input kode investasi berjangka
        public function investasiberjangka($nowYear){
+        $kantorksp = $this->Kantorksp_model->get_by_id(1); 
         $this->db->select('RIGHT(investasiberjangka.ivb_kode,2) as ivb_kode', FALSE);
         $this->db->where("DATE_FORMAT(ivb_tglpendaftaran, '%d') = ", $nowYear);
         $this->db->limit(1);
@@ -87,12 +93,13 @@ class Pengkodean extends CI_Model
         }
             $tgl=date('dmy'); 
             $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
-            $kodetampil = "K"."D".$tgl.$batas;
+            $kodetampil = "$kantorksp->kks_kode"."D".$tgl.$batas;
             return $kodetampil;  
     }
 
     // input kode pinjaman
     public function pinjaman($nowYear){
+        $kantorksp = $this->Kantorksp_model->get_by_id(1); 
         $this->db->select('RIGHT(pinjaman.pin_id,2) as pin_id', FALSE);
         $this->db->where("DATE_FORMAT(pin_tglpengajuan, '%d') = ", $nowYear);
         $this->db->limit(1);
@@ -107,12 +114,13 @@ class Pengkodean extends CI_Model
         }
             $tgl=date('dmy'); 
             $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
-            $kodetampil = "K"."E".$tgl.$batas;
+            $kodetampil = "$kantorksp->kks_kode"."E".$tgl.$batas;
             return $kodetampil;  
     }
 
     // input kode simkesan
     public function simkesan($nowYear){
+        $kantorksp = $this->Kantorksp_model->get_by_id(1); 
         $this->db->select('RIGHT(simkesan.sik_kode,2) as sik_kode', FALSE);
         $this->db->where("DATE_FORMAT(sik_tglpendaftaran, '%d') = ", $nowYear);
         $this->db->limit(1);
@@ -127,7 +135,7 @@ class Pengkodean extends CI_Model
         }
             $tgl=date('dmy'); 
             $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
-            $kodetampil = "K"."E".$tgl.$batas;
+            $kodetampil = "$kantorksp->kks_kode"."E".$tgl.$batas;
             return $kodetampil;  
     }
 
