@@ -41,10 +41,10 @@ class Backend extends MY_Base {
 			//ambil data simpanan aktif
 			$simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
 			foreach ($simpananAktif as $key => $value) {
-				$bungaSimpanan = $this->Bungasimpanan_model->get_by_id($value->bus_id);
-				$persenBunga = $bungaSimpanan->bus_bunga / 100;
-				$bungaSetoranLalu = $this->Bungasetoransimpanan_model->get_data_bungasetoranTgl($value->sim_kode, $lastTgl);
-				$saldoSetoranLalu = 0;
+				$bungaSimpanan 		= $this->Bungasimpanan_model->get_by_id($value->bus_id);
+				$persenBunga 		= $bungaSimpanan->bus_bunga / 100;
+				$bungaSetoranLalu 	= $this->Bungasetoransimpanan_model->get_data_bungasetoranTgl($value->sim_kode, $lastTgl);
+				$saldoSetoranLalu 	= 0;
 				if (!empty($bungaSetoranLalu)) {
 					$saldoSetoranLalu = $bungaSetoranLalu->bss_saldobulanini;
 				}

@@ -52,14 +52,14 @@ class Auth extends CI_Controller {
             // die($grup."dfdf");
 //          daftarkan session
             $data = array(
-                'logged' => TRUE,
-                'id_user' => $row->id_user,
-                'username' => $row->username,
-                'fullname' => $row->fullname,
-                'telp' => $row->telp,
-                'email' => $row->email,
-                'foto' => $row->foto,
-                'level' => $grup
+                'logged'    => TRUE,
+                'id_user'   => $row->id_user,
+                'username'  => $row->username,
+                'fullname'  => $row->fullname,
+                'telp'      => $row->telp,
+                'email'     => $row->email,
+                'foto'      => $row->foto,
+                'level'     => $grup
             );
             $this->session->set_userdata($data);
 

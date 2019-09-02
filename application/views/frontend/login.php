@@ -71,7 +71,7 @@
             <input class="input100" type="password" name="password" id="password" placeholder="Masukkan password">
             <span class="focus-input100"></span>
           </div>
-          <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+          <div class="wrap-input100 validate-input m-b-18" data-validate = "Captcha is required">
                     <span class="label-input100" style="font-size:25px;"><?php
                     $cpt = generateCode();
                     echo $cpt['text'];

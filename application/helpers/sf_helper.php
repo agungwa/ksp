@@ -25,7 +25,7 @@ function is_logged()
 function is_allow($acs)
 {
     $ci      = &get_instance();
-    $lvl  = $_SESSION['level'];
+    $lvl     = $_SESSION['level'];
     $isallow = $ci->db->query("SELECT * FROM user_access as aa inner join master_access as bb on aa.kd_access=bb.id WHERE bb.nm_access='$acs' and aa.id_group='$lvl'")->row();
     
     if ($isallow != []) {

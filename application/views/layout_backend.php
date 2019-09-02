@@ -96,7 +96,7 @@ lookup();
                 
                 <li class="">
                     <?php if(is_allow('M_USER')): ?>
-                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simpanan Berjangka (EDIT)</span> <span class="fa arrow"></span></a>
+                    <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Simpanan Berjangka</span> <span class="fa arrow"></span></a>
                 <?php endif; ?>
                     <ul class="nav nav-second-level">
                     <li>
