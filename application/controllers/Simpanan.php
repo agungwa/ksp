@@ -39,6 +39,9 @@ class Simpanan extends MY_Base
             case  6:
                 $this->listsetoran();
                 break;
+            case  7:
+                $this->carisimpanan();
+                break;
                     
             default:
                 $this->simpanana();
@@ -340,6 +343,21 @@ class Simpanan extends MY_Base
         ob_end_clean();
     }
 
+    
+    public function carisimpanan()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $simpanan = $this->Simpanan_model->get_simpanan_aktiflist($q);
+        $data = array(
+            'simpanan_data' => $simpanan,
+            'q' => $q,
+            'content' => 'backend/simpanan/simpanan',
+            'item' => 'carisimpanan.php',
+            'active' => 7,
+        );
+        $this->load->view(layout(), $data);
+    }
+
     public function read($id) 
     {
         
@@ -530,10 +548,10 @@ class Simpanan extends MY_Base
         $simpanan = $this->Simpanan_model->get_jatuh_tempo($start, $q, $f, $t);
 
         $datetoday = date("Y-m-d", strtotime($this->tgl));
-        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+        $tanggalDuedatenow = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
         $wilayah = $this->Wilayah_model->get_all();
         $datasimpanan = array();
-        if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+        if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedatenow;}
         foreach ($simpanan as $key=>$item) {
             $sim_status = $this->statusSimpanan;
             $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $item->jsi_id))->row();

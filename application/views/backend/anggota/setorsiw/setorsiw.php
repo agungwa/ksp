@@ -32,16 +32,46 @@
                 </div>
         <div class="ibox-content">
         <table class="table">
-        <tr><td>Nomor Anggota</td><td><?php echo $setorsiw['ang_no']; ?></td></tr>
-	    <tr><td>Nama</td><td><?php echo $setorsiw['ang_nama']; ?></td></tr>
-	    <tr><td>Alamat</td><td><?php echo $setorsiw['ang_alamat']; ?></td></tr>
-	    <tr><td>Nomor KTP</td><td><?php echo $setorsiw['ang_noktp']; ?></td></tr>
-	    <tr><td>Nomor KK</td><td><?php echo $setorsiw['ang_nokk']; ?></td></tr>
-	    <tr><td>Nomor Handphone</td><td><?php echo $setorsiw['ang_nohp']; ?></td></tr>
-	    <tr><td>Tanggal Lahir</td><td><?php echo $setorsiw['ang_tgllahir']; ?></td></tr>
-	    <tr><td>Status</td><td><?php echo $setorsiw['ang_status']; ?></td></tr>
+        <tr><td class="active">Nomor Anggota</td><td><?php echo $setorsiw['ang_no']; ?></td><td class="active">Nama</td><td><?php echo $setorsiw['ang_nama']; ?></td></tr>
+	    <tr><td class="active">Alamat</td><td><?php echo $setorsiw['ang_alamat']; ?></td><td class="active">Nomor KTP</td><td><?php echo $setorsiw['ang_noktp']; ?></td></tr>
+	    <tr><td class="active">Nomor KK</td><td><?php echo $setorsiw['ang_nokk']; ?></td><td class="active">Nomor Handphone</td><td><?php echo $setorsiw['ang_nohp']; ?></td></tr>
+	    <tr><td class="active">Tanggal Lahir</td><td><?php echo $setorsiw['ang_tgllahir']; ?></td><td class="active">Status</td><td><?php echo $setorsiw['ang_status']; ?></td></tr>
 	    </table>
-
+  <!-- tabel simpanan wajib -->
+  <h5>SIMPANAN WAJIB</h5>
+    <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <thead class="thead-light">
+            <tr>
+                <th class="text-center">No</th>
+		<th class="text-center">Tanggal Bayar</th>
+		<th class="text-center">Status</th>
+		<th class="text-center">Action</th>
+            </tr>
+            </thead>
+            <tbody><?php
+            $no=1;
+            $siw_status = $this->statusSimpananwajib;
+            foreach ($setorsiw['simpananwajib_data'] as $simpananwajib)
+            {
+                $ses_id = $this->db->get_where('settingsimpanan', array('ses_id' => $simpananwajib->ses_id))->row();
+                ?>
+                <tr>
+			<td width="80px"><?php echo $no ?></td>
+			<td><?php echo $simpananwajib->siw_tglbayar ?></td>
+            <td><?php echo $siw_status[$simpananwajib->siw_status] ?></td>
+            <td style="text-align:center" width="200px">
+				<?php 
+				echo anchor(site_url('simpananwajib/setorsimpananwajib/'.$simpananwajib->siw_id),'Setor','class="text-navy"');?>
+			</td>
+		</tr>
+                
+                <?php
+                $no++;
+            }
+            ?>
+            </tbody>
+        </table>
+        
     <!-- tabel simpanan pokok -->
     <h5>SIMPANAN POKOK</h5>
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
@@ -76,40 +106,7 @@
             </tbody>
         </table>
 
-    <!-- tabel simpanan wajib -->
-    <h5>SIMPANAN WAJIB</h5>
-    <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <thead class="thead-light">
-            <tr>
-                <th class="text-center">No</th>
-		<th class="text-center">Tanggal Bayar</th>
-		<th class="text-center">Status</th>
-		<th class="text-center">Action</th>
-            </tr>
-            </thead>
-            <tbody><?php
-            $no=1;
-            $siw_status = $this->statusSimpananwajib;
-            foreach ($setorsiw['simpananwajib_data'] as $simpananwajib)
-            {
-                $ses_id = $this->db->get_where('settingsimpanan', array('ses_id' => $simpananwajib->ses_id))->row();
-                ?>
-                <tr>
-			<td width="80px"><?php echo $no ?></td>
-			<td><?php echo $simpananwajib->siw_tglbayar ?></td>
-            <td><?php echo $siw_status[$simpananwajib->siw_status] ?></td>
-            <td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('simpananwajib/setorsimpananwajib/'.$simpananwajib->siw_id),'Setor','class="text-navy"');?>
-			</td>
-		</tr>
-                
-                <?php
-                $no++;
-            }
-            ?>
-            </tbody>
-        </table>
+  
             </tbody>
             </div>
 	</div>

@@ -7,6 +7,7 @@ class Investasiberjangka_model extends CI_Model
 {
 
     public $table = 'investasiberjangka';
+    public $ang_no = 'ang_no';
     public $id = 'ivb_kode';
     public $order = 'DESC';
 
@@ -20,6 +21,13 @@ class Investasiberjangka_model extends CI_Model
     {
         $this->db->where('ivb_flag<',2);
         $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+    
+    // get data by anggota no
+    function get_data_byang($ang_no)
+    {
+        $this->db->where('ang_no =',$ang_no);
         return $this->db->get($this->table)->result();
     }
 

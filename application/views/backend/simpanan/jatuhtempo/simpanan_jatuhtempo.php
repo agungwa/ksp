@@ -61,7 +61,6 @@
 		<th class="text-center">Nama Anggota</th>
 		<th class="text-center">Alamat Anggota</th>
 		<th class="text-center">Karyawan</th>
-		<th class="text-center">Bunga (dalam %)</th>
 		<th class="text-center">Jenis Simpanan</th>
 		<th class="text-center">Jenis Setoran</th>
 		<th class="text-center">Wilayah</th>
@@ -86,7 +85,6 @@
                     <td><?php echo $item['ang_nama'] ?></td>
                     <td><?php echo $item['ang_alamat'] ?></td>
                     <td><?php echo $item['kar_nama'] ?></td>
-                    <td><?php echo $item['bus_bunga'] ?></td>
                     <td><?php echo $item['jsi_simpanan'] ?></td>
                     <td><?php echo $item['jse_setoran'] ?></td>
                     <td><?php echo $item['wil_nama'] ?></td>

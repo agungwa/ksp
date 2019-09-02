@@ -8,6 +8,7 @@ class Pinjaman_model extends CI_Model
 
     public $table = 'pinjaman';
     public $id = 'pin_id';
+    public $ang_no = 'ang_no';
     public $skp_id = 'skp_id';
     public $order = 'DESC';
 
@@ -23,6 +24,14 @@ class Pinjaman_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
+    
+    // get data by anggota no
+    function get_data_byang($ang_no)
+    {
+        $this->db->where('ang_no =',$ang_no);
+        return $this->db->get($this->table)->result();
+    }
+
 
     // get pinjaman umum
     function get_pinjaman_umum()

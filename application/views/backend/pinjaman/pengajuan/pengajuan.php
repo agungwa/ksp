@@ -85,7 +85,7 @@
                             <div class="col-md-6">
                             <div class="form-group">
                                 <label for="float">Pengajuan</label>
-                                <input type="number" min="500000" class="form-control" name="pin_pengajuan" id="pin_pengajuan" placeholder="Jumlah Pengajuan" value="" />
+                                <input type="number" id="searchTxt" min="500000" class="form-control" name="pin_pengajuan"  placeholder="Jumlah Pengajuan" value="" />
                             </div>
                             <div class="form-group">
                                 <label for="datetime">Tanggal Pengajuan</label>
@@ -159,7 +159,7 @@
                         </div>
 
                         <div class="col-lg-12">
-                            <button type="submit" class="btn btn-primary">Submit Pengajuan</button> 
+                            <button type="submit" class="btn btn-primary" onclick="return confirm(searchTxt.value)">Submit Pengajuan</button> 
                             <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Batal</a>
                         </div>
                     </form>

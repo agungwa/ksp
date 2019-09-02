@@ -38,6 +38,14 @@ class Karyawan extends MY_Base
         $start = intval($this->input->get('start'));
         $idhtml = $this->input->get('idhtml');
         
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q) .'&idhtml='.$idhtml;
+            $config['first_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q).'&idhtml='.$idhtml;
+        } else {
+            $config['base_url'] = base_url() . 'anggota/index.html';
+            $config['first_url'] = base_url() . 'anggota/index.html';
+        }
 
         $karyawan = $this->Karyawan_model->get_limit_data( $start, $q);
 

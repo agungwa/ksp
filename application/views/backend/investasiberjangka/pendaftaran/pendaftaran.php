@@ -80,7 +80,7 @@
         </div>
 	    <div class="form-group">
             <label for="datetime">Jumlah</label>
-            <input type="number" class="form-control" min="2000000" name="ivb_jumlah" id="ivb_jumlah" placeholder="Jumlah" value="" required="required" />
+            <input type="number" id="searchTxt" class="form-control" min="2000000" name="ivb_jumlah" id="ivb_jumlah" placeholder="Jumlah" value="" required="required" />
         </div>
 	    <div class="form-group">
             <label for="datetime">Tanggal Pendaftaran</label>
@@ -90,7 +90,7 @@
             <label for="datetime">Tanggal Perpanjangan</label>
             <input type="date" class="form-control" name="ivb_tglperpanjangan" id="ivb_tglperpanjangan" placeholder="Tanggal Perpanjangan" value="" required="required" />
         </div>-->
-	    <button type="submit" class="btn btn-primary">Submit Pendaftaran</button> 
+	    <button type="submit" class="btn btn-primary" onclick="return confirm(searchTxt.value)">Submit Pendaftaran</button> 
 	    <a href="<?php echo site_url('investasiberjangka') ?>" class="btn btn-default">Batal</a>
         </div>
         </div>
