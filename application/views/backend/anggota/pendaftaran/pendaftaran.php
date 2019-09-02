@@ -13,26 +13,25 @@
 
         <div class="form-group">
             <label for="varchar">Nomor Anggota </label>
-            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Nomor Anggota" value="<?php echo $kode; ?>" readonly required="required" ?>
+            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Nomor Anggota"  value="<?php echo $kode; ?>" readonly required="required" ?>
         </div>
 
 	    <div class="form-group">
             <label for="varchar">Nama </label>
-            <input type="text" class="form-control" name="ang_nama" id="ang_nama" placeholder="Nama" value="" required="required"/>
+            <input type="text" class="form-control" name="ang_nama" id="ang_nama" placeholder="Nama" autofocus value="" required="required"/>
         </div>
 
 	    <div class="form-group">
             <label for="ang_alamat">Alamat </label>
             <textarea class="form-control" rows="3" name="ang_alamat" id="ang_alamat" placeholder="Alamat" value="" required="required"> </textarea>
         </div>
-
+        </div>
+        
+        <div class="col-md-6">
 	    <div class="form-group">
             <label for="varchar">Nomor KTP </label>
             <input type="number" class="form-control" name="ang_noktp" id="ang_noktp" placeholder="Nomor KTP" value="" />
         </div>
-        </div>
-        
-        <div class="col-md-6">
 	    <div class="form-group">
             <label for="varchar">Nomor KK </label>
             <input type="number" class="form-control" name="ang_nokk" id="ang_nokk" placeholder="Nomor KK" value="" />

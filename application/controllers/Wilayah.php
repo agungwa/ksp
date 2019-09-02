@@ -17,27 +17,12 @@ class Wilayah extends MY_Base
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
         
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'wilayah/index.html';
-            $config['first_url'] = base_url() . 'wilayah/index.html';
-        }
+        $wilayah = $this->Wilayah_model->get_limit_data($start, $q);
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Wilayah_model->total_rows($q);
-        $wilayah = $this->Wilayah_model->get_limit_data($config['per_page'], $start, $q);
-
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
 
         $data = array(
             'wilayah_data' => $wilayah,
             'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/wilayah/wilayah_list',
         );
@@ -50,25 +35,22 @@ class Wilayah extends MY_Base
         $start = intval($this->input->get('start'));
         $idhtml = $this->input->get('idhtml');
         
+        
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q) .'&idhtml='.$idhtml;
+            $config['first_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q).'&idhtml='.$idhtml;
         } else {
-            $config['base_url'] = base_url() . 'wilayah/index.html';
-            $config['first_url'] = base_url() . 'wilayah/index.html';
+            $config['base_url'] = base_url() . 'anggota/index.html';
+            $config['first_url'] = base_url() . 'anggota/index.html';
         }
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Wilayah_model->total_rows($q);
-        $wilayah = $this->Wilayah_model->get_limit_data($config['per_page'], $start, $q);
+        $wilayah = $this->Wilayah_model->get_limit_data($start, $q);
 
 
         $data = array(
             'wilayah_data' => $wilayah,
             'idhtml' => $idhtml,
             'q' => $q,
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/wilayah/wilayah_lookup',
         );
@@ -84,25 +66,21 @@ class Wilayah extends MY_Base
         $start = intval($this->input->get('start'));
         $idhtml = $this->input->get('idhtml');
         
+        
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q) .'&idhtml='.$idhtml;
+            $config['first_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q).'&idhtml='.$idhtml;
         } else {
-            $config['base_url'] = base_url() . 'wilayah/index.html';
-            $config['first_url'] = base_url() . 'wilayah/index.html';
+            $config['base_url'] = base_url() . 'anggota/index.html';
+            $config['first_url'] = base_url() . 'anggota/index.html';
         }
-
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Wilayah_model->total_rows($q);
-        $wilayah = $this->Wilayah_model->get_limit_data($config['per_page'], $start, $q);
+        $wilayah = $this->Wilayah_model->get_limit_data( $start, $q);
 
 
         $data = array(
             'wilayah_data' => $wilayah,
             'idhtml' => $idhtml,
             'q' => $q,
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/wilayah/wilayah_asal',
         );
@@ -118,25 +96,22 @@ class Wilayah extends MY_Base
         $start = intval($this->input->get('start'));
         $idhtml = $this->input->get('idhtml');
         
+        
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'wilayah/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q) .'&idhtml='.$idhtml;
+            $config['first_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q).'&idhtml='.$idhtml;
         } else {
-            $config['base_url'] = base_url() . 'wilayah/index.html';
-            $config['first_url'] = base_url() . 'wilayah/index.html';
+            $config['base_url'] = base_url() . 'anggota/index.html';
+            $config['first_url'] = base_url() . 'anggota/index.html';
         }
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Wilayah_model->total_rows($q);
-        $wilayah = $this->Wilayah_model->get_limit_data($config['per_page'], $start, $q);
+        $wilayah = $this->Wilayah_model->get_limit_data($start, $q);
 
 
         $data = array(
             'wilayah_data' => $wilayah,
             'idhtml' => $idhtml,
             'q' => $q,
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/wilayah/wilayah_tujuan',
         );

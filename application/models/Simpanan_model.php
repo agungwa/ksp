@@ -7,6 +7,7 @@ class Simpanan_model extends CI_Model
 {
 
     public $table = 'simpanan';
+    public $ang_no = 'ang_no';
     public $id = 'sim_kode';
     public $order = 'DESC';
 
@@ -28,6 +29,13 @@ class Simpanan_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
+    }
+
+    // get data by anggota no
+    function get_data_byang($ang_no)
+    {
+        $this->db->where('ang_no =',$ang_no);
+        return $this->db->get($this->table)->result();
     }
     
     // get total rows
@@ -58,6 +66,13 @@ class Simpanan_model extends CI_Model
     function get_simpanan_aktif(){
         $this->db->order_by($this->id, $this->order);
         $where = "sim_status = 0 AND sim_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_simpanan_aktiflist($q = NULL){
+        $this->db->order_by($this->id, $this->order);
+        $where = "(sim_kode LIKE '%$q%' ESCAPE '!' OR ang_no LIKE '%$q%' ESCAPE '!') AND sim_status = 0 AND sim_flag < 2";
         $this->db->where($where);
         return $this->db->get($this->table)->result();
     }

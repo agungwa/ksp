@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html>
     <head>
         <title></title>
@@ -42,6 +43,7 @@
                 <?php
             $no=1;
             $total=0;
+            $min=$settingsimpanan_data->ses_min;
             foreach ($setoransimpananwajib_data as $setoransimpananwajib)
             {
                 $total += $setoransimpananwajib->ssw_jmlsetor;
@@ -61,7 +63,7 @@
             <td><?php echo rupiahsimpanan($kurang) ?></td>
             <td style="text-align:center" width="200px">
                 <?php 
-				echo anchor(site_url('setoransimpananwajib/update/'.$setoransimpananwajib->ssw_id),'Update','class="text-navy" onclick="javascript: return confirm(\'Yakin Edit Data?\')"');                 				?>
+				echo anchor(site_url('setoransimpananwajib/update/'.$setoransimpananwajib->ssw_id),'Update','class="text-navy" onclick="javascript: return confirm(\'Yakin Edit Data?\')"');?>
 			</td>
 		</tr>
         <?php
@@ -70,16 +72,19 @@
             ?>
     <div class="form-group col-md-4">
         <label for="varchar"> <?php echo "Jumlah Setoran" ?></label>
-        <input type="number" class="form-control" name="ssw_jmlsetor" min=<?= $min?> max=<?= $kurang?> id="ssw_jmlsetor" placeholder="Setor" value="" required="required" />
+        <input type="number" id="searchTxt" class="form-control" name="ssw_jmlsetor" min=<?= $min?> max=<?= $kurang?>  placeholder="Setor" value="" required="required" />
         <input type="hidden" class="form-control" name="siw_id" id="siw_id" placeholder="siw_id" value="<?php echo $siw_id; ?>"/>
         <input type="hidden" class="form-control" name="total" id="total" placeholder="total" value="<?php echo $total; ?>"/>
         <input type="hidden" class="form-control" name="ang_no" id="ang_no" placeholder="ang_no" value="<?php echo $ang_no; ?>"/>
         <input type="hidden" class="form-control" name="max" id="max" placeholder="max" value="<?php echo $settingsimpanan_data->ses_max; ?>"/>
     </div>
     <div class="form-group col-md-12">
-	    <button type="submit" class="btn btn-primary">setor</button> 
+	    <button type="submit" class="btn btn-primary" onclick='return confirm("Click OK if " + searchTxt.value + " is the correct amount")' >setor</button> 
 	    <a href="<?php echo site_url('anggota/read/'.$ang_no) ?>" class="btn btn-default">Batal</a>
     </div>
+    <script>
+
+</script>
 </form>
             </tbody>
         </table>

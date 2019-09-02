@@ -135,7 +135,7 @@ class Pengkodean extends CI_Model
         }
             $tgl=date('dmy'); 
             $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
-            $kodetampil = "$kantorksp->kks_kode"."E".$tgl.$batas;
+            $kodetampil = "$kantorksp->kks_kode"."C".$tgl.$batas;
             return $kodetampil;  
     }
 

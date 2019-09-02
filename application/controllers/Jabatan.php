@@ -16,19 +16,8 @@ class Jabatan extends MY_Base
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
-        if ($q <> '') {
-            $config['base_url'] = base_url() . 'jabatan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'jabatan/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'jabatan/index.html';
-            $config['first_url'] = base_url() . 'jabatan/index.html';
-        }
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Jabatan_model->total_rows($q);
-        $jabatan = $this->Jabatan_model->get_limit_data($config['per_page'], $start, $q);
+        $jabatan = $this->Jabatan_model->get_limit_data($start, $q);
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
@@ -36,8 +25,6 @@ class Jabatan extends MY_Base
         $data = array(
             'jabatan_data' => $jabatan,
             'q' => $q,
-            'pagination' => $this->pagination->create_links(),
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/jabatan/jabatan_list',
         );
@@ -51,24 +38,20 @@ class Jabatan extends MY_Base
         $idhtml = $this->input->get('idhtml');
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'jabatan/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'jabatan/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q) .'&idhtml='.$idhtml;
+            $config['first_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q).'&idhtml='.$idhtml;
         } else {
-            $config['base_url'] = base_url() . 'jabatan/index.html';
-            $config['first_url'] = base_url() . 'jabatan/index.html';
+            $config['base_url'] = base_url() . 'anggota/index.html';
+            $config['first_url'] = base_url() . 'anggota/index.html';
         }
 
-        $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
-        $config['total_rows'] = $this->Jabatan_model->total_rows($q);
-        $jabatan = $this->Jabatan_model->get_limit_data($config['per_page'], $start, $q);
+        $jabatan = $this->Jabatan_model->get_limit_data($start, $q);
 
 
         $data = array(
             'jabatan_data' => $jabatan,
             'idhtml' => $idhtml,
             'q' => $q,
-            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/jabatan/jabatan_lookup',
         );
