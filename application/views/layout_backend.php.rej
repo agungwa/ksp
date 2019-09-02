@@ -1,0 +1,9 @@
+diff a/application/views/layout_backend.php b/application/views/layout_backend.php	(rejected hunks)
+@@ -19,6 +19,7 @@
+     <link href="<?=base_url()?>assets/vendor/inspinia/css/animate.css" rel="stylesheet">
+     <link href="<?=base_url()?>assets/vendor/inspinia/css/style.css" rel="stylesheet">
+     <link href="<?=base_url()?>assets/vendor/radiocheck/radiocheck.css" rel="stylesheet">
++    <script src="<?=base_url()?>assets/rupiah/jquery.js"></script>
+     <script src="<?=base_url()?>assets/rupiah/rupiah.js"></script>
+     <script src="<?=base_url()?>assets/vendor/inspinia/js/bootstrap.min.js"></script>
+     <script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>

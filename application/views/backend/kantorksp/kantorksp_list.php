@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>List Wilayah</b></h2>
+                    <h2><b>List Kantorksp</b></h2>
                     <?php if ($this->session->userdata('message') != '') {?>
                     <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
@@ -19,18 +19,26 @@
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-               
+                <?php echo anchor(site_url('kantorksp/create'),'Create', 'class="btn btn-primary"'); ?>
             </div>
             
             
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('wilayah/index'); ?>" class="form-inline" method="get">
+                <form action="<?php echo site_url('kantorksp/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="q" id="q" value="<?php echo @$_GET['q']; ?>">
+                        <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
-                          <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>wilayah/lookup', '<?= @$_GET['idhtml']?>')" >Search</button>
+                            <?php 
+                                if ($q <> '')
+                                {
+                                    ?>
+                                    <a href="<?php echo site_url('kantorksp'); ?>" class="btn btn-default">Reset</a>
+                                    <?php
+                                }
+                            ?>
+                          <button class="btn btn-primary" type="submit">Search</button>
                         </span>
                     </div>
                 </form>
@@ -40,16 +48,30 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Nama Wilayah</th>
+		<th class="text-center">Kks Nama</th>
+		<th class="text-center">Kks Alamat</th>
+		<th class="text-center">Kks Kode</th>
+		<th class="text-center">Action</th>
+            </tr>
             </thead>
 			<tbody><?php
-            foreach ($wilayah_data as $wilayah)
+            foreach ($kantorksp_data as $kantorksp)
             {
                 ?>
                 <tr>
-                <tr onclick="setVal('<?=$idhtml?>','<?=$wilayah->wil_kode?>','<?=$wilayah->wil_nama?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $wilayah->wil_nama ?></td>
+			<td><?php echo $kantorksp->kks_nama ?></td>
+			<td><?php echo $kantorksp->kks_alamat ?></td>
+			<td><?php echo $kantorksp->kks_kode ?></td>
+			<td style="text-align:center" width="200px">
+				<?php 
+				echo anchor(site_url('kantorksp/read/'.$kantorksp->kks_id),'Read','class="text-navy"'); 
+				echo ' | '; 
+				echo anchor(site_url('kantorksp/update/'.$kantorksp->kks_id),'Update','class="text-navy"'); 
+				echo ' | '; 
+				echo anchor(site_url('kantorksp/delete/'.$kantorksp->kks_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				?>
+			</td>
 		</tr>
                 
                 <?php

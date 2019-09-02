@@ -10,8 +10,13 @@ class Anggota extends MY_Base
         parent::__construct();
         $this->load->model('Anggota_model');
         $this->load->model('Settingsimpanan_model');
+        $this->load->model('Pinjaman_model');
+        $this->load->model('Simpanan_model');
+        $this->load->model('Investasiberjangka_model');
+        $this->load->model('Simkesan_model');
         $this->load->model('Simpananpokok_model');
         $this->load->model('Simpananwajib_model');
+        $this->load->model('Setoransimpanan_model');
         $this->load->model('Setoransimpananwajib_model');
         $this->load->model('Penarikansimpananwajib_model');
         $this->load->model('Wilayah_model');
@@ -37,6 +42,9 @@ class Anggota extends MY_Base
                 break;
             case  5:
                 $this->pengajuan();
+                break;
+            case  6:
+                $this->anggotalist();
                 break;
                     
             default:
@@ -376,17 +384,46 @@ class Anggota extends MY_Base
         ob_end_clean();
     }
 
+
+    public function anggotalist()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+
+        $anggota = $this->Anggota_model->get_limit_data($start, $q);
+
+
+        $data = array(
+            'anggota_data' => $anggota,
+            'q' => $q,
+            'start' => $start,
+            'content' => 'backend/anggota/anggota',
+            'item' => 'anggotalist.php',
+            'active' => 6,
+        );
+        $this->load->view(layout(), $data);
+    }
+
+
     public function read($id) 
     {
             
         $row = $this->Anggota_model->get_by_id($id);
         $simpananwajib = $this->Simpananwajib_model->get_data_siw($id);
         $simpananpokok = $this->Simpananpokok_model->get_data_sip($id);
+        $simpanan = $this->Simpanan_model->get_data_byang($id);
+        $pinjaman = $this->Pinjaman_model->get_data_byang($id);
+        $simkesan = $this->Simkesan_model->get_data_byang($id);
+        $investasi = $this->Investasiberjangka_model->get_data_byang($id);
         $ang_status = $this->statusAnggota;
         if ($row) {
             $data = array(
                 'simpananwajib_data' => $simpananwajib,
                 'simpananpokok_data' => $simpananpokok,
+                'simpanan_data' => $simpanan,
+                'pinjaman_data' => $pinjaman,
+                'simkesan_data' => $simkesan,
+                'investasi_data' => $investasi,
 		'ang_no' => $row->ang_no,
 		'ang_nama' => $row->ang_nama,
 		'ang_alamat' => $row->ang_alamat,
