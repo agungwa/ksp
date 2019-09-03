@@ -17,7 +17,7 @@
         <div class="col-lg-4">
         <div class="form-group">
             <label for="varchar">Kode</label>
-            <input type="text" class="form-control" name="kar_kode" id="kar_kode" placeholder="Kode" value="<?php echo $kode; ?>" />
+            <input type="text" class="form-control" name="kar_kode" required id="kar_kode" placeholder="Kode" />
         </div>
 	    <div class="form-group">
             <label for="varchar">Nama</label>

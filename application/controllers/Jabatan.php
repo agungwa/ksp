@@ -19,9 +19,6 @@ class Jabatan extends MY_Base
 
         $jabatan = $this->Jabatan_model->get_limit_data($start, $q);
 
-        $this->load->library('pagination');
-        $this->pagination->initialize($config);
-
         $data = array(
             'jabatan_data' => $jabatan,
             'q' => $q,
