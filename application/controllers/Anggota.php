@@ -46,6 +46,9 @@ class Anggota extends MY_Base
             case  6:
                 $this->anggotalist();
                 break;
+            case  7:
+                $this->setoranwajib();
+                break;
                     
             default:
                 $this->pendaftaran();
@@ -444,6 +447,60 @@ class Anggota extends MY_Base
             redirect(site_url('anggota'));
         }
     }
+
+    
+    public function setoranwajib()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+        $start = intval($this->input->get('start'));
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedatenow = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+        
+        
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedatenow;}
+        $datasetoranwajib = array();
+        $setoranAktif = $this->Simpananwajib_model->get_aktif();
+        $anggota = $this->Anggota_model->get_limit_data($start, $q);
+    	foreach ($setoranAktif as $key => $value) {
+    		$setoran = $this->Setoransimpananwajib_model->get_data_ssw($value->siw_id); 
+            foreach ($setoran as $key=>$item) {
+                $siw_id = $this->db->get_where('Simpananwajib', array('siw_id' => $item->siw_id))->row();
+                $ang_no = $this->db->get_where('Anggota', array('ang_no' => $siw_id->ang_no))->row();
+                //$wil_kode = $sim_kode->wil_kode;
+                $tanggalDuedate = $item->ssw_tglsetor;
+                $f = date("Y-m-d", strtotime($f));
+                $t = date("Y-m-d", strtotime($t));
+
+                if (($tanggalDuedate >= $f && $tanggalDuedate <= $t)) {
+                    $datasetoranwajib[$key] = array(
+                    'ssw_id' => $item->ssw_id,
+                    'siw_id' => $siw_id->ang_no,
+                    'ang_no' => $ang_no->ang_nama,
+                    'ang_alamat' => $ang_no->ang_alamat,
+                    'ssw_tglsetor' => $item->ssw_tglsetor,
+                    'ssw_jmlsetor' => $item->ssw_jmlsetor,
+                    'ssw_tgl' => $item->ssw_tgl,
+                    );
+                }
+            }
+        }
+       // var_dump($datasetoran);
+        $data = array(
+            'datasetoranwajib' => $datasetoranwajib,
+            'q' => $q,
+            'f' => $f,
+            't' => $t,
+            'start' => $start,
+            'content' => 'backend/anggota/anggota',
+            'item' => 'simpananwajib_list.php',
+            'active' => 7,
+        );
+        $this->load->view(layout(), $data);
+    }
+
 
     public function create() 
     {

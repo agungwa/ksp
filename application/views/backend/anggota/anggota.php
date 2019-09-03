@@ -19,6 +19,7 @@
                         <li role="presentation" class="<?= ($active==3)?'active':''?>"><a href="<?=base_url()?>anggota/?p=3">Tarik Simpanan Wajib</a></li>
 						<li role="presentation" class="<?= ($active==2)?'active':''?>"><a href="<?=base_url()?>anggota/?p=2">List Anggota</a></li>
 						<li role="presentation" class="<?= ($active==6)?'active':''?>"><a href="<?=base_url()?>anggota/?p=6">Cari Anggota</a></li>
+						<li role="presentation" class="<?= ($active==7)?'active':''?>"><a href="<?=base_url()?>anggota/?p=7">List Setoran Simpanan Wajib</a></li>
 						</ul>
 						
             			<?php

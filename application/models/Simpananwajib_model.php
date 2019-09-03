@@ -37,6 +37,15 @@ class Simpananwajib_model extends CI_Model
         $this->db->where('ang_no =',$ang_no);
         return $this->db->get($this->table)->result();
     }
+
+    // get data simpanan wajib aktif
+    function get_aktif()
+    {
+        $where= "siw_status = 0 AND siw_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->result();
+    }
+    
     
     // get total rows
     function total_rows($q = NULL) {
@@ -55,6 +64,14 @@ class Simpananwajib_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    // get data no limit
+    function get_data($start = 0, $q = NULL) {
+        $this->db->order_by($this->id, $this->order);
+        $where= "ang_no LIKE '%$q%' ESCAPE '!' AND siw_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->result();
+    }
+    
     // insert data
     function insert($data)
     {
