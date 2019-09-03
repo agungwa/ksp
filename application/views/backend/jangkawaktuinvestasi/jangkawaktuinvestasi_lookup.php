@@ -19,6 +19,7 @@
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
+                <?php echo anchor(site_url('jangkawaktuinvestasi/create'),'Create', 'class="btn btn-primary"'); ?>
                
             </div>
             
