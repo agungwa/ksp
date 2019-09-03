@@ -184,6 +184,7 @@ class Anggota extends MY_Base
                 'ang_noktp' => $this->input->post('ang_noktp',TRUE),
                 'ang_nokk' => $this->input->post('ang_nokk',TRUE),
                 'ang_nohp' => $this->input->post('ang_nohp',TRUE),
+                'ang_tempatlahir' => $this->input->post('ang_tempatlahir',TRUE),
                 'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
                 'ang_status' => 1,
                 'ang_tgl' => $this->tgl,

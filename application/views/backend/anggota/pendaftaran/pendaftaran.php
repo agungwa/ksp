@@ -42,6 +42,11 @@
         </div>
 
 	    <div class="form-group">
+            <label for="date">Tempat Lahir </label>
+            <input type="text" class="form-control" name="ang_tempatlahir" id="ang_tempatlahir" placeholder="TempatLahir" value="" required />
+        </div>
+
+	    <div class="form-group">
             <label for="date">Tanggal Lahir </label>
             <input type="date" class="form-control" name="ang_tgllahir" id="ang_tgllahir" placeholder="Tgl Lahir" value="" required="required" />
         </div>
