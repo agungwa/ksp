@@ -86,11 +86,11 @@
 	    <div class="form-group">
             <label for="varchar">Ijazah S3 </label>
             <input type="text" class="form-control" name="kij_s3" id="kij_s3" placeholder="Ijasah S3" />
-        </div><!--
+        </div>
 	    <div class="form-group">
-            <label for="varchar">Ijasah Lainlain </label>
+            <label for="varchar">Lainlain </label>
             <input type="text" class="form-control" name="kij_lainlain" id="kij_lainlain" placeholder="Ijasah Lainlain" />
-        </div>-->
+        </div>
         </div>
 
         <!-- keluarga karyawan -->

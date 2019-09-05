@@ -74,7 +74,8 @@
 			<tbody><?php
             foreach ($datasimpanan as $key => $item)
             {
-                 $totalsetoran = $this->Setoransimpanan_model->get_totalsetoran($item['sim_kode']);
+                $totalsetoran = $this->Setoransimpanan_model->get_totalsetoran($item['sim_kode']); 
+                $total += $totalsetoran;
                  
        // var_dump($totalsetoran);
                 ?>
@@ -97,6 +98,7 @@
             <?php 
             }
             ?>
+            <tr><td></td><td></td><td></td><td>Total Setor</td><td><?php echo rupiahsimpanan($total) ?></td></tr>
             </tbody>
         </table>
         <div class="row">

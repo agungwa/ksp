@@ -19,7 +19,6 @@
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-                <?php echo anchor(site_url('karyawanijasah/create'),'Create', 'class="btn btn-primary"'); ?>
             </div>
             
             
@@ -48,29 +47,30 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Kar Kode</th>
-		<th class="text-center">Kij Sd</th>
-		<th class="text-center">Kij Smp</th>
-		<th class="text-center">Kij Sma</th>
-		<th class="text-center">Kij D3</th>
-		<th class="text-center">Kij S1</th>
-		<th class="text-center">Kij S2</th>
-		<th class="text-center">Kij S3</th>
-		<th class="text-center">Kij Lainlain</th>
-		<th class="text-center">Kij Status</th>
-		<th class="text-center">Kij Tgl</th>
-		<th class="text-center">Kij Flag</th>
-		<th class="text-center">Kij Info</th>
+                <th class="text-center">Karyawan Kode</th>
+		<th class="text-center">Karyawan Nama</th>
+		<th class="text-center">ijazah Sd</th>
+		<th class="text-center">ijazah Smp</th>
+		<th class="text-center">ijazah Sma</th>
+		<th class="text-center">ijazah D3</th>
+		<th class="text-center">ijazah S1</th>
+		<th class="text-center">ijazah S2</th>
+		<th class="text-center">ijazah S3</th>
+		<th class="text-center">Lainlain</th>
+		<th class="text-center">Status</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
             foreach ($karyawanijasah_data as $karyawanijasah)
             {
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $karyawanijasah->kar_kode))->row();
+
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $karyawanijasah->kar_kode ?></td>
+			<td><?php echo $kar_kode->kar_nama ?></td>
 			<td><?php echo $karyawanijasah->kij_sd ?></td>
 			<td><?php echo $karyawanijasah->kij_smp ?></td>
 			<td><?php echo $karyawanijasah->kij_sma ?></td>
@@ -79,18 +79,13 @@
 			<td><?php echo $karyawanijasah->kij_s2 ?></td>
 			<td><?php echo $karyawanijasah->kij_s3 ?></td>
 			<td><?php echo $karyawanijasah->kij_lainlain ?></td>
-			<td><?php echo $karyawanijasah->kij_status ?></td>
-			<td><?php echo $karyawanijasah->kij_tgl ?></td>
-			<td><?php echo $karyawanijasah->kij_flag ?></td>
-			<td><?php echo $karyawanijasah->kij_info ?></td>
+			<td><?php echo $this->statusIjasahkaryawan[$karyawanijasah->kij_status] ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('karyawanijasah/read/'.$karyawanijasah->kij_id),'Read','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('karyawanijasah/update/'.$karyawanijasah->kij_id),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('karyawanijasah/delete/'.$karyawanijasah->kij_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-				?>
+                ?>
 			</td>
 		</tr>
                 
@@ -100,12 +95,6 @@
             </tbody>
         </table>
         <div class="row">
-            <div class="col-md-6">
-                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
-	    </div>
-            <div class="col-md-6 text-right">
-                <?php echo $pagination ?>
-            </div>
         </div>
         </div>
     </div>
