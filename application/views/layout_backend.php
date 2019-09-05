@@ -443,6 +443,7 @@ lookup();
                         <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">KARYAWAN</span> <span
                                 class="fa arrow"></span></a>
                         <?php endif; ?>
+                        <ul class="nav nav-second-level">
                         <li>
                                 <a href="#" id="damian">Utilitas Karyawan<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
@@ -452,6 +453,7 @@ lookup();
                                     
                                 </ul>
                             </li>
+                        </ul>
                         <ul class="nav nav-second-level">
                             <li><a href="<?=base_url()?>jabatan">Jabatan</a></li>
                             <li><a href="<?=base_url()?>wilayah">Wilayah</a></li>
