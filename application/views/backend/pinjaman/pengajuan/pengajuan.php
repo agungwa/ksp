@@ -159,7 +159,7 @@
                         </div>
 
                         <div class="col-lg-12">
-                            <button type="submit" class="btn btn-primary" onclick="return confirm(searchTxt.value)">Submit Pengajuan</button> 
+                            <button type="submit" class="btn btn-primary"  onclick="return confirm('Click OK jika benar menajukan pinjaman sejumlah Rp ' + rubah(searchTxt.value))">Submit Pengajuan</button> 
                             <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Batal</a>
                         </div>
                     </form>

@@ -32,6 +32,7 @@
 	        	<table class="table">
 				    <tr><td>Rekening Pinjaman</td><td><?php echo $persetujuan['pin_id']; ?></td></tr>
 				    <tr><td>Anggota</td><td><?php echo $persetujuan['ang_no']; ?></td></tr>
+				    <tr><td>Nama Anggota</td><td><?php echo $persetujuan['nama_ang_no']; ?></td></tr>
 				    <tr><td>Tenor</td><td><?php echo $persetujuan['sea_id']," Bulan"; ?></td></tr>
 				    <tr><td>Bunga Pinjaman</td><td><?php echo $persetujuan['bup_id']," %"; ?></td></tr>
 				    <tr><td>Potongan Provisi</td><td><?php echo $persetujuan['pop_id']," %"; ?></td></tr>
@@ -53,7 +54,7 @@
 	        	?>
             <div class="col-md-4">
                 <label for="text">Persetujuan</label>
-                <input type="number" class="form-control" name="pin_pinjaman" id="pin_pinjaman" placeholder="Persetujuan" value="" required="required"/>
+                <input type="number" class="form-control numeric" name="pin_pinjaman" id="searchTxt" placeholder="Persetujuan" value="" required="required"/>
                 <?php if ($jaminan_data->jej_id == 1){
                     echo'
                 <input type="text" class="form-control" name="jam_unit" id="jam_unit" placeholder="Unit" value=""/>
@@ -63,6 +64,14 @@
                 <input type="hidden" class="form-control" name="jam_id" id="jam_id" placeholder="jam_id" value="'.$jaminan_data->jam_id.'"/>
                 <textarea class="form-control" rows="3" name="jam_alamat" id="jam_alamat" placeholder="Alamat"></textarea>
                 ';
+                } else if ($jaminan_data->jej_id == 2){
+                    echo '
+                <input type="text" class="form-control" name="jam_unit" id="jam_unit" placeholder="Unit" value=""/>
+                <input type="text" class="form-control" name="jam_atasnama" id="jam_atasnama" placeholder="Atas Nama" value=""/>
+                <input type="text" class="form-control numeric" name="jam_luas" id="jam_luas" placeholder="Luas" value=""/>
+                <textarea class="form-control" rows="3" name="jam_alamat" id="jam_alamat" placeholder="Alamat"></textarea>
+                <input type="hidden" class="form-control" name="jam_id" id="jam_id" placeholder="jam_id" value="'.$jaminan_data->jam_id.'"/>    
+                    ';
                 } ?>
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $persetujuan['pin_id'];?>" required="required"/>            
                 <input type="date" class="form-control" name="pin_tglpencairan" id="todays-date" placeholder="pin_tglpencairan" value="" required="required"/>            
@@ -77,7 +86,7 @@
                 </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Proses</button> 
+            <button type="submit" class="btn btn-primary"  onclick="return confirm('Click OK jika benar menajukan pinjaman sejumlah Rp ' + rubah(searchTxt.value))">Proses</button> 
             <a href="<?php echo site_url('pinjaman/?p=2') ?>" class="btn btn-default">Batal</a>
             <?php 
 	        	?>

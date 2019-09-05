@@ -224,7 +224,7 @@ table#06 {
                     <td style="width:149.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
                                 style="font-family:Cambria">Tanggal</span><span style="font-family:Cambria">
-                            </span><span style="font-family:Cambria">Jatoh</span><span style="font-family:Cambria">
+                            </span><span style="font-family:Cambria">Jatuh</span><span style="font-family:Cambria">
                                 Tempo</span></p>
                     </td>
                     <td style="width:3.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">

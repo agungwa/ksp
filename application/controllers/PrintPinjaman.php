@@ -568,9 +568,12 @@ class PrintPinjaman extends MY_Base
 				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Legal', [216, 356]]);
 				//$header = $this->load->view('backend/pinjaman/printpinjaman/header2.php',$data,true);
 				$html = $this->load->view('backend/pinjaman/printpinjaman/pksertifikat.php',$data,true);
+				$html1 = $this->load->view('backend/pinjaman/printpinjaman/beritaacarasertifikat.php',$data,true);
 				//$mpdf->SetHeader($header);
 				//echo $html;
 				$mpdf->WriteHTML($html);
+				$mpdf->AddPage();
+				$mpdf->WriteHTML($html1);
 				//$mpdf->Output(); // opens in browser
 				$mpdf->Output('pencairan.pdf','D'); // it downloads the file into the user system, with give name
     

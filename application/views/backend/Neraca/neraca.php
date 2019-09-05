@@ -77,19 +77,19 @@
             </tr>
             <tr>
                 <td class="text-left">Piutang Anggota</td>
-				<td class="text-left"><?= rupiah($saldopinjamanumumbelum);?></td>
+				<td class="text-left"><?= rupiahsimpanan($saldopinjamanumumbelum);?></td>
             </tr>
             <tr>
                 <td class="text-left">Piutang Karyawan</td>
-				<td class="text-left"><?= rupiah($saldopinjamankaryawanbelum);?></td>
+				<td class="text-left"><?= rupiahsimpanan($saldopinjamankaryawanbelum);?></td>
             </tr>
             <tr>
                 <td class="text-left">Piutang Khusus</td>
-				<td class="text-left"><?= rupiah($saldopinjamankhususbelum);?></td>
+				<td class="text-left"><?= rupiahsimpanan($saldopinjamankhususbelum);?></td>
             </tr>
             <tr class='info'>
             <td class="text-left">Jumlah Aktiva Lancar</td>
-                <td class="text-left" width="380px"><?= rupiah($jal);?></td>
+                <td class="text-left" width="380px"><?= rupiahsimpanan($jal);?></td>
             </td>
             </tr>
             </tbody>
@@ -131,7 +131,7 @@
             <tbody class="thead-light">
             <tr class='danger'>
                 <td class="text-left">Jumlah</td>
-				<td class="text-left"><?= rupiah($jat+$jal);?></td>
+				<td class="text-left"><?= rupiahsimpanan($jat+$jal);?></td>
             </tr>
             </tbody>
         </table>

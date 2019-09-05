@@ -79,7 +79,7 @@
         <input type="hidden" class="form-control" name="max" id="max" placeholder="max" value="<?php echo $settingsimpanan_data->ses_max; ?>"/>
     </div>
     <div class="form-group col-md-12">
-	    <button type="submit" class="btn btn-primary" onclick='return confirm("Click OK if " + searchTxt.value + " is the correct amount")' >setor</button> 
+	    <button type="submit" class="btn btn-primary"  onclick="return confirm('Click OK jika benar menyetor sejumlah Rp ' + rubah(searchTxt.value))" >setor</button> 
 	    <a href="<?php echo site_url('anggota/read/'.$ang_no) ?>" class="btn btn-default">Batal</a>
     </div>
     <script>
