@@ -64,12 +64,12 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $neracaaktivatetap->nat_tanah ?></td>
-			<td><?php echo $neracaaktivatetap->nat_bangunan ?></td>
-			<td><?php echo $neracaaktivatetap->nat_elektronik ?></td>
-			<td><?php echo $neracaaktivatetap->nat_kendaraan ?></td>
-			<td><?php echo $neracaaktivatetap->nat_peralatan ?></td>
-			<td><?php echo $neracaaktivatetap->nat_akumulasipenyusutan ?></td>
+			<td><?php echo neraca($neracaaktivatetap->nat_tanah) ?></td>
+			<td><?php echo neraca($neracaaktivatetap->nat_bangunan) ?></td>
+			<td><?php echo neraca($neracaaktivatetap->nat_elektronik) ?></td>
+			<td><?php echo neraca($neracaaktivatetap->nat_kendaraan) ?></td>
+			<td><?php echo neraca($neracaaktivatetap->nat_peralatan) ?></td>
+			<td><?php echo neraca($neracaaktivatetap->nat_akumulasipenyusutan) ?></td>
 			<td><?php echo $neracaaktivatetap->nat_tanggal ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
