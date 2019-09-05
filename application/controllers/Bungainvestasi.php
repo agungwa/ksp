@@ -51,12 +51,13 @@ class Bungainvestasi extends MY_Base
         $idhtml = $this->input->get('idhtml');
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'bungainvestasi/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'bungainvestasi/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q) .'&idhtml='.$idhtml;
+            $config['first_url'] = base_url() . 'anggota/index.html?q=' . urlencode($q).'&idhtml='.$idhtml;
         } else {
-            $config['base_url'] = base_url() . 'bungainvestasi/index.html';
-            $config['first_url'] = base_url() . 'bungainvestasi/index.html';
+            $config['base_url'] = base_url() . 'anggota/index.html';
+            $config['first_url'] = base_url() . 'anggota/index.html';
         }
+
 
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
