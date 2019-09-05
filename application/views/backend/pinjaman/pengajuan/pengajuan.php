@@ -94,8 +94,8 @@
                             <div class="form-group">
                                 <label for="varchar">Marketing</label>
                                 <div class="input-group">
-                                <input type="hidden" name="mkar_kode" id="mkar_kode" value="" required="required" />
-                                <input type="text" class="form-control" name="nm_mkar_kode" id="nm_mkar_kode" placeholder="Karyawan" value="" required="required" />
+                                <input type="hidden" name="mkar_kode" id="mkar_kode" required="required" />
+                                <input type="text" class="form-control" name="nm_mkar_kode" id="nm_mkar_kode" placeholder="Karyawan" required="required" />
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>karyawan/lookup','mkar_kode');" style="cursor: pointer;">Cari</span>
                                 </div>
@@ -104,8 +104,8 @@
                             <div class="form-group">
                                 <label for="varchar">Surveyor</label>
                                 <div class="input-group">
-                                <input type="hidden" name="skar_kode" id="skar_kode" value="" required="required" />
-                                <input type="text" class="form-control" name="nm_skar_kode" id="nm_skar_kode" placeholder="Karyawan" value="" required="required" />
+                                <input type="hidden" name="skar_kode" id="skar_kode" required="required" />
+                                <input type="text" class="form-control" name="nm_skar_kode" id="nm_skar_kode" placeholder="Karyawan" required="required" />
                                 <div class="input-group-addon">
                                     <span onclick="lookup('<?=base_url()?>karyawan/lookup','skar_kode');" style="cursor: pointer;">Cari</span>
                                 </div>

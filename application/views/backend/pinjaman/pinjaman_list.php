@@ -86,7 +86,7 @@
                 <tr>
     			<td width="80px"><?php echo ++$start ?></td>
     			<td><?php echo $item['pin_id'] ?></td>
-    			<td><?php echo $item['ang_no'] ?></td>
+    			<td><?php echo $item['nama_ang_no'] ?></td>
     			<td><?php echo $item['sea_id']," Bulan" ?></td>
     			<td><?php echo $item['wil_kode'] ?></td>
     			<td><?php echo rupiah($item['pin_pengajuan']) ?></td>
