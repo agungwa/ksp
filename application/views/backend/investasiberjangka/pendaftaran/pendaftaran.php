@@ -90,7 +90,7 @@
             <label for="datetime">Tanggal Perpanjangan</label>
             <input type="date" class="form-control" name="ivb_tglperpanjangan" id="ivb_tglperpanjangan" placeholder="Tanggal Perpanjangan" value="" required="required" />
         </div>-->
-	    <button type="submit" class="btn btn-primary" onclick="return confirm(searchTxt.value)">Submit Pendaftaran</button> 
+	    <button type="submit" class="btn btn-primary" onclick="return confirm('Click OK jika benar investasi sejumlah Rp ' + rubah(searchTxt.value))">Submit Pendaftaran</button> 
 	    <a href="<?php echo site_url('investasiberjangka') ?>" class="btn btn-default">Batal</a>
         </div>
         </div>

@@ -14,8 +14,8 @@
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
 	    <div class="form-group">
-            <label for="int"> Kode Karyawan</label>
-            <input type="text" readonly class="form-control" name="kar_kode" id="kar_kode" placeholder="Kar Kode" value="<?php echo $kar_kode; ?>" />
+            <label for="varchar"> Kode Karyawan</label>
+            <input type="text" class="form-control" name="kar_kode" id="searchTxt" placeholder="Kode Karyawan" value="<?php echo $kar_kode; ?>" />
         </div>
 	    <div class="form-group">
             <label for="varchar">ijazah Sd</label>
@@ -54,7 +54,7 @@
             <input type="text" class="form-control" name="kij_status" id="kij_status" placeholder="Kij Status" value="<?php echo $kij_status; ?>" />
         </div>-->
 	    <input type="hidden" name="kij_id" value="<?php echo $kij_id; ?>" /> 
-	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
+	    <button type="submit" class="btn btn-primary" onclick="return confirm('Click OK jika benar kode karyawan adalah ' + searchTxt.value)"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('karyawanijasah') ?>" class="btn btn-default">Cancel</a>
 	</div>
             </form>
