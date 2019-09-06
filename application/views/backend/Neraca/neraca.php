@@ -17,10 +17,7 @@
                 <div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
                 <div class="col-md-3">
                     <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
-                </div><!--
-                <div class="col-md-3">
-                    <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
-                </div>-->
+                </div>
                 <select class="form-control col-md-3"  name="w">
                     <option value="all">Semua Wilayah</option>
                     <?php

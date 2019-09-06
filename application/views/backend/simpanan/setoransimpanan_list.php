@@ -63,11 +63,13 @@
 			<td><?php echo $item['ssi_tglsetor'] ?></td>
 			<td><?php echo rupiahsimpanan($item['ssi_jmlsetor']) ?></td>
 			<!--<td><?php echo $setoransimpanan->ssi_jmlbunga ?></td>-->
-			<!--<td style="text-align:center" width="200px">
+            <?php if(is_allow('M_EDIT')): ?>
+			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('setoransimpanan/update/'.$setoransimpanan->ssi_id),'Update','class="text-navy"'); 
+				echo anchor(site_url('setoransimpanan/update/'.$item['ssi_id']),'Update','class="text-navy"'); 
              ?>
-			</td>-->
+			</td> 
+            <?php endif;  ?>
 		</tr>
                 
                 <?php

@@ -17,20 +17,17 @@
         <div class="form-group">
             <label for="varchar">Rekening Simpanan <?php echo form_error('sim_kode') ?></label>
             <div class="input-group">
-            <input type="hidden" name="sim_kode" id="sim_kode" value="<?php echo $sim_kode; ?>" />
-            <input type="text" class="form-control" name="nm_sim_kode" id="nm_sim_kode" placeholder="Rekening Simpanan" value="<?php echo $nm_sim_kode; ?>" readonly/>
-            <div class="input-group-addon">
-                <span onclick="lookup('<?=base_url()?>simpanan/lookup','sim_kode');" style="cursor: pointer;">Cari</span>
-            </div>
+            <input type="text" class="form-control" name="sim_kode" id="sim_kode" placeholder="Rekening Simpanan" value="<?php echo $nm_sim_kode; ?>" readonly/>
+            
             </div>
         </div>
 	    <div class="form-group">
             <label for="datetime">Tanggal Setor <?php echo form_error('ssi_tglsetor') ?></label>
-            <input type="date" class="form-control" name="ssi_tglsetor" id="todays-date" placeholder="Tanggal Setor" value="<?php echo $ssi_tglsetor; ?>" />
+            <input readonly class="form-control" name="ssi_tglsetor" placeholder="Tanggal Setor" value="<?php echo $ssi_tglsetor; ?>" />
         </div>
 	    <div class="form-group">
             <label for="float">Jumlah Setor <?php echo form_error('ssi_jmlsetor') ?></label>
-            <input type="number" class="form-control" name="ssi_jmlsetor" id="ssi_jmlsetor" placeholder="Jumalah Setor" value="<?php echo $ssi_jmlsetor; ?>" />
+            <input type="number" class="form-control" name="ssi_jmlsetor" id="searchTxt" placeholder="Jumalah Setor" value="<?php echo $ssi_jmlsetor; ?>" />
         </div>
 	   <!--<div class="form-group">
             <label for="float">Jumlah Bunga <?php echo form_error('ssi_jmlbunga') ?></label>
@@ -40,8 +37,8 @@
 	    <input type="hidden" name="ssi_id" value="<?php echo $ssi_id; ?>" /> 
         <!--<input type="button" name="btn" value="Submit" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-default" />
         <input type="button" name="btn" value="Reset" onclick="window.location='fillup.php'" class="btn btn-default" data-modal-type="confirm"/>-->
-        <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
-	    <a href="<?php echo site_url('setoransimpanan') ?>" class="btn btn-default">Batal</a>
+        <button type="submit" class="btn btn-primary" onclick="return confirm('Click OK jika benar menyetor sejumlah Rp ' + rubah(searchTxt.value))"><?php echo $button ?></button>
+	    <a href="<?php echo site_url('simpanan/listsetoran') ?>" class="btn btn-default">Batal</a>
 	</div>
     </div>
             </form>
