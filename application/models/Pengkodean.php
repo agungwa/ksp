@@ -101,7 +101,7 @@ class Pengkodean extends CI_Model
     public function pinjaman($nowYear){
         $kantorksp = $this->Kantorksp_model->get_by_id(1); 
         $this->db->select('RIGHT(pinjaman.pin_id,2) as pin_id', FALSE);
-        $this->db->where("DATE_FORMAT(pin_tglpengajuan, '%d') = ", $nowYear);
+        $this->db->where("DATE_FORMAT(pin_tgl, '%d') = ", $nowYear);
         $this->db->limit(1);
         $this->db->order_by('pin_id','DESC');    
         $query = $this->db->get('pinjaman');  
