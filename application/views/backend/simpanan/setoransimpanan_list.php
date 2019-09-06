@@ -50,6 +50,7 @@
             </thead>
             <tbody><?php
             $total = 0;
+            $no = 1;
             foreach ($datasetoran as $key => $item)
             {
                 $total +=$item['ssi_jmlsetor'];
@@ -57,7 +58,7 @@
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $sim_kode->ang_no))->row();
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
+			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $item['sim_kode'] ?></td>
 			<td><?php echo $ang_no->ang_nama ?></td>
 			<td><?php echo $item['ssi_tglsetor'] ?></td>
@@ -73,6 +74,7 @@
 		</tr>
                 
                 <?php
+                $no++;
             }
             
             ?>

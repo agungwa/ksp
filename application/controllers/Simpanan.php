@@ -274,18 +274,18 @@ class Simpanan extends MY_Base
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
-        $start = intval($this->input->get('start'));
         $satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
         $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
-        $setoransimpanan = $this->Setoransimpanan_model->get_limit_data($start, $q, $f, $t);
-
         $wilayah = $this->Wilayah_model->get_all();
         $datasetoran = array();
+        $simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
+        if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
         
-		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
-        foreach ($setoransimpanan as $key=>$item) {
+    	foreach ($simpananAktif as $key => $value) {
+    		$setoransimpanan = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
+            foreach ($setoransimpanan as $key=>$item) {
             $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
             //$wil_kode = $sim_kode->wil_kode;
             $tanggalDuedate = $item->ssi_tglsetor;
@@ -305,6 +305,7 @@ class Simpanan extends MY_Base
                 );
             }
         }
+    }
        // var_dump($datasetoran);
         $data = array(
             'datasetoran' => $datasetoran,
@@ -314,7 +315,6 @@ class Simpanan extends MY_Base
             'w' => $w,
             'f' => $f,
             't' => $t,
-            'start' => $start,
             'active' => 6,
             'content' => 'backend/simpanan/simpanan',
             'item' => 'setoransimpanan_list.php',
