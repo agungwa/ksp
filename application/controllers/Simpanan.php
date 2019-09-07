@@ -309,7 +309,6 @@ class Simpanan extends MY_Base
        // var_dump($datasetoran);
         $data = array(
             'datasetoran' => $datasetoran,
-            'setoransimpanan_data' => $setoransimpanan,
             'wilayah_data' => $wilayah,
             'q' => $q,
             'w' => $w,
