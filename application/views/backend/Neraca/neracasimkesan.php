@@ -45,10 +45,9 @@
                                 }
                             ?>
                         </span>
-                        <!--
                         <span class="input-group-btn">
-                                    <a href="<?php echo base_url()?>PrintPinjaman/printsirkulasipinjaman?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
-                        </span>-->
+                                    <a href="<?php echo base_url()?>Printneraca/neracasimkesan?f=<?=$f?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                        </span>
                         <button class="btn btn-info" type="submit">Tampilkan</button>
                     </div>
             </div>
@@ -108,7 +107,7 @@
 				<td class="text-left"><?= neraca($jumlahpihutang);?></td>
             </tr>
             <tr class='danger'>
-            <td class="text-left">Jumlah Aktiva Lancar</td>
+            <td class="text-left">Jumlah Aktiva</td>
                 <td class="text-left" width="380px"><?= rupiah($jal);?></td>
             </td>
             </tr>
