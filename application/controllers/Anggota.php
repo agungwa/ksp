@@ -164,12 +164,13 @@ class Anggota extends MY_Base
 
     //pendaftaran anggota
     public function pendaftaran(){
+        $nowYear = date('d');
     
         $row = $this->Settingsimpanan_model->get_by_id(2);
         if ($row) {
         $data = array (
             'ses_min' => set_value('ses_min', $row->ses_min),
-            'kode' => $this->Pengkodean->kode(),
+            'kode' => $this->Pengkodean->kode($nowYear),
             'content' => 'backend/anggota/anggota',
             'item'=> 'pendaftaran/pendaftaran.php',
             'active' => 1,
