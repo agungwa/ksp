@@ -42,16 +42,15 @@
                                 }
                             ?>
                         </span>
-                        <!--
+                        
                         <span class="input-group-btn">
-                                    <a href="<?php echo base_url()?>PrintPinjaman/printsirkulasipinjaman?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
-                        </span>-->
+                                    <a href="<?php echo base_url()?>Printneraca/neraca?f=<?=$f?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                        </span>
                         <button class="btn btn-info" type="submit">Tampilkan</button>
                     </div>
             </div>
             </form>
         </div>
-        <!--<form action="<?php echo site_url('neraca/perhitungan_action'); ?>" method="post"> -->
         <?php
         
         $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
@@ -216,7 +215,6 @@
         </table>
         
         </div>
-        <!--</form>-->
 
         <div class="row">
         </div>

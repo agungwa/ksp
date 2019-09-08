@@ -634,6 +634,10 @@ lookup();
    ribuan = ribuan.join('.').split('').reverse().join('');
    return ribuan;
  }
+
+    function setEventId(event_id){
+    document.querySelector("#event_id").innerHTML = event_id;
+}
     </script>
 </body>
 

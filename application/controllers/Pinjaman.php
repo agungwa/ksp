@@ -405,6 +405,7 @@ class Pinjaman extends MY_Base
         $this->load->view(layout(), $data);
     }
 
+
     public function lookup()
     {
         $q = urldecode($this->input->get('q', TRUE));
