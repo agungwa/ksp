@@ -1,30 +1,17 @@
-<!doctype html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-    <div class="col-lg-12">
-    <div class="ibox float-e-margins">
-        <div class="ibox-title">
-            <h2 style="margin-top:0px">Simpanan Read</h2>
-            <div class="ibox-tools">
-            </div>
-        </div>
-        <div class="ibox-content">
-        
+<style>
+ 	table{margin: auto;}
+ 	td,th{padding: 5px;text-align: center; }
+ 	h2{text-align: center}
+ 	h3{text-align: center}
+ 	th{background-color: #95a5a6; padding: 10px;color: #fff}
+ </style> 
         <table class="table">
 	    <tr><td>Kode Simpanan</td><td><?php echo $sim_kode; ?></td></tr>
 	    <tr><td>Angggota</td><td><?php echo $ang_no; ?></td></tr>
-	    <tr><td>Karyawan</td><td><?php echo $kar_kode; ?></td></tr>
-	    <tr><td>Bunga</td><td><?php echo $bus_id,' %'; ?></td></tr>
 	    <tr><td>Jenis Simpanan</td><td><?php echo $jsi_id,' bulan'; ?></td></tr>
 	    <tr><td>Jenis Setoran</td><td><?php echo $jse_id; ?></td></tr>
-	    <tr><td>Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
 	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $sim_tglpendaftaran; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $sim_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo base_url()?>printsimpanan/read/<?=$sim_kode?>" class="btn btn-default">Print</a>
-                        <a href="<?php echo site_url('simpanan/?p=3') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
@@ -45,7 +32,7 @@
             <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo rupiahsimpanan($setoran->ssi_jmlsetor) ?></td>
-			<td><?php echo $setoran->ssi_tglsetor ?></td>
+			<td><?php echo dateFormataja($setoran->ssi_tglsetor) ?></td>
 			<td><?php echo rupiahsimpanan($total_setoran) ?></td>
 		</tr>
 
@@ -54,9 +41,4 @@
             }
             ?>
             </tbody>
-            </div>
-        </div>
-    </div>
-    </div>
-    </body>
-</html>
+        </table>
