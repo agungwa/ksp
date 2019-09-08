@@ -15,9 +15,10 @@ class Pengkodean extends CI_Model
 
     // input kode Anggota
 
-        public function kode(){
+        public function kode($nowYear){
             $kantorksp = $this->Kantorksp_model->get_by_id(1);  
             $this->db->select('RIGHT(anggota.ang_no,2) as ang_no', FALSE);
+            $this->db->where("DATE_FORMAT(ang_tgl, '%d') = ", $nowYear); 
             $this->db->order_by('ang_no','DESC');    
             $this->db->limit(1);  
             $query = $this->db->get('anggota');  //cek dulu apakah ada sudah ada kode di tabel.    
