@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2019 at 06:22 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.8
+-- Waktu pembuatan: 06 Sep 2019 pada 05.56
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ahliwarissimkesan`
+-- Struktur dari tabel `ahliwarissimkesan`
 --
 
 CREATE TABLE `ahliwarissimkesan` (
@@ -36,14 +36,14 @@ CREATE TABLE `ahliwarissimkesan` (
   `aws_nama` varchar(50) NOT NULL,
   `aws_alamat` text NOT NULL,
   `aws_hubungan` varchar(30) NOT NULL,
-  `aws_lampiran` text DEFAULT NULL,
+  `aws_lampiran` text NOT NULL,
   `aws_tgl` datetime NOT NULL,
   `aws_flag` tinyint(2) NOT NULL,
   `aws_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `ahliwarissimkesan`
+-- Dumping data untuk tabel `ahliwarissimkesan`
 --
 
 INSERT INTO `ahliwarissimkesan` (`aws_id`, `sik_kode`, `aws_noid`, `aws_jenisid`, `aws_nama`, `aws_alamat`, `aws_hubungan`, `aws_lampiran`, `aws_tgl`, `aws_flag`, `aws_info`) VALUES
@@ -56,16 +56,12 @@ INSERT INTO `ahliwarissimkesan` (`aws_id`, `sik_kode`, `aws_noid`, `aws_jenisid`
 (7, 'KE260819001', '332307', 'KTP', 'titik', 'parakan temanggung', 'Orang Tua', 'lengkap', '2019-08-26 13:00:41', 0, ''),
 (8, 'KE290819001', '332307', 'KTP', 'herlin', 'parakan temanggung', 'anak', 'lengkap', '2019-08-29 13:55:58', 0, ''),
 (9, 'KE290819002', '332307', 'KTP', 'titik', 'traji', 'Orang Tua', 'kurang ktp ahli waris\r\n', '2019-08-29 14:00:31', 0, ''),
-(10, 'KE310819001', '332307', 'KTP', 'titik', 'parakan temanggung', 'Orang Tua', 'lengkap', '2019-08-31 12:09:55', 0, ''),
-(11, 'KE310819001', '332307', 'KTP', 'herlin', 'ngadirejo', 'adik', 'lengkap', '2019-08-31 12:49:41', 0, ''),
-(12, 'KE310819002', '332307', 'KTP', 'supini', 'parakan temanggung', 'Orang Tua', 'lengkap', '2019-08-31 12:52:35', 0, ''),
-(13, 'KE310819003', '332307', 'KTP', 'susi', 'parakan ', 'Orang Tua', 'kurang ktp ahli waris', '2019-08-31 12:55:01', 0, ''),
-(14, 'KE310819004', '332307', 'KTP', 'herlin', 'sawahan tegalsari', 'adik', 'lengkap', '2019-08-31 12:58:07', 0, '');
+(10, 'KE310819001', '332307', 'KTP', 'titik', 'parakan temanggung', 'Orang Tua', 'lengkap', '2019-08-31 12:09:55', 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anggota`
+-- Struktur dari tabel `anggota`
 --
 
 CREATE TABLE `anggota` (
@@ -75,6 +71,7 @@ CREATE TABLE `anggota` (
   `ang_noktp` varchar(25) DEFAULT NULL,
   `ang_nokk` varchar(25) DEFAULT NULL,
   `ang_nohp` varchar(15) DEFAULT NULL,
+  `ang_tempatlahir` datetime DEFAULT NULL,
   `ang_tgllahir` date NOT NULL,
   `ang_status` tinyint(1) NOT NULL,
   `ang_tgl` datetime NOT NULL,
@@ -82,10 +79,65 @@ CREATE TABLE `anggota` (
   `ang_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `anggota`
+--
+
+INSERT INTO `anggota` (`ang_no`, `ang_nama`, `ang_alamat`, `ang_noktp`, `ang_nokk`, `ang_nohp`, `ang_tempatlahir`, `ang_tgllahir`, `ang_status`, `ang_tgl`, `ang_flag`, `ang_info`) VALUES
+('K270819001', 'silvia indah lestari', 'bajangan rt 04/Rw 07 Mandisari parakan', '3323', '3323', '', NULL, '1991-05-12', 1, '2019-08-27 12:38:21', 2, ''),
+('K270819002', 'Adila septi Mayasa', ' Dsn. diwek 5/4 bojonegoro kedu', '3323', '33256', '0857991', NULL, '1995-02-08', 1, '2019-08-27 12:39:42', 2, ''),
+('K270819003', 'maya', 'ngadirejo ', '3323', '', '', NULL, '1985-12-05', 1, '2019-08-27 12:54:19', 2, ''),
+('K270819004', 'Septi dwi rahmawati', ' Grogol kutoanyar kedu', '3233', '33233', '081332', NULL, '1991-08-09', 1, '2019-08-27 12:55:30', 2, ''),
+('K270819005', 'erlin ', ' parakan', '8888888', '88888888', '0852136142', NULL, '0000-00-00', 1, '2019-08-27 13:05:18', 2, ''),
+('K270819006', 'Setiyowati', 'Dotakan 01/04 Candiroto', '123456789', '987654321', '085642135123', NULL, '0000-00-00', 1, '2019-08-27 13:16:49', 2, ''),
+('K270819007', 'Nofi A', ' Prapak 05/02 Kranggan', '1323456789', '987654321', '085631245678', NULL, '0000-00-00', 1, '2019-08-27 13:37:03', 2, ''),
+('K270819008', 'ngamini', 'ds. gejagan 3/4 kataan ngadirejo', '3323', '', '', NULL, '1991-05-01', 1, '2019-08-27 13:41:20', 2, ''),
+('K270819009', 'rikhmatillah', ' ds. kauman 2/1 jumo', '3323', '', '', NULL, '2000-12-04', 1, '2019-08-27 13:44:01', 2, ''),
+('K270819010', 'Budi Telat Pinjaman', 'Magelang', '53534', '345345', '086565', NULL, '2019-08-02', 1, '2019-08-27 13:45:11', 2, ''),
+('K270819011', 'dina andriyani', ' magelang', '3323', '', '', NULL, '2000-02-05', 1, '2019-08-27 13:48:09', 2, ''),
+('K280819012', 'Saras', ' Parakan', '33333333', '4444444', '0856341236', NULL, '1997-08-25', 1, '2019-08-28 12:32:46', 2, ''),
+('K290819013', 'maya', ' sawahan rt 1 rw 5', '456431245645646', '6456456464564561', '21564646', NULL, '1985-08-08', 1, '2019-08-29 07:43:46', 2, ''),
+('K290819014', 'siti', ' parakan temanggung', '222223333', '333456', '0856783', NULL, '1987-03-30', 1, '2019-08-29 13:53:41', 2, ''),
+('K290819015', 'maya', ' traji parakan', '333333', '3333333', '08976', NULL, '1999-02-01', 1, '2019-08-29 13:56:59', 2, ''),
+('K310819016', 'audi', ' parakan temanggung', '33332233', '3333234', '984367', NULL, '1999-11-29', 1, '2019-08-31 12:08:41', 2, ''),
+('K4020919017', 'Suindriarto', ' krajan 1/1 Gunung payung', '3323523012980003', '', '', NULL, '1998-03-01', 1, '2019-09-02 09:17:22', 2, ''),
+('K4020919018', 'Suindriarto', ' krajan 1/1 Gunung Payung Candiroto\r\n', '3323523012980003', '3323', '085643294926', NULL, '1998-12-30', 1, '2019-09-02 09:43:21', 0, ''),
+('K4020919019', 'Heriyanto', ' Dsn Gondang 1/4 Candiroto ', '3323120101680001', '', '', NULL, '1968-01-01', 1, '2019-09-02 14:16:29', 0, ''),
+('K4020919020', 'Martinah', 'Dsn Randusari  2/1 Muntung candiroto ', '332324801440001', '', '', NULL, '1944-01-08', 1, '2019-09-02 19:05:08', 0, ''),
+('K4020919021', 'Sulami', 'larangan 2/3 Larangan Luwok Bejen ', '3323185506730001', '', '', NULL, '1973-06-15', 1, '2019-09-02 19:11:07', 0, ''),
+('K4020919022', 'Iswati Muharni', ' Larangan 1/3 Larangan Luwok Bejen', '3323186112910003', '', '', NULL, '1991-12-21', 1, '2019-09-02 19:18:08', 0, ''),
+('K4020919023', 'Siturrohmi', 'Dsn Larangan 1/3 Larangan Luwok Bejen', '3323185602830002', '', '', NULL, '1982-02-16', 1, '2019-09-02 19:34:05', 0, ''),
+('K4030919024', 'Sukidi', ' Kemuning 2/1 Kemuning Bejen', '33233182551260001', '', '', NULL, '1960-12-25', 1, '2019-09-03 07:19:45', 0, ''),
+('K4030919025', 'Sutaryo', 'Sengon Gunung 5/3 Plososari Patean ', '3324042504830003', '', '', NULL, '1983-04-25', 1, '2019-09-03 07:21:05', 0, ''),
+('K4030919026', 'SOCHARI', ' Ngloji 2/1 Bejen', '3323180408810003', '', '', NULL, '1981-08-04', 1, '2019-09-03 07:22:18', 0, ''),
+('K4030919027', 'Tri Rochmatun', ' Ngloji 2/1 Bejen', '3323186807860001', '', '', NULL, '0006-07-28', 1, '2019-09-03 07:23:28', 0, ''),
+('K4030919028', 'Totok Hariyanto', ' Gandu 1/2 Gondang Winangun Ngadirejo', '3323071412750001', '', '', NULL, '1975-12-14', 1, '2019-09-03 07:41:40', 0, ''),
+('K4030919029', 'Mufida Khoirunnisa', ' Dsn Senet 2/1 Purwosari Wonoboyo', '3323195401990002', '', '', NULL, '1999-01-14', 1, '2019-09-03 07:44:44', 0, ''),
+('K4030919030', 'Suharti', 'Dsn Karanganyar 4/6 Purwosari Wonoboyo ', '3323194209660001', '', '', NULL, '1966-09-02', 1, '2019-09-03 07:45:45', 2, ''),
+('K4030919031', 'Suharti', ' Dsn Karanganyar 4/6 Purwosari', '3323194209660001', '', '', NULL, '0966-09-02', 1, '2019-09-03 08:02:27', 0, ''),
+('K4040919032', 'Wahyuningsih', 'Dsn Gotakan 1/4 Mento Candiroto ', '3323125302950001', '', '', NULL, '1995-02-13', 1, '2019-09-04 09:28:12', 0, ''),
+('K4040919033', 'Yuliati', 'Dsn Tempelsari 1/- Muntung Candiroto ', '3323126711860004', '', '', NULL, '1986-11-27', 1, '2019-09-04 09:30:20', 0, ''),
+('K4040919034', 'Nina Wati', ' Selosabrang 1 1/1 Selosabrang Bejen', '3323184709970001', '', '', NULL, '1997-09-07', 1, '2019-09-04 09:36:30', 0, ''),
+('K4040919035', 'Siswiyanti', ' Selosabrang 4/2 Selosabrang Bejen', '3323186402740003', '3323181507080003', '', NULL, '1974-02-14', 1, '2019-09-04 09:44:04', 0, ''),
+('K4040919036', 'Sariyati', 'Dsn Kentangan 3/2 Lempuyang Candiroto ', '3323124911720001', '', '', NULL, '1972-11-09', 1, '2019-09-04 09:51:48', 0, ''),
+('K4040919037', 'Yossy Ratnasari', 'Tunggulsari 13/4 Sukabumi Cepogo ', '3323124503920001', '', '', NULL, '1992-03-05', 1, '2019-09-04 09:53:30', 0, ''),
+('K4040919038', 'Hardwiyanti', ' Muntuk 1/3 Pitrosari Wonoboyo', '3323195808830002', '', '', NULL, '1983-08-18', 1, '2019-09-04 09:59:33', 0, ''),
+('K4040919046', 'Irfan Ma\'arif', 'Sinongko 1/3 Plosogaden Candiroto ', '3323120512930001', '', '', NULL, '1993-12-05', 1, '2019-09-04 22:05:21', 2, ''),
+('K4040919047', 'Dodi Endrasatri', ' Dsn Batursari 3/4 candiroto\r\n', '3323', '', '', NULL, '1999-02-11', 1, '2019-09-04 22:15:10', 2, ''),
+('K4050919039', 'Surami', 'Dsn Kauman 3/3 Muntung Candiroto ', '3323127112610014', '', '', NULL, '1961-12-31', 1, '2019-09-05 08:27:13', 0, ''),
+('K4050919040', 'Muhammad Azzam Firdaus', 'Dsn Wonoboyo 4/1 Wonoboyp ', '3323193005990001', '33233192112052285', '', NULL, '1999-05-30', 1, '2019-09-05 08:35:52', 0, ''),
+('K4050919041', 'Sapariyah', 'Dsn Bojong 5/2 Bojong Tretep ', '3323113310810001', '3323113101070814', '', NULL, '1983-12-10', 1, '2019-09-05 08:43:17', 0, ''),
+('K4050919042', 'Turiyah', 'Dsn Bojong 5/2 Bojong Tretep ', '3323115206640001', '', '', NULL, '0064-06-12', 1, '2019-09-05 08:47:02', 0, ''),
+('K4050919043', 'Irfan Ma\'arif', 'Sinongko 1/3 Plosagaden Candiroto  ', '3323120512930001', '3323120512930001', '085643294926', NULL, '1993-12-05', 1, '2019-09-05 08:59:09', 2, ''),
+('K4050919044', 'Ishadiyanto', 'Dsn Trocoh 1/4 Lempuyang Candiroto ', '3323121107000001', '', '', NULL, '2000-07-11', 1, '2019-09-05 09:00:47', 0, ''),
+('K4050919045', 'Eni Mardiyah', 'Bulusari ', '3324064707730002', '33234061209120003', '', NULL, '1973-07-07', 1, '2019-09-05 09:14:13', 0, ''),
+('K4050919048', 'Dodi Endrasatri', ' Dsn Batursari 3/4 candiroto\r\n', '3323', '', '', NULL, '1999-01-02', 1, '2019-09-05 22:17:21', 0, ''),
+('K4050919049', 'Irfan Ma\'arif', ' Sinongko 1/3 Plosogaden Candiroto', '3323120512930001', '', '', NULL, '1993-12-05', 1, '2019-09-05 22:19:29', 0, '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `angsuran`
+-- Struktur dari tabel `angsuran`
 --
 
 CREATE TABLE `angsuran` (
@@ -108,7 +160,7 @@ CREATE TABLE `angsuran` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bungainvestasi`
+-- Struktur dari tabel `bungainvestasi`
 --
 
 CREATE TABLE `bungainvestasi` (
@@ -121,7 +173,7 @@ CREATE TABLE `bungainvestasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bungainvestasi`
+-- Dumping data untuk tabel `bungainvestasi`
 --
 
 INSERT INTO `bungainvestasi` (`biv_id`, `biv_bunga`, `biv_keterangan`, `biv_tgl`, `biv_flag`, `biv_info`) VALUES
@@ -133,7 +185,7 @@ INSERT INTO `bungainvestasi` (`biv_id`, `biv_bunga`, `biv_keterangan`, `biv_tgl`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bungapinjaman`
+-- Struktur dari tabel `bungapinjaman`
 --
 
 CREATE TABLE `bungapinjaman` (
@@ -145,7 +197,7 @@ CREATE TABLE `bungapinjaman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bungapinjaman`
+-- Dumping data untuk tabel `bungapinjaman`
 --
 
 INSERT INTO `bungapinjaman` (`bup_id`, `bup_bunga`, `bub_tgl`, `bub_flag`, `bup_info`) VALUES
@@ -154,7 +206,7 @@ INSERT INTO `bungapinjaman` (`bup_id`, `bup_bunga`, `bub_tgl`, `bub_flag`, `bup_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bungasetoransimpanan`
+-- Struktur dari tabel `bungasetoransimpanan`
 --
 
 CREATE TABLE `bungasetoransimpanan` (
@@ -173,7 +225,7 @@ CREATE TABLE `bungasetoransimpanan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bungasimpanan`
+-- Struktur dari tabel `bungasimpanan`
 --
 
 CREATE TABLE `bungasimpanan` (
@@ -185,7 +237,7 @@ CREATE TABLE `bungasimpanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `bungasimpanan`
+-- Dumping data untuk tabel `bungasimpanan`
 --
 
 INSERT INTO `bungasimpanan` (`bus_id`, `bus_bunga`, `bus_tgl`, `bus_flag`, `bus_info`) VALUES
@@ -194,7 +246,7 @@ INSERT INTO `bungasimpanan` (`bus_id`, `bus_bunga`, `bus_tgl`, `bus_flag`, `bus_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dendaangsuran`
+-- Struktur dari tabel `dendaangsuran`
 --
 
 CREATE TABLE `dendaangsuran` (
@@ -209,7 +261,7 @@ CREATE TABLE `dendaangsuran` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `historibungasimpanan`
+-- Struktur dari tabel `historibungasimpanan`
 --
 
 CREATE TABLE `historibungasimpanan` (
@@ -224,7 +276,7 @@ CREATE TABLE `historibungasimpanan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `investasiberjangka`
+-- Struktur dari tabel `investasiberjangka`
 --
 
 CREATE TABLE `investasiberjangka` (
@@ -247,7 +299,7 @@ CREATE TABLE `investasiberjangka` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jabatan`
+-- Struktur dari tabel `jabatan`
 --
 
 CREATE TABLE `jabatan` (
@@ -259,7 +311,7 @@ CREATE TABLE `jabatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jabatan`
+-- Dumping data untuk tabel `jabatan`
 --
 
 INSERT INTO `jabatan` (`jab_kode`, `jab_nama`, `jab_tgl`, `jab_flag`, `jab_info`) VALUES
@@ -279,7 +331,7 @@ INSERT INTO `jabatan` (`jab_kode`, `jab_nama`, `jab_tgl`, `jab_flag`, `jab_info`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jaminan`
+-- Struktur dari tabel `jaminan`
 --
 
 CREATE TABLE `jaminan` (
@@ -300,10 +352,22 @@ CREATE TABLE `jaminan` (
   `jam_alamat` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `jaminan`
+--
+
+INSERT INTO `jaminan` (`jam_id`, `pin_id`, `jej_id`, `jam_nomor`, `jam_unit`, `jam_noregistrasi`, `jam_tahunpembuatan`, `jam_atasnama`, `jam_luas`, `jam_keterangan`, `jam_file`, `jam_tgl`, `jam_flag`, `jam_info`, `jam_alamat`) VALUES
+(23, 'KE270819001', 1, '123456789', 'SEPEDAMOTOR mio', 'AA 2345 H', '2016', 'ERLIN AMALYA', NULL, 'kurang sk3', '', '2019-08-27 13:18:50', 0, '', 'parakan'),
+(24, 'KE270819002', 1, '123456789', 'SEPEDAMOTOR mio', 'AA 1234 T', '2016', 'ERLIN AMALYA', NULL, '', '', '2019-08-27 13:38:44', 0, '', 'PARAKAN'),
+(25, 'KE270819003', 1, '123456', 'SEPEDAMOTOR', 'AA 2345 H', '2015', 'ERLIN AMALYA', NULL, '', '', '2019-08-27 13:45:09', 0, '', 'PARAKAN'),
+(26, 'KE280819001', 1, '236455', 'sepeda motor', 'aa 1245 h', '2018', 'erlin', NULL, '', '', '2019-08-28 12:34:48', 0, '', 'parakan'),
+(27, 'KE290819001', 1, '5341564', 'sepeda motor klx', 'aa 1245 h', '2018', 'atyar', NULL, 'jhrzkmkli', '', '2019-08-29 08:46:05', 0, '', 'ghdchcgfh'),
+(28, 'KE290819002', 2, '5341564', NULL, NULL, NULL, NULL, NULL, 'mvgvjcf', '', '2019-08-29 09:06:08', 0, '', NULL);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jangkawaktuinvestasi`
+-- Struktur dari tabel `jangkawaktuinvestasi`
 --
 
 CREATE TABLE `jangkawaktuinvestasi` (
@@ -316,7 +380,7 @@ CREATE TABLE `jangkawaktuinvestasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jangkawaktuinvestasi`
+-- Dumping data untuk tabel `jangkawaktuinvestasi`
 --
 
 INSERT INTO `jangkawaktuinvestasi` (`jwi_id`, `jwi_jangkawaktu`, `jwi_keterangan`, `jwi_tgl`, `jwi_flag`, `jwi_info`) VALUES
@@ -328,7 +392,7 @@ INSERT INTO `jangkawaktuinvestasi` (`jwi_id`, `jwi_jangkawaktu`, `jwi_keterangan
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jasainvestasi`
+-- Struktur dari tabel `jasainvestasi`
 --
 
 CREATE TABLE `jasainvestasi` (
@@ -341,7 +405,7 @@ CREATE TABLE `jasainvestasi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jasainvestasi`
+-- Dumping data untuk tabel `jasainvestasi`
 --
 
 INSERT INTO `jasainvestasi` (`jiv_id`, `jiv_jasa`, `jiv_keterangan`, `jiv_tgl`, `jiv_flag`, `jiv_info`) VALUES
@@ -353,7 +417,7 @@ INSERT INTO `jasainvestasi` (`jiv_id`, `jiv_jasa`, `jiv_keterangan`, `jiv_tgl`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenisjaminan`
+-- Struktur dari tabel `jenisjaminan`
 --
 
 CREATE TABLE `jenisjaminan` (
@@ -366,7 +430,7 @@ CREATE TABLE `jenisjaminan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenisjaminan`
+-- Dumping data untuk tabel `jenisjaminan`
 --
 
 INSERT INTO `jenisjaminan` (`jej_id`, `jej_jaminan`, `jej_keterangan`, `jej_tgl`, `jej_flag`, `jej_info`) VALUES
@@ -381,7 +445,7 @@ INSERT INTO `jenisjaminan` (`jej_id`, `jej_jaminan`, `jej_keterangan`, `jej_tgl`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenisklaim`
+-- Struktur dari tabel `jenisklaim`
 --
 
 CREATE TABLE `jenisklaim` (
@@ -398,7 +462,7 @@ CREATE TABLE `jenisklaim` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenisklaim`
+-- Dumping data untuk tabel `jenisklaim`
 --
 
 INSERT INTO `jenisklaim` (`jkl_id`, `jkl_keuntungan`, `jkl_plan`, `jkl_tahunke`, `jkl_nominal`, `jkl_keterangan`, `jkl_administrasi`, `jkl_tgl`, `jkl_flag`, `jkl_info`) VALUES
@@ -406,13 +470,12 @@ INSERT INTO `jenisklaim` (`jkl_id`, `jkl_keuntungan`, `jkl_plan`, `jkl_tahunke`,
 (2, 'Santunan Duka Plan B', '2', 0, 10000000, 'Santunan duka untuk anggota yang meninggal', 5, '2019-07-29 09:53:02', 0, ''),
 (3, 'Santunan Duka Plan C', '3', 0, 15000000, 'Santunan duka untuk anggota jika menginggal', 5, '2019-07-29 09:53:44', 0, ''),
 (4, 'Klaim Tahun Ke-2 Plan A', '1', 2, 600000, 'Bisa diklaim oleh anggota untuk rawat inap pada bulan ke-13', 5, '2019-07-29 09:55:46', 1, ''),
-(5, 'Klaim Tahun Ke-3 Plan A', '1', 3, 1200000, 'Bisa diklaim oleh anggota untuk rawat inap pada bulan ke-25', 5, '2019-07-29 09:57:28', 0, ''),
-(6, 'Klaim Tahun Ke 4 Plan A', '1', 4, 1800000, 'Simkesan plan A tahun ke 4', 5, '2019-08-31 13:42:01', 1, '');
+(5, 'Klaim Tahun Ke-3 Plan A', '1', 3, 1200000, 'Bisa diklaim oleh anggota untuk rawat inap pada bulan ke-25', 5, '2019-07-29 09:57:28', 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenispelunasan`
+-- Struktur dari tabel `jenispelunasan`
 --
 
 CREATE TABLE `jenispelunasan` (
@@ -425,7 +488,7 @@ CREATE TABLE `jenispelunasan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenispelunasan`
+-- Dumping data untuk tabel `jenispelunasan`
 --
 
 INSERT INTO `jenispelunasan` (`jep_id`, `jep_jenis`, `jep_keterangan`, `jep_tgl`, `jep_flag`, `jep_info`) VALUES
@@ -436,7 +499,7 @@ INSERT INTO `jenispelunasan` (`jep_id`, `jep_jenis`, `jep_keterangan`, `jep_tgl`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenispenarikansimkesan`
+-- Struktur dari tabel `jenispenarikansimkesan`
 --
 
 CREATE TABLE `jenispenarikansimkesan` (
@@ -450,7 +513,7 @@ CREATE TABLE `jenispenarikansimkesan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenispenarikansimkesan`
+-- Dumping data untuk tabel `jenispenarikansimkesan`
 --
 
 INSERT INTO `jenispenarikansimkesan` (`jps_id`, `jps_jenis`, `jps_administrasi`, `jps_persenpenarikan`, `jps_tgl`, `jps_flag`, `jps_info`) VALUES
@@ -460,7 +523,7 @@ INSERT INTO `jenispenarikansimkesan` (`jps_id`, `jps_jenis`, `jps_administrasi`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenissetoran`
+-- Struktur dari tabel `jenissetoran`
 --
 
 CREATE TABLE `jenissetoran` (
@@ -474,7 +537,7 @@ CREATE TABLE `jenissetoran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenissetoran`
+-- Dumping data untuk tabel `jenissetoran`
 --
 
 INSERT INTO `jenissetoran` (`jse_id`, `jse_setoran`, `jse_keterangan`, `jse_min`, `jse_tgl`, `jse_flag`, `jse_info`) VALUES
@@ -485,7 +548,7 @@ INSERT INTO `jenissetoran` (`jse_id`, `jse_setoran`, `jse_keterangan`, `jse_min`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenissimpanan`
+-- Struktur dari tabel `jenissimpanan`
 --
 
 CREATE TABLE `jenissimpanan` (
@@ -498,7 +561,7 @@ CREATE TABLE `jenissimpanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jenissimpanan`
+-- Dumping data untuk tabel `jenissimpanan`
 --
 
 INSERT INTO `jenissimpanan` (`jsi_id`, `jsi_simpanan`, `jsi_keterangan`, `jsi_tgl`, `jsi_flag`, `jsi_info`) VALUES
@@ -508,7 +571,7 @@ INSERT INTO `jenissimpanan` (`jsi_id`, `jsi_simpanan`, `jsi_keterangan`, `jsi_tg
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kantorksp`
+-- Struktur dari tabel `kantorksp`
 --
 
 CREATE TABLE `kantorksp` (
@@ -522,16 +585,16 @@ CREATE TABLE `kantorksp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `kantorksp`
+-- Dumping data untuk tabel `kantorksp`
 --
 
 INSERT INTO `kantorksp` (`kks_id`, `kks_nama`, `kks_alamat`, `kks_kode`, `kks_flag`, `kks_tgl`, `kks_info`) VALUES
-(1, 'Kantor Pusat', 'Temanggung', 'K', 0, '2019-09-01 19:40:29', '');
+(1, 'Kantor Candiroto', 'Krajan RT3 RW1, Candiroto, Temanggung', 'K4', 0, '2019-09-01 19:40:29', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `karyawan`
+-- Struktur dari tabel `karyawan`
 --
 
 CREATE TABLE `karyawan` (
@@ -549,18 +612,26 @@ CREATE TABLE `karyawan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `karyawan`
+-- Dumping data untuk tabel `karyawan`
 --
 
 INSERT INTO `karyawan` (`kar_kode`, `kar_nama`, `kar_nik`, `jab_kode`, `kar_alamat`, `kar_nohp`, `kar_simpanan`, `kar_status`, `kar_tgl`, `kar_flag`, `kar_info`) VALUES
-('2708004', 'Adilla', '3323223322122345', 2, 'Kedu', '085876329811', NULL, 0, '2019-08-27 07:26:24', 0, ''),
-('2708005', 'Erlin', '33232123232456', 3, 'Parakan', '089768765543', NULL, 0, '2019-08-27 07:38:45', 0, ''),
-('2708006', 'Silvia', '33234567867544', 11, 'Bulu', '089768765345', NULL, 0, '2019-08-27 07:47:19', 0, '');
+('2708004', 'Adilla', '3323223322122345', 2, 'Kedu', '085876329811', NULL, 0, '2019-08-27 07:26:24', 2, ''),
+('2708005', 'Erlin', '33232123232456', 3, 'Parakan', '089768765543', NULL, 0, '2019-08-27 07:38:45', 2, ''),
+('2708006', 'Silvia', '33234567867544', 11, 'Bulu', '089768765345', NULL, 0, '2019-08-27 07:47:19', 2, ''),
+('3108007', 'CHOIRUL ANWAR', '3323101210000001', 4, 'DSN TAPAK 3.4 GIYONO JUMO TEMANGGUNG', '088225444603', NULL, 0, '2019-08-31 13:19:46', 0, ''),
+('3108008', 'YUYUN FITRASTUTI', '33233076806960003', 4, 'BANDUNG GEDE 2/6 KEDU TEMANGGUNG', '0816697201', NULL, 0, '2019-08-31 13:24:31', 0, ''),
+('3108009', 'AFRIN IRNAWATI', '3323', 4, 'KRAJAN 7/1 LEMPUYANG CANDIROTO', '085867427504', NULL, 0, '2019-08-31 13:27:21', 0, ''),
+('3108010', 'ESTI RAHMANINGSIH', '3323', 4, 'KRAJAN 2/1 LEMPUYANG CANDIROTO', '085643294926', NULL, 0, '2019-08-31 13:30:36', 0, ''),
+('3108011', 'RAKHA SATRIO AJI P', '332308291160001', 4, 'JUBUG 2/2 WANUTENGAH PARAKAN TEMANGGUNG', '085747350822', NULL, 0, '2019-08-31 13:33:38', 0, ''),
+('3108012', 'FIFI ELISANDI', '3323', 11, 'GROGOL 2/2 KUTOANYAR KEDU', '081578484249', NULL, 0, '2019-08-31 13:36:58', 0, ''),
+('3108013', 'ARIF SUSANTO', '3323092803950001', 11, 'SUMBERAN PETIREJO 2/3 NGADIREJO TEMANGGUNG', '085643533740', NULL, 0, '2019-08-31 13:39:48', 0, ''),
+('3108014', 'SRI NUR JANAH', '3323084106560002', 3, 'KARANG BENDO 2/3 TEGALROSO PARAKAN  TEMANGGUNG', '085714138581', NULL, 0, '2019-08-31 13:42:55', 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `karyawanijasah`
+-- Struktur dari tabel `karyawanijasah`
 --
 
 CREATE TABLE `karyawanijasah` (
@@ -581,17 +652,25 @@ CREATE TABLE `karyawanijasah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `karyawanijasah`
+-- Dumping data untuk tabel `karyawanijasah`
 --
 
 INSERT INTO `karyawanijasah` (`kij_id`, `kar_kode`, `kij_sd`, `kij_smp`, `kij_sma`, `kij_d3`, `kij_s1`, `kij_s2`, `kij_s3`, `kij_lainlain`, `kij_status`, `kij_tgl`, `kij_flag`, `kij_info`) VALUES
 (3, 2708005, '-', '', 'SMK DN-03 MK 0012345', '', '', '', '', NULL, 0, '2019-08-27 07:38:45', 0, ''),
-(4, 2708006, '-', '', '', '', 'S1/123/23/M', '', '', NULL, 0, '2019-08-27 07:47:19', 0, '');
+(4, 2708006, '-', '', '', '', 'S1/123/23/M', '', '', NULL, 0, '2019-08-27 07:47:19', 0, ''),
+(5, 3108007, '-', '-', 'DN -03 D1/13 0019781', '-', '-', '-', '-', NULL, 0, '2019-08-31 13:19:46', 0, ''),
+(6, 3108008, '-', 'DN 03DI 0154120', 'DN 03MK0166705', '-', '-', '-', '-', NULL, 0, '2019-08-31 13:24:31', 0, ''),
+(7, 3108009, '-', '-', 'DN03 MK/13 0082624', '--', '-', '-', '-', NULL, 0, '2019-08-31 13:27:21', 0, ''),
+(8, 3108010, '-', '-', 'DN 030074207', '-', '-', '-', '-', NULL, 0, '2019-08-31 13:30:36', 0, ''),
+(9, 3108011, '-', '-', 'DN03MK0099046', '-', '-', '-', '-', NULL, 0, '2019-08-31 13:33:38', 0, ''),
+(10, 3108012, '-', '-', 'MA 11015665', '-', '-', '-', '-', NULL, 0, '2019-08-31 13:36:58', 0, ''),
+(11, 3108013, '-', '-', 'DN03MA0022316', '0', '0', '0', '-', NULL, 0, '2019-08-31 13:39:48', 0, ''),
+(12, 3108014, '-', '-', 'DN03MK/060052317', '-', '-', '-', '-', NULL, 0, '2019-08-31 13:42:55', 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `karyawansimpanan`
+-- Struktur dari tabel `karyawansimpanan`
 --
 
 CREATE TABLE `karyawansimpanan` (
@@ -605,7 +684,7 @@ CREATE TABLE `karyawansimpanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `karyawansimpanan`
+-- Dumping data untuk tabel `karyawansimpanan`
 --
 
 INSERT INTO `karyawansimpanan` (`ksi_id`, `kar_kode`, `ksi_simpanan`, `ksi_status`, `ksi_tgl`, `ksi_flag`, `ksi_info`) VALUES
@@ -614,12 +693,20 @@ INSERT INTO `karyawansimpanan` (`ksi_id`, `kar_kode`, `ksi_simpanan`, `ksi_statu
 (4, '240819003', 2000000, 0, '2019-08-24 13:53:49', 0, ''),
 (5, '2708004', 2000000, 0, '2019-08-27 07:26:24', 0, ''),
 (6, '2708005', 2000000, 0, '2019-08-27 07:38:45', 0, ''),
-(7, '2708006', 2000000, 0, '2019-08-27 07:47:19', 0, '');
+(7, '2708006', 2000000, 0, '2019-08-27 07:47:19', 0, ''),
+(8, '3108007', 2000000, 0, '2019-08-31 13:19:46', 0, ''),
+(9, '3108008', 2000000, 0, '2019-08-31 13:24:31', 0, ''),
+(10, '3108009', 2000000, 0, '2019-08-31 13:27:21', 0, ''),
+(11, '3108010', 2000000, 0, '2019-08-31 13:30:36', 0, ''),
+(12, '3108011', 2000000, 0, '2019-08-31 13:33:38', 0, ''),
+(13, '3108012', 2000000, 0, '2019-08-31 13:36:58', 0, ''),
+(14, '3108013', 2000000, 0, '2019-08-31 13:39:48', 0, ''),
+(15, '3108014', 2000000, 0, '2019-08-31 13:42:55', 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keluargakaryawan`
+-- Struktur dari tabel `keluargakaryawan`
 --
 
 CREATE TABLE `keluargakaryawan` (
@@ -635,18 +722,26 @@ CREATE TABLE `keluargakaryawan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `keluargakaryawan`
+-- Dumping data untuk tabel `keluargakaryawan`
 --
 
 INSERT INTO `keluargakaryawan` (`kka_id`, `kar_kode`, `kka_nama`, `kka_hubungan`, `kka_alamat`, `kka_nohp`, `kka_tgl`, `kka_flag`, `kka_info`) VALUES
 (1, '2708004', 'Wakijo', 'Ayah', ' Kedu', '08976876565', '2019-08-27 07:26:24', 0, ''),
 (2, '2708005', 'Andi', 'Ayah', ' Parakan', '0897865765', '2019-08-27 07:38:45', 0, ''),
-(3, '2708006', 'aaaa', 'Ayah', ' Bulu', '0876765654', '2019-08-27 07:47:19', 0, '');
+(3, '2708006', 'aaaa', 'Ayah', ' Bulu', '0876765654', '2019-08-27 07:47:19', 0, ''),
+(4, '3108007', 'ZAENAL ARIFIN', 'AYAH', ' DSN TAPAK 3.4 GIYONO JUMO TEMANGGUNG', '85228174424', '2019-08-31 13:19:46', 0, ''),
+(5, '3108008', 'PURWANTI', 'IBU', ' BANDUNG GEDE 2/6 KEDU TEMANGGUNG', '81816697339', '2019-08-31 13:24:31', 0, ''),
+(6, '3108009', 'SEPTI SORAYA', 'KAKAK KANDUNG', ' KRAJAN 7/1 LEMPUYANG CANDIROTO', '085867427504', '2019-08-31 13:27:21', 0, ''),
+(7, '3108010', 'IBU', 'IBU', 'KRAJAN 2/1 LEMPUYANG CANDIROTO ', '085643294926', '2019-08-31 13:30:36', 0, ''),
+(8, '3108011', 'GAMANG WARDOYO', 'KAKAK', ' JUBUG 2/2 WANUTENGAH PARAKAN TEMANGGUNG', '813938012767', '2019-08-31 13:33:38', 0, ''),
+(9, '3108012', 'RESTU PRAMUJI', 'SUAMI', ' GROGOL 2/2 KUTOANYAR KEDU', '81578484249', '2019-08-31 13:36:58', 0, ''),
+(10, '3108013', 'YAMIYAH', 'KAKAK', ' SUMBERAN PETIREJO 2/3 NGADIREJO TEMANGGUNG', '85291445836', '2019-08-31 13:39:48', 0, ''),
+(11, '3108014', 'WULAN RAMADHANI', 'ADIK', ' KARANG BENDO 2/3 TEGALROSO PARAKAN  TEMANGGUNG', '85700996843', '2019-08-31 13:42:55', 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keuntunganinvestasi`
+-- Struktur dari tabel `keuntunganinvestasi`
 --
 
 CREATE TABLE `keuntunganinvestasi` (
@@ -662,7 +757,7 @@ CREATE TABLE `keuntunganinvestasi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `klaimsimkesan`
+-- Struktur dari tabel `klaimsimkesan`
 --
 
 CREATE TABLE `klaimsimkesan` (
@@ -684,7 +779,7 @@ CREATE TABLE `klaimsimkesan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `master_access`
+-- Struktur dari tabel `master_access`
 --
 
 CREATE TABLE `master_access` (
@@ -696,7 +791,7 @@ CREATE TABLE `master_access` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `master_access`
+-- Dumping data untuk tabel `master_access`
 --
 
 INSERT INTO `master_access` (`id`, `nm_access`, `note`, `created_at`, `created_by`) VALUES
@@ -712,7 +807,7 @@ INSERT INTO `master_access` (`id`, `nm_access`, `note`, `created_at`, `created_b
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mutasiberjangka`
+-- Struktur dari tabel `mutasiberjangka`
 --
 
 CREATE TABLE `mutasiberjangka` (
@@ -730,7 +825,7 @@ CREATE TABLE `mutasiberjangka` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mutasipinjaman`
+-- Struktur dari tabel `mutasipinjaman`
 --
 
 CREATE TABLE `mutasipinjaman` (
@@ -748,7 +843,7 @@ CREATE TABLE `mutasipinjaman` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mutasisimkesan`
+-- Struktur dari tabel `mutasisimkesan`
 --
 
 CREATE TABLE `mutasisimkesan` (
@@ -766,7 +861,7 @@ CREATE TABLE `mutasisimkesan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mutasisimpanan`
+-- Struktur dari tabel `mutasisimpanan`
 --
 
 CREATE TABLE `mutasisimpanan` (
@@ -784,7 +879,7 @@ CREATE TABLE `mutasisimpanan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `neracaaktivatetap`
+-- Struktur dari tabel `neracaaktivatetap`
 --
 
 CREATE TABLE `neracaaktivatetap` (
@@ -804,7 +899,7 @@ CREATE TABLE `neracaaktivatetap` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `neracaekuitas`
+-- Struktur dari tabel `neracaekuitas`
 --
 
 CREATE TABLE `neracaekuitas` (
@@ -820,7 +915,7 @@ CREATE TABLE `neracaekuitas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `neracakasbank`
+-- Struktur dari tabel `neracakasbank`
 --
 
 CREATE TABLE `neracakasbank` (
@@ -835,7 +930,7 @@ CREATE TABLE `neracakasbank` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `neracakasbanksimkesan`
+-- Struktur dari tabel `neracakasbanksimkesan`
 --
 
 CREATE TABLE `neracakasbanksimkesan` (
@@ -850,7 +945,7 @@ CREATE TABLE `neracakasbanksimkesan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `neracakewajibanjangkapanjang`
+-- Struktur dari tabel `neracakewajibanjangkapanjang`
 --
 
 CREATE TABLE `neracakewajibanjangkapanjang` (
@@ -866,7 +961,7 @@ CREATE TABLE `neracakewajibanjangkapanjang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pelunasan`
+-- Struktur dari tabel `pelunasan`
 --
 
 CREATE TABLE `pelunasan` (
@@ -890,7 +985,7 @@ CREATE TABLE `pelunasan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penarikaninvestasiberjangka`
+-- Struktur dari tabel `penarikaninvestasiberjangka`
 --
 
 CREATE TABLE `penarikaninvestasiberjangka` (
@@ -907,7 +1002,7 @@ CREATE TABLE `penarikaninvestasiberjangka` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penarikansimkesan`
+-- Struktur dari tabel `penarikansimkesan`
 --
 
 CREATE TABLE `penarikansimkesan` (
@@ -928,7 +1023,7 @@ CREATE TABLE `penarikansimkesan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penarikansimpanan`
+-- Struktur dari tabel `penarikansimpanan`
 --
 
 CREATE TABLE `penarikansimpanan` (
@@ -949,7 +1044,7 @@ CREATE TABLE `penarikansimpanan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penarikansimpananwajib`
+-- Struktur dari tabel `penarikansimpananwajib`
 --
 
 CREATE TABLE `penarikansimpananwajib` (
@@ -965,7 +1060,7 @@ CREATE TABLE `penarikansimpananwajib` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penjamin`
+-- Struktur dari tabel `penjamin`
 --
 
 CREATE TABLE `penjamin` (
@@ -984,7 +1079,7 @@ CREATE TABLE `penjamin` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phu`
+-- Struktur dari tabel `phu`
 --
 
 CREATE TABLE `phu` (
@@ -1022,7 +1117,7 @@ CREATE TABLE `phu` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phusimkesan`
+-- Struktur dari tabel `phusimkesan`
 --
 
 CREATE TABLE `phusimkesan` (
@@ -1039,7 +1134,7 @@ CREATE TABLE `phusimkesan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phusimkesanpendapatan`
+-- Struktur dari tabel `phusimkesanpendapatan`
 --
 
 CREATE TABLE `phusimkesanpendapatan` (
@@ -1057,7 +1152,7 @@ CREATE TABLE `phusimkesanpendapatan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phu_sistem`
+-- Struktur dari tabel `phu_sistem`
 --
 
 CREATE TABLE `phu_sistem` (
@@ -1078,7 +1173,7 @@ CREATE TABLE `phu_sistem` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pinjaman`
+-- Struktur dari tabel `pinjaman`
 --
 
 CREATE TABLE `pinjaman` (
@@ -1105,7 +1200,7 @@ CREATE TABLE `pinjaman` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `plansimkesan`
+-- Struktur dari tabel `plansimkesan`
 --
 
 CREATE TABLE `plansimkesan` (
@@ -1119,7 +1214,7 @@ CREATE TABLE `plansimkesan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `plansimkesan`
+-- Dumping data untuk tabel `plansimkesan`
 --
 
 INSERT INTO `plansimkesan` (`psk_id`, `psk_plan`, `psk_setoran`, `psk_keterangan`, `psk_tgl`, `psk_flag`, `psk_info`) VALUES
@@ -1130,7 +1225,7 @@ INSERT INTO `plansimkesan` (`psk_id`, `psk_plan`, `psk_setoran`, `psk_keterangan
 -- --------------------------------------------------------
 
 --
--- Table structure for table `potonganprovisi`
+-- Struktur dari tabel `potonganprovisi`
 --
 
 CREATE TABLE `potonganprovisi` (
@@ -1142,7 +1237,7 @@ CREATE TABLE `potonganprovisi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `potonganprovisi`
+-- Dumping data untuk tabel `potonganprovisi`
 --
 
 INSERT INTO `potonganprovisi` (`pop_id`, `pop_potongan`, `pop_tgl`, `pop_flag`, `pop_info`) VALUES
@@ -1151,7 +1246,7 @@ INSERT INTO `potonganprovisi` (`pop_id`, `pop_potongan`, `pop_tgl`, `pop_flag`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `setoransimkesan`
+-- Struktur dari tabel `setoransimkesan`
 --
 
 CREATE TABLE `setoransimkesan` (
@@ -1166,10 +1261,20 @@ CREATE TABLE `setoransimkesan` (
   `ssk_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `setoransimkesan`
+--
+
+INSERT INTO `setoransimkesan` (`ssk_id`, `sik_kode`, `ssk_tglsetoran`, `ssk_tglbayar`, `ssk_jmlsetor`, `ssk_status`, `ssk_tgl`, `ssk_flag`, `ssk_info`) VALUES
+(8, 'KE290819001', '2019-08-29 13:57:42', '2019-08-29 13:57:42', 150000, 0, '2019-08-29 13:57:42', 0, ''),
+(9, 'KE290819002', '2019-08-29 14:01:03', '2019-08-29 14:01:03', 100000, 0, '2019-08-29 14:01:03', 0, ''),
+(10, 'KE290819002', '2019-08-29 14:02:32', '2019-08-29 14:02:32', 0, 0, '2019-08-29 14:02:32', 0, ''),
+(11, 'KE290819002', '2019-08-29 14:02:45', '2019-08-29 14:02:45', 100000, 0, '2019-08-29 14:02:45', 0, '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `setoransimpanan`
+-- Struktur dari tabel `setoransimpanan`
 --
 
 CREATE TABLE `setoransimpanan` (
@@ -1182,10 +1287,75 @@ CREATE TABLE `setoransimpanan` (
   `ssi_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `setoransimpanan`
+--
+
+INSERT INTO `setoransimpanan` (`ssi_id`, `sim_kode`, `ssi_tglsetor`, `ssi_jmlsetor`, `ssi_tgl`, `ssi_flag`, `ssi_info`) VALUES
+(44, 'K4B020919001', '2019-09-02 14:14:51', 40000, '2019-09-02 14:14:51', 0, ''),
+(45, 'K4B020919002', '2019-09-02 14:18:51', 100000, '2019-09-02 14:18:51', 0, ''),
+(46, 'K4B020919003', '2019-09-02 19:07:18', 15000, '2019-09-02 19:07:18', 0, ''),
+(47, 'K4B020919004', '2019-09-02 19:12:26', 10000, '2019-09-02 19:12:26', 0, ''),
+(48, 'K4B020919006', '2019-09-02 19:23:01', 200000, '2019-09-02 19:23:01', 0, ''),
+(49, 'K4B020919007', '2019-09-02 19:35:04', 10000, '2019-09-02 19:35:04', 0, ''),
+(50, 'K4B020919003', '2019-09-03 07:15:54', 15000, '2019-09-03 07:15:54', 0, ''),
+(51, 'K4B030919001', '2019-09-03 07:25:49', 30000, '2019-09-03 07:25:49', 0, ''),
+(52, 'K4B030919002', '2019-09-03 07:26:34', 20000, '2019-09-03 07:26:34', 0, ''),
+(53, 'K4B030919003', '2019-09-03 07:27:15', 50000, '2019-09-03 07:27:15', 0, ''),
+(54, 'K4B030919004', '2019-09-03 07:28:03', 50000, '2019-09-03 07:28:03', 0, ''),
+(55, 'K4B020919006', '2019-09-04 00:00:00', 10000, '2019-09-04 20:59:53', 1, ''),
+(56, 'K4B030919005', '2019-09-03 07:42:39', 10000, '2019-09-03 07:42:39', 0, ''),
+(57, 'K4B020919002', '2019-09-03 07:43:01', 100000, '2019-09-03 07:43:01', 0, ''),
+(58, 'K4A030919007', '2019-09-03 07:47:26', 1000000, '2019-09-03 07:47:26', 2, ''),
+(59, 'K4B030919006', '2019-09-03 07:47:47', 50000, '2019-09-03 07:47:47', 0, ''),
+(61, 'K4B040919002', '2019-09-04 09:32:30', 100000, '2019-09-04 09:32:30', 0, ''),
+(62, 'K4B040919001', '2019-09-04 09:33:13', 10000, '2019-09-04 09:33:13', 0, ''),
+(63, 'K4B020919003', '2019-09-04 09:33:48', 15000, '2019-09-04 09:33:48', 0, ''),
+(64, 'K4B040919004', '2019-09-04 09:47:00', 30000, '2019-09-04 09:47:00', 0, ''),
+(65, 'K4B040919003', '2019-09-04 09:47:22', 90000, '2019-09-04 09:47:22', 0, ''),
+(66, 'K4B020919007', '2019-09-04 09:48:10', 20000, '2019-09-04 09:48:10', 0, ''),
+(67, 'K4B040919006', '2019-09-04 09:55:05', 10000, '2019-09-04 09:55:05', 0, ''),
+(68, 'K4B040919005', '2019-09-04 09:55:43', 10000, '2019-09-04 09:55:43', 0, ''),
+(69, 'K4B030919005', '2019-09-04 09:56:11', 10000, '2019-09-04 09:56:11', 0, ''),
+(70, 'K4B020919002', '2019-09-04 09:56:31', 50000, '2019-09-04 09:56:31', 0, ''),
+(71, 'K4B040919007', '2019-09-04 10:00:34', 90000, '2019-09-04 10:00:34', 0, ''),
+(72, 'K4B030919006', '2019-09-04 10:01:00', 20000, '2019-09-04 10:01:00', 0, ''),
+(73, 'K4B030919008', '2019-09-04 10:01:23', 50000, '2019-09-04 10:01:23', 0, ''),
+(74, 'K4B030919008', '2019-09-03 00:00:00', 1000000, '2019-09-03 00:00:00', 0, ''),
+(75, 'K4B050919001', '2019-09-05 08:29:54', 40000, '2019-09-05 08:29:54', 0, ''),
+(76, 'K4B020919003', '2019-09-05 08:30:57', 15000, '2019-09-05 08:30:57', 0, ''),
+(77, 'K4B040919001', '2019-09-05 08:31:21', 10000, '2019-09-05 08:31:21', 0, ''),
+(78, 'K4B050919004', '2019-09-05 08:49:26', 100000, '2019-09-05 08:49:26', 0, ''),
+(79, 'K4B050919003', '2019-09-05 08:49:46', 100000, '2019-09-05 08:49:46', 0, ''),
+(80, 'K4B050919002', '2019-09-05 08:50:08', 40000, '2019-09-05 08:50:08', 0, ''),
+(81, 'K4B030919004', '2019-09-05 08:56:18', 50000, '2019-09-05 08:56:18', 0, ''),
+(82, 'K4B040919004', '2019-09-05 08:56:38', 40000, '2019-09-05 08:56:38', 0, ''),
+(83, 'K4B020919006', '2019-09-05 08:57:06', 30000, '2019-09-05 08:57:06', 0, ''),
+(84, 'K4B020919002', '2019-09-05 09:11:23', 50000, '2019-09-05 09:11:23', 0, ''),
+(85, 'K4B020919001', '2019-09-05 09:11:40', 60000, '2019-09-05 09:11:40', 0, ''),
+(86, 'K4B050919005', '2019-09-05 09:12:35', 600000, '2019-09-05 09:12:35', 0, ''),
+(87, 'K4B050919006', '2019-09-05 09:15:08', 200000, '2019-09-05 09:15:08', 0, ''),
+(88, 'K4B030919008', '2019-09-05 09:20:51', 25000, '2019-09-05 09:20:51', 0, ''),
+(89, 'K4B030919006', '2019-09-05 09:21:19', 50000, '2019-09-05 09:21:19', 0, ''),
+(90, 'K4A050919007', '2019-09-05 22:22:17', 20000, '2019-09-05 22:22:17', 0, ''),
+(91, 'K4B040919001', '2019-09-06 07:26:06', 10000, '2019-09-06 07:26:06', 0, ''),
+(92, 'K4B040919002', '2019-09-06 07:27:04', 10000, '2019-09-06 07:27:04', 0, ''),
+(93, 'K4B020919003', '2019-09-06 07:27:24', 15000, '2019-09-06 07:27:24', 0, ''),
+(94, 'K4B050919001', '2019-09-06 07:28:12', 20000, '2019-09-06 07:28:12', 0, ''),
+(95, 'K4B040919004', '2019-09-06 07:40:38', 40000, '2019-09-06 07:40:38', 0, ''),
+(96, 'K4B020919007', '2019-09-06 07:41:26', 10000, '2019-09-06 07:41:26', 0, ''),
+(97, 'K4B020919006', '2019-09-06 07:42:06', 50000, '2019-09-06 07:42:06', 0, ''),
+(98, 'K4B040919005', '2019-09-06 07:42:57', 10000, '2019-09-06 07:42:57', 0, ''),
+(99, 'K4B040919006', '2019-09-06 07:43:24', 20000, '2019-09-06 07:43:24', 0, ''),
+(100, 'K4B030919005', '2019-09-06 07:43:54', 10000, '2019-09-06 07:43:54', 0, ''),
+(101, 'K4B030919008', '2019-09-06 07:44:56', 25000, '2019-09-06 07:44:56', 0, ''),
+(102, 'K4B030919006', '2019-09-06 07:45:17', 10000, '2019-09-06 07:45:17', 0, ''),
+(103, 'K4B040919007', '2019-09-06 07:45:37', 50000, '2019-09-06 07:45:37', 0, '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `setoransimpananwajib`
+-- Struktur dari tabel `setoransimpananwajib`
 --
 
 CREATE TABLE `setoransimpananwajib` (
@@ -1201,7 +1371,7 @@ CREATE TABLE `setoransimpananwajib` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settingangsuran`
+-- Struktur dari tabel `settingangsuran`
 --
 
 CREATE TABLE `settingangsuran` (
@@ -1213,7 +1383,7 @@ CREATE TABLE `settingangsuran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `settingangsuran`
+-- Dumping data untuk tabel `settingangsuran`
 --
 
 INSERT INTO `settingangsuran` (`sea_id`, `sea_tenor`, `sea_tgl`, `sea_flag`, `sea_info`) VALUES
@@ -1228,7 +1398,7 @@ INSERT INTO `settingangsuran` (`sea_id`, `sea_tenor`, `sea_tgl`, `sea_flag`, `se
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settingdenda`
+-- Struktur dari tabel `settingdenda`
 --
 
 CREATE TABLE `settingdenda` (
@@ -1241,7 +1411,7 @@ CREATE TABLE `settingdenda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `settingdenda`
+-- Dumping data untuk tabel `settingdenda`
 --
 
 INSERT INTO `settingdenda` (`sed_id`, `sed_hari`, `sed_denda`, `sed_tgl`, `sed_flag`, `sed_info`) VALUES
@@ -1250,7 +1420,7 @@ INSERT INTO `settingdenda` (`sed_id`, `sed_hari`, `sed_denda`, `sed_tgl`, `sed_f
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settingkategoripeminjam`
+-- Struktur dari tabel `settingkategoripeminjam`
 --
 
 CREATE TABLE `settingkategoripeminjam` (
@@ -1262,7 +1432,7 @@ CREATE TABLE `settingkategoripeminjam` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `settingkategoripeminjam`
+-- Dumping data untuk tabel `settingkategoripeminjam`
 --
 
 INSERT INTO `settingkategoripeminjam` (`skp_id`, `skp_kategori`, `skp_tgl`, `skp_flag`, `skp_info`) VALUES
@@ -1273,7 +1443,7 @@ INSERT INTO `settingkategoripeminjam` (`skp_id`, `skp_kategori`, `skp_tgl`, `skp
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settingsimpanan`
+-- Struktur dari tabel `settingsimpanan`
 --
 
 CREATE TABLE `settingsimpanan` (
@@ -1287,7 +1457,7 @@ CREATE TABLE `settingsimpanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `settingsimpanan`
+-- Dumping data untuk tabel `settingsimpanan`
 --
 
 INSERT INTO `settingsimpanan` (`ses_id`, `ses_nama`, `ses_min`, `ses_max`, `ses_tgl`, `ses_flag`, `ses_info`) VALUES
@@ -1297,7 +1467,7 @@ INSERT INTO `settingsimpanan` (`ses_id`, `ses_nama`, `ses_min`, `ses_max`, `ses_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `settingstatuspeminjam`
+-- Struktur dari tabel `settingstatuspeminjam`
 --
 
 CREATE TABLE `settingstatuspeminjam` (
@@ -1309,7 +1479,7 @@ CREATE TABLE `settingstatuspeminjam` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `settingstatuspeminjam`
+-- Dumping data untuk tabel `settingstatuspeminjam`
 --
 
 INSERT INTO `settingstatuspeminjam` (`ssp_id`, `ssp_namastatus`, `ssp_tgl`, `ssp_flag`, `ssp_info`) VALUES
@@ -1320,7 +1490,7 @@ INSERT INTO `settingstatuspeminjam` (`ssp_id`, `ssp_namastatus`, `ssp_tgl`, `ssp
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shu`
+-- Struktur dari tabel `shu`
 --
 
 CREATE TABLE `shu` (
@@ -1332,14 +1502,14 @@ CREATE TABLE `shu` (
   `shu_tgl` datetime NOT NULL,
   `shu_flag` tinyint(2) NOT NULL,
   `shu_info` text NOT NULL,
-  `phu_id` int(11) DEFAULT NULL COMMENT 'fk dari phu',
-  `psis_id` varchar(20) DEFAULT NULL COMMENT 'fk dari phu_sistem'
+  `phu_id` int(11) NOT NULL COMMENT 'fk dari phu',
+  `psis_id` varchar(20) NOT NULL COMMENT 'fk dari phu_sistem'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shusimkesan`
+-- Struktur dari tabel `shusimkesan`
 --
 
 CREATE TABLE `shusimkesan` (
@@ -1355,7 +1525,7 @@ CREATE TABLE `shusimkesan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `simkesan`
+-- Struktur dari tabel `simkesan`
 --
 
 CREATE TABLE `simkesan` (
@@ -1375,13 +1545,13 @@ CREATE TABLE `simkesan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `simpanan`
+-- Struktur dari tabel `simpanan`
 --
 
 CREATE TABLE `simpanan` (
   `sim_kode` varchar(25) NOT NULL,
-  `ang_no` varchar(10) NOT NULL COMMENT 'fk dari anggota',
-  `kar_kode` varchar(10) NOT NULL COMMENT 'fk dari karyawan',
+  `ang_no` varchar(25) NOT NULL COMMENT 'fk dari anggota',
+  `kar_kode` varchar(15) NOT NULL COMMENT 'fk dari karyawan',
   `bus_id` int(11) NOT NULL COMMENT 'fk dari bungasimapanan',
   `jsi_id` int(11) NOT NULL COMMENT 'fk dari jenissimpanan',
   `jse_id` int(11) NOT NULL COMMENT 'fk dari jenissetoran',
@@ -1393,15 +1563,50 @@ CREATE TABLE `simpanan` (
   `sim_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `simpanan`
+--
+
+INSERT INTO `simpanan` (`sim_kode`, `ang_no`, `kar_kode`, `bus_id`, `jsi_id`, `jse_id`, `wil_kode`, `sim_tglpendaftaran`, `sim_status`, `sim_tgl`, `sim_flag`, `sim_info`) VALUES
+('K4A020919005', 'K4020919022', '3108011', 4, 1, 1, '15', '2019-09-02 00:00:00', '0', '2019-09-02 19:20:27', 2, ''),
+('K4A030919007', 'K4030919030', '3108007', 4, 1, 1, '14', '2019-09-03 00:00:00', '0', '2019-09-03 07:46:49', 2, ''),
+('K4A050919007', 'K4050919048', '3108007', 4, 1, 1, '14', '2019-09-05 00:00:00', '0', '2019-09-05 22:21:23', 0, ''),
+('K4B020919001', 'K4020919018', '3108010', 4, 2, 1, '18', '2019-09-02 00:00:00', '0', '2019-09-02 14:13:41', 0, ''),
+('K4B020919002', 'K4020919019', '3108010', 4, 2, 1, '18', '2019-09-02 00:00:00', '0', '2019-09-02 14:18:19', 0, ''),
+('K4B020919003', 'K4020919020', '3108009', 4, 2, 1, '17', '2019-09-02 00:00:00', '0', '2019-09-02 19:06:26', 0, ''),
+('K4B020919004', 'K4020919021', '3108011', 4, 2, 1, '15', '2019-09-02 00:00:00', '0', '2019-09-02 19:11:46', 0, ''),
+('K4B020919006', 'K4020919022', '3108011', 4, 2, 1, '15', '2019-09-02 00:00:00', '0', '2019-09-02 19:21:27', 0, ''),
+('K4B020919007', 'K4020919023', '3108011', 4, 2, 1, '15', '2019-09-02 00:00:00', '0', '2019-09-02 19:34:38', 0, ''),
+('K4B030919001', 'K4030919024', '3108011', 4, 2, 1, '15', '2019-09-03 00:00:00', '0', '2019-09-03 07:25:00', 0, ''),
+('K4B030919002', 'K4030919025', '3108011', 4, 2, 1, '15', '2019-09-03 00:00:00', '0', '2019-09-03 07:26:12', 0, ''),
+('K4B030919003', 'K4030919026', '3108011', 4, 2, 1, '15', '2019-09-03 00:00:00', '0', '2019-09-03 07:26:58', 0, ''),
+('K4B030919004', 'K4030919027', '3108011', 4, 2, 1, '15', '2019-09-03 00:00:00', '0', '2019-09-03 07:27:40', 0, ''),
+('K4B030919005', 'K4030919028', '3108010', 4, 2, 1, '18', '2019-09-03 00:00:00', '0', '2019-09-03 07:42:11', 0, ''),
+('K4B030919006', 'K4030919029', '3108007', 4, 2, 1, '14', '2019-09-03 00:00:00', '0', '2019-09-03 07:46:25', 0, ''),
+('K4B030919008', 'K4030919030', '3108007', 4, 2, 1, '14', '2019-09-03 00:00:00', '0', '2019-09-03 07:46:49', 1, ''),
+('K4B040919001', 'K4040919032', '3108009', 4, 2, 1, '17', '2019-09-04 00:00:00', '0', '2019-09-04 09:31:18', 0, ''),
+('K4B040919002', 'K4040919033', '3108009', 4, 2, 1, '17', '2019-09-04 00:00:00', '0', '2019-09-04 09:31:51', 0, ''),
+('K4B040919003', 'K4040919035', '3108011', 4, 2, 1, '15', '2019-09-04 00:00:00', '0', '2019-09-04 09:45:43', 0, ''),
+('K4B040919004', 'K4040919034', '3108011', 4, 2, 1, '15', '2019-09-04 00:00:00', '0', '2019-09-04 09:46:23', 0, ''),
+('K4B040919005', 'K4040919036', '3108010', 4, 2, 1, '18', '2019-09-04 00:00:00', '0', '2019-09-04 09:54:22', 0, ''),
+('K4B040919006', 'K4040919037', '3108010', 4, 2, 1, '18', '2019-09-04 00:00:00', '0', '2019-09-04 09:54:41', 0, ''),
+('K4B040919007', 'K4040919038', '3108007', 4, 2, 1, '14', '2019-09-04 00:00:00', '0', '2019-09-04 10:00:10', 0, ''),
+('K4B050919001', 'K4050919039', '3108009', 4, 2, 1, '17', '2019-09-05 00:00:00', '0', '2019-09-05 08:28:36', 0, ''),
+('K4B050919002', 'K4050919040', '3108008', 4, 2, 1, '16', '2019-09-05 00:00:00', '0', '2019-09-05 08:36:56', 0, ''),
+('K4B050919003', 'K4050919041', '3108008', 4, 2, 1, '16', '2019-09-05 00:00:00', '0', '2019-09-05 08:44:47', 0, ''),
+('K4B050919004', 'K4050919042', '3108008', 4, 2, 1, '16', '2019-09-05 00:00:00', '0', '2019-09-05 08:48:06', 0, ''),
+('K4B050919005', 'K4050919044', '3108010', 4, 2, 1, '18', '2019-09-05 00:00:00', '0', '2019-09-05 09:05:22', 0, ''),
+('K4B050919006', 'K4050919045', '3108011', 4, 2, 1, '15', '2019-09-05 00:00:00', '0', '2019-09-05 09:14:48', 0, '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `simpananpokok`
+-- Struktur dari tabel `simpananpokok`
 --
 
 CREATE TABLE `simpananpokok` (
   `sip_id` int(10) NOT NULL,
-  `ang_no` varchar(10) NOT NULL COMMENT 'fk dari anggota',
+  `ang_no` varchar(25) NOT NULL COMMENT 'fk dari anggota',
   `ses_id` int(11) NOT NULL COMMENT 'fk dari settingsimpanan',
   `sip_setoran` float NOT NULL,
   `sip_tglbayar` datetime NOT NULL,
@@ -1410,10 +1615,50 @@ CREATE TABLE `simpananpokok` (
   `sip_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `simpananpokok`
+--
+
+INSERT INTO `simpananpokok` (`sip_id`, `ang_no`, `ses_id`, `sip_setoran`, `sip_tglbayar`, `sip_tgl`, `sip_flag`, `sip_info`) VALUES
+(31, 'K4020919019', 2, 10000, '2019-02-09 00:00:00', '2019-09-02 09:17:22', 0, ''),
+(32, 'K4020919018', 2, 10000, '2019-09-02 00:00:00', '2019-09-02 09:43:21', 0, ''),
+(33, 'K402091901', 2, 10000, '2019-09-02 00:00:00', '2019-09-02 14:16:29', 0, ''),
+(34, 'K4020919021', 2, 10000, '2019-09-02 00:00:00', '2019-09-02 19:05:08', 0, ''),
+(35, 'K4020919020', 2, 10000, '2019-09-02 00:00:00', '2019-09-02 19:11:07', 0, ''),
+(36, 'K4020919022', 2, 10000, '2019-09-02 00:00:00', '2019-09-02 19:18:08', 0, ''),
+(37, 'K4020919023', 2, 10000, '2019-09-02 00:00:00', '2019-09-02 19:34:05', 0, ''),
+(38, 'K403091902', 2, 10000, '2019-09-03 00:00:00', '2019-09-03 07:19:45', 0, ''),
+(39, 'K403091902', 2, 10000, '2019-09-03 00:00:00', '2019-09-03 07:21:05', 0, ''),
+(40, 'K403091902', 2, 10000, '2019-09-03 00:00:00', '2019-09-03 07:22:18', 0, ''),
+(41, 'K403091902', 2, 10000, '2019-09-03 00:00:00', '2019-09-03 07:23:28', 0, ''),
+(42, 'K403091902', 2, 10000, '2019-09-03 00:00:00', '2019-09-03 07:41:40', 0, ''),
+(43, 'K4030919024', 2, 10000, '2019-09-03 00:00:00', '2019-09-03 07:44:44', 0, ''),
+(44, 'K403091903', 2, 10000, '2019-09-03 00:00:00', '2019-09-03 07:45:45', 0, ''),
+(45, 'K403091903', 2, 10000, '2019-09-03 00:00:00', '2019-09-03 08:02:27', 0, ''),
+(46, 'K404091903', 2, 10000, '2019-09-04 00:00:00', '2019-09-04 09:28:12', 0, ''),
+(47, 'K404091903', 2, 10000, '2019-09-04 00:00:00', '2019-09-04 09:30:20', 0, ''),
+(48, 'K404091903', 2, 10000, '2019-09-04 00:00:00', '2019-09-04 09:36:30', 0, ''),
+(49, 'K404091903', 2, 10000, '2019-09-04 00:00:00', '2019-09-04 09:44:04', 0, ''),
+(50, 'K404091903', 2, 10000, '2019-09-04 00:00:00', '2019-09-04 09:51:48', 0, ''),
+(51, 'K404091903', 2, 10000, '2019-09-04 00:00:00', '2019-09-04 09:53:30', 0, ''),
+(52, 'K404091903', 2, 10000, '2019-09-04 00:00:00', '2019-09-04 09:59:33', 0, ''),
+(53, 'K405091903', 2, 10000, '2019-09-05 00:00:00', '2019-09-05 08:27:13', 0, ''),
+(54, 'K405091904', 2, 10000, '2019-09-05 00:00:00', '2019-09-05 08:35:52', 0, ''),
+(55, 'K405091904', 2, 10000, '2019-09-05 00:00:00', '2019-09-05 08:43:17', 0, ''),
+(56, 'K405091904', 2, 10000, '2019-09-05 00:00:00', '2019-09-05 08:47:02', 0, ''),
+(57, 'K405091904', 2, 10000, '2019-09-05 00:00:00', '2019-09-05 08:59:09', 0, ''),
+(58, 'K405091904', 2, 10000, '2019-09-05 00:00:00', '2019-09-05 09:00:47', 0, ''),
+(59, 'K405091904', 2, 10000, '2019-09-05 00:00:00', '2019-09-05 09:07:59', 0, ''),
+(60, 'K405091904', 2, 10000, '2019-09-05 00:00:00', '2019-09-05 09:14:13', 0, ''),
+(61, 'K404091904', 2, 10000, '2019-09-05 00:00:00', '2019-09-04 22:05:21', 0, ''),
+(62, 'K404091904', 2, 10000, '2019-09-05 00:00:00', '2019-09-04 22:15:10', 0, ''),
+(63, 'K405091904', 2, 10000, '2019-09-05 00:00:00', '2019-09-05 22:17:21', 0, ''),
+(64, 'K405091904', 2, 10000, '2019-09-05 00:00:00', '2019-09-05 22:19:29', 0, '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `simpananwajib`
+-- Struktur dari tabel `simpananwajib`
 --
 
 CREATE TABLE `simpananwajib` (
@@ -1428,10 +1673,50 @@ CREATE TABLE `simpananwajib` (
   `siw_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `simpananwajib`
+--
+
+INSERT INTO `simpananwajib` (`siw_id`, `ang_no`, `ses_id`, `siw_tglbayar`, `siw_status`, `siw_tglambil`, `siw_tgl`, `siw_flag`, `siw_info`) VALUES
+(51, 'K402091901', 1, '2019-09-02 09:17:22', 0, NULL, '2019-09-02 09:17:22', 0, ''),
+(52, 'K402091901', 1, '2019-09-02 09:43:21', 0, NULL, '2019-09-02 09:43:21', 0, ''),
+(53, 'K402091901', 1, '2019-09-02 14:16:29', 0, NULL, '2019-09-02 14:16:29', 0, ''),
+(54, 'K402091902', 1, '2019-09-02 19:05:08', 0, NULL, '2019-09-02 19:05:08', 0, ''),
+(55, 'K402091902', 1, '2019-09-02 19:11:07', 0, NULL, '2019-09-02 19:11:07', 0, ''),
+(56, 'K402091902', 1, '2019-09-02 19:18:08', 0, NULL, '2019-09-02 19:18:08', 0, ''),
+(57, 'K402091902', 1, '2019-09-02 19:34:05', 0, NULL, '2019-09-02 19:34:05', 0, ''),
+(58, 'K403091902', 1, '2019-09-03 07:19:45', 0, NULL, '2019-09-03 07:19:45', 0, ''),
+(59, 'K403091902', 1, '2019-09-03 07:21:05', 0, NULL, '2019-09-03 07:21:05', 0, ''),
+(60, 'K403091902', 1, '2019-09-03 07:22:18', 0, NULL, '2019-09-03 07:22:18', 0, ''),
+(61, 'K403091902', 1, '2019-09-03 07:23:28', 0, NULL, '2019-09-03 07:23:28', 0, ''),
+(62, 'K403091902', 1, '2019-09-03 07:41:40', 0, NULL, '2019-09-03 07:41:40', 0, ''),
+(63, 'K403091902', 1, '2019-09-03 07:44:44', 0, NULL, '2019-09-03 07:44:44', 0, ''),
+(64, 'K403091903', 1, '2019-09-03 07:45:45', 0, NULL, '2019-09-03 07:45:45', 0, ''),
+(65, 'K403091903', 1, '2019-09-03 08:02:27', 0, NULL, '2019-09-03 08:02:27', 0, ''),
+(66, 'K404091903', 1, '2019-09-04 09:28:12', 0, NULL, '2019-09-04 09:28:12', 0, ''),
+(67, 'K404091903', 1, '2019-09-04 09:30:20', 0, NULL, '2019-09-04 09:30:20', 0, ''),
+(68, 'K404091903', 1, '2019-09-04 09:36:30', 0, NULL, '2019-09-04 09:36:30', 0, ''),
+(69, 'K404091903', 1, '2019-09-04 09:44:04', 0, NULL, '2019-09-04 09:44:04', 0, ''),
+(70, 'K404091903', 1, '2019-09-04 09:51:48', 0, NULL, '2019-09-04 09:51:48', 0, ''),
+(71, 'K404091903', 1, '2019-09-04 09:53:30', 0, NULL, '2019-09-04 09:53:30', 0, ''),
+(72, 'K404091903', 1, '2019-09-04 09:59:33', 0, NULL, '2019-09-04 09:59:33', 0, ''),
+(73, 'K405091903', 1, '2019-09-05 08:27:13', 0, NULL, '2019-09-05 08:27:13', 0, ''),
+(74, 'K405091904', 1, '2019-09-05 08:35:52', 0, NULL, '2019-09-05 08:35:52', 0, ''),
+(75, 'K405091904', 1, '2019-09-05 08:43:17', 0, NULL, '2019-09-05 08:43:17', 0, ''),
+(76, 'K405091904', 1, '2019-09-05 08:47:02', 0, NULL, '2019-09-05 08:47:02', 0, ''),
+(77, 'K405091904', 1, '2019-09-05 08:59:09', 0, NULL, '2019-09-05 08:59:09', 0, ''),
+(78, 'K405091904', 1, '2019-09-05 09:00:47', 0, NULL, '2019-09-05 09:00:47', 0, ''),
+(79, 'K405091904', 1, '2019-09-05 09:07:59', 0, NULL, '2019-09-05 09:07:59', 0, ''),
+(80, 'K405091904', 1, '2019-09-05 09:14:13', 0, NULL, '2019-09-05 09:14:13', 0, ''),
+(81, 'K404091904', 1, '2019-09-04 22:05:21', 0, NULL, '2019-09-04 22:05:21', 0, ''),
+(82, 'K404091904', 1, '2019-09-04 22:15:10', 0, NULL, '2019-09-04 22:15:10', 0, ''),
+(83, 'K405091904', 1, '2019-09-05 22:17:21', 0, NULL, '2019-09-05 22:17:21', 0, ''),
+(84, 'K405091904', 1, '2019-09-05 22:19:29', 0, NULL, '2019-09-05 22:19:29', 0, '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `statuspeminjam`
+-- Struktur dari tabel `statuspeminjam`
 --
 
 CREATE TABLE `statuspeminjam` (
@@ -1447,7 +1732,7 @@ CREATE TABLE `statuspeminjam` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sy_config`
+-- Struktur dari tabel `sy_config`
 --
 
 CREATE TABLE `sy_config` (
@@ -1458,7 +1743,7 @@ CREATE TABLE `sy_config` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sy_config`
+-- Dumping data untuk tabel `sy_config`
 --
 
 INSERT INTO `sy_config` (`id`, `conf_name`, `conf_val`, `note`) VALUES
@@ -1473,7 +1758,7 @@ INSERT INTO `sy_config` (`id`, `conf_name`, `conf_val`, `note`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `titipansimkesan`
+-- Struktur dari tabel `titipansimkesan`
 --
 
 CREATE TABLE `titipansimkesan` (
@@ -1491,7 +1776,7 @@ CREATE TABLE `titipansimkesan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tutupinvestasiberjangka`
+-- Struktur dari tabel `tutupinvestasiberjangka`
 --
 
 CREATE TABLE `tutupinvestasiberjangka` (
@@ -1507,7 +1792,7 @@ CREATE TABLE `tutupinvestasiberjangka` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Struktur dari tabel `users`
 --
 
 CREATE TABLE `users` (
@@ -1528,7 +1813,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data untuk tabel `users`
 --
 
 INSERT INTO `users` (`id_user`, `fullname`, `username`, `password`, `email`, `id_group`, `foto`, `telp`, `note`, `created_by`, `updated_by`, `created_at`, `updated_at`, `note_1`) VALUES
@@ -1544,7 +1829,7 @@ INSERT INTO `users` (`id_user`, `fullname`, `username`, `password`, `email`, `id
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_access`
+-- Struktur dari tabel `user_access`
 --
 
 CREATE TABLE `user_access` (
@@ -1557,7 +1842,7 @@ CREATE TABLE `user_access` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_access`
+-- Dumping data untuk tabel `user_access`
 --
 
 INSERT INTO `user_access` (`id`, `id_group`, `kd_access`, `nm_access`, `is_allow`, `note`) VALUES
@@ -1595,7 +1880,7 @@ INSERT INTO `user_access` (`id`, `id_group`, `kd_access`, `nm_access`, `is_allow
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user_group`
+-- Struktur dari tabel `user_group`
 --
 
 CREATE TABLE `user_group` (
@@ -1609,7 +1894,7 @@ CREATE TABLE `user_group` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user_group`
+-- Dumping data untuk tabel `user_group`
 --
 
 INSERT INTO `user_group` (`id`, `group_name`, `note`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
@@ -1625,7 +1910,7 @@ INSERT INTO `user_group` (`id`, `group_name`, `note`, `created_by`, `created_at`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wilayah`
+-- Struktur dari tabel `wilayah`
 --
 
 CREATE TABLE `wilayah` (
@@ -1637,25 +1922,30 @@ CREATE TABLE `wilayah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `wilayah`
+-- Dumping data untuk tabel `wilayah`
 --
 
 INSERT INTO `wilayah` (`wil_kode`, `wil_nama`, `wil_tgl`, `wil_flag`, `wil_info`) VALUES
-(4, 'Tepusen', '2019-08-24 13:51:27', 0, ''),
-(5, 'Karna', '2019-08-24 13:51:42', 0, ''),
-(6, 'Anggrek', '2019-08-24 13:51:52', 0, ''),
-(7, 'Wangi', '2019-08-24 13:51:59', 0, ''),
-(8, 'Dahlia', '2019-08-24 13:52:06', 0, ''),
-(9, 'Mahkota Dewa', '2019-08-24 13:52:28', 0, ''),
-(10, 'Wilayah I', '2019-08-26 12:32:10', 0, ''),
-(11, 'Wilayah II', '2019-08-26 12:32:16', 0, ''),
-(12, 'Wilayah III', '2019-08-26 12:32:24', 0, ''),
-(13, 'Wilayah IV', '2019-08-26 12:32:33', 0, '');
+(4, 'Tepusen', '2019-08-24 13:51:27', 2, ''),
+(5, 'Karna', '2019-08-24 13:51:42', 2, ''),
+(6, 'Anggrek', '2019-08-24 13:51:52', 2, ''),
+(7, 'Wangi', '2019-08-24 13:51:59', 2, ''),
+(8, 'Dahlia', '2019-08-24 13:52:06', 2, ''),
+(9, 'Mahkota Dewa', '2019-08-24 13:52:28', 2, ''),
+(10, 'Wilayah I', '2019-08-26 12:32:10', 2, ''),
+(11, 'Wilayah II', '2019-08-26 12:32:16', 2, ''),
+(12, 'Wilayah III', '2019-08-26 12:32:24', 2, ''),
+(13, 'Wilayah IV', '2019-08-26 12:32:33', 2, ''),
+(14, 'WONOBOYO', '2019-08-31 13:13:25', 0, ''),
+(15, 'BEJEN', '2019-08-31 13:13:35', 0, ''),
+(16, 'TRETEP', '2019-08-31 13:13:46', 0, ''),
+(17, 'MUNTUNG', '2019-08-31 13:14:03', 0, ''),
+(18, 'CANDIROTO', '2019-08-31 13:14:14', 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wilayah_karyawan`
+-- Struktur dari tabel `wilayah_karyawan`
 --
 
 CREATE TABLE `wilayah_karyawan` (
@@ -1669,7 +1959,7 @@ CREATE TABLE `wilayah_karyawan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `wilayah_karyawan`
+-- Dumping data untuk tabel `wilayah_karyawan`
 --
 
 INSERT INTO `wilayah_karyawan` (`wik_id`, `wil_kode`, `status`, `kar_kode`, `wik_tgl`, `wik_flag`, `wik_info`) VALUES
@@ -1680,839 +1970,839 @@ INSERT INTO `wilayah_karyawan` (`wik_id`, `wil_kode`, `status`, `kar_kode`, `wik
 --
 
 --
--- Indexes for table `ahliwarissimkesan`
+-- Indeks untuk tabel `ahliwarissimkesan`
 --
 ALTER TABLE `ahliwarissimkesan`
   ADD PRIMARY KEY (`aws_id`);
 
 --
--- Indexes for table `anggota`
+-- Indeks untuk tabel `anggota`
 --
 ALTER TABLE `anggota`
   ADD PRIMARY KEY (`ang_no`);
 
 --
--- Indexes for table `angsuran`
+-- Indeks untuk tabel `angsuran`
 --
 ALTER TABLE `angsuran`
   ADD PRIMARY KEY (`ags_id`);
 
 --
--- Indexes for table `bungainvestasi`
+-- Indeks untuk tabel `bungainvestasi`
 --
 ALTER TABLE `bungainvestasi`
   ADD PRIMARY KEY (`biv_id`);
 
 --
--- Indexes for table `bungapinjaman`
+-- Indeks untuk tabel `bungapinjaman`
 --
 ALTER TABLE `bungapinjaman`
   ADD PRIMARY KEY (`bup_id`);
 
 --
--- Indexes for table `bungasetoransimpanan`
+-- Indeks untuk tabel `bungasetoransimpanan`
 --
 ALTER TABLE `bungasetoransimpanan`
   ADD PRIMARY KEY (`bss_id`);
 
 --
--- Indexes for table `bungasimpanan`
+-- Indeks untuk tabel `bungasimpanan`
 --
 ALTER TABLE `bungasimpanan`
   ADD PRIMARY KEY (`bus_id`);
 
 --
--- Indexes for table `dendaangsuran`
+-- Indeks untuk tabel `dendaangsuran`
 --
 ALTER TABLE `dendaangsuran`
   ADD PRIMARY KEY (`dnd_id`);
 
 --
--- Indexes for table `historibungasimpanan`
+-- Indeks untuk tabel `historibungasimpanan`
 --
 ALTER TABLE `historibungasimpanan`
   ADD PRIMARY KEY (`hbs_id`);
 
 --
--- Indexes for table `investasiberjangka`
+-- Indeks untuk tabel `investasiberjangka`
 --
 ALTER TABLE `investasiberjangka`
   ADD PRIMARY KEY (`ivb_kode`);
 
 --
--- Indexes for table `jabatan`
+-- Indeks untuk tabel `jabatan`
 --
 ALTER TABLE `jabatan`
   ADD PRIMARY KEY (`jab_kode`);
 
 --
--- Indexes for table `jaminan`
+-- Indeks untuk tabel `jaminan`
 --
 ALTER TABLE `jaminan`
   ADD PRIMARY KEY (`jam_id`);
 
 --
--- Indexes for table `jangkawaktuinvestasi`
+-- Indeks untuk tabel `jangkawaktuinvestasi`
 --
 ALTER TABLE `jangkawaktuinvestasi`
   ADD PRIMARY KEY (`jwi_id`);
 
 --
--- Indexes for table `jasainvestasi`
+-- Indeks untuk tabel `jasainvestasi`
 --
 ALTER TABLE `jasainvestasi`
   ADD PRIMARY KEY (`jiv_id`);
 
 --
--- Indexes for table `jenisjaminan`
+-- Indeks untuk tabel `jenisjaminan`
 --
 ALTER TABLE `jenisjaminan`
   ADD PRIMARY KEY (`jej_id`);
 
 --
--- Indexes for table `jenisklaim`
+-- Indeks untuk tabel `jenisklaim`
 --
 ALTER TABLE `jenisklaim`
   ADD PRIMARY KEY (`jkl_id`);
 
 --
--- Indexes for table `jenispelunasan`
+-- Indeks untuk tabel `jenispelunasan`
 --
 ALTER TABLE `jenispelunasan`
   ADD PRIMARY KEY (`jep_id`);
 
 --
--- Indexes for table `jenispenarikansimkesan`
+-- Indeks untuk tabel `jenispenarikansimkesan`
 --
 ALTER TABLE `jenispenarikansimkesan`
   ADD PRIMARY KEY (`jps_id`);
 
 --
--- Indexes for table `jenissetoran`
+-- Indeks untuk tabel `jenissetoran`
 --
 ALTER TABLE `jenissetoran`
   ADD PRIMARY KEY (`jse_id`);
 
 --
--- Indexes for table `jenissimpanan`
+-- Indeks untuk tabel `jenissimpanan`
 --
 ALTER TABLE `jenissimpanan`
   ADD PRIMARY KEY (`jsi_id`);
 
 --
--- Indexes for table `kantorksp`
+-- Indeks untuk tabel `kantorksp`
 --
 ALTER TABLE `kantorksp`
   ADD PRIMARY KEY (`kks_id`);
 
 --
--- Indexes for table `karyawan`
+-- Indeks untuk tabel `karyawan`
 --
 ALTER TABLE `karyawan`
   ADD PRIMARY KEY (`kar_kode`);
 
 --
--- Indexes for table `karyawanijasah`
+-- Indeks untuk tabel `karyawanijasah`
 --
 ALTER TABLE `karyawanijasah`
   ADD PRIMARY KEY (`kij_id`);
 
 --
--- Indexes for table `karyawansimpanan`
+-- Indeks untuk tabel `karyawansimpanan`
 --
 ALTER TABLE `karyawansimpanan`
   ADD PRIMARY KEY (`ksi_id`);
 
 --
--- Indexes for table `keluargakaryawan`
+-- Indeks untuk tabel `keluargakaryawan`
 --
 ALTER TABLE `keluargakaryawan`
   ADD PRIMARY KEY (`kka_id`);
 
 --
--- Indexes for table `keuntunganinvestasi`
+-- Indeks untuk tabel `keuntunganinvestasi`
 --
 ALTER TABLE `keuntunganinvestasi`
   ADD PRIMARY KEY (`kiv_id`);
 
 --
--- Indexes for table `klaimsimkesan`
+-- Indeks untuk tabel `klaimsimkesan`
 --
 ALTER TABLE `klaimsimkesan`
   ADD PRIMARY KEY (`ksi_id`);
 
 --
--- Indexes for table `master_access`
+-- Indeks untuk tabel `master_access`
 --
 ALTER TABLE `master_access`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `mutasiberjangka`
+-- Indeks untuk tabel `mutasiberjangka`
 --
 ALTER TABLE `mutasiberjangka`
   ADD PRIMARY KEY (`mib_id`);
 
 --
--- Indexes for table `mutasipinjaman`
+-- Indeks untuk tabel `mutasipinjaman`
 --
 ALTER TABLE `mutasipinjaman`
   ADD PRIMARY KEY (`mup_id`);
 
 --
--- Indexes for table `mutasisimkesan`
+-- Indeks untuk tabel `mutasisimkesan`
 --
 ALTER TABLE `mutasisimkesan`
   ADD PRIMARY KEY (`msk_id`);
 
 --
--- Indexes for table `mutasisimpanan`
+-- Indeks untuk tabel `mutasisimpanan`
 --
 ALTER TABLE `mutasisimpanan`
   ADD PRIMARY KEY (`mus_id`);
 
 --
--- Indexes for table `neracaaktivatetap`
+-- Indeks untuk tabel `neracaaktivatetap`
 --
 ALTER TABLE `neracaaktivatetap`
   ADD PRIMARY KEY (`nat_id`);
 
 --
--- Indexes for table `neracaekuitas`
+-- Indeks untuk tabel `neracaekuitas`
 --
 ALTER TABLE `neracaekuitas`
   ADD PRIMARY KEY (`nek_id`);
 
 --
--- Indexes for table `neracakasbank`
+-- Indeks untuk tabel `neracakasbank`
 --
 ALTER TABLE `neracakasbank`
   ADD PRIMARY KEY (`nkb_id`);
 
 --
--- Indexes for table `neracakasbanksimkesan`
+-- Indeks untuk tabel `neracakasbanksimkesan`
 --
 ALTER TABLE `neracakasbanksimkesan`
   ADD PRIMARY KEY (`nkbs_id`);
 
 --
--- Indexes for table `neracakewajibanjangkapanjang`
+-- Indeks untuk tabel `neracakewajibanjangkapanjang`
 --
 ALTER TABLE `neracakewajibanjangkapanjang`
   ADD PRIMARY KEY (`njp_id`);
 
 --
--- Indexes for table `pelunasan`
+-- Indeks untuk tabel `pelunasan`
 --
 ALTER TABLE `pelunasan`
   ADD PRIMARY KEY (`pel_id`);
 
 --
--- Indexes for table `penarikaninvestasiberjangka`
+-- Indeks untuk tabel `penarikaninvestasiberjangka`
 --
 ALTER TABLE `penarikaninvestasiberjangka`
   ADD PRIMARY KEY (`pib_id`);
 
 --
--- Indexes for table `penarikansimkesan`
+-- Indeks untuk tabel `penarikansimkesan`
 --
 ALTER TABLE `penarikansimkesan`
   ADD PRIMARY KEY (`pns_id`);
 
 --
--- Indexes for table `penarikansimpanan`
+-- Indeks untuk tabel `penarikansimpanan`
 --
 ALTER TABLE `penarikansimpanan`
   ADD PRIMARY KEY (`pes_id`);
 
 --
--- Indexes for table `penarikansimpananwajib`
+-- Indeks untuk tabel `penarikansimpananwajib`
 --
 ALTER TABLE `penarikansimpananwajib`
   ADD PRIMARY KEY (`psw_id`);
 
 --
--- Indexes for table `penjamin`
+-- Indeks untuk tabel `penjamin`
 --
 ALTER TABLE `penjamin`
   ADD PRIMARY KEY (`pen_id`);
 
 --
--- Indexes for table `phu`
+-- Indeks untuk tabel `phu`
 --
 ALTER TABLE `phu`
   ADD PRIMARY KEY (`phu_id`);
 
 --
--- Indexes for table `phusimkesan`
+-- Indeks untuk tabel `phusimkesan`
 --
 ALTER TABLE `phusimkesan`
   ADD PRIMARY KEY (`phus_id`);
 
 --
--- Indexes for table `phusimkesanpendapatan`
+-- Indeks untuk tabel `phusimkesanpendapatan`
 --
 ALTER TABLE `phusimkesanpendapatan`
   ADD PRIMARY KEY (`phsp_id`);
 
 --
--- Indexes for table `phu_sistem`
+-- Indeks untuk tabel `phu_sistem`
 --
 ALTER TABLE `phu_sistem`
   ADD PRIMARY KEY (`psis_id`);
 
 --
--- Indexes for table `pinjaman`
+-- Indeks untuk tabel `pinjaman`
 --
 ALTER TABLE `pinjaman`
   ADD PRIMARY KEY (`pin_id`);
 
 --
--- Indexes for table `plansimkesan`
+-- Indeks untuk tabel `plansimkesan`
 --
 ALTER TABLE `plansimkesan`
   ADD PRIMARY KEY (`psk_id`);
 
 --
--- Indexes for table `potonganprovisi`
+-- Indeks untuk tabel `potonganprovisi`
 --
 ALTER TABLE `potonganprovisi`
   ADD PRIMARY KEY (`pop_id`);
 
 --
--- Indexes for table `setoransimkesan`
+-- Indeks untuk tabel `setoransimkesan`
 --
 ALTER TABLE `setoransimkesan`
   ADD PRIMARY KEY (`ssk_id`);
 
 --
--- Indexes for table `setoransimpanan`
+-- Indeks untuk tabel `setoransimpanan`
 --
 ALTER TABLE `setoransimpanan`
   ADD PRIMARY KEY (`ssi_id`);
 
 --
--- Indexes for table `setoransimpananwajib`
+-- Indeks untuk tabel `setoransimpananwajib`
 --
 ALTER TABLE `setoransimpananwajib`
   ADD PRIMARY KEY (`ssw_id`);
 
 --
--- Indexes for table `settingangsuran`
+-- Indeks untuk tabel `settingangsuran`
 --
 ALTER TABLE `settingangsuran`
   ADD PRIMARY KEY (`sea_id`);
 
 --
--- Indexes for table `settingdenda`
+-- Indeks untuk tabel `settingdenda`
 --
 ALTER TABLE `settingdenda`
   ADD PRIMARY KEY (`sed_id`);
 
 --
--- Indexes for table `settingkategoripeminjam`
+-- Indeks untuk tabel `settingkategoripeminjam`
 --
 ALTER TABLE `settingkategoripeminjam`
   ADD PRIMARY KEY (`skp_id`);
 
 --
--- Indexes for table `settingsimpanan`
+-- Indeks untuk tabel `settingsimpanan`
 --
 ALTER TABLE `settingsimpanan`
   ADD PRIMARY KEY (`ses_id`);
 
 --
--- Indexes for table `settingstatuspeminjam`
+-- Indeks untuk tabel `settingstatuspeminjam`
 --
 ALTER TABLE `settingstatuspeminjam`
   ADD PRIMARY KEY (`ssp_id`);
 
 --
--- Indexes for table `shu`
+-- Indeks untuk tabel `shu`
 --
 ALTER TABLE `shu`
   ADD PRIMARY KEY (`shu_id`);
 
 --
--- Indexes for table `shusimkesan`
+-- Indeks untuk tabel `shusimkesan`
 --
 ALTER TABLE `shusimkesan`
   ADD PRIMARY KEY (`shus_id`);
 
 --
--- Indexes for table `simkesan`
+-- Indeks untuk tabel `simkesan`
 --
 ALTER TABLE `simkesan`
   ADD PRIMARY KEY (`sik_kode`);
 
 --
--- Indexes for table `simpanan`
+-- Indeks untuk tabel `simpanan`
 --
 ALTER TABLE `simpanan`
   ADD PRIMARY KEY (`sim_kode`);
 
 --
--- Indexes for table `simpananpokok`
+-- Indeks untuk tabel `simpananpokok`
 --
 ALTER TABLE `simpananpokok`
   ADD PRIMARY KEY (`sip_id`);
 
 --
--- Indexes for table `simpananwajib`
+-- Indeks untuk tabel `simpananwajib`
 --
 ALTER TABLE `simpananwajib`
   ADD PRIMARY KEY (`siw_id`);
 
 --
--- Indexes for table `statuspeminjam`
+-- Indeks untuk tabel `statuspeminjam`
 --
 ALTER TABLE `statuspeminjam`
   ADD PRIMARY KEY (`stp_id`);
 
 --
--- Indexes for table `sy_config`
+-- Indeks untuk tabel `sy_config`
 --
 ALTER TABLE `sy_config`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `titipansimkesan`
+-- Indeks untuk tabel `titipansimkesan`
 --
 ALTER TABLE `titipansimkesan`
   ADD PRIMARY KEY (`tts_id`);
 
 --
--- Indexes for table `tutupinvestasiberjangka`
+-- Indeks untuk tabel `tutupinvestasiberjangka`
 --
 ALTER TABLE `tutupinvestasiberjangka`
   ADD PRIMARY KEY (`tib_id`);
 
 --
--- Indexes for table `users`
+-- Indeks untuk tabel `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- Indexes for table `user_access`
+-- Indeks untuk tabel `user_access`
 --
 ALTER TABLE `user_access`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_group`
+-- Indeks untuk tabel `user_group`
 --
 ALTER TABLE `user_group`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `wilayah`
+-- Indeks untuk tabel `wilayah`
 --
 ALTER TABLE `wilayah`
   ADD PRIMARY KEY (`wil_kode`);
 
 --
--- Indexes for table `wilayah_karyawan`
+-- Indeks untuk tabel `wilayah_karyawan`
 --
 ALTER TABLE `wilayah_karyawan`
   ADD PRIMARY KEY (`wik_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `ahliwarissimkesan`
+-- AUTO_INCREMENT untuk tabel `ahliwarissimkesan`
 --
 ALTER TABLE `ahliwarissimkesan`
-  MODIFY `aws_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `aws_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `angsuran`
+-- AUTO_INCREMENT untuk tabel `angsuran`
 --
 ALTER TABLE `angsuran`
   MODIFY `ags_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
 
 --
--- AUTO_INCREMENT for table `bungainvestasi`
+-- AUTO_INCREMENT untuk tabel `bungainvestasi`
 --
 ALTER TABLE `bungainvestasi`
   MODIFY `biv_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `bungapinjaman`
+-- AUTO_INCREMENT untuk tabel `bungapinjaman`
 --
 ALTER TABLE `bungapinjaman`
   MODIFY `bup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `bungasetoransimpanan`
+-- AUTO_INCREMENT untuk tabel `bungasetoransimpanan`
 --
 ALTER TABLE `bungasetoransimpanan`
   MODIFY `bss_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `bungasimpanan`
+-- AUTO_INCREMENT untuk tabel `bungasimpanan`
 --
 ALTER TABLE `bungasimpanan`
   MODIFY `bus_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `dendaangsuran`
+-- AUTO_INCREMENT untuk tabel `dendaangsuran`
 --
 ALTER TABLE `dendaangsuran`
   MODIFY `dnd_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `historibungasimpanan`
+-- AUTO_INCREMENT untuk tabel `historibungasimpanan`
 --
 ALTER TABLE `historibungasimpanan`
   MODIFY `hbs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `jabatan`
+-- AUTO_INCREMENT untuk tabel `jabatan`
 --
 ALTER TABLE `jabatan`
   MODIFY `jab_kode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `jaminan`
+-- AUTO_INCREMENT untuk tabel `jaminan`
 --
 ALTER TABLE `jaminan`
   MODIFY `jam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `jangkawaktuinvestasi`
+-- AUTO_INCREMENT untuk tabel `jangkawaktuinvestasi`
 --
 ALTER TABLE `jangkawaktuinvestasi`
   MODIFY `jwi_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `jasainvestasi`
+-- AUTO_INCREMENT untuk tabel `jasainvestasi`
 --
 ALTER TABLE `jasainvestasi`
   MODIFY `jiv_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `jenisjaminan`
+-- AUTO_INCREMENT untuk tabel `jenisjaminan`
 --
 ALTER TABLE `jenisjaminan`
   MODIFY `jej_id` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `jenisklaim`
+-- AUTO_INCREMENT untuk tabel `jenisklaim`
 --
 ALTER TABLE `jenisklaim`
-  MODIFY `jkl_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `jkl_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `jenispelunasan`
+-- AUTO_INCREMENT untuk tabel `jenispelunasan`
 --
 ALTER TABLE `jenispelunasan`
   MODIFY `jep_id` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `jenispenarikansimkesan`
+-- AUTO_INCREMENT untuk tabel `jenispenarikansimkesan`
 --
 ALTER TABLE `jenispenarikansimkesan`
   MODIFY `jps_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `jenissetoran`
+-- AUTO_INCREMENT untuk tabel `jenissetoran`
 --
 ALTER TABLE `jenissetoran`
   MODIFY `jse_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `jenissimpanan`
+-- AUTO_INCREMENT untuk tabel `jenissimpanan`
 --
 ALTER TABLE `jenissimpanan`
   MODIFY `jsi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `kantorksp`
+-- AUTO_INCREMENT untuk tabel `kantorksp`
 --
 ALTER TABLE `kantorksp`
   MODIFY `kks_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `karyawanijasah`
+-- AUTO_INCREMENT untuk tabel `karyawanijasah`
 --
 ALTER TABLE `karyawanijasah`
-  MODIFY `kij_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `kij_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `karyawansimpanan`
+-- AUTO_INCREMENT untuk tabel `karyawansimpanan`
 --
 ALTER TABLE `karyawansimpanan`
-  MODIFY `ksi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ksi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `keluargakaryawan`
+-- AUTO_INCREMENT untuk tabel `keluargakaryawan`
 --
 ALTER TABLE `keluargakaryawan`
-  MODIFY `kka_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `kka_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `keuntunganinvestasi`
+-- AUTO_INCREMENT untuk tabel `keuntunganinvestasi`
 --
 ALTER TABLE `keuntunganinvestasi`
   MODIFY `kiv_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `klaimsimkesan`
+-- AUTO_INCREMENT untuk tabel `klaimsimkesan`
 --
 ALTER TABLE `klaimsimkesan`
   MODIFY `ksi_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `master_access`
+-- AUTO_INCREMENT untuk tabel `master_access`
 --
 ALTER TABLE `master_access`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `mutasiberjangka`
+-- AUTO_INCREMENT untuk tabel `mutasiberjangka`
 --
 ALTER TABLE `mutasiberjangka`
   MODIFY `mib_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `mutasipinjaman`
+-- AUTO_INCREMENT untuk tabel `mutasipinjaman`
 --
 ALTER TABLE `mutasipinjaman`
   MODIFY `mup_id` int(15) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `mutasisimkesan`
+-- AUTO_INCREMENT untuk tabel `mutasisimkesan`
 --
 ALTER TABLE `mutasisimkesan`
   MODIFY `msk_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `mutasisimpanan`
+-- AUTO_INCREMENT untuk tabel `mutasisimpanan`
 --
 ALTER TABLE `mutasisimpanan`
   MODIFY `mus_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `neracaaktivatetap`
+-- AUTO_INCREMENT untuk tabel `neracaaktivatetap`
 --
 ALTER TABLE `neracaaktivatetap`
   MODIFY `nat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `neracaekuitas`
+-- AUTO_INCREMENT untuk tabel `neracaekuitas`
 --
 ALTER TABLE `neracaekuitas`
   MODIFY `nek_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `neracakasbank`
+-- AUTO_INCREMENT untuk tabel `neracakasbank`
 --
 ALTER TABLE `neracakasbank`
   MODIFY `nkb_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `neracakasbanksimkesan`
+-- AUTO_INCREMENT untuk tabel `neracakasbanksimkesan`
 --
 ALTER TABLE `neracakasbanksimkesan`
   MODIFY `nkbs_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `neracakewajibanjangkapanjang`
+-- AUTO_INCREMENT untuk tabel `neracakewajibanjangkapanjang`
 --
 ALTER TABLE `neracakewajibanjangkapanjang`
   MODIFY `njp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `pelunasan`
+-- AUTO_INCREMENT untuk tabel `pelunasan`
 --
 ALTER TABLE `pelunasan`
   MODIFY `pel_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `penarikaninvestasiberjangka`
+-- AUTO_INCREMENT untuk tabel `penarikaninvestasiberjangka`
 --
 ALTER TABLE `penarikaninvestasiberjangka`
   MODIFY `pib_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `penarikansimkesan`
+-- AUTO_INCREMENT untuk tabel `penarikansimkesan`
 --
 ALTER TABLE `penarikansimkesan`
   MODIFY `pns_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `penarikansimpanan`
+-- AUTO_INCREMENT untuk tabel `penarikansimpanan`
 --
 ALTER TABLE `penarikansimpanan`
   MODIFY `pes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `penarikansimpananwajib`
+-- AUTO_INCREMENT untuk tabel `penarikansimpananwajib`
 --
 ALTER TABLE `penarikansimpananwajib`
   MODIFY `psw_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `penjamin`
+-- AUTO_INCREMENT untuk tabel `penjamin`
 --
 ALTER TABLE `penjamin`
   MODIFY `pen_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT for table `phu`
+-- AUTO_INCREMENT untuk tabel `phu`
 --
 ALTER TABLE `phu`
   MODIFY `phu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `phusimkesan`
+-- AUTO_INCREMENT untuk tabel `phusimkesan`
 --
 ALTER TABLE `phusimkesan`
   MODIFY `phus_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `phusimkesanpendapatan`
+-- AUTO_INCREMENT untuk tabel `phusimkesanpendapatan`
 --
 ALTER TABLE `phusimkesanpendapatan`
   MODIFY `phsp_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `plansimkesan`
+-- AUTO_INCREMENT untuk tabel `plansimkesan`
 --
 ALTER TABLE `plansimkesan`
   MODIFY `psk_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `potonganprovisi`
+-- AUTO_INCREMENT untuk tabel `potonganprovisi`
 --
 ALTER TABLE `potonganprovisi`
   MODIFY `pop_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `setoransimkesan`
+-- AUTO_INCREMENT untuk tabel `setoransimkesan`
 --
 ALTER TABLE `setoransimkesan`
-  MODIFY `ssk_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ssk_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `setoransimpanan`
+-- AUTO_INCREMENT untuk tabel `setoransimpanan`
 --
 ALTER TABLE `setoransimpanan`
-  MODIFY `ssi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `ssi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 
 --
--- AUTO_INCREMENT for table `setoransimpananwajib`
+-- AUTO_INCREMENT untuk tabel `setoransimpananwajib`
 --
 ALTER TABLE `setoransimpananwajib`
-  MODIFY `ssw_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `ssw_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT for table `settingangsuran`
+-- AUTO_INCREMENT untuk tabel `settingangsuran`
 --
 ALTER TABLE `settingangsuran`
   MODIFY `sea_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `settingdenda`
+-- AUTO_INCREMENT untuk tabel `settingdenda`
 --
 ALTER TABLE `settingdenda`
   MODIFY `sed_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `settingkategoripeminjam`
+-- AUTO_INCREMENT untuk tabel `settingkategoripeminjam`
 --
 ALTER TABLE `settingkategoripeminjam`
   MODIFY `skp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `settingsimpanan`
+-- AUTO_INCREMENT untuk tabel `settingsimpanan`
 --
 ALTER TABLE `settingsimpanan`
   MODIFY `ses_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `settingstatuspeminjam`
+-- AUTO_INCREMENT untuk tabel `settingstatuspeminjam`
 --
 ALTER TABLE `settingstatuspeminjam`
   MODIFY `ssp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `shu`
+-- AUTO_INCREMENT untuk tabel `shu`
 --
 ALTER TABLE `shu`
   MODIFY `shu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `shusimkesan`
+-- AUTO_INCREMENT untuk tabel `shusimkesan`
 --
 ALTER TABLE `shusimkesan`
   MODIFY `shus_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `simpananpokok`
+-- AUTO_INCREMENT untuk tabel `simpananpokok`
 --
 ALTER TABLE `simpananpokok`
-  MODIFY `sip_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `sip_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
--- AUTO_INCREMENT for table `simpananwajib`
+-- AUTO_INCREMENT untuk tabel `simpananwajib`
 --
 ALTER TABLE `simpananwajib`
-  MODIFY `siw_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `siw_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
--- AUTO_INCREMENT for table `statuspeminjam`
+-- AUTO_INCREMENT untuk tabel `statuspeminjam`
 --
 ALTER TABLE `statuspeminjam`
   MODIFY `stp_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sy_config`
+-- AUTO_INCREMENT untuk tabel `sy_config`
 --
 ALTER TABLE `sy_config`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `titipansimkesan`
+-- AUTO_INCREMENT untuk tabel `titipansimkesan`
 --
 ALTER TABLE `titipansimkesan`
   MODIFY `tts_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `tutupinvestasiberjangka`
+-- AUTO_INCREMENT untuk tabel `tutupinvestasiberjangka`
 --
 ALTER TABLE `tutupinvestasiberjangka`
   MODIFY `tib_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `user_access`
+-- AUTO_INCREMENT untuk tabel `user_access`
 --
 ALTER TABLE `user_access`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
--- AUTO_INCREMENT for table `user_group`
+-- AUTO_INCREMENT untuk tabel `user_group`
 --
 ALTER TABLE `user_group`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `wilayah`
+-- AUTO_INCREMENT untuk tabel `wilayah`
 --
 ALTER TABLE `wilayah`
-  MODIFY `wil_kode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `wil_kode` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `wilayah_karyawan`
+-- AUTO_INCREMENT untuk tabel `wilayah_karyawan`
 --
 ALTER TABLE `wilayah_karyawan`
   MODIFY `wik_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
