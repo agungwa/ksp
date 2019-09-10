@@ -17,8 +17,8 @@ table#06 {
 
 <?php include('header1.php');?>
 <?php   
-        $ivb_kode = $this->db->get_where('investasiberjangka', array('ivb_kode' => $jaminan_data->jam_nomor))->row();
-        $ang_no = $this->db->get_where('anggota', array('ang_no' => $ivb_kode->ang_no))->row();
+        $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $jaminan_data->jam_nomor))->row();
+        $ang_no = $this->db->get_where('anggota', array('ang_no' => $sim_kode->ang_no))->row();
         $angsuranbunga=$pin_pinjaman*$bup_id/100;
         $provisi=$pin_pinjaman*$pop_id/100;
         $pinjamanditerima=$pin_pinjaman-$provisi;
@@ -42,7 +42,7 @@ table#06 {
                                 style="font-family:Cambria; font-weight:bold">No. </span><span
                                 style="font-family:Cambria; font-weight:bold"><?php echo $pin_id ?></span><span
                                 style="font-family:Cambria; font-weight:bold">.</span><span
-                                style="font-family:Cambria; font-weight:bold">DPT</span><span
+                                style="font-family:Cambria; font-weight:bold">TB</span><span
                                 style="font-family:Cambria; font-weight:bold">/SMM.K/</span><span
                                 style="font-family:Cambria; font-weight:bold"> <?php
                     $array_bln = array(1=>"I","II","III", "IV", "V","VI","VII","VIII","IX","X", "XI","XII");
@@ -215,9 +215,9 @@ table#06 {
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
                                 style="font-family:Cambria">:</span></p>
                     </td>
-                    <td style="width:350.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:295.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
-                                style="font-family:Cambria"><?php echo rupiah($angsuran) ?>  X <?php echo $sea_id ?> </span><p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"></p>
+                                style="font-family:Cambria"><?php echo rupiah($angsuran) ?> X <?php echo $sea_id ?> </span><p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"></span><p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"></p>
                     </td>
                 </tr>
                 <tr>
