@@ -50,7 +50,9 @@
             } else if ($jaminan_data->jej_id == 2){
                 echo '
             <a href="'.site_url("PrintPinjaman/pencairansertifikat/".$pin_id).'") class="btn btn-default">Print Pencairan</a>';
-            } ?></td></tr>
+            } else if ($jaminan_data->jej_id == 7){
+                echo '
+            <a href="'.site_url("PrintPinjaman/pencairansimpanan/".$pin_id).'") class="btn btn-default">Print Pencairan</a>'; ?></td></tr>
 	</table>
             </div>
         </div>
