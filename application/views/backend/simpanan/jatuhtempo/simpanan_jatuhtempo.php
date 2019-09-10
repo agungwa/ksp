@@ -45,6 +45,9 @@
                                     <?php
                                 }
                             ?> -->
+                            
+                        <span class="input-group-btn">
+                                    <a href="<?php echo base_url()?>printsimpanan/jatuhtempo?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
@@ -71,11 +74,12 @@
 
             </tr>
             </thead>
-			<tbody><?php
+            <tbody><?php
+            $total=0;
             foreach ($datasimpanan as $key => $item)
             {
                 $totalsetoran = $this->Setoransimpanan_model->get_totalsetoran($item['sim_kode']); 
-                $total += $totalsetoran;
+                $total += $totalsetoran[0]->ssi_jmlsetor;
                  
        // var_dump($totalsetoran);
                 ?>
@@ -98,7 +102,7 @@
             <?php 
             }
             ?>
-            <tr><td></td><td></td><td></td><td>Total Setor</td><td><?php echo rupiahsimpanan($total) ?></td></tr>
+            <tr><td></td><td>Total Setor</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><?php echo rupiahsimpanan($total) ?></td></tr>
             </tbody>
         </table>
         <div class="row">

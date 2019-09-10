@@ -500,12 +500,14 @@ table#04 {
                 </tr>
             </tbody>
         </table>
+                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
+                                style="font-family:Cambria">&nbsp;</span></p>
         <table id="03" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
                     <td style="width:166.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                                style="font-family:Cambria"></span><span style="font-family:Cambria"></span>
+                                style="font-family:Cambria"></span>PIHAK PERTAMA<span style="font-family:Cambria"></span>
                         </p>
                     </td>
                     <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
@@ -520,7 +522,7 @@ table#04 {
                 <tr>
                     <td style="width:166.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                                style="font-family:Cambria">PIHAK PERTAMA</span>
+                                style="font-family:Cambria"></span>
                     </td>
                     <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt">

@@ -63,7 +63,6 @@ class Anggota extends MY_Base
         if ($row) {
         $data = array (
             'ses_min' => set_value('ses_min', $row->ses_min),
-            'kode' => $this->Pengkodean->kode(),
             'content' => 'backend/anggota/anggota',
             'item'=> 'pendaftaran/pengajuan.php',
             'active' => 5,
