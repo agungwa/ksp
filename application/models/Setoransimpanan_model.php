@@ -23,6 +23,13 @@ class Setoransimpanan_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
+    // get all
+    function get_all_setor()
+    {
+        $this->where('ssi_flag<',2);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
 
     // get data by id
     function get_by_id($id)
@@ -34,7 +41,8 @@ class Setoransimpanan_model extends CI_Model
     // get data by id
     function get_data_setor($sim_kode)
     {
-        $this->db->where('sim_kode =',$sim_kode);
+        $where = "sim_kode = '$sim_kode' AND ssi_flag < 2";
+        $this->db->where($where);
         return $this->db->get($this->table)->result();
     }
 

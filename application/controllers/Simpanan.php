@@ -275,25 +275,29 @@ class Simpanan extends MY_Base
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $satu = 1;
+        $n=1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
         $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
         $wilayah = $this->Wilayah_model->get_all();
         $datasetoran = array();
         $simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
-        if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
         
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
     	foreach ($simpananAktif as $key => $value) {
-    		$setoransimpanan = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
-            foreach ($setoransimpanan as $key=>$item) {
+            $setoransimpanan = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
+            
+            foreach ($setoransimpanan as $k=>$item) {
+                //var_dump($item->sim_kode);
             $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
             //$wil_kode = $sim_kode->wil_kode;
-            $tanggalDuedate = $item->ssi_tglsetor;
+            $tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
             $f = date("Y-m-d", strtotime($f));
             $t = date("Y-m-d", strtotime($t));
 
-            if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sim_kode->wil_kode == $w)) {
-                $datasetoran[$key] = array('ssi_id' => $item->ssi_id,
+            if (($tgl >= $f && $tgl <= $t && $w=='all') || ($tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == $w)) {
+                
+                $datasetoran[$n] = array('ssi_id' => $item->ssi_id,
                 'sim_kode' => $item->sim_kode,
                 'wil_kode' => $sim_kode->wil_kode,
                 'ssi_tglsetor' => $item->ssi_tglsetor,
@@ -303,10 +307,11 @@ class Simpanan extends MY_Base
                 'ssi_flag' => $item->ssi_flag,
                 'ssi_info' => $item->ssi_info,
                 );
+                $n++;
             }
         }
     }
-       // var_dump($datasetoran);
+    
         $data = array(
             'datasetoran' => $datasetoran,
             'wilayah_data' => $wilayah,

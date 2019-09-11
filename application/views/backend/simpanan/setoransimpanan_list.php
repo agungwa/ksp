@@ -45,13 +45,12 @@
 		<th class="text-center">Nama Anggota</th>
 		<th class="text-center">Tanggal Setor</th>
 		<th class="text-center">Jumlah Setor</th>
-	<!--	<th class="text-center">Action</th> -->
             </tr>
             </thead>
             <tbody><?php
             $total = 0;
             $no = 1;
-            foreach ($datasetoran as $key => $item)
+            foreach ($datasetoran as $k => $item)
             {
                 $total +=$item['ssi_jmlsetor'];
                 $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item['sim_kode']))->row();
@@ -63,7 +62,6 @@
 			<td><?php echo $ang_no->ang_nama ?></td>
 			<td><?php echo $item['ssi_tglsetor'] ?></td>
 			<td><?php echo rupiahsimpanan($item['ssi_jmlsetor']) ?></td>
-			<!--<td><?php echo $setoransimpanan->ssi_jmlbunga ?></td>-->
             <?php if(is_allow('M_EDIT')): ?>
 			<td style="text-align:center" width="200px">
 				<?php 
