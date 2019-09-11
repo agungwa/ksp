@@ -7,6 +7,7 @@ class DataRekening extends MY_Base
 	function __construct()
     {
         parent::__construct();
+        $this->load->model('Anggota_model');
         $this->load->model('Simpanan_model');
         $this->load->model('Setoransimpanan_model');
         $this->load->model('Bungasetoransimpanan_model');
@@ -24,6 +25,7 @@ class DataRekening extends MY_Base
     	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
 
+    	$anggotaAktif = $this->Anggota_model->get_all();
     	$simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
     	$simpananAll = $this->Simpanan_model->get_simpanan_all();
     	$simpananNonaktif = $this->Simpanan_model->get_simpanan_nonaktif();
@@ -156,17 +158,20 @@ class DataRekening extends MY_Base
     		}
     	}
 
-    	//simpanan pokok
-    	foreach ($simpananPokok as $key => $value) {
+		//simpanan pokok
+	foreach ($anggotaAktif as $key => $value) {
+		$simpananPok = $this->Simpananpokok_model->get_data_sip($value->ang_no);
+    	foreach ($simpananPok as $key => $item) {
     		if ($f<>'' && $t<>'') {	
-    			$tgl = date("Y-m-d", strtotime($value->sip_tglbayar));
+    			$tgl = date("Y-m-d", strtotime($item->sip_tglbayar));
     			if ($tgl >= $f && $tgl <= $t) {
-    				$saldoSimpananpokok += $value->sip_setoran;
+    				$saldoSimpananpokok += $item->sip_setoran;
     			}
     		} else {
-				$saldoSimpananpokok += $value->sip_setoran;
+				$saldoSimpananpokok += $item->sip_setoran;
     		}
-		}	
+		}
+	}	
 		
 		//rekening simpanan lalu
 		foreach ($simpananAktif as $key => $value) {
