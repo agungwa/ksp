@@ -73,7 +73,7 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $item['sim_kode'] ?></td>
 			<td><?php echo $item['ang_no'] ?></td>
-			<td><?php echo $item['ang_no'] ?></td>
+			<td><?php echo $item['nm_ang_no'] ?></td>
 			<td><?php echo $item['kar_kode'] ?></td>
 			<td><?php echo $item['bus_id']," %" ?></td>
 			<td><?php echo $item['jsi_id']," Bulan" ?></td>

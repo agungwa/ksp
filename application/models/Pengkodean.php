@@ -40,7 +40,7 @@ class Pengkodean extends CI_Model
         public function simpananana($nowYear){
             $kantorksp = $this->Kantorksp_model->get_by_id(1);  
             $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
-            $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%d') = ", $nowYear); 
+            $this->db->where("DATE_FORMAT(sim_tgl, '%d') = ", $nowYear); 
             $this->db->limit(1);
             $this->db->order_by('sim_kode','DESC');       
             $query = $this->db->get('simpanan');  
@@ -60,7 +60,7 @@ class Pengkodean extends CI_Model
        public function simpanananb($nowYear){
         $kantorksp = $this->Kantorksp_model->get_by_id(1); 
             $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
-            $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%d') = ", $nowYear);
+            $this->db->where("DATE_FORMAT(sim_tgl, '%d') = ", $nowYear);
             $this->db->limit(1);
             $this->db->order_by('sim_kode','DESC');    
             $query = $this->db->get('simpanan');  
@@ -81,7 +81,7 @@ class Pengkodean extends CI_Model
        public function investasiberjangka($nowYear){
         $kantorksp = $this->Kantorksp_model->get_by_id(1); 
         $this->db->select('RIGHT(investasiberjangka.ivb_kode,2) as ivb_kode', FALSE);
-        $this->db->where("DATE_FORMAT(ivb_tglpendaftaran, '%d') = ", $nowYear);
+        $this->db->where("DATE_FORMAT(ivb_tgl, '%d') = ", $nowYear);
         $this->db->limit(1);
         $this->db->order_by('ivb_kode','DESC');    
         $query = $this->db->get('investasiberjangka');  
@@ -123,7 +123,7 @@ class Pengkodean extends CI_Model
     public function simkesan($nowYear){
         $kantorksp = $this->Kantorksp_model->get_by_id(1); 
         $this->db->select('RIGHT(simkesan.sik_kode,2) as sik_kode', FALSE);
-        $this->db->where("DATE_FORMAT(sik_tglpendaftaran, '%d') = ", $nowYear);
+        $this->db->where("DATE_FORMAT(sik_tgl, '%d') = ", $nowYear);
         $this->db->limit(1);
         $this->db->order_by('sik_kode','DESC');    
         $query = $this->db->get('simkesan');  

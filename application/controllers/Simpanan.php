@@ -239,7 +239,8 @@ class Simpanan extends MY_Base
                     $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item->wil_kode))->row();
                     $datasimpanan[$key] = array(
                 'sim_kode' => $item->sim_kode,
-                'ang_no' => $ang_no->ang_nama,
+                'ang_no' => $item->ang_no,
+                'nm_ang_no' => $ang_no->ang_nama,
                 'kar_kode' => $kar_kode->kar_nama,
                 'bus_id' => $bus_id->bus_bunga,
                 'jsi_id' => $jsi_id->jsi_simpanan,
