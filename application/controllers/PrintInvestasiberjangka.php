@@ -197,7 +197,7 @@ class PrintInvestasiberjangka extends MY_Base
 		'ivb_info' => $row->ivb_info,
 	    );
         
-		$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'A4-L']);
+		$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'A4']);
 		$html = $this->load->view('backend/investasiberjangka/printinvestasi/sertifikat.php',$data,true);
 		//echo $html;
 		$mpdf->WriteHTML($html);

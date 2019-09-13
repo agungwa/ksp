@@ -233,7 +233,7 @@ table#04 {
                                     <td
                                         style="width:206pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:16pt"><span
-                                                style="font-family:Calibri">&nbsp;<?php echo $jatuhtempo; ?></span></p>
+                                                style="font-family:Calibri">&nbsp;<?php echo dateFormataja($jatuhtempo); ?></span></p>
                                     </td>
                                     <td
                                         style="width:148.05pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">

@@ -6,7 +6,6 @@
             <form action="<?php echo base_url()?>simpanan/listdata/" class="form-inline" method="get">
             <div class="col-md-8 text-right">
                 <input type="hidden" name="p" value="3">
-                <div class="col-md-2"><h3>Filter : </h3></div>
                 <select class="form-control col-md-3"  name="w">
                     <option value="all">Semua Wilayah</option>
                     <?php
@@ -25,7 +24,10 @@
                         }
                     ?>
                 </select>
-            </div>
+                
+                    <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
+                    <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
+                </div>
             <div class="col-md-4 text-right">
                     <div class="input-group">
                         <input type="text" class="form-control" name="u" value="all" placeholder="No Rekening">
@@ -38,6 +40,7 @@
                                     <?php
                                 }
                             ?>
+                          <a href="<?php echo base_url()?>printsimpanan/listdata?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>&s=<?=$s?>&u=<?=$u?>" class="btn btn-default">Print</a>
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
@@ -52,7 +55,6 @@
 		<th class="text-center">Kode Anggota</th>
 		<th class="text-center">Nama Anggota</th>
 		<th class="text-center">Karyawan</th>
-		<th class="text-center">Bunga (dalam %)</th>
 		<th class="text-center">Jenis Simpanan</th>
 		<th class="text-center">Jenis Setoran</th>
 		<th class="text-center">Wilayah</th>
@@ -75,7 +77,6 @@
 			<td><?php echo $item['ang_no'] ?></td>
 			<td><?php echo $item['nm_ang_no'] ?></td>
 			<td><?php echo $item['kar_kode'] ?></td>
-			<td><?php echo $item['bus_id']," %" ?></td>
 			<td><?php echo $item['jsi_id']," Bulan" ?></td>
 			<td><?php echo $item['jse_id'] ?></td>
 			<td><?php echo $item['wil_kode'] ?></td>

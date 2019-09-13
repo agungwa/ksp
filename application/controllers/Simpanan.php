@@ -120,14 +120,18 @@ class Simpanan extends MY_Base
     public function setoran_action() 
     {
         //insert data setoran simpanan
+        
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tglsetor = date("Y-m-d", strtotime($datetoday.' - '.$this->input->post('mundur',TRUE).' Days'));
         $dataSetoran = array(
             'sim_kode' => $this->input->post('sim_kode',TRUE),
-            'ssi_tglsetor' => $this->tgl,
+            'ssi_tglsetor' => $tglsetor,
             'ssi_jmlsetor' => $this->input->post('ssi_jmlsetor',TRUE),
             'ssi_tgl' => $this->tgl,
             'ssi_flag' => 0,
             'ssi_info' => "",
             );
+            //echo $tglsetor;
                 $this->Setoransimpanan_model->insert($dataSetoran);
                 $this->session->set_flashdata('message', 'Create Record Success');
                 redirect(site_url('simpanan/?p=5'));
@@ -212,24 +216,35 @@ class Simpanan extends MY_Base
     public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
+        $f = urldecode($this->input->get('f', TRUE));
+        $t = urldecode($this->input->get('t', TRUE));
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
         $s = urldecode($this->input->get('s', TRUE)); //status
         $u = urldecode($this->input->get('u', TRUE)); //no rekening
         $start = intval($this->input->get('start'));
-        
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $rangetgl = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+        $z = date("Y-m-d", strtotime($f));
         $datasimpanan = array();
         $wilayah = $this->Wilayah_model->get_all();
         $simpanan = $this->Simpanan_model->get_limit_data($start, $q);
+        
+		if ($f == null && $t == null ) { $f=$z; $t=$rangetgl;}
         foreach ($simpanan as $key=>$item) {
+            
+            $tgl = date("Y-m-d", strtotime($item->sim_tglpendaftaran));
+            $f = date("Y-m-d", strtotime($f));
+            $t = date("Y-m-d", strtotime($t));
             if (
-                ( $u=='all' && $s=='all' && $w=='all') || 
-                ( $u=='all' && $s=='all' && $w == $item->wil_kode) || 
-                ( $u=='all' && $s == $item->sim_status && $w=='all') || 
-                ( $u == $item->sim_kode && $s=='all' && $w=='all') || 
-                ( $u == $item->sim_kode && $s == $item->sim_status && $w=='all') || 
-                ( $u == $item->sim_kode && $s=='all' && $w == $item->wil_kode) || 
-                ( $u == $item->sim_kode && $s == $item->sim_status && $w == $item->wil_kode) || 
-                ( $u=='all' && $s == $item->sim_status && $w == $item->wil_kode)) {
+                ( $u=='all' && $s=='all' && $w=='all' && $tgl >= $f && $tgl <= $t ) || 
+                ( $u=='all' && $s=='all' && $w == $item->wil_kode && $tgl >= $f && $tgl <= $t ) || 
+                ( $u=='all' && $s == $item->sim_status && $w=='all' && $tgl >= $f && $tgl <= $t ) || 
+                ( $u == $item->sim_kode && $s=='all' && $w=='all' && $tgl >= $f && $tgl <= $t ) || 
+                ( $u == $item->sim_kode && $s == $item->sim_status && $w=='all' && $tgl >= $f && $tgl <= $t ) || 
+                ( $u == $item->sim_kode && $s=='all' && $w == $item->wil_kode && $tgl >= $f && $tgl <= $t ) || 
+                ( $u == $item->sim_kode && $s == $item->sim_status && $w == $item->wil_kode && $tgl >= $f && $tgl <= $t ) || 
+                ( $u=='all' && $s == $item->sim_status && $w == $item->wil_kode && $tgl >= $f && $tgl <= $t )) {
                     $sim_status = $this->statusSimpanan;
                     $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $item->jsi_id))->row();
                     $jse_id = $this->db->get_where('jenissetoran', array('jse_id' => $item->jse_id))->row();
@@ -261,6 +276,11 @@ class Simpanan extends MY_Base
             'simpanan_data' => $simpanan,
             'wilayah_data' => $wilayah,
             'q' => $q,
+            'f' => $f,
+            't' => $t,
+            'w' => $w,
+            's' => $s,
+            'u' => $u,
             'start' => $start,
             'active' => 3,
             'content' => 'backend/simpanan/simpanan',
@@ -503,27 +523,21 @@ class Simpanan extends MY_Base
     
     public function update_action() 
     {
-        $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('', TRUE));
-        } else {
-            $data = array(
-		'sim_kode' => $this->input->post('sim_kode',TRUE),
-		'ang_no' => $this->input->post('ang_no',TRUE),
-		'kar_kode' => $this->input->post('kar_kode',TRUE),
-		'bus_id' => $this->input->post('bus_id',TRUE),
-		'jsi_id' => $this->input->post('jsi_id',TRUE),
-		'jse_id' => $this->input->post('jse_id',TRUE),
-		'wil_kode' => $this->input->post('wil_kode',TRUE),
-		'sim_tglpendaftaran' => $this->input->post('sim_tglpendaftaran',TRUE),
-		'sim_flag' => 1,
+            $data = array(	
+            'sim_kode' => $this->input->post('sim_kode',TRUE),
+            'ang_no' => $this->input->post('ang_no',TRUE),
+            'kar_kode' => $this->input->post('kar_kode',TRUE),
+            'bus_id' => $this->input->post('bus_id',TRUE),
+            'jsi_id' => $this->input->post('jsi_id',TRUE),
+            'jse_id' => $this->input->post('jse_id',TRUE),
+            'wil_kode' => $this->input->post('wil_kode',TRUE),
+
 	    );
-
             $this->Simpanan_model->update($this->input->post('sim_kode', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('simpanan'));
-        }
+        
     }
     
     public function delete($id) 

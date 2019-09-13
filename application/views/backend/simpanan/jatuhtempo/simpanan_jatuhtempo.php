@@ -75,12 +75,12 @@
             </tr>
             </thead>
             <tbody><?php
-            $total=0;
+            $total=$subtotal_thn=0;
             foreach ($datasimpanan as $key => $item)
             {
                 $totalsetoran = $this->Setoransimpanan_model->get_totalsetoran($item['sim_kode']); 
                 $total += $totalsetoran[0]->ssi_jmlsetor;
-                 
+                $subtotal_thn += $totalsetoran[0]->ssi_jmlsetor;
        // var_dump($totalsetoran);
                 ?>
                 <tr>
@@ -97,12 +97,34 @@
                     <td><?php echo $item['tanggalDuedate']?></td>
                     <td><?php echo rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor)?></td>
                     <td><?php echo $item['statusSimpanan']?></td>
+                    <?php
+                    // SUB TOTAL per thn_byr
+                            if (@$datasimpanan[$key+1]['tanggalDuedate'] != $item['tanggalDuedate']) {
+                                echo '<tr class="info">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>SUB TOTAL ' . $item['tanggalDuedate'] . '</td>
+                                    <td></td>
+                                    <td class="right">'.rupiahsimpanan($subtotal_thn).'</td>
+                                </tr>';
+                                $subtotal_thn = 0;
+                            } 
+                            $total += $totalsetoran[0]->ssi_jmlsetor;
+                        
+                    ?>
                 </tr>
             
             <?php 
             }
             ?>
-            <tr><td></td><td>Total Setor</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><?php echo rupiahsimpanan($total) ?></td></tr>
+            <tr class="danger"><td></td><td>Total Setor</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><?php echo rupiahsimpanan($total) ?></td></tr>
             </tbody>
         </table>
         <div class="row">
