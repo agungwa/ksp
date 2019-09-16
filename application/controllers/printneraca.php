@@ -885,6 +885,382 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 
 
 
+    public function Perhitungan(){
+		
+        $nowYear = date('d');
+		
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+    	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
+		$t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+		
+		//model
+
+		//neraca
+        $phu = $this->Phu_model->get_all();		
+        $phuSistem = $this->Phu_sistem_model->get_all();		
+        $Shu = $this->Shu_model->get_all();		
+		
+		//investasi
+    	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
+    	$investasiNonaktif = $this->Investasiberjangka_model->get_investasi_nonaktif();
+    	$jasaDitarik = $this->Penarikaninvestasiberjangka_model->get_all();
+        $wilayah = $this->Wilayah_model->get_all();		
+    	
+		//simpanan
+    	$simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
+    	$simpananNonaktif = $this->Simpanan_model->get_simpanan_nonaktif();
+    	$setoransimpananwajib = $this->Setoransimpananwajib_model->get_all();    	
+    	$simpananwajibDitarik = $this->Penarikansimpananwajib_model->get_all();
+		$simpananPokok = $this->Simpananpokok_model->get_all();
+
+		//pinjaman
+    	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
+    	$pinjamanNonaktif = $this->Pinjaman_model->get_pinjaman_nonaktif();
+    	$angsuranBayar = $this->Angsuran_model->get_angsuran_bayar();
+    	$angsuranTotal = $this->Angsuran_model->get_angsuran_total();
+    	$pelunasanPinjaman = $this->Pelunasan_model->get_all(); 
+        $wilayah = $this->Wilayah_model->get_all();
+        $provisi = $this->Potonganprovisi_model->get_by_id(1);		
+
+		//variable
+
+		//phu
+		$phuGaji = 0;
+		$phuOprasional = 0;
+		$phuLps = 0;
+		$phuKomunikasi = 0;
+		$phuPerlengkapan = 0;
+		$phuPenyusutan = 0;
+		$phuAsuransi = 0;
+		$phuIsentif = 0;
+		$phuPajakkendaraan = 0;
+		$phuRapat = 0;
+		$phuAtk = 0;
+		$phuKeamanan = 0;
+		$phuPhpinjaman = 0;
+		$phuSosial = 0;
+		$phuTasyakuran = 0;
+		$phuKoran = 0;
+		$phuPajakkoprasi = 0;
+		$phuServicekendaraan = 0;
+		$phuKonsumsi = 0;
+		$phuRat = 0;
+		$phuThr = 0;
+		$phuNonoprasional = 0;
+		$phuPerawatankantor = 0;
+
+		//neraca
+		$dataphu = array();
+		
+		//investasi
+		$saldoInvestasi = 0;
+    	$saldoInvestasilalu = 0;
+    	$saldoInvestasiditarik = 0;
+    	$jasaInvestasiditarik = 0;
+
+		//simpanan
+		$saldoSimpananlalu = 0;
+    	$saldoSimpanan = 0;
+    	$saldoSimpananDitarik = 0;
+    	$bungaSimpanan = 0;
+    	$saldoSimpananwajib = 0;
+    	$saldoSimpananwajibDitarik = 0;
+    	$saldoSimpananpokok = 0;
+    	$phBuku = 0;
+		$administrasi = 0;
+		
+		//pinjaman
+		$saldoDroppinjaman = 0;
+    	$saldoLalupinjaman = 0;
+    	$pokokAngsuran = 0;
+    	$pokokAngsuranpelunasan = 0;
+    	$bungaAngsuran = 0;
+    	$dendaAngsuran = 0;
+    	$provisiPinjaman = 0;
+    	$bungaDendapelunasan = 0;
+    	$totalAngsuran = 0;
+		$totalAngsurantunggakan = 0;
+		
+		$satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+		$tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+
+    	if ($f<>'' && $t<>'') {	
+        	$f = date("Y-m-d", strtotime($f));
+        	$t = date("Y-m-d", strtotime($t));
+    	}
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+
+    	//hitung bunga angsuran status bayar
+    	foreach ($angsuranBayar as $key => $value) {
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->ags_tgl));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
+    				$bungaAngsuran += $value->ags_jmlbunga ;
+    			}
+			} else {
+				$bungaAngsuran += $value->ags_jmlbunga;
+		}
+	}
+	
+    	//hitung denda angsuran status bayar
+    	foreach ($angsuranBayar as $key => $value) {
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->ags_tgl));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
+    				$dendaAngsuran += $value->ags_denda ;
+    			}
+			} else {
+				$dendaAngsuran += $value->ags_denda;
+		}
+	}
+	
+	
+    	//hitung saldo potongan provisi
+    	foreach ($pinjamanAktif as $key => $value) {
+			
+			$pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $value->pop_id))->row();
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->pin_tglpencairan));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+    				$provisiPinjaman += $value->pin_pinjaman*$pop_id->pop_potongan/100 ;
+    			}
+			} else {
+				$provisiPinjaman += $value->pin_pinjaman*$pop_id->pop_potongan/100;
+		}
+	}
+
+		   	//hitung saldo bunga denda pelunasan
+    	foreach ($pelunasanPinjaman as $key => $value) {
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->pel_tglpelunasan));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
+    				$bungaDendapelunasan += $value->pel_bungatambahan ;
+    			}
+			} else {
+				$bungaDendapelunasan += $value->pel_bungatambahan;
+		}
+	}
+	
+		//hitung Total saldo angsuran pokok dari angsuran jumlah bayar
+    	foreach ($angsuranTotal as $key => $value) {
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->ags_tgl));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
+    				$totalAngsuran += $value->ags_jmlbayar ;
+    			}
+			} else {
+				$totalAngsuran += $value->ags_jmlbayar;
+		}
+	}
+			
+	
+		//hitung Total saldo angsuran pokok dari angsuran tunggakan
+    	foreach ($angsuranTotal as $key => $value) {
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->ags_tgl));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
+    				$totalAngsurantunggakan += $value->ags_bayartunggakan ;
+    			}
+			} else {
+				$totalAngsurantunggakan += $value->ags_bayartunggakan;
+		}
+	}
+
+	
+    	//hitung saldo simpanan ditarik
+    	foreach ($simpananNonaktif as $key => $value) {
+    		$penarikan = $this->Penarikansimpanan_model->get_data_penarikan($value->sim_kode);
+    		foreach ($penarikan as $k => $item) {
+    			if ($f<>'' && $t<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->pes_tglpenarikan));
+    				if ( $tgl >= $f && $tgl <= $t|| $tgl >= $f && $tgl <= $t) {
+	    				$phBuku += $item->pes_phbuku;
+	    				$administrasi += $item->pes_administrasi;
+    				}
+    			} else {
+	    			$phBuku += $item->pes_phbuku;
+	    			$administrasi += $item->pes_administrasi;
+    			}
+    		}
+    	}
+
+	//hitung bunga simpanan aktif
+	foreach ($simpananNonaktif as $key => $value) {
+		$bungaSetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($value->sim_kode);
+		foreach ($bungaSetoran as $k => $item) {
+		$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+			if ($f<>'' && $t<>'') {	
+				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
+				if ($tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == $w) {
+					$bungaSimpanan += $item->bss_bungabulanini;
+				}
+			} else {
+				$bungaSimpanan += $item->bss_bungabulanini;
+			}
+		}
+	}
+
+    	//hitung saldo jasa ditarik
+    	foreach ($jasaDitarik as $key => $value) {
+			$ivb_kode = $this->db->get_where('investasiberjangka', array('ivb_kode' => $value->ivb_kode))->row();
+			if ($f<>'' && $t<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($value->pib_tgl));
+    				if (($tgl >= $f && $tgl <= $t && $w == 'all') || ($tgl >= $f && $tgl <= $t && $ivb_kode->wil_kode == $w)) {
+    					$jasaInvestasiditarik += $value->pib_jmlditerima;
+    				}
+    			} else {
+    				$jasaInvestasiditarik += $value->pib_jmlditerima;
+    			}
+    		
+		}
+		
+		//hitung PHU
+		foreach ($phu as $key => $value) {
+			if ($f<>'' && $t<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->phu_tanggal));
+				if ($tgl >= $f && $tgl <= $t)  {
+					$
+					$phuGaji += $value->phu_gaji;
+					$phuOprasional += $value->phu_operasional;
+					$phuLps += $value->phu_lps;
+					$phuKomunikasi += $value->phu_komunikasi;
+					$phuPerlengkapan += $value->phu_perlengkapan;
+					$phuPenyusutan += $value->phu_penyusutan;
+					$phuAsuransi += $value->phu_asuransi;
+					$phuIsentif += $value->phu_insentif;
+					$phuPajakkendaraan += $value->phu_pajakkendaraan;
+					$phuRapat += $value->phu_rapat;
+					$phuAtk += $value->phu_atk;
+					$phuKeamanan += $value->phu_keamanan;
+					$phuPhpinjaman += $value->phu_phpinjaman;
+					$phuSosial += $value->phu_sosial;
+					$phuTasyakuran += $value->phu_tayakuran;
+					$phuKoran += $value->phu_koran;
+					$phuPajakkoprasi += $value->phu_pajakkoprasi;
+					$phuServicekendaraan += $value->phu_servicekendaraan;
+					$phuKonsumsi += $value->phu_rapat;
+					$phuRat += $value->phu_rat;
+					$phuThr += $value->phu_thr;
+					$phuNonoprasional += $value->phu_nonoprasional;
+					$phuPerawatankantor += $value->phu_perawatankantor;
+				}
+			} else {
+				$phuGaji = 0;
+				$phuOprasional = 0;
+				$phuLps = 0;
+				$phuKomunikasi = 0;
+				$phuPerlengkapan = 0;
+				$phuPenyusutan = 0;
+				$phuAsuransi = 0;
+				$phuIsentif = 0;
+				$phuPajakkendaraan = 0;
+				$phuRapat = 0;
+				$phuAtk = 0;
+				$phuKeamanan = 0;
+				$phuPhpinjaman = 0;
+				$phuSosial = 0;
+				$phuTasyakuran = 0;
+				$phuKoran = 0;
+				$phuPajakkoprasi = 0;
+				$phuServicekendaraan = 0;
+				$phuKonsumsi = 0;
+				$phuRat = 0;
+				$phuThr = 0;
+				$phuNonoprasional = 0;
+				$phuPerawatankantor = 0;
+		}
+	}
+		
+
+		$data = array(
+
+			'kode' => $this->Pengkodean->psis($nowYear),
+
+			//phu		
+			'phugaji' => $phuGaji,
+			'phuoprasional' =>$phuOprasional,
+			'phulps' => $phuLps,
+			'phukomunikasi' => $phuKomunikasi,
+			'phuperlengkapan' => $phuPerlengkapan,
+			'phupenyusutan' => $phuPenyusutan,
+			'phuasuransi' => $phuAsuransi,
+			'phuisentif' => $phuIsentif,
+			'phupajakkendaraan' => $phuPajakkendaraan,
+			'phurapat' => $phuRapat,
+			'phuatk' => $phuAtk,
+			'phukeamanan' => $phuKeamanan,
+			'phuphpinjaman' => $phuPhpinjaman,
+			'phusosial' => $phuSosial,
+			'phutasyakuran' => $phuTasyakuran,
+			'phukoran' => $phuKoran,
+			'phupajakkoprasi' => $phuPajakkoprasi,
+			'phuservicekendaraan' => $phuServicekendaraan,
+			'phukonsumsi' => $phuKonsumsi,
+			'phurat' => $phuRat,
+			'phuthr' => $phuThr,
+			'phunonoprasional' => $phuNonoprasional,
+			'phuperawatankantor' => $phuPerawatankantor,
+
+			//neraca
+			'dataphu' => $dataphu,
+
+			//investasi
+			'jasainvestasiditarik' => $jasaInvestasiditarik,
+			'saldoinvestasiditarik' => $saldoInvestasiditarik,
+			'saldoinvestasilalu' => $saldoInvestasilalu,
+			'saldoinvestasi' => $saldoInvestasi,
+			
+			//simpanan
+			'saldosimpananlalu' => $saldoSimpananlalu,
+            'wilayah_data' => $wilayah,
+			'saldosimpanan' => $saldoSimpanan,
+			'saldosimpananditarik' => $saldoSimpananDitarik,
+			'bungasimpanan' => $bungaSimpanan,
+			'saldosimpananwajib' => $saldoSimpananwajib,
+			'saldosimpananwajibditarik' => $saldoSimpananwajibDitarik,
+			'saldosimpananpokok' => $saldoSimpananpokok,
+			'phbuku' => $phBuku,
+			'administrasi' => $administrasi,
+			
+			//pinjaman
+            'wilayah_data' => $wilayah,
+			'saldodroppinjaman' => $saldoDroppinjaman,
+			'saldolalupinjaman' => $saldoLalupinjaman,
+			'pokokangsuran' => $pokokAngsuran,
+			'pokokangsuranpelunasan' => $pokokAngsuranpelunasan,
+			'bungaangsuran' => $bungaAngsuran,
+			'bungadendapelunasan' => $bungaDendapelunasan,
+			'dendaangsuran' => $dendaAngsuran,
+			'provisipinjaman' => $provisiPinjaman,
+			'totalangsuran' => $totalAngsuran,
+			'totalangsurantunggakan' => $totalAngsurantunggakan,
+			'f' => $f,
+			't' => $t,
+			'w' => $w,
+		    'content' => 'backend/neraca/shu',
+		);
+		 
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'A4']);
+        $html = $this->load->view('backend/neraca/printneraca/shu.php',$data,true);
+        //echo $html;
+        $mpdf->WriteHTML($html);
+        //$mpdf->Output(); // opens in browser
+        $mpdf->Output('shu.pdf','D'); // it downloads the file into the user system, with give name
+    
+    }
+
 
    
     public function dataAll(){

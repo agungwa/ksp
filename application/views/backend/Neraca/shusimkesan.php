@@ -45,10 +45,9 @@
                                 }
                             ?>
                         </span>
-                        <!--
                         <span class="input-group-btn">
-                                    <a href="<?php echo base_url()?>PrintPinjaman/printsirkulasipinjaman?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
-                        </span>-->
+                                    <a href="<?php echo base_url()?>Printdatasimkesan/hitungphu?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                        </span>
                         <button class="btn btn-primary" type="submit">Tampilkan</button>
                     </div>
             </div>
