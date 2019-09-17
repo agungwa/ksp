@@ -44,7 +44,19 @@ class Backend extends MY_Base {
         $this->load->model('Angsuran_model');
         $this->load->model('Pelunasan_model');
         $this->load->model('Potonganprovisi_model');
-        $this->load->model('Wilayah_model');
+		$this->load->model('Wilayah_model');
+		
+		//simkesan
+        $this->load->model('Simkesan_model');
+        $this->load->model('Setoransimkesan_model');
+        $this->load->model('Titipansimkesan_model');
+        $this->load->model('Penarikansimkesan_model');
+        $this->load->model('Klaimsimkesan_model');
+        $this->load->model('Phusimkesan_model');
+        $this->load->model('Phusimkesanpendapatan_model');
+        $this->load->model('Shusimkesan_model');
+		$this->load->model('Neracakasbanksimkesan_model');
+		
 		is_logged();
 		
     }  
@@ -92,7 +104,15 @@ class Backend extends MY_Base {
     	$angsuranTotal = $this->Angsuran_model->get_angsuran_total();
     	$pelunasanPinjaman = $this->Pelunasan_model->get_all(); 
         $wilayah = $this->Wilayah_model->get_all();
-        $provisi = $this->Potonganprovisi_model->get_by_id(1);		
+		$provisi = $this->Potonganprovisi_model->get_by_id(1);
+		
+		//simkesan
+    	$simkesanAktif = $this->Simkesan_model->get_simkesan_aktif();
+    	$simkesanNonaktif = $this->Simkesan_model->get_simkesan_nonaktif();
+    	$simkesanKlaim = $this->Klaimsimkesan_model->get_all();    	
+    	$simkesanDitarik = $this->Penarikansimkesan_model->get_all();
+        $wilayah = $this->Wilayah_model->get_all();		
+
 
 		//variable
 
@@ -147,6 +167,28 @@ class Backend extends MY_Base {
 		$saldoPinjamankhususbelum = 0;
 		$saldoPinjamankaryawanbelum = 0;
 		$saldoPinjamanumumbelum = 0;
+
+		//simkesan
+		$totalRekening = 0;
+		$totalRekeninglalu = 0;
+		$totalRekeningkeluar = 0;
+		//setoran simkesan
+		$saldoSimkesanlalu = 0;
+    	$saldoSimkesan = 0;
+		$saldoSimkesanditarik = 0;
+		//klaim simkesan
+		$saldoSetorklaim = 0 ;
+		$saldoTunggakanklaim = 0 ;
+		$saldoJumlahklaim = 0 ;
+		$administrasiKlaim = 0 ;
+		//penarikan simkesan
+		$saldoSetortarik = 0;
+		$saldoTunggakantarik = 0;
+		$saldoJumlahtarik = 0;
+		$administrasiTarik = 0;
+		//titipan simkesan
+		$saldoTitipan = 0;
+		$saldoAmbiltitipan = 0;
 		
 		$satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
@@ -506,7 +548,49 @@ foreach ($pinjamanKhususaktif as $key => $value) {
     		} else {
 				$saldoSimpananpokok += $value->sip_setoran;
     		}
-		}	
+		}
+
+		//hitung saldo simkesan aktif masuk kini
+    	foreach ($simkesanAktif as $key => $value) {
+    		$setoran = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
+    		foreach ($setoran as $k => $item) {
+				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
+				
+    			if ($f<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->ssk_tglsetoran));
+    				if ($tgl <= $f) {
+						$saldoSimkesan += $item->ssk_jmlsetor;
+    				}
+    			} else {
+    				$saldoSimkesan += $item->ssk_jmlsetor;
+				}
+				
+				
+			}
+		}
+
+		//hitung saldo titipan simkesan
+    	foreach ($simkesanAktif as $key => $value) {
+    		$titipan = $this->Titipansimkesan_model->get_sikkode($value->sik_kode);
+    		foreach ($titipan as $k => $item) {
+				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
+				
+    			if ($f<>'' && $t<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->tts_tgl));
+    				if ($tgl <= $f && $tgl <= $t && 'all' == $w || $tgl >= $f && $tgl <= $t && $sik_kode->wil_kode == $w) {
+						$saldoTitipan += $item->tts_jmltitip;
+						$saldoAmbiltitipan += $item->tts_jmlambil;
+    				}
+    			} else {
+					$saldoTitipan += $item->tts_jmltitip;
+					$saldoAmbiltitipan += $item->tts_jmlambil;
+				}
+				
+				
+			}
+			
+		}
+
 		$data = array(
 			'kode' => $this->Pengkodean->psis($nowYear),
 
@@ -563,6 +647,28 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			'saldopinjamankhususbelum' => $saldoPinjamankhususbelum,
 			'saldopinjamankaryawanbelum' => $saldoPinjamankaryawanbelum,
 			'saldopinjamanumumbelum' => $saldoPinjamanumumbelum,
+
+			//simkesan
+			//data setoran
+			'saldosimkesanlalu' => $saldoSimkesanlalu,
+			'saldosimkesan' => $saldoSimkesan,
+			'saldosimkesanditarik' => $saldoSimkesanditarik,
+
+			//data klaim
+			'saldosetorklaim' => $saldoSetorklaim,
+			'saldotunggakanklaim' => $saldoTunggakanklaim,
+			'saldojumlahklaim' => $saldoJumlahklaim,
+			'administrasiklaim' => $administrasiKlaim,
+
+			//data penarikan
+			'saldosetortarik' => $saldoSetortarik,
+			'saldotunggakantarik' => $saldoTunggakantarik,
+			'saldojumlahtarik' => $saldoJumlahtarik,
+			'administrasitarik' => $administrasiTarik,
+
+			//data titipan simkesan	
+			'saldotitipan' => $saldoTitipan,
+			'saldoambiltitipan' => $saldoAmbiltitipan,
 			'f' => $f,
 			't' => $t,
 			'w' => $w,
