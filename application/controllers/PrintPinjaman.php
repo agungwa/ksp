@@ -289,10 +289,10 @@ class PrintPinjaman extends MY_Base
         
         $mpdf = new \Mpdf\Mpdf();
         $html = $this->load->view('backend/pinjaman/printpinjaman/sirkulasipinjaman.php',$data,true);
-        echo $html;
-        //$mpdf->WriteHTML($html);
+        //echo $html;
+        $mpdf->WriteHTML($html);
         //$mpdf->Output(); // opens in browser
-        //$mpdf->Output('sirkulasipinjaman.pdf','D'); // it downloads the file into the user system, with give name
+        $mpdf->Output('sirkulasipinjaman.pdf','D'); // it downloads the file into the user system, with give name
     
     }
 
