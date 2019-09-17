@@ -653,7 +653,63 @@ class PrintPinjaman extends MY_Base
 				$mpdf->Output('pencairan.pdf','D'); // it downloads the file into the user system, with give name
     
         }
+	}
+	
+	public function pencairanijazah($id) 
+    {
+		$row = $this->Pinjaman_model->get_by_id($id);
+		$jaminan = $this->Jaminan_model->get_by_rek($id);
+		$penjamin = $this->Penjamin_model->get_by_rek($id);
+        if ($row) {
+            $pin_statuspinjaman = $this->statusPinjaman;
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+            $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+            $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
+            $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
+			$surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
+			$tanggalDuedate = date("Y-m-d", strtotime($row->pin_tglpencairan.' + '.$sea_id->sea_tenor.' Months'));
+		//var_dump($jaminan);
+            $data = array(
+				'jaminan_data' => $jaminan,
+				'penjamin_data' => $penjamin,
+				'ang_nama' => $ang_no->ang_nama,
+				'ang_tgllahir' => $ang_no->ang_tgllahir,
+				'ang_alamat' => $ang_no->ang_alamat,
+				'ang_noktp' => $ang_no->ang_noktp,
+				'ang_nohp' => $ang_no->ang_nohp,
+				'tgl_pelunasan' => $tanggalDuedate,
+                'pin_id' => $row->pin_id,
+                'ang_no' => $row->ang_no,
+                'nama_ang_no' => $ang_no->ang_nama,
+                'sea_id' => $sea_id->sea_tenor,
+                'bup_id' => $bup_id->bup_bunga,
+                'pop_id' => $pop_id->pop_potongan,
+                'wil_kode' => $wil_kode->wil_nama,
+                'skp_id' => $skp_id->skp_kategori,
+                'pin_pengajuan' => $row->pin_pengajuan,
+                'pin_pinjaman' => $row->pin_pinjaman,
+                'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                'pin_tglpencairan' => $row->pin_tglpencairan,
+                'pin_marketing' => $marketing->kar_nama,
+                'pin_surveyor' => $surveyor->kar_nama,
+                'pin_survey' => $row->pin_survey,
+                'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman],
+    	    );
+				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Legal', [216, 356]]);
+				//$header = $this->load->view('backend/pinjaman/printpinjaman/header2.php',$data,true);
+				$html = $this->load->view('backend/pinjaman/printpinjaman/pkijazah.php',$data,true);
+				//$mpdf->SetHeader($header);
+				//echo $html;
+				$mpdf->WriteHTML($html);
+				//$mpdf->Output(); // opens in browser
+				$mpdf->Output('pkijazah.pdf','D'); // it downloads the file into the user system, with give name
+    
+        }
     }
+	
 }
 
 /* End of file Pinjaman.php */
