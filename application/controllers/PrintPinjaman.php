@@ -645,7 +645,7 @@ class PrintPinjaman extends MY_Base
     	    );
 				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Legal', [216, 356]]);
 				//$header = $this->load->view('backend/pinjaman/printpinjaman/header2.php',$data,true);
-				$html = $this->load->view('backend/pinjaman/printpinjaman/pkdeposito.php',$data,true);
+				$html = $this->load->view('backend/pinjaman/printpinjaman/pksimpanan.php',$data,true);
 				//$mpdf->SetHeader($header);
 				//echo $html;
 				$mpdf->WriteHTML($html);

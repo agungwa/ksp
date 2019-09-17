@@ -19,10 +19,13 @@ th {
  	h3{text-align: center}
     tr#01{background-color: #eb3131;color: white;}
     tr#02{background-color: #536fee;color: white;}
- </style>
+ </style> 
+ <?php
+ $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row();
+ ?>
 <h2><b>Data Penagihan Awal</b></h2>
 <h3><b>Rentang Tanggal : <?=dateFormataja($t)?> Sampai <?=dateFormataja($y)?> </b></h3>
-<h3><b>Wilayah <?=$w?> <!--<?php //if($w='all'){echo 'semua wilayah';}else {echo $wil_kode->wil_nama;}?>--></b></h3>
+<h3><b>Wilayah <?php if($w!='all'){echo $wil_kode->wil_nama;} else if ($w='all') {echo 'Semua Wilayah';}?></b></h3>
         
         <table>
             <thead>

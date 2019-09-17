@@ -249,7 +249,7 @@ class PrintInvestasiberjangka extends MY_Base
 		//echo $html;
 		$mpdf->WriteHTML($html);
 		//$mpdf->Output(); // opens in browser
-		$mpdf->Output('sertifikat.pdf','D'); // it downloads the file into the user system, with give name
+		$mpdf->Output('surat.pdf','D'); // it downloads the file into the user system, with give name
 	}
 	
     }

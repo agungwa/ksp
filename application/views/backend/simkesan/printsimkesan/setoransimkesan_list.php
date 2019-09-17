@@ -7,6 +7,14 @@
     tr#01{padding: 5px;background-color: #eb3131;}
     tr#02{padding: 5px;background-color: #536fee;}
  </style>
+ <h3> List Setoran Simkesan </h3><?php
+ $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row();
+ ?>
+<p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
+    style="font-family:Cambria">Rentang Tanggal : <?=dateFormataja($f)?> Sampai <?=dateFormataja($t)?></p>
+<p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
+    style="font-family:Cambria">Wilayah : <?php if($w!='all'){echo $wil_kode->wil_nama;} else if ($w='all') {echo 'Semua Wilayah';}?></p>
+        
         <table>
             <thead class="thead-light">
             <tr>
