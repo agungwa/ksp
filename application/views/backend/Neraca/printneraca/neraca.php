@@ -28,7 +28,7 @@ table#04 {
 
 <body>
  <h2><b>NERACA</b></h2>
- <h2><b>KSP SMM</b></h2>
+ <h2><b>KSP Sido Mukti Makmur</b></h2>
  <?php $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row(); ?>
 
  <h3><b>Tanggal : <?=dateFormataja($f)?> </b></h3>
@@ -457,7 +457,7 @@ table#04 {
                         <p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
                             <span style="font-family:Cambria">Pengurus KSP</span><span style="font-family:Cambria">
-                            </span><span style="font-family:Cambria">"SMM"</span></p>
+                            </span><span style="font-family:Cambria">"Sido Mukti Makmur"</span></p>
                     </td>
                     <td style="width:200.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span

@@ -52,7 +52,7 @@ h5{text-align: center}
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
     style="font-family:Cambria">SIRKULASI PINJAMAN</span></p>
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
-    style="font-family:Cambria">KSP SMM</span></p>
+    style="font-family:Cambria">KSP Sido Mukti Makmur</span></p>
  <?php
  $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row();
  ?></p>

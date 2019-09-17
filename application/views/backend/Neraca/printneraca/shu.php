@@ -52,7 +52,7 @@ h5{text-align: center}
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
     style="font-family:Cambria">PERHITUNGAN HASIL USAHA (PHU)</span></p>
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
-    style="font-family:Cambria">KSP SMM</span></p>
+    style="font-family:Cambria">KSP Sido Mukti Makmur</span></p>
  <?php $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row(); ?></p>
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
     style="font-family:Cambria">Tanggal : <?=dateFormataja($f)?></p>
@@ -203,7 +203,7 @@ h5{text-align: center}
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
                             <span style="font-family:Cambria">Direktur</span></p><p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria">KSP SMM</span></p>
+                            <span style="font-family:Cambria">KSP Sido Mukti Makmur</span></p>
                     </td>
                     <td style="width:200.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
@@ -290,7 +290,7 @@ h5{text-align: center}
                     <td style="width:200.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
                         <p
                             style="margin-top:12pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria; text-decoration:underline">Erni Setyorini</span></p>
+                            <span style="font-family:Cambria; text-decoration:underline">Erni Setyowati</span></p>
                     </td>
                 </tr>
             </tbody>
