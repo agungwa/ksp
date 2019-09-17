@@ -54,6 +54,7 @@
 		<th class="text-center">Kode Simpanan</th>
 		<th class="text-center">Kode Anggota</th>
 		<th class="text-center">Nama Anggota</th>
+		<th class="text-center">Alamat Anggota</th>
 		<th class="text-center">Karyawan</th>
 		<th class="text-center">Jenis Simpanan</th>
 		<th class="text-center">Jenis Setoran</th>
@@ -76,6 +77,7 @@
 			<td><?php echo $item['sim_kode'] ?></td>
 			<td><?php echo $item['ang_no'] ?></td>
 			<td><?php echo $item['nm_ang_no'] ?></td>
+			<td><?php echo $item['alamat_ang_no'] ?></td>
 			<td><?php echo $item['kar_kode'] ?></td>
 			<td><?php echo $item['jsi_id']," Bulan" ?></td>
 			<td><?php echo $item['jse_id'] ?></td>

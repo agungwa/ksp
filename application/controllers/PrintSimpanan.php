@@ -61,6 +61,7 @@ class Printsimpanan extends MY_Base
                 'sim_kode' => $item->sim_kode,
                 'ang_no' => $item->ang_no,
                 'nm_ang_no' => $ang_no->ang_nama,
+                'alamat_ang_no' => $ang_no->ang_alamat,
                 'kar_kode' => $kar_kode->kar_nama,
                 'bus_id' => $bus_id->bus_bunga,
                 'jsi_id' => $jsi_id->jsi_simpanan,

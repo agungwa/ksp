@@ -176,34 +176,33 @@ class Karyawan extends MY_Base
     public function update($id) 
     {
         $row = $this->Karyawan_model->get_by_id($id);
-
+        $karyawansimpanan = $this->Karyawansimpanan_model->get_by_kar($id);
+        $karyawanijasah = $this->Karyawanijasah_model->get_by_kar($id);
+        $karyawankeluarga = $this->Keluargakaryawan_model->get_by_kar($id);
         if ($row) {
+			$jab_kode = $this->db->get_where('jabatan', array('jab_kode' => $row->jab_kode))->row();
             $data = array(
+                'karyawansimpanan' => $karyawansimpanan,
+                'karyawanijasah' => $karyawanijasah,
+                'karyawankeluarga' => $karyawankeluarga,
                 'button' => 'Update',
                 'action' => site_url('karyawan/update_action'),
         		'kar_kode' => set_value('kar_kode', $row->kar_kode),
         		'kar_nama' => set_value('kar_nama', $row->kar_nama),
+        		'kar_nik' => set_value('kar_nik', $row->kar_nik),
         		'jab_kode' => set_value('jab_kode', $row->jab_kode),
-                'nm_jab_kode' => set_value('jab_kode', $row->jab_kode),
+                'nm_jab_kode' => set_value('nm_jab_kode', $jab_kode->jab_nama),
         		'kar_alamat' => set_value('kar_alamat', $row->kar_alamat),
         		'kar_nohp' => set_value('kar_nohp', $row->kar_nohp),
         		'kar_simpanan' => set_value('kar_nohp', $row->kar_simpanan),
-        	    'content' => 'backend/karyawan/karyawan_form',
-        	    );
+        	    'content' => 'backend/karyawan/karyawan_edit',
+                );
             $this->load->view(layout(), $data);
-        } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('karyawan'));
-        }
+        } 
     }
     
     public function update_action() 
     {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('kar_kode', TRUE));
-        } else {
             $data = array(
     		'kar_nama' => $this->input->post('kar_nama',TRUE),
     		'jab_kode' => $this->input->post('jab_kode',TRUE),
@@ -214,9 +213,41 @@ class Karyawan extends MY_Base
     	    );
 
             $this->Karyawan_model->update($this->input->post('kar_kode', TRUE), $data);
+            
+            $dataSimpanankaryawan = array(
+                'ksi_simpanan' => $this->input->post('ksi_simpanan',TRUE),
+                'ksi_status' => 0,
+                'ksi_tgl' => $this->tgl,
+                'ksi_flag' => 0,
+                'ksi_info' => "",
+            );
+            $this->Karyawansimpanan_model->update_kar_kode($this->input->post('kar_kode', TRUE), $dataSimpanankaryawan);
+
+            $dataIjasah = array(
+                'kij_sd' => $this->input->post('kij_sd',TRUE),
+                'kij_smp' => $this->input->post('kij_smp',TRUE),
+                'kij_sma' => $this->input->post('kij_sma',TRUE),
+                'kij_d3' => $this->input->post('kij_d3',TRUE),
+                'kij_s1' => $this->input->post('kij_s1',TRUE),
+                'kij_s2' => $this->input->post('kij_s2',TRUE),
+                'kij_s3' => $this->input->post('kij_s3',TRUE),
+                'kij_lainlain' => $this->input->post('kij_lainlain',TRUE),
+                'kij_status' => 0,
+                );
+            $this->Karyawanijasah_model->update_kar_kode($this->input->post('kar_kode', TRUE), $dataIjasah);
+
+            $dataKeluarga = array(
+                'kka_nama' => $this->input->post('kka_nama',TRUE),
+                'kka_hubungan' => $this->input->post('kka_hubungan',TRUE),
+                'kka_alamat' => $this->input->post('kka_alamat',TRUE),
+                'kka_nohp' => $this->input->post('kka_nohp',TRUE),
+                'kka_flag' => 0,
+                );
+        
+                    $this->Keluargakaryawan_model->update_kar_kode($this->input->post('kar_kode', TRUE), $dataKeluarga);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('karyawan'));
-        }
+        
     }
     
     public function delete($id) 

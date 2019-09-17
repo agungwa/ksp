@@ -39,6 +39,8 @@
                                     <?php
                                 }
                             ?> -->
+                            <a href="<?php echo base_url()?>printdatasimkesan/listSetoran?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                          
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
@@ -55,16 +57,18 @@
         		<th class="text-center">Jumlah Setor</th>
             </tr>
             </thead>
-			<tbody><?php
+            <tbody><?php
+            $total = 0;
             foreach ($datasetoran as $key => $item)
             {
+                $total += $item['ssk_jmlsetor'];
                 ?>
                 <tr>
     			<td width="80px"><?php echo ++$start ?></td>
     			<td><?php echo $item['sik_kode'] ?></td>
     			<td><?php echo $item['nama_anggota'] ?></td>
     			<td><?php echo $item['ssk_tglsetoran'] ?></td>
-    			<td><?php echo $item['ssk_jmlsetor'] ?></td>
+    			<td><?php echo neraca($item['ssk_jmlsetor']) ?></td>
 		</tr>
                 
                 <?php
@@ -72,7 +76,9 @@
             ?>
             </tbody>
         </table>
-        
+        <table  class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <tr class="danger"><td width="600px" >Total Setoran</td><td width="200px"><?php echo neraca($total) ?></td></tr>
+        </table>
     </div>
     </div>
     </div>

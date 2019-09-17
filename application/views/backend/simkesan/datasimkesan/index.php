@@ -46,7 +46,7 @@
                             ?>
                         </span>
                         <span class="input-group-btn">
-                                    <a href="<?php echo base_url()?>printsimkesan/printsirkulasisimkesan?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                                    <a href="<?php echo base_url()?>printdatasimkesan/neraca?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
                         </span>
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                        

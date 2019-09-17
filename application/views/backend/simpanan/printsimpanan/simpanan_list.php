@@ -19,6 +19,7 @@
 		<th >Kode Simpanan</th>
 		<th >Kode Anggota</th>
 		<th >Nama Anggota</th>
+		<th >Alamat Anggota</th>
 		<th >Jenis Simpanan</th>
 		<th >Tanggal Pendaftaran</th>
 		<th >Jatuh Tempo</th>
@@ -40,6 +41,7 @@
 			<td><?php echo $item['sim_kode'] ?></td>
 			<td><?php echo $item['ang_no'] ?></td>
 			<td><?php echo $item['nm_ang_no'] ?></td>
+			<td><?php echo $item['alamat_ang_no'] ?></td>
 			<td><?php echo $item['jsi_id']," Bulan" ?></td>
 			<td><?php echo $item['sim_tglpendaftaran'] ?></td>
 			<td><?php echo $tanggalDuedate?></td>

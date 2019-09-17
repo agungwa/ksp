@@ -46,15 +46,15 @@
             <tbody class="thead-light">
             <tr>
                 <td class="text-left">Target</td>
-				<td class="text-center">RP <?= $saldopokok;?></td>
+				<td class="text-center"><?= rupiah($saldopokok);?></td>
             </tr>
             <tr>
                 <td class="text-left">Tertagih</td>
-				<td class="text-center">RP <?= $jmlbayar;?></td>
+				<td class="text-center"><?= rupiah($jmlbayar);?></td>
             </tr>
             <tr>
                 <td class="text-left">Tidak Tertagih</td>
-				<td class="text-center">RP <?= $saldopokok-$jmlbayar;?></td>
+				<td class="text-center"><?= rupiah($saldopokok-$jmlbayar);?></td>
             </tr>
             <tr>
                 <td class="text-left">Persentase</td>

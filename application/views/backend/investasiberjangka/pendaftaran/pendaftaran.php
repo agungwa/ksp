@@ -16,8 +16,8 @@
         <div class="form-group">
             <label for="varchar">Anggota </label>
             <div class="input-group">
-            <input type="hidden" name="ang_no" id="ang_no" value="" required="required"/>
-            <input type="text" class="form-control" name="nm_ang_no" id="nm_ang_no" placeholder="Anggota" value="" required="required" readonly/>
+            <input type="hidden" name="ang_no" id="ang_no" value="" required/>
+            <input type="text" class="form-control" name="nm_ang_no" id="nm_ang_no" placeholder="Anggota" required/>
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>anggota/lookup','ang_no');" style="cursor: pointer;">Cari</span>
             </div>
@@ -26,8 +26,8 @@
 	    <div class="form-group">
             <label for="varchar">Karyawan</label>
             <div class="input-group">
-            <input type="hidden" name="kar_kode" id="kar_kode" value="" required="required" />
-            <input type="text" class="form-control" name="nm_kar_kode" id="nm_kar_kode" placeholder="Karyawan" value="" required="required" readonly/>
+            <input type="hidden" name="kar_kode" id="kar_kode" value="" required />
+            <input type="text" class="form-control" name="nm_kar_kode" id="nm_kar_kode" placeholder="Karyawan"  required/>
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>karyawan/lookup','kar_kode');" style="cursor: pointer;">Cari</span>
             </div>

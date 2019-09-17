@@ -79,7 +79,10 @@
 				echo anchor(site_url('karyawan/read/'.$karyawan->kar_kode),'Read','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('karyawan/delete/'.$karyawan->kar_kode),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-				?>
+                echo ' | '; 
+				echo anchor(site_url('karyawan/update/'.$karyawan->kar_kode),'Update','class="text-navy" onclick="javascript: return confirm(\'Yakin Update data?\')"'); 
+				
+                ?>
 			</td>
 		</tr>
                 

@@ -67,6 +67,14 @@ class Karyawansimpanan_model extends CI_Model
         $this->db->update($this->table, $data);
     }
 
+    // update data kar kode
+    function update_kar_kode($kar_kode, $data)
+    {
+        $this->db->where('kar_kode', $kar_kode);
+        $this->db->update($this->table, $data);
+    }
+
+
     // delete data
     function delete($id)
     {
