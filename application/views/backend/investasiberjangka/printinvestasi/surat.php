@@ -364,7 +364,7 @@ table#06 {
                 <tr>
                     <td style="width:471.1pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
-                                style="font-family:Cambria"></span><span style="font-family:Cambria">,</span>
+                                style="font-family:Cambria"></span><span style="font-family:Cambria"></span>
                         </p>
                     </td>
                 </tr>
