@@ -449,6 +449,7 @@ class Printsimpanan extends MY_Base
         'setoran_data' => $setoran,
 		'sim_kode' => $row->sim_kode,
 		'ang_no' => $ang_no->ang_nama,
+		'alamat_ang_no' => $ang_no->ang_alamat,
 		'kar_kode' => $kar_kode->kar_nama,
 		'bus_id' => $bus_id->bus_bunga,
 		'jsi_id' => $jsi_id->jsi_simpanan,
@@ -466,7 +467,7 @@ class Printsimpanan extends MY_Base
         //echo $html;
         $mpdf->WriteHTML($html);
         //$mpdf->Output(); // opens in browser
-        $mpdf->Output('jatuhtempo.pdf','D'); // it downloads the file into the user system, with give name
+        $mpdf->Output('rincian.pdf','D'); // it downloads the file into the user system, with give name
 		
         
     }

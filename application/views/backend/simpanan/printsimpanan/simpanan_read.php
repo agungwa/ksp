@@ -1,17 +1,20 @@
 <style>
  	table{margin: auto;}
- 	td,th{padding: 5px;text-align: center; }
+ 	td,th{padding: 5px;text-align: justify; }
  	h2{text-align: center}
  	h3{text-align: center}
  	th{background-color: #95a5a6; padding: 10px;color: #fff}
- </style> 
+ </style>
+ <h2><b>Rincian Rekening Simpanan</b></h2>
         <table class="table">
-	    <tr><td>Kode Simpanan</td><td><?php echo $sim_kode; ?></td></tr>
-	    <tr><td>Angggota</td><td><?php echo $ang_no; ?></td></tr>
-	    <tr><td>Jenis Simpanan</td><td><?php echo $jsi_id,' bulan'; ?></td></tr>
-	    <tr><td>Jenis Setoran</td><td><?php echo $jse_id; ?></td></tr>
-	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $sim_tglpendaftaran; ?></td></tr>
-	    <tr><td>Status</td><td><?php echo $sim_status; ?></td></tr>
+	    <tr text-align="justify"><td>Kode Simpanan</td><td><?php echo $sim_kode; ?></td></tr>
+	    <tr text-align="justify"><td>Angggota</td><td><?php echo $ang_no; ?></td></tr>
+	    <tr text-align="justify"><td>Alamat</td><td><?php echo $alamat_ang_no; ?></td></tr>
+	    <tr text-align="justify"><td>Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
+	    <tr text-align="justify"><td>Jenis Simpanan</td><td><?php echo $jsi_id,' bulan'; ?></td></tr>
+	    <tr text-align="justify"><td>Jenis Setoran</td><td><?php echo $jse_id; ?></td></tr>
+	    <tr text-align="justify"><td>Tanggal Pendaftaran</td><td><?php echo $sim_tglpendaftaran; ?></td></tr>
+	    <tr text-align="justify"><td>Status</td><td><?php echo $sim_status; ?></td></tr>
 	</table>
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
