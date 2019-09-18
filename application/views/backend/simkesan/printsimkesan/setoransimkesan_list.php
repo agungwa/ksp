@@ -27,7 +27,7 @@
             </thead>
             <tbody><?php
             $total = 0;
-            foreach ($datasetoran as $key => $item)
+            foreach ($datasetoran as $k => $item)
             {
                 $total += $item['ssk_jmlsetor'];
                 ?>

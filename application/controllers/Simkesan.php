@@ -880,34 +880,38 @@ class Simkesan extends MY_Base
         $satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
 		$tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
-
-        $setoransimkesan = $this->Setoransimkesan_model->get_limit_data( $start, $q, $f, $t);
+        $n=1;
+        $simkesanAktif = $this->Simkesan_model->get_simkesan_aktif();
         
         $wilayah = $this->Wilayah_model->get_all();
         $datasetoran = array();
         
-		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
-        foreach ($setoransimkesan as $key=>$item) {
-            $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
-            $ang_no = $this->db->get_where('anggota', array('ang_no' => $sik_kode->ang_no))->row();
+        if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+        foreach ($simkesanAktif as $key => $value) {
+    		$setoransimkesan = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
+            foreach ($setoransimkesan as $k=>$item) {
+                $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $sik_kode->ang_no))->row();
 
-            //$wil_kode = $sim_kode->wil_kode;
-            $tanggalDuedate = $item->ssk_tglsetoran;
-            $f = date("Y-m-d", strtotime($f));
-            $t = date("Y-m-d", strtotime($t));
+                //$wil_kode = $sim_kode->wil_kode;
+                $tanggalDuedate = $item->ssk_tglsetoran;
+                $f = date("Y-m-d", strtotime($f));
+                $t = date("Y-m-d", strtotime($t));
 
-            if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w)) {
-                $datasetoran[$key] = array(
-                'ssk_id' => $item->ssk_id,
-                'sik_kode' => $item->sik_kode,
-                'nama_anggota' => $ang_no->ang_nama,
-                'wil_kode' => $sik_kode->wil_kode,
-                'ssk_tglsetoran' => $item->ssk_tglsetoran,
-                'ssk_jmlsetor' => $item->ssk_jmlsetor,
-                'ssk_tgl' => $item->ssk_tgl,
-                'ssk_flag' => $item->ssk_flag,
-                'ssk_info' => $item->ssk_info,
-                );
+                if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w)) {
+                    $datasetoran[$n] = array(
+                    'ssk_id' => $item->ssk_id,
+                    'sik_kode' => $item->sik_kode,
+                    'nama_anggota' => $ang_no->ang_nama,
+                    'wil_kode' => $sik_kode->wil_kode,
+                    'ssk_tglsetoran' => $item->ssk_tglsetoran,
+                    'ssk_jmlsetor' => $item->ssk_jmlsetor,
+                    'ssk_tgl' => $item->ssk_tgl,
+                    'ssk_flag' => $item->ssk_flag,
+                    'ssk_info' => $item->ssk_info,
+                    );
+                    $n++;
+                }
             }
         }
 
