@@ -56,20 +56,24 @@
 		<th class="text-center">Nama Anggota</th>
 		<th class="text-center">Alamat Anggota</th>
 		<th class="text-center">Karyawan</th>
-		<th class="text-center">Jenis Simpanan</th>
 		<th class="text-center">Jenis Setoran</th>
 		<th class="text-center">Wilayah</th>
 		<th class="text-center">Tanggal Pendaftaran</th>
 		<th class="text-center">Jatuh Tempo</th>
+		<th class="text-center">Total Setor</th>
 		<th class="text-center">Status</th>
-		<th class="text-center">Edit Simpanan</th>
-		<th class="text-center">Action Simpanan</th>
+		<th class="text-center">Edit</th>
+		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
+            $total=$subtotal_thn=0;
             foreach ($datasimpanan as $key=>$item)
             {
                 
+                $totalsetoran = $this->Setoransimpanan_model->get_totalsetoran($item['sim_kode']); 
+                $total += $totalsetoran[0]->ssi_jmlsetor;
+                $subtotal_thn += $totalsetoran[0]->ssi_jmlsetor;
                 $tanggalDuedate = date("Y-m-d", strtotime($item['sim_tglpendaftaran'].' + '.$item['jsi_id'].' Months'));
                 ?>
                 <tr>
@@ -79,13 +83,13 @@
 			<td><?php echo $item['nm_ang_no'] ?></td>
 			<td><?php echo $item['alamat_ang_no'] ?></td>
 			<td><?php echo $item['kar_kode'] ?></td>
-			<td><?php echo $item['jsi_id']," Bulan" ?></td>
 			<td><?php echo $item['jse_id'] ?></td>
 			<td><?php echo $item['wil_kode'] ?></td>
 			<td><?php echo $item['sim_tglpendaftaran'] ?></td>
 			<td><?php echo $tanggalDuedate?></td>
+            <td><?php echo rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor)?></td>
 			<td><?php echo $item['sim_status']?></td>
-			<td style="text-align:center" width="200px">
+			<td>
 				<?php 
 				echo anchor(site_url('simpanan/read/'.$item['sim_kode']),'Detail','class="text-navy"'); 
 				echo ' | '; 
@@ -94,7 +98,7 @@
 				echo anchor(site_url('simpanan/delete/'.$item['sim_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>
-            <td style="text-align:center" width="200px">
+            <td>
 				<?php 
 				echo anchor(site_url('simpanan/setor?q='.$item['sim_kode']),'Setor','class="text-navy"'); 
 				echo ' | '; 

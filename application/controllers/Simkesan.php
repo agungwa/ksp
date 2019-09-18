@@ -41,6 +41,9 @@ class Simkesan extends MY_Base
             case  5:
                 $this->simkesanlist();
                 break;
+            case  6:
+                $this->tagihan();
+                break;
                     
             default:
                 $this->pendaftaran();
@@ -792,6 +795,81 @@ class Simkesan extends MY_Base
             'content' => 'backend/simkesan/simkesan',
             'item' => 'simkesan_list.php',
             'active' => 2,
+        );
+        $this->load->view(layout(), $data);
+    }
+
+    public function tagihan()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $p = urldecode($this->input->get('p', TRUE)); //plan simkesan
+        $f = urldecode($this->input->get('f', TRUE)); //plan simkesan
+        $t = urldecode($this->input->get('t', TRUE)); //plan simkesan
+        $start = intval($this->input->get('start'));
+        $satu = 1;
+        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
+        $wilayah = $this->Wilayah_model->get_all();
+        $karyawan = $this->Karyawan_model->get_all();
+        $plansimkesan = $this->Plansimkesan_model->get_all();
+
+        $datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+        $dataangsuran = array();
+        if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+        $datasimkesan= array();
+        foreach ($simkesan as $key=>$item) {
+           
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $item->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $item->kar_kode))->row();
+
+            
+            $date1 = new DateTime($item->sik_tglpendaftaran);
+            $date2 = new DateTime();
+            
+            $diff = $date1->diff($date2);
+            $selisih = (($diff->format('%y') * 12) + $diff->format('%m'))+1;
+            $selisihjt = (($diff->format('%y') * 12) + $diff->format('%m'));
+
+            $f = date("Y-m-d", strtotime($f));
+            $t = date("Y-m-d", strtotime($t));
+            $jt = date("Y-m-d", strtotime($item->sik_tglpendaftaran.' + '.$selisihjt.' Months'));
+            if ( ( $jt >= $f && $jt <= $t && $p=='all' ) || ($jt >= $f && $jt <= $t && $item->psk_id == $p )) {
+
+               $datasimkesan[$key] = array(
+                'sik_kode' => $item->sik_kode,
+                'ang_no' => $item->ang_no,
+                'nm_ang_no' => $ang_no->ang_nama,
+                'kar_kode' => $kar_kode->kar_nama,
+                'psk_id' => $psk_id->psk_plan,
+                'setor_psk_id' => $psk_id->psk_setoran,
+                'wil_kode' => $wil_kode->wil_nama,
+                'sik_tglpendaftaran' => $item->sik_tglpendaftaran,
+                'sik_tglberakhir' => $item->sik_tglberakhir,
+                'sik_status' => $this->statusSimkesan[$item->sik_status],
+                'sik_tgl' => $item->sik_tgl,
+                'sik_flag' => $item->sik_flag,
+                'sik_info' => $item->sik_info,
+                );
+            }
+        }
+        
+       // var_dump($datasimkesan);
+        $data = array(
+            'simkesan_data' => $simkesan,
+            'datasimkesan' => $datasimkesan,
+            'wilayah_data' => $wilayah,
+            'karyawan_data' => $karyawan,
+            'plansimkesan_data' => $plansimkesan,
+            'q' => $q,
+            'p' => $p,
+            'f' => $f,
+            't' => $t,
+            'start' => $start,
+            'content' => 'backend/simkesan/simkesan',
+            'item' => 'tagihan.php',
+            'active' => 6,
         );
         $this->load->view(layout(), $data);
     }

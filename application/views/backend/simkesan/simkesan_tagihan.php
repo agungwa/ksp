@@ -3,28 +3,8 @@
         <div class="ibox">
         <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
-            <form action="<?php echo base_url()?>simkesan/listdata" class="form-inline" method="get">
+            <form action="<?php echo base_url()?>simkesan/tagihan/" class="form-inline" method="get">
             <div class="col-md-8 text-right">
-                <input type="hidden" name="p" value="2">
-                <div class="col-md-2"><h3>Filter : </h3></div>
-                <select class="form-control col-md-3" name="w">
-                    <option value="all">Semua Wilayah</option>
-                    <?php
-                        foreach ($wilayah_data as $value) { ?>
-                            <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
-                    <?php        
-                        }
-                    ?>
-                </select>
-                <select class="form-control col-md-3" name="r">
-                    <option value="all">Semua Karyawan</option>
-                    <?php
-                        foreach ($karyawan_data as $value) { ?>
-                            <option value="<?= $value->kar_kode?>"><?= $value->kar_nama?></option>
-                    <?php        
-                        }
-                    ?>
-                </select>
                 <select class="form-control col-md-3" name="p">
                     <option value="all">Semua Plan</option>
                     <?php
@@ -34,11 +14,14 @@
                         }
                     ?>
                 </select>
+                
+                <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
+                <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
             </div>
             <div class="col-md-4 text-right">
                     <div class="input-group">
                     
-                    <input type="text" class="form-control" name="u" value="all" placeholder="No simkesan">
+                   <!-- <input type="text" class="form-control" name="u" value="all" placeholder="No simkesan">
                         <span class="input-group-btn">
                             <?php 
                                 if ($u <> '')
@@ -47,7 +30,7 @@
                                     <a href="<?php echo base_url()?>simkesan/?p=2" class="btn btn-default">Reset</a>
                                     <?php
                                 }
-                            ?>
+                            ?> -->
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
@@ -63,13 +46,12 @@
 		<th class="text-center">Nama</th>
 		<th class="text-center">Karyawan</th>
 		<th class="text-center">Plan Simkesan</th>
-		<th class="text-center">Wilayah</th>
 		<th class="text-center">Tanggal Pendaftaran</th>
-		<th class="text-center">Tanggal Berakhir</th>
 		<th class="text-center">Total Setor</th>
 		<th class="text-center">Titipan</th>
+		<th class="text-center">Tunggakan</th>
+		<th class="text-center">Jatuh Tempo</th>
 		<th class="text-center">Status</th>
-		<th class="text-center">Tanggal</th>
 		<th class="text-center">Action</th>
             </tr>
             </thead>
@@ -85,6 +67,17 @@
                 $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item['wil_kode']))->row();
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $item['ang_no']))->row();
                 $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $item['kar_kode']))->row();
+                
+                $date1 = new DateTime($item['sik_tglpendaftaran']);
+                $date2 = new DateTime();
+                
+                $diff = $date1->diff($date2);
+                $selisih = (($diff->format('%y') * 12) + $diff->format('%m'))+1;
+                $selisihjt = (($diff->format('%y') * 12) + $diff->format('%m'));
+                $harusbayar = $selisih * $item['setor_psk_id'];
+                $tunggakan = $harusbayar - $totalsetoran[0]->ssk_jmlsetor;
+                $jatuhtempo = date("Y-m-d", strtotime($item['sik_tglpendaftaran'].' + '.$selisihjt.' Months'));
+            
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
@@ -93,13 +86,12 @@
 			<td><?php echo $item['nm_ang_no'] ?></td>
 			<td><?php echo $item['kar_kode']?></td>
 			<td><?php echo $item['psk_id'] ?></td>
-			<td><?php echo $item['wil_kode'] ?></td>
 			<td><?php echo date('d/m/Y', strtotime($item['sik_tglpendaftaran'])) ?></td>
-			<td><?php echo $item['sik_tglberakhir'] ?></td>
 			<td><?php echo neraca($totalsetoran[0]->ssk_jmlsetor) ?></td>
 			<td><?php echo neraca($titipan) ?></td>
+			<td><?php echo neraca($tunggakan); ?></td>
+			<td><?php echo dateFormat($jatuhtempo); ?></td>
 			<td><?php echo $item['sik_status'] ?></td>
-			<td><?php echo dateFormat($item['sik_tgl']) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('simkesan/read/'.$item['sik_kode']),'Read','class="text-navy"'); 

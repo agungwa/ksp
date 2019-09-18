@@ -56,7 +56,10 @@
             } else if ($jaminan_data->jej_id == 3){
                 echo '
             <a href="'.site_url("PrintPinjaman/pencairanijazah/".$pin_id).'") class="btn btn-default">Print Pencairan Ijazah</a>'; 
-            } ?></td></tr>
+            } else if ($jaminan_data->jej_id == 8){
+                echo '
+            <a href="'.site_url("PrintPinjaman/pencairanshgb/".$pin_id).'") class="btn btn-default">Print Pencairan SHGB</a>'; 
+            }?></td></tr>
 	</table>
             </div>
         </div>

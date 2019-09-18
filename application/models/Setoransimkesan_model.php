@@ -25,6 +25,12 @@ class Setoransimkesan_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_totalsetoran($sik_kode){
+        $this->db->select_sum('ssk_jmlsetor');
+        $this->db->where('sik_kode =',$sik_kode);
+        return $this->db->get($this->table)->result();
+    }
+
     // get group by
     function get_group_bysikkode($start = 0, $q = NULL)
     {

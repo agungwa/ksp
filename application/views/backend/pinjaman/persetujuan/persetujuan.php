@@ -72,7 +72,14 @@
                 <textarea class="form-control" rows="3" name="jam_alamat" id="jam_alamat" placeholder="Alamat"></textarea>
                 <input type="hidden" class="form-control" name="jam_id" id="jam_id" placeholder="jam_id" value="'.$jaminan_data->jam_id.'"/>    
                     ';
-                } ?>
+                }  else if ($jaminan_data->jej_id == 8){
+                    echo '
+                <input type="text" class="form-control" name="jam_unit" id="jam_unit" placeholder="Unit" value=""/>
+                <input type="text" class="form-control" name="jam_atasnama" id="jam_atasnama" placeholder="Atas Nama" value=""/>
+                <input type="text" class="form-control numeric" name="jam_luas" id="jam_luas" placeholder="Luas" value=""/>
+                <input type="hidden" class="form-control" name="jam_id" id="jam_id" placeholder="jam_id" value="'.$jaminan_data->jam_id.'"/>    
+                    ';
+                }?>
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $persetujuan['pin_id'];?>" required="required"/>            
                 <input type="date" class="form-control" name="pin_tglpencairan" id="todays-date" placeholder="pin_tglpencairan" value="" required="required"/>            
                 

@@ -58,6 +58,8 @@
 		<th class="text-center">Wilayah</th>
 		<th class="text-center">Tanggal Pendaftaran</th>
 		<th class="text-center">Tanggal Berakhir</th>
+		<th class="text-center">Total Setor</th>
+		<th class="text-center">Titipan</th>
 		<th class="text-center">Status</th>
 		<th class="text-center">Action</th>
         </tr>
@@ -67,6 +69,11 @@
             <?php
             foreach ($simkesan_data as $simkesan)
             {
+                
+                $totalsetoran = $this->Setoransimkesan_model->get_totalsetoran($simkesan->sik_kode); 
+                $totaltitip = $this->Titipansimkesan_model->get_totaltitipan($simkesan->sik_kode); 
+                $totalambil = $this->Titipansimkesan_model->get_totalambil($simkesan->sik_kode);
+                $titipan =  $totaltitip[0]->tts_jmltitip - $totalambil[0]->tts_jmlambil;
                 $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $simkesan->psk_id))->row();
                 $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $simkesan->wil_kode))->row();
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $simkesan->ang_no))->row();
@@ -82,6 +89,8 @@
         			<td><?php echo $wil_kode->wil_nama ?></td>
         			<td><?php echo dateFormataja($simkesan->sik_tglpendaftaran) ?></td>
         			<td><?php echo $simkesan->sik_tglberakhir ?></td>
+                    <td><?php echo neraca($totalsetoran[0]->ssk_jmlsetor) ?></td>
+                    <td><?php echo neraca($titipan) ?></td>
         			<td><?php echo $this->statusSimkesan[$simkesan->sik_status] ?></td>
                     <td style="text-align:center" width="200px">
                         <?php 

@@ -28,7 +28,7 @@ class PrintDataSimkesan extends MY_Base
         $this->load->model('Ahliwarissimkesan_model');
     }
 	
-	public function neraca(){
+	public function sirkulasi(){
 		
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
     	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
@@ -38,54 +38,29 @@ class PrintDataSimkesan extends MY_Base
     	$simkesanNonaktif = $this->Simkesan_model->get_simkesan_nonaktif();
     	$simkesanKlaim = $this->Klaimsimkesan_model->get_all();    	
     	$simkesanDitarik = $this->Penarikansimkesan_model->get_all();
-    	$shuSimkesan = $this->Shusimkesan_model->get_all();
-    	$rekeningplanA = $this->Simkesan_model->get_simkesan_plan(1);
-    	$rekeningplanB = $this->Simkesan_model->get_simkesan_plan(2);
-    	$rekeningplanC = $this->Simkesan_model->get_simkesan_plan(3);
-    	$kasBank = $this->Neracakasbanksimkesan_model->get_all();
         $wilayah = $this->Wilayah_model->get_all();		
 
 		//rekening simkesan
 		$totalRekening = 0;
 		$totalRekeninglalu = 0;
 		$totalRekeningkeluar = 0;
-
 		//setoran simkesan
 		$saldoSimkesanlalu = 0;
     	$saldoSimkesan = 0;
 		$saldoSimkesanditarik = 0;
-
 		//klaim simkesan
 		$saldoSetorklaim = 0 ;
 		$saldoTunggakanklaim = 0 ;
 		$saldoJumlahklaim = 0 ;
 		$administrasiKlaim = 0 ;
-
 		//penarikan simkesan
 		$saldoSetortarik = 0;
 		$saldoTunggakantarik = 0;
 		$saldoJumlahtarik = 0;
 		$administrasiTarik = 0;
-
 		//titipan simkesan
 		$saldoTitipan = 0;
 		$saldoAmbiltitipan = 0;
-
-		//shu simkesan
-		$shuSimkesandata = 0;
-
-		//kas bank
-		$kasBankdata = 0;
-
-		//data rekening plan
-		$totalRekeningA = 0;
-		$totalRekeningB = 0;
-		$totalRekeningC = 0;
-
-		//data setoran plan
-		$saldoSimkesanA = 0;
-		$saldoSimkesanB = 0;
-		$saldoSimkesanC = 0;
 
         $satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
@@ -104,9 +79,9 @@ class PrintDataSimkesan extends MY_Base
     		foreach ($setoran as $k => $item) {
 				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
 				
-    			if ($f<>'' && $w<>'') {	
+    			if ($f<>'' && $t<>'' && $w<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->ssk_tglsetoran));
-    				if ($tgl <= $f &&'all' == $w || $tgl <= $f && $sik_kode->wil_kode == $w) {
+    				if ($tgl >= $f && $tgl <= $t && 'all' == $w || $tgl >= $f && $tgl <= $t && $sik_kode->wil_kode == $w) {
 						$saldoSimkesan += $item->ssk_jmlsetor;
     				}
     			} else {
@@ -117,132 +92,6 @@ class PrintDataSimkesan extends MY_Base
 			}
 			
 		}
-		
-    	//hitung saldo simkesan aktif plan a
-    	foreach ($rekeningplanA as $key => $value) {
-    		$setoran = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
-    		foreach ($setoran as $k => $item) {
-				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
-				
-    			if ($f<>'' && $w<>'') {	
-    				$tgl = date("Y-m-d", strtotime($item->ssk_tglsetoran));
-    				if ($tgl <= $f &&'all' == $w || $tgl <= $f && $sik_kode->wil_kode == $w) {
-						$saldoSimkesanA += $item->ssk_jmlsetor;
-    				}
-    			} else {
-    				$saldoSimkesanA += $item->ssk_jmlsetor;
-				}
-				
-				
-			}
-			
-		}
-
-    	//hitung saldo simkesan aktif plan b
-    	foreach ($rekeningplanB as $key => $value) {
-    		$setoran = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
-    		foreach ($setoran as $k => $item) {
-				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
-				
-    			if ($f<>'' && $w<>'') {	
-    				$tgl = date("Y-m-d", strtotime($item->ssk_tglsetoran));
-    				if ($tgl <= $f &&'all' == $w || $tgl <= $f && $sik_kode->wil_kode == $w) {
-						$saldoSimkesanB += $item->ssk_jmlsetor;
-    				}
-    			} else {
-    				$saldoSimkesanB += $item->ssk_jmlsetor;
-				}
-				
-				
-			}
-			
-		}
-
-    	//hitung saldo simkesan aktif plan c
-    	foreach ($rekeningplanC as $key => $value) {
-    		$setoran = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
-    		foreach ($setoran as $k => $item) {
-				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
-				
-    			if ($f<>'' && $w<>'') {	
-    				$tgl = date("Y-m-d", strtotime($item->ssk_tglsetoran));
-    				if ($tgl <= $f &&'all' == $w || $tgl <= $f && $sik_kode->wil_kode == $w) {
-						$saldoSimkesanC += $item->ssk_jmlsetor;
-    				}
-    			} else {
-    				$saldoSimkesanC += $item->ssk_jmlsetor;
-				}
-				
-				
-			}
-			
-		}
-
-		//rekening simkesan plan A
-		foreach ($rekeningplanA as $key => $value) {
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
-			//var_dump($value->ags_id);
-    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
-					$totalRekeningA++ ;
-    			}
-			} else {
-					$totalRekeningA++ ;
-		}
-		}
-
-		//rekening simkesan plan B
-		foreach ($rekeningplanB as $key => $value) {
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
-			//var_dump($value->ags_id);
-    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
-					$totalRekeningB++ ;
-    			}
-			} else {
-					$totalRekeningB++ ;
-		}
-		}
-
-		//rekening simkesan plan C
-		foreach ($rekeningplanC as $key => $value) {
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
-			//var_dump($value->ags_id);
-    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
-					$totalRekeningC++ ;
-    			}
-			} else {
-					$totalRekeningC++ ;
-		}
-		}
-		
-		//shu
-    	foreach ($shuSimkesan as $key => $value) {
-			if ($f<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->phus_tgl));
-			//var_dump($value->ags_id);
-    			if (($tgl <= $f) )  {
-					$shuSimkesandata += $value->shus_jumlah;
-    			}
-			} else {
-				$shuSimkesandata += $value->shus_jumlah;
-		}
-	}
-				
-		//kas bank
-		foreach ($kasBank as $key => $value) {
-			if ($f<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->nkbs_tanggal));
-			//var_dump($value->ags_id);
-				if (($tgl <= $f) )  {
-					$kasBankdata += $value->nkbs_jumlah;
-				}
-			} else {
-				$kasBankdata += $value->nkbs_jumlah;
-		}
-	}
-
 
 		//hitung saldo titipan simkesan
     	foreach ($simkesanAktif as $key => $value) {
@@ -252,7 +101,7 @@ class PrintDataSimkesan extends MY_Base
 				
     			if ($f<>'' && $t<>'' && $w<>'') {	
     				$tgl = date("Y-m-d", strtotime($item->tts_tgl));
-    				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sik_kode->wil_kode == $w) {
+    				if ($tgl <= $f && $tgl <= $t && 'all' == $w || $tgl >= $f && $tgl <= $t && $sik_kode->wil_kode == $w) {
 						$saldoTitipan += $item->tts_jmltitip;
 						$saldoAmbiltitipan += $item->tts_jmlambil;
     				}
@@ -264,6 +113,119 @@ class PrintDataSimkesan extends MY_Base
 				
 			}
 			
+		}
+		
+    	//hitung saldo simkesan ditarik
+    	foreach ($simkesanNonaktif as $key => $value) {
+    		$setoran = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
+    		foreach ($setoran as $k => $item) {
+				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
+				
+    			if ($f<>'' && $t<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->ssk_tglsetoran));
+    				if ($tgl >= $f && $tgl <= $t && 'all' == $w || $tgl >= $f && $tgl <= $t && $sik_kode->wil_kode == $w) {
+						$saldoSimkesan += $item->ssk_jmlsetor;
+    				}
+    			} else {
+    				$saldoSimkesan += $item->ssk_jmlsetor;
+				}
+				
+				
+			}
+		}
+		
+    	//hitung saldo simkesan lalu
+    	foreach ($simkesanAktif as $key => $value) {
+    		$setoran = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
+    		foreach ($setoran as $k => $item) {
+				$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
+    			if ($f<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->ssk_tglsetoran));
+    				if ($tgl < $f && 'all' == $w || $tgl < $f && $sik_kode->wil_kode == $w) {
+						$saldoSimkesanlalu += $item->ssk_jmlsetor;
+    				}
+    			} else {
+    				$saldoSimkesanlalu += $item->ssk_jmlsetor;
+				}
+			}
+			
+		}
+
+		//Saldo Klaim
+		foreach ($simkesanKlaim as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
+			$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $value->sik_kode))->row();
+    			if (($tgl < $f && 'all'==$w) || ($tgl < $f && $sik_kode->wil_kode==$w))  {
+    				$saldoSetorklaim += $value->ksi_totalsetor;
+    				$saldoTunggakanklaim += $value->ksi_jmltunggakan;
+    				$saldoJumlahklaim += $value->ksi_jmlditerima;
+    				$administrasiKlaim+= $value->ksi_administrasi;
+    			}
+			} else {
+				$saldoSetorklaim += $value->ksi_totalsetor;
+				$saldoTunggakanklaim += $value->ksi_jmltunggakan;
+				$saldoJumlahklaim += $value->ksi_jmlditerima;
+				$administrasiKlaim+= $value->ksi_administrasi;
+		}
+		}
+		
+		//Saldo Penarikan
+		foreach ($simkesanDitarik as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
+			$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $value->sik_kode))->row();
+    			if (($tgl < $f && 'all'==$w) || ($tgl < $f && $sik_kode->wil_kode==$w))  {
+    				$saldoSetortarik += $value->pns_totalsetor;
+    				$saldoTunggakantarik += $value->pns_jmltunggakan;
+    				$saldoJumlahtarik+= $value->pns_jmlpenarikan;
+    				$administrasiTarik+= $value->pns_administrasi;
+    			}
+			} else {
+				$saldoSetortarik += $value->pns_totalsetor;
+				$saldoTunggakantarik += $value->pns_jmltunggakan;
+				$saldoJumlahtarik+= $value->pns_jmlpenarikan;
+				$administrasiTarik+= $value->pns_administrasi;
+		}
+		}
+
+		//rekening simkesan lalu
+		foreach ($simkesanAktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl < $f && 'all'==$w) || ($tgl < $f && $value->wil_kode==$w))  {
+    				$totalRekeninglalu++ ;
+    			}
+			} else {
+					$totalRekeninglalu++ ;
+		}
+		}
+
+		//rekening simkesan masuk
+		foreach ($simkesanAktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+    				$totalRekening++ ;
+    			}
+			} else {
+					$totalRekening++ ;
+		}
+		}
+
+		//rekening simkesan keluar
+		foreach ($simkesanNonaktif as $key => $value) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
+			//var_dump($value->ags_id);
+    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
+    				$totalRekeningkeluar++ ;
+    			}
+			} else {
+					$totalRekeningkeluar++ ;
+		}
 		
 		}
 
@@ -295,27 +257,11 @@ class PrintDataSimkesan extends MY_Base
 			'saldotitipan' => $saldoTitipan,
 			'saldoambiltitipan' => $saldoAmbiltitipan,
 
-			//data shu
-			'shusimkesandata' => $shuSimkesandata,
-
-			//data kas bank
-			'kasbankdata' => $kasBankdata,
-
-			//data rekening
-			'totalRekeninga' => $totalRekeningA,
-			'totalRekeningb' => $totalRekeningB,
-			'totalRekeningc' => $totalRekeningC,
-
-			//data setoran plan
-			'saldoSimkesana' => $saldoSimkesanA,
-			'saldoSimkesanb' => $saldoSimkesanB,
-			'saldoSimkesanc' => $saldoSimkesanC,
-
+			//data titipan
             'wilayah_data' => $wilayah,
 			'f' => $f,
 			't' => $t,
 			'w' => $w,
-		    'content' => 'backend/neraca/neracasimkesan.php',
 		);
 		 
         $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'A4']);
@@ -763,6 +709,87 @@ class PrintDataSimkesan extends MY_Base
         $mpdf->WriteHTML($html);
         //$mpdf->Output(); // opens in browser
         $mpdf->Output('jatuhtempo.pdf','D'); // it downloads the file into the user system, with give name
+	}
+
+    public function tagihan()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $p = urldecode($this->input->get('p', TRUE)); //plan simkesan
+        $f = urldecode($this->input->get('f', TRUE)); //plan simkesan
+        $t = urldecode($this->input->get('t', TRUE)); //plan simkesan
+        $start = intval($this->input->get('start'));
+        $satu = 1;
+        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
+        $wilayah = $this->Wilayah_model->get_all();
+        $karyawan = $this->Karyawan_model->get_all();
+        $plansimkesan = $this->Plansimkesan_model->get_all();
+
+        $datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+        $dataangsuran = array();
+        if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+        $datasimkesan= array();
+        foreach ($simkesan as $key=>$item) {
+           
+            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $item->psk_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item->wil_kode))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $item->kar_kode))->row();
+
+            
+            $date1 = new DateTime($item->sik_tglpendaftaran);
+            $date2 = new DateTime();
+            
+            $diff = $date1->diff($date2);
+            $selisih = (($diff->format('%y') * 12) + $diff->format('%m'))+1;
+            $selisihjt = (($diff->format('%y') * 12) + $diff->format('%m'));
+
+            $f = date("Y-m-d", strtotime($f));
+            $t = date("Y-m-d", strtotime($t));
+            $jt = date("Y-m-d", strtotime($item->sik_tglpendaftaran.' + '.$selisihjt.' Months'));
+            if ( ( $jt >= $f && $jt <= $t && $p=='all' ) || ($jt >= $f && $jt <= $t && $item->psk_id == $p )) {
+
+               $datasimkesan[$key] = array(
+                'sik_kode' => $item->sik_kode,
+                'ang_no' => $item->ang_no,
+                'nm_ang_no' => $ang_no->ang_nama,
+                'kar_kode' => $kar_kode->kar_nama,
+                'psk_id' => $psk_id->psk_plan,
+                'setor_psk_id' => $psk_id->psk_setoran,
+                'wil_kode' => $wil_kode->wil_nama,
+                'sik_tglpendaftaran' => $item->sik_tglpendaftaran,
+                'sik_tglberakhir' => $item->sik_tglberakhir,
+                'sik_status' => $this->statusSimkesan[$item->sik_status],
+                'sik_tgl' => $item->sik_tgl,
+                'sik_flag' => $item->sik_flag,
+                'sik_info' => $item->sik_info,
+                );
+            }
+        }
+        
+       // var_dump($datasimkesan);
+        $data = array(
+            'simkesan_data' => $simkesan,
+            'datasimkesan' => $datasimkesan,
+            'wilayah_data' => $wilayah,
+            'karyawan_data' => $karyawan,
+            'plansimkesan_data' => $plansimkesan,
+            'q' => $q,
+            'p' => $p,
+            'f' => $f,
+            't' => $t,
+            'start' => $start,
+            'content' => 'backend/simkesan/simkesan',
+            'item' => 'tagihan.php',
+            'active' => 6,
+        );
+		 
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'A4']);
+        $html = $this->load->view('backend/simkesan/printsimkesan/tagihan.php',$data,true);
+        //echo $html;
+        $mpdf->WriteHTML($html);
+        //$mpdf->Output(); // opens in browser
+        $mpdf->Output('tagihan.pdf','D'); // it downloads the file into the user system, with give name
 	}
 
 

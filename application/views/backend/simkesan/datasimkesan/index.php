@@ -46,7 +46,7 @@
                             ?>
                         </span>
                         <span class="input-group-btn">
-                                    <a href="<?php echo base_url()?>printdatasimkesan/neraca?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                                    <a href="<?php echo base_url()?>printdatasimkesan/sirkulasi?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
                         </span>
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                        
@@ -90,11 +90,11 @@
             </tr>
             <tr>
                 <td class="text-left">Rekening Lalu</td>
-				<td class="text-center"><?= $totalrekening;?></td>
+				<td class="text-center"><?= $totalrekeninglalu;?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Masuk</td>
-				<td class="text-center"><?= $totalrekeninglalu;?></td>
+				<td class="text-center"><?= $totalrekening;?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Keluar</td>
