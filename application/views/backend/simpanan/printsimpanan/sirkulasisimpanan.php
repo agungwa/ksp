@@ -104,11 +104,11 @@ h5{text-align: center}
             </tr>
             <tr>
                 <td>Rekening Lalu</td>
-				<td ><?= $totalrekening;?></td>
+				<td ><?= $totalrekeninglalu;?></td>
             </tr>
             <tr>
                 <td>Rekening Masuk</td>
-				<td ><?= $totalrekeninglalu;?></td>
+				<td ><?= $totalrekening;?></td>
             </tr>
             <tr>
                 <td>Rekening Keluar</td>
