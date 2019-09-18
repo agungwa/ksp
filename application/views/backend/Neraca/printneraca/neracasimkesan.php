@@ -410,25 +410,6 @@ table#04 {
                 </tr>
             </tbody>
         </table>
-        <p style="margin-top:0pt; margin-bottom:8pt; line-height:108%; font-size:12pt"><span
-                style="font-family:Calibri">&nbsp;</span></p>
-    </div>
-        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                style="font-family:Cambria">&nbsp;</span></p>
-        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                style="font-family:Cambria">&nbsp;</span></p>
-        <table id="04" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
-            <tbody>
-                <tr>
-                    <td style="width:600.1pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                        <p
-                            style="margin-top:0pt; margin-bottom:10pt; text-align:right; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria">Temanggung</span><span style="font-family:Cambria">,
-                            </span><span style="font-family:Cambria"> <?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?></span></p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
                 style="font-family:Cambria">&nbsp;</span></p>
         <table id="03" text-align="right" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
