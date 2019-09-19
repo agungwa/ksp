@@ -19,7 +19,8 @@
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
-               
+                <?php echo anchor(site_url('bungainvestasi/create'),'Create', 'class="btn btn-primary"'); ?>
+   
             </div>
             
             
@@ -30,7 +31,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" id="q" value="<?php echo @$_GET['q']; ?>">
                         <span class="input-group-btn">
-                          <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>bungainvestasi/lookup')" >Search</button>
+                          <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>bungainvestasi/lookup', '<?= @$_GET['idhtml']?>')" >Search</button>
                         </span>
                     </div>
                 </form>

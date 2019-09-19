@@ -9,7 +9,8 @@
  <?php $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row(); ?>
 
  <h3><b>Rentang Tanggal : <?=dateFormataja($f)?> Sampai <?=dateFormataja($t)?> </b></h3>
- <h3><b>Wilayah <?=$w?> <!--<?php //if($w='all'){echo 'semua wilayah';}else {echo $wil_kode->wil_nama;}?>--></b></h3>
+<p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
+    style="font-family:Cambria">Wilayah : <?php if($w!='all'){echo $wil_kode->wil_nama;} else if ($w='all') {echo 'Semua Wilayah';}?></p>
         <table>
             <tr>
         <th class="text-center">No</th>

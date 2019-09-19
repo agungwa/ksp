@@ -31,7 +31,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" id="q" value="<?php echo @$_GET['q']; ?>">
                         <span class="input-group-btn">
-                          <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>karyawan/lookup')" >Search</button>
+                          <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>karyawan/lookup', '<?= @$_GET['idhtml']?>')" >Search</button>
                         </span>
                     </div>
                 </form>
@@ -49,12 +49,14 @@
 			<tbody><?php
             foreach ($karyawan_data as $karyawan)
             {
+			$jab_kode = $this->db->get_where('jabatan', array('jab_kode' => $karyawan->jab_kode))->row();
+
                 ?>
                 <tr>
                 <tr onclick="setVal('<?=$idhtml?>','<?=$karyawan->kar_kode?>','<?=$karyawan->kar_nama?>')" style="cursor: pointer;">
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $karyawan->kar_nama ?></td>
-			<td><?php echo $karyawan->jab_kode ?></td>
+			<td><?php echo $jab_kode->jab_nama ?></td>
 			<td><?php echo $karyawan->kar_alamat ?></td>
 			<td><?php echo $karyawan->kar_nohp ?></td>
 		</tr>

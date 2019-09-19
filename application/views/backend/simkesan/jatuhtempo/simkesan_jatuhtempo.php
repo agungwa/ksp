@@ -39,6 +39,8 @@
                                     <?php
                                 }
                             ?> -->
+                            <a href="<?php echo base_url()?>printdatasimkesan/listjatuhtempo?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                          
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
@@ -67,7 +69,7 @@
     			<td><?php echo $item['sik_kode'] ?></td>
     			<td><?php echo $item['ssk_tglsetoran'] ?></td>
     			<td><?php echo $perbedaan->m ?></td>
-    			<td><?php echo $item['ssk_jmlsetor'] ?></td>
+    			<td><?php echo neraca($item['ssk_jmlsetor']) ?></td>
 		</tr>
                 
                 <?php

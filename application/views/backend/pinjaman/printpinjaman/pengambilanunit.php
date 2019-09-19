@@ -324,7 +324,7 @@ table#05 {
                     <td style="width:258.95pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                                 style="font-family:Cambria; font-weight:bold">(</span><span
-                                style="font-family:Cambria; font-weight:bold">........................................</span><span
+                                style="font-family:Cambria; font-weight:bold"><?php echo $penjamin_data->pen_nama ?></span><span
                                 style="font-family:Cambria; font-weight:bold">)</span></p>
                     </td>
                     <td style="width:258.95pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">

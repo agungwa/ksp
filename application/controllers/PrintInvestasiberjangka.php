@@ -163,6 +163,97 @@ class PrintInvestasiberjangka extends MY_Base
 
     }
 
+	//print sertifikat investasi
+    public function read($id) 
+    {
+        $row = $this->Investasiberjangka_model->get_by_id($id);
+        if ($row) {
+                $ivb_status = $this->statusInvestasi;                
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $row->jwi_id))->row();
+                $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $row->jiv_id))->row();
+                $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $row->biv_id))->row();
+                $tanggalDuedate = date("Y-m-d", strtotime($row->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
+
+            $data = array(
+		'ivb_kode' => $row->ivb_kode,
+		'ang_no' => $row->ang_no,
+		'nama_ang_no' => $ang_no->ang_nama,
+		'alamat_ang_no' => $ang_no->ang_alamat,
+		'kar_kode' => $kar_kode->kar_nama,
+		'wil_kode' => $wil_kode->wil_nama,
+		'jwi_id' => $jwi_id->jwi_jangkawaktu,
+		'jiv_id' => $jiv_id->jiv_jasa,
+		'biv_id' => $biv_id->biv_bunga,
+		'ivb_jumlah' => $row->ivb_jumlah,
+		'ivb_tglpendaftaran' => $row->ivb_tglpendaftaran,
+        'ivb_tglperpanjangan' => $row->ivb_tglperpanjangan,
+        'jatuhtempo' => $tanggalDuedate,
+		'ivb_status' => $ivb_status[$row->ivb_status],
+		'ivb_tgl' => $row->ivb_tgl,
+		'ivb_flag' => $row->ivb_flag,
+		'ivb_info' => $row->ivb_info,
+	    );
+        
+		$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'A4']);
+		$html = $this->load->view('backend/investasiberjangka/printinvestasi/sertifikat.php',$data,true);
+		//echo $html;
+		$mpdf->WriteHTML($html);
+		//$mpdf->Output(); // opens in browser
+		$mpdf->Output('sertifikat.pdf','D'); // it downloads the file into the user system, with give name
+	}
+	
+    }
+
+	//print surat investasi
+    public function surat($id) 
+    {
+        $row = $this->Investasiberjangka_model->get_by_id($id);
+        if ($row) {
+                $ivb_status = $this->statusInvestasi;                
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+                $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+                $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+                $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $row->jwi_id))->row();
+                $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $row->jiv_id))->row();
+                $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $row->biv_id))->row();
+                $tanggalDuedate = date("Y-m-d", strtotime($row->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
+
+            $data = array(
+		'ivb_kode' => $row->ivb_kode,
+		'ang_no' => $row->ang_no,
+		'nama_ang_no' => $ang_no->ang_nama,
+		'alamat_ang_no' => $ang_no->ang_alamat,
+		'ang_tempatlahir' => $ang_no->ang_tempatlahir,
+		'ang_tgllahir' => $ang_no->ang_tgllahir,
+		'ang_nohp' => $ang_no->ang_nohp,
+		'kar_kode' => $kar_kode->kar_nama,
+		'wil_kode' => $wil_kode->wil_nama,
+		'jwi_id' => $jwi_id->jwi_jangkawaktu,
+		'jiv_id' => $jiv_id->jiv_jasa,
+		'biv_id' => $biv_id->biv_bunga,
+		'ivb_jumlah' => $row->ivb_jumlah,
+		'ivb_tglpendaftaran' => $row->ivb_tglpendaftaran,
+        'ivb_tglperpanjangan' => $row->ivb_tglperpanjangan,
+        'jatuhtempo' => $tanggalDuedate,
+		'ivb_status' => $ivb_status[$row->ivb_status],
+		'ivb_tgl' => $row->ivb_tgl,
+		'ivb_flag' => $row->ivb_flag,
+		'ivb_info' => $row->ivb_info,
+	    );
+        
+		$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Legal', [216, 356]]);
+		$html = $this->load->view('backend/investasiberjangka/printinvestasi/surat.php',$data,true);
+		//echo $html;
+		$mpdf->WriteHTML($html);
+		//$mpdf->Output(); // opens in browser
+		$mpdf->Output('surat.pdf','D'); // it downloads the file into the user system, with give name
+	}
+	
+    }
+
     public function dataAll(){
     	return $data;
     }

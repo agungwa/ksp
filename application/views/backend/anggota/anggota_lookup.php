@@ -46,7 +46,6 @@
 		<th class="text-center">Nomor KTP</th>
 		<th class="text-center">Nomor KK</th>
 		<th class="text-center">Nomor Handphone</th>
-		<th class="text-center">Tanggal Lahir</th>
 		<th class="text-center">Status</th>
             </thead>
 			<tbody><?php
@@ -62,8 +61,7 @@
 			<td><?php echo $anggota->ang_noktp ?></td>
 			<td><?php echo $anggota->ang_nokk ?></td>
 			<td><?php echo $anggota->ang_nohp ?></td>
-			<td><?php echo $anggota->ang_tgllahir ?></td>
-			<td><?php echo $anggota->ang_status ?></td>
+			<td><?php echo $this->statusAnggota[$anggota->ang_status] ?></td>
 		</tr>
                 
                 <?php

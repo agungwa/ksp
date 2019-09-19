@@ -184,14 +184,7 @@ class Neracaaktivatetap extends MY_Base
     }
 
     public function _rules() 
-    {
-	$this->form_validation->set_rules('nat_tanah', 'nat tanah', 'trim|required');
-	$this->form_validation->set_rules('nat_bangunan', 'nat bangunan', 'trim|required');
-	$this->form_validation->set_rules('nat_elektronik', 'nat elektronik', 'trim|required');
-	$this->form_validation->set_rules('nat_kendaraan', 'nat kendaraan', 'trim|required');
-	$this->form_validation->set_rules('nat_peralatan', 'nat peralatan', 'trim|required');
-	$this->form_validation->set_rules('nat_akumulasipenyusutan', 'nat akumulasipenyusutan', 'trim|required');
-	$this->form_validation->set_rules('nat_tanggal', 'nat tanggal', 'trim|required');
+    {	$this->form_validation->set_rules('nat_tanggal', 'nat tanggal', 'trim|required');
 
 	$this->form_validation->set_rules('nat_id', 'nat_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

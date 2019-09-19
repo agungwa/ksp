@@ -151,7 +151,7 @@ class Phu_sistem extends CI_Controller
 
         if ($row) {
             $data = array (
-                'psis_flag' => 2;
+                'psis_flag' => 2,
             );
             $this->Phu_sistem_model->update($id,$data);
             $this->session->set_flashdata('message', 'Delete Record Success');

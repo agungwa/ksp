@@ -73,7 +73,8 @@
         		<th class="text-center">Action Pinjaman</th>
             </tr>
             </thead>
-			<tbody><?php
+            <tbody><?php
+            
             foreach ($datapinjaman as $key=>$item)
             {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $item['ang_no']))->row();
@@ -86,14 +87,14 @@
                 <tr>
     			<td width="80px"><?php echo ++$start ?></td>
     			<td><?php echo $item['pin_id'] ?></td>
-    			<td><?php echo $item['ang_no'] ?></td>
+    			<td><?php echo $item['nama_ang_no'] ?></td>
     			<td><?php echo $item['sea_id']," Bulan" ?></td>
     			<td><?php echo $item['wil_kode'] ?></td>
     			<td><?php echo rupiah($item['pin_pengajuan']) ?></td>
                 <td>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                <a href="javascript:;"  class="mask tt"  photoss="<?php echo $item['pin_survey'] ;?>" >
                 <img src="<?php echo $item['pin_survey'] ?>" alt="" class="img-responsive">
-                </button>
+            </a>
                 </td>
     			<td><?php echo rupiah($item['pin_pinjaman']) ?></td>
     			<td><?php echo dateFormat($item['pin_tglpengajuan']); ?></td>
@@ -125,24 +126,30 @@
             ?>
             </tbody>
         </table>
+        <div id="tallModal" class="modal modal-wide fade">
+    <div class="modal-dialog">
+         <h4 id='namaaplikasi'> survey</h4>
+             <div id="photoss">
+
+                </div>
+  </div>
         
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel"></h4>
-                </div>
-                <div class="modal-body">
-                        <img src="<?php echo $item['pin_survey'] ?>" alt="" class="img-responsive">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>	
-        <div class="row">
+        
+  <script type="text/javascript">
+
+        $(document).ready(function(){
+
+        $(document).on("click",".tt",function(){
+
+            var ss  =    $(this).attr("photoss");
+
+
+            $('#photoss').html('<img src="'+ss+'" class="img-responsive">');
+
+
+            $("#tallModal").modal("show");
+
+        });
+        });   
+    </script> 
             
-        </div>
-        </div>
-    </div>
-    </div>
-    </div>

@@ -45,10 +45,9 @@
                                 }
                             ?>
                         </span>
-                        <!--
                         <span class="input-group-btn">
-                                    <a href="<?php echo base_url()?>PrintPinjaman/printsirkulasipinjaman?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
-                        </span>-->
+                                    <a href="<?php echo base_url()?>Printneraca/perhitungan?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                        </span>
                         <button class="btn btn-primary" type="submit">Tampilkan</button>
                     </div>
             </div>
@@ -80,7 +79,7 @@
             </tr>
             <tr>
                 <td class="text-left">Lain-lain</td>
-                <td class="text-left" width="660px"><input type="number" class="form-control" name="psis_lainlain" id="psis_lainlain" placeholder="lain-lain" value="" required/></td>  
+                <td class="text-left" width="660px"><input type="number" class="form-control" name="psis_lainlain" id="psis_lainlain" placeholder="lain-lain" value="0" required/></td>  
             </td>
             <tr>
                 <td class="text-left">Jumlah</td>

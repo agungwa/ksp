@@ -17,10 +17,7 @@
                 <div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
                 <div class="col-md-3">
                     <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
-                </div><!--
-                <div class="col-md-3">
-                    <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
-                </div>-->
+                </div>
                 <select class="form-control col-md-3"  name="w">
                     <option value="all">Semua Wilayah</option>
                     <?php
@@ -45,26 +42,27 @@
                                 }
                             ?>
                         </span>
-                        <!--
+                        
                         <span class="input-group-btn">
-                                    <a href="<?php echo base_url()?>PrintPinjaman/printsirkulasipinjaman?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
-                        </span>-->
+                                    <a href="<?php echo base_url()?>Printneraca/neraca?f=<?=$f?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                        </span>
                         <button class="btn btn-info" type="submit">Tampilkan</button>
                     </div>
             </div>
             </form>
         </div>
-        <!--<form action="<?php echo site_url('neraca/perhitungan_action'); ?>" method="post"> -->
         <?php
-        $kas=$shudata + $bungasimpanan +$saldoinvestasi + $saldosimpananwajib+$saldosimpananpokok+ $pokokangsuranpelunasan + $pokokangsuran + $saldosimpananneraca - $saldopinjamanumum - $saldopinjamankaryawan-$saldopinjamankhusus;
-        $jal=$kas + $kasbankdata + $saldopinjamanumumbelum + $saldopinjamankaryawanbelum+$saldopinjamankhususbelum;
+        
         $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
+        $kas=$shudata + $simpanancdr + $donasi + $bungasimpanan + $rekeningkoran + $modalpenyertaan +$saldoinvestasi + $saldosimpananwajib+$saldosimpananpokok+ $pokokangsuranpelunasan + $pokokangsuran + $saldosimpananneraca - $saldopinjamanumum - $saldopinjamankaryawan-$saldopinjamankhusus - $jat;
+        $jal=$kas + $kasbankdata + $saldopinjamanumumbelum + $saldopinjamankaryawanbelum+$saldopinjamankhususbelum;
         $jkl=$saldosimpananneraca+$bungasimpanan;
         $jkp=$saldoinvestasi+$simpanankaryawandata+$rekeningkoran+$modalpenyertaan;
         $jek=$saldosimpananwajib+$saldosimpananpokok+$simpanancdr+$donasi+$shudata;
         ?>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
+          <!--  <?php echo 'ivb', neraca($saldoinvestasi),'simwa', neraca($saldosimpananwajib), 'simpok', neraca($saldosimpananpokok), 'pokpel', neraca($pokokangsuranpelunasan), 'pokang', neraca($pokokangsuran), 'simpananneraca', neraca($saldosimpananneraca), 'jat', neraca($jat), 'pinum',  neraca($saldopinjamanumum), 'pinkar', neraca($saldopinjamankaryawan), 'pinkhus', neraca($saldopinjamankhusus); ?>-->
             <h3> AKTIVA </h3>
             <h4> AKTIVA LANCAR </h4>
             <tr>
@@ -77,19 +75,19 @@
             </tr>
             <tr>
                 <td class="text-left">Piutang Anggota</td>
-				<td class="text-left"><?= rupiah($saldopinjamanumumbelum);?></td>
+				<td class="text-left"><?= rupiahsimpanan($saldopinjamanumumbelum);?></td>
             </tr>
             <tr>
                 <td class="text-left">Piutang Karyawan</td>
-				<td class="text-left"><?= rupiah($saldopinjamankaryawanbelum);?></td>
+				<td class="text-left"><?= rupiahsimpanan($saldopinjamankaryawanbelum);?></td>
             </tr>
             <tr>
                 <td class="text-left">Piutang Khusus</td>
-				<td class="text-left"><?= rupiah($saldopinjamankhususbelum);?></td>
+				<td class="text-left"><?= rupiahsimpanan($saldopinjamankhususbelum);?></td>
             </tr>
             <tr class='info'>
             <td class="text-left">Jumlah Aktiva Lancar</td>
-                <td class="text-left" width="380px"><?= rupiah($jal);?></td>
+                <td class="text-left" width="380px"><?= rupiahsimpanan($jal);?></td>
             </td>
             </tr>
             </tbody>
@@ -131,7 +129,7 @@
             <tbody class="thead-light">
             <tr class='danger'>
                 <td class="text-left">Jumlah</td>
-				<td class="text-left"><?= rupiah($jat+$jal);?></td>
+				<td class="text-left"><?= rupiahsimpanan($jat+$jal);?></td>
             </tr>
             </tbody>
         </table>
@@ -218,7 +216,6 @@
         </table>
         
         </div>
-        <!--</form>-->
 
         <div class="row">
         </div>

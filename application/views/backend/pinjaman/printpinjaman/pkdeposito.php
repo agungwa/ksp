@@ -215,16 +215,16 @@ table#06 {
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
                                 style="font-family:Cambria">:</span></p>
                     </td>
-                    <td style="width:295.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:350.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
-                                style="font-family:Cambria"><?php echo rupiah($angsuran) ?></span></p>
+                                style="font-family:Cambria"><?php echo rupiah($angsuran) ?>  X <?php echo $sea_id ?> </span><p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"></p>
                     </td>
                 </tr>
                 <tr>
                     <td style="width:149.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
                                 style="font-family:Cambria">Tanggal</span><span style="font-family:Cambria">
-                            </span><span style="font-family:Cambria">Jatoh</span><span style="font-family:Cambria">
+                            </span><span style="font-family:Cambria">Jatuh</span><span style="font-family:Cambria">
                                 Tempo</span></p>
                     </td>
                     <td style="width:3.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">

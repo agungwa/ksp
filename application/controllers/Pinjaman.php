@@ -227,6 +227,7 @@ class Pinjaman extends MY_Base
             'jam_tahunpembuatan' => $this->input->post('jam_tahunpembuatan',TRUE),
             'jam_atasnama' => $this->input->post('jam_atasnama',TRUE),
             'jam_alamat' => $this->input->post('jam_alamat',TRUE),
+            'jam_luas' => $this->input->post('jam_luas',TRUE),
         );
         $this->Jaminan_model->update($this->input->post('jam_id', TRUE), $dataJaminan);
 
@@ -403,6 +404,7 @@ class Pinjaman extends MY_Base
         );
         $this->load->view(layout(), $data);
     }
+
 
     public function lookup()
     {

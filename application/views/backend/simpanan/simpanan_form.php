@@ -80,6 +80,11 @@
             </div>
             </div>
         </div>
+        
+	    <div class="form-group col-md-12">
+            <label for="datetime">Tanggal Pendaftaran </label>
+            <input type="date" class="form-control" name="sim_tglpendaftaran" id="todays-date" placeholder="Sim Tglpendaftaran"  required />
+        </div>
         </div>
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('simpanan') ?>" class="btn btn-default">Batal</a>

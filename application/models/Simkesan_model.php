@@ -7,6 +7,7 @@ class Simkesan_model extends CI_Model
 {
 
     public $table = 'simkesan';
+    public $ang_no = 'ang_no';
     public $id = 'sik_kode';
     public $order = 'DESC';
 
@@ -22,7 +23,13 @@ class Simkesan_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
-
+    
+    // get data by anggota no
+    function get_data_byang($ang_no)
+    {
+        $this->db->where('ang_no =',$ang_no);
+        return $this->db->get($this->table)->result();
+    }
     // get simkesan lunas
     function get_simkesan_lunas()
     {
@@ -45,6 +52,15 @@ class Simkesan_model extends CI_Model
     function get_simkesan_aktif()
     {
         $where = "sik_status = 0 AND sik_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+    
+    // get simkesan aktif plan
+    function get_simkesan_plan($psk_id)
+    {
+        $where = "sik_status = 0 AND psk_id = '$psk_id' AND sik_flag < 2";
         $this->db->where($where);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();

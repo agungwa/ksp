@@ -45,32 +45,34 @@
 		<th class="text-center">Nama Anggota</th>
 		<th class="text-center">Tanggal Setor</th>
 		<th class="text-center">Jumlah Setor</th>
-	<!--	<th class="text-center">Action</th> -->
             </tr>
             </thead>
             <tbody><?php
             $total = 0;
-            foreach ($datasetoran as $key => $item)
+            $no = 1;
+            foreach ($datasetoran as $k => $item)
             {
                 $total +=$item['ssi_jmlsetor'];
                 $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item['sim_kode']))->row();
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $sim_kode->ang_no))->row();
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
+			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $item['sim_kode'] ?></td>
 			<td><?php echo $ang_no->ang_nama ?></td>
 			<td><?php echo $item['ssi_tglsetor'] ?></td>
 			<td><?php echo rupiahsimpanan($item['ssi_jmlsetor']) ?></td>
-			<!--<td><?php echo $setoransimpanan->ssi_jmlbunga ?></td>-->
-			<!--<td style="text-align:center" width="200px">
+            <?php if(is_allow('M_EDIT')): ?>
+			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('setoransimpanan/update/'.$setoransimpanan->ssi_id),'Update','class="text-navy"'); 
+				echo anchor(site_url('setoransimpanan/update/'.$item['ssi_id']),'Update','class="text-navy"'); 
              ?>
-			</td>-->
+			</td> 
+            <?php endif;  ?>
 		</tr>
                 
                 <?php
+                $no++;
             }
             
             ?>

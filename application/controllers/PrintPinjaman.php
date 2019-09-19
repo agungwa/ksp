@@ -28,7 +28,8 @@ class PrintPinjaman extends MY_Base
     	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
     	$pinjamanNonaktif = $this->Pinjaman_model->get_pinjaman_nonaktif();
     	$angsuranBayar = $this->Angsuran_model->get_angsuran_bayar();
-    	$angsuranTotal = $this->Angsuran_model->get_angsuran_total();
+		$angsuranTotal = $this->Angsuran_model->get_angsuran_total();
+		$angsuranKurang = $this->Angsuran_model->get_angsuran_total();
     	$pelunasanPinjaman = $this->Pelunasan_model->get_all(); 
         $wilayah = $this->Wilayah_model->get_all();
         $provisi = $this->Potonganprovisi_model->get_by_id(1);		
@@ -66,7 +67,7 @@ class PrintPinjaman extends MY_Base
     				$saldoDroppinjaman += $value->pin_pinjaman ;
     			}
 			} else {
-				$saldoDroppinjaman += $value->pin_pinjaman;
+				$saldoDroppinjaman == 0;
 		}
 	}
 
@@ -89,7 +90,7 @@ class PrintPinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$pokokAngsuran += $value->ags_jmlpokok ;
     			}
 			} else {
@@ -103,7 +104,7 @@ class PrintPinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->pel_tglpelunasan));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$pokokAngsuranpelunasan += $value->pel_totalkekuranganpokok ;
     			}
 			} else {
@@ -117,7 +118,7 @@ class PrintPinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$bungaAngsuran += $value->ags_jmlbunga ;
     			}
 			} else {
@@ -131,25 +132,40 @@ class PrintPinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t  && $pin_id->wil_kode==$w))  {
     				$dendaAngsuran += $value->ags_denda ;
     			}
 			} else {
 				$dendaAngsuran += $value->ags_denda;
 		}
 	}
+
+		//hitung bunga angsuran status kurang improvement
+		foreach ($angsuranKurang as $key => $value) {
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+			if ($f<>'' && $t<>'' && $w<>'') {	
+			$jt = date("Y-m-d", strtotime($value->ags_tgl));
+			//var_dump($value->ags_id);
+				if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+					$bungaAngsuran += $value->ags_jmlbunga ;
+				}
+			} else {
+				$bungaAngsuran += $value->ags_jmlbunga;
+		}
+	}
 	
 	
     	//hitung saldo potongan provisi
     	foreach ($pinjamanAktif as $key => $value) {
+			$pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $value->pop_id))->row();
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
 			//var_dump($value->ags_id);
     			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
-    				$provisiPinjaman += $value->pin_pinjaman*$provisi->pop_potongan/100 ;
+    				$provisiPinjaman += $value->pin_pinjaman*$pop_id->pop_potongan/100 ;
     			}
 			} else {
-				$provisiPinjaman += $value->pin_pinjaman*$provisi->pop_potongan/100;
+				$provisiPinjaman += $value->pin_pinjaman*$pop_id->pop_potongan/100;
 		}
 	}
 
@@ -159,7 +175,7 @@ class PrintPinjaman extends MY_Base
 		if ($f<>'' && $t<>'' && $w<>'') {	
 		$jt = date("Y-m-d", strtotime($value->pel_tglpelunasan));
 		//var_dump($value->ags_id);
-			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
 				$pokokAngsuranpelunasan += $value->pel_totalkekuranganpokok ;
 			}
 		} else {
@@ -173,7 +189,7 @@ class PrintPinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->pel_tglpelunasan));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$bungaDendapelunasan += $value->pel_bungatambahan ;
     			}
 			} else {
@@ -181,13 +197,13 @@ class PrintPinjaman extends MY_Base
 		}
 	}
 	
-		//hitung Total saldo angsuran pokok dari angsuran jumlah bayar
+		//hitung Total saldo angsuran total dari angsuran
     	foreach ($angsuranTotal as $key => $value) {
 			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$totalAngsuran += $value->ags_jmlbayar ;
     			}
 			} else {
@@ -202,7 +218,7 @@ class PrintPinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
 			//var_dump($value->ags_id);
-    			if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$totalAngsurantunggakan += $value->ags_bayartunggakan ;
     			}
 			} else {
@@ -216,15 +232,15 @@ class PrintPinjaman extends MY_Base
 		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
 		//var_dump($value->ags_id);
 			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
-				$$totalRekening++ ;
+				$totalRekening++ ;
 			}
 		} else {
-			$$totalRekening++;
+			$totalRekening=0;
 	}
 }
 
 	//Rekening pinjaman lalu
-	foreach ($pinjamanNonaktif as $key => $value) {
+	foreach ($pinjamanAktif as $key => $value) {
 		if ($f<>'' && $t<>'' && $w<>'') {	
 		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
 		//var_dump($value->ags_id);
@@ -237,7 +253,7 @@ class PrintPinjaman extends MY_Base
 }
 
 	//Rekening pinjaman Keluar
-	foreach ($pinjamanAktif as $key => $value) {
+	foreach ($pinjamanNonaktif as $key => $value) {
 		if ($f<>'' && $t<>'' && $w<>'') {	
 		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
 		//var_dump($value->ags_id);
@@ -268,6 +284,7 @@ class PrintPinjaman extends MY_Base
 			'f' => $f,
 			't' => $t,
 			'w' => $w,
+		    'content' => 'backend/pinjaman/datapinjaman/index',
 		);
         
         $mpdf = new \Mpdf\Mpdf();
@@ -568,6 +585,129 @@ class PrintPinjaman extends MY_Base
 				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Legal', [216, 356]]);
 				//$header = $this->load->view('backend/pinjaman/printpinjaman/header2.php',$data,true);
 				$html = $this->load->view('backend/pinjaman/printpinjaman/pksertifikat.php',$data,true);
+				$html1 = $this->load->view('backend/pinjaman/printpinjaman/beritaacarasertifikat.php',$data,true);
+				$html2 = $this->load->view('backend/pinjaman/printpinjaman/suratpemasangan.php',$data,true);
+				//$mpdf->SetHeader($header);
+				//echo $html;
+				$mpdf->WriteHTML($html);
+				$mpdf->AddPage();
+				$mpdf->WriteHTML($html1);
+				$mpdf->AddPage();
+				$mpdf->WriteHTML($html2);
+				//$mpdf->Output(); // opens in browser
+				$mpdf->Output('pencairan.pdf','D'); // it downloads the file into the user system, with give name
+    
+        }
+    }
+	
+	public function pencairanshgb($id) 
+    {
+		$row = $this->Pinjaman_model->get_by_id($id);
+		$jaminan = $this->Jaminan_model->get_by_rek($id);
+		$penjamin = $this->Penjamin_model->get_by_rek($id);
+        if ($row) {
+            $pin_statuspinjaman = $this->statusPinjaman;
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+            $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+            $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
+            $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
+			$surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
+			$tanggalDuedate = date("Y-m-d", strtotime($row->pin_tglpencairan.' + '.$sea_id->sea_tenor.' Months'));
+		//var_dump($jaminan);
+            $data = array(
+				'jaminan_data' => $jaminan,
+				'penjamin_data' => $penjamin,
+				'ang_nama' => $ang_no->ang_nama,
+				'ang_tgllahir' => $ang_no->ang_tgllahir,
+				'ang_alamat' => $ang_no->ang_alamat,
+				'ang_noktp' => $ang_no->ang_noktp,
+				'ang_nohp' => $ang_no->ang_nohp,
+				'tgl_pelunasan' => $tanggalDuedate,
+                'pin_id' => $row->pin_id,
+                'ang_no' => $row->ang_no,
+                'nama_ang_no' => $ang_no->ang_nama,
+                'sea_id' => $sea_id->sea_tenor,
+                'bup_id' => $bup_id->bup_bunga,
+                'pop_id' => $pop_id->pop_potongan,
+                'wil_kode' => $wil_kode->wil_nama,
+                'skp_id' => $skp_id->skp_kategori,
+                'pin_pengajuan' => $row->pin_pengajuan,
+                'pin_pinjaman' => $row->pin_pinjaman,
+                'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                'pin_tglpencairan' => $row->pin_tglpencairan,
+                'pin_marketing' => $marketing->kar_nama,
+                'pin_surveyor' => $surveyor->kar_nama,
+                'pin_survey' => $row->pin_survey,
+                'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman],
+    	    );
+				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Legal', [216, 356]]);
+				//$header = $this->load->view('backend/pinjaman/printpinjaman/header2.php',$data,true);
+				$html = $this->load->view('backend/pinjaman/printpinjaman/pkshgb.php',$data,true);
+				$html1 = $this->load->view('backend/pinjaman/printpinjaman/beritaacarashgb.php',$data,true);
+				$html2 = $this->load->view('backend/pinjaman/printpinjaman/suratpengosonganshgb.php',$data,true);
+				//$mpdf->SetHeader($header);
+				//echo $html;
+				$mpdf->WriteHTML($html);
+				$mpdf->AddPage();
+				$mpdf->WriteHTML($html1);
+				$mpdf->AddPage();
+				$mpdf->WriteHTML($html2);
+				//$mpdf->Output(); // opens in browser
+				$mpdf->Output('pencairan.pdf','D'); // it downloads the file into the user system, with give name
+    
+        }
+    }
+	
+	
+	public function pencairansimpanan($id) 
+    {
+		$row = $this->Pinjaman_model->get_by_id($id);
+		$jaminan = $this->Jaminan_model->get_by_rek($id);
+		$penjamin = $this->Penjamin_model->get_by_rek($id);
+        if ($row) {
+            $pin_statuspinjaman = $this->statusPinjaman;
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+            $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+            $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
+            $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
+			$surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
+			$tanggalDuedate = date("Y-m-d", strtotime($row->pin_tglpencairan.' + '.$sea_id->sea_tenor.' Months'));
+		//var_dump($jaminan);
+            $data = array(
+				'jaminan_data' => $jaminan,
+				'penjamin_data' => $penjamin,
+				'ang_nama' => $ang_no->ang_nama,
+				'ang_tgllahir' => $ang_no->ang_tgllahir,
+				'ang_alamat' => $ang_no->ang_alamat,
+				'ang_noktp' => $ang_no->ang_noktp,
+				'ang_nohp' => $ang_no->ang_nohp,
+				'tgl_pelunasan' => $tanggalDuedate,
+                'pin_id' => $row->pin_id,
+                'ang_no' => $row->ang_no,
+                'nama_ang_no' => $ang_no->ang_nama,
+                'sea_id' => $sea_id->sea_tenor,
+                'bup_id' => $bup_id->bup_bunga,
+                'pop_id' => $pop_id->pop_potongan,
+                'wil_kode' => $wil_kode->wil_nama,
+                'skp_id' => $skp_id->skp_kategori,
+                'pin_pengajuan' => $row->pin_pengajuan,
+                'pin_pinjaman' => $row->pin_pinjaman,
+                'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                'pin_tglpencairan' => $row->pin_tglpencairan,
+                'pin_marketing' => $marketing->kar_nama,
+                'pin_surveyor' => $surveyor->kar_nama,
+                'pin_survey' => $row->pin_survey,
+                'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman],
+    	    );
+				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Legal', [216, 356]]);
+				//$header = $this->load->view('backend/pinjaman/printpinjaman/header2.php',$data,true);
+				$html = $this->load->view('backend/pinjaman/printpinjaman/pksimpanan.php',$data,true);
 				//$mpdf->SetHeader($header);
 				//echo $html;
 				$mpdf->WriteHTML($html);
@@ -575,7 +715,63 @@ class PrintPinjaman extends MY_Base
 				$mpdf->Output('pencairan.pdf','D'); // it downloads the file into the user system, with give name
     
         }
+	}
+	
+	public function pencairanijazah($id) 
+    {
+		$row = $this->Pinjaman_model->get_by_id($id);
+		$jaminan = $this->Jaminan_model->get_by_rek($id);
+		$penjamin = $this->Penjamin_model->get_by_rek($id);
+        if ($row) {
+            $pin_statuspinjaman = $this->statusPinjaman;
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+            $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+            $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
+            $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
+			$surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
+			$tanggalDuedate = date("Y-m-d", strtotime($row->pin_tglpencairan.' + '.$sea_id->sea_tenor.' Months'));
+		//var_dump($jaminan);
+            $data = array(
+				'jaminan_data' => $jaminan,
+				'penjamin_data' => $penjamin,
+				'ang_nama' => $ang_no->ang_nama,
+				'ang_tgllahir' => $ang_no->ang_tgllahir,
+				'ang_alamat' => $ang_no->ang_alamat,
+				'ang_noktp' => $ang_no->ang_noktp,
+				'ang_nohp' => $ang_no->ang_nohp,
+				'tgl_pelunasan' => $tanggalDuedate,
+                'pin_id' => $row->pin_id,
+                'ang_no' => $row->ang_no,
+                'nama_ang_no' => $ang_no->ang_nama,
+                'sea_id' => $sea_id->sea_tenor,
+                'bup_id' => $bup_id->bup_bunga,
+                'pop_id' => $pop_id->pop_potongan,
+                'wil_kode' => $wil_kode->wil_nama,
+                'skp_id' => $skp_id->skp_kategori,
+                'pin_pengajuan' => $row->pin_pengajuan,
+                'pin_pinjaman' => $row->pin_pinjaman,
+                'pin_tglpengajuan' => $row->pin_tglpengajuan,
+                'pin_tglpencairan' => $row->pin_tglpencairan,
+                'pin_marketing' => $marketing->kar_nama,
+                'pin_surveyor' => $surveyor->kar_nama,
+                'pin_survey' => $row->pin_survey,
+                'pin_statuspinjaman' => $this->statusPinjaman[$row->pin_statuspinjaman],
+    	    );
+				$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Legal', [216, 356]]);
+				//$header = $this->load->view('backend/pinjaman/printpinjaman/header2.php',$data,true);
+				$html = $this->load->view('backend/pinjaman/printpinjaman/pkijazah.php',$data,true);
+				//$mpdf->SetHeader($header);
+				//echo $html;
+				$mpdf->WriteHTML($html);
+				//$mpdf->Output(); // opens in browser
+				$mpdf->Output('pkijazah.pdf','D'); // it downloads the file into the user system, with give name
+    
+        }
     }
+	
 }
 
 /* End of file Pinjaman.php */

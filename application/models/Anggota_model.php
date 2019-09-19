@@ -30,6 +30,7 @@ class Anggota_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
+
     
     // get total rows
     function total_rows($q = NULL) {

@@ -14,59 +14,47 @@
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
 	    <div class="form-group">
-            <label for="int">Kar Kode <?php echo form_error('kar_kode') ?></label>
-            <input type="text" class="form-control" name="kar_kode" id="kar_kode" placeholder="Kar Kode" value="<?php echo $kar_kode; ?>" />
+            <label for="varchar"> Kode Karyawan</label>
+            <input type="text" class="form-control" name="kar_kode" id="searchTxt" placeholder="Kode Karyawan" value="<?php echo $kar_kode; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Kij Sd <?php echo form_error('kij_sd') ?></label>
-            <input type="text" class="form-control" name="kij_sd" id="kij_sd" placeholder="Kij Sd" value="<?php echo $kij_sd; ?>" />
+            <label for="varchar">ijazah Sd</label>
+            <input type="text" class="form-control" name="kij_sd" id="kij_sd" placeholder="ijazah Sd" value="<?php echo $kij_sd; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Kij Smp <?php echo form_error('kij_smp') ?></label>
-            <input type="text" class="form-control" name="kij_smp" id="kij_smp" placeholder="Kij Smp" value="<?php echo $kij_smp; ?>" />
+            <label for="varchar">ijazah Smp </label>
+            <input type="text" class="form-control" name="kij_smp" id="kij_smp" placeholder="ijazah Smp" value="<?php echo $kij_smp; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Kij Sma <?php echo form_error('kij_sma') ?></label>
-            <input type="text" class="form-control" name="kij_sma" id="kij_sma" placeholder="Kij Sma" value="<?php echo $kij_sma; ?>" />
+            <label for="varchar">ijazah Sma</label>
+            <input type="text" class="form-control" name="kij_sma" id="kij_sma" placeholder="ijazah Sma" value="<?php echo $kij_sma; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Kij D3 <?php echo form_error('kij_d3') ?></label>
-            <input type="text" class="form-control" name="kij_d3" id="kij_d3" placeholder="Kij D3" value="<?php echo $kij_d3; ?>" />
+            <label for="varchar">ijazah D3 </label>
+            <input type="text" class="form-control" name="kij_d3" id="kij_d3" placeholder="ijazah D3" value="<?php echo $kij_d3; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Kij S1 <?php echo form_error('kij_s1') ?></label>
-            <input type="text" class="form-control" name="kij_s1" id="kij_s1" placeholder="Kij S1" value="<?php echo $kij_s1; ?>" />
+            <label for="varchar">ijazah S1 </label>
+            <input type="text" class="form-control" name="kij_s1" id="kij_s1" placeholder="ijazah S1" value="<?php echo $kij_s1; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Kij S2 <?php echo form_error('kij_s2') ?></label>
-            <input type="text" class="form-control" name="kij_s2" id="kij_s2" placeholder="Kij S2" value="<?php echo $kij_s2; ?>" />
+            <label for="varchar">ijazah S2 </label>
+            <input type="text" class="form-control" name="kij_s2" id="kij_s2" placeholder="ijazah S2" value="<?php echo $kij_s2; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Kij S3 <?php echo form_error('kij_s3') ?></label>
-            <input type="text" class="form-control" name="kij_s3" id="kij_s3" placeholder="Kij S3" value="<?php echo $kij_s3; ?>" />
+            <label for="varchar">ijazah S3 </label>
+            <input type="text" class="form-control" name="kij_s3" id="kij_s3" placeholder="ijazah S3" value="<?php echo $kij_s3; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">Kij Lainlain <?php echo form_error('kij_lainlain') ?></label>
-            <input type="text" class="form-control" name="kij_lainlain" id="kij_lainlain" placeholder="Kij Lainlain" value="<?php echo $kij_lainlain; ?>" />
-        </div>
+            <label for="varchar">Lainlain </label>
+            <input type="text" class="form-control" name="kij_lainlain" id="kij_lainlain" placeholder="Lainlain" value="<?php echo $kij_lainlain; ?>" />
+        </div><!--
 	    <div class="form-group">
-            <label for="tinyint">Kij Status <?php echo form_error('kij_status') ?></label>
+            <label for="tinyint">Kij Status </label>
             <input type="text" class="form-control" name="kij_status" id="kij_status" placeholder="Kij Status" value="<?php echo $kij_status; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="datetime">Kij Tgl <?php echo form_error('kij_tgl') ?></label>
-            <input type="text" class="form-control" name="kij_tgl" id="kij_tgl" placeholder="Kij Tgl" value="<?php echo $kij_tgl; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="tinyint">Kij Flag <?php echo form_error('kij_flag') ?></label>
-            <input type="text" class="form-control" name="kij_flag" id="kij_flag" placeholder="Kij Flag" value="<?php echo $kij_flag; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="kij_info">Kij Info <?php echo form_error('kij_info') ?></label>
-            <textarea class="form-control" rows="3" name="kij_info" id="kij_info" placeholder="Kij Info"><?php echo $kij_info; ?></textarea>
-        </div>
+        </div>-->
 	    <input type="hidden" name="kij_id" value="<?php echo $kij_id; ?>" /> 
-	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
+	    <button type="submit" class="btn btn-primary" onclick="return confirm('Click OK jika benar kode karyawan adalah ' + searchTxt.value)"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('karyawanijasah') ?>" class="btn btn-default">Cancel</a>
 	</div>
             </form>

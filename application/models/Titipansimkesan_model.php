@@ -24,6 +24,18 @@ class Titipansimkesan_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_totaltitipan($sik_kode){
+        $this->db->select_sum('tts_jmltitip');
+        $this->db->where('sik_kode =',$sik_kode);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_totalambil($sik_kode){
+        $this->db->select_sum('tts_jmlambil');
+        $this->db->where('sik_kode =',$sik_kode);
+        return $this->db->get($this->table)->result();
+    }
+
     // get by sik_kode
     function get_sikkode($sik_kode)
     {

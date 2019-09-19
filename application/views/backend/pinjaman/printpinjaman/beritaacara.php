@@ -40,11 +40,9 @@ table#05 {
                 <tr>
                     <td style="width:528.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:9pt"><span
-                                style="font-family:'Times New Roman'; font-weight:bold; text-decoration:underline">NO.</span><span
+                                style="font-family:'Times New Roman'; font-weight:bold; text-decoration:underline"></span><span
                                 style="font-family:'Times New Roman'; font-weight:bold; text-decoration:underline">
                             </span><span
-                                style="font-family:'Times New Roman'; font-weight:bold; text-decoration:underline">SPPH
-                                :</span><span
                                 style="font-family:'Times New Roman'; font-weight:bold; text-decoration:underline">
                                 NO.</span><span
                                 style="font-family:'Times New Roman'; font-weight:bold; text-decoration:underline">
@@ -70,7 +68,7 @@ table#05 {
                     <td style="width:528.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:'Calibri Light'">Pada hari ini,
-                                &nbsp; <?php echo dateFormataja($this->tgl) ?> &nbsp; telah dilakukan Serah Terima Agunan:</span></p>
+                                &nbsp; <?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?> &nbsp; telah dilakukan Serah Terima Agunan:</span></p>
                     </td>
                 </tr>
                 <tr>
@@ -81,8 +79,7 @@ table#05 {
                 </tr>
             </tbody>
         </table>
-        <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                style="font-family:'Calibri Light'">&nbsp;</span></p>
+        <p style="margin-top:0pt; margin-bottom:0pt; font-size:5pt"><span style="font-family:'Calibri Light'">&nbsp;</span></p>
         <table style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
@@ -186,10 +183,9 @@ table#05 {
                                 style="font-family:'Calibri Light'; font-weight:bold">PIHAK PERTAMA</span></p>
                     </td>
                 </tr>
-                <tr>
-        <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                style="font-family:'Calibri Light'">&nbsp;</span></p>
-                </tr>
+        </table>
+        <p style="margin-top:0pt; margin-bottom:0pt; font-size:5pt"><span style="font-family:'Calibri Light'">&nbsp;</span></p>
+        <table style="border-collapse:collapse" cellspacing="0" cellpadding="0">
                 <tr>
                     <td style="width:528.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
@@ -297,6 +293,10 @@ table#05 {
                                 style="font-family:'Calibri Light'; font-weight:bold">PIHAK KEDUA</span></p>
                     </td>
                 </tr>
+        </table>
+        <p style="margin-top:0pt; margin-bottom:0pt; font-size:5pt"><span style="font-family:'Calibri Light'">&nbsp;</span></p>
+        
+        <table style="border-collapse:collapse" cellspacing="0" cellpadding="0">
                 <tr>
                     <td style="width:528.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
@@ -459,7 +459,7 @@ table#05 {
                     </td>
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
-                                style="font-family:'Calibri Light'"><?php echo rupiah($angsuranpokok) ?></span><span style="font-family:'Calibri Light'">,-&nbsp;
+                                style="font-family:'Calibri Light'"> : <?php echo rupiah($angsuranpokok) ?></span><span style="font-family:'Calibri Light'">,-&nbsp;
                                 (<?php echo terbilang($angsuranpokok) ?>&nbsp;Rupiah)</span></p>
                     </td>
                 </tr>
@@ -478,7 +478,7 @@ table#05 {
                     </td>
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
-                                style="font-family:'Calibri Light'"><?php echo rupiah($angsuranbunga) ?></span><span style="font-family:'Calibri Light'">,-&nbsp;
+                                style="font-family:'Calibri Light'"> : <?php echo rupiah($angsuranbunga) ?></span><span style="font-family:'Calibri Light'">,-&nbsp;
                                 (<?php echo terbilang($angsuranbunga) ?>&nbsp;Rupiah)</span></p>
                     </td>
                 </tr>
@@ -497,7 +497,7 @@ table#05 {
                     </td>
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
-                                style="font-family:'Calibri Light'"><?php echo rupiah($angsuran) ?>,-&nbsp;
+                                style="font-family:'Calibri Light'"> : <?php echo rupiah($angsuran) ?>,-&nbsp;
                                 (<?php echo terbilang($angsuran) ?>&nbsp;Rupiah)</span></p>
                     </td>
                 </tr>
@@ -516,7 +516,7 @@ table#05 {
                     </td>
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
-                                style="font-family:'Calibri Light'"><?php echo $sea_id ?></span><span
+                                style="font-family:'Calibri Light'"> : <?php echo $sea_id ?></span><span
                                 style="font-family:'Calibri Light'"> </span><span
                                 style="font-family:'Calibri Light'; font-style:italic">(<?php echo ' ',terbilang($sea_id),' ' ?>)</span><span
                                 style="font-family:'Calibri Light'">Bulan</span></p>

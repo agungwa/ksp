@@ -1,15 +1,26 @@
 
+<?php if(is_allow('M_LAPORAN')): ?>
+<?php
+        $kas=$shudata + $bungasimpanan +$saldoinvestasi + $saldosimpananwajib+$saldosimpananpokok+ $pokokangsuranpelunasan + $pokokangsuran + $saldosimpananneraca - $saldopinjamanumum - $saldopinjamankaryawan-$saldopinjamankhusus;
+        $piutang = $saldopinjamanumumbelum + $saldopinjamankaryawanbelum+$saldopinjamankhususbelum;
+        $jal=$kas + $kasbankdata + $saldopinjamanumumbelum + $saldopinjamankaryawanbelum+$saldopinjamankhususbelum;
+        $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
+        $jkl=$saldosimpananneraca+$bungasimpanan;
+        $jkp=$saldoinvestasi+$simpanankaryawandata+$rekeningkoran+$modalpenyertaan;
+        $jek=$saldosimpananwajib+$saldosimpananpokok+$simpanancdr+$donasi+$shudata;
+        $simkesan = $saldosimkesan+$saldotitipan;
+        ?>
 <div class="row">
             <div class="col-lg-2">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <span class="label label-success pull-right">Data</span>
-                        <h5>Deposito</h5>
+                        <h5>Investasi</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">Data </h1>
-                        <div class="stat-percent font-bold text-success">98 <i class="fa fa-bolt"></i></div>
-                        <small>Dalam juta </small>
+                        <div class="stat-percent font-bold text-success"><?= $saldoinvestasi/1000000;?> <i class="fa fa-bolt"></i></div>
+                        <small>x Juta </small>
                     </div>
                 </div>
             </div>
@@ -21,8 +32,8 @@
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">Data </h1>
-                        <div class="stat-percent font-bold text-success">98 <i class="fa fa-bolt"></i></div>
-                        <small>Dalam juta </small>
+                        <div class="stat-percent font-bold text-success"><?= $saldosimpananneraca/1000000;?><i class="fa fa-bolt"></i></div>
+                        <small>x Juta </small>
                     </div>
                 </div>
             </div>
@@ -34,8 +45,8 @@
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">Data </h1>
-                        <div class="stat-percent font-bold text-success">98 <i class="fa fa-bolt"></i></div>
-                        <small>Dalam juta </small>
+                        <div class="stat-percent font-bold text-success"><?= $shudata/1000000;?><i class="fa fa-bolt"></i></div>
+                        <small>x Juta </small>
                     </div>
                 </div>
             </div>
@@ -43,12 +54,12 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <span class="label label-info pull-right"></span>
-                        <h5>Angsuran Pokok</h5>
+                        <h5>Piutang</h5>
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">Data </h1>
-                        <div class="stat-percent font-bold text-info">100 <i class="fa fa-level-up"></i></div>
-                        <small>Dalam juta </small>
+                        <div class="stat-percent font-bold text-info"><?= $piutang/1000000;?> <i class="fa fa-level-up"></i></div>
+                        <small>x Juta </small>
                     </div>
                 </div>
             </div>
@@ -56,8 +67,22 @@
             <div class="col-lg-4">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <span class="label label-primary pull-right"> Data Nasabah</span>
-                        <h5>Nasabah</h5>
+                        <span class="label label-info pull-right"></span>
+                        <h5>Simkesan</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">Data </h1>
+                        <div class="stat-percent font-bold text-info"><?= $simkesan/1000000;?> <i class="fa fa-level-up"></i></div>
+                        <small>x Juta </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+               <!--<div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-primary pull-right"> Data Anggota</span>
+                        <h5>Pokok Dan Wajib</h5>
                     </div>
                     <div class="ibox-content">
                         <div class="row">
@@ -69,22 +94,49 @@
                             <div class="col-md-6">
                                 <h1 class="no-margins">Data </h1>
                                 <div class="stat-percent font-bold text-info">11% <i class="fa fa-level-up"></i> 
-                                </div><small>Non Anggota</small>
+                                </div><small>Calon Anggota</small>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>-->
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="label label-primary pull-right">Data Simpanan</span>
+                        <h5>Pokok/Wajib</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h1 class="no-margins">Data</h2>
+                                <div class="stat-percent font-bold text-info"><?= $saldosimpananpokok/1000000;?> <i class="fa fa-level-up"></i> 
+                                </div><small>Pokok Dalam Juta</small>
+                            </div>
+                            <div class="col-md-6">
+                                <h1 class="no-margins">Data </h1>
+                                <div class="stat-percent font-bold text-info"><?= $saldosimpananpokok/1000000;?> <i class="fa fa-level-up"></i> 
+                                </div><small>Wajib Dalam Juta</small>
                             </div>
                         </div>
 
 
                     </div>
                 </div>
-            </div>
+        </div>
+            <!--
+            <form action="<?php echo base_url()?>neraca/neraca" class="form-inline" method="get">
             <div class="col-lg-4">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Jumlah Kas</h5>
+                        <h5>Jumlah Kas: </h5>
                         <div class="ibox-tools">
-                            <span class="label label-primary">Hingga 01 Februari 2019</span>
+                    <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
                         </div>
                     </div>
+                    
+        
+                    <button class="btn btn-info" type="submit">Tampilkan</button>
                     <div class="ibox-content no-padding">
                         <div class="flot-chart m-t-lg" style="height: 90px;">
                             <div class="flot-chart-content" id="flot-chart1"></div>
@@ -94,18 +146,20 @@
                 </div>
             </div>
         </div>
+        </form>
+
         <div class="row">
             <div class="col-lg-8">
                 <div class="ibox float-e-margins">
                     <div class="ibox-content">
                         <div>
                                         <span class="pull-right text-right">
-                                        <!-- <small>Rapat <strong> Paripurna</strong></small> -->
+                                         <small>Rapat <strong> Paripurna</strong></small> 
                                             <br/>
                                             Rata-rata: 86%
                                         </span>
                             <h3 class="font-bold no-margins">
-                                Data Pinjaman Nasabah
+                                Data Pinjaman Anggota
                             </h3>
                             <small>Tahun <?=date('Y')?></small>
                         </div>
@@ -143,11 +197,11 @@
                         <div class="m-t-md">
                             <small class="pull-right">
                                 <i class="fa fa-clock-o"> </i>
-                                <!-- Update on 16.03.2018 -->
+                                Update on 16.03.2018
                             </small>
-                            <!-- <small>
+                            <small>
                                 <strong>Analisa kehadiran:</strong> selama 3 bulan rata-rata kehadiran anggota rapat sebesar 87%
-                            </small> -->
+                            </small> 
                         </div>
 
                     </div>
@@ -249,3 +303,5 @@
 
             });
         </script>
+        -->
+        <?php endif; ?>

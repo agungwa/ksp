@@ -43,14 +43,23 @@
             <a href="<?php echo site_url('pinjaman/?p=4') ?>" class="btn btn-default">Kembali</a>
             <?php if ($jaminan_data->jej_id == 1){
                 echo '
-            <a href="'.site_url("PrintPinjaman/pencairan/".$pin_id).'" class="btn btn-default">Print Pencairan</a>';
+            <a href="'.site_url("PrintPinjaman/pencairan/".$pin_id).'" class="btn btn-default">Print Pencairan BPKB</a>';
             } else if ($jaminan_data->jej_id == 5){
                 echo '
-            <a href="'.site_url("PrintPinjaman/pencairandeposito/".$pin_id).'") class="btn btn-default">Print Pencairan</a>';
+            <a href="'.site_url("PrintPinjaman/pencairandeposito/".$pin_id).'") class="btn btn-default">Print Pencairan Investasi</a>';
             } else if ($jaminan_data->jej_id == 2){
                 echo '
-            <a href="'.site_url("PrintPinjaman/pencairansertifikat/".$pin_id).'") class="btn btn-default">Print Pencairan</a>';
-            } ?></td></tr>
+            <a href="'.site_url("PrintPinjaman/pencairansertifikat/".$pin_id).'") class="btn btn-default">Print Pencairan Sertifikat</a>';
+            } else if ($jaminan_data->jej_id == 7){
+                echo '
+            <a href="'.site_url("PrintPinjaman/pencairansimpanan/".$pin_id).'") class="btn btn-default">Print Pencairan Simpanan</a>';
+            } else if ($jaminan_data->jej_id == 3){
+                echo '
+            <a href="'.site_url("PrintPinjaman/pencairanijazah/".$pin_id).'") class="btn btn-default">Print Pencairan Ijazah</a>'; 
+            } else if ($jaminan_data->jej_id == 8){
+                echo '
+            <a href="'.site_url("PrintPinjaman/pencairanshgb/".$pin_id).'") class="btn btn-default">Print Pencairan SHGB</a>'; 
+            }?></td></tr>
 	</table>
             </div>
         </div>

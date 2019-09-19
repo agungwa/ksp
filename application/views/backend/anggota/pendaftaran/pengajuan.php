@@ -13,7 +13,7 @@
 
         <div class="form-group">
             <label for="varchar">Nomor Anggota </label>
-            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Nomor Anggota" value="<?php echo $kode; ?>" readonly required="required" ?>
+            <input type="text" class="form-control" name="ang_no" id="ang_no" placeholder="Kode Anggota" required onkeyup="this.value = this.value.toUpperCase()">
         </div>
 
 	    <div class="form-group">
@@ -50,7 +50,7 @@
 </div>
         
         <div class="col-lg-12">
-        <button type="submit" class="btn btn-primary">Submit Pengajuan</button> 
+        <button type="submit" class="btn btn-primary">Daftar</button> 
         <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Batal</a>
         </div>
         </div>

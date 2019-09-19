@@ -180,7 +180,7 @@ class Setoransimpanan extends MY_Base
 
             $this->Setoransimpanan_model->update($this->input->post('ssi_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('setoransimpanan'));
+            redirect(site_url('simpanan/listsetoran'));
         }
     }
     

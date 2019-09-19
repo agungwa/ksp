@@ -155,11 +155,6 @@ class Karyawanijasah extends MY_Base
     
     public function update_action() 
     {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('kij_id', TRUE));
-        } else {
             $data = array(
 		'kar_kode' => $this->input->post('kar_kode',TRUE),
 		'kij_sd' => $this->input->post('kij_sd',TRUE),
@@ -170,14 +165,13 @@ class Karyawanijasah extends MY_Base
 		'kij_s2' => $this->input->post('kij_s2',TRUE),
 		'kij_s3' => $this->input->post('kij_s3',TRUE),
 		'kij_lainlain' => $this->input->post('kij_lainlain',TRUE),
-		'kij_status' => $this->input->post('kij_status',TRUE),
 		'kij_flag' => 1,
 	    );
 
             $this->Karyawanijasah_model->update($this->input->post('kij_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('karyawanijasah'));
-        }
+        
     }
     
     public function delete($id) 
@@ -208,7 +202,6 @@ class Karyawanijasah extends MY_Base
 	$this->form_validation->set_rules('kij_s2', 'kij s2', 'trim|required');
 	$this->form_validation->set_rules('kij_s3', 'kij s3', 'trim|required');
 	$this->form_validation->set_rules('kij_lainlain', 'kij lainlain', 'trim|required');
-	$this->form_validation->set_rules('kij_status', 'kij status', 'trim|required');
 
 	$this->form_validation->set_rules('kij_id', 'kij_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

@@ -35,17 +35,17 @@ table#04 {
                 <tr>
                     <td style="width:482.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                                style="font-family:Cambria; font-weight:bold">NO. </span><span
-                                style="font-family:Cambria; font-weight:bold">SPK :</span><span
-                                style="font-family:Cambria; font-weight:bold"><?php echo $pin_id ?></span><span
-                                style="font-family:Cambria; font-weight:bold">/ST/SMM.K/</span><span
-                                style="font-family:Cambria; font-weight:bold"><?php
+                                style="font-family:Cambria; font-weight:bold text-decoration:underline">NO. </span><span
+                                style="font-family:Cambria; font-weight:bold text-decoration:underline">SPK :</span><span
+                                style="font-family:Cambria; font-weight:bold text-decoration:underline"><?php echo $pin_id ?></span><span
+                                style="font-family:Cambria; font-weight:bold text-decoration:underline">/ST/SMM.K/</span><span
+                                style="font-family:Cambria; font-weight:bold text-decoration:underline"><?php
                                 $array_bln = array(1=>"I","II","III", "IV", "V","VI","VII","VIII","IX","X", "XI","XII");
                                 $bln = $array_bln[date('n')];
                                 echo $bln;
                                 ?></span><span
-                                style="font-family:Cambria; font-weight:bold">/</span><span
-                                style="font-family:Cambria; font-weight:bold"><?php echo date('Y'); ?></span></p>
+                                style="font-family:Cambria; font-weight:bold text-decoration:underline">/</span><span
+                                style="font-family:Cambria; font-weight:bold text-decoration:underline"><?php echo date('Y'); ?></span></p>
                     </td>
                 </tr>
             </tbody>
@@ -71,7 +71,7 @@ table#04 {
                 </tr>
             </tbody>
         </table>
-        <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span style="font-family:Cambria">&nbsp;</span></p>
+        <p style="margin-top:0pt; margin-bottom:0pt; font-size:3pt"><span style="font-family:Cambria">&nbsp;</span></p>
         <table style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
@@ -145,12 +145,11 @@ table#04 {
                     </td>
                 </tr>
             </tbody>
-        </table>
-        <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span style="font-family:Cambria">&nbsp;</span></p>
+        </table>   
         <table id="02" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
-                    <td style="width:471.1pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:500pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:Cambria">Saya</span><span style="font-family:Cambria"> </span><span
                                 style="font-family:Cambria">selaku</span><span style="font-family:Cambria"> </span><span
@@ -174,7 +173,7 @@ table#04 {
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:471.1pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:500pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:Cambria">Pasal</span><span style="font-family:Cambria"> 1
                             </span><span style="font-family:Cambria">:</span><span
@@ -199,8 +198,7 @@ table#04 {
                 </tr>
             </tbody>
         </table>
-        <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span style="font-family:Cambria">&nbsp;</span></p>
-        <table style="margin-left:44.75pt; border-collapse:collapse" cellspacing="0" cellpadding="0">
+         <table style="margin-left:44.75pt; border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
                     <td style="width:117.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
@@ -213,7 +211,7 @@ table#04 {
                     </td>
                     <td style="width:279.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                                style="font-family:Cambria">..................</span></p>
+                                style="font-family:Cambria"><?php echo rupiah($pin_pinjaman) ?></span></p>
                     </td>
                 </tr>
                 <tr>
@@ -227,7 +225,7 @@ table#04 {
                     </td>
                     <td style="width:279.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                                style="font-family:Cambria">..................</span></p>
+                                style="font-family:Cambria"><?php echo rupiah($angsuranpokok) ?></span></p>
                     </td>
                 </tr>
                 <tr>
@@ -241,7 +239,7 @@ table#04 {
                     </td>
                     <td style="width:279.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                                style="font-family:Cambria">..................</span></p>
+                                style="font-family:Cambria"><?php echo rupiah($angsuranbunga) ?></span></p>
                     </td>
                 </tr>
                 <tr>
@@ -255,14 +253,14 @@ table#04 {
                     </td>
                     <td style="width:279.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                                style="font-family:Cambria">..................</span><span style="font-family:Cambria">
+                                style="font-family:Cambria"><?php echo rupiah($angsuran) ?></span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">x </span><span
-                                style="font-family:Cambria">..................</span><span style="font-family:Cambria">
+                                style="font-family:Cambria"><?php echo $sea_id ?></span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">Bulan</span></p>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:117.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:200.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">Jatuh</span><span
                                 style="font-family:Cambria"> Tempo </span><span
@@ -274,13 +272,13 @@ table#04 {
                     </td>
                     <td style="width:279.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                                style="font-family:Cambria">..................</span><span style="font-family:Cambria">
+                                style="font-family:Cambria"><?php echo dateFormatTanggal($pin_tglpencairan) ?></span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">Tiap</span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">Bulan</span></p>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:117.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:200.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">Waktu</span><span style="font-family:Cambria"> </span><span
                                 style="font-family:Cambria">Pelunasan</span></p>
@@ -291,7 +289,7 @@ table#04 {
                     </td>
                     <td style="width:279.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                                style="font-family:Cambria">..................</span></p>
+                                style="font-family:Cambria"><?php echo dateFormataja($tgl_pelunasan) ?></span></p>
                     </td>
                 </tr>
                 <tr>
@@ -314,9 +312,7 @@ table#04 {
                 </tr>
             </tbody>
         </table>
-        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
-                style="font-family:Cambria">&nbsp;</span></p>
-        <table id="03" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
+        <table id="02" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
                     <td style="width:50pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
@@ -324,7 +320,7 @@ table#04 {
                                 style="font-family:Cambria">Pasal 2 :</span>
                         </p>
                     </td>
-                    <td colspan="3" style="width:421.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td colspan="3" style="width:450.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:Cambria">Atas</span><span style="font-family:Cambria"> </span><span
                                 style="font-family:Cambria">pinjaman</span><span style="font-family:Cambria">
@@ -353,7 +349,7 @@ table#04 {
                     </td>
                     <td style="width:277.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
-                                style="font-family:Cambria">............................</span></p>
+                                style="font-family:Cambria"><?php echo $jaminan_data->jam_atasnama ?></span></p>
                     </td>
                 </tr>
                 <tr>
@@ -371,7 +367,7 @@ table#04 {
                     </td>
                     <td style="width:277.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
-                                style="font-family:Cambria">............................</span></p>
+                                style="font-family:Cambria"><?php echo $jaminan_data->jam_alamat ?></span></p>
                     </td>
                 </tr>
                 <tr>
@@ -391,7 +387,7 @@ table#04 {
                     </td>
                     <td style="width:277.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
-                                style="font-family:Cambria">............................</span></p>
+                                style="font-family:Cambria"><?php echo $jaminan_data->jam_nomor ?></span></p>
                     </td>
                 </tr>
                 <tr>
@@ -409,7 +405,7 @@ table#04 {
                     </td>
                     <td style="width:277.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
-                                style="font-family:Cambria">............................</span><span
+                                style="font-family:Cambria"><?php echo $jaminan_data->jam_luas ?></span><span
                                 style="font-family:Cambria"> M2</span></p>
                     </td>
                 </tr>
@@ -419,7 +415,7 @@ table#04 {
                                 style="font-family:Cambria">Pasal</span><span style="font-family:Cambria"> 3 :</span>
                         </p>
                     </td>
-                    <td colspan="3" style="width:421.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td colspan="3" style="width:450.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:Cambria">Pinjaman</span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">tersebut</span><span style="font-family:Cambria">
@@ -457,7 +453,7 @@ table#04 {
                                 style="font-family:Cambria">Pasal</span><span style="font-family:Cambria"> 4</span><span
                                 style="font-family:Cambria"> </span><span style="font-family:Cambria">:</span></p>
                     </td>
-                    <td colspan="3" style="width:421.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td colspan="3" style="width:450.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p
                             style="margin-top:0pt; margin-left:40.5pt; margin-bottom:0pt; text-indent:-40.5pt; text-align:justify; font-size:10pt">
                             <span style="font-family:Cambria">Segala</span><span style="font-family:Cambria">
@@ -478,7 +474,7 @@ table#04 {
                                 style="font-family:Cambria">Pasal</span><span style="font-family:Cambria"> 5 :</span>
                         </p>
                     </td>
-                    <td colspan="3" style="width:421.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td colspan="3" style="width:450.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:Cambria">Apabila</span><span style="font-family:Cambria"> YANG
                                 BERHUTANG </span><span style="font-family:Cambria">melunasi</span><span
@@ -508,15 +504,15 @@ table#04 {
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
-                    <td colspan="3" style="width:421.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td colspan="3" style="width:450.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p
-                            style="margin-top:0pt; margin-left:26.2pt; margin-bottom:0pt; text-indent:-18pt; text-align:justify; font-size:10pt">
+                            style="margin-top:0pt; margin-left:26.2pt; margin-bottom:0pt; text-indent:-110pt; text-align:justify; font-size:10pt">
                             <span style="font-family:Calibri">-</span><span
                                 style="font:7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </span><span style="font-family:Cambria">Sisa</span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">Pokok</span></p>
                         <p
-                            style="margin-top:0pt; margin-left:26.2pt; margin-bottom:0pt; text-indent:-18pt; text-align:justify; font-size:10pt">
+                            style="margin-top:0pt; margin-left:26.2pt; margin-bottom:0pt; text-indent:-110pt; text-align:justify; font-size:10pt">
                             <span style="font-family:Calibri">-</span><span
                                 style="font:7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </span><span style="font-family:Cambria">Bunga</span><span style="font-family:Cambria">
@@ -524,7 +520,7 @@ table#04 {
                                 / </span><span style="font-family:Cambria">Dua</span><span style="font-family:Cambria">
                                 kali </span><span style="font-family:Cambria">bunga</span></p>
                         <p
-                            style="margin-top:0pt; margin-left:26.2pt; margin-bottom:0pt; text-indent:-18pt; text-align:justify; font-size:10pt">
+                            style="margin-top:0pt; margin-left:26.2pt; margin-bottom:0pt; text-indent:-110pt; text-align:justify; font-size:10pt">
                             <span style="font-family:Calibri">-</span><span
                                 style="font:7pt 'Times New Roman'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </span><span style="font-family:Cambria">Denda</span><span style="font-family:Cambria"> (
@@ -539,7 +535,7 @@ table#04 {
                                 style="font-family:Cambria">Pasal</span><span style="font-family:Cambria"> 6 :</span>
                         </p>
                     </td>
-                    <td colspan="3" style="width:421.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td colspan="3" style="width:450.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p
                             style="margin-top:0pt; margin-left:0.9pt; margin-bottom:0pt; text-indent:-0.9pt; text-align:justify; font-size:10pt">
                             <span style="font-family:Cambria">Apabila</span><span style="font-family:Cambria">
@@ -587,7 +583,7 @@ table#04 {
                                 style="font-family:Cambria">Pasal</span><span style="font-family:Cambria"> 7 :</span>
                         </p>
                     </td>
-                    <td colspan="3" style="width:421.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td colspan="3" style="width:450.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:Cambria">Apabila</span><span style="font-family:Cambria"> 2
                                 (</span><span style="font-family:Cambria">dua</span><span style="font-family:Cambria">)
@@ -602,7 +598,7 @@ table#04 {
                             </span><span style="font-family:Cambria">Sertipikat</span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">dan</span><span style="font-family:Cambria">
                             </span><span
-                                style="font-family:Cambria">....................................................................................
+                                style="font-family:Cambria"><?php echo $jaminan_data->jam_unit ?>
                             </span><span style="font-family:Cambria">tersebut </span><span
                                 style="font-family:Cambria; font-weight:bold">SAYA KUASAKAN SEPENUHNYA</span><span
                                 style="font-family:Cambria"> </span><span style="font-family:Cambria">kepada</span><span
@@ -621,7 +617,7 @@ table#04 {
                                 style="font-family:Cambria">Pasal</span><span style="font-family:Cambria"> 8 :</span>
                         </p>
                     </td>
-                    <td colspan="3" style="width:421.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td colspan="3" style="width:450.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:Cambria">Selama</span><span style="font-family:Cambria"> </span><span
                                 style="font-family:Cambria">dalam</span><span style="font-family:Cambria"> </span><span
@@ -646,7 +642,7 @@ table#04 {
         <table id="02" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
-                    <td style="width:470.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:500.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:Cambria">Demikian</span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">surat</span><span style="font-family:Cambria">
@@ -682,55 +678,50 @@ table#04 {
                 </tr>
             </tbody>
         </table>
-        <p
-            style="margin-top:0pt; margin-left:40.5pt; margin-bottom:0pt; text-indent:-40.5pt; text-align:justify; font-size:10pt">
-            <span style="font-family:Cambria">&nbsp;</span></p>
+        <p style="margin-top:0pt; margin-bottom:0pt; font-size:5pt"><span style="font-family:Cambria">&nbsp;</span></p>
         <table id="04" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
-                    <td style="width:471.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:500.5pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:right; font-size:10pt"><span
                                 style="font-family:Cambria">Temanggung</span><span
                                 style="font-family:Cambria">,</span><span style="font-family:Cambria">
-                                ...............................</span></p>
+                                <?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?></span></p>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <p
-            style="margin-top:0pt; margin-left:40.5pt; margin-bottom:0pt; text-indent:-40.5pt; text-align:justify; font-size:10pt">
-            <span style="font-family:Cambria">&nbsp;</span></p>
         <table id="03" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
-                    <td style="width:149.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                                 style="font-family:Cambria">a.n </span><span style="font-family:Cambria">Direktur</span>
                         </p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:149.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                                 style="font-family:Cambria">KSP </span><span
                                 style="font-family:Cambria">Sido</span><span style="font-family:Cambria"> </span><span
                                 style="font-family:Cambria">Mukti</span><span style="font-family:Cambria"> </span><span
                                 style="font-family:Cambria">Makmur</span></p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                                 style="font-family:Cambria">Kabag</span><span style="font-family:Cambria">. </span><span
                                 style="font-family:Cambria">Pinjaman</span></p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                                 style="font-family:Cambria">Yang </span><span
                                 style="font-family:Cambria">membuat</span><span style="font-family:Cambria">
@@ -739,7 +730,7 @@ table#04 {
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:149.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
@@ -755,70 +746,67 @@ table#04 {
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:149.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                                 style="font-family:Cambria; font-weight:bold">(Dina Andriyanti, S.Akun)</span></p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                                 style="font-family:Cambria; font-weight:bold">(</span><span
                                 style="font-family:Cambria; font-weight:bold">Vika Amelia N, S.E</span><span
                                 style="font-family:Cambria; font-weight:bold">)</span></p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                                 style="font-family:Cambria; font-weight:bold">(</span><span
-                                style="font-family:Cambria; font-weight:bold">.......................</span><span
+                                style="font-family:Cambria; font-weight:bold"><?php echo $ang_nama ?></span><span
                                 style="font-family:Cambria; font-weight:bold">)</span></p>
                     </td>
                 </tr>
             </tbody>
         </table>
         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span style="font-family:Cambria">&nbsp;</span></p>
-        <table style="border-collapse:collapse" cellspacing="0" cellpadding="0">
+        <table id="03" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
-                    <td style="width:149.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                                style="font-family:Cambria">&nbsp;</span></p>
+                    <td style="width:166.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                        
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                                style="font-family:Cambria">Mengetahui</span><span style="font-family:Cambria">,</span>
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
+                                style="font-family:Cambria"></span> Mengetahui <span style="font-family:Cambria"></span>
                         </p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:149.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                                style="font-family:Cambria">Kepala</span><span style="font-family:Cambria"> </span><span
-                                style="font-family:Cambria">Desa</span></p>
+                                style="font-family:Cambria">Kepala Desa</span></p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                                style="font-family:Cambria">&nbsp;</span></p>
+                    
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                                style="font-family:Cambria">............................</span></p>
+                                style="font-family:Cambria"><?php echo $penjamin_data->pen_hubungan ?></span></p>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:149.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
@@ -834,35 +822,30 @@ table#04 {
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width:149.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.10pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                                style="font-family:Cambria; font-weight:bold">( …………………. )</span></p>
+                                style="font-family:Cambria; font-weight:bold">(.....................)</span></p>
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                        <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                                style="font-family:Cambria">&nbsp;</span></p>
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     </td>
-                    <td style="width:149.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <td style="width:166.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
                                 style="font-family:Cambria; font-weight:bold">(</span><span
-                                style="font-family:Cambria; font-weight:bold">.........................</span><span
+                                style="font-family:Cambria; font-weight:bold"><?php echo $penjamin_data->pen_nama ?></span><span
                                 style="font-family:Cambria; font-weight:bold">)</span></p>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
-                style="font-family:Cambria; font-weight:bold">&nbsp;</span></p>
-        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                style="font-family:Cambria; font-weight:bold">&nbsp;</span></p>
+        
     </div>

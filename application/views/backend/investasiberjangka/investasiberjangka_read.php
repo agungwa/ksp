@@ -27,7 +27,9 @@
 	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $ivb_tglpendaftaran; ?></td></tr>
 	    <tr><td>Tanggal Jatuh Tempo</td><td><?php echo $jatuhtempo; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $ivb_status; ?></td></tr>
-	    <tr><td></td><td><a href="<?php echo site_url('investasiberjangka/?p=2') ?>" class="btn btn-default">Batal</a></td></tr>
+	    <tr><td></td><td><a href="<?php echo base_url()?>Printinvestasiberjangka/surat/<?=$ivb_kode?>" class="btn btn-default">Print Surat</a>
+        <a href="<?php echo base_url()?>Printinvestasiberjangka/read/<?=$ivb_kode?>" class="btn btn-default">Print Sertifikat</a>
+        <a href="<?php echo site_url('investasiberjangka/?p=2') ?>" class="btn btn-default">Batal</a></td></tr>
 	</table>
             </div>
         </div>

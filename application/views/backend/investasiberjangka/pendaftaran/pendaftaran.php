@@ -16,8 +16,8 @@
         <div class="form-group">
             <label for="varchar">Anggota </label>
             <div class="input-group">
-            <input type="hidden" name="ang_no" id="ang_no" value="" required="required"/>
-            <input type="text" class="form-control" name="nm_ang_no" id="nm_ang_no" placeholder="Anggota" value="" required="required" readonly/>
+            <input type="hidden" name="ang_no" id="ang_no" value="" required/>
+            <input type="text" class="form-control" name="nm_ang_no" id="nm_ang_no" placeholder="Anggota" required/>
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>anggota/lookup','ang_no');" style="cursor: pointer;">Cari</span>
             </div>
@@ -26,8 +26,8 @@
 	    <div class="form-group">
             <label for="varchar">Karyawan</label>
             <div class="input-group">
-            <input type="hidden" name="kar_kode" id="kar_kode" value="" required="required" />
-            <input type="text" class="form-control" name="nm_kar_kode" id="nm_kar_kode" placeholder="Karyawan" value="" required="required" readonly/>
+            <input type="hidden" name="kar_kode" id="kar_kode" value="" required />
+            <input type="text" class="form-control" name="nm_kar_kode" id="nm_kar_kode" placeholder="Karyawan"  required/>
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>karyawan/lookup','kar_kode');" style="cursor: pointer;">Cari</span>
             </div>
@@ -80,7 +80,7 @@
         </div>
 	    <div class="form-group">
             <label for="datetime">Jumlah</label>
-            <input type="number" class="form-control" min="2000000" name="ivb_jumlah" id="ivb_jumlah" placeholder="Jumlah" value="" required="required" />
+            <input type="number" id="searchTxt" class="form-control" min="2000000" name="ivb_jumlah" id="ivb_jumlah" placeholder="Jumlah" value="" required="required" />
         </div>
 	    <div class="form-group">
             <label for="datetime">Tanggal Pendaftaran</label>
@@ -90,7 +90,7 @@
             <label for="datetime">Tanggal Perpanjangan</label>
             <input type="date" class="form-control" name="ivb_tglperpanjangan" id="ivb_tglperpanjangan" placeholder="Tanggal Perpanjangan" value="" required="required" />
         </div>-->
-	    <button type="submit" class="btn btn-primary">Submit Pendaftaran</button> 
+	    <button type="submit" class="btn btn-primary" onclick="return confirm('Click OK jika benar investasi sejumlah Rp ' + rubah(searchTxt.value))">Submit Pendaftaran</button> 
 	    <a href="<?php echo site_url('investasiberjangka') ?>" class="btn btn-default">Batal</a>
         </div>
         </div>

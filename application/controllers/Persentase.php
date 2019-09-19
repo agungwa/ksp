@@ -31,14 +31,16 @@ class Persentase extends MY_Base
     	//Pokok Angsuran
     	foreach ($angsuranpokok as $key => $value) {
 			if ($f<>'' && $t<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ags_tgljatuhtempo.' + '.$d.' days'));
+			$tgl = date("Y-m-d", strtotime($value->ags_tgljatuhtempo.' + '.$d.' days'));
+			
 			//var_dump($value->ags_id);
-    			if ($jt >= $f && $jt <= $t) {
+    			if ($tgl >= $f && $tgl <= $t) {
     				$saldoPokok += $value->ags_jmlpokok ;
     			}
 			} else {
 				$saldoPokok += $value->ags_jmlpokok;
 		}
+		
 	}
 
 	

@@ -10,8 +10,13 @@ class Anggota extends MY_Base
         parent::__construct();
         $this->load->model('Anggota_model');
         $this->load->model('Settingsimpanan_model');
+        $this->load->model('Pinjaman_model');
+        $this->load->model('Simpanan_model');
+        $this->load->model('Investasiberjangka_model');
+        $this->load->model('Simkesan_model');
         $this->load->model('Simpananpokok_model');
         $this->load->model('Simpananwajib_model');
+        $this->load->model('Setoransimpanan_model');
         $this->load->model('Setoransimpananwajib_model');
         $this->load->model('Penarikansimpananwajib_model');
         $this->load->model('Wilayah_model');
@@ -38,6 +43,12 @@ class Anggota extends MY_Base
             case  5:
                 $this->pengajuan();
                 break;
+            case  6:
+                $this->anggotalist();
+                break;
+            case  7:
+                $this->setoranwajib();
+                break;
                     
             default:
                 $this->pendaftaran();
@@ -52,7 +63,6 @@ class Anggota extends MY_Base
         if ($row) {
         $data = array (
             'ses_min' => set_value('ses_min', $row->ses_min),
-            'kode' => $this->Pengkodean->kode(),
             'content' => 'backend/anggota/anggota',
             'item'=> 'pendaftaran/pengajuan.php',
             'active' => 5,
@@ -153,12 +163,13 @@ class Anggota extends MY_Base
 
     //pendaftaran anggota
     public function pendaftaran(){
+        $nowYear = date('d');
     
         $row = $this->Settingsimpanan_model->get_by_id(2);
         if ($row) {
         $data = array (
             'ses_min' => set_value('ses_min', $row->ses_min),
-            'kode' => $this->Pengkodean->kode(),
+            'kode' => $this->Pengkodean->kode($nowYear),
             'content' => 'backend/anggota/anggota',
             'item'=> 'pendaftaran/pendaftaran.php',
             'active' => 1,
@@ -176,6 +187,7 @@ class Anggota extends MY_Base
                 'ang_noktp' => $this->input->post('ang_noktp',TRUE),
                 'ang_nokk' => $this->input->post('ang_nokk',TRUE),
                 'ang_nohp' => $this->input->post('ang_nohp',TRUE),
+                'ang_tempatlahir' => $this->input->post('ang_tempatlahir',TRUE),
                 'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
                 'ang_status' => 1,
                 'ang_tgl' => $this->tgl,
@@ -376,17 +388,46 @@ class Anggota extends MY_Base
         ob_end_clean();
     }
 
+
+    public function anggotalist()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+
+        $anggota = $this->Anggota_model->get_limit_data($start, $q);
+
+
+        $data = array(
+            'anggota_data' => $anggota,
+            'q' => $q,
+            'start' => $start,
+            'content' => 'backend/anggota/anggota',
+            'item' => 'anggotalist.php',
+            'active' => 6,
+        );
+        $this->load->view(layout(), $data);
+    }
+
+
     public function read($id) 
     {
             
         $row = $this->Anggota_model->get_by_id($id);
         $simpananwajib = $this->Simpananwajib_model->get_data_siw($id);
         $simpananpokok = $this->Simpananpokok_model->get_data_sip($id);
+        $simpanan = $this->Simpanan_model->get_data_byang($id);
+        $pinjaman = $this->Pinjaman_model->get_data_byang($id);
+        $simkesan = $this->Simkesan_model->get_data_byang($id);
+        $investasi = $this->Investasiberjangka_model->get_data_byang($id);
         $ang_status = $this->statusAnggota;
         if ($row) {
             $data = array(
                 'simpananwajib_data' => $simpananwajib,
                 'simpananpokok_data' => $simpananpokok,
+                'simpanan_data' => $simpanan,
+                'pinjaman_data' => $pinjaman,
+                'simkesan_data' => $simkesan,
+                'investasi_data' => $investasi,
 		'ang_no' => $row->ang_no,
 		'ang_nama' => $row->ang_nama,
 		'ang_alamat' => $row->ang_alamat,
@@ -406,6 +447,60 @@ class Anggota extends MY_Base
             redirect(site_url('anggota'));
         }
     }
+
+    
+    public function setoranwajib()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+        $start = intval($this->input->get('start'));
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedatenow = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+        
+        
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedatenow;}
+        $datasetoranwajib = array();
+        $setoranAktif = $this->Simpananwajib_model->get_aktif();
+        $anggota = $this->Anggota_model->get_limit_data($start, $q);
+    	foreach ($setoranAktif as $key => $value) {
+    		$setoran = $this->Setoransimpananwajib_model->get_data_ssw($value->siw_id); 
+            foreach ($setoran as $key=>$item) {
+                $siw_id = $this->db->get_where('Simpananwajib', array('siw_id' => $item->siw_id))->row();
+                $ang_no = $this->db->get_where('Anggota', array('ang_no' => $siw_id->ang_no))->row();
+                //$wil_kode = $sim_kode->wil_kode;
+                $tanggalDuedate = $item->ssw_tglsetor;
+                $f = date("Y-m-d", strtotime($f));
+                $t = date("Y-m-d", strtotime($t));
+
+                if (($tanggalDuedate >= $f && $tanggalDuedate <= $t)) {
+                    $datasetoranwajib[$key] = array(
+                    'ssw_id' => $item->ssw_id,
+                    'siw_id' => $siw_id->ang_no,
+                    'ang_no' => $ang_no->ang_nama,
+                    'ang_alamat' => $ang_no->ang_alamat,
+                    'ssw_tglsetor' => $item->ssw_tglsetor,
+                    'ssw_jmlsetor' => $item->ssw_jmlsetor,
+                    'ssw_tgl' => $item->ssw_tgl,
+                    );
+                }
+            }
+        }
+       // var_dump($datasetoran);
+        $data = array(
+            'datasetoranwajib' => $datasetoranwajib,
+            'q' => $q,
+            'f' => $f,
+            't' => $t,
+            'start' => $start,
+            'content' => 'backend/anggota/anggota',
+            'item' => 'simpananwajib_list.php',
+            'active' => 7,
+        );
+        $this->load->view(layout(), $data);
+    }
+
 
     public function create() 
     {
