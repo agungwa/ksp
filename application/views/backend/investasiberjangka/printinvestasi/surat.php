@@ -183,9 +183,9 @@ table#06 {
                 <tr text-align="justify">
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                                style="font-family:'Calibri Light'; color:#222a35">Pihak kedua menyetor uang/menginvestasikan uang sejumlah <?php echo neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah) ?>) kepada pihak pertama,
+                                style="font-family:'Calibri Light'; color:#222a35">Pihak kedua menyetor uang/menginvestasikan uang sejumlah <?php echo neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah),' Rupiah' ?>) kepada pihak pertama,
                                 Simpanan berjangka selama <?php echo $jwi_id, ' Bulan' ?> terhitung sejak perjanjian ini dan 
-                                di tanda tangani bersama sampai dengan Tanggal <?php echo dateFormataja($jatuhtempo) ?> Dan apabila dari pihak kedua tidak ada konfirmasi,
+                                di tanda tangani bersama sampai dengan <?php echo '<b> Tanggal '.dateFormataja($jatuhtempo).'</b>' ?> Dan apabila dari pihak kedua tidak ada konfirmasi,
                                 maka akan diperpanjang secara otomatis.</span></p>
                     </td>
                 </tr>
@@ -214,6 +214,32 @@ table#06 {
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:justify;">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
                                 style="font-family:'Calibri Light'; color:#222a35">Pihak pertama ( KSP SIDO MUKTI MAKMUR ) menjamin keamanan dan bertanggung jawab atas uang tersebut </span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
+                                style="font-family:'Calibri Light'; font-weight:bold; color:#222a35">Pasal</span><span
+                                style="font-family:'Calibri Light'; font-weight:bold; color:#222a35"> IV</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:justify;">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
+                                style="font-family:'Calibri Light'; color:#222a35">Perjanjian ini berlaku setelah di tanda tangani kedua belah pihak dan di akhiri mengikuti perjanjian yang ada </span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
+                                style="font-family:'Calibri Light'; font-weight:bold; color:#222a35">Pasal</span><span
+                                style="font-family:'Calibri Light'; font-weight:bold; color:#222a35"> V</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:justify;">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
+                                style="font-family:'Calibri Light'; color:#222a35">Apabila ada permasalahan yang timbul di kemudian hari,maka akan di selesaikan dengan musyawarah untuk mencapai mufakat. </span></p>
                     </td>
                 </tr>
                 <tr>

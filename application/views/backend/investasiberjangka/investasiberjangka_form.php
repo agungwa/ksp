@@ -17,7 +17,7 @@
         <div class="col-md-6">
         <div class="form-group">
             <label for="varchar">Rekening Investasi <?php echo form_error('ivb_kode') ?></label>
-            <input type="text" class="form-control" name="ivb_kode" id="ivb_kode" placeholder="Rekening Investasi" value="<?php echo $ivb_kode; ?>" />
+            <input type="text" class="form-control" name="ivb_kode" id="ivb_kode" readonly placeholder="Rekening Investasi" value="<?php echo $ivb_kode; ?>" />
         </div>
         <div class="form-group">
             <label for="varchar">Anggota <?php echo form_error('ang_no') ?></label>
@@ -88,10 +88,10 @@
             <label for="datetime">Tanggal Pendaftaran <?php echo form_error('ivb_tglpendaftaran') ?></label>
             <input type="date" class="form-control" name="ivb_tglpendaftaran" id="todays-date" placeholder="Tanggal Pendaftaran" value="<?php echo $ivb_tglpendaftaran; ?>" />
         </div>
-	    <div class="form-group">
+	    <!--<div class="form-group">
             <label for="datetime">Tanggal Perpanjangan<?php echo form_error('ivb_tglperpanjangan') ?></label>
             <input type="date" class="form-control" name="ivb_tglperpanjangan" id="ivb_tglperpanjangan" placeholder="Tanggal Perpanjangan" value="<?php echo $ivb_tglperpanjangan; ?>" />
-        </div> 
+        </div> -->
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('investasiberjangka') ?>" class="btn btn-default">Batal</a>
         </div>

@@ -83,7 +83,7 @@ table#06 {
             <tr>
                 <td style="width:116.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
-                        <span style="font-family:Cambria">Tanggal Lahir</span></p>
+                        <span style="font-family:Cambria">Tanggal, Tanggal Lahir</span></p>
                 </td>
                 <td style="width:3.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
@@ -91,7 +91,7 @@ table#06 {
                 </td>
                 <td style="width:387.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
-                        <span style="font-family:Cambria"><?php echo dateFormataja($ang_tgllahir) ?></span></p>
+                        <span style="font-family:Cambria"><?php echo $ang_tempatlahir,', ',dateFormataja($ang_tgllahir) ?></span></p>
                 </td>
             </tr>
             <tr>
