@@ -113,7 +113,7 @@ table#06 {
                     </td>
                     <td style="width:295.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
-                                style="font-family:Cambria"><?php echo dateFormataja($ang_tgllahir) ?></span></p>
+                                style="font-family:Cambria"><?php echo $ang_tempatlahir,', ',dateFormataja($ang_tgllahir) ?></span></p>
                     </td>
                 </tr>
                 <!--<tr>

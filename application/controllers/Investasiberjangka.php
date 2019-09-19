@@ -407,26 +407,31 @@ class Investasiberjangka extends MY_Base
     {
         $row = $this->Investasiberjangka_model->get_by_id($id);
 
-        if ($row) {
+        if ($row) { 
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $row->jwi_id))->row();
+            $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $row->jiv_id))->row();
+            $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $row->biv_id))->row();
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('investasiberjangka/update_action'),
 		'ivb_kode' => set_value('ivb_kode', $row->ivb_kode),
 		'ang_no' => set_value('ang_no', $row->ang_no),
-		'nm_ang_no' => set_value('nm_ang_no', $row->ang_nama),
+		'nm_ang_no' => set_value('nm_ang_no', $ang_no->ang_nama),
 		'kar_kode' => set_value('kar_kode', $row->kar_kode),
-		'nm_kar_kode' => set_value('nm_kar_kode', $row->kar_nama),
+		'nm_kar_kode' => set_value('nm_kar_kode', $kar_kode->kar_nama),
 		'wil_kode' => set_value('wil_kode', $row->wil_kode),
-		'nm_wil_kode' => set_value('nm_wil_kode', $row->wil_nama),
+		'nm_wil_kode' => set_value('nm_wil_kode', $wil_kode->wil_nama),
 		'jwi_id' => set_value('jwi_id', $row->jwi_id),
-		'nm_jwi_id' => set_value('nm_jwi_id', $row->jwi_jangkawaktu),
+		'nm_jwi_id' => set_value('nm_jwi_id', $jwi_id->jwi_jangkawaktu),
 		'jiv_id' => set_value('jiv_id', $row->jiv_id),
-		'nm_jiv_id' => set_value('nm_jiv_id', $row->jiv_jasa),
+		'nm_jiv_id' => set_value('nm_jiv_id', $jiv_id->jiv_jasa),
 		'biv_id' => set_value('biv_id', $row->biv_id),
-		'nm_biv_id' => set_value('nm_biv_id', $row->biv_bunga),
+		'nm_biv_id' => set_value('nm_biv_id', $biv_id->biv_bunga),
 		'ivb_tglpendaftaran' => set_value('ivb_tglpendaftaran', $row->ivb_tglpendaftaran),
 		'ivb_tglperpanjangan' => set_value('ivb_tglperpanjangan', $row->ivb_tglperpanjangan),
-		'ivb_status' => set_value('ivb_status', $row->ivb_status),
 	    'content' => 'backend/investasiberjangka/investasiberjangka_form',
 	    );
             $this->load->view(layout(), $data);
@@ -451,8 +456,6 @@ class Investasiberjangka extends MY_Base
 		'jiv_id' => $this->input->post('jiv_id',TRUE),
 		'biv_id' => $this->input->post('biv_id',TRUE),
 		'ivb_tglpendaftaran' => $this->input->post('ivb_tglpendaftaran',TRUE),
-		'ivb_tglperpanjangan' => $this->input->post('ivb_tglperpanjangan',TRUE),
-		'ivb_status' => $this->input->post('ivb_status',TRUE),
 		'ivb_flag' => 1,
 	    );
 
@@ -488,7 +491,6 @@ class Investasiberjangka extends MY_Base
 	$this->form_validation->set_rules('jiv_id', 'jiv id', 'trim|required');
 	$this->form_validation->set_rules('biv_id', 'biv id', 'trim|required');
 	$this->form_validation->set_rules('ivb_tglpendaftaran', 'ivb tglpendaftaran', 'trim|required');
-	$this->form_validation->set_rules('ivb_tglperpanjangan', 'ivb tglperpanjangan', 'trim|required');
 	$this->form_validation->set_rules('ivb_kode', 'ivb_kode', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }

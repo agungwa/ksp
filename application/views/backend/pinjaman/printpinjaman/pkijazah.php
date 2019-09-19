@@ -111,7 +111,7 @@ table#06 {
                     </td>
                     <td style="width:295.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
-                                style="font-family:Cambria"><?php echo dateFormataja($ang_tgllahir) ?></span></p>
+                                style="font-family:Cambria"><?php echo $ang_tempatlahir,', ',dateFormataja($ang_tgllahir) ?></span></p>
                     </td>
                 </tr>
                 <!--<tr>
@@ -217,7 +217,7 @@ table#06 {
                                 style="font-family:Cambria"><?php echo rupiah($angsuran) ?>  X <?php echo $sea_id ?> </span><p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"></p>
                     </td>
                 </tr>
-               <!--<tr>
+               <tr>
                     <td style="width:179.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
                                 style="font-family:Cambria">Tanggal</span><span style="font-family:Cambria">
@@ -230,11 +230,11 @@ table#06 {
                     </td>
                     <td style="width:295.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
-                                style="font-family:Cambria"><?php echo dateFormatTanggal($pin_tglpencairan) ?></span><span style="font-family:Cambria">
+                                style="font-family:Cambria">: 2 </span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">Tiap</span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">bulan</span></p>
                     </td>
-                </tr>-->
+                </tr>
                 <tr>
                     <td style="width:179.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
@@ -243,7 +243,7 @@ table#06 {
                     </td>
                     <td style="width:3.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
-                                style="font-family:Cambria">:</span></p>
+                                style="font-family:Cambria">: </span></p>
                     </td>
                     <td style="width:295.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:11pt"><span
