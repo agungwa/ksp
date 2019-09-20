@@ -81,6 +81,7 @@ class Anggota extends MY_Base
                 'ang_nokk' => $this->input->post('ang_nokk',TRUE),
                 'ang_nohp' => $this->input->post('ang_nohp',TRUE),
                 'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+                'ang_tempatlahir' => $this->input->post('ang_tempatlahir',TRUE),
                 'ang_status' => 0,
                 'ang_tgl' => NUll,
                 'ang_flag' => 0,
@@ -108,6 +109,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => set_value('ang_nokk', $row->ang_nokk),
 		'ang_nohp' => set_value('ang_nohp', $row->ang_nohp),
         'ang_tgllahir' => set_value('ang_tgllahir', $row->ang_tgllahir),
+        'ang_tempatlahir' => set_value('ang_tempatlahir', $row->ang_tempatlahir),
         'content' => 'backend/anggota/pendaftaran/pengajuanupdate',
 	    );
             $this->load->view(layout(), $data);
@@ -126,6 +128,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => $this->input->post('ang_nokk',TRUE),
 		'ang_nohp' => $this->input->post('ang_nohp',TRUE),
         'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+        'ang_tempatlahir' => $this->input->post('ang_tempatlahir',TRUE),
         'ang_status' => 1,
 		'ang_flag' => 1,
 	    );
@@ -559,6 +562,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => set_value('ang_nokk', $row->ang_nokk),
 		'ang_nohp' => set_value('ang_nohp', $row->ang_nohp),
         'ang_tgllahir' => set_value('ang_tgllahir', $row->ang_tgllahir),
+        'ang_tempatlahir' => set_value('ang_tempatlahir', $row->ang_tempatlahir),
         'content' => 'backend/anggota/pendaftaran/pendaftaranedit',
 	    );
             $this->load->view(layout(), $data);
@@ -582,6 +586,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => $this->input->post('ang_nokk',TRUE),
 		'ang_nohp' => $this->input->post('ang_nohp',TRUE),
 		'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+        'ang_tempatlahir' => $this->input->post('ang_tempatlahir',TRUE),
 		'ang_flag' => 1,
 	    );
 

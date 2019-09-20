@@ -170,6 +170,13 @@ table#06 {
                                 style="font-family:'Calibri Light'; font-weight:bold">PIHAK II ( Kedua )</span></p>
                     </td>
                 </tr>
+                <tr text-align="justify">
+                    <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
+                                style="font-family:'Calibri Light'; color:#222a35">Kedua pihak pada hari ini <?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?> telah melakukan kesepakatan 
+                                perjanjian Simpanan Berjangka yang isinya : </span></p>
+                    </td>
+                </tr>
         </table>
         <table id="03" style="border-collapse:collapse" cellspacing="0" cellpadding="0"> 
             <tbody>
@@ -183,7 +190,7 @@ table#06 {
                 <tr text-align="justify">
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                                style="font-family:'Calibri Light'; color:#222a35">Pihak kedua menyetor uang/menginvestasikan uang sejumlah <?php echo neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah),' Rupiah' ?>) kepada pihak pertama,
+                                style="font-family:'Calibri Light'; color:#222a35">Pihak kedua menyetor uang/menginvestasikan uang sejumlah <?php echo 'Rp. ',neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah),' Rupiah' ?>) kepada pihak pertama,
                                 Simpanan berjangka selama <?php echo $jwi_id, ' Bulan' ?> terhitung sejak perjanjian ini dan 
                                 di tanda tangani bersama sampai dengan <?php echo '<b> Tanggal '.dateFormataja($jatuhtempo).'</b>' ?> Dan apabila dari pihak kedua tidak ada konfirmasi,
                                 maka akan diperpanjang secara otomatis.</span></p>
