@@ -82,7 +82,7 @@ class Anggota extends MY_Base
                 'ang_nohp' => $this->input->post('ang_nohp',TRUE),
                 'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
                 'ang_status' => 0,
-                'ang_tgl' => $this->tgl,
+                'ang_tgl' => NUll,
                 'ang_flag' => 0,
                 'ang_info' => "",
 	            );
