@@ -83,7 +83,7 @@ table#06 {
             <tr>
                 <td style="width:116.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt">
-                        <span style="font-family:Cambria">Tanggal, Tanggal Lahir</span></p>
+                        <span style="font-family:Cambria">Tempat,Tanggal Lahir</span></p>
                 </td>
                 <td style="width:3.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; font-size:10pt"><span
@@ -325,17 +325,21 @@ table#06 {
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria">&nbsp;</span></p>
                 </td>
-                <td colspan="2" style="width:130.95pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                <td style="width:116.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
-                        <span style="font-family:Cambria">Jatuh Tempo Pembayaran</span></p>
+                        <span style="font-family:Cambria">Jatuh Tempo Pembayaran</span>
+                        <span style="width:2.10pt; display:inline-block">&nbsp;</span></p>
                 </td>
-                <td style="width:3.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                <td style="width:3.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria">:</span></p>
                 </td>
-                <td colspan="3" style="width:302.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
-                        <span style="font-family:Cambria">Tanggal <?php echo dateFormatTanggal($pin_tglpencairan) ?> Tiap Bulan</span></p>
+                <td colspan="4" style="width:316.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <p
+                        style="margin-top:0pt; margin-left:70.9pt; margin-bottom:0pt; text-indent:-70.9pt; text-align:justify; font-size:10pt">
+                        <span style="font-family:Cambria"> </span>
+                        <span style="font-family:Cambria; font-style:italic">Tanggal <?php echo dateFormatTanggal($pin_tglpencairan) ?> Tiap Bulan
+                        </span>
                 </td>
             </tr>
             <tr>
@@ -347,17 +351,21 @@ table#06 {
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria">&nbsp;</span></p>
                 </td>
-                <td colspan="2" style="width:130.95pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                <td style="width:116.75pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
-                        <span style="font-family:Cambria">Waktu Pelunasan Maksimal</span></p>
+                        <span style="font-family:Cambria">Waktu Pelunasan Maksimal</span>
+                        <span style="width:2.10pt; display:inline-block">&nbsp;</span></p>
                 </td>
-                <td style="width:3.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                <td style="width:3.4pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria">:</span></p>
                 </td>
-                <td colspan="3" style="width:302.15pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                    <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
-                        <span style="font-family:Cambria"><?php echo dateFormataja($tgl_pelunasan) ?></span></p>
+                <td colspan="4" style="width:316.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <p
+                        style="margin-top:0pt; margin-left:70.9pt; margin-bottom:0pt; text-indent:-70.9pt; text-align:justify; font-size:10pt">
+                        <span style="font-family:Cambria"> </span>
+                        <span style="font-family:Cambria; font-style:italic"><?php echo dateFormataja($tgl_pelunasan) ?>
+                        </span>
                 </td>
             </tr>
             <tr>

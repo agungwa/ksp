@@ -24,7 +24,7 @@ table#06 {
                     <td style="width:471.1pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:16pt"><span
                                 style="font-family:Cambria; font-weight:bold; text-decoration:underline">SURAT
-                                PERJANJIAN SIMPANAN BERJANGKA</span></p>
+                                PERJANJIAN INVESTASI BERJANGKA</span></p>
                     </td>
                 </tr>
                 <tr>
@@ -174,7 +174,7 @@ table#06 {
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
                                 style="font-family:'Calibri Light'; color:#222a35">Kedua pihak pada hari ini <?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?> telah melakukan kesepakatan 
-                                perjanjian Simpanan Berjangka yang isinya : </span></p>
+                                perjanjian Investasi Berjangka yang isinya : </span></p>
                     </td>
                 </tr>
         </table>
@@ -191,7 +191,7 @@ table#06 {
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
                                 style="font-family:'Calibri Light'; color:#222a35">Pihak kedua menyetor uang/menginvestasikan uang sejumlah <?php echo 'Rp. ',neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah),' Rupiah' ?>) kepada pihak pertama,
-                                Simpanan berjangka selama <?php echo $jwi_id, ' Bulan' ?> terhitung sejak perjanjian ini dan 
+                                Investasi berjangka selama <?php echo $jwi_id, ' Bulan' ?> terhitung sejak perjanjian ini dan 
                                 di tanda tangani bersama sampai dengan <?php echo '<b> Tanggal '.dateFormataja($jatuhtempo).'</b>' ?> Dan apabila dari pihak kedua tidak ada konfirmasi,
                                 maka akan diperpanjang secara otomatis.</span></p>
                     </td>
@@ -259,7 +259,7 @@ table#06 {
                 <tr>
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:justify;">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                                style="font-family:'Calibri Light'; color:#222a35">Sesuai kesepakatan bersama, deposito yang belum jatuh tempo tidak bisa ditarik.Dikeluarkan sesuai jatuh tempo.</span></p>
+                                style="font-family:'Calibri Light'; color:#222a35">Sesuai kesepakatan bersama, Investasi yang belum jatuh tempo tidak bisa ditarik.Dikeluarkan sesuai jatuh tempo.</span></p>
                     </td>
                 </tr>
             </tbody>
@@ -314,7 +314,7 @@ table#06 {
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
                             <span style="font-family:Cambria">Pihak Pertama</span></p><p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria">Kepala Bagian Deposito</span></p>
+                            <span style="font-family:Cambria">Kepala Bagian Investasi</span></p>
                     </td>
                     <td style="width:176.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p

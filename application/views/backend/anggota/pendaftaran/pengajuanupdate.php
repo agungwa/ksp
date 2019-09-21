@@ -64,7 +64,7 @@
         </div>
         <div class="form-group">
             <label for="number">Setor Simpanan Pokok </label>
-            <input type="number" class="form-control" name="sip_setoran" id="sip_setoran" placeholder="<?php echo $setting_data->ses_min; ?>" value="<?php echo $setting_data->ses_min; ?>" readonly required="required" />
+            <input type="number" class="form-control" name="sip_setoran" id="sip_setoran" placeholder="<?php echo $setting_data->ses_min; ?>" value="<?php echo $setting_data->ses_min; ?>" required="required" />
         </div>
 </div>
 
