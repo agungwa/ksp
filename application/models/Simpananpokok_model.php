@@ -34,7 +34,8 @@ class Simpananpokok_model extends CI_Model
     // get data by ang no
     function get_data_sip($ang_no)
     {
-        $this->db->where('ang_no =',$ang_no);
+        $where = "ang_no = '$ang_no' AND sip_flag < 2";
+        $this->db->where($where);
         return $this->db->get($this->table)->result();
     }
 

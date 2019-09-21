@@ -184,6 +184,7 @@ class DataRekening extends MY_Base
 			} else {
 					$totalRekeninglalu++ ;
 		}
+		//var_dump($totalRekeninglalu);
 		}
 
 		//rekening simpanan masuk
@@ -197,6 +198,7 @@ class DataRekening extends MY_Base
 			} else {
 					$totalRekening++ ;
 		}
+		//var_dump($totalRekening);
 		}
 
 		//rekening simpanan keluar
