@@ -340,7 +340,7 @@ table#06 {
                                 SIDO MUKTI MAKMUR </span><span style="font-family:Cambria">untuk</span><span
                                 style="font-family:Cambria"> </span><span
                                 style="font-family:Cambria">membekukan</span><span style="font-family:Cambria"> saldo
-                                Tabungan Investasi Berjangka saya</span><span
+                                Simpanan Investasi Berjangka saya</span><span
                                 style="font-family:Cambria"> </span><span style="font-family:Cambria">sesuai</span><span
                                 style="font-family:Cambria"> </span><span style="font-family:Cambria">saldo</span><span
                                 style="font-family:Cambria"> </span><span
@@ -358,7 +358,7 @@ table#06 {
                             </span><span style="font-family:Cambria">diatas</span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">saya</span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">menjaminkan</span><span
-                                style="font-family:Cambria"> buku tabungan Investasi Berjangka </span><span
+                                style="font-family:Cambria"> buku Simpanan Investasi Berjangka </span><span
                                 style="font-family:Cambria">:</span></p>
                     </td>
                 </tr>

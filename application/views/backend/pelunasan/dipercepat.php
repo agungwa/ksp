@@ -119,7 +119,12 @@
             </tbody>
         </table>
         <div class="ibox-content">
-                <?php 
+                <?php
+                if ($datatglsekarang == null) {
+                $datatglsekarang = new stdClass();
+                $datatglsekarang->ang_angsuranke =  $datatglsekarang->ags_jmlpokok = 
+                $datatglsekarang->ags_jmlbunga = $datatglsekarang->ags_jmlbayar = 0;
+            }
                 if ($histori != null) {
                 
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $pinjaman['ang_no']))->row();
@@ -145,7 +150,7 @@
                 <tr><td>Bunga/Bulan</td><td><?php echo rupiah($item->ags_jmlbunga)?><input type="hidden" class="form-control" name="pel_bungaangsuran" id="pel_bungaangsuran" placeholder="<?php echo ceiling($item->ags_jmlbunga,1000); ?>" value="<?php echo ceiling($item->ags_jmlbunga,1000); ?>" readonly/></td></tr>
                 <tr><td>Total Kurang Pokok</td><td><?php echo rupiah($item->ags_jmlpokok*$kali)?><input type="hidden" class="form-control" name="pel_totalkekuranganpokok" id="pel_totalkekuranganpokok" placeholder="<?php echo ceiling($item->ags_jmlpokok*$kali,1000); ?>" value="<?php echo ceiling($item->ags_jmlpokok*$kali,1000); ?>" readonly/></td></tr>
                 <tr><td>Total Bunga</td><td><?php echo rupiah($item->ags_jmlbunga*$datatglsekarang->ang_angsuranke)?><input type="hidden" class="form-control" name="pel_totalbungapokok" id="pel_totalbungapokok" placeholder="<?php echo ceiling($item->ags_jmlbunga*$datatglsekarang->ang_angsuranke,1000); ?>" value="<?php echo ceiling($item->ags_jmlbunga*$datatglsekarang->ang_angsuranke,1000); ?>" readonly/></td></tr>
-                <tr><td>Bunga Pelunasan</td><td><?php echo rupiah($bungadenda)?><input type="hidden" class="form-control" name="pel_bungatambahan" id="pel_bungatambahan" placeholder="<?php echo ceiling($bungadenda); ?>" value="<?php echo ceiling($bungadenda,1000); ?>" readonly/></td></tr>
+                <tr><td>Bunga Pelunasan</td><td><?php echo rupiah($item->ags_jmlbunga)?><input type="hidden" class="form-control" name="pel_bungatambahan" id="pel_bungatambahan" placeholder="<?php echo ceiling($item->ags_jmlbunga); ?>" value="<?php echo ceiling($item->ags_jmlbunga,1000); ?>" readonly/></td></tr>
                 <tr><td>Total Denda</td><td><?php echo rupiah($totaldenda)?><input type="hidden" class="form-control" name="pel_totaldenda" id="pel_totaldenda" placeholder="<?php echo ceiling($totaldenda,1000); ?>" value="<?php echo ceiling($totaldenda,1000); ?>" readonly/></td></tr>
                 <tr><td>Tanggal Pelunasan</td><td><?php echo dateFormat($this->tgl); ?></td></tr>
                 <tr><td>Marketing</td><td><?php echo $pinjaman['pin_marketing']; ?></td></tr>

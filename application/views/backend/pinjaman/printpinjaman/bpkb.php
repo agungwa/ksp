@@ -195,7 +195,7 @@ table#06 {
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria">Saya menyatakan telah menerima uang sebesar Rp </span>
                         <span style="font-family:Cambria"><?php echo rupiah($pin_pinjaman) ?> -
-                            (<?php echo ' ',terbilang($pin_pinjaman),' Rupiah ' ?>) dari KSP Sido Mukti
+                            (<?php echo ' ',terbilang(ceiling($pin_pinjaman)),' Rupiah ' ?>) dari KSP Sido Mukti
                             Makmur.</span></p>
                 </td>
             </tr>
@@ -237,7 +237,7 @@ table#06 {
                         <span style="font-family:Cambria"><?php echo rupiah($angsuranpokok) ?></span>
                         <span style="font-family:Cambria">,-&nbsp; (</span>
                         <span
-                            style="font-family:Cambria; font-style:italic"><?php echo terbilang($angsuranpokok) ?></span>
+                            style="font-family:Cambria; font-style:italic"><?php echo terbilang(ceiling($angsuranpokok)) ?></span>
                         <span style="font-family:Cambria; font-style:italic">)</span></p>
                 </td>
             </tr>
@@ -261,7 +261,7 @@ table#06 {
                 <td colspan="4" style="width:316.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span
-                            style="font-family:Cambria"><?php echo rupiah($angsuranbunga) ?>,-&nbsp;(<?php echo ' ',terbilang($angsuranbunga),' ' ?>)</span>
+                            style="font-family:Cambria"><?php echo rupiah($angsuranbunga) ?>,-&nbsp;(<?php echo ' ',terbilang(ceiling($angsuranbunga)),' ' ?>)</span>
                     </p>
                 </td>
             </tr>
@@ -285,7 +285,7 @@ table#06 {
                 <td colspan="4" style="width:316.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                     <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt">
                         <span style="font-family:Cambria"><?php echo rupiah($angsuran) ?>,-&nbsp;
-                            (<?php echo ' ',terbilang($angsuran),' ' ?>)</span></p>
+                            (<?php echo ' ',terbilang(ceiling($angsuran)),' ' ?>)</span></p>
                 </td>
             </tr>
             <tr>

@@ -122,7 +122,7 @@ class Pinjaman extends MY_Base
         //$data_image = array('upload_data' => $this->upload->data());
 		$location=base_url().'upload/survey';
         //$pict=$location.$data_image;
-        var_dump($file);
+       // var_dump($file);
         $dataPinjaman = array(
             'pin_survey' => $file,
             'pin_statuspinjaman' => 1,

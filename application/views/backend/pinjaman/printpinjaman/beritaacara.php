@@ -440,7 +440,7 @@ table#05 {
                             <span style="font-family:'Calibri Light'">BPKB tersebut diatas digunakan sebagai Jaminan
                                 Hutang pada KSP Sido Mukti Makmur senilai:&nbsp;<?php echo rupiah($pin_pinjaman) ?> </span><span
                                 style="font-family:'Calibri Light'">- </span><span
-                                style="font-family:'Calibri Light'; font-style:italic">(<?php echo terbilang($pin_pinjaman) ?>&nbsp;Rupiah)</span></p>
+                                style="font-family:'Calibri Light'; font-style:italic">(<?php echo terbilang(ceiling($pin_pinjaman,1000)) ?>&nbsp;Rupiah)</span></p>
                     </td>
                 </tr>
                 <tr>
@@ -460,7 +460,7 @@ table#05 {
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:'Calibri Light'"> : <?php echo rupiah($angsuranpokok) ?></span><span style="font-family:'Calibri Light'">,-&nbsp;
-                                (<?php echo terbilang($angsuranpokok) ?>&nbsp;Rupiah)</span></p>
+                                (<?php echo terbilang(ceiling($angsuranpokok,1000)) ?>&nbsp;Rupiah)</span></p>
                     </td>
                 </tr>
                 <tr>
@@ -479,7 +479,7 @@ table#05 {
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:'Calibri Light'"> : <?php echo rupiah($angsuranbunga) ?></span><span style="font-family:'Calibri Light'">,-&nbsp;
-                                (<?php echo terbilang($angsuranbunga) ?>&nbsp;Rupiah)</span></p>
+                                (<?php echo terbilang(ceiling($angsuranbunga,1000)) ?>&nbsp;Rupiah)</span></p>
                     </td>
                 </tr>
                 <tr>
@@ -498,7 +498,7 @@ table#05 {
                     <td colspan="2" style="width:337.55pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:10pt"><span
                                 style="font-family:'Calibri Light'"> : <?php echo rupiah($angsuran) ?>,-&nbsp;
-                                (<?php echo terbilang($angsuran) ?>&nbsp;Rupiah)</span></p>
+                                (<?php echo terbilang(ceiling($angsuran,1000)) ?>&nbsp;Rupiah)</span></p>
                     </td>
                 </tr>
                 <tr>
