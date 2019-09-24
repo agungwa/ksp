@@ -48,7 +48,8 @@ class PrintPinjaman extends MY_Base
     	$provisiPinjaman = 0;
     	$bungaDendapelunasan = 0;
     	$totalAngsuran = 0;
-    	$totalAngsurantunggakan = 0;
+		$totalAngsurantunggakan = 0;
+		$pokokSudahbayar = 0;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
 		$tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
@@ -106,9 +107,11 @@ class PrintPinjaman extends MY_Base
 			//var_dump($value->ags_id);
     			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
     				$pokokAngsuranpelunasan += $value->pel_totalkekuranganpokok ;
+    				$pokokSudahbayar += $value->pel_pokoksudahbayar ;
     			}
 			} else {
 				$pokokAngsuranpelunasan += $value->pel_totalkekuranganpokok;
+				$pokokSudahbayar += $value->pel_pokoksudahbayar;
 		}
 	}
 
@@ -168,20 +171,6 @@ class PrintPinjaman extends MY_Base
 				$provisiPinjaman += $value->pin_pinjaman*$pop_id->pop_potongan/100;
 		}
 	}
-
-   	//hitung saldo total pokok pelunasan
-	   foreach ($pelunasanPinjaman as $key => $value) {
-		$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-		if ($f<>'' && $t<>'' && $w<>'') {	
-		$jt = date("Y-m-d", strtotime($value->pel_tglpelunasan));
-		//var_dump($value->ags_id);
-			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
-				$pokokAngsuranpelunasan += $value->pel_totalkekuranganpokok ;
-			}
-		} else {
-			$pokokAngsuranpelunasan += $value->pel_totalkekuranganpokok;
-	}
-}
 
 		   	//hitung saldo bunga denda pelunasan
     	foreach ($pelunasanPinjaman as $key => $value) {
@@ -274,6 +263,7 @@ class PrintPinjaman extends MY_Base
 			'saldodroppinjaman' => $saldoDroppinjaman,
 			'saldolalupinjaman' => $saldoLalupinjaman,
 			'pokokangsuran' => $pokokAngsuran,
+			'pokoksudahbayar' => $pokokSudahbayar,
 			'pokokangsuranpelunasan' => $pokokAngsuranpelunasan,
 			'bungaangsuran' => $bungaAngsuran,
 			'bungadendapelunasan' => $bungaDendapelunasan,

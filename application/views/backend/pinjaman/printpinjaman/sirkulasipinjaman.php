@@ -96,11 +96,11 @@ h5{text-align: center}
             </tr>
             <tr>
                 <td>Rekening Lalu</td>
-				<td><?= $totalrekening;?></td>
+				<td><?= $totalrekeninglalu+$totalrekeningkeluar;?></td>
             </tr>
             <tr>
                 <td>Rekening Masuk</td>
-				<td><?= $totalrekeninglalu;?></td>
+				<td><?= $totalrekening;?></td>
             </tr>
             <tr>
                 <td>Rekening Keluar</td>
@@ -108,7 +108,7 @@ h5{text-align: center}
             </tr>
             <tr>
                 <td>Rekening Kini</td>
-				<td><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar;?></td>
+				<td><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar+$totalrekeningkeluar;?></td>
             </tr>
             </tbody>
         </table>

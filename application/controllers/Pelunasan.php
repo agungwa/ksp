@@ -103,6 +103,7 @@ class Pelunasan extends MY_Base
 		'pel_tenor' => $this->input->post('pel_tenor',TRUE),
 		'pel_angsuran' => $this->input->post('pel_angsuran',TRUE),
 		'pel_bungaangsuran' => $this->input->post('pel_bungaangsuran',TRUE),
+		'pel_pokoksudahbayar' => $this->input->post('pel_pokoksudahbayar',TRUE),
 		'pel_totalkekuranganpokok' => $this->input->post('pel_totalkekuranganpokok',TRUE),
 		'pel_totalbungapokok' => $this->input->post('pel_totalbungapokok',TRUE),
 		'pel_bungatambahan' => $this->input->post('pel_bungatambahan',TRUE),
