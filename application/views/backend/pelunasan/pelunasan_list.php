@@ -48,7 +48,7 @@
 		<th class="text-center">Total Denda</th>
 		<th class="text-center">Biaya Penarikan</th>
 		<th class="text-center">Tanggal Pelunasan</th>
-		<th class="text-center">Action</th>
+		<!--<th class="text-center">Action</th>-->
             </tr>
             </thead>
 			<tbody><?php
@@ -67,7 +67,7 @@
 			<td><?php echo rupiah($pelunasan->pel_totaldenda) ?></td>
 			<td><?php echo rupiah($pelunasan->pel_biayapenarikan) ?></td>
 			<td><?php echo $pelunasan->pel_tglpelunasan ?></td>
-			<td style="text-align:center" width="200px">
+			<!--<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('pelunasan/read/'.$pelunasan->pel_id),'Read','class="text-navy"'); 
 				echo ' | '; 
@@ -75,7 +75,7 @@
 				echo ' | '; 
 				echo anchor(site_url('pelunasan/delete/'.$pelunasan->pel_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
-			</td>
+			</td>-->
 		</tr>
                 
                 <?php
