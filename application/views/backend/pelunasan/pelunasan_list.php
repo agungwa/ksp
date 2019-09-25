@@ -59,11 +59,11 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $pelunasan->pin_id ?></td>
 			<td><?php echo $pelunasan->pel_jenis ?></td>
-			<td><?php echo $pelunasan->pel_totalkekuranganpokok ?></td>
-			<td><?php echo $pelunasan->pel_totalbungapokok ?></td>
-			<td><?php echo $pelunasan->pel_bungatambahan ?></td>
-			<td><?php echo $pelunasan->pel_totaldenda ?></td>
-			<td><?php echo $pelunasan->pel_biayapenarikan ?></td>
+			<td><?php echo rupiah($pelunasan->pel_totalkekuranganpokok) ?></td>
+			<td><?php echo rupiah($pelunasan->pel_totalbungapokok) ?></td>
+			<td><?php echo rupiah($pelunasan->pel_bungatambahan) ?></td>
+			<td><?php echo rupiah($pelunasan->pel_totaldenda) ?></td>
+			<td><?php echo rupiah($pelunasan->pel_biayapenarikan) ?></td>
 			<td><?php echo $pelunasan->pel_tglpelunasan ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 

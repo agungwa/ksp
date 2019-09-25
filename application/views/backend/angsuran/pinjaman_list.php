@@ -87,8 +87,8 @@
     			<td><?php echo $item['ang_no'] ?></td>
     			<td><?php echo $item['sea_id']," Bulan" ?></td>
     			<td><?php echo $item['wil_kode'] ?></td>
-    			<td><?php echo "Rp ",$item['pin_pengajuan'] ?></td>
-    			<td><?php echo "Rp ",$item['pin_pinjaman'] ?></td>
+    			<td><?php echo rupiah($item['pin_pengajuan']) ?></td>
+    			<td><?php echo rupiah($item['pin_pinjaman']) ?></td>
     			<td><?php echo dateFormat($item['pin_tglpengajuan']); ?></td>
     			<td><?php echo dateFormat($item['pin_tglpencairan']); ?></td>
     			<td><?php echo $item['pin_statuspinjaman'] ?></td>
