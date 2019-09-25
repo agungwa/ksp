@@ -54,11 +54,13 @@
 			<tbody><?php
             foreach ($pelunasan_data as $pelunasan)
             {
+                $pel_jenis = $this->db->get_where('jenispelunasan', array('jep_id' => $pelunasan->pel_jenis))->row();
+
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $pelunasan->pin_id ?></td>
-			<td><?php echo $pelunasan->pel_jenis ?></td>
+			<td><?php echo $pel_jenis->jep_jenis ?></td>
 			<td><?php echo rupiah($pelunasan->pel_totalkekuranganpokok) ?></td>
 			<td><?php echo rupiah($pelunasan->pel_totalbungapokok) ?></td>
 			<td><?php echo rupiah($pelunasan->pel_bungatambahan) ?></td>
