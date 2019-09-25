@@ -117,6 +117,7 @@ class Pelunasan extends MY_Base
             $this->Pelunasan_model->insert($dataPeluanasan);
         $dataPinjaman = array(
             'pin_statuspinjaman' => 3,
+            'pin_tglpelunasan' => $this->tgl,
         );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
             redirect(site_url('pelunasan/?p=1'));
