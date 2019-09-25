@@ -244,9 +244,9 @@ class PrintPinjaman extends MY_Base
 	//Rekening pinjaman Keluar
 	foreach ($pinjamanNonaktif as $key => $value) {
 		if ($f<>'' && $t<>'' && $w<>'') {	
-		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
+		$jt = date("Y-m-d", strtotime($value->pin_tglpelunasan));
 		//var_dump($value->ags_id);
-			if (($jt < $f && 'all'==$w) || ($jt < $f && $value->wil_kode==$w))  {
+			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
 				$totalRekeningkeluar++ ;
 			}
 		} else {
