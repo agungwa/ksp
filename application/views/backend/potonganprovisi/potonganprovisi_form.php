@@ -16,7 +16,7 @@
         <div class="col-md-4">
 	    <div class="form-group">
             <label for="float">Potongan (persen)<?php echo form_error('pop_potongan') ?></label>
-            <input type="number" class="form-control" name="pop_potongan" id="pop_potongan" placeholder="Potongan" value="<?php echo $pop_potongan; ?>" />
+            <input type="text" class="form-control numeric" name="pop_potongan" id="pop_potongan" placeholder="Potongan" value="<?php echo $pop_potongan; ?>" />
         </div>
 	    <input type="hidden" name="pop_id" value="<?php echo $pop_id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
