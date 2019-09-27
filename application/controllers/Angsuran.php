@@ -160,6 +160,7 @@ class Angsuran extends MY_Base
         $karyawan = $this->Karyawan_model->get_all();
         $datapinjaman=array();
         foreach ($pinjaman as $key=>$item) {
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
             if (
                 ( $w=='all' && $s=='all' && $k=='all' && $u=='all') || 
                 ( $w==$item->wil_kode && $s=='all' && $k=='all' && $u=='all') || 
@@ -178,7 +179,6 @@ class Angsuran extends MY_Base
                 ( $w==$item->wil_kode && $s=='all' && $k==$item->pin_marketing && $u==$item->pin_id) || 
                 ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u==$item->pin_id))
                 {
-                    $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
                     $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $item->sea_id))->row();
                     $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $item->bup_id))->row();
                     $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $item->pop_id))->row();
