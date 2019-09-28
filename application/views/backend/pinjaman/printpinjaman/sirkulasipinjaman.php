@@ -64,7 +64,7 @@ h5{text-align: center}
             <tbody>
             <tr>
                 <td>Saldo Pinjaman Lalu</td>
-				<td><?= neraca($saldolalupinjaman);?></td>
+				<td><?= neraca($saldolalupinjaman+$pokokangsuran+$pokokangsuranpelunasan);?></td>
             </tr>
             <tr>
                 <td>Saldo Drop</td>
@@ -76,7 +76,7 @@ h5{text-align: center}
             </tr>
             <tr>
                 <td>Saldo Kini</td>
-				<td><?= neraca(($saldolalupinjaman+$saldodroppinjaman)-($pokokangsuran+$pokokangsuranpelunasan));?></td>
+				<td><?= neraca(($saldolalupinjaman+$saldodroppinjaman+$pokokangsuran+$pokokangsuranpelunasan)-($pokokangsuran+$pokokangsuranpelunasan));?></td>
             </tr>
             <tr>
                 <td>Bunga Angsuran</td>
