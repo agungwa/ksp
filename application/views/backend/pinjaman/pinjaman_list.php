@@ -74,7 +74,7 @@
             </tr>
             </thead>
             <tbody><?php
-            
+            $total = 0 ;
             foreach ($datapinjaman as $key=>$item)
             {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $item['ang_no']))->row();
@@ -83,6 +83,7 @@
                 $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $item['pop_id']))->row();
                 $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $item['skp_id']))->row();
                 $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item['wil_kode']))->row();
+                $total += $item['pin_pinjaman'];
                 ?>
                 <tr>
     			<td width="80px"><?php echo ++$start ?></td>
@@ -124,6 +125,8 @@
                 <?php
             }
             ?>
+            <tr class="danger"><td></td><td>Total Pinjaman</td><td></td><td></td><td></td><td></td><td></td><td><?php echo rupiah($total) ?></td></tr>
+            
             </tbody>
         </table>
         <div id="tallModal" class="modal modal-wide fade">

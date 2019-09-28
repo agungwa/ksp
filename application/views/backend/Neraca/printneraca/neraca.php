@@ -123,7 +123,7 @@ table#04 {
                     <td
                         style="width:116.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; background-color:#bdd6ee">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt"><span
-                                style="font-family:Calibri"><?= neraca($jkp);?></span></p>
+                                style="font-family:Calibri"><?= neraca($jkl);?></span></p>
                     </td>
                 </tr>
                 <tr>

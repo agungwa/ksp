@@ -389,6 +389,7 @@ class Simpanan extends MY_Base
         
         $row = $this->Simpanan_model->get_by_id($id);
         $setoran = $this->Setoransimpanan_model->get_data_setor($id);
+        $bungasetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($id);
         if ($row) {
             $sim_status = $this->statusSimpanan;
             $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $row->jsi_id))->row();
@@ -398,6 +399,7 @@ class Simpanan extends MY_Base
             $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
             $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
             $data = array(
+                'bungasetoran' => $bungasetoran,
         'setoran_data' => $setoran,
 		'sim_kode' => $row->sim_kode,
 		'ang_no' => $ang_no->ang_nama,
