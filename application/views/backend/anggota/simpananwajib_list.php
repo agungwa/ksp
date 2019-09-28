@@ -44,7 +44,7 @@
             </thead>
 			<tbody><?php
             $total = 0;
-            foreach ($datasetoranwajib as $key => $item)
+            foreach ($datasetoranwajib as $k => $item)
             {
                 $total += $item['ssw_jmlsetor'];
                 ?>
@@ -61,9 +61,8 @@
 				<?php 
 				echo anchor(site_url('setoransimpananwajib/read/'.$item['ssw_id']),'Read','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('setoransimpananwajib/update/'.$item['ssw_id']),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('setoransimpananwajib/delete/'.$item['ssw_id']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('setoransimpananwajib/update/'.$item['ssw_id']),'Update','class="text-navy" onclick="javascript: return confirm(\'Yakin Update data?\')"'); 
+				
 				?>
 			</td>
         <?php endif; ?>

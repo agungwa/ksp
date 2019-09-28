@@ -459,6 +459,7 @@ class Anggota extends MY_Base
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
         $satu = 1;
+        $n=1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
         $tanggalDuedatenow = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
         
@@ -469,7 +470,7 @@ class Anggota extends MY_Base
         $anggota = $this->Anggota_model->get_limit_data($start, $q);
     	foreach ($setoranAktif as $key => $value) {
     		$setoran = $this->Setoransimpananwajib_model->get_data_ssw($value->siw_id); 
-            foreach ($setoran as $key=>$item) {
+            foreach ($setoran as $k=>$item) {
                 $siw_id = $this->db->get_where('Simpananwajib', array('siw_id' => $item->siw_id))->row();
                 $ang_no = $this->db->get_where('Anggota', array('ang_no' => $siw_id->ang_no))->row();
                 //$wil_kode = $sim_kode->wil_kode;
@@ -478,7 +479,7 @@ class Anggota extends MY_Base
                 $t = date("Y-m-d", strtotime($t));
 
                 if (($tanggalDuedate >= $f && $tanggalDuedate <= $t)) {
-                    $datasetoranwajib[$key] = array(
+                    $datasetoranwajib[$n] = array(
                     'ssw_id' => $item->ssw_id,
                     'siw_id' => $siw_id->ang_no,
                     'ang_no' => $ang_no->ang_nama,
@@ -487,6 +488,7 @@ class Anggota extends MY_Base
                     'ssw_jmlsetor' => $item->ssw_jmlsetor,
                     'ssw_tgl' => $item->ssw_tgl,
                     );
+                    $n++;
                 }
             }
         }
