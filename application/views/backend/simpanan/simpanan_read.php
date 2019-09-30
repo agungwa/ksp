@@ -61,7 +61,7 @@
             <tr>
                 <th class="text-center">No</th>
 		<th class="text-center">Saldo simpanan</th>
-		<th class="text-center">Saldo Sekarang (Pokok+Bunga)</th>
+		<th class="text-center">Bunga/bulan</th>
 		<th class="text-center">Tanggal Bunga</th>
             </tr>
             </thead>
@@ -69,18 +69,15 @@
             $no =1;
             $phbuku = 20000;
             $administasi = 1/100;
-            $totalsaldo = 0;
+            $totalbunga = 0;
             foreach ($bungasetoran as $databunga)
             { 
-                $totalsaldo += $databunga->bss_saldobulanini;
-                $pes_administrasi = $totalsaldo*$administasi;
-                $pes_jmltarik = $totalsaldo - $pes_administrasi - $phbuku;
-                $bunga = $totalsaldo-$total_setoran;
+                $totalbunga += $databunga->bss_bungabulanini;
                 ?>
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $databunga->sim_kode ?></td>
-			<td><?php echo $databunga->bss_saldobulanini ?></td>
+			<td><?php echo $databunga->bss_bungabulanini?></td>
 			<td><?php echo $databunga->bss_tglbunga ?></td>
             </td>
             </tr>    <?php
@@ -88,7 +85,10 @@
             }
             
             ?></tbody>
+            <tr class="danger"><td></td><td>Total Saldo (setoran+bunga)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><?php echo $total_setoran+$totalbunga ?></td></tr>
+            
         </table>
+            
             </div>
         </div>
     </div>
