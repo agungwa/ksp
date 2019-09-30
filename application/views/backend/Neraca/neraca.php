@@ -67,7 +67,7 @@
             <h4> AKTIVA LANCAR </h4>
             <tr>
                 <td class="text-left">Kas</td>
-				<td class="text-left" ><?= neraca($kas);?></td>
+				<td class="text-left" ><?= rupiahsimpanan($kas);?></td>
             </tr>
             <tr>
                 <td class="text-left">Kas diBank</td>
