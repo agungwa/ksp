@@ -12,6 +12,7 @@ class Angsuran extends MY_Base
         $this->load->model('Wilayah_model');
         $this->load->model('Karyawan_model');
         $this->load->model('Pinjaman_model');
+        $this->load->model('Jaminan_model');
         $this->load->model('Settingdenda_model');
         $this->load->model('Dendaangsuran_model');
         $this->load->library('form_validation');
@@ -398,6 +399,7 @@ class Angsuran extends MY_Base
         }
 
         $data = array(
+            
             'dataangsuran' => $dataangsuran,
             'angsuran_data' => $angsuran,
             'q' => $q,

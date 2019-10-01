@@ -32,6 +32,7 @@ class Datapinjaman extends MY_Base
 
 		
 		$totalRekening = 0;
+		$saldolunaskini = 0;
 		$totalRekeninglalu = 0;
 		$totalRekeningkeluar = 0;
 		$satu = 1;
@@ -80,6 +81,20 @@ class Datapinjaman extends MY_Base
 				$saldoLalupinjaman += $value->pin_pinjaman;
 		}
 	}
+
+	//hitung saldo pinjaman lunas kini
+	foreach ($pinjamanNonaktif as $key => $value) {
+		if ($f<>'' && $t<>'' && $w<>'') {	
+		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
+		//var_dump($value->ags_id);
+			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
+				$saldolunaskini += $value->pin_pinjaman ;
+			}
+		} else {
+			$saldolunaskini += $value->pin_pinjaman ;
+	}
+}
+
 
     	//hitung saldo angsuran pokok dari angsuran status bayar
     	foreach ($angsuranBayar as $key => $value) {
@@ -255,7 +270,8 @@ class Datapinjaman extends MY_Base
 			'totalrekening' => $totalRekening,
 			'totalrekeninglalu' => $totalRekeninglalu,
 			'totalrekeningkeluar' => $totalRekeningkeluar,
-            'wilayah_data' => $wilayah,
+			'wilayah_data' => $wilayah,
+			'saldolunaskini' => $saldolunaskini,
 			'saldodroppinjaman' => $saldoDroppinjaman,
 			'saldolalupinjaman' => $saldoLalupinjaman,
 			'pokokangsuran' => $pokokAngsuran,

@@ -64,11 +64,11 @@ h5{text-align: center}
             <tbody>
             <tr>
                 <td>Saldo Pinjaman Lalu</td>
-				<td><?= neraca($saldolalupinjaman+$pokokangsuran+$pokokangsuranpelunasan);?></td>
+				<td><?= neraca($saldolalupinjaman);?></td>
             </tr>
             <tr>
                 <td>Saldo Drop</td>
-				<td><?= neraca($saldodroppinjaman);?></td>
+				<td><?= neraca($saldodroppinjaman+$saldolunaskini);?></td>
             </tr>
             <tr>
                 <td>Angsuran Masuk (pokok)</td>
@@ -76,7 +76,7 @@ h5{text-align: center}
             </tr>
             <tr>
                 <td>Saldo Kini</td>
-				<td><?= neraca(($saldolalupinjaman+$saldodroppinjaman+$pokokangsuran+$pokokangsuranpelunasan)-($pokokangsuran+$pokokangsuranpelunasan));?></td>
+				<td><?= neraca($saldolalupinjaman+$saldodroppinjaman);?></td>
             </tr>
             <tr>
                 <td>Bunga Angsuran</td>
@@ -96,11 +96,11 @@ h5{text-align: center}
             </tr>
             <tr>
                 <td>Rekening Lalu</td>
-				<td><?= $totalrekeninglalu+$totalrekeningkeluar;?></td>
+				<td><?= $totalrekeninglalu;?></td>
             </tr>
             <tr>
                 <td>Rekening Masuk</td>
-				<td><?= $totalrekening;?></td>
+				<td><?= $totalrekening+$totalrekeningkeluar;?></td>
             </tr>
             <tr>
                 <td>Rekening Keluar</td>
@@ -108,7 +108,7 @@ h5{text-align: center}
             </tr>
             <tr>
                 <td>Rekening Kini</td>
-				<td><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar+$totalrekeningkeluar;?></td>
+				<td><?= $totalrekeninglalu+$totalrekening;?></td>
             </tr>
             </tbody>
         </table>

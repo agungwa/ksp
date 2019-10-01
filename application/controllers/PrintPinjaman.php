@@ -25,6 +25,7 @@ class PrintPinjaman extends MY_Base
     	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
 
+    	$pinjamanAll = $this->Pinjaman_model->get_all();
     	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
     	$pinjamanNonaktif = $this->Pinjaman_model->get_pinjaman_nonaktif();
     	$angsuranBayar = $this->Angsuran_model->get_angsuran_bayar();
@@ -36,6 +37,7 @@ class PrintPinjaman extends MY_Base
 
 		
 		$totalRekening = 0;
+		$saldolunaskini = 0;
 		$totalRekeninglalu = 0;
 		$totalRekeningkeluar = 0;
 		$satu = 1;
@@ -84,6 +86,20 @@ class PrintPinjaman extends MY_Base
 				$saldoLalupinjaman += $value->pin_pinjaman;
 		}
 	}
+
+	//hitung saldo pinjaman lunas kini
+	foreach ($pinjamanNonaktif as $key => $value) {
+		if ($f<>'' && $t<>'' && $w<>'') {	
+		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
+		//var_dump($value->ags_id);
+			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
+				$saldolunaskini += $value->pin_pinjaman ;
+			}
+		} else {
+			$saldolunaskini += $value->pin_pinjaman ;
+	}
+}
+
 
     	//hitung saldo angsuran pokok dari angsuran status bayar
     	foreach ($angsuranBayar as $key => $value) {
@@ -259,7 +275,8 @@ class PrintPinjaman extends MY_Base
 			'totalrekening' => $totalRekening,
 			'totalrekeninglalu' => $totalRekeninglalu,
 			'totalrekeningkeluar' => $totalRekeningkeluar,
-            'wilayah_data' => $wilayah,
+			'wilayah_data' => $wilayah,
+			'saldolunaskini' => $saldolunaskini,
 			'saldodroppinjaman' => $saldoDroppinjaman,
 			'saldolalupinjaman' => $saldoLalupinjaman,
 			'pokokangsuran' => $pokokAngsuran,
