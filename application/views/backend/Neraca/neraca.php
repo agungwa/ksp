@@ -67,7 +67,7 @@
             <h4> AKTIVA LANCAR </h4>
             <tr>
                 <td class="text-left">Kas</td>
-				<td class="text-left" ><?= rupiahsimpanan($kas);?></td>
+				<td class="text-left" ><?= rupiah($kas);?></td>
             </tr>
             <tr>
                 <td class="text-left">Kas diBank</td>
@@ -87,7 +87,7 @@
             </tr>
             <tr class='info'>
             <td class="text-left">Jumlah Aktiva Lancar</td>
-                <td class="text-left" width="380px"><?= rupiahsimpanan($jal);?></td>
+                <td class="text-left" width="380px"><?= rupiah($jal);?></td>
             </td>
             </tr>
             </tbody>
@@ -129,7 +129,7 @@
             <tbody class="thead-light">
             <tr class='danger'>
                 <td class="text-left">Jumlah</td>
-				<td class="text-left"><?= rupiahsimpanan($jat+$jal);?></td>
+				<td class="text-left"><?= rupiah($jat+$jal);?></td>
             </tr>
             </tbody>
         </table>
@@ -210,7 +210,7 @@
             <tbody class="thead-light">
             <tr class='danger'>
                 <td class="text-left">Jumlah</td>
-				<td class="text-left"><?= rupiahsimpanan($jek+$jkl+$jkp);?></td>
+				<td class="text-left"><?= rupiah($jek+$jkl+$jkp);?></td>
             </tr>
             </tbody>
         </table>
