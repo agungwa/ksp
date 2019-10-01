@@ -110,7 +110,7 @@
             </tr>
             <tr>
                 <td class="text-left">Rekening Kini</td>
-				<td class="text-center"><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar;?></td>
+				<td class="text-center"><?= $totalrekeninglalu+$totalrekening;?></td>
             </tr>
             </tbody>
         </table>

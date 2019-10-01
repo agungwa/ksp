@@ -14,6 +14,7 @@
 		<th>Rekening Pinjaman</th>
         <th>Nama</th>
         <th>Alamat</th>
+        <th>No HP</th>
 		<th>Jaminan</th>
 		<th>Angsuranke</th>
 		<th>Jatuh Tempo</th>
@@ -36,6 +37,7 @@
 			<td><?php echo $item['pin_id'] ?></td>
 			<td><?php echo $ang_no->ang_nama ?></td>
 			<td><?php echo $ang_no->ang_alamat ?></td>
+			<td><?php echo $ang_no->ang_nohp ?></td>
 			<td><?php echo $jej_id->jej_jaminan ?></td>
 			<td><?php echo $item['ang_angsuranke'] ?></td>
 			<td><?php echo $item['ags_tgljatuhtempo'] ?></td>
