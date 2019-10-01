@@ -243,7 +243,7 @@ class Printneraca extends MY_Base
 			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
 			
 			if ($f<>'' && $w<>'') {	
-				$tgl = date("Y-m-d", strtotime($item->ags_tgl));
+				$tgl = date("Y-m-d", strtotime($pin_id->pin_tglpencairan));
 				//var_dump($value->ags_id);
 					if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
 						$saldoPinjamanumumbelum += $item->ags_jmlpokok ;
@@ -263,7 +263,7 @@ class Printneraca extends MY_Base
 			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
 			
 			if ($f<>'' && $w<>'') {	
-				$tgl = date("Y-m-d", strtotime($item->ags_tgl));
+				$tgl = date("Y-m-d", strtotime($pin_id->pin_tglpencairan));
 				//var_dump($value->ags_id);
 					if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
 						$saldoPinjamankaryawanbelum += $item->ags_jmlpokok ;
@@ -284,7 +284,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 		$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
 		
 		if ($f<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($item->ags_tgl));
+			$tgl = date("Y-m-d", strtotime($pin_id->pin_tglpencairan));
 			//var_dump($value->ags_id);
 				if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
 					$saldoPinjamankhususbelum += $item->ags_jmlpokok ;
