@@ -17,7 +17,7 @@ class Pengkodean extends CI_Model
 
         public function kode($nowYear){
             $kantorksp = $this->Kantorksp_model->get_by_id(1);  
-            $this->db->select('RIGHT(anggota.ang_no,2) as ang_no', FALSE);
+            $this->db->select('RIGHT(anggota.ang_no,3) as ang_no', FALSE);
             $this->db->where("DATE_FORMAT(ang_tgl, '%d') = ", $nowYear); 
             $this->db->order_by('ang_no','DESC');    
             $this->db->limit(1);  
@@ -39,7 +39,7 @@ class Pengkodean extends CI_Model
     // input kode Simpanan Berjangka 9 Bulan
         public function simpananana($nowYear){
             $kantorksp = $this->Kantorksp_model->get_by_id(1);  
-            $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
+            $this->db->select('RIGHT(simpanan.sim_kode,3) as sim_kode', FALSE);
             $this->db->where("DATE_FORMAT(sim_tgl, '%d') = ", $nowYear); 
             $this->db->limit(1);
             $this->db->order_by('sim_kode','DESC');       
@@ -59,7 +59,7 @@ class Pengkodean extends CI_Model
     // input kode simpanan berjangka 12 bulan
        public function simpanananb($nowYear){
         $kantorksp = $this->Kantorksp_model->get_by_id(1); 
-            $this->db->select('RIGHT(simpanan.sim_kode,2) as sim_kode', FALSE);
+            $this->db->select('RIGHT(simpanan.sim_kode,3) as sim_kode', FALSE);
             $this->db->where("DATE_FORMAT(sim_tgl, '%d') = ", $nowYear);
             $this->db->limit(1);
             $this->db->order_by('sim_kode','DESC');    
