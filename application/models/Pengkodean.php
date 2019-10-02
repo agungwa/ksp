@@ -31,7 +31,7 @@ class Pengkodean extends CI_Model
                 $kode = 1;  //cek jika kode belum terdapat pada table
             }
                 $tgl=date('dmy'); 
-                $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+                $batas = str_pad($kode, 4, "0", STR_PAD_LEFT);    
                 $kodetampil = "$kantorksp->kks_kode".$tgl.$batas;  //format kode
                 return $kodetampil;  
         }
@@ -52,7 +52,7 @@ class Pengkodean extends CI_Model
                 $kode = 1;
             }
                 $tgl=date('dmy'); 
-                $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+                $batas = str_pad($kode, 4, "0", STR_PAD_LEFT);    
                 $kodetampil = "$kantorksp->kks_kode"."A".$tgl.$batas;
                 return $kodetampil;  
         }
@@ -72,7 +72,7 @@ class Pengkodean extends CI_Model
                 $kode = 1;
             }
                 $tgl=date('dmy'); 
-                $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+                $batas = str_pad($kode, 4, "0", STR_PAD_LEFT);    
                 $kodetampil = "$kantorksp->kks_kode"."B".$tgl.$batas;
                 return $kodetampil;  
         }
