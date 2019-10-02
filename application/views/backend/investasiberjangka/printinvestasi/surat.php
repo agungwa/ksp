@@ -190,7 +190,7 @@ table#06 {
                 <tr text-align="justify">
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                                style="font-family:'Calibri Light'; color:#222a35">Pihak kedua menyetor uang/menginvestasikan uang sejumlah <?php echo 'Rp. ',neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah),' Rupiah' ?>) kepada pihak pertama,
+                                style="font-family:'Calibri Light'; color:#222a35">Pihak kedua menyetor uang/menginvestasikan uang sejumlah <?php echo neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah),' Rupiah' ?>) kepada pihak pertama,
                                 Investasi berjangka selama <?php echo $jwi_id, ' Bulan' ?> terhitung sejak perjanjian ini dan 
                                 di tanda tangani bersama sampai dengan <?php echo '<b> Tanggal '.dateFormataja($jatuhtempo).'</b>' ?> Dan apabila dari pihak kedua tidak ada konfirmasi,
                                 maka akan diperpanjang secara otomatis.</span></p>
@@ -206,7 +206,7 @@ table#06 {
                 <tr text-align="justify">
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:justify;">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                                style="font-family:'Calibri Light'; color:#222a35">Pihak pertama ( KSP SIDO MUKTI MAKMUR ) menerima sejumlah <?php echo neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah) ?>) 
+                                style="font-family:'Calibri Light'; color:#222a35">Pihak pertama ( KSP SIDO MUKTI MAKMUR ) menerima sejumlah <?php echo neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah),' Rupiah' ?>) 
                                 dari pihak kedua berupa investasi berjangka selama <?php echo $jwi_id, ' Bulan' ?> dengan <?php echo $biv_id," %" ?>  jasa diberikan <?php echo $jiv_id ?> .</span></p>
                     </td>
                 </tr>
@@ -403,8 +403,6 @@ table#06 {
                 </tr>
             </tbody>
         </table>
-        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                style="font-family:Cambria">&nbsp;</span></p>
         <table id="05" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
@@ -443,6 +441,8 @@ table#06 {
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
                     <td style="width:176.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
+                                style="font-family:Cambria">&nbsp;</span></p>
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
