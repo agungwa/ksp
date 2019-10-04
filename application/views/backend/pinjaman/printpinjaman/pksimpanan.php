@@ -340,7 +340,7 @@ table#06 {
                                 SIDO MUKTI MAKMUR </span><span style="font-family:Cambria">untuk</span><span
                                 style="font-family:Cambria"> </span><span
                                 style="font-family:Cambria">membekukan</span><span style="font-family:Cambria"> saldo
-                                Tabungan Deposito s</span><span style="font-family:Cambria">aya</span><span
+                                Tabungan s</span><span style="font-family:Cambria">aya</span><span
                                 style="font-family:Cambria"> </span><span style="font-family:Cambria">sesuai</span><span
                                 style="font-family:Cambria"> </span><span style="font-family:Cambria">saldo</span><span
                                 style="font-family:Cambria"> </span><span
@@ -358,7 +358,7 @@ table#06 {
                             </span><span style="font-family:Cambria">diatas</span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">saya</span><span style="font-family:Cambria">
                             </span><span style="font-family:Cambria">menjaminkan</span><span
-                                style="font-family:Cambria"> buku tabungan deposito </span><span
+                                style="font-family:Cambria"> buku tabungan </span><span
                                 style="font-family:Cambria">:</span></p>
                     </td>
                 </tr>
