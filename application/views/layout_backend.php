@@ -91,12 +91,7 @@ lookup();
                 </li> -->
 
             
-				<li class="">
-                    <?php if(is_allow('M_USER')): ?>
-                    <a href="<?= base_url();?>PrintAnggota"><i class="fa fa-user"></i> <span class="nav-label">Print Anggota</span> <span class="fa arrow"></span></a>
-                <?php endif; ?>
-				</li>
-                <!-- MENU SIMPANAN BERJANGKA -->
+				<!-- MENU SIMPANAN BERJANGKA -->
                 
                 <li class="">
                     <?php if(is_allow('M_USER')): ?>
