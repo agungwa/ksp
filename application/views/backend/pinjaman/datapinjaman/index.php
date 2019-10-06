@@ -81,7 +81,7 @@
             </tr>
             <tr>
                 <td class="text-left">Administrasi</td>
-				<td class="text-center"><?= neraca($provisipinjaman);?></td>
+				<td class="text-center"><?= rupiah($provisipinjaman);?></td>
             </tr>
             <tr class="danger">
                 <td class="text-left">Total Angsuran Masuk</td>
