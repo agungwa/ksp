@@ -88,20 +88,32 @@
 				<td class="text-center"><?= neraca($totalangsuran+$totalangsurantunggakan);?></td>
             </tr>
             <tr>
-                <td class="text-left">Rekening Lalu</td>
-				<td class="text-center"><?= $totalrekeninglalu;?></td>
+                <td class="text-left">Rekening Masuk Lalu</td>
+				<td class="text-center"><?= $totalrekeningmasuklalu;?></td>
+            </tr>  
+            <tr>
+                <td class="text-left">Rekening Masuk Kini</td>
+				<td class="text-center"><?= $totalrekeningmasuk;?></td>
             </tr>
             <tr>
-                <td class="text-left">Rekening Masuk</td>
-				<td class="text-center"><?= $totalrekening+$totalrekeningkeluar;?></td>
+                <td class="text-left">Rekening Masuk Setelah</td>
+				<td class="text-center"><?= $totalrekeningmasuksetelah;?></td>
             </tr>
             <tr>
-                <td class="text-left">Rekening Keluar</td>
+                <td class="text-left">Rekening Keluar Lalu</td>
+				<td class="text-center"><?= $totalrekeningkeluarlalu;?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Rekening Keluar Kini</td>
 				<td class="text-center"><?= $totalrekeningkeluar;?></td>
             </tr>
             <tr>
+                <td class="text-left">Rekening Keluar Setelah</td>
+				<td class="text-center"><?= $totalrekeningkeluarsetelah;?></td>
+            </tr>
+            <tr>
                 <td class="text-left">Rekening Kini</td>
-				<td class="text-center"><?= $totalrekeninglalu+$totalrekening-$totalrekeningkeluar+$totalrekeningkeluar;?></td>
+				<td class="text-center"><?= $totalrekening;?></td>
             </tr>
             </tbody>
         </table>

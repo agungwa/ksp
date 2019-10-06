@@ -325,11 +325,17 @@ class Pinjaman extends MY_Base
     public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
+        $f = urldecode($this->input->get('f', TRUE));
+        $t = urldecode($this->input->get('t', TRUE));
         $w = urldecode($this->input->get('w', TRUE));
         $s = urldecode($this->input->get('s', TRUE));
         $k = urldecode($this->input->get('k', TRUE));
         $u = urldecode($this->input->get('u', TRUE));
         $start = intval($this->input->get('start'));
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $rangetgl = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+        $z = date("Y-m-d", strtotime($f));
         
 
         $pinjaman = $this->Pinjaman_model->get_limit_data( $start, $q);
@@ -337,24 +343,30 @@ class Pinjaman extends MY_Base
         $wilayah = $this->Wilayah_model->get_all();
         $karyawan = $this->Karyawan_model->get_all();
         $datapinjaman=array();
+         
+		if ($f == null && $t == null ) { $f=$z; $t=$rangetgl;}
         foreach ($pinjaman as $key=>$item) {
+            
+            $tgl = date("Y-m-d", strtotime($item->pin_tglpencairan));
+            $f = date("Y-m-d", strtotime($f));
+            $t = date("Y-m-d", strtotime($t));
             if (
-                ( $w=='all' && $s=='all' && $k=='all' && $u=='all') || 
-                ( $w==$item->wil_kode && $s=='all' && $k=='all' && $u=='all') || 
-                ( $w=='all' && $s==$item->pin_statuspinjaman && $k=='all' && $u=='all') || 
-                ( $w=='all' && $s=='all' && $k==$item->pin_marketing && $u=='all') || 
-                ( $w=='all' && $s=='all' && $k=='all' && $u==$item->pin_id) ||  
-                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k=='all' && $u=='all') || 
-                ( $w==$item->wil_kode && $s=='all' && $k==$item->pin_marketing && $u=='all') || 
-                ( $w==$item->wil_kode && $s=='all' && $k=='all' && $u==$item->pin_id) || 
-                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u=='all') || 
-                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k=='all' && $u==$item->pin_id) || 
-                ( $w=='all' && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u=='all') || 
-                ( $w=='all' && $s==$item->pin_statuspinjaman && $k=='all' && $u==$item->pin_id) || 
-                ( $w=='all' && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u==$item->pin_id) || 
-                ( $w=='all' && $s=='all' && $k==$item->pin_marketing && $u==$item->pin_id) || 
-                ( $w==$item->wil_kode && $s=='all' && $k==$item->pin_marketing && $u==$item->pin_id) || 
-                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u==$item->pin_id))
+                ( $w=='all' && $s=='all' && $k=='all' && $u=='all' && $tgl >= $f && $tgl <= $t ) || 
+                ( $w==$item->wil_kode && $s=='all' && $k=='all' && $u=='all' && $tgl >= $f && $tgl <= $t ) || 
+                ( $w=='all' && $s==$item->pin_statuspinjaman && $k=='all' && $u=='all' && $tgl >= $f && $tgl <= $t ) || 
+                ( $w=='all' && $s=='all' && $k==$item->pin_marketing && $u=='all' && $tgl >= $f && $tgl <= $t ) || 
+                ( $w=='all' && $s=='all' && $k=='all' && $u==$item->pin_id && $tgl >= $f && $tgl <= $t ) ||  
+                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k=='all' && $u=='all' && $tgl >= $f && $tgl <= $t ) || 
+                ( $w==$item->wil_kode && $s=='all' && $k==$item->pin_marketing && $u=='all' && $tgl >= $f && $tgl <= $t ) || 
+                ( $w==$item->wil_kode && $s=='all' && $k=='all' && $u==$item->pin_id && $u=='all' && $tgl >= $f && $tgl <= $t ) || 
+                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u=='all' && $u=='all' && $tgl >= $f && $tgl <= $t) || 
+                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k=='all' && $u==$item->pin_id && $u=='all' && $tgl >= $f && $tgl <= $t) || 
+                ( $w=='all' && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u=='all' && $u=='all' && $tgl >= $f && $tgl <= $t) || 
+                ( $w=='all' && $s==$item->pin_statuspinjaman && $k=='all' && $u==$item->pin_id && $u=='all' && $tgl >= $f && $tgl <= $t) || 
+                ( $w=='all' && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u==$item->pin_id && $u=='all' && $tgl >= $f && $tgl <= $t) || 
+                ( $w=='all' && $s=='all' && $k==$item->pin_marketing && $u==$item->pin_id && $u=='all' && $tgl >= $f && $tgl <= $t) || 
+                ( $w==$item->wil_kode && $s=='all' && $k==$item->pin_marketing && $u==$item->pin_id && $u=='all' && $tgl >= $f && $tgl <= $t) || 
+                ( $w==$item->wil_kode && $s==$item->pin_statuspinjaman && $k==$item->pin_marketing && $u==$item->pin_id && $u=='all' && $tgl >= $f && $tgl <= $t))
                 {
                     $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
                     $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $item->sea_id))->row();
@@ -380,6 +392,7 @@ class Pinjaman extends MY_Base
                         'pin_pinjaman' => $item->pin_pinjaman,
                         'pin_tglpengajuan' => $item->pin_tglpengajuan,
                         'pin_tglpencairan' => $item->pin_tglpencairan,
+                        'pin_tglpelunasan' => $item->pin_tglpelunasan,
                         'pin_marketing' => $marketing->kar_nama,
                         'pin_surveyor' => $surveyor->kar_nama,
                         'pin_survey' => $pict,
@@ -397,6 +410,12 @@ class Pinjaman extends MY_Base
             'wilayah_data' => $wilayah,
             'karyawan_data' => $karyawan,
             'q' => $q,
+            'f' => $f,
+            't' => $t,
+            'w' => $w,
+            's' => $s,
+            'k' => $k,
+            'u' => $u,
             'start' => $start,
             'active' => 4,
             'content' => 'backend/pinjaman/pinjaman',

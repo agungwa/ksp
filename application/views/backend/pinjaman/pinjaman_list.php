@@ -8,6 +8,7 @@
             <div class="col-md-8 text-right">
                 <input type="hidden" name="p" value="4">
                 <div class="col-md-2"><h3>Filter : </h3></div>
+                <div class="col-md-3">
                 <select class="form-control col-md-3" name="s">
                     <option value="all">Semua Status</option>
                     <?php
@@ -27,7 +28,7 @@
                     ?>
                 </select>
                 <select class="form-control col-md-3" name="k">
-                    <option value="all">Semua Marketing</option>
+                    <option value="all">Marketing</option>
                     <?php
                         foreach ($karyawan_data as $value) { ?>
                             <option value="<?= $value->kar_kode?>"><?= $value->kar_nama?></option>
@@ -35,6 +36,11 @@
                         }
                     ?>
                 </select>
+                </div>
+                <div class="col-md-2"><h3>Tanggal : </h3></div>
+                
+                <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
+                <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
             </div>
             <div class="col-md-4 text-right">
                     <div class="input-group">
@@ -68,6 +74,7 @@
         		<th class="text-center">Pinjaman</th>
         		<th class="text-center">Tanggal Pengajuan</th>
         		<th class="text-center">Tanggal Pencairan</th>
+        		<th class="text-center">Tanggal Pelunasan</th>
         		<th class="text-center">Status Pinjaman</th>
         		<th class="text-center">Edit Pinjaman</th>
         		<th class="text-center">Action Pinjaman</th>
@@ -98,8 +105,9 @@
             </a>
                 </td>
     			<td><?php echo rupiah($item['pin_pinjaman']) ?></td>
-    			<td><?php echo dateFormat($item['pin_tglpengajuan']); ?></td>
-    			<td><?php echo dateFormat($item['pin_tglpencairan']); ?></td>
+    			<td><?php echo dateFormataja($item['pin_tglpengajuan']); ?></td>
+    			<td><?php echo dateFormataja($item['pin_tglpencairan']); ?></td>
+    			<td><?php echo $item['pin_tglpelunasan']; ?></td>
     			<td><?php echo $item['pin_statuspinjaman'] ?></td>
     			<td style="text-align:center" width="200px">
 				<?php 
