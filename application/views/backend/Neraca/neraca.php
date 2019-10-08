@@ -54,7 +54,7 @@
         <?php
         
         $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
-        $kas=$shudata + $simpanancdr + $donasi + $bungasimpanan + $rekeningkoran + $modalpenyertaan +$saldoinvestasi + $saldosimpananwajib+$saldosimpananpokok + $saldosimpananneraca - $saldopinjamanumum - $saldopinjamankaryawan-$saldopinjamankhusus - $jat;
+        $kas=$shudata + $simpanancdr + $donasi + $bungasimpanan + $rekeningkoran + $modalpenyertaan +$saldoinvestasi + $saldosimpananwajib+$saldosimpananpokok + $saldosimpananneraca - $saldopinjamanumumbelum - $saldopinjamankaryawanbelum-$saldopinjamankhususbelum - $jat;
         $jal=$kas + $kasbankdata + $saldopinjamanumumbelum + $saldopinjamankaryawanbelum+$saldopinjamankhususbelum;
         $jkl=$saldosimpananneraca+$bungasimpanan;
         $jkp=$saldoinvestasi+$simpanankaryawandata+$rekeningkoran+$modalpenyertaan;
@@ -62,7 +62,7 @@
         ?>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
-          <!--<?php echo 'shu',neraca($shudata), ' + utangbunga', neraca($bungasimpanan), ' + ivb', neraca($saldoinvestasi),' + simwa', neraca($saldosimpananwajib), ' + simpok', neraca($saldosimpananpokok), ' + pokpel', neraca($pokokangsuranpelunasan), ' + pokang', neraca($pokokangsuran), ' - simpananneraca', neraca($saldosimpananneraca), ' - jat', neraca($jat), ' - pinum',  neraca($saldopinjamanumum), ' - pinkar', neraca($saldopinjamankaryawan), ' - pinkhus', neraca($saldopinjamankhusus); ?> -->
+         <!-- <?php echo 'shu',neraca($shudata), ' + utangbunga', neraca($bungasimpanan), ' + ivb', neraca($saldoinvestasi),' + simwa', neraca($saldosimpananwajib), ' + simpok', neraca($saldosimpananpokok), ' + pokpel', neraca($pokokangsuranpelunasan), ' + pokang', neraca($pokokangsuran), ' - simpananneraca', neraca($saldosimpananneraca), ' - jat', neraca($jat), ' - pinum',  neraca($saldopinjamanumum), ' - pinkar', neraca($saldopinjamankaryawan), ' - pinkhus', neraca($saldopinjamankhusus); ?> -->
             <h3> AKTIVA </h3>
             <h4> AKTIVA LANCAR </h4>
             <tr>

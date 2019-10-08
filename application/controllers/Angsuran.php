@@ -34,6 +34,9 @@ class Angsuran extends MY_Base
             case  4:
                 $this->listpinjaman();
                 break;
+            case  5:
+                $this->listAngsuranbayar();
+                break;
 
             default:
                 $this->listpinjaman();
@@ -121,7 +124,8 @@ class Angsuran extends MY_Base
         //var_dump($totalbayar);
         $dataAngsuran = array(
             'pin_id' => $this->input->post('pin_id',TRUE),
-    		'ags_tglbayar' => $this->tgl,
+    		'ags_tglbayar' =>  $this->input->post('ags_tglbayar',TRUE),
+            'ags_tgl' => $this->tgl,
     		'ags_jmlbayar' => $z,
     		'ags_status' => $status,
             );
@@ -360,6 +364,8 @@ class Angsuran extends MY_Base
             var_dump($totalkekurangan);
             $dataAngsuran = array(
                 'ags_denda' => $this->input->post('ags_denda',TRUE),
+                'ags_tglbayar' => $this->input->post('ags_tglbayar',TRUE),
+                'ags_tgl' => $this->tgl,
                 'ags_bayartunggakan' => $z,
                 'ags_status' => $status,
                 );
@@ -368,6 +374,7 @@ class Angsuran extends MY_Base
         redirect(site_url('angsuran/bayarAngsuran?q='.$row->pin_id));
     }
     }
+
     public function listAngsuran()
     {
         $q = urldecode($this->input->get('q', TRUE));
@@ -412,6 +419,62 @@ class Angsuran extends MY_Base
         );
         $this->load->view(layout(), $data);
     }
+    
+    public function listAngsuranbayar()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $u = urldecode($this->input->get('u', TRUE));
+        $f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE));
+        $start = intval($this->input->get('start'));
+        $datetoday = date("Y-m-d", strtotime($this->tgl));
+        $angsuran = $this->Angsuran_model->get_angsuran_bayarlist($start, $q, $t);
+
+        $satu = 1;
+        $n=1;
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+
+        $dataangsuran = array();
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+        foreach ($angsuran as $key=>$item) {
+            $f = date("Y-m-d", strtotime($f));
+            $t = date("Y-m-d", strtotime($t));
+            $jt = date("Y-m-d", strtotime($item->ags_tglbayar));
+            if (
+                ( $jt >= $f && $jt <= $t) || 
+                ( $jt >= $f && $jt <= $t)) {
+
+                    $dataangsuran[$key] = array(
+                        'ags_id' => $item->ags_id,
+                        'pin_id' => $item->pin_id,
+                        'ang_angsuranke' => $item->ang_angsuranke,
+                        'ags_tgljatuhtempo' => $item->ags_tgljatuhtempo,
+                        'ags_tglbayar' => $item->ags_tglbayar,
+                        'ags_jmlpokok' => $item->ags_jmlpokok,
+                        'ags_jmlbunga' => $item->ags_jmlbunga,
+                        'ags_jmlbayar' => $item->ags_jmlbayar,
+                        'ags_bayartunggakan' => $item->ags_bayartunggakan,
+                        'ags_status' => $this->statusAngsuran[$item->ags_status],
+                    );
+            }
+        }
+
+        $data = array(
+            
+            'dataangsuran' => $dataangsuran,
+            'angsuran_data' => $angsuran,
+            'q' => $q,
+            'u' => $u,
+            't' => $t,
+            'f' => $f,
+            'start' => $start,
+            'active' => 5,
+            'content' => 'backend/angsuran/angsuran',
+            'item'=> 'list_angsuranbayar.php',
+        );
+        $this->load->view(layout(), $data);
+    }
+
 
     public function listDenda(){
         $q = urldecode($this->input->get('q', TRUE));

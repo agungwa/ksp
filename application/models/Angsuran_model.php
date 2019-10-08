@@ -133,6 +133,14 @@ class Angsuran_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_angsuran_bayarlist( $start = 0, $q = NULL, $date = NULL) {
+        $this->db->order_by($this->id, $this->order);
+         $where = "ags_status > 0 AND ags_flag < 2";
+        $this->db->where($where);
+	    //$this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
     function get_penagihanawal_data( $start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
          $where = "ang_angsuranke < 4 AND ags_status < 2 AND ags_flag < 2";

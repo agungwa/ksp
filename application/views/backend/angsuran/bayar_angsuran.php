@@ -51,6 +51,7 @@
 				    <tr><td>Jumlah Bunga</td><td><?php echo rupiah($angsuran['ags_jmlbunga']); ?></td></tr>
 				    <tr><td>Total</td><td><?php echo rupiah($angsuran['totalbayar']); ?></td></tr>
 				    <tr><td>Jumlah Bayar</td><td><?php echo rupiah($angsuran['ags_jmlbayar']); ?></td></tr>
+				    <tr><td>Tanggal Bayar</td><td><input type="date" class="form-control" name="ags_tglbayar" id="todays-date" placeholder="ags_tglbayar" required="required" /></td></tr>
 					<tr><td>Status</td><td><?php echo $this->statusAngsuran[$angsuran['ags_status']]; ?></td></tr>
 					<?php if ($angsuran['ags_jmlbayar'] <= 0 && $this->tgl <= $angsuran['tgldenda']) {
 					echo '<tr><td>Input Angsuran</td><td><input type="number" class="form-control" name="ags_jmlbayar" id="ags_jmlbayar" placeholder="Bayar" value="" required="required" /></td></tr>';

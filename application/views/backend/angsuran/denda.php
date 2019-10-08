@@ -18,6 +18,7 @@
 	    <tr><td>Jumlah Bunga</td><td><?php echo rupiah($ags_jmlbunga); ?></td></tr>
 	    <tr><td>Total Angsuran</td><td><?php echo rupiah($totalbayar); ?></td></tr>
 	    <tr><td>Jumlah Bayar</td><td><?php echo rupiah($ags_jmlbayar); ?></td></tr>
+	    <tr><td>Tanggal Bayar</td><td><input type="date" class="form-control" name="ags_tglbayar" id="todays-date" placeholder="ags_tglbayar" required="required" /></td></tr>
 	    <tr><td>Kurang Angsuran</td><td><?php echo rupiah($kurangsetor); ?></td></tr>        
         <tr><td>Denda</td><td><input type="float" class="form-control" name="ags_denda" id="ags_denda" placeholder="ags_denda" value="<?php echo $denda ?> " required="required" /></td></tr>
 	    <tr><td>Bayar Tunggakan</td><td><?php echo rupiah($ags_bayartunggakan); ?></td></tr>
