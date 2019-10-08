@@ -330,7 +330,7 @@ class Investasiberjangka extends MY_Base
             $f = date("Y-m-d", strtotime($f));
             $t = date("Y-m-d", strtotime($t));
 
-            if (( $selisihjt >= 1 && $w=='all') || ( $selisihjt >= 1 && $item->wil_kode == $w)) {
+            if ((($tanggalDuedate >= $f && $tanggalDuedate <= $t)&&( $selisihjt >= 1 && $w=='all')) || (($tanggalDuedate >= $f && $tanggalDuedate <= $t)&&( $selisihjt >= 1 && $item->wil_kode == $w))) {
                 $datainvestasi[$key] = array(
                     'ivb_kode' => $item->ivb_kode,
                     'ang_no' => $item->ang_no,

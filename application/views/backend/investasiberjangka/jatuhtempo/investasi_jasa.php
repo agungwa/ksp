@@ -8,7 +8,13 @@
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
             <form action="<?php echo base_url()?>investasiberjangka/listjasa" class="form-inline" method="get">
             <div class="col-md-8 text-right">
-                
+                <div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
+                <div class="col-md-3">
+                    <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
+                </div>
                 <select class="form-control col-md-3"  name="w">
                     <option value="all">Semua Wilayah</option>
                     <?php
