@@ -47,7 +47,7 @@ class Angsuran extends MY_Base
     public function bayarAngsuran(){
         $q = urldecode($this->input->get('q', TRUE));        
         $k = urldecode($this->input->get('k', TRUE));
-        $d = 2;
+        $d = 3;
         $angsuran = null;
         $historiAngsuran = null;
 
