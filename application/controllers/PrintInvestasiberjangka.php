@@ -85,6 +85,84 @@ class PrintInvestasiberjangka extends MY_Base
 	
     }
 
+	public function listinvestasi(){
+		$q = urldecode($this->input->get('q', TRUE));
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $s = urldecode($this->input->get('s', TRUE)); //status
+        $u = urldecode($this->input->get('u', TRUE)); //no rekening
+		
+		$f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+		
+		$satu = 1;
+        $start = intval($this->input->get('start'));
+        
+        $investasiberjangka = $this->Investasiberjangka_model->get_limit_data( $start, $q);
+        $wilayah = $this->Wilayah_model->get_all();
+        $datainvest = array();
+        foreach ($investasiberjangka as $key=>$item) {
+            if (
+                ( $u=='all' && $s=='all' && $w=='all') || 
+                ( $u=='all' && $s=='all' && $w == $item->wil_kode) || 
+                ( $u=='all' && $s == $item->ivb_status && $w=='all') || 
+                ( $u == $item->ivb_kode && $s=='all' && $w=='all') || 
+                ( $u == $item->ivb_kode && $s == $item->ivb_status && $w=='all') || 
+                ( $u == $item->ivb_kode && $s=='all' && $w == $item->wil_kode) || 
+                ( $u == $item->ivb_kode && $s == $item->ivb_status && $w == $item->wil_kode) || 
+                ( $u=='all' && $s == $item->ivb_status && $w == $item->wil_kode)) {
+					
+				$tglpendaftaran = $item->ivb_tglpendaftaran;
+				if($tglpendaftaran >= $f && $tglpendaftaran <= date("Y-m-d", strtotime($t.' + '.$satu.' Days'))){
+                    $ivb_status = $this->statusInvestasi;                
+                    $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
+                    $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $item->kar_kode))->row();
+                    $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item->wil_kode))->row();
+                    $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $item->jwi_id))->row();
+                    $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $item->jiv_id))->row();
+                    $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $item->biv_id))->row();
+                    $tanggalDuedate = date("Y-m-d", strtotime($item->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
+					
+					$datainvest[$key] = array(
+						'ivb_kode' => $item->ivb_kode,
+						'ang_no' => $item->ang_no,
+						'nama_ang_no' => $ang_no->ang_nama,
+						'kar_kode' => $kar_kode->kar_nama,
+						'wil_kode' => $wil_kode->wil_nama,
+						'jwi_id' => $jwi_id->jwi_jangkawaktu,
+						'jiv_id' => $jiv_id->jiv_jasa,
+						'biv_id' => $biv_id->biv_bunga,
+						'ivb_jumlah' => $item->ivb_jumlah,
+						'ivb_tglpendaftaran' => $item->ivb_tglpendaftaran,
+						'ivb_tglperpanjangan' => $item->ivb_tglperpanjangan,
+						'jatuhtempo' => $tanggalDuedate,
+						'ivb_status' => $ivb_status[$item->ivb_status],
+						'ivb_tgl' => $item->ivb_tgl,
+						'ivb_flag' => $item->ivb_flag,
+						'ivb_info' => $item->ivb_info,
+					);
+				}
+            }
+        }
+        $data = array(
+            'datainvest' => $datainvest,
+            'wilayah_data' => $wilayah,
+            'q' => $q,
+            'w' => $w,
+            's' => $s,
+            'u' => $u,
+			'f'	=> $f,
+			't'	=> $t,
+            'start' => $start
+        );
+        //var_dump($data);
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'A4']);
+        $html = $this->load->view('backend/investasiberjangka/printinvestasi/investasiberjangka_list.php',$data,true);
+        //echo $html;
+        $mpdf->WriteHTML($html);
+        $mpdf->Output(); // opens in browser
+		//$mpdf->Output('listInvestasi.pdf','D'); // it downloads the file into the user system, with give name
+    
+	}
     
     public function listjasa(){
         $q = urldecode($this->input->get('q', TRUE));

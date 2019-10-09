@@ -1,11 +1,28 @@
+<style>
+	.tgl{
+		margin:0 0 20px 20px;
+	}
+</style>
 <div class="row">
     <div class="col-lg-12">
         <div class="ibox">
         <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
             <form action="<?php echo base_url()?>investasiberjangka/listdata/" class="form-inline" method="get">
-            <div class="col-md-8 text-right">
+            
+			<div class="tgl col-md-8 text-right">
+				<div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
+                <div class="col-md-3">
+                    <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
+                </div>
+			</div>
+			
+			<div class="col-md-8 text-right">
                 <input type="hidden" name="p" value="3">
+				
                 <div class="col-md-2"><h3>Filter : </h3></div>
                 <select class="form-control col-md-3"  name="w">
                     <option value="all">Semua Wilayah</option>
@@ -38,6 +55,7 @@
                                     <?php
                                 }
                             ?>
+							<a href="<?php echo base_url()?>printinvestasiberjangka/listinvestasi?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>&s=<?=$s?>&u=<?=$u?>" class="btn btn-default">Print</a>
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
