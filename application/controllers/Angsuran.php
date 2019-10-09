@@ -118,7 +118,7 @@ class Angsuran extends MY_Base
 
        if ($z < $totalbayar){
            $status = 1;
-       } else if ($z > $totalbayar){
+       } else if ($z >= $totalbayar){
            $status = 2;
        }
         //var_dump($totalbayar);

@@ -51,7 +51,7 @@
             </tr>
             </thead>
 			<tbody><?php
-            $total = 0;
+            $total = $totalpokok = $totalbunga = 0;
             foreach ($dataangsuran as $key=>$item)
             {
                 $pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item['pin_id']))->row();
@@ -59,6 +59,8 @@
                 $jaminan = $this->Jaminan_model->get_by_rek($item['pin_id']);
                 $jej_id = $this->db->get_where('jenisjaminan', array('jej_id' => $jaminan->jej_id))->row();
                 $total += $item['ags_jmlbayar']+$item['ags_bayartunggakan'];
+                $totalpokok += $item['ags_jmlpokok'];
+                $totalbunga += $item['ags_jmlbunga'];
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
@@ -80,7 +82,7 @@
             }
             ?>
             </tbody>
-            <tr class="active"><td>Total</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><?php echo rupiah($total) ?></td></tr>
+            <tr class="active"><td>Total</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><?php echo rupiah($totalpokok) ?></td><td><?php echo rupiah($totalbunga) ?></td><td><?php echo rupiah($total) ?></td></tr>
             
         </table>
         
