@@ -159,8 +159,8 @@ class PrintInvestasiberjangka extends MY_Base
         $html = $this->load->view('backend/investasiberjangka/printinvestasi/investasiberjangka_list.php',$data,true);
         //echo $html;
         $mpdf->WriteHTML($html);
-        $mpdf->Output(); // opens in browser
-		//$mpdf->Output('listInvestasi.pdf','D'); // it downloads the file into the user system, with give name
+        //$mpdf->Output(); // opens in browser
+		$mpdf->Output('listInvestasi.pdf','D'); // it downloads the file into the user system, with give name
     
 	}
     

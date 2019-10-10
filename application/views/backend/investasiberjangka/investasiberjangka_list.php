@@ -63,56 +63,53 @@
             </form>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
-            <tr>
-                <th class="text-center">No</th>
-        <th class="text-center">Rekening Investasi</th>
-		<th class="text-center">Anggota</th>
-		<th class="text-center">Nama Anggota</th>
-		<th class="text-center">Karyawan</th>
-		<th class="text-center">Wilayah</th>
-		<th class="text-center">Jangka Waktu</th>
-		<th class="text-center">Jasa</th>
-		<th class="text-center">Bunga</th>
-		<th class="text-center">Investasi</th>
-		<th class="text-center">Tanggal Pendaftaran</th>
-		<th class="text-center">Tanggal Jatuh Tempo</th>
-		<th class="text-center">Status</th>
-		<th class="text-center">Action</th>
-            </tr>
+				<tr>
+					<th class="text-center">No</th>
+					<th class="text-center">Rekening Investasi</th>
+					<th class="text-center">Anggota</th>
+					<th class="text-center">Nama Anggota</th>
+					<th class="text-center">Karyawan</th>
+					<th class="text-center">Wilayah</th>
+					<th class="text-center">Jangka Waktu</th>
+					<th class="text-center">Jasa</th>
+					<th class="text-center">Bunga</th>
+					<th class="text-center">Investasi</th>
+					<th class="text-center">Tanggal Pendaftaran</th>
+					<th class="text-center">Tanggal Jatuh Tempo</th>
+					<th class="text-center">Status</th>
+					<th class="text-center">Action</th>
+				</tr>
             </thead>
 			<tbody><?php
-            
-             foreach ($datainvest as $key=>$item)
-             {
-                 ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-            <td><?php echo $item['ivb_kode'] ?></td>
-            <td><?php echo $item['ang_no'] ?></td>
-			<td><?php echo $item['nama_ang_no'] ?></td>
-			<td><?php echo $item['kar_kode'] ?></td>
-			<td><?php echo $item['wil_kode'] ?></td>
-			<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
-			<td><?php echo $item['jiv_id'] ?></td>
-			<td><?php echo $item['biv_id'] ," %" ?></td>
-			<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
-			<td><?php echo dateFormataja($item['ivb_tglpendaftaran']) ?></td>
-			<td><?php echo dateFormataja($item['jatuhtempo']) ?></td>
-			<td><?php echo $item['ivb_status'] ?></td>
-			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('investasiberjangka/read/'.$item['ivb_kode']),'Read','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('investasiberjangka/update/'.$item['ivb_kode']),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('investasiberjangka/delete/'.$item['ivb_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-				?>
-			</td>
-		</tr>
-                
-                <?php
-            }
-            ?>
+				$temp = 0;
+				foreach ($datainvest as $key=>$item){ ?>
+					<tr>
+						<td width="80px"><?php echo ++$start ?></td>
+						<td><?php echo $item['ivb_kode'] ?></td>
+						<td><?php echo $item['ang_no'] ?></td>
+						<td><?php echo $item['nama_ang_no'] ?></td>
+						<td><?php echo $item['kar_kode'] ?></td>
+						<td><?php echo $item['wil_kode'] ?></td>
+						<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
+						<td><?php echo $item['jiv_id'] ?></td>
+						<td><?php echo $item['biv_id'] ," %" ?></td>
+						<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
+						<td><?php echo dateFormataja($item['ivb_tglpendaftaran']) ?></td>
+						<td><?php echo dateFormataja($item['jatuhtempo']) ?></td>
+						<td><?php echo $item['ivb_status'] ?></td>
+						<td style="text-align:center" width="200px">
+							<?php 
+							echo anchor(site_url('investasiberjangka/read/'.$item['ivb_kode']),'Read','class="text-navy"'); 
+							echo ' | '; 
+							echo anchor(site_url('investasiberjangka/update/'.$item['ivb_kode']),'Update','class="text-navy"'); 
+							echo ' | '; 
+							echo anchor(site_url('investasiberjangka/delete/'.$item['ivb_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+							?>
+						</td>
+					</tr><?php
+					$temp += $item['ivb_jumlah'];
+				}?>
+				<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Total Investasi</td><td><?= rupiahsimpanan($temp) ?></td><td></td><td></td><td></td><td></td></tr>
             </tbody>
         </table>
         <div class="row">

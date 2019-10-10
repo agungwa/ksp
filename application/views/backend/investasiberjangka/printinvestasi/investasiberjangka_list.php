@@ -29,8 +29,8 @@
 				<th>Status</th>
 			</tr>
         </thead>
-		<tbody><?php
-			foreach ($datainvest as $key=>$item){?>
+		<tbody><?php $temp = 0;
+			foreach ($datainvest as $key=>$item){ ?>
 				<tr>
 					<td width="80px"><?php echo ++$start ?></td>
 					<td><?php echo $item['ivb_kode'] ?></td>
@@ -44,7 +44,10 @@
 					<td><?php echo dateFormataja($item['ivb_tglpendaftaran']) ?></td>
 					<td><?php echo dateFormataja($item['jatuhtempo']) ?></td>
 					<td><?php echo $item['ivb_status'] ?></td>
-				</tr>
-			<?php }?>
+				</tr><?php
+				
+				$temp += $item['ivb_jumlah'];
+			} ?>
+			<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Total Investasi</td><td><?= rupiahsimpanan($temp) ?></td></tr>
 		</tbody>
     </table>
