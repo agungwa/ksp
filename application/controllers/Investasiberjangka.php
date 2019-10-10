@@ -172,6 +172,15 @@ class Investasiberjangka extends MY_Base
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
         $s = urldecode($this->input->get('s', TRUE)); //status
         $u = urldecode($this->input->get('u', TRUE)); //no rekening
+		
+		$f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+		
+		$satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+		if($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+		
         $start = intval($this->input->get('start'));
         
         $investasiberjangka = $this->Investasiberjangka_model->get_limit_data( $start, $q);
@@ -187,6 +196,9 @@ class Investasiberjangka extends MY_Base
                 ( $u == $item->ivb_kode && $s=='all' && $w == $item->wil_kode) || 
                 ( $u == $item->ivb_kode && $s == $item->ivb_status && $w == $item->wil_kode) || 
                 ( $u=='all' && $s == $item->ivb_status && $w == $item->wil_kode)) {
+					
+				$tglpendaftaran = $item->ivb_tglpendaftaran;
+				if($tglpendaftaran >= $f && $tglpendaftaran <= date("Y-m-d", strtotime($t.' + '.$satu.' Days'))){
                     $ivb_status = $this->statusInvestasi;                
                     $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
                     $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $item->kar_kode))->row();
@@ -195,27 +207,28 @@ class Investasiberjangka extends MY_Base
                     $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $item->jiv_id))->row();
                     $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $item->biv_id))->row();
                     $tanggalDuedate = date("Y-m-d", strtotime($item->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
-                $datainvest[$key] = array(
-            'ivb_kode' => $item->ivb_kode,
-            'ang_no' => $item->ang_no,
-            'nama_ang_no' => $ang_no->ang_nama,
-            'kar_kode' => $kar_kode->kar_nama,
-            'wil_kode' => $wil_kode->wil_nama,
-            'jwi_id' => $jwi_id->jwi_jangkawaktu,
-            'jiv_id' => $jiv_id->jiv_jasa,
-            'biv_id' => $biv_id->biv_bunga,
-            'ivb_jumlah' => $item->ivb_jumlah,
-            'ivb_tglpendaftaran' => $item->ivb_tglpendaftaran,
-            'ivb_tglperpanjangan' => $item->ivb_tglperpanjangan,
-            'jatuhtempo' => $tanggalDuedate,
-            'ivb_status' => $ivb_status[$item->ivb_status],
-            'ivb_tgl' => $item->ivb_tgl,
-            'ivb_flag' => $item->ivb_flag,
-            'ivb_info' => $item->ivb_info,
-                );
-                
-                }
+					
+					$datainvest[$key] = array(
+						'ivb_kode' => $item->ivb_kode,
+						'ang_no' => $item->ang_no,
+						'nama_ang_no' => $ang_no->ang_nama,
+						'kar_kode' => $kar_kode->kar_nama,
+						'wil_kode' => $wil_kode->wil_nama,
+						'jwi_id' => $jwi_id->jwi_jangkawaktu,
+						'jiv_id' => $jiv_id->jiv_jasa,
+						'biv_id' => $biv_id->biv_bunga,
+						'ivb_jumlah' => $item->ivb_jumlah,
+						'ivb_tglpendaftaran' => $item->ivb_tglpendaftaran,
+						'ivb_tglperpanjangan' => $item->ivb_tglperpanjangan,
+						'jatuhtempo' => $tanggalDuedate,
+						'ivb_status' => $ivb_status[$item->ivb_status],
+						'ivb_tgl' => $item->ivb_tgl,
+						'ivb_flag' => $item->ivb_flag,
+						'ivb_info' => $item->ivb_info,
+					);
+				}
             }
+        }
         $data = array(
             'datainvest' => $datainvest,
             'wilayah_data' => $wilayah,
@@ -223,6 +236,8 @@ class Investasiberjangka extends MY_Base
             'w' => $w,
             's' => $s,
             'u' => $u,
+			'f'	=> $f,
+			't'	=> $t,
             'start' => $start,
             'active' => 2,
             'content' => 'backend/investasiberjangka/investasiberjangka',
