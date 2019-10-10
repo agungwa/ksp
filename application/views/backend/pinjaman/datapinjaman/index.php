@@ -73,7 +73,7 @@
             </tr>
             <tr>
                 <td class="text-left">Bunga Angsuran</td>
-				<td class="text-center"><?= neraca($bungaangsuran + $bungadendapelunasan);?></td>
+				<td class="text-center"><?= rupiah($bungaangsuran + $bungadendapelunasan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Denda Angsuran</td>
