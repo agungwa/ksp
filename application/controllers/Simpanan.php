@@ -42,12 +42,24 @@ class Simpanan extends MY_Base
             case  7:
                 $this->carisimpanan();
                 break;
+            case  8:
+                $this->setupsimpanan();
+                break;
                     
             default:
-                $this->simpanana();
+                $this->setupsimpanan();
                 break;
         }
     } 
+
+    public function setupsimpanan(){
+        $data = array(
+        'content' => 'backend/simpanan/simpanan',
+        'item'=> 'setupsimpanan.php',
+        'active' => 8,
+        );
+        $this->load->view(layout(), $data);
+    }
 
     public function simpanana(){
         $nowYear = date('d');

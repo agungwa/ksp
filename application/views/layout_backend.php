@@ -20,9 +20,14 @@
     <link href="<?=base_url()?>assets/vendor/inspinia/css/animate.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/inspinia/css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/radiocheck/radiocheck.css" rel="stylesheet">
+    <!--datatables-->
+    <link href="<?php echo base_url().'assets/css/bootstrap.css'?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url().'assets/css/jquery.datatables.min.css'?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.css'?>" rel="stylesheet" type="text/css"/>
+<!--
     <link href="<?=base_url()?>assets/datatables/dataTables.bootstrap.css" rel="stylesheet">
     <script src="<?=base_url()?>assets/datatables/dataTables.bootstrap.js"></script>
-    <script src="<?=base_url()?>assets/datatables/jquery.dataTables.js"></script>
+    <script src="<?=base_url()?>assets/datatables/jquery.dataTables.js"></script>-->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>
     <script src="<?=base_url()?>assets/rupiah/my.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/bootstrap.min.js"></script>
@@ -582,6 +587,11 @@ lookup();
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/chartJs/Chart.min.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/toastr/toastr.min.js"></script>
     <script src="<?=base_url()?>assets/js/sf.js"></script>
+    
+    <script src="<?php echo base_url().'assets/js/jquery-2.1.4.min.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/jquery.datatables.min.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/dataTables.bootstrap.js'?>"></script>
 
     <script>
     $(document).ready(function() {
@@ -638,6 +648,13 @@ lookup();
     function setEventId(event_id){
     document.querySelector("#event_id").innerHTML = event_id;
 }
+
+$(document).ready(function () {
+$('#dtOrderExample').DataTable({
+"order": [[ 3, "desc" ]]
+});
+$('.dataTables_length').addClass('bs-select');
+});
     </script>
 </body>
 
