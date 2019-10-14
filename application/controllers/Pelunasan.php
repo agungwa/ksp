@@ -47,6 +47,8 @@ class Pelunasan extends MY_Base
         
         $datenow = date('n'); //var_dump($datenow);
         $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
+        $angsuranbelum = $this->Angsuran_model->get_angsuran_belum($q);
+        $angsuransudah = $this->Angsuran_model->get_angsuran_bayarpin($q);
         $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
         $jenispelunasan = $this->Jenispelunasan_model->get_by_id(2);
         $settingdenda = $this->Settingdenda_model->get_by_id(1);
@@ -82,6 +84,8 @@ class Pelunasan extends MY_Base
             } 
         }
         $data = array(
+            'angsuranbelum' => $angsuranbelum,
+            'angsuransudah' => $angsuransudah,
             'datatglsekarang' => $datatglsekarang,
             'jenispelunasan' => $jenispelunasan,
             'settingdenda_data' => $settingdenda,

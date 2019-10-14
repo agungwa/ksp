@@ -65,7 +65,7 @@
             </tr>
             <tr>
                 <td class="text-left">Angsuran Masuk (pokok)</td>
-				<td class="text-center"><?= neraca($pokokangsuran+$pokokangsuranpelunasan);?></td>
+				<td class="text-center"><?= rupiah($pokokangsuran+$pokokangsuranpelunasan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Kini</td>

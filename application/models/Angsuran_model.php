@@ -58,6 +58,16 @@ class Angsuran_model extends CI_Model
         $this->db->where($where);
         return $this->db->get($this->table)->result();
     }
+
+    
+    // get angsuran  bayar
+    function get_angsuran_bayarpin($pin_id)
+    {
+        $where = "ags_status = 2 AND pin_id = '$pin_id' AND ags_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->result();
+    }
+
     // get all pokok
     function get_target()
     {
