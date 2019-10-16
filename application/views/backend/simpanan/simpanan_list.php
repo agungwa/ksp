@@ -47,7 +47,7 @@
             </div>
             </form>
 
-        <table id="dtOrderExample" class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table id="dtOrderExample" class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
