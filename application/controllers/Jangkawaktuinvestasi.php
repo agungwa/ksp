@@ -51,8 +51,8 @@ class Jangkawaktuinvestasi extends MY_Base
         $idhtml = $this->input->get('idhtml');
         
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'jangkawaktuinvestasi/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'jangkawaktuinvestasi/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'jangkawaktuinvestasi/index.html?q=' . urlencode($q) .'&idhtml='.$idhtml;
+            $config['first_url'] = base_url() . 'jangkawaktuinvestasi/index.html?q=' . urlencode($q) .'&idhtml='.$idhtml;
         } else {
             $config['base_url'] = base_url() . 'jangkawaktuinvestasi/index.html';
             $config['first_url'] = base_url() . 'jangkawaktuinvestasi/index.html';
