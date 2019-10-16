@@ -51,6 +51,7 @@ class Penagihan extends MY_Base
         if ($t == null && $y == null ) { $t=$datetoday; $y=$tanggalDuedate;}
         foreach ($angsuran as $key=>$item) {
             $pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $pin_id->ang_no))->row();
             $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $pin_id->wil_kode))->row();
 
             $t = date("Y-m-d", strtotime($t));
@@ -63,6 +64,9 @@ class Penagihan extends MY_Base
                     $dataangsuran[$key] = array(
                         'ags_id' => $item->ags_id,
                         'pin_id' => $item->pin_id,
+                        'ang_nama' => $ang_no->ang_nama,
+                        'ang_alamat' => $ang_no->ang_alamat,
+                        'ang_nohp' => $ang_no->ang_nohp,
                         'wil_kode' => $wil_kode->wil_nama,
                         'ang_angsuranke' => $item->ang_angsuranke,
                         'ags_tgljatuhtempo' => $item->ags_tgljatuhtempo,

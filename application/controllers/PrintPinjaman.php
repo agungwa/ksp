@@ -25,7 +25,7 @@ class PrintPinjaman extends MY_Base
     	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
 
-    	$pinjamanAll = $this->Pinjaman_model->get_all();
+    	$pinjamanAll = $this->Pinjaman_model->get_pinjaman_all();
     	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
     	$pinjamanNonaktif = $this->Pinjaman_model->get_pinjaman_nonaktif();
     	$angsuranBayar = $this->Angsuran_model->get_angsuran_bayar();
@@ -38,8 +38,6 @@ class PrintPinjaman extends MY_Base
 		
 		$totalRekening = 0;
 		$saldolunaskini = 0;
-		$totalRekeninglalu = 0;
-		$totalRekeningkeluar = 0;
 		$satu = 1;
 		$saldoDroppinjaman = 0;
     	$saldoLalupinjaman = 0;
@@ -52,6 +50,13 @@ class PrintPinjaman extends MY_Base
     	$totalAngsuran = 0;
 		$totalAngsurantunggakan = 0;
 		$pokokSudahbayar = 0;
+		$totalRekeninglalu = 0;
+		$totalRekeningkeluarlalu = 0;
+		$totalRekeningkeluarsetelah = 0;
+		$totalRekeningkeluar = 0;
+		$totalrekeningMasuk = 0;
+		$totalrekeningMasuklalu = 0;
+		$totalrekeningMasuksetelah = 0;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
 		$tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
@@ -236,7 +241,7 @@ class PrintPinjaman extends MY_Base
 		if ($f<>'' && $t<>'' && $w<>'') {	
 		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
 		//var_dump($value->ags_id);
-			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
+			if (('all'==$w) || ($value->wil_kode==$w))  {
 				$totalRekening++ ;
 			}
 		} else {
@@ -244,8 +249,49 @@ class PrintPinjaman extends MY_Base
 	}
 }
 
+
+	//Rekening pinjaman masuk kini
+	foreach ($pinjamanAll as $key => $value) {
+		if ($f<>'' && $t<>'' && $w<>'') {	
+		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
+		//var_dump($value->ags_id);
+			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
+				$totalrekeningMasuk++ ;
+			}
+		} else {
+			$totalrekeningMasuk=0;
+	}
+}
+
+
+//Rekening pinjaman masuk lalu
+foreach ($pinjamanAll as $key => $value) {
+	if ($f<>'' && $t<>'' && $w<>'') {	
+	$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
+	//var_dump($value->ags_id);
+		if (($jt < $f && 'all'==$w) || ($jt < $f && $value->wil_kode==$w))  {
+			$totalrekeningMasuklalu++ ;
+		}
+	} else {
+		$totalrekeningMasuklalu=0;
+}
+}
+
+
+//Rekening pinjaman masuk setelah
+foreach ($pinjamanAll as $key => $value) {
+	if ($f<>'' && $t<>'' && $w<>'') {	
+	$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
+	//var_dump($value->ags_id);
+		if (($jt > $t && 'all'==$w) || ($jt > $t && $value->wil_kode==$w))  {
+			$totalrekeningMasuksetelah++ ;
+		}
+	} else {
+		$totalrekeningMasuksetelah=0;
+}
+}
 	//Rekening pinjaman lalu
-	foreach ($pinjamanAktif as $key => $value) {
+	foreach ($pinjamanAll as $key => $value) {
 		if ($f<>'' && $t<>'' && $w<>'') {	
 		$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
 		//var_dump($value->ags_id);
@@ -270,11 +316,42 @@ class PrintPinjaman extends MY_Base
 	}
 }
 
+//Rekening pinjaman Keluar Lalu
+foreach ($pinjamanNonaktif as $key => $value) {
+	if ($f<>'' && $t<>'' && $w<>'') {	
+	$jt = date("Y-m-d", strtotime($value->pin_tglpelunasan));
+	//var_dump($value->ags_id);
+		if (($jt < $f && 'all'==$w) || ($jt < $f && $value->wil_kode==$w))  {
+			$totalRekeningkeluarlalu++ ;
+		}
+	} else {
+		$totalRekeningkeluarlalu++;
+}
+}
+
+//Rekening pinjaman Keluar
+foreach ($pinjamanNonaktif as $key => $value) {
+	if ($f<>'' && $t<>'' && $w<>'') {	
+	$jt = date("Y-m-d", strtotime($value->pin_tglpelunasan));
+	//var_dump($value->ags_id);
+		if (($jt > $t && 'all'==$w) || ($jt > $t && $value->wil_kode==$w))  {
+			$totalRekeningkeluarsetelah++ ;
+		}
+	} else {
+		$totalRekeningkeluarsetelah++;
+}
+}
+
 		$data = array(
 			
 			'totalrekening' => $totalRekening,
+			'totalrekeningmasuk' => $totalrekeningMasuk,
+			'totalrekeningmasuklalu' => $totalrekeningMasuklalu,
+			'totalrekeningmasuksetelah' => $totalrekeningMasuksetelah,
 			'totalrekeninglalu' => $totalRekeninglalu,
 			'totalrekeningkeluar' => $totalRekeningkeluar,
+			'totalrekeningkeluarlalu' => $totalRekeningkeluarlalu,
+			'totalrekeningkeluarsetelah' => $totalRekeningkeluarsetelah,
 			'wilayah_data' => $wilayah,
 			'saldolunaskini' => $saldolunaskini,
 			'saldodroppinjaman' => $saldoDroppinjaman,

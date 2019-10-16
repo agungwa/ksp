@@ -49,13 +49,16 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-        <th class="text-center">Rekening Pinjaman</th>
+                <th class="text-center">Rekening Pinjaman</th>
+                <th class="text-center">Nama</th>
+                <th class="text-center">Alamat</th>
+        <th class="text-center">No HP</th>
 		<th class="text-center">Wilayah</th>
-		<th class="text-center">Angsuranke</th>
+		<th class="text-center">Ang.ke-</th>
 		<th class="text-center">Jatuh Tempo</th>
-		<th class="text-center">Tanggal Bayar</th>
 		<th class="text-center">Jumlah Pokok</th>
 		<th class="text-center">Jumlah Bunga</th>
+		<th class="text-center">Total</th>
 		<th class="text-center">Status</th>
             </tr>
             </thead>
@@ -70,12 +73,15 @@
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $item['pin_id'] ?></td>
+			<td><?php echo $item['ang_nama'] ?></td>
+			<td><?php echo $item['ang_alamat'] ?></td>
+			<td><?php echo $item['ang_nohp'] ?></td>
 			<td><?php echo $item['wil_kode'] ?></td>
-			<td><?php echo $item['ang_angsuranke'] ?></td>
+			<td width="80px"><?php echo $item['ang_angsuranke'] ?></td>
 			<td><?php echo $item['ags_tgljatuhtempo'] ?></td>
-			<td><?php echo $item['ags_tglbayar'] ?></td>
-			<td><?php echo $item['ags_jmlpokok'] ?></td>
-			<td><?php echo $item['ags_jmlbunga'] ?></td>
+			<td><?php echo rupiah($item['ags_jmlpokok']) ?></td>
+			<td><?php echo rupiah($item['ags_jmlbunga']) ?></td>
+			<td><?php echo rupiah($totalbayar) ?></td>
 			<td><?php echo $item['ags_status'] ?></td>
 		</tr>
                 
