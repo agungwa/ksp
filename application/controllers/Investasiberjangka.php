@@ -32,7 +32,10 @@ class Investasiberjangka extends MY_Base
                 $this->tarikinvestasi();
                 break;
             case  5:
-                $this->listjasa();
+                $this->listjasa($active);
+                break;
+			case  6:
+                $this->listjasa($active);
                 break;
                     
             default:
@@ -81,28 +84,24 @@ class Investasiberjangka extends MY_Base
 
     //list tarik atau tutup investasi
     public function tarikinvestasi(){
-            {
-                $q = urldecode($this->input->get('q', TRUE));
-                $start = intval($this->input->get('start'));
-    
-                $investasiberjangka = $this->Investasiberjangka_model->get_investasi_ditarik($start, $q);
-                
-                $wilayah = $this->Wilayah_model->get_all();
-        
-                $data = array(
-                    'wilayah_data' => $wilayah,
-                    'investasiberjangka_data' => $investasiberjangka,
-                    'q' => $q,
-                    'start' => $start,
-                    'content' => 'backend/investasiberjangka/investasiberjangka',
-                    'item'=> 'tarikinvestasi/tarikinvestasi.php',
-                    'active' => 4,
-                    );
-                $this->load->view(layout(), $data);
-            }
-    
-            $this->load->view(layout(), $data);
-        }
+		$q = urldecode($this->input->get('q', TRUE));
+		$start = intval($this->input->get('start'));
+
+		$investasiberjangka = $this->Investasiberjangka_model->get_investasi_ditarik($start, $q);
+		
+		$wilayah = $this->Wilayah_model->get_all();
+
+		$data = array(
+			'wilayah_data' => $wilayah,
+			'investasiberjangka_data' => $investasiberjangka,
+			'q' => $q,
+			'start' => $start,
+			'content' => 'backend/investasiberjangka/investasiberjangka',
+			'item'=> 'tarikinvestasi/tarikinvestasi.php',
+			'active' => 4,
+			);
+		$this->load->view(layout(), $data);
+	}
 
     //tarik atau tutup investasi berjangka
     public function tarik() 
@@ -312,7 +311,14 @@ class Investasiberjangka extends MY_Base
     }
 
     
-    public function listjasa(){
+    public function listjasa($active){
+		if($active == 5){
+			$item_dt = "jatuhtempo/investasi_jasa.php";
+		}
+		elseif($active == 6){
+			$item_dt = "jatuhtempo/investasi_jasa_2.php";
+		}
+		
         $q = urldecode($this->input->get('q', TRUE));
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
@@ -376,10 +382,11 @@ class Investasiberjangka extends MY_Base
             'w' => $w,
             'f' => $f,
             't' => $t,
+			'p' => $active,
             'start' => $start,
-            'active' => 5,
+            'active' => $active,
             'content' => 'backend/investasiberjangka/investasiberjangka',
-            'item' => 'jatuhtempo/investasi_jasa.php',
+            'item' => $item_dt
         );
         $this->load->view(layout(), $data);
     }

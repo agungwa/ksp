@@ -25,7 +25,7 @@
             
             <div class="col-md-1 text-right">
             </div>
-            <div class="col-md-3 text-right">
+            <!-- <div class="col-md-3 text-right">
                 <form action="<?php echo site_url('simkesan/simkesanlist'); ?>" class="form-inline" method="get">
 
                     <div class="input-group">
@@ -45,8 +45,9 @@
                     </div>
                 </form>
             </div>
+			-->
         </div>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>

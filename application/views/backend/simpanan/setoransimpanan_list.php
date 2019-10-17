@@ -37,7 +37,7 @@
             </div>
             </form>
         </div>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
@@ -45,6 +45,7 @@
 		<th class="text-center">Nama Anggota</th>
 		<th class="text-center">Tanggal Setor</th>
 		<th class="text-center">Jumlah Setor</th>
+		<th class="text-center">Aksi</th>
             </tr>
             </thead>
             <tbody><?php
@@ -76,9 +77,13 @@
             }
             
             ?>
-            <tr><td></td><td></td><td></td><td>Total Setor</td><td><?php echo rupiahsimpanan($total) ?></td></tr>
+            
             </tbody>
         </table>
+		
+		<table class="table table-bordered table-hover table-condensed">
+			<tr class="danger"><td width="660px">Total Setor</td><td><?php echo rupiahsimpanan($total) ?></td></tr>
+		</table>
         <div class="row">
         </div>
         </div>

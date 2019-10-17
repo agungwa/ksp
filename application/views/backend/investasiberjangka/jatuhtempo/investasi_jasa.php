@@ -6,7 +6,7 @@
                 </div>
         <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
-            <form action="<?php echo base_url()?>investasiberjangka/listjasa" class="form-inline" method="get">
+            <form action="<?php echo base_url()?>investasiberjangka/listjasa/<?= $p?>" class="form-inline" method="get">
             <div class="col-md-8 text-right">
                 
                 <select class="form-control col-md-3"  name="w">

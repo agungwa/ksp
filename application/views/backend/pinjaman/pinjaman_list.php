@@ -61,7 +61,7 @@
             </form>
         </div>
 
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
@@ -133,10 +133,13 @@
                 <?php
             }
             ?>
-            <tr class="danger"><td></td><td>Total Pinjaman</td><td></td><td></td><td></td><td></td><td></td><td><?php echo rupiah($total) ?></td></tr>
             
             </tbody>
         </table>
+		
+		<table class="table table-bordered table-hover table-condensed">
+			<tr class="danger"><td></td><td>Total Pinjaman</td><td></td><td></td><td></td><td></td><td></td><td><?php echo rupiah($total) ?></td></tr>
+		</table>
         <div id="tallModal" class="modal modal-wide fade">
     <div class="modal-dialog">
          <h4 id='namaaplikasi'> survey</h4>

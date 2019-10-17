@@ -606,6 +606,12 @@ lookup();
     });
     </script>
 
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.data').DataTable();
+		});
+	</script>
+
     <script>
     var today = new Date();
     var dd = ("0" + (today.getDate())).slice(-2);
