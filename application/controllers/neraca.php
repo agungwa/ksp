@@ -476,19 +476,20 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 
     	//simpanan wajib
     	foreach ($setoransimpananwajib as $key => $value) {
-    		if ($f<>'' && $t<>'') {	
-    			$tgl = date("Y-m-d", strtotime($value->ssw_tglsetor));
-    			if ($tgl <= $f) {
+    		if ($f<>'') {	
+				$tgl = date("Y-m-d", strtotime($value->ssw_tgl));
+				//var_dump($f);
+    			if (($tgl <= $f)) {
     				$saldoSimpananwajib += $value->ssw_jmlsetor;
     			}
     		} else {
-    			$saldoSimpananwajib += $value->ssw_jmlsetor;
+    			$saldoSimpananwajib += 0;
     		}
     	}
 
     	//simpanan pokok
     	foreach ($simpananPokok as $key => $value) {
-    		if ($f<>'' && $t<>'') {	
+    		if ($f<>'') {	
     			$tgl = date("Y-m-d", strtotime($value->sip_tglbayar));
     			if ($tgl <= $f) {
     				$saldoSimpananpokok += $value->sip_setoran;
