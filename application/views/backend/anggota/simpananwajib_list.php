@@ -28,52 +28,51 @@
             </div>
             </form>
         </div>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
                 <th class="text-center">No Rekening</th>
                 <th class="text-center">Nama Anggota</th>
                 <th class="text-center">Alamat Anggota</th>
-		<th class="text-center">Tanggal Setor</th>
-		<th class="text-center">Setor</th>
-        <?php if(is_allow('M_UTILITAS')): ?>
-		<th class="text-center">Action</th>
-        <?php endif; ?>
+				<th class="text-center">Tanggal Setor</th>
+				<th class="text-center">Setor</th>
+				<?php if(is_allow('M_UTILITAS')): ?>
+				<th class="text-center">Action</th>
+				<?php endif; ?>
             </tr>
             </thead>
 			<tbody><?php
-            $total = 0;
-            foreach ($datasetoranwajib as $k => $item)
-            {
-                $total += $item['ssw_jmlsetor'];
-                ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $item['siw_id'] ?></td>
-			<td><?php echo $item['ang_no'] ?></td>
-			<td><?php echo $item['ang_alamat'] ?></td>
-			<td><?php echo $item['ssw_tglsetor'] ?></td>
-			<td><?php echo rupiahsimpanan($item['ssw_jmlsetor']) ?></td>
+				$total = 0;
+				foreach ($datasetoranwajib as $k => $item)
+				{
+					$total += $item['ssw_jmlsetor'];
+					?>
+					<tr>
+						<td width="80px"><?php echo ++$start ?></td>
+						<td><?php echo $item['siw_id'] ?></td>
+						<td><?php echo $item['ang_no'] ?></td>
+						<td><?php echo $item['ang_alamat'] ?></td>
+						<td><?php echo $item['ssw_tglsetor'] ?></td>
+						<td><?php echo rupiahsimpanan($item['ssw_jmlsetor']) ?></td>
 
-            <?php if(is_allow('M_UTILITAS')): ?>
-			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('setoransimpananwajib/read/'.$item['ssw_id']),'Read','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('setoransimpananwajib/update/'.$item['ssw_id']),'Update','class="text-navy" onclick="javascript: return confirm(\'Yakin Update data?\')"'); 
-				
-				?>
-			</td>
-        <?php endif; ?>
-		</tr>
-                
-                <?php
-            }
-            ?>
-            <tr><td></td><td></td><td></td><td></td><td>Total Setor</td><td><?php echo rupiahsimpanan($total) ?></td></tr>
+						<?php if(is_allow('M_UTILITAS')): ?>
+						<td style="text-align:center" width="200px">
+							<?php 
+							echo anchor(site_url('setoransimpananwajib/read/'.$item['ssw_id']),'Read','class="text-navy"'); 
+							echo ' | '; 
+							echo anchor(site_url('setoransimpananwajib/update/'.$item['ssw_id']),'Update','class="text-navy" onclick="javascript: return confirm(\'Yakin Update data?\')"'); 
+							
+							?>
+						</td>
+						<?php endif; ?>
+					</tr><?php
+				}?>
             </tbody>
         </table>
+		<table class="data table table-bordered table-hover table-condensed">
+			<tr class="danger"><td></td><td></td><td></td><td></td><td>Total Setor</td><td><?php echo rupiahsimpanan($total) ?></td></tr>
+		</table>
         <div class="row">
         </div>
         </div>
