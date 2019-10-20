@@ -9,7 +9,11 @@
     tr#02{background-color: #536fee;}
      
  </style>
+ <?php 
+            $kantorksp = $this->Kantorksp_model->get_by_id(1); 
+    ?>
  <h2><b>List Jatuh Tempo Simpanan</b></h2>
+ <h2><b><?php echo $kantorksp->kks_nama ?></b></h2>
  <?php $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row(); ?>
  <h3><b>Rentang Tanggal : <?=dateFormataja($f)?> Sampai <?=dateFormataja($t)?> </b></h3>
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
