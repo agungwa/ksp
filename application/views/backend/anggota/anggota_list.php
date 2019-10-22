@@ -16,6 +16,13 @@
                         }
                     ?>
                 </select>
+				<div class="col-md-2"><h4>Tanggal: </h4></div>
+                <div class="col-md-2">
+                    <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
+                </div>
             </div>
             <div class="col-md-4 text-right">
                     <div class="input-group">
@@ -46,6 +53,7 @@
 		<th class="text-center">Nomor KTP</th>
 		<th class="text-center">Nomor KK</th>
 		<th class="text-center">Nomor Handphone</th>
+		<th class="text-center">Tanggal Pendaftaran</th>
 		<th class="text-center">Tanggal Lahir</th>
 		<th class="text-center">Status</th>
 		<th class="text-center">Edit Anggota</th>
@@ -65,6 +73,7 @@
 			<td><?php echo $item['ang_noktp'] ?></td>
 			<td><?php echo $item['ang_nokk'] ?></td>
 			<td><?php echo $item['ang_nohp'] ?></td>
+			<td><?php echo $item['ang_tgl'] ?></td>
 			<td><?php echo $item['ang_tgllahir'] ?></td>
 			<td><?php echo $item['ang_status']?></td>
 			<td style="text-align:center" width="200px">
