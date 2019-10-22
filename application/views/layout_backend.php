@@ -469,15 +469,20 @@ lookup();
 
                     <!-- MENU USER MANAGEMENT -->
                     <li class="">
-                        <?php if(is_allow('M_SISTEM')): ?>
+                        
                         <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">MANAJEMEN USER</span>
                             <span class="fa arrow"></span></a>
-                        <?php endif; ?>
                         <ul class="nav nav-second-level">
+                        <?php if(is_allow('M_SISTEM')): ?>
                             <li><a href="<?=base_url()?>users">Users</a></li>
                             <li><a href="<?=base_url()?>user_group">User Group</a></li>
+                            <?php endif; ?>
+                            <?php if(is_allow('M_MANAGER')): ?>
                             <li><a href="<?=base_url()?>user_access">User Access</a></li>
+                            <?php endif; ?>
+                            <?php if(is_allow('M_SISTEM')): ?>
                             <li><a href="<?=base_url()?>master_access">Master Access</a></li>
+                            <?php endif; ?>
                         </ul>
                     </li>
 
