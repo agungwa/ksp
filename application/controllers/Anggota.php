@@ -319,18 +319,31 @@ class Anggota extends MY_Base
         $q = urldecode($this->input->get('q', TRUE));
         $s = urldecode($this->input->get('s', TRUE));
         $u = urldecode($this->input->get('u', TRUE));
-        $start = intval($this->input->get('start'));
+		$f = urldecode($this->input->get('f', TRUE)); //dari tgl
+		$t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+        $start 	= intval($this->input->get('start'));
+		
+		$satu	= 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+		$tanggalDuedatenow = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedatenow;}
+		
         $anggota = $this->Anggota_model->get_limit_data($start, $q);
         
-        $dataanggota = array();
+        $dataanggota = array();$i=0;
         foreach ($anggota as $key=>$item) {
             if (
                 ( $u=='all' && $s=='all') || 
                 ( $u=='all' && $item->ang_status == $s) || 
                 ( $item->ang_no == $u && $s=='all') || 
                 ( $item->ang_no == $u && $item->ang_status == $s)) {
-
+				
+				$tgl_daftar = $item->ang_tgl;
+				$f = date("Y-m-d", strtotime($f));
+				$t = date("Y-m-d", strtotime($t));
+				
+				if (($tgl_daftar >= $f && $tgl_daftar <= date("Y-m-d", strtotime($t.' + '.$satu.' Days')))) {
                     $dataanggota[$key] = array(
                         'ang_no' => $item->ang_no,
                         'ang_nama' => $item->ang_nama,
@@ -340,10 +353,11 @@ class Anggota extends MY_Base
                         'ang_nohp' => $item->ang_nohp,
                         'ang_tgllahir' => $item->ang_tgllahir,
                         'ang_status' => $this->statusAnggota[$item->ang_status],
-                        'ang_tgl' => $item->ang_tgl,
+                        'ang_tgl' => date("Y-m-d", strtotime($item->ang_tgl)),
                         'ang_flag' => $item->ang_flag,
                         'ang_info' => $item->ang_info,
                     );
+				}
             }
         }
         
@@ -353,6 +367,8 @@ class Anggota extends MY_Base
             'u' => $u,
             's' => $s,
             'q' => $q,
+			'f' => $f,
+			't' => $t,
             'start' => $start,
             'active' => 2,
             'content' => 'backend/anggota/anggota',
