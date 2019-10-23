@@ -34,6 +34,9 @@ class Pinjaman extends MY_Base
             case  4:
                 $this->listdata();
                 break;
+            case  5:
+                $this->prive();
+                break;
 
             default:
                 $this->pengajuan();
@@ -48,6 +51,19 @@ class Pinjaman extends MY_Base
             'content' => 'backend/pinjaman/pinjaman',
             'item'=> 'pengajuan/pengajuan.php',
             'active' => 1
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
+    
+    public function prive(){
+        $nowYear = date('d');
+        $data = array(
+            'kode' => $this->Pengkodean->pinjaman($nowYear),
+            'content' => 'backend/pinjaman/pinjaman',
+            'item'=> 'pengajuan/prive.php',
+            'active' => 5
         );
 
         $this->load->view(layout(), $data);
@@ -317,6 +333,32 @@ class Pinjaman extends MY_Base
                 );
             $this->Penjamin_model->insert($dataPenjamin);
 
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('pinjaman/?p=1'));
+        
+    }
+
+    
+    public function prive_action() 
+    {
+        //Butuh validasi input
+            $dataPengajuan = array(
+            'pin_id' => $this->input->post('pin_id',TRUE),
+            'ang_no' => $this->input->post('ang_no',TRUE),
+            'sea_id' => $this->input->post('sea_id',TRUE),
+            'bup_id' => $this->input->post('bup_id',TRUE),
+            'pop_id' => $this->input->post('pop_id',TRUE),
+            'wil_kode' => $this->input->post('wil_kode',TRUE),
+            'skp_id' => $this->input->post('skp_id',TRUE),
+            'pin_pengajuan' => 0,
+            'pin_pinjaman' => $this->input->post('pin_pinjaman',TRUE),
+            'pin_tglpengajuan' => $this->tgl,
+            'pin_tglpencairan' => $this->input->post('pin_tglpencairan',TRUE),
+            'pin_statuspinjaman' => 1,
+            'pin_tgl' => $this->tgl,
+            'pin_flag' => 0,
+            'pin_info' => "",
+            );
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('pinjaman/?p=1'));
         
@@ -622,9 +664,6 @@ class Pinjaman extends MY_Base
 	$this->form_validation->set_rules('pin_pinjaman', 'pin pinjaman', 'trim|required');
 	$this->form_validation->set_rules('pin_tglpengajuan', 'pin tglpengajuan', 'trim|required');
 	$this->form_validation->set_rules('pin_tglpencairan', 'pin tglpencairan', 'trim|required');
-	$this->form_validation->set_rules('pin_marketing', 'pin marketing', 'trim|required');
-	$this->form_validation->set_rules('pin_surveyor', 'pin surveyor', 'trim|required');
-	$this->form_validation->set_rules('pin_survey', 'pin survey', 'trim|required');
 	$this->form_validation->set_rules('pin_statuspinjaman', 'pin statuspinjaman', 'trim|required');
 
 	$this->form_validation->set_rules('pin_id', 'pin id', 'trim');
