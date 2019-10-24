@@ -45,20 +45,20 @@
 
         <table class="data" style="margin-bottom: 10px">
             <thead>
-            <tr>
-                <th>No</th>
-				<th>Nomor Anggota</th>
-				<th>Nama</th>
-				<th>Alamat</th>
-				<th>Nomor KTP</th>
-				<th>Nomor KK</th>
-				<th>Nomor Handphone</th>
-				<th>Tanggal Pendaftaran</th>
-				<th>Tanggal Lahir</th>
-				<th>Status</th>
-				<th>Edit Anggota</th>
-				<th>Action Anggota</th>
-            </tr>
+				<tr>
+					<th>No</th>
+					<th>Nomor Anggota</th>
+					<th>Nama</th>
+					<th>Alamat</th>
+					<th>Nomor KTP</th>
+					<th>Nomor KK</th>
+					<th>Nomor Handphone</th>
+					<th>Tanggal Pendaftaran</th>
+					<th>Tanggal Lahir</th>
+					<th>Status</th>
+					<th>Edit Anggota</th>
+					<th>Action Anggota</th>
+				</tr>
             </thead>
 			<tbody><?php
             
@@ -100,7 +100,6 @@
                 <?php
             }
             ?>
-
             </tbody>
         </table>
        
