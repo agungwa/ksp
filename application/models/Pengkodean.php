@@ -80,11 +80,11 @@ class Pengkodean extends CI_Model
     // input kode investasi berjangka
        public function investasiberjangka($nowYear){
         $kantorksp = $this->Kantorksp_model->get_by_id(1); 
-        $this->db->select('RIGHT(investasiberjangka.ivb_kode,2) as ivb_kode', FALSE);
+        $this->db->select('RIGHT(investasiberjangka.ivb_kode,3) as ivb_kode', FALSE);
         $this->db->where("DATE_FORMAT(ivb_tgl, '%d') = ", $nowYear);
         $this->db->limit(1);
         $this->db->order_by('ivb_kode','DESC');    
-        $query = $this->db->get('investasiberjangka');  
+        $query = $this->db->get('investasiberjangka');
         if($query->num_rows() <> 0){          
             $data = $query->row();      
             $kode = intval($data->ivb_kode) + 1; 
@@ -93,7 +93,7 @@ class Pengkodean extends CI_Model
             $kode = 1;
         }
             $tgl=date('dmy'); 
-            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);    
+            $batas = str_pad($kode, 3, "0", STR_PAD_LEFT);
             $kodetampil = "$kantorksp->kks_kode"."D".$tgl.$batas;
             return $kodetampil;  
     }
