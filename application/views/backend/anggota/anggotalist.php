@@ -43,20 +43,20 @@
             </div>
 			-->
         </div>
-        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <thead class="thead-light">
+        <table class="data" style="margin-bottom: 10px">
+            <thead>
             <tr>
-                <th class="text-center">No</th>
-        <th class="text-center">Nomor Anggota</th>
-		<th class="text-center">Nama</th>
-		<th class="text-center">Alamat</th>
-		<th class="text-center">Nomor KTP</th>
-		<th class="text-center">Nomor KK</th>
-		<th class="text-center">Nomor Handphone</th>
-		<th class="text-center">Tanggal Lahir</th>
-		<th class="text-center">Status</th>
-		<th class="text-center">Edit Anggota</th>
-		<th class="text-center">Action Anggota</th>
+                <th>No</th>
+				<th>Nomor Anggota</th>
+				<th>Nama</th>
+				<th>Alamat</th>
+				<th>Nomor KTP</th>
+				<th>Nomor KK</th>
+				<th>Nomor Handphone</th>
+				<th>Tanggal Lahir</th>
+				<th>Status</th>
+				<th>Edit Anggota</th>
+				<th>Action Anggota</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -65,38 +65,36 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-            <td><?php echo $anggota->ang_no ?></td>
-			<td><?php echo $anggota->ang_nama ?></td>
-			<td><?php echo $anggota->ang_alamat ?></td>
-			<td><?php echo $anggota->ang_noktp ?></td>
-			<td><?php echo $anggota->ang_nokk ?></td>
-			<td><?php echo $anggota->ang_nohp ?></td>
-			<td><?php echo $anggota->ang_tgllahir ?></td>
-			<td><?php echo $this->statusAnggota[$anggota->ang_status] ?></td>
-			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('anggota/read/'.$anggota->ang_no),'Detail','class="text-navy"'); 
-                echo ' | ';
-                if ($anggota->ang_status == 0) {
-				echo anchor(site_url('anggota/pengajuanupdate/'.$anggota->ang_no),'Update','class="text-navy"');
-                } else {
-                echo anchor(site_url('anggota/update/'.$anggota->ang_no),'Update','class="text-navy"');
-                } 
-				echo ' | '; 
-				echo anchor(site_url('anggota/delete/'.$anggota->ang_no),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-				?>
-            </td>
-            <td style="text-align:center" width="200px">
-                <?php
-				echo anchor(site_url('anggota/setorsiw?q='.$anggota->ang_no),'Setor','class="text-navy"'); 
-				echo ' | '; 
-                echo anchor(site_url('anggota/tariksiw?q='.$anggota->ang_no),'Tarik','class="text-navy"');
-                ?>
-            </td>
-            
-		</tr>
-                
+					<td width="80px"><?php echo ++$start ?></td>
+					<td><?php echo $anggota->ang_no ?></td>
+					<td><?php echo $anggota->ang_nama ?></td>
+					<td><?php echo $anggota->ang_alamat ?></td>
+					<td><?php echo $anggota->ang_noktp ?></td>
+					<td><?php echo $anggota->ang_nokk ?></td>
+					<td><?php echo $anggota->ang_nohp ?></td>
+					<td><?php echo $anggota->ang_tgllahir ?></td>
+					<td><?php echo $this->statusAnggota[$anggota->ang_status] ?></td>
+					<td style="text-align:center" width="200px">
+						<?php 
+						echo anchor(site_url('anggota/read/'.$anggota->ang_no),'Detail','class="text-navy"'); 
+						echo ' | ';
+						if ($anggota->ang_status == 0) {
+						echo anchor(site_url('anggota/pengajuanupdate/'.$anggota->ang_no),'Update','class="text-navy"');
+						} else {
+						echo anchor(site_url('anggota/update/'.$anggota->ang_no),'Update','class="text-navy"');
+						} 
+						echo ' | '; 
+						echo anchor(site_url('anggota/delete/'.$anggota->ang_no),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+						?>
+					</td>
+					<td style="text-align:center" width="200px">
+						<?php
+						echo anchor(site_url('anggota/setorsiw?q='.$anggota->ang_no),'Setor','class="text-navy"'); 
+						echo ' | '; 
+						echo anchor(site_url('anggota/tariksiw?q='.$anggota->ang_no),'Tarik','class="text-navy"');
+						?>
+					</td>
+				</tr>
                 <?php
             }
             ?>

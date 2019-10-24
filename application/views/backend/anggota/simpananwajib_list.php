@@ -28,19 +28,19 @@
             </div>
             </form>
         </div>
-        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <thead class="thead-light">
-            <tr>
-                <th class="text-center">No</th>
-                <th class="text-center">No Rekening</th>
-                <th class="text-center">Nama Anggota</th>
-                <th class="text-center">Alamat Anggota</th>
-				<th class="text-center">Tanggal Setor</th>
-				<th class="text-center">Setor</th>
-				<?php if(is_allow('M_UTILITAS')): ?>
-				<th class="text-center">Action</th>
-				<?php endif; ?>
-            </tr>
+        <table class="data" style="margin-bottom: 10px">
+            <thead>
+				<tr>
+					<th>No</th>
+					<th>No Rekening</th>
+					<th>Nama Anggota</th>
+					<th>Alamat Anggota</th>
+					<th>Tanggal Setor</th>
+					<th>Setor</th>
+					<?php if(is_allow('M_UTILITAS')): ?>
+					<th>Action</th>
+					<?php endif; ?>
+				</tr>
             </thead>
 			<tbody><?php
 				$total = 0;
@@ -70,7 +70,7 @@
 				}?>
             </tbody>
         </table>
-		<table class="data table table-bordered table-hover table-condensed">
+		<table class="table table-bordered table-hover table-condensed">
 			<tr class="danger"><td></td><td></td><td></td><td></td><td>Total Setor</td><td><?php echo rupiahsimpanan($total) ?></td></tr>
 		</table>
         <div class="row">
