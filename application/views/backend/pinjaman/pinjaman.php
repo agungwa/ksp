@@ -17,7 +17,7 @@
 						  <li role="presentation" class="<?= ($active==2)?'active':''?>"><a href="<?=base_url()?>pinjaman/?p=2">Survey</a></li>
 						  <li role="presentation" class="<?= ($active==3)?'active':''?>"><a href="<?=base_url()?>pinjaman/?p=3">Persetujuan</a></li>
 						  <li role="presentation" class="<?= ($active==4)?'active':''?>"><a href="<?=base_url()?>pinjaman/?p=4">List Pinjaman</a></li>
-						  <li role="presentation" class="<?= ($active==5)?'active':''?>"><a href="<?=base_url()?>pinjaman/?p=5">Prive</a></li>
+						  <!--<li role="presentation" class="<?= ($active==5)?'active':''?>"><a href="<?=base_url()?>pinjaman/?p=5">Prive</a></li>-->
 						</ul>
 						<div class="clearfix"></div>
             			<?php
