@@ -81,7 +81,7 @@ class Pengkodean extends CI_Model
        public function investasiberjangka($nowYear){
         $kantorksp = $this->Kantorksp_model->get_by_id(1); 
         $this->db->select('RIGHT(investasiberjangka.ivb_kode,3) as ivb_kode', FALSE);
-        $this->db->where("DATE_FORMAT(ivb_tgl, '%d') = ", $nowYear);
+        $this->db->where("DATE_FORMAT(ivb_tgl, '%d%m%y') = ", $nowYear);
         $this->db->limit(1);
         $this->db->order_by('ivb_kode','DESC');    
         $query = $this->db->get('investasiberjangka');
