@@ -194,7 +194,7 @@ lookup();
                         <?php endif; ?>
                         <ul class="nav nav-second-level">
 
-                            <?php if(is_allow('M_UTILITAS')): ?>
+                            <?php if(is_allow('M_SIMKESAN')): ?>
                             <li>
                                 <a href="#" id="damian">Utilitas Simkesan<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
