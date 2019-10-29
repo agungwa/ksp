@@ -606,20 +606,21 @@ class Simpanan extends MY_Base
             $t = date("Y-m-d", strtotime($t));
 
             if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $item->wil_kode == $w)) {
-                $datasimpanan[$key] = array('sim_kode' => $item->sim_kode,
-                                        'ang_no' => $item->ang_no,
-                                        'ang_nama' => $ang_no->ang_nama,
-                                        'ang_alamat' => $ang_no->ang_alamat,
-                                        'kar_nama' => $kar_kode->kar_nama ,
-                                        'bus_bunga' => $bus_id->bus_bunga,
-                                        'jsi_simpanan' => $jsi_id->jsi_simpanan,
-                                        'jse_setoran' => $jse_id->jse_setoran ,
-                                        'wil_nama' => $wil_kode->wil_nama,
-                                        'wil_nama' => $wil_kode->wil_nama,
-                                        'sim_tglpendaftaran' => $item->sim_tglpendaftaran ,
-                                        'tanggalDuedate' => $tanggalDuedate,
-                                        'statusSimpanan' => $this->statusSimpanan[$item->sim_status],
-                                    );
+                $datasimpanan[$key] = array(
+					'sim_kode' => $item->sim_kode,
+					'ang_no' => $item->ang_no,
+					'ang_nama' => $ang_no->ang_nama,
+					'ang_alamat' => $ang_no->ang_alamat,
+					'kar_nama' => $kar_kode->kar_nama ,
+					'bus_bunga' => $bus_id->bus_bunga,
+					'jsi_simpanan' => $jsi_id->jsi_simpanan,
+					'jse_setoran' => $jse_id->jse_setoran ,
+					'wil_nama' => $wil_kode->wil_nama,
+					'wil_nama' => $wil_kode->wil_nama,
+					'sim_tglpendaftaran' => $item->sim_tglpendaftaran ,
+					'tanggalDuedate' => $tanggalDuedate,
+					'statusSimpanan' => $this->statusSimpanan[$item->sim_status],
+				);
             }
         }
 
