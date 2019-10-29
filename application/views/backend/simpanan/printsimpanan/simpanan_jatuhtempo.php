@@ -80,7 +80,6 @@
                                 </tr>';
                                 $subtotal_thn = 0;
                             } 
-                            $total += $totalsetoran[0]->ssi_jmlsetor;
                         
                     ?>
                 </tr>
