@@ -61,23 +61,23 @@
             </form>
         </div>
 
-        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <thead class="thead-light">
+        <table class="data" style="margin-bottom: 10px">
+            <thead>
             <tr>
-                <th class="text-center">No</th>
-        		<th class="text-center">Pinjaman</th>
-        		<th class="text-center">Nama Anggota</th>
-        		<th class="text-center">Angsuran (bulan)</th>
-        		<th class="text-center">Wilayah</th>
-        		<th class="text-center">Pengajuan</th>
-        		<th class="text-center">Survey</th>
-        		<th class="text-center">Pinjaman</th>
-        		<th class="text-center">Tanggal Pengajuan</th>
-        		<th class="text-center">Tanggal Pencairan</th>
-        		<th class="text-center">Tanggal Pelunasan</th>
-        		<th class="text-center">Status Pinjaman</th>
-        		<th class="text-center">Edit Pinjaman</th>
-        		<th class="text-center">Action Pinjaman</th>
+                <th>No</th>
+        		<th>Pinjaman</th>
+        		<th>Nama Anggota</th>
+        		<th>Angsuran (bulan)</th>
+        		<th>Wilayah</th>
+        		<th>Pengajuan</th>
+        		<th>Survey</th>
+        		<th>Pinjaman</th>
+        		<th>Tanggal Pengajuan</th>
+        		<th>Tanggal Pencairan</th>
+        		<th>Tanggal Pelunasan</th>
+        		<th>Status Pinjaman</th>
+        		<th>Edit Pinjaman</th>
+        		<th>Action Pinjaman</th>
             </tr>
             </thead>
             <tbody><?php

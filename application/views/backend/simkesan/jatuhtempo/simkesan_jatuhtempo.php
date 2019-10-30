@@ -47,15 +47,15 @@
             </div>
             </form>
         </div>
-        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <thead class="thead-light">
-            <tr>
-                <th class="text-center">No</th>
-        		<th class="text-center">Rekening Simkesan</th>
-        		<th class="text-center">Tanggal Setoran</th>
-        		<th class="text-center">Jatuh Tempo</th>
-        		<th class="text-center">Setor</th>
-            </tr>
+        <table class="data" style="margin-bottom: 10px">
+            <thead>
+				<tr>
+					<th>No</th>
+					<th>Rekening Simkesan</th>
+					<th>Tanggal Setoran</th>
+					<th>Jatuh Tempo</th>
+					<th>Setor</th>
+				</tr>
             </thead>
 			<tbody><?php
             foreach ($datajatuh as $key => $item)
@@ -65,13 +65,12 @@
                 $perbedaan = $tanggal->diff($sekarang);
                 ?>
                 <tr>
-    			<td width="80px"><?php echo ++$start ?></td>
-    			<td><?php echo $item['sik_kode'] ?></td>
-    			<td><?php echo $item['ssk_tglsetoran'] ?></td>
-    			<td><?php echo $perbedaan->m ?></td>
-    			<td><?php echo neraca($item['ssk_jmlsetor']) ?></td>
-		</tr>
-                
+					<td width="80px"><?php echo ++$start ?></td>
+					<td><?php echo $item['sik_kode'] ?></td>
+					<td><?php echo $item['ssk_tglsetoran'] ?></td>
+					<td><?php echo $perbedaan->m ?></td>
+					<td><?php echo neraca($item['ssk_jmlsetor']) ?></td>
+				</tr>
                 <?php
             }
             ?>

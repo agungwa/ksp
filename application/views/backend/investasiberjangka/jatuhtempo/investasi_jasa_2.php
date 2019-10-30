@@ -35,20 +35,20 @@
 					</div>
 				</div>
             </form>
-			<table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-				<thead class="thead-light">
+			<table class="data" style="margin-bottom: 10px">
+				<thead>
 					<tr>
-						<th class="text-center">No</th>
-						<th class="text-center">Rekening Investasi</th>
-						<th class="text-center">Nama Anggota</th>
-						<th class="text-center">Alamat</th>
-						<th class="text-center">Jangka Waktu</th>
-						<th class="text-center">Bunga</th>
-						<th class="text-center">Jasa/bulan</th>
-						<th class="text-center">Investasi</th>
-						<th class="text-center">Tanggal Pendaftaran</th>
-						<th class="text-center">Tanggal Jatuh Tempo</th>
-						<th class="text-center">Status</th>
+						<th>No</th>
+						<th>Rekening Investasi</th>
+						<th>Nama Anggota</th>
+						<th>Alamat</th>
+						<th>Jangka Waktu</th>
+						<th>Bunga</th>
+						<th>Jasa/bulan</th>
+						<th>Investasi</th>
+						<th>Tanggal Pendaftaran</th>
+						<th>Tanggal Jatuh Tempo</th>
+						<th>Status</th>
 					</tr>
 				</thead>
 				<tbody><?php
