@@ -122,7 +122,7 @@ class Pengkodean extends CI_Model
     // input kode simkesan
     public function simkesan($nowYear){
         $kantorksp = $this->Kantorksp_model->get_by_id(1); 
-        $this->db->select('RIGHT(simkesan.sik_kode,2) as sik_kode', FALSE);
+        $this->db->select('RIGHT(simkesan.sik_kode,3) as sik_kode', FALSE);
         $this->db->where("DATE_FORMAT(sik_tgl, '%d') = ", $nowYear);
         $this->db->limit(1);
         $this->db->order_by('sik_kode','DESC');    
