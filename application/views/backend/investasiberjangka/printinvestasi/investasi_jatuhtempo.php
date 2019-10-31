@@ -1,65 +1,35 @@
-<div class="row">
-    <div class="col-lg-12">
-        <div class="ibox">
-            <div class="ibox-title">
-                    <h2><b>List Jatuh Tempo</b></h2>
-                </div>
-        <div class="ibox-content">
-        <div class="row" style="margin-bottom: 10px, margin-top:10px">
-            <form action="<?php echo base_url()?>investasiberjangka/jatuhtempo" class="form-inline" method="get">
-            <div class="col-md-8 text-right">
-                <div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
-                <div class="col-md-3">
-                    <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
-                </div>
-                <div class="col-md-3">
-                    <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
-                </div>
-                <select class="form-control col-md-3"  name="w">
-                    <option value="all">Semua Wilayah</option>
-                    <?php
-                        foreach ($wilayah_data as $value) { ?>
-                            <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
-                    <?php        
-                        }
-                    ?>
-                </select>
-
-            </div>
-            
-            <div class="col-md-4 text-right">
-                    <div class="input-group">
-                        <!-- <input type="text" class="form-control" name="q" value="<?php echo $q; ?>" placeholder="No simpanan/ No Anggota"> -->
-                        <span class="input-group-btn">
-                            <!-- <?php 
-                                if ($q <> '')
-                                {
-                                    ?>
-                                    <a href="<?php echo base_url()?>simpanan/?p=3" class="btn btn-default">Reset</a>
-                                    <?php
-                                }
-                            ?> -->
-                            <a href="<?php echo base_url()?>PrintInvestasiberjangka/jatuhtempo?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
-                          <button class="btn btn-primary" type="submit">Tampilkan</button>
-                        </span>
-                    </div>
-            </div>
-            </form>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <thead class="thead-light">
+<style>
+ 	table{margin: auto;}
+ 	td,th{padding: 5px;text-align: center; }
+ 	tr#01{padding: 5px;text-align: center; }
+ 	h2{text-align: center}
+ 	h3{text-align: center}
+    th{background-color: #95a5a6; padding: 10px;color: #fff}
+    tr#01{background-color: #eb3131;}
+    tr#02{background-color: #536fee;}
+     
+ </style>
+ 
+ <h2><b>List Jatuh Tempo Investasi</b></h2>
+ <?php $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row(); ?>
+ <h3><b>Rentang Tanggal : <?=dateFormataja($f)?> Sampai <?=dateFormataja($t)?> </b></h3>
+<p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
+    style="font-family:Cambria">Wilayah : <?php if($w!='all'){echo $wil_kode->wil_nama;} else if ($w='all') {echo 'Semua Wilayah';}?></p>
+        <table >
+            <thead >
             <tr>
-                <th class="text-center">No</th>
-        <th class="text-center">Rekening Investasi</th>
-		<th class="text-center">Nama Anggota</th>
-		<th class="text-center">Alamat</th>
-		<th class="text-center">Jangka Waktu</th>
-		<th class="text-center">Bunga</th>
-		<th class="text-center">Total Jasa</th>
-		<th class="text-center">Pokok</th>
-		<th class="text-center">Pokok+Bunga</th>
-		<th class="text-center">Tanggal Pendaftaran</th>
-		<th class="text-center">Tanggal Jatuh Tempo</th>
-		<th class="text-center">Status</th>
+                <th >No</th>
+        <th >Rekening Investasi</th>
+		<th >Nama Anggota</th>
+		<th >Alamat</th>
+		<th >Jangka Waktu</th>
+		<th >Bunga</th>
+		<th >Total Jasa</th>
+		<th >Pokok</th>
+		<th >Pokok+Bunga</th>
+		<th >Tanggal Pendaftaran</th>
+		<th >Tanggal Jatuh Tempo</th>
+		<th >Status</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -90,7 +60,7 @@
             <?php
                     // SUB TOTAL per thn_byr
                             if (@$datainvestasi[$key+1]['jatuhtempo'] != $item['jatuhtempo']) {
-                                echo '<tr class="info">
+                                echo '<tr id="02">
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -113,7 +83,7 @@
                 <?php
             }
             ?>
-            <tr class="danger">
+            <tr id="01">
             <td></td>
             <td>Total </td>
             <td></td><td></td><td></td><td></td>

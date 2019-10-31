@@ -96,6 +96,14 @@ class Investasiberjangka_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_jasa($start = 0, $q = NULL, $date1=NULL, $date2=NULL) {
+        $this->db->order_by($this->id, $this->order);
+        $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND ivb_status = 0 AND jiv_id = 2 AND ivb_flag < 2";
+        $this->db->where($where);
+       // $this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
     // get total rows
     function total_rows($q = NULL) {
         $this->db->like('ivb_kode', $q);
