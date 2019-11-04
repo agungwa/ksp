@@ -144,7 +144,7 @@ class Simkesan extends MY_Base
              //insert data setor simkesan
          $dataSetor = array(
     		'sik_kode' => $this->input->post('sik_kode',TRUE),
-    		'ssk_tglsetoran' => $this->tgl,
+    		'ssk_tglsetoran' => $this->input->post('ssk_tglsetoran',TRUE),
     		'ssk_tglbayar' => $this->tgl,
     		'ssk_jmlsetor' => $this->input->post('ssk_jmlsetor',TRUE),
     		'ssk_tgl' => $this->tgl,
