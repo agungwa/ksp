@@ -16,7 +16,7 @@
         <div class="col-md-4">
 	    <div class="form-group">
             <label for="varchar">Rekening Pinjaman <?php echo form_error('pin_id') ?></label>
-            <input type="text" class="form-control" name="pin_id" id="pin_id" placeholder="Rekening Pinjaman" value="<?php echo $pin_id; ?>" />
+            <input type="text" class="form-control" name="pin_id" id="pin_id" placeholder="Rekening Pinjaman" value="<?php echo $pin_id; ?>" readonly/>
         </div>
 
         <div class="form-group">
@@ -51,7 +51,9 @@
             </div>
             </div>
         </div>
+        </div>
 
+        <div class="col-md-4">
         <div class="form-group">
             <label for="int">Potongan Provisi (dalam persen)<?php echo form_error('pop_id') ?></label>
             <div class="input-group">
@@ -84,10 +86,8 @@
             </div>
             </div>
         </div>
-        </div>
 
-        <div class="col-md-4">
-	    <div class="form-group">
+	  <!--  <div class="form-group">
             <label for="float">Pengajuan <?php echo form_error('pin_pengajuan') ?></label>
             <input type="number" class="form-control" name="pin_pengajuan" id="pin_pengajuan" placeholder="Pin Pengajuan" value="<?php echo $pin_pengajuan; ?>" />
         </div>
@@ -119,7 +119,7 @@
             <label for="varchar">Status Pinjaman <?php echo form_error('pin_statuspinjaman') ?></label>
             <input type="text" class="form-control" name="pin_statuspinjaman" id="pin_statuspinjaman" placeholder="Status Pinjaman" value="<?php echo $pin_statuspinjaman; ?>" />
         </div>
-	    
+	    -->
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Batal</a>
         </div>

@@ -570,22 +570,30 @@ class Pinjaman extends MY_Base
         $row = $this->Pinjaman_model->get_by_id($id);
 
         if ($row) {
+            
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
+            $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
+            $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $row->bup_id))->row();
+            $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
+            $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
+            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('pinjaman/update_action'),
         		'pin_id' => set_value('pin_id', $row->pin_id),
         		'ang_no' => set_value('ang_no', $row->ang_no),
-                'nm_ang_no' => set_value('ang_no', $row->ang_no),
+                'nm_ang_no' => set_value('ang_no', $ang_no->ang_nama),
         		'sea_id' => set_value('sea_id', $row->sea_id),
-                'nm_sea_id' => set_value('sea_id', $row->sea_id),
+                'nm_sea_id' => set_value('sea_id', $sea_id->sea_tenor),
         		'bup_id' => set_value('bup_id', $row->bup_id),
-                'nm_bup_id' => set_value('bup_id', $row->bup_id),
+                'nm_bup_id' => set_value('bup_id', $row->bup_bunga),
         		'pop_id' => set_value('pop_id', $row->pop_id),
-                'nm_pop_id' => set_value('pop_id', $row->pop_id),
+                'nm_pop_id' => set_value('pop_id', $pop_id->pop_potongan),
         		'wil_kode' => set_value('wil_kode', $row->wil_kode),
-                'nm_wil_kode' => set_value('wil_kode', $row->wil_kode),
+                'nm_wil_kode' => set_value('wil_kode', $wil_kode->wil_nama),
         		'skp_id' => set_value('skp_id', $row->skp_id),
-                'nm_skp_id' => set_value('skp_id', $row->skp_id),
+                'nm_skp_id' => set_value('skp_id', $skp_id->skp_kategori),
         		'pin_pengajuan' => set_value('pin_pengajuan', $row->pin_pengajuan),
         		'pin_pinjaman' => set_value('pin_pinjaman', $row->pin_pinjaman),
         		'pin_tglpengajuan' => set_value('pin_tglpengajuan', $row->pin_tglpengajuan),
@@ -619,12 +627,12 @@ class Pinjaman extends MY_Base
     		'skp_id' => $this->input->post('skp_id',TRUE),
     		'pin_pengajuan' => $this->input->post('pin_pengajuan',TRUE),
     		'pin_pinjaman' => $this->input->post('pin_pinjaman',TRUE),
-    		'pin_tglpengajuan' => $this->input->post('pin_tglpengajuan',TRUE),
+    		/*'pin_tglpengajuan' => $this->input->post('pin_tglpengajuan',TRUE),
     		'pin_tglpencairan' => $this->input->post('pin_tglpencairan',TRUE),
     		'pin_marketing' => $this->input->post('pin_marketing',TRUE),
     		'pin_surveyor' => $this->input->post('pin_surveyor',TRUE),
     		'pin_survey' => $this->input->post('pin_survey',TRUE),
-    		'pin_statuspinjaman' => $this->input->post('pin_statuspinjaman',TRUE),
+    		'pin_statuspinjaman' => $this->input->post('pin_statuspinjaman',TRUE),*/
     		'pin_flag' => 1,
     	    );
 
@@ -660,11 +668,11 @@ class Pinjaman extends MY_Base
 	$this->form_validation->set_rules('pop_id', 'pop id', 'trim|required');
 	$this->form_validation->set_rules('wil_kode', 'wil kode', 'trim|required');
 	$this->form_validation->set_rules('skp_id', 'skp id', 'trim|required');
-	$this->form_validation->set_rules('pin_pengajuan', 'pin pengajuan', 'trim|required');
+	/*$this->form_validation->set_rules('pin_pengajuan', 'pin pengajuan', 'trim|required');
 	$this->form_validation->set_rules('pin_pinjaman', 'pin pinjaman', 'trim|required');
 	$this->form_validation->set_rules('pin_tglpengajuan', 'pin tglpengajuan', 'trim|required');
 	$this->form_validation->set_rules('pin_tglpencairan', 'pin tglpencairan', 'trim|required');
-	$this->form_validation->set_rules('pin_statuspinjaman', 'pin statuspinjaman', 'trim|required');
+	$this->form_validation->set_rules('pin_statuspinjaman', 'pin statuspinjaman', 'trim|required');*/
 
 	$this->form_validation->set_rules('pin_id', 'pin id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
