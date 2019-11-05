@@ -132,7 +132,7 @@
                     <td><?php echo $item['wil_nama'] ?></td>
                     <td><?php echo $item['sim_tglpendaftaran'] ?></td>
                     <td><?php echo $item['tanggalDuedate']?></td>
-                    <td><?php echo rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor)?></td>
+                    <td><?php echo $item['to_setor']?></td>
                     <td><?php echo $item['statusSimpanan']?></td>
                     <?php
                     // SUB TOTAL per thn_byr
