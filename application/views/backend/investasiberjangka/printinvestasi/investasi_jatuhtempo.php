@@ -10,87 +10,117 @@
      
  </style>
  
- <h2><b>List Jatuh Tempo Investasi</b></h2>
- <?php $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row(); ?>
- <h3><b>Rentang Tanggal : <?=dateFormataja($f)?> Sampai <?=dateFormataja($t)?> </b></h3>
-<p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
-    style="font-family:Cambria">Wilayah : <?php if($w!='all'){echo $wil_kode->wil_nama;} else if ($w='all') {echo 'Semua Wilayah';}?></p>
-        <table >
+<h2><b>List Jatuh Tempo Investasi</b></h2>
+<?php $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row(); ?>
+<h3><b>Rentang Tanggal : <?=dateFormataja($f)?> Sampai <?=dateFormataja($t)?> </b></h3>
+<p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
+<span style="font-family:Cambria">Wilayah : <?php if($w!='all'){echo $wil_kode->wil_nama;} else if ($w='all') {echo 'Semua Wilayah';}?></p>
+	
+	<?php
+		$data = array();
+		$i=0;
+		
+		foreach($datainvestasi as $key=>$item){
+			
+			$data[$i]['ivb_kode'] 		= $item['ivb_kode'];
+			$data[$i]['nama_ang_no'] 	= $item['nama_ang_no'];
+			$data[$i]['alamat_ang_no'] 	= $item['alamat_ang_no'];
+			$data[$i]['jwi_id'] 		= $item['jwi_id'];
+			$data[$i]['biv_id'] 		= $item['biv_id'];
+			$data[$i]['to_jasa'] 		= rupiahsimpanan($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']);
+			$data[$i]['pokok'] 			= rupiahsimpanan($item['ivb_jumlah']);
+			$data[$i]['pokok_bunga'] 	= rupiahsimpanan($item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']));
+			$data[$i]['tglpendaftaran'] = dateFormataja($item['ivb_tglpendaftaran']);
+			$data[$i]['tanggalDuedate'] = dateFormataja($item['jatuhtempo']);
+			$data[$i]['status'] 		= $item['ivb_status'];
+			$data[$i]['ivb_jumlah']		= $item['ivb_jumlah'];
+			$data[$i]['jatuhtempo']		= $item['jatuhtempo'];
+			$i++;
+		}
+
+		function sortFunction($a, $b){
+			return strtotime($a['tanggalDuedate']) - strtotime($b['tanggalDuedate']);
+		}
+		
+		usort($data, "sortFunction");
+		
+		//$j=0;
+		foreach($data as $d){
+			//echo $data[$j]['sim_kode']." ".$data[$j]['tanggalDuedate']."<br>";$j++;
+		}
+	?>
+		
+		<table >
             <thead >
-            <tr>
-                <th >No</th>
-        <th >Rekening Investasi</th>
-		<th >Nama Anggota</th>
-		<th >Alamat</th>
-		<th >Jangka Waktu</th>
-		<th >Bunga</th>
-		<th >Total Jasa</th>
-		<th >Pokok</th>
-		<th >Pokok+Bunga</th>
-		<th >Tanggal Pendaftaran</th>
-		<th >Tanggal Jatuh Tempo</th>
-		<th >Status</th>
-            </tr>
+				<tr>
+					<th >No</th>
+					<th >Rekening Investasi</th>
+					<th >Nama Anggota</th>
+					<th >Alamat</th>
+					<th >Jangka Waktu</th>
+					<th >Bunga</th>
+					<th >Total Jasa</th>
+					<th >Pokok</th>
+					<th >Pokok+Bunga</th>
+					<th >Tanggal Pendaftaran</th>
+					<th >Tanggal Jatuh Tempo</th>
+					<th >Status</th>
+				</tr>
             </thead>
 			<tbody><?php
-            $total=$subtotal_thn=$sub_pokokbunga=$pokokbunga=$sub_totalpokok=$totalpokok=0;
-             foreach ($datainvestasi as $key=>$item)
-             { 
-                $total += $item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id'];
-                $pokokbunga += $item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']);
-                $totalpokok += $item['ivb_jumlah'];
+			
+				$total=$subtotal_thn=$sub_pokokbunga=$pokokbunga=$sub_totalpokok=$totalpokok=0;
+				foreach ($data as $key=>$item){
+					
+					$subtotal_thn += $item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id'];
+					$sub_pokokbunga += $item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']);
+					$sub_totalpokok += $item['ivb_jumlah']; ?>
                 
-                $subtotal_thn += $item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id'];
-                $sub_pokokbunga += $item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']);
-                $sub_totalpokok += $item['ivb_jumlah'];
-                 ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-            <td><?php echo $item['ivb_kode'] ?></td>
-			<td><?php echo $item['nama_ang_no'] ?></td>
-			<td><?php echo $item['alamat_ang_no'] ?></td>
-			<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
-			<td><?php echo $item['biv_id'] ," %" ?></td>
-			<td><?php echo rupiahsimpanan($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']) ?></td>
-			<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
-			<td><?php echo rupiahsimpanan($item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id'])) ?></td>
-			<td><?php echo dateFormataja($item['ivb_tglpendaftaran']) ?></td>
-			<td><?php echo dateFormataja($item['jatuhtempo']) ?></td>
-            <td><?php echo $item['ivb_status'] ?></td> 
-            <?php
-                    // SUB TOTAL per thn_byr
-                            if (@$datainvestasi[$key+1]['jatuhtempo'] != $item['jatuhtempo']) {
-                                echo '<tr id="02">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>SUB TOTAL ' . dateFormataja($item['jatuhtempo']) . '</td>
-                                    <td></td>
-                                    <td class="right">'.rupiahsimpanan($subtotal_thn).'</td>
-                                    <td class="right">'.rupiahsimpanan($sub_totalpokok).'</td>
-                                    <td class="right">'.rupiahsimpanan($sub_pokokbunga).'</td>
-                                </tr>';
-                                $subtotal_thn = $sub_pokokbunga = $sub_totalpokok = 0;
-                            } 
-                            $total += $item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id'];
-                            $pokokbunga += $item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']);
-                            $totalpokok += $item['ivb_jumlah'];
-                        
-                    ?>
-		</tr>
-                
-                <?php
-            }
-            ?>
-            <tr id="01">
-            <td></td>
-            <td>Total </td>
-            <td></td><td></td><td></td><td></td>
-            <td><?php echo rupiahsimpanan($total) ?></td>
-            <td><?php echo rupiahsimpanan($totalpokok) ?></td>
-            <td><?php echo rupiahsimpanan($pokokbunga) ?></td>
-        </tr>
+					<tr>
+						<td width="80px"><?php echo ++$start ?></td>
+						<td><?php echo $item['ivb_kode'] ?></td>
+						<td><?php echo $item['nama_ang_no'] ?></td>
+						<td><?php echo $item['alamat_ang_no'] ?></td>
+						<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
+						<td><?php echo $item['biv_id'] ," %" ?></td>
+						<td><?php echo $item['to_jasa'] ?></td>
+						<td><?php echo $item['pokok'] ?></td>
+						<td><?php echo $item['pokok_bunga'] ?></td>
+						<td><?php echo $item['tglpendaftaran'] ?></td>
+						<td><?php echo $item['tanggalDuedate'] ?></td>
+						<td><?php echo $item['status'] ?></td> 
+						<?php
+							// SUB TOTAL per thn_byr
+							if (@$data[$key+1]['jatuhtempo'] != $item['jatuhtempo']) {
+								echo '<tr id="02">
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td>SUB TOTAL ' . dateFormataja($item['jatuhtempo']) . '</td>
+									<td></td>
+									<td class="right">'.rupiahsimpanan($subtotal_thn).'</td>
+									<td class="right">'.rupiahsimpanan($sub_totalpokok).'</td>
+									<td class="right">'.rupiahsimpanan($sub_pokokbunga).'</td>
+								</tr>';
+								$subtotal_thn = $sub_pokokbunga = $sub_totalpokok = 0;
+							} 
+							$total += $item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id'];
+							$pokokbunga += $item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']);
+							$totalpokok += $item['ivb_jumlah'];
+							
+						?>
+					</tr>
+                <?php }?>
+				
+				<tr id="01">
+					<td></td>
+					<td>Total </td>
+					<td></td><td></td><td></td><td></td>
+					<td><?php echo rupiahsimpanan($total) ?></td>
+					<td><?php echo rupiahsimpanan($totalpokok) ?></td>
+					<td><?php echo rupiahsimpanan($pokokbunga) ?></td>
+				</tr>
             </tbody>
         </table>
         <div class="row">
