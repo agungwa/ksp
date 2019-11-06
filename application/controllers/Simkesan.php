@@ -52,6 +52,31 @@ class Simkesan extends MY_Base
     } 
 
     public function pendaftaran(){
+		$setoransimkesan = $this->Setoransimkesan_model->get_all();
+		
+		foreach($setoransimkesan as $k) {
+			
+			$kode		= $k->sik_kode;
+			$tanggal 	= new DateTime($k->ssk_tglsetoran); 
+			$sekarang 	= new DateTime();
+			$perbedaan 	= $tanggal->diff($sekarang);
+			
+			$satu=1;
+			$tiga=3;
+			
+			$tgl_jt			=date("Y-m-d", strtotime($k->ssk_tglsetoran));
+			$tgl_3bln		=date("Y-m-d", strtotime($k->ssk_tglsetoran.' + '.$tiga.'month'.' + '.$satu.'days'));
+			$sekarang		=date("Y-m-d");
+			
+			$data = array('sik_status'=>3);
+			
+			if($perbedaan->m > 2){
+				if($sekarang > $tgl_3bln)
+					$this->Simkesan_model->update($kode, $data);
+				//echo $kode."<br>";
+			}
+		}
+		
         $nowYear = date('d');
         $data = array(
             'kode' => $this->Pengkodean->simkesan($nowYear),
