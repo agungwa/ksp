@@ -87,7 +87,7 @@
             </div>
         </div>
 
-	   <div class="form-group">
+	   <!--<div class="form-group">
             <label for="float">Pengajuan <?php echo form_error('pin_pengajuan') ?></label>
             <input type="number" class="form-control" name="pin_pengajuan" id="pin_pengajuan" placeholder="Pin Pengajuan" value="<?php echo $pin_pengajuan; ?>" />
         </div>
@@ -95,7 +95,7 @@
             <label for="float">Pinjaman <?php echo form_error('pin_pinjaman') ?></label>
             <input type="number" class="form-control" name="pin_pinjaman" id="pin_pinjaman" placeholder="Pin Pinjaman" value="<?php echo $pin_pinjaman; ?>" />
         </div>
-	    <!-- <div class="form-group">
+	     <div class="form-group">
             <label for="datetime">Tanggal Pengajuan <?php echo form_error('pin_tglpengajuan') ?></label>
             <input type="date" class="form-control" name="pin_tglpengajuan" id="todays-date" placeholder="Tanggal Pengajuan" value="<?php echo $pin_tglpengajuan; ?>" />
         </div>
