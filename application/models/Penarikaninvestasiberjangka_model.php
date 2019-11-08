@@ -63,6 +63,18 @@ class Penarikaninvestasiberjangka_model extends CI_Model
         $this->db->where($where);
         return $this->db->get($this->table)->result();
     }
+	
+	// get data with limit and search JOIN
+    function get_limit_data2( $start = 0, $q = NULL) {
+		$this->db->select('*');
+		$this->db->from('penarikaninvestasiberjangka');
+		$this->db->join('investasiberjangka', 'investasiberjangka.ivb_kode = penarikaninvestasiberjangka.ivb_kode');
+		$this->db->join('anggota', 'anggota.ang_no = investasiberjangka.ang_no');
+        $this->db->order_by($this->id, $this->order);
+        $where = "pib_flag < 2";
+        $this->db->where($where);
+        return $this->db->get()->result();
+    }
 
     // insert data
     function insert($data)
