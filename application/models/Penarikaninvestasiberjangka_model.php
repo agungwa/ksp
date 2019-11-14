@@ -63,7 +63,7 @@ class Penarikaninvestasiberjangka_model extends CI_Model
         $this->db->where($where);
         return $this->db->get($this->table)->result();
     }
-
+	
     // insert data
     function insert($data)
     {

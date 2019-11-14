@@ -327,9 +327,7 @@ class Penarikaninvestasiberjangka extends MY_Base
         
     }
 
-    public function listdata()
-    {
-        
+    public function listdata(){
         $q = urldecode($this->input->get('q', TRUE));
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
@@ -345,26 +343,34 @@ class Penarikaninvestasiberjangka extends MY_Base
         } */
 
         $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_limit_data($start, $q, $f, $t);
-
+		
         $wilayah = $this->Wilayah_model->get_all();
-        
-        $datapenarikan = array();
+		$datapenarikan = array();
+		
         foreach ($penarikaninvestasiberjangka as $key=>$item) {
             $ivb_kode = $this->db->get_where('investasiberjangka', array('ivb_kode' => $item->ivb_kode))->row();
-            $tanggalDuedate = $item->pib_tgl;
+			$anggota = $this->db->get_where('anggota', array('ang_no' => $ivb_kode->ang_no))->row();
+            
+			$tanggalDuedate = $item->pib_tgl;
+			$satu = 1;
+			
             $f = date("Y-m-d", strtotime($f));
             $t = date("Y-m-d", strtotime($t));
-            if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $ivb_kode->wil_kode == $w)) {
+            
+			if (($tanggalDuedate >= $f && $tanggalDuedate <= date("Y-m-d", strtotime($t.' + '.$satu.' Days')) && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= date("Y-m-d", strtotime($t.' + '.$satu.' Days')) && $ivb_kode->wil_kode == $w)) {
                 $datapenarikan[$key] = array(
-                    'pib_id' => $item->pib_id,
-                    'ivb_kode' => $item->ivb_kode,
-                    'pib_penarikanke' => $item->pib_penarikanke,
+					'pib_id' 			=> $item->pib_id,
+                    'ivb_kode' 			=> $item->ivb_kode,
+                    'pib_penarikanke' 	=> $item->pib_penarikanke,
                     'pib_jmlkeuntungan' => $item->pib_jmlkeuntungan,
-                    'pib_jmlditerima' => $item->pib_jmlditerima,
-                    'pib_tgl' => $item->pib_tgl,
-                    'pib_flag' => $item->pib_flag,
-                    'pib_info' => $item->pib_info,
-                    
+                    'pib_jmlditerima' 	=> $item->pib_jmlditerima,
+                    'pib_tgl' 			=> $item->pib_tgl,
+                    //'pib_flag' 		=> $item->pib_flag,
+                    //'pib_info' 		=> $item->pib_info,
+					'nama_ang_no' 		=> $anggota->ang_nama,
+					'alm_ang_no' 		=> $anggota->ang_alamat,
+					'hp_ang_no' 		=> $anggota->ang_nohp,
+					'status_ang' 		=> $anggota->ang_status,
                 );
             }
         }
