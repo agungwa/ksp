@@ -47,7 +47,7 @@ class Investasiberjangka extends MY_Base
     //pendaftaran investasi
     public function pendaftaran(){
         $nowYear = date('dmy');
-        echo($nowYear);
+        //echo($nowYear);
         $data = array(
             'kode' => $this->Pengkodean->investasiberjangka($nowYear),
             'content' => 'backend/investasiberjangka/investasiberjangka',
