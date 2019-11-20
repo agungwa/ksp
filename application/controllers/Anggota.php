@@ -166,7 +166,7 @@ class Anggota extends MY_Base
 
     //pendaftaran anggota
     public function pendaftaran(){
-        $nowYear = date('d');
+        $nowYear = date('dmy');
     
         $row = $this->Settingsimpanan_model->get_by_id(2);
         if ($row) {
