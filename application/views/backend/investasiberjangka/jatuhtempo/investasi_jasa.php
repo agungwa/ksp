@@ -40,7 +40,7 @@
 						</div>
 					</form>
 					
-					<?php
+					<!--
 						$data = array();
 						$i=0;
 						
@@ -71,7 +71,7 @@
 						foreach($data as $d){
 							//echo $data[$j]['sim_kode']." ".$data[$j]['tanggalDuedate']."<br>";$j++;
 						}
-					?>
+					?>-->
 					
 					<table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
 						<thead class="thead-light">
@@ -91,7 +91,7 @@
 						</thead>
 						<tbody><?php
 							$total=$subtotal_thn=0;
-							foreach ($data as $key=>$item)
+							foreach ($datainvestasi as $key=>$item)
 							{
 								$subtotal_thn += $item['ivb_jumlah']*$item['biv_id']/100; ?>
 								
@@ -102,14 +102,14 @@
 									<td><?php echo $item['alamat_ang_no'] ?></td>
 									<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
 									<td><?php echo $item['biv_id'] ," %" ?></td>
-									<td><?php echo $item['jasa'] ?></td>
-									<td><?php echo $item['invest'] ?></td>
-									<td><?php echo $item['tgl_daftar'] ?></td>
-									<td><?php echo $item['tgl_jt'] ?></td>
-									<td><?php echo $item['status'] ?></td> 
+									<td><?php echo rupiahsimpanan($item['ivb_jumlah']*$item['biv_id']/100) ?></td>
+									<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
+									<td><?php echo dateFormataja($item['ivb_tglpendaftaran']) ?></td>
+									<td><?php echo dateFormataja($item['jatuhtempo']) ?></td>
+									<td><?php echo $item['ivb_status'] ?></td> 
 									<?php
 										// SUB TOTAL per thn_byr
-										if (@$data[$key+1]['jatuhtempo'] != $item['jatuhtempo']) {
+										if (@$datainvestasi[$key+1]['jatuhtempo'] != $item['jatuhtempo']) {
 											echo '<tr class="info">
 												<td></td>
 												<td></td>
@@ -124,6 +124,7 @@
 										$total += $item['ivb_jumlah']*$item['biv_id']/100; ?>
 								</tr>
 							<?php }?>
+
 							
 								<tr class="danger">
 									<td></td>

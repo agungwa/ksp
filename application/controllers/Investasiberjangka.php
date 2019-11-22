@@ -327,7 +327,7 @@ class Investasiberjangka extends MY_Base
         $start = intval($this->input->get('start'));
         $satu =1;
         $investasi = $this->Investasiberjangka_model->get_investasi_perbulan($start, $q);
-
+//print_r ($this->Investasiberjangka_model->get_investasi_perbulan($start, $q));
         $datetoday = date("Y-m-d", strtotime($this->tgl));
         $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
         $wilayah = $this->Wilayah_model->get_all();

@@ -10,6 +10,8 @@ class Investasiberjangka_model extends CI_Model
     public $ang_no = 'ang_no';
     public $id = 'ivb_kode';
     public $order = 'DESC';
+    public $asc = 'ASC';
+    public $date = 'ivb_tglpendaftaran';
 
     function __construct()
     {
@@ -62,14 +64,18 @@ class Investasiberjangka_model extends CI_Model
         $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND ivb_status = 0 AND jiv_id = 1 AND ivb_flag < 2";
         $this->db->where($where);
         return $this->db->get($this->table)->result();
+        
     }
     
     //get data investasi tarik per bulan
     function get_investasi_perbulan($start = 0, $q = NULL) {
-        $this->db->order_by($this->id, $this->order);
-        $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND ivb_status = 0 AND jiv_id = 2 AND ivb_flag < 2";
+        
+        $date = "DATE_FORMAT(`investasiberjangka`.`ivb_tglpendaftaran`,'%d-%m')";
+        $this->db->order_by($date);
+        $where = "ivb_status = 0 AND jiv_id = 2 AND ivb_flag < 2";
         $this->db->where($where);
         return $this->db->get($this->table)->result();
+        print_r($this->db->where($where));
     }
   
     //get data investasi tarik di belakang
