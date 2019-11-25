@@ -31,6 +31,13 @@ class Simpanan_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
+	// get data by kar_kode
+	function get_by_kar_kode($kode){
+		$this->db->where('kar_kode', $kode);
+		$this->db->where('sim_flag < 2');
+        return $this->db->get($this->table)->result();
+	}
+
     // get data by anggota no
     function get_data_byang($ang_no)
     {
