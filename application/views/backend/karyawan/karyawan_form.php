@@ -47,6 +47,10 @@
             <label for="varchar">Nomor Handphone <?php echo form_error('kar_nohp') ?></label>
             <input type="text" class="form-control numeric" name="kar_nohp" id="kar_nohp" placeholder="Kar Nohp" value="<?php echo $kar_nohp; ?>" />
         </div>
+	    <div class="form-group">
+            <label for="varchar">Tanggal Masuk <?php echo form_error('kar_tgl') ?></label>
+            <input type="date" class="form-control" name="kar_tgl" id="kar_tgl" placeholder="Tanggal" value="<?php echo $kar_tgl; ?>" />
+        </div>
 
         <!-- simpanan karyawan -->
 	    <div class="form-group">
