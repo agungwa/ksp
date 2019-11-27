@@ -577,6 +577,8 @@ class Pinjaman extends MY_Base
             $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $row->pop_id))->row();
             $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $row->skp_id))->row();
             $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+            $marketing = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_marketing))->row();
+            $surveyor = $this->db->get_where('karyawan', array('kar_kode' => $row->pin_surveyor))->row();
 
             $data = array(
                 'button' => 'Update',
@@ -587,7 +589,7 @@ class Pinjaman extends MY_Base
         		'sea_id' => set_value('sea_id', $row->sea_id),
                 'nm_sea_id' => set_value('sea_id', $sea_id->sea_tenor),
         		'bup_id' => set_value('bup_id', $row->bup_id),
-                'nm_bup_id' => set_value('bup_id', $row->bup_bunga),
+                'nm_bup_id' => set_value('bup_id', $bup_id->bup_bunga),
         		'pop_id' => set_value('pop_id', $row->pop_id),
                 'nm_pop_id' => set_value('pop_id', $pop_id->pop_potongan),
         		'wil_kode' => set_value('wil_kode', $row->wil_kode),
@@ -599,7 +601,9 @@ class Pinjaman extends MY_Base
         		'pin_tglpengajuan' => set_value('pin_tglpengajuan', $row->pin_tglpengajuan),
         		'pin_tglpencairan' => set_value('pin_tglpencairan', $row->pin_tglpencairan),
         		'pin_marketing' => set_value('pin_marketing', $row->pin_marketing),
+        		'nm_pin_marketing' => set_value('pin_marketing', $marketing->kar_nama),
         		'pin_surveyor' => set_value('pin_surveyor', $row->pin_surveyor),
+        		'nm_pin_surveyor' => set_value('pin_surveyor', $surveyor->kar_nama),
         		'pin_survey' => set_value('pin_survey', $row->pin_survey),
         		'pin_statuspinjaman' => set_value('pin_statuspinjaman', $row->pin_statuspinjaman),
         	    'content' => 'backend/pinjaman/pinjaman_form',
@@ -625,12 +629,12 @@ class Pinjaman extends MY_Base
     		'pop_id' => $this->input->post('pop_id',TRUE),
     		'wil_kode' => $this->input->post('wil_kode',TRUE),
     		'skp_id' => $this->input->post('skp_id',TRUE),
+    		'pin_marketing' => $this->input->post('pin_marketing',TRUE),
+    		'pin_surveyor' => $this->input->post('pin_surveyor',TRUE),
     		/*'pin_pengajuan' => $this->input->post('pin_pengajuan',TRUE),
     		'pin_pinjaman' => $this->input->post('pin_pinjaman',TRUE),
     		'pin_tglpengajuan' => $this->input->post('pin_tglpengajuan',TRUE),
     		'pin_tglpencairan' => $this->input->post('pin_tglpencairan',TRUE),
-    		'pin_marketing' => $this->input->post('pin_marketing',TRUE),
-    		'pin_surveyor' => $this->input->post('pin_surveyor',TRUE),
     		'pin_survey' => $this->input->post('pin_survey',TRUE),
     		'pin_statuspinjaman' => $this->input->post('pin_statuspinjaman',TRUE),*/
     		'pin_flag' => 1,

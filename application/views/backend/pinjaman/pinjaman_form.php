@@ -120,6 +120,26 @@
             <input type="text" class="form-control" name="pin_statuspinjaman" id="pin_statuspinjaman" placeholder="Status Pinjaman" value="<?php echo $pin_statuspinjaman; ?>" />
         </div>
 	    -->
+        <div class="form-group">
+                                <label for="varchar">Marketing</label>
+                                <div class="input-group">
+                                <input type="hidden" name="mkar_kode" id="mkar_kode" required="required" value="<?php echo $pin_marketing; ?>"/>
+                                <input type="text" class="form-control" name="nm_mkar_kode" id="nm_mkar_kode" placeholder="Karyawan" required="required" readonly value="<?php echo $nm_pin_marketing; ?>" />
+                                <div class="input-group-addon">
+                                    <span onclick="lookup('<?=base_url()?>karyawan/lookup','mkar_kode');" style="cursor: pointer;">Cari</span>
+                                </div>
+                                </div>
+                            </div>
+        <div class="form-group">
+                                <label for="varchar">Surveyor</label>
+                                <div class="input-group">
+                                <input type="hidden" name="skar_kode" id="skar_kode" required="required" value="<?php echo $pin_surveyor; ?>"/>
+                                <input type="text" class="form-control" name="nm_skar_kode" id="nm_skar_kode" placeholder="Karyawan" required="required" readonly value="<?php echo $nm_pin_surveyor; ?>"/>
+                                <div class="input-group-addon">
+                                    <span onclick="lookup('<?=base_url()?>karyawan/lookup','skar_kode');" style="cursor: pointer;">Cari</span>
+                                </div>
+                                </div>
+        </div>
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('pinjaman') ?>" class="btn btn-default">Batal</a>
         </div>

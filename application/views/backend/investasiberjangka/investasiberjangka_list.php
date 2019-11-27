@@ -81,9 +81,10 @@
             </tr>
             </thead>
 			<tbody><?php
-            
+            $total=0;
              foreach ($datainvest as $key=>$item)
              {
+                 $total += $item['ivb_jumlah'];
                  ?>
                 <tr>
 					<td width="80px"><?php echo ++$start ?></td>
@@ -113,7 +114,9 @@
             }
             ?>
             </tbody>
+           
         </table>
+
         <div class="row">
             
         </div>
