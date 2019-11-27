@@ -71,6 +71,16 @@ class Pinjaman_model extends CI_Model
 
     
     // get pinjaman aktif
+    function get_pinjaman_aktifcari($q)
+    {
+        
+	    $where = "pin_id LIKE '%$q%' ESCAPE '!' AND pin_statuspinjaman = 1 AND pin_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+    
+    // get pinjaman aktif
     function get_pinjaman_all()
     {
         $where = "pin_statuspinjaman = 1 OR pin_statuspinjaman = 3 AND pin_flag < 2";

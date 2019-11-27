@@ -55,8 +55,10 @@ class Angsuran extends MY_Base
         if ($k == null) { $k=1;}
 
         if ($q<>''){
-            $row = $this->Angsuran_model->get_by_pinjaman($q, $k);
-            $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
+            $pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktifcari($q);
+            foreach ($pinjamanAktif as $key => $value) {
+            $row = $this->Angsuran_model->get_by_pinjaman($value->pin_id, $k);
+            $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($value->pin_id);
              if ($row) {
                  $totalbayar = $row->ags_jmlpokok + $row->ags_jmlbunga;
                  $tgldenda = date("Y-m-d", strtotime($row->ags_tgljatuhtempo.' + '.$d.' days'));
@@ -73,7 +75,8 @@ class Angsuran extends MY_Base
                     'ags_jmlbayar' => $row->ags_jmlbayar,
                     'ags_status' => $row->ags_status,
                 );
-            } 
+             }
+            }
         }   
 
         $data = array(
