@@ -31,6 +31,12 @@ class Jaminan_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
+// get all by pin_id
+function get_jam_pin($pin_id){
+	$this->db->where("pin_id = '$pin_id' AND jam_flag < 2");
+	return $this->db->get($this->table)->result();
+}
+
     // get data by rekening
     function get_by_rek($pin_id)
     {
