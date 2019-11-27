@@ -30,6 +30,13 @@ class Karyawan_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
     
+// get_kar_with $kar_kode
+function get_kar_with($kar_kode){
+	$this->db->where('jab_kode =', $kar_kode);
+	$this->db->where('kar_flag<', 2);
+	return $this->db->get($this->table)->result();
+}
+	
     // get total rows
     function total_rows($q = NULL) {
         $where = "(kar_kode LIKE '%$q%' ESCAPE '!' OR kar_nama LIKE '%$q%' ESCAPE '!') AND kar_flag < 2";
