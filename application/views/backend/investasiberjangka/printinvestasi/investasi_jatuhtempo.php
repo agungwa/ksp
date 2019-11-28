@@ -15,40 +15,43 @@
 <h3><b>Rentang Tanggal : <?=dateFormataja($f)?> Sampai <?=dateFormataja($t)?> </b></h3>
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt">
 <span style="font-family:Cambria">Wilayah : <?php if($w!='all'){echo $wil_kode->wil_nama;} else if ($w='all') {echo 'Semua Wilayah';}?></p>
-	
-	<?php
-		$data = array();
-		$i=0;
-		
-		foreach($datainvestasi as $key=>$item){
 			
-			$data[$i]['ivb_kode'] 		= $item['ivb_kode'];
-			$data[$i]['nama_ang_no'] 	= $item['nama_ang_no'];
-			$data[$i]['alamat_ang_no'] 	= $item['alamat_ang_no'];
-			$data[$i]['jwi_id'] 		= $item['jwi_id'];
-			$data[$i]['biv_id'] 		= $item['biv_id'];
-			$data[$i]['to_jasa'] 		= rupiahsimpanan($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']);
-			$data[$i]['pokok'] 			= rupiahsimpanan($item['ivb_jumlah']);
-			$data[$i]['pokok_bunga'] 	= rupiahsimpanan($item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']));
-			$data[$i]['tglpendaftaran'] = dateFormataja($item['ivb_tglpendaftaran']);
-			$data[$i]['tanggalDuedate'] = dateFormataja($item['jatuhtempo']);
-			$data[$i]['status'] 		= $item['ivb_status'];
-			$data[$i]['ivb_jumlah']		= $item['ivb_jumlah'];
-			$data[$i]['jatuhtempo']		= $item['jatuhtempo'];
-			$i++;
-		}
+<?php
+				$data = array();
+				$i=0;
+				
+				foreach($datainvestasi as $key=>$item){
+					
+					$jumlahtarik = $this->Penarikaninvestasiberjangka_model->get_totalpenarikan($item['ivb_kode']);
+					$data[$i]['ivb_kode'] 		= $item['ivb_kode'];
+					$data[$i]['nama_ang_no'] 	= $item['nama_ang_no'];
+					$data[$i]['alamat_ang_no'] 	= $item['alamat_ang_no'];
+					$data[$i]['jwi_id'] 		= $item['jwi_id'];
+					$data[$i]['biv_id'] 		= $item['biv_id'];
+					$data[$i]['jumlahditarik'] 	= $jumlahtarik[0]->pib_jmlditerima;
+					$data[$i]['sisajasa'] 		= ($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id'])-$jumlahtarik[0]->pib_jmlditerima;
+					$data[$i]['to_jasa'] 		= $item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id'];
+					$data[$i]['pokok'] 			= $item['ivb_jumlah'];
+					$data[$i]['pokok_bunga'] 	= $item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']);
+					$data[$i]['tglpendaftaran'] = dateFormataja($item['ivb_tglpendaftaran']);
+					$data[$i]['tanggalDuedate'] = dateFormataja($item['jatuhtempo']);
+					$data[$i]['status'] 		= $item['ivb_status'];
+					$data[$i]['ivb_jumlah']		= $item['ivb_jumlah'];
+					$data[$i]['jatuhtempo']		= $item['jatuhtempo'];
+					$i++;
+				}
 
-		function sortFunction($a, $b){
-			return strtotime($a['tanggalDuedate']) - strtotime($b['tanggalDuedate']);
-		}
-		
-		usort($data, "sortFunction");
-		
-		//$j=0;
-		foreach($data as $d){
-			//echo $data[$j]['sim_kode']." ".$data[$j]['tanggalDuedate']."<br>";$j++;
-		}
-	?>
+				function sortFunction($a, $b){
+					return strtotime($a['tanggalDuedate']) - strtotime($b['tanggalDuedate']);
+				}
+				
+				usort($data, "sortFunction");
+				
+				//$j=0;
+				foreach($data as $d){
+					//echo $data[$j]['sim_kode']." ".$data[$j]['tanggalDuedate']."<br>";$j++;
+				}
+			?>
 		
 		<table >
             <thead >
@@ -60,22 +63,28 @@
 					<th >Jangka Waktu</th>
 					<th >Bunga</th>
 					<th >Total Jasa</th>
+					<th >Jasa Ditarik</th>
+					<th >Sisa Jasa</th>
 					<th >Pokok</th>
-					<th >Pokok+Bunga</th>
+					<th >Pokok + Sisa Jasa</th>
 					<th >Tanggal Pendaftaran</th>
 					<th >Tanggal Jatuh Tempo</th>
 					<th >Status</th>
 				</tr>
             </thead>
 			<tbody><?php
-			
-				$total=$subtotal_thn=$sub_pokokbunga=$pokokbunga=$sub_totalpokok=$totalpokok=0;
-				foreach ($data as $key=>$item){
-					
-					$subtotal_thn += $item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id'];
-					$sub_pokokbunga += $item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']);
-					$sub_totalpokok += $item['ivb_jumlah']; ?>
-                
+					$total=$sub_totaljasaditarik=$sub_totalsisajasa=$sub_pokokbungasisa
+					=$subtotal_thn=$sub_pokokbunga=$pokokbunga=$sub_totalpokok=$totalpokok =
+					$totaljasaditarik=$totalsisajasa=$pokokbungasisa=0;
+					foreach ($data as $key=>$item){ 
+						//$jumlahtarik = $this->Penarikaninvestasiberjangka_model->get_totalpenarikan($item['ivb_kode']);
+						$subtotal_thn += $item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id'];
+						$sub_totaljasaditarik += $item['jumlahditarik'];
+						$sub_totalsisajasa += $item['sisajasa'];
+						$sub_pokokbungasisa += $item['sisajasa']+$item['pokok'];
+						$sub_pokokbunga += $item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']);
+						$sub_totalpokok += $item['ivb_jumlah'];
+					?>
 					<tr>
 						<td width="80px"><?php echo ++$start ?></td>
 						<td><?php echo $item['ivb_kode'] ?></td>
@@ -83,9 +92,11 @@
 						<td><?php echo $item['alamat_ang_no'] ?></td>
 						<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
 						<td><?php echo $item['biv_id'] ," %" ?></td>
-						<td><?php echo $item['to_jasa'] ?></td>
-						<td><?php echo $item['pokok'] ?></td>
-						<td><?php echo $item['pokok_bunga'] ?></td>
+						<td><?php echo rupiahsimpanan($item['to_jasa']) ?></td>
+						<td><?php echo rupiahsimpanan($item['jumlahditarik'])?></td>
+						<td><?php echo rupiahsimpanan($item['sisajasa'])?></td>
+						<td><?php echo rupiahsimpanan($item['pokok']) ?></td>
+						<td><?php echo rupiahsimpanan($item['pokok']+$item['sisajasa']) ?></td>
 						<td><?php echo $item['tglpendaftaran'] ?></td>
 						<td><?php echo $item['tanggalDuedate'] ?></td>
 						<td><?php echo $item['status'] ?></td> 
@@ -100,15 +111,19 @@
 									<td>SUB TOTAL ' . dateFormataja($item['jatuhtempo']) . '</td>
 									<td></td>
 									<td class="right">'.rupiahsimpanan($subtotal_thn).'</td>
+									<td class="right">'.rupiahsimpanan($sub_totaljasaditarik).'</td>
+									<td class="right">'.rupiahsimpanan($sub_totalsisajasa).'</td>
 									<td class="right">'.rupiahsimpanan($sub_totalpokok).'</td>
-									<td class="right">'.rupiahsimpanan($sub_pokokbunga).'</td>
+									<td class="right">'.rupiahsimpanan($sub_pokokbungasisa).'</td>
 								</tr>';
-								$subtotal_thn = $sub_pokokbunga = $sub_totalpokok = 0;
+								$subtotal_thn = $sub_totaljasaditarik = $sub_totalsisajasa = $sub_pokokbungasisa = $sub_totalpokok = 0;
 							} 
 							$total += $item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id'];
+							$totaljasaditarik += $item['jumlahditarik'];
+							$totalsisajasa += $item['sisajasa'];
 							$pokokbunga += $item['ivb_jumlah']+($item['ivb_jumlah']*$item['biv_id']/100*$item['jwi_id']);
 							$totalpokok += $item['ivb_jumlah'];
-							
+							$pokokbungasisa += $item['sisajasa']+$item['pokok'];
 						?>
 					</tr>
                 <?php }?>
@@ -118,9 +133,11 @@
 					<td>Total </td>
 					<td></td><td></td><td></td><td></td>
 					<td><?php echo rupiahsimpanan($total) ?></td>
+					<td><?php echo rupiahsimpanan($totaljasaditarik) ?></td>
+					<td><?php echo rupiahsimpanan($totalsisajasa) ?></td>
 					<td><?php echo rupiahsimpanan($totalpokok) ?></td>
-					<td><?php echo rupiahsimpanan($pokokbunga) ?></td>
-				</tr>
+					<td><?php echo rupiahsimpanan($pokokbungasisa) ?></td>
+					</tr>
             </tbody>
         </table>
         <div class="row">
