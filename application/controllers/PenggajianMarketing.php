@@ -11,6 +11,8 @@ class PenggajianMarketing extends MY_Base{
 		$this->load->model('Setoransimpanan_model');
 		$this->load->model('Pinjaman_model');
 		$this->load->model('Jaminan_model');
+		$this->load->model('Penggajian_model');
+		$this->load->model('Aplikasi_model');
         $this->load->library('form_validation');
     }
 
@@ -58,6 +60,8 @@ class PenggajianMarketing extends MY_Base{
 		$jml_setor 	 = 0;
 		
 		$kar_kode = urldecode($this->input->get('kode', TRUE));
+		$save = urldecode($this->input->get('save', TRUE));
+			if($save == '') $save = 0;
 		$f = urldecode($this->input->get('f', TRUE));
         $t = urldecode($this->input->get('t', TRUE));
 		
@@ -181,7 +185,37 @@ class PenggajianMarketing extends MY_Base{
 			't'=>$t,
 			'active'=>1
 		);
-		$this->load->view(layout(), $data);
+		
+	// SIMPAN GAJI
+		if($save == 0){
+			$this->load->view(layout(), $data);
+		}elseif($save == 1){
+			$penggajian = array(
+				'pgg_kar_kode' => $kar_kode,
+				'pgg_tgl_awal' => $f,
+				'pgg_tgl_akhir' => $t,
+				'pgg_tgl' => date('Y-m-d'), // today
+			);
+			$pgg_id = $this->Penggajian_model->insert($penggajian);
+			
+		// get jam_id
+			$pinjaman = $this->Pinjaman_model->get_pin_marketing($kar_kode, $f, $t);
+			$apl = array();
+			foreach($pinjaman as $p){
+				$pin_id = $p->pin_id;
+				$jaminan = $this->Jaminan_model->get_jam_pin($pin_id);
+				
+				foreach($jaminan as $key=>$j){
+					$apl[$key] = array(
+						'apl_pgg_id' => $pgg_id,
+						'apl_jam_id' => $j->jam_id
+					);
+				}//print_r($apl);
+			}
+			if($apl[$key] != null)
+				$this->Aplikasi_model->save_batch($apl);
+			redirect(site_url('PenggajianMarketing'));
+		}
 	}
 	
 	public function parsing($kalimat){

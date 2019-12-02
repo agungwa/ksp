@@ -22,6 +22,7 @@
 								</div>
 							</div>
 						</form>
+						
 					</div>
 					
 					<?php if ($f != null && $t != null) { ?>
@@ -57,7 +58,7 @@
 								<tr><td width="190px" >Bonus Jenis Aplikasi</td><td><?= format_rupiah($tot_bon_jns_apl) ?></td></tr>
 								<tr class="danger"><td><b>Total Gaji</b></td><td><b><?= format_rupiah($gaji) ?></b></td></tr>
 							</table>
-							
+							<a href="<?= site_url('penggajianmarketing/lihatGaji?save=1&') ?>f=<?= $f ?>&t=<?= $t ?>&kode=<?= $karyawan['kar_kode'] ?>" class="btn btn-primary">Simpan Gaji</a>
 						</div>
 					<?php }?>
 				</div>
