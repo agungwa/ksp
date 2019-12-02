@@ -250,10 +250,7 @@ class Printneraca extends MY_Base
 					}
 				} else {
 					$saldoPinjamanumumbelum += $item->ags_jmlpokok;
-			
-			
-		}
-		
+		} 
 	}
 }
 	//angsuran pinjaman karyawan belum dibayar
@@ -306,7 +303,6 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			
 			if ($f<>'' && $w<>'') {	
 				$tgl = date("Y-m-d", strtotime($item->ags_tgl));
-				//var_dump($value->ags_id);
 					if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
 						$pokokAngsuranbelum += $item->ags_jmlpokok ;
 					}
@@ -491,19 +487,20 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 
     	//simpanan wajib
     	foreach ($setoransimpananwajib as $key => $value) {
-    		if ($f<>'' && $t<>'') {	
-    			$tgl = date("Y-m-d", strtotime($value->ssw_tglsetor));
-    			if ($tgl <= $f) {
+    		if ($f<>'') {	
+				$tgl = date("Y-m-d", strtotime($value->ssw_tgl));
+				//var_dump($f);
+    			if (($tgl <= $f)) {
     				$saldoSimpananwajib += $value->ssw_jmlsetor;
     			}
     		} else {
-    			$saldoSimpananwajib += $value->ssw_jmlsetor;
+    			$saldoSimpananwajib += 0;
     		}
     	}
 
     	//simpanan pokok
     	foreach ($simpananPokok as $key => $value) {
-    		if ($f<>'' && $t<>'') {	
+    		if ($f<>'') {	
     			$tgl = date("Y-m-d", strtotime($value->sip_tglbayar));
     			if ($tgl <= $f) {
     				$saldoSimpananpokok += $value->sip_setoran;

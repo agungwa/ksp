@@ -93,7 +93,8 @@
 							$total=$subtotal_thn=0;
 							foreach ($datainvestasi as $key=>$item)
 							{
-								$subtotal_thn += $item['ivb_jumlah']*$item['biv_id']/100; ?>
+								$subtotal_thn += $item['ivb_jumlah']*$item['biv_id']/100; 
+								?>
 								
 								<tr>
 									<td width="80px"><?php echo ++$start ?></td>
@@ -109,14 +110,14 @@
 									<td><?php echo $item['ivb_status'] ?></td> 
 									<?php
 										// SUB TOTAL per thn_byr
-										if (@$datainvestasi[$key+1]['jatuhtempo'] != $item['jatuhtempo']) {
+										if (@$datainvestasi[$key+1]['datesubtotal'] != $item['datesubtotal']) {
 											echo '<tr class="info">
 												<td></td>
 												<td></td>
 												<td></td>
 												<td></td>
 												<td></td>
-												<td>SUB TOTAL ' . dateFormataja($item['jatuhtempo']) . '</td>
+												<td>SUB TOTAL ' . dateFormataja($item['ivb_tglpendaftaran']) . '</td>
 												<td class="right">'.rupiahsimpanan($subtotal_thn).'</td>
 											</tr>';
 											$subtotal_thn = 0;

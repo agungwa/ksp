@@ -349,6 +349,7 @@ class Investasiberjangka extends MY_Base
 
             $tanggalDuedate1 = date("Y-m-d", strtotime($item->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
             $tanggalDuedate = date("Y-m-d", strtotime($item->ivb_tglpendaftaran.' + '.$satu.' Months'));
+            $datesubtotal = date("d", strtotime($item->ivb_tglpendaftaran.' + '.$satu.' Months'));
             $f = date("Y-m-d", strtotime($f));
             $t = date("Y-m-d", strtotime($t));
 
@@ -367,6 +368,7 @@ class Investasiberjangka extends MY_Base
                     'ivb_tglpendaftaran' => $item->ivb_tglpendaftaran,
                     'ivb_tglperpanjangan' => $item->ivb_tglperpanjangan,
                     'jatuhtempo' => $tanggalDuedate,
+                    'datesubtotal' => $datesubtotal,
                     'ivb_status' => $ivb_status[$item->ivb_status],
                     'ivb_tgl' => $item->ivb_tgl,
                     'ivb_flag' => $item->ivb_flag,

@@ -64,7 +64,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-2">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <span class="label label-info pull-right"></span>

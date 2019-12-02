@@ -54,7 +54,7 @@
             <td><?php echo $item['ivb_status'] ?></td> 
             <?php
                     // SUB TOTAL per thn_byr
-                            if (@$datainvestasi[$key+1]['jatuhtempo'] != $item['jatuhtempo']) {
+                            if (@$datainvestasi[$key+1]['datesubtotal'] != $item['datesubtotal']) {
                                 echo '<tr id="02">
                                     <td></td>
                                     <td></td>
