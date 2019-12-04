@@ -16,8 +16,8 @@
 							<li role="presentation" class="<?= ($active==1)?'active':''?>"><a href="<?=base_url()?>penggajianmarketing/?p=1">Simpanan</a></li>
 							<!--<li role="presentation" class="<?= ($active==2)?'active':''?>"><a href="<?=base_url()?>penggajianmarketing/?p=2">Simkesan</a></li>
 							<li role="presentation" class="<?= ($active==3)?'active':''?>"><a href="<?=base_url()?>penggajianmarketing/?p=3">Investasi Berjangka</a></li>
-							<li role="presentation" class="<?= ($active==4)?'active':''?>"><a href="<?=base_url()?>penggajianmarketing/?p=4">Pinjaman</a></li>
-						--></ul>
+							--><li role="presentation" class="<?= ($active==5)?'active':''?>"><a href="<?=base_url()?>penggajianmarketing/?p=5">List Gaji</a></li>
+						</ul>
 						
             			<?php
             				include($item);

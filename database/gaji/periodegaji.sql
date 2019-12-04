@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 04 Des 2019 pada 11.20
+-- Waktu pembuatan: 04 Des 2019 pada 11.21
 -- Versi server: 10.3.16-MariaDB
 -- Versi PHP: 7.1.30
 
@@ -25,18 +25,16 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `penggajian`
+-- Struktur dari tabel `periodegaji`
 --
 
-CREATE TABLE `penggajian` (
-  `pgg_id` int(10) NOT NULL,
-  `pgg_kar_kode` int(10) NOT NULL COMMENT 'fk dari karyawan',
-  `pgg_per_id` int(10) NOT NULL COMMENT 'fk dari periodegaji',
-  `pgg_gp` int(10) NOT NULL COMMENT 'gaji pokok',
-  `pgg_bonus` int(10) NOT NULL COMMENT 'total bonus',
-  `pgg_tgl` date NOT NULL COMMENT 'tgl simpan gaji',
-  `pgg_flag` int(3) NOT NULL COMMENT '0:created, 1:updated, 2:deleted',
-  `pgg_info` text NOT NULL
+CREATE TABLE `periodegaji` (
+  `per_id` int(10) NOT NULL,
+  `per_tgl_awal` date NOT NULL,
+  `per_tgl_akhir` date NOT NULL,
+  `per_tgl` date NOT NULL COMMENT 'created',
+  `per_flag` int(11) NOT NULL,
+  `per_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -44,20 +42,20 @@ CREATE TABLE `penggajian` (
 --
 
 --
--- Indeks untuk tabel `penggajian`
+-- Indeks untuk tabel `periodegaji`
 --
-ALTER TABLE `penggajian`
-  ADD PRIMARY KEY (`pgg_id`);
+ALTER TABLE `periodegaji`
+  ADD PRIMARY KEY (`per_id`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT untuk tabel `penggajian`
+-- AUTO_INCREMENT untuk tabel `periodegaji`
 --
-ALTER TABLE `penggajian`
-  MODIFY `pgg_id` int(10) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `periodegaji`
+  MODIFY `per_id` int(10) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

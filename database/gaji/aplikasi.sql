@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 02 Des 2019 pada 16.40
+-- Waktu pembuatan: 04 Des 2019 pada 11.21
 -- Versi server: 10.3.16-MariaDB
 -- Versi PHP: 7.1.30
 
@@ -32,7 +32,9 @@ CREATE TABLE `aplikasi` (
   `apl_id` int(10) NOT NULL,
   `apl_pgg_id` int(10) NOT NULL COMMENT 'fk dari penggajian',
   `apl_jam_id` int(10) NOT NULL COMMENT 'fk dari jaminan',
-  `apl_flag` int(3) NOT NULL COMMENT '0:created, 1:updated, 2:deleted'
+  `apl_tgl` date NOT NULL,
+  `apl_flag` int(3) NOT NULL COMMENT '0:created, 1:updated, 2:deleted',
+  `apl_info` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

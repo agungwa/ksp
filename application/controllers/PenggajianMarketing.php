@@ -13,6 +13,7 @@ class PenggajianMarketing extends MY_Base{
 		$this->load->model('Jaminan_model');
 		$this->load->model('Penggajian_model');
 		$this->load->model('Aplikasi_model');
+		$this->load->model('Periode_model');
         $this->load->library('form_validation');
     }
 
@@ -31,6 +32,9 @@ class PenggajianMarketing extends MY_Base{
                 break;
             case  4:
                 $this->to_penggajianPinjaman();
+                break;
+			case  5:
+                $this->listGaji();
                 break;
             default:
                 $this->to_penggajianSimpanan();
@@ -154,8 +158,14 @@ class PenggajianMarketing extends MY_Base{
 						+ ($tot_aplikasi * 20000);
 			
 			//echo "<br>".$gaji;
+			
+			$bonus =   ($mobil_bpkb_U_2008_10 * 130000)
+					 + ($mobil_bpkb_A_2008_10 * 200000)
+					 + ($all_bpkb_U_2008 * 80000)
+					 + ($all_bpkb_A_2008 * 150000)
+					 + ($srtfkt_shbg * 50000)
+					 + ($tot_aplikasi * 20000);
 		}
-		
 		$karyawan_data = array(
 			'kar_kode'=>$kar_kode,
 			'kar_nama'=>$karyawan->kar_nama,
@@ -187,20 +197,29 @@ class PenggajianMarketing extends MY_Base{
 		);
 		
 	// SIMPAN GAJI
-		if($save == 0){
-			$this->load->view(layout(), $data);
-		}elseif($save == 1){
+		if($save == 0){$this->load->view(layout(), $data);}
+		
+		elseif($save == 1){
+			$periode = array(
+				'per_tgl_awal' => $f,
+				'per_tgl_akhir' => $t,
+				'per_tgl' => date('Y-m-d') // today
+			);
+			$per_id = $this->Periode_model->insert($periode);
+			
 			$penggajian = array(
 				'pgg_kar_kode' => $kar_kode,
-				'pgg_tgl_awal' => $f,
-				'pgg_tgl_akhir' => $t,
+				'pgg_per_id' => $per_id,
+				'pgg_gp' => $gp,
+				'pgg_bonus' => $bonus,
 				'pgg_tgl' => date('Y-m-d'), // today
 			);
 			$pgg_id = $this->Penggajian_model->insert($penggajian);
 			
 		// get jam_id
-			$pinjaman = $this->Pinjaman_model->get_pin_marketing($kar_kode, $f, $t);
 			$apl = array();
+			$pinjaman = $this->Pinjaman_model->get_pin_marketing($kar_kode, $f, $t);
+			
 			foreach($pinjaman as $p){
 				$pin_id = $p->pin_id;
 				$jaminan = $this->Jaminan_model->get_jam_pin($pin_id);
@@ -208,7 +227,8 @@ class PenggajianMarketing extends MY_Base{
 				foreach($jaminan as $key=>$j){
 					$apl[$key] = array(
 						'apl_pgg_id' => $pgg_id,
-						'apl_jam_id' => $j->jam_id
+						'apl_jam_id' => $j->jam_id,
+						'apl_tgl' => date('Y-m-d') // today
 					);
 				}//print_r($apl);
 			}
@@ -227,7 +247,187 @@ class PenggajianMarketing extends MY_Base{
 		//else
 			//return 3;
 	}
-
+	
+	public function listGaji(){
+		$x = urldecode($this->input->get('x', true));
+		$per = urldecode($this->input->get('periode', true));
+		
+		$all_bpkb_U_2008 = 0;
+		$all_bpkb_A_2008 = 0;
+		$mobil_bpkb_U_2008_10 = 0;
+		$mobil_bpkb_A_2008_10 = 0;
+		$bpkb_A_2008 = 0;
+		$srtfkt_shbg = 0;
+		
+		$periodegaji = $this->Periode_model->get_all();
+		$gaji = $this->Penggajian_model->get_all();
+		$penggajian = array();
+		$apl = array();
+		
+		foreach($gaji as $key => $val){
+			$kar = $this->db->get_where('karyawan', array('kar_kode' => $val->pgg_kar_kode))->row();
+			$per = $this->db->get_where('periodegaji', array('per_id' => $val->pgg_per_id))->row();
+			
+		
+			// HITUNG TOTAL APLIKASI
+			$pinjaman = $this->Pinjaman_model->get_pin_marketing($val->pgg_kar_kode, $per->per_tgl_awal, $per->per_tgl_akhir);
+			foreach($pinjaman as $p){
+				$pin_id = $p->pin_id;
+				$jaminan = $this->Jaminan_model->get_jam_pin($pin_id);
+				//echo "Pinjaman = ".$p->pin_id."<br>";
+				
+				foreach($jaminan as $j){
+					//echo "Jaminan = ".$j->pin_id." ".$j->jej_id."<br>";
+					
+					if($p->pin_pinjaman >= 10000000 && $j->jej_id == 1 && $this->parsing($j->jam_unit) == 2){
+						
+						if($j->jam_tahunpembuatan < 2008){
+							$mobil_bpkb_U_2008_10 += 1;
+						}
+						elseif($j->jam_tahunpembuatan >= 2008){
+							$mobil_bpkb_A_2008_10 += 1;
+						}
+					}
+					else{
+						if($j->jej_id == 1 && $j->jam_tahunpembuatan < 2008){
+							$all_bpkb_U_2008 += 1;
+						}elseif($j->jej_id == 1 && $j->jam_tahunpembuatan >= 2008){
+							$all_bpkb_A_2008 += 1;
+						}elseif($j->jej_id == 2){
+							$srtfkt_shbg += 1;
+						}
+					}
+				}
+			}
+			$tot_aplikasi = $mobil_bpkb_U_2008_10 + $mobil_bpkb_A_2008_10 + $all_bpkb_U_2008 + $all_bpkb_A_2008 + $srtfkt_shbg;
+			
+			$penggajian[$key] = array(
+				'pgg_id' => $val->pgg_id,
+				'kar_kode' => $val->pgg_kar_kode,
+				'kar_nama' => $kar->kar_nama,
+				'tgl_awal' => date('d-m-Y', strtotime($per->per_tgl_awal)),
+				'tgl_akhir' => date('d-m-Y', strtotime($per->per_tgl_akhir)),
+				'gp' => $val->pgg_gp,
+				'bonus' => $val->pgg_bonus,
+				'total_apl' => $tot_aplikasi
+			);
+		}
+		
+		
+		$data = array(
+			'periode' => $periodegaji,
+			'penggajian' => $penggajian,
+			'content'=>'backend/penggajian/penggajianMarketing/penggajianMarketing',
+			'item'=>'penggajian_list.php',
+			'active'=>5,
+			'x'=>$x
+		);
+		$this->load->view(layout(), $data);
+	}
+	
+	public function read($pgg_id){
+		$all_bpkb_U_2008 = 0;
+		$all_bpkb_A_2008 = 0;
+		$mobil_bpkb_U_2008_10 = 0;
+		$mobil_bpkb_A_2008_10 = 0;
+		$bpkb_A_2008 = 0;
+		$srtfkt_shbg = 0;
+		$jml_setor = 0;
+		
+		$penggajian = $this->Penggajian_model->get_by_id($pgg_id);
+		$periodegaji = $this->Periode_model->get_by_id($penggajian->pgg_per_id);
+		$karyawan = $this->Karyawan_model->get_by_id($penggajian->pgg_kar_kode);
+		
+		/* HITUNG TOTAL APLIKASI */
+			$pinjaman = $this->Pinjaman_model->get_pin_marketing($penggajian->pgg_kar_kode, $periodegaji->per_tgl_awal, $periodegaji->per_tgl_akhir);
+			foreach($pinjaman as $p){
+				$pin_id = $p->pin_id;
+				$jaminan = $this->Jaminan_model->get_jam_pin($pin_id);
+				
+				foreach($jaminan as $j){
+					
+					if($p->pin_pinjaman >= 10000000 && $j->jej_id == 1 && $this->parsing($j->jam_unit) == 2){
+						
+						if($j->jam_tahunpembuatan < 2008){
+							$mobil_bpkb_U_2008_10 += 1;
+						}
+						elseif($j->jam_tahunpembuatan >= 2008){
+							$mobil_bpkb_A_2008_10 += 1;
+						}
+					}
+					else{
+						if($j->jej_id == 1 && $j->jam_tahunpembuatan < 2008){
+							$all_bpkb_U_2008 += 1;
+						}elseif($j->jej_id == 1 && $j->jam_tahunpembuatan >= 2008){
+							$all_bpkb_A_2008 += 1;
+						}elseif($j->jej_id == 2){
+							$srtfkt_shbg += 1;
+						}
+					}
+				}
+			}
+			$tot_aplikasi = $mobil_bpkb_U_2008_10 + $mobil_bpkb_A_2008_10 + $all_bpkb_U_2008 + $all_bpkb_A_2008 + $srtfkt_shbg;
+		/* END HITUNG TOTAL APLIKASI */	
+		
+		/* HITUNG BONUS */
+			$bonus_aplikasi = $tot_aplikasi * 20000;
+			$bonus_jenis_aplikasi =($mobil_bpkb_U_2008_10 * 130000)
+								 + ($mobil_bpkb_A_2008_10 * 200000)
+								 + ($all_bpkb_U_2008 * 80000)
+								 + ($all_bpkb_A_2008 * 150000)
+								 + ($srtfkt_shbg * 50000);
+		/* END HITUNG BONUS */
+		
+		/* HITUNG SETORAN */
+			$simpanan = $this->Simpanan_model->get_by_kar_kode($penggajian->pgg_kar_kode);
+			foreach($simpanan as $s){
+				$sim_kode = $s->sim_kode;
+				$setoran = $this->Setoransimpanan_model->get_by_sim_kode($sim_kode, $f, $t);
+				foreach($setoran as $st){
+					$jml_setor += $st->ssi_jmlsetor;
+				}
+			}
+		/* END HITUNG SETORAN */
+		
+		/* TANGGAL MASUL KARYAWAN */
+			$y_in = date("Y", strtotime($karyawan->kar_tgl));
+			$m_in = date("m", strtotime($karyawan->kar_tgl));
+			$y_new = '2019';
+			$m_new = '06';
+			$kar = 1; // BARU
+				if($y_in <= $y_new && $m_in < $m_new)
+					$kar = 0; // LAMA
+		/* END TANGGAL MASUL KARYAWAN */
+		
+		$data_gaji = array(
+			'kar_kode' => $penggajian->pgg_kar_kode,
+			'kar_nama' => $karyawan->kar_nama,
+			'per_awal' => date('d-m-Y', strtotime($periodegaji->per_tgl_awal)),
+			'per_akhir' => date('d-m-Y', strtotime($periodegaji->per_tgl_akhir)),
+			
+			'mobil_bpkb_U_2008_10' => $mobil_bpkb_U_2008_10,
+			'mobil_bpkb_A_2008_10' => $mobil_bpkb_A_2008_10,
+			'all_bpkb_U_2008' => $all_bpkb_U_2008,
+			'all_bpkb_A_2008' => $all_bpkb_A_2008,
+			'srtfkt_shbg' => $srtfkt_shbg,
+			'total_apl' => $tot_aplikasi,
+			
+			'bonus_aplikasi' => $bonus_aplikasi,
+			'bonus_jenis_aplikasi' => $bonus_jenis_aplikasi,
+			
+			'jml_setor' => $jml_setor,
+			'gaji_pokok' => $penggajian->pgg_gp,
+			'tipe_kar' => $kar
+		);
+		//print_r($data_gaji);
+		
+		$data = array(
+			'data_gaji' => $data_gaji,
+			'content'=>'backend/penggajian/penggajianMarketing/penggajianMarketing_read.php'
+		);
+		$this->load->view(layout(), $data);
+		
+	}
 }
 
 /* End of file Simpanan.php */
