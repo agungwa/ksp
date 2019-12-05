@@ -25,7 +25,7 @@ class Datapinjaman extends MY_Base
     	$pinjamanNonaktif = $this->Pinjaman_model->get_pinjaman_nonaktif();
     	$angsuranBayar = $this->Angsuran_model->get_angsuran_bayar();
 		$angsuranTotal = $this->Angsuran_model->get_angsuran_total();
-		$angsuranKurang = $this->Angsuran_model->get_angsuran_total();
+		$angsuranKurang = $this->Angsuran_model->get_angsuran_kurang();
     	$pelunasanPinjaman = $this->Pelunasan_model->get_all(); 
         $wilayah = $this->Wilayah_model->get_all();
         $provisi = $this->Potonganprovisi_model->get_by_id(1);		
@@ -39,6 +39,7 @@ class Datapinjaman extends MY_Base
     	$pokokAngsuran = 0;
     	$pokokAngsuranpelunasan = 0;
     	$bungaAngsuran = 0;
+    	$bungaAngsurankurang = 0;
     	$dendaAngsuran = 0;
     	$provisiPinjaman = 0;
     	$bungaDendapelunasan = 0;
@@ -134,14 +135,18 @@ class Datapinjaman extends MY_Base
     	//hitung bunga angsuran status bayar
     	foreach ($angsuranBayar as $key => $value) {
 			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
+			
+			if ($f<>'' && $t<>'' && $w<>'') {
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
+			//var_dump($value->ags_tgl);
     			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
-    				$bungaAngsuran += $value->ags_jmlbunga ;
-    			}
+					$bungaAngsuran += $value->ags_jmlbunga ;
+				}
+				
+		//var_dump($value->ags_jmlbunga);
 			} else {
 				$bungaAngsuran += $value->ags_jmlbunga;
+				
 		}
 	}
 	
@@ -165,11 +170,15 @@ class Datapinjaman extends MY_Base
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->ags_tgl));
 			//var_dump($value->ags_id);
-				if (($jt <= $f && 'all'==$w) || ($jt <= $f && $pin_id->wil_kode==$w))  {
-					$bungaAngsuran += $value->ags_jmlbunga ;
+				if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t  && $pin_id->wil_kode==$w))  {
+					$bungaAngsurankurang += $value->ags_jmlbunga ;
 				}
+				//var_dump($value->ags_tgl);
+				//var_dump($jt);
+				//var_dump($f);
+				//var_dump($t);
 			} else {
-				$bungaAngsuran += $value->ags_jmlbunga;
+				$bungaAngsurankurang += $value->ags_jmlbunga;
 		}
 	}
 	
@@ -179,7 +188,7 @@ class Datapinjaman extends MY_Base
 			$pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $value->pop_id))->row();
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$jt = date("Y-m-d", strtotime($value->pin_tglpencairan));
-			//var_dump($value->ags_id);
+			//var_dump($value->pin_tglpencairan);
     			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $value->wil_kode==$w))  {
     				$provisiPinjaman += $value->pin_pinjaman*$pop_id->pop_potongan/100 ;
     			}
@@ -355,6 +364,7 @@ foreach ($pinjamanNonaktif as $key => $value) {
 			'pokoksudahbayar' => $pokokSudahbayar,
 			'pokokangsuranpelunasan' => $pokokAngsuranpelunasan,
 			'bungaangsuran' => $bungaAngsuran,
+			'bungaangsurankurang' => $bungaAngsurankurang,
 			'bungadendapelunasan' => $bungaDendapelunasan,
 			'dendaangsuran' => $dendaAngsuran,
 			'provisipinjaman' => $provisiPinjaman,
