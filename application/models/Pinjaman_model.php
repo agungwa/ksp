@@ -119,6 +119,14 @@ function get_pin_marketing($pin_marketing, $f, $t){
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    // get data pelunasan
+    function get_by_pelunasan($id)
+    {
+        $where = "pin_id = '$id' AND pin_statuspinjaman = 1 AND pin_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->row();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

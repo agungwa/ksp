@@ -40,7 +40,8 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Rekening Pinjaman</th>
+                <th class="text-center">Rekening Pinjaman</th>
+		<th class="text-center">Nama</th>
 		<th class="text-center">Jenis Pelunasan</th>
 		<th class="text-center">Total Kekurangan Pokok</th>
 		<th class="text-center">Total Bunga Pokok</th>
@@ -55,11 +56,13 @@
             foreach ($pelunasan_data as $pelunasan)
             {
                 $pel_jenis = $this->db->get_where('jenispelunasan', array('jep_id' => $pelunasan->pel_jenis))->row();
-
+                $pin_id = $this->db->get_where('pinjaman', array('pin_id' => $pelunasan->pin_id))->row();
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $pin_id->ang_no))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $pelunasan->pin_id ?></td>
+			<td><?php echo $ang_no->ang_nama ?></td>
 			<td><?php echo $pel_jenis->jep_jenis ?></td>
 			<td><?php echo rupiah($pelunasan->pel_totalkekuranganpokok) ?></td>
 			<td><?php echo rupiah($pelunasan->pel_totalbungapokok) ?></td>
