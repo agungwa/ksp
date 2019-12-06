@@ -404,7 +404,7 @@ table#04 {
                     <td
                         style="width:116.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; background-color:#a8d08d">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt"><span
-                                style="font-family:Calibri"><?= neraca($jek+$jkl+$jkp);?></p>
+                                style="font-family:Calibri"><?= rupiah($jek+$jkl+$jkp);?></p>
                     </td>
                 </tr>
             </tbody>
