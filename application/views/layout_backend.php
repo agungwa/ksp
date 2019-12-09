@@ -632,7 +632,7 @@ lookup();
     var mm = ("0" + (today.getMonth() + 1)).slice(-2);
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
-    $("#todays-date").attr("value", today)
+    $("#todays-date,#todays-date1,#todays-date2").attr("value", today)
 
     document.getElementById("number").onblur =function (){    
     this.value = parseFloat(this.value.replace(/,/g, ""))
