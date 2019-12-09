@@ -29,6 +29,23 @@ class Angsuranbayar_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+        
+    // get angsuran bayar
+    function get_angsuran_bayarpin($ags_id)
+    {
+        $where = "agb_status < 2 AND ags_id = '$ags_id' AND agb_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->row();
+    }
+        
+    // get angsuran bayar tampil
+    function get_angsuran_ags($ags_id)
+    {
+        $where = "agb_status > 0 AND ags_id = '$ags_id' AND agb_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->row();
+    }
     
     // get total rows
     function total_rows($q = NULL) {
@@ -56,6 +73,13 @@ class Angsuranbayar_model extends CI_Model
     function update($id, $data)
     {
         $this->db->where($this->id, $id);
+        $this->db->update($this->table, $data);
+    }
+
+    // update data angsuran
+    function updateangsuran($ags_id, $data)
+    {
+        $this->db->where('ags_id =', $ags_id);
         $this->db->update($this->table, $data);
     }
 
