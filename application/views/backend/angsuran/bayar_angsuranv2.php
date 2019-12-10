@@ -63,7 +63,7 @@
 						?>
 						<tr><td>Jumlah Pokok</td>
 						<td>
-						<input type="hidden" class="form-control numeric" name="agb_pokok1" id="agb_pokok1" value="<?php echo $pokok; ?>" readonly />
+						<input type="hidden" class="form-control numeric" name="agb_pokok" id="agb_pokok" value="<?php echo $pokok; ?>" readonly />
 						<input type="hidden" class="form-control" name="agb_tglpokok" value="<?php echo $tglpokok; ?>" />
 						<?php echo rupiah($pokok) ?></td>
 						</tr>
@@ -84,7 +84,7 @@
 						?>
 					<tr><td>Jumlah Bunga</td>
 					<td>
-					<input type="hidden" class="form-control numeric" name="agb_bunga1" id="agb_bunga1" value="<?php echo $bunga; ?>" readonly />
+					<input type="hidden" class="form-control numeric" name="agb_bunga" id="agb_bunga" value="<?php echo $bunga; ?>" readonly />
 					<input type="hidden" class="form-control" name="agb_tglbunga" value="<?php echo $tglbunga; ?>" readonly />
 					<?php echo rupiah($bunga) ?></td>
 					</td></tr>
@@ -111,7 +111,7 @@
 						?>
 						<tr><td>Denda</td>
 						<td>
-						<input type="hidden" class="form-control numeric" name="agb_denda1" id="agb_denda1" value="<?php echo $denda; ?>" readonly />
+						<input type="hidden" class="form-control numeric" name="agb_denda" id="agb_denda" value="<?php echo $denda; ?>" readonly />
 						<input type="hidden" class="form-control" name="agb_tgldenda"  value="<?php echo $tgldenda; ?>" readonly />
 						<?php echo rupiah($denda) ?></td>
 						</td>
