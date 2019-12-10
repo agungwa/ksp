@@ -242,18 +242,13 @@ class Angsuran extends MY_Base
         $dataangsur = $this->Angsuranbayar_model->get_angsuran_bayarpin($id);
         //$jmlbayar = $dataangsur->agb_pokok + $dataangsur->agb_bunga + $this->input->post('agb_pokok',TRUE) + $this->input->post('agb_bunga',TRUE);
         $row = $this->Angsuran_model->get_by_id($id);
-        
+        $totalbayar = $row->ags_jmlpokok + $row->ags_jmlbunga;
         $inputbayar = $row->ags_jmlbayar + floatval($this->input->post('agb_pokok',TRUE)) + floatval($this->input->post('agb_bunga',TRUE)) + floatval($this->input->post('agb_denda',TRUE));
-        //belum selesai logic biar tidak bertambah doble ketika input
-        if ($dataangsur->ags_bunga == NULL OR $dataangsur->ags_pokok < $row->ags_pokok ){
-            $inputpokok = floatval($this->input->post('agb_pokok',TRUE));
-            $inputbunga = floatval($this->input->post('agb_bunga',TRUE));
-            $inputdenda = floatval($this->input->post('agb_bunga',TRUE));
+        //belum test logic biar tidak bertambah doble ketika input
+        if ($row->ags_jmlbayar < 1 ){
             $bayar = floatval($this->input->post('agb_pokok',TRUE)) + floatval($this->input->post('agb_bunga',TRUE)) + floatval($this->input->post('agb_denda',TRUE));
-        } else {
-            $inputpokok = floatval($this->input->post('agb_pokok1',TRUE));
-            $inputbunga = floatval($this->input->post('agb_bunga1',TRUE));
-            $inputdenda = floatval($this->input->post('agb_pokok1',TRUE));
+        } else if (ceiling($row->ags_jmlbayar,1000) < ceiling($totalbayar+1000,1000)){          
+            $bayar = $row->ags_jmlbayar + floatval($this->input->post('agb_pokok',TRUE)) + floatval($this->input->post('agb_denda',TRUE));
         }
 
         $totalbayar = $row->ags_jmlpokok + $row->ags_jmlbunga;
@@ -303,6 +298,7 @@ class Angsuran extends MY_Base
         if($dataangsur->ags_id != NULL){
             $this->Angsuranbayar_model->updateangsuran($this->input->post('ags_id', TRUE), $dataAngsuranbayar);
         } else {
+            
             $this->Angsuranbayar_model->insert($dataAngsuranbayar);
         }
         
