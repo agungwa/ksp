@@ -244,7 +244,9 @@ class Angsuran extends MY_Base
         $row = $this->Angsuran_model->get_by_id($id);
         $totalbayar = $row->ags_jmlpokok + $row->ags_jmlbunga;
         $inputbayar = $row->ags_jmlbayar + floatval($this->input->post('agb_pokok',TRUE)) + floatval($this->input->post('agb_bunga',TRUE)) + floatval($this->input->post('agb_denda',TRUE));
+       
         //belum test logic biar tidak bertambah doble ketika input
+        //error bagian tmabah ags_jmlbayar
         if ($row->ags_jmlbayar < 1 ){
             $bayar = floatval($this->input->post('agb_pokok',TRUE)) + floatval($this->input->post('agb_bunga',TRUE)) + floatval($this->input->post('agb_denda',TRUE));
         } else if (ceiling($row->ags_jmlbayar,1000) < ceiling($totalbayar+1000,1000)){          
