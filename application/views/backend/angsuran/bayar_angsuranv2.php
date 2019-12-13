@@ -59,7 +59,17 @@
 				    <tr><td>Jatuh Tempo</td><td><?php echo $angsuran['ags_tgljatuhtempo']; ?></td></tr>
 				    <tr><td>Tanggal Bayar</td><td><?php echo $angsuran['ags_tglbayar']; ?></td></tr>
 					
-					<?php if ($pokok > 0 ) {
+					<?php if ($pokok < $angsuran['ags_jmlpokok'] ) {
+						?>
+						<tr><td>Jumlah Pokok</td>
+						<td>
+						<input type="text" class="form-control numeric" name="agb_pokok" id="agb_pokok" placeholder="<?php echo rupiah($angsuran['ags_jmlpokok']-$pokok); ?>" />
+						<input type="date" class="form-control" name="agb_tglpokok" id="todays-date" placeholder="tanggal pokok" />
+						<?php echo 'Pokok Bayar = ',rupiah($pokok),' , Pokok Kurang = ',rupiah($angsuran['ags_jmlpokok']-$pokok) ?></td>
+						</td>
+						</tr>
+						
+					<?php } else {
 						?>
 						<tr><td>Jumlah Pokok</td>
 						<td>
@@ -67,15 +77,7 @@
 						<input type="hidden" class="form-control" name="agb_tglpokok" value="<?php echo $tglpokok; ?>" />
 						<?php echo rupiah($pokok) ?></td>
 						</tr>
-					<?php } else {
-						?>
-						<tr><td>Jumlah Pokok</td>
-						<td>
-						<input type="text" class="form-control numeric" name="agb_pokok" id="agb_pokok" placeholder="<?php echo rupiah($angsuran['ags_jmlpokok']); ?>" />
-						<input type="date" class="form-control" name="agb_tglpokok" id="todays-date" placeholder="tanggal pokok" />
-						
-						</td>
-						</tr><?php
+						<?php
 					}
 					?>
 					</tr>
@@ -107,7 +109,7 @@
 					}*/
 					?>
 
-					<?php if ($denda < 1 ) {
+					<?php if ($denda > 0 ) {
 						?>
 						<tr><td>Denda</td>
 						<td>
