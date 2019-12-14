@@ -203,7 +203,7 @@ class Angsuran extends MY_Base
                               if ($row->ags_tglbayar > $dendajatuhtempo ){
                                 $denda = ($totalbayar * ($settingdenda->sed_denda/100))*$perbedaan->d;
                              }
-                             var_dump($denda);
+                             //var_dump($denda);
                          if ($row->ags_bayartunggakan <= 0) {
                                  $totalkekurangan = $kurangsetor + $denda;
                                  } else {
@@ -286,9 +286,9 @@ class Angsuran extends MY_Base
 
         
         if ($denda1 < 1){
-            $denda= $this->input->post('agb_pokok',TRUE);
+            $denda= $this->input->post('agb_denda',TRUE);
         } else if ($pokok1 > 1){
-            $denda= $dataangsur->{'agb_pokok'}+floatval($this->input->post('agb_pokok',TRUE));
+            $denda= $dataangsur->{'agb_denda'}+floatval($this->input->post('agb_denda',TRUE));
         }
             
         if ($z < $totalbayar){
@@ -338,8 +338,8 @@ class Angsuran extends MY_Base
             $this->Angsuranbayar_model->insert($dataAngsuranbayar);
         }
         
-       //var_dump($pokok);
-       redirect(site_url('angsuran/?p=1&k='.$row->ang_angsuranke.'&q='.$row->pin_id.''));
+       var_dump($denda,$pokok);
+       //redirect(site_url('angsuran/?p=1&k='.$row->ang_angsuranke.'&q='.$row->pin_id.''));
    }
 
     public function listpinjaman()

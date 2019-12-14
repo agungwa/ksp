@@ -109,21 +109,22 @@
 					}*/
 					?>
 
-					<?php if ($denda > 0 ) {
+					<?php if ($denda < $angsuran['denda'] ) {
 						?>
 						<tr><td>Denda</td>
 						<td>
-						<input type="hidden" class="form-control numeric" name="agb_denda" id="agb_denda" value="<?php echo $denda; ?>" readonly />
-						<input type="hidden" class="form-control" name="agb_tgldenda"  value="<?php echo $tgldenda; ?>" readonly />
-						<?php echo rupiah($denda) ?></td>
+						<input type="text" class="form-control numeric" name="agb_denda" id="agb_denda" placeholder="<?php echo rupiah($angsuran['denda']-$denda); ?>" />
+						<input type="date" class="form-control" name="agb_tgldenda" id="todays-date2" placeholder="tanggal denda"  />
+						<?php echo 'Denda Bayar = ',rupiah($denda),' , Denda Kurang = ',rupiah($angsuran['denda']-$denda) ?></td>
 						</td>
 						</tr>
 					<?php } else {
 						?>
 						<tr><td>Denda</td>
 						<td>
-						<input type="text" class="form-control numeric" name="agb_denda" id="agb_denda" placeholder="<?php echo rupiah($angsuran['denda']); ?>" />
-						<input type="date" class="form-control" name="agb_tgldenda" id="todays-date2" placeholder="tanggal bunga"  />
+						<input type="hidden" class="form-control numeric" name="agb_denda" id="agb_denda" value="<?php echo $denda; ?>" readonly />
+						<input type="hidden" class="form-control" name="agb_tgldenda"  value="<?php echo $tgldenda; ?>" readonly />
+						<?php echo rupiah($denda) ?></td>
 						</td>
 						</tr>
 						<?php
@@ -135,7 +136,7 @@
 					<input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $angsuran['pin_id']; ?>" required="required" />
 					<input type="hidden" class="form-control" name="ags_id" id="ags_id" placeholder="ags_id" value="<?php echo $angsuran['ags_id']; ?>" required="required" />
 					<tr><td></td><td><a href="<?php echo site_url('angsuran/?p=4') ?>" class="btn btn-default">Batal</a>
-					<?php if ($angsuran['ags_status'] < 2) {
+					<?php if ($denda < $angsuran['denda']) {
 						
 						?>
 					<button type="submit" onclick="return confirm('Click OK jika benar menyetor sejumlah Rp ' + rubah(searchTxt.value))" class="btn btn-primary">Setor</button></td></tr>
