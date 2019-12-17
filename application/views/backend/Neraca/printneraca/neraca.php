@@ -25,14 +25,17 @@ table#04 {
         $jkl=$saldosimpananneraca+$bungasimpanan;
         $jkp=$saldoinvestasi+$simpanankaryawandata+$rekeningkoran+$modalpenyertaan;
         $jek=$saldosimpananwajib+$saldosimpananpokok+$simpanancdr+$donasi+$shudata;
+       
+        $kantorksp = $this->Kantorksp_model->get_by_id(1);
+        
         ?>
 
 <body>
  <h2><b>NERACA</b></h2>
  <h2><b>KSP Sido Mukti Makmur</b></h2>
  <?php $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row(); ?>
-
  <h3><b>Tanggal : <?=dateFormataja($f)?> </b></h3>
+ <h3><b><?= $kantorksp->kks_kode ?> </b></h3>
  <!--<h3><b>Wilayah <?=$w?> <?php //if($w='all'){echo 'semua wilayah';}else {echo $wil_kode->wil_nama;}?></b></h3>-->
     <div>
         <table id="03" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
