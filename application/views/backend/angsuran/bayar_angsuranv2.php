@@ -41,13 +41,13 @@
 	        	if ($angsuran != null) {
 					$agsb = $this->Angsuranbayar_model->get_angsuran_ags($angsuran['ags_id']);
 					if ($agsb == NULL){
-						$pokok = 0; $tglpokok = $this->tgl;
-						$bunga = 0; $tglbunga = $this->tgl;
-						$denda = 0; $tgldenda = $this->tgl;
+						$pokok = 0;
+						$bunga = 0;
+						$denda = 0; 
 					} else {
-						$pokok = $agsb->{'agb_pokok'}; $tglpokok = $agsb->{'agb_tglpokok'};
-						$bunga = $agsb->{'agb_bunga'}; $tglbunga = $agsb->{'agb_tglbunga'};
-						$denda = $agsb->{'agb_denda'}; $tgldenda = $agsb->{'agb_tgldenda'};
+						$pokok = $agsb->{'agb_pokok'};
+						$bunga = $agsb->{'agb_bunga'}; 
+						$denda = $agsb->{'agb_denda'};
 					}
 					?>
 				
@@ -72,10 +72,7 @@
 					<?php } else {
 						?>
 						<tr><td>Jumlah Pokok</td>
-						<td>
-						<input type="hidden" class="form-control numeric" name="agb_pokok" id="agb_pokok" value="<?php echo $pokok; ?>" readonly />
-						<input type="hidden" class="form-control" name="agb_tglpokok" value="<?php echo $tglpokok; ?>" />
-						<?php echo rupiah($pokok) ?></td>
+						<td><?php echo rupiah($pokok) ?></td>
 						</tr>
 						<?php
 					}
@@ -85,11 +82,8 @@
 					<?php if ($bunga > 0 ) {
 						?>
 					<tr><td>Jumlah Bunga</td>
-					<td>
-					<input type="hidden" class="form-control numeric" name="agb_bunga" id="agb_bunga" value="<?php echo $bunga; ?>" readonly />
-					<input type="hidden" class="form-control" name="agb_tglbunga" value="<?php echo $tglbunga; ?>" readonly />
-					<?php echo rupiah($bunga) ?></td>
-					</td></tr>
+					<td><?php echo rupiah($bunga) ?></td>
+					</tr>
 					<?php } else {
 						?>
 					<tr><td>Jumlah Bunga</td>
@@ -122,8 +116,6 @@
 						?>
 						<tr><td>Denda</td>
 						<td>
-						<input type="hidden" class="form-control numeric" name="agb_denda" id="agb_denda" value="<?php echo $denda; ?>" readonly />
-						<input type="hidden" class="form-control" name="agb_tgldenda"  value="<?php echo $tgldenda; ?>" readonly />
 						<?php echo rupiah($denda) ?></td>
 						</td>
 						</tr>
@@ -136,7 +128,7 @@
 					<input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $angsuran['pin_id']; ?>" required="required" />
 					<input type="hidden" class="form-control" name="ags_id" id="ags_id" placeholder="ags_id" value="<?php echo $angsuran['ags_id']; ?>" required="required" />
 					<tr><td></td><td><a href="<?php echo site_url('angsuran/?p=4') ?>" class="btn btn-default">Batal</a>
-					<?php if ($denda < $angsuran['denda']) {
+					<?php if ($angsuran['ags_status'] < 2) {
 						
 						?>
 					<button type="submit" onclick="return confirm('Click OK jika benar menyetor sejumlah Rp ' + rubah(searchTxt.value))" class="btn btn-primary">Setor</button></td></tr>

@@ -203,7 +203,7 @@ class Angsuran extends MY_Base
                               if ($row->ags_tglbayar > $dendajatuhtempo ){
                                 $denda = ($totalbayar * ($settingdenda->sed_denda/100))*$perbedaan->d;
                              }
-                             //var_dump($denda);
+                             //var_dump($denda,$row->ags_tglbayar);
                          if ($row->ags_bayartunggakan <= 0) {
                                  $totalkekurangan = $kurangsetor + $denda;
                                  } else {
@@ -253,13 +253,13 @@ class Angsuran extends MY_Base
         $totalbayar = $row->ags_jmlpokok + $row->ags_jmlbunga;
         $inputbayar = $row->ags_jmlbayar + floatval($this->input->post('agb_pokok',TRUE)) + floatval($this->input->post('agb_bunga',TRUE)) + floatval($this->input->post('agb_denda',TRUE));
         if ($dataangsur == NULL){
-            $pokok1 = 0; $tglpokok = $this->tgl;
-            $bunga1 = 0; $tglbunga = $this->tgl;
-            $denda1 = 0; $tgldenda = $this->tgl;
+            $pokok1 = 0; 
+            $bunga1 = 0; 
+            $denda1 = 0; 
         } else {
-            $pokok1 = $dataangsur->{'agb_pokok'}; $tglpokok = $dataangsur->{'agb_tglpokok'};
-            $bunga1 = $dataangsur->{'agb_bunga'}; $tglbunga = $dataangsur->{'agb_tglbunga'};
-            $denda1 = $dataangsur->{'agb_denda'}; $tgldenda = $dataangsur->{'agb_tgldenda'};
+            $pokok1 = $dataangsur->{'agb_pokok'}; 
+            $bunga1 = $dataangsur->{'agb_bunga'}; 
+            $denda1 = $dataangsur->{'agb_denda'}; 
         }
 
         $totalbayar = $row->ags_jmlpokok + $row->ags_jmlbunga;
@@ -273,22 +273,28 @@ class Angsuran extends MY_Base
         //var_dump($inputbayar);
         if ($row->ags_jmlbayar < 1){
             $z= $bayar;
+            $ags_tglbayar = $this->input->post('agb_tglbunga',TRUE);
         } else if ($row->ags_jmlbayar > 1){
+            $ags_tglbayar = $row->ags_tglbayar;
             $z= $row->ags_jmlbayar+$bayar;
         }
 
 
         if ($pokok1 < 1){
             $pokok= $this->input->post('agb_pokok',TRUE);
+            $tglpokok = NULL;
         } else if ($pokok1 > 1){
             $pokok= $dataangsur->{'agb_pokok'}+floatval($this->input->post('agb_pokok',TRUE));
+            $tglpokok = $this->input->post('agb_tglpokok',TRUE);
         }
 
         
         if ($denda1 < 1){
             $denda= $this->input->post('agb_denda',TRUE);
-        } else if ($pokok1 > 1){
+            $tgldenda = NULL;
+        } else if ($denda1 > 1){
             $denda= $dataangsur->{'agb_denda'}+floatval($this->input->post('agb_denda',TRUE));
+            $tgldenda = $this->input->post('agb_tgldenda',TRUE);
         }
             
         if ($z < $totalbayar){
@@ -301,34 +307,22 @@ class Angsuran extends MY_Base
         
        $dataAngsuran = array(
            'pin_id' => $this->input->post('pin_id',TRUE),
-           'ags_tglbayar' =>  $this->input->post('agb_tglbunga',TRUE),
+           'ags_tglbayar' =>  $ags_tglbayar,
            'ags_tgl' => $this->tgl,
            'ags_jmlbayar' => $z,
            'ags_status' => $status,
            );
+
        $this->Angsuran_model->update($this->input->post('ags_id', TRUE), $dataAngsuran);
       
-        if($dataangsur->ags_id != NULL){
             $dataAngsuranbayar = array(
                 'ags_id' => $id,
-                'agb_pokok' =>  $pokok,
-                'agb_tglpokok' => $this->input->post('agb_tglpokok',TRUE),
-                'agb_denda' => $denda,
-                'agb_tgldenda' => $this->input->post('agb_tgldenda',TRUE),
-                'agb_status' => $status,
-                'agb_tgllunas' => $tglstatus,
-                'agb_flag' => 1,
-                );
-            $this->Angsuranbayar_model->updateangsuran($this->input->post('ags_id', TRUE), $dataAngsuranbayar);
-        } else {
-            $dataAngsuranbayar = array(
-                'ags_id' => $id,
-                'agb_pokok' =>  $pokok,
-                'agb_tglpokok' => $this->input->post('agb_tglpokok',TRUE),
+                'agb_pokok' =>  $this->input->post('agb_pokok',TRUE),
+                'agb_tglpokok' => $tglpokok,
                 'agb_bunga' => $this->input->post('agb_bunga',TRUE),
                 'agb_tglbunga' => $this->input->post('agb_tglbunga',TRUE),
-                'agb_denda' => $denda,
-                'agb_tgldenda' => $this->input->post('agb_tgldenda',TRUE),
+                'agb_denda' => $this->input->post('agb_denda',TRUE),
+                'agb_tgldenda' => $tgldenda,
                 'agb_status' => $status,
                 'agb_tgllunas' => $tglstatus,
                 'agb_tgl' => $this->tgl,
@@ -336,10 +330,10 @@ class Angsuran extends MY_Base
                 'agb_info' => "",
                 );
             $this->Angsuranbayar_model->insert($dataAngsuranbayar);
-        }
         
-       var_dump($denda,$pokok);
-       //redirect(site_url('angsuran/?p=1&k='.$row->ang_angsuranke.'&q='.$row->pin_id.''));
+        
+       //var_dump($denda,$pokok);
+       redirect(site_url('angsuran/?p=1&k='.$row->ang_angsuranke.'&q='.$row->pin_id.''));
    }
 
     public function listpinjaman()
@@ -492,7 +486,7 @@ class Angsuran extends MY_Base
     public function denda_action($id) {
         $settingdenda = $this->Settingdenda_model->get_by_id(1);        
         $row = $this->Angsuran_model->get_by_id($id);
-        var_dump($row);
+       // var_dump($row);
         if ($row) {
             $angsuran = array(
         'settingdenda_data' => $settingdenda,
@@ -553,8 +547,8 @@ class Angsuran extends MY_Base
             } else {
                 $status = 2;
             }
-            var_dump($status);
-            var_dump($totalkekurangan);
+            //var_dump($status);
+           // var_dump($totalkekurangan);
             $dataAngsuran = array(
                 'ags_denda' => $this->input->post('ags_denda',TRUE),
                 'ags_tglbayar' => $this->input->post('ags_tglbayar',TRUE),
