@@ -60,6 +60,7 @@
             <tr>
                 <th class="text-center">No</th>
         		<th class="text-center">Pinjaman</th>
+        		<th class="text-center">Kode Anggota</th>
         		<th class="text-center">Nama Anggota</th>
         		<th class="text-center">Angsuran (bulan)</th>
         		<th class="text-center">Wilayah</th>
@@ -74,7 +75,6 @@
 			<tbody><?php
             foreach ($datapinjaman as $key=>$item)
             {
-                $ang_no = $this->db->get_where('anggota', array('ang_no' => $item['ang_no']))->row();
                 $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $item['sea_id']))->row();
                 $bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $item['bup_id']))->row();
                 $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $item['pop_id']))->row();
@@ -85,10 +85,11 @@
     			<td width="80px"><?php echo ++$start ?></td>
     			<td><?php echo $item['pin_id'] ?></td>
     			<td><?php echo $item['ang_no'] ?></td>
+    			<td><?php echo $item['nama_ang_no'] ?></td>
     			<td><?php echo $item['sea_id']," Bulan" ?></td>
     			<td><?php echo $item['wil_kode'] ?></td>
-    			<td><?php echo "Rp ",$item['pin_pengajuan'] ?></td>
-    			<td><?php echo "Rp ",$item['pin_pinjaman'] ?></td>
+    			<td><?php echo rupiah($item['pin_pengajuan']) ?></td>
+    			<td><?php echo rupiah($item['pin_pinjaman']) ?></td>
     			<td><?php echo dateFormat($item['pin_tglpengajuan']); ?></td>
     			<td><?php echo dateFormat($item['pin_tglpencairan']); ?></td>
     			<td><?php echo $item['pin_statuspinjaman'] ?></td>

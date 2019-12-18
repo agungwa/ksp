@@ -51,21 +51,26 @@
 				    <tr><td>Jumlah Bunga</td><td><?php echo rupiah($angsuran['ags_jmlbunga']); ?></td></tr>
 				    <tr><td>Total</td><td><?php echo rupiah($angsuran['totalbayar']); ?></td></tr>
 				    <tr><td>Jumlah Bayar</td><td><?php echo rupiah($angsuran['ags_jmlbayar']); ?></td></tr>
+				    <tr><td>Tanggal Bayar</td><td><input type="date" class="form-control" name="ags_tglbayar" id="todays-date" placeholder="ags_tglbayar" required="required" /></td></tr>
 					<tr><td>Status</td><td><?php echo $this->statusAngsuran[$angsuran['ags_status']]; ?></td></tr>
-					<?php if ($angsuran['ags_jmlbayar'] <= 0 && $this->tgl <= $angsuran['tgldenda']) {
-					echo '<tr><td>Input Angsuran</td><td><input type="number" class="form-control" name="ags_jmlbayar" id="ags_jmlbayar" placeholder="Bayar" value="" required="required" /></td></tr>';
-					} else if ($angsuran['ags_status'] < 2 && $this->tgl <= $angsuran['tgldenda']) {
-					echo '<tr><td>Input Tambahan</td><td><input type="number" class="form-control" name="tambah" id="tambah" placeholder="Bayar" value="" required="required" /></td></tr>';
+					<?php if ($angsuran['ags_jmlbayar'] <= 0 && $this->tgl < $angsuran['tgldenda']) {
+					echo '<tr><td>Input Angsuran</td><td><input type="number" class="form-control" name="ags_jmlbayar" id="searchTxt" placeholder="Bayar" value="" required autofocus /></td></tr>';
+					} else if ($angsuran['ags_status'] < 2 && $this->tgl < $angsuran['tgldenda']) {
+					echo '<tr><td>Input Tambahan</td><td><input type="number" class="form-control" name="tambah" id="searchTxt" placeholder="Bayar" value="" required autofocus /></td></tr>';
 					}
 					?>
 					<input type="hidden" class="form-control" name="ags_id" id="ags_id" placeholder="ags_id" value="<?php echo $angsuran['ags_id']; ?>" required="required" />
 					<input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $angsuran['pin_id']; ?>" required="required" />
 					<input type="hidden" class="form-control" name="ags_id" id="ags_id" placeholder="ags_id" value="<?php echo $angsuran['ags_id']; ?>" required="required" />
 					<tr><td></td><td><a href="<?php echo site_url('angsuran/?p=4') ?>" class="btn btn-default">Batal</a>
-					<?php if ($this->tgl <= $angsuran['tgldenda']) {
-					echo '<button type="submit" class="btn btn-primary">Setor</button></td></tr>';
-				}
-				?>
+					<?php if ($this->tgl < $angsuran['tgldenda']) {
+						
+						?>
+					<button type="submit" onclick="return confirm('Click OK jika benar menyetor sejumlah Rp ' + rubah(searchTxt.value))" class="btn btn-primary">Setor</button></td></tr>
+						<?php
+					}
+					?>
+				
 				</table>
 	        	<?php
 	        	} ?>

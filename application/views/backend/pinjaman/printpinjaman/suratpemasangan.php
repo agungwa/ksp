@@ -27,18 +27,6 @@ table#04 {
             <tbody>
                 <tr>
                     <td style="width:528.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                                style="font-family:'Calibri Light'; font-weight:bold">BERITA ACARA</span></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:528.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
-                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:10pt"><span
-                                style="font-family:'Calibri Light'; font-weight:bold">SERAH TERIMA AGUNAN</span></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:528.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:9pt">
                             </span><span
                                 style="font-family:'Times New Roman'; font-weight:bold; text-decoration:underline">

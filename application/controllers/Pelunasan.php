@@ -47,11 +47,18 @@ class Pelunasan extends MY_Base
         
         $datenow = date('n'); //var_dump($datenow);
         $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
-        $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
+        $angsuranbelum = $this->Angsuran_model->get_angsuran_belum($q);
+        $angsuransudah = $this->Angsuran_model->get_angsuran_bayarpin($q);
+        $pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktifcari($q);
+        $historiAngsuran = array();
+        foreach ($pinjamanAktif as $key => $value) {
+        $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($value->pin_id);
+        };
+
         $jenispelunasan = $this->Jenispelunasan_model->get_by_id(2);
         $settingdenda = $this->Settingdenda_model->get_by_id(1);
         if ($q<>''){
-            $row = $this->Pinjaman_model->get_by_id($q);
+            $row = $this->Pinjaman_model->get_by_pelunasan($q);
              if ($row) {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
                 $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
@@ -82,6 +89,9 @@ class Pelunasan extends MY_Base
             } 
         }
         $data = array(
+            'pinjamanaktif' => $pinjamanAktif,
+            'angsuranbelum' => $angsuranbelum,
+            'angsuransudah' => $angsuransudah,
             'datatglsekarang' => $datatglsekarang,
             'jenispelunasan' => $jenispelunasan,
             'settingdenda_data' => $settingdenda,
@@ -103,6 +113,7 @@ class Pelunasan extends MY_Base
 		'pel_tenor' => $this->input->post('pel_tenor',TRUE),
 		'pel_angsuran' => $this->input->post('pel_angsuran',TRUE),
 		'pel_bungaangsuran' => $this->input->post('pel_bungaangsuran',TRUE),
+		'pel_pokoksudahbayar' => $this->input->post('pel_pokoksudahbayar',TRUE),
 		'pel_totalkekuranganpokok' => $this->input->post('pel_totalkekuranganpokok',TRUE),
 		'pel_totalbungapokok' => $this->input->post('pel_totalbungapokok',TRUE),
 		'pel_bungatambahan' => $this->input->post('pel_bungatambahan',TRUE),
@@ -116,9 +127,10 @@ class Pelunasan extends MY_Base
             $this->Pelunasan_model->insert($dataPeluanasan);
         $dataPinjaman = array(
             'pin_statuspinjaman' => 3,
+            'pin_tglpelunasan' => $this->tgl,
         );
         $this->Pinjaman_model->update($this->input->post('pin_id', TRUE), $dataPinjaman);
-            redirect(site_url('pelunasan/?p=1'));
+            redirect(site_url('pelunasan/?p=4'));
     }
 
     public function biasa(){
@@ -126,11 +138,15 @@ class Pelunasan extends MY_Base
         $pinjaman = null;
         $datenow = date('n'); //var_dump($datenow);
         $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
-        $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
+        $pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktifcari($q);
+        $historiAngsuran = array();
+        foreach ($pinjamanAktif as $key => $value) {
+        $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($value->pin_id);
+        };
         $jenispelunasan = $this->Jenispelunasan_model->get_by_id(1);
         $settingdenda = $this->Settingdenda_model->get_by_id(1);
         if ($q<>''){
-            $row = $this->Pinjaman_model->get_by_id($q);
+            $row = $this->Pinjaman_model->get_by_pelunasan($q);
              if ($row) {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
                 $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
@@ -161,6 +177,7 @@ class Pelunasan extends MY_Base
             } 
         }
         $data = array(
+            'pinjamanaktif' => $pinjamanAktif,
             'datatglsekarang' => $datatglsekarang,
             'jenispelunasan' => $jenispelunasan,
             'settingdenda_data' => $settingdenda,
@@ -181,10 +198,14 @@ class Pelunasan extends MY_Base
         $datenow = date('n'); //var_dump($datenow);
         $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
         $jenispelunasan = $this->Jenispelunasan_model->get_by_id(3);
-        $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($q);
+        $pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktifcari($q);
+        $historiAngsuran = array();
+        foreach ($pinjamanAktif as $key => $value) {
+        $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($value->pin_id);
+        };
         $settingdenda = $this->Settingdenda_model->get_by_id(1);
         if ($q<>''){
-            $row = $this->Pinjaman_model->get_by_id($q);
+            $row = $this->Pinjaman_model->get_by_pelunasan($q);
              if ($row) {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
                 $sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $row->sea_id))->row();
@@ -215,6 +236,7 @@ class Pelunasan extends MY_Base
             } 
         }
         $data = array(
+            'pinjamanaktif' => $pinjamanAktif,
             'datatglsekarang' => $datatglsekarang,
             'jenispelunasan' => $jenispelunasan,
             'settingdenda_data' => $settingdenda,

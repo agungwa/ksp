@@ -24,6 +24,12 @@ class Penarikaninvestasiberjangka_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_totalpenarikan($ivb_kode){
+        $this->db->select_sum('pib_jmlditerima');
+        $this->db->where('ivb_kode =',$ivb_kode);
+        return $this->db->get($this->table)->result();
+    }
+
     // get data by id
     function get_by_id($id)
     {
@@ -63,7 +69,7 @@ class Penarikaninvestasiberjangka_model extends CI_Model
         $this->db->where($where);
         return $this->db->get($this->table)->result();
     }
-
+	
     // insert data
     function insert($data)
     {

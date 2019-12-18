@@ -24,7 +24,7 @@ table#06 {
                     <td style="width:471.1pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:16pt"><span
                                 style="font-family:Cambria; font-weight:bold; text-decoration:underline">SURAT
-                                PERJANJIAN SIMPANAN BERJANGKA</span></p>
+                                PERJANJIAN INVESTASI BERJANGKA</span></p>
                     </td>
                 </tr>
                 <tr>
@@ -170,6 +170,13 @@ table#06 {
                                 style="font-family:'Calibri Light'; font-weight:bold">PIHAK II ( Kedua )</span></p>
                     </td>
                 </tr>
+                <tr text-align="justify">
+                    <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
+                                style="font-family:'Calibri Light'; color:#222a35">Kedua pihak pada hari ini <?php echo hari_ini(),' , ',dateFormataja($this->tgl) ?> telah melakukan kesepakatan 
+                                perjanjian Investasi Berjangka yang isinya : </span></p>
+                    </td>
+                </tr>
         </table>
         <table id="03" style="border-collapse:collapse" cellspacing="0" cellpadding="0"> 
             <tbody>
@@ -183,9 +190,9 @@ table#06 {
                 <tr text-align="justify">
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                                style="font-family:'Calibri Light'; color:#222a35">Pihak kedua menyetor uang/menginvestasikan uang sejumlah <?php echo neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah) ?>) kepada pihak pertama,
-                                Simpanan berjangka selama <?php echo $jwi_id, ' Bulan' ?> terhitung sejak perjanjian ini dan 
-                                di tanda tangani bersama sampai dengan Tanggal <?php echo dateFormataja($jatuhtempo) ?> Dan apabila dari pihak kedua tidak ada konfirmasi,
+                                style="font-family:'Calibri Light'; color:#222a35">Pihak kedua menyetor uang/menginvestasikan uang sejumlah <?php echo neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah),' Rupiah' ?>) kepada pihak pertama,
+                                Investasi berjangka selama <?php echo $jwi_id, ' Bulan' ?> terhitung sejak perjanjian ini dan 
+                                di tanda tangani bersama sampai dengan <?php echo '<b> Tanggal '.dateFormataja($jatuhtempo).'</b>' ?> Dan apabila dari pihak kedua tidak ada konfirmasi,
                                 maka akan diperpanjang secara otomatis.</span></p>
                     </td>
                 </tr>
@@ -199,7 +206,7 @@ table#06 {
                 <tr text-align="justify">
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:justify;">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                                style="font-family:'Calibri Light'; color:#222a35">Pihak pertama ( KSP SIDO MUKTI MAKMUR ) menerima sejumlah <?php echo neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah) ?>) 
+                                style="font-family:'Calibri Light'; color:#222a35">Pihak pertama ( KSP SIDO MUKTI MAKMUR ) menerima sejumlah <?php echo neraca($ivb_jumlah) ?>, - (<?php echo terbilang($ivb_jumlah),' Rupiah' ?>) 
                                 dari pihak kedua berupa investasi berjangka selama <?php echo $jwi_id, ' Bulan' ?> dengan <?php echo $biv_id," %" ?>  jasa diberikan <?php echo $jiv_id ?> .</span></p>
                     </td>
                 </tr>
@@ -220,13 +227,39 @@ table#06 {
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
                                 style="font-family:'Calibri Light'; font-weight:bold; color:#222a35">Pasal</span><span
+                                style="font-family:'Calibri Light'; font-weight:bold; color:#222a35"> IV</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:justify;">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
+                                style="font-family:'Calibri Light'; color:#222a35">Perjanjian ini berlaku setelah di tanda tangani kedua belah pihak dan di akhiri mengikuti perjanjian yang ada </span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
+                                style="font-family:'Calibri Light'; font-weight:bold; color:#222a35">Pasal</span><span
+                                style="font-family:'Calibri Light'; font-weight:bold; color:#222a35"> V</span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:justify;">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
+                                style="font-family:'Calibri Light'; color:#222a35">Apabila ada permasalahan yang timbul di kemudian hari,maka akan di selesaikan dengan musyawarah untuk mencapai mufakat. </span></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
+                                style="font-family:'Calibri Light'; font-weight:bold; color:#222a35">Pasal</span><span
                                 style="font-family:'Calibri Light'; font-weight:bold; color:#222a35"> VI</span></p>
                     </td>
                 </tr>
                 <tr>
                     <td style="width:528.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:justify;">
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                                style="font-family:'Calibri Light'; color:#222a35">Sesuai kesepakatan bersama, deposito yang belum jatuh tempo tidak bisa ditarik.Dikeluarkan sesuai jatuh tempo.</span></p>
+                                style="font-family:'Calibri Light'; color:#222a35">Sesuai kesepakatan bersama, Investasi yang belum jatuh tempo tidak bisa ditarik.Dikeluarkan sesuai jatuh tempo.</span></p>
                     </td>
                 </tr>
             </tbody>
@@ -281,7 +314,7 @@ table#06 {
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
                             <span style="font-family:Cambria">Pihak Pertama</span></p><p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria">Kepala Bagian Deposito</span></p>
+                            <span style="font-family:Cambria">Kepala Bagian Investasi</span></p>
                     </td>
                     <td style="width:176.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p
@@ -370,8 +403,6 @@ table#06 {
                 </tr>
             </tbody>
         </table>
-        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
-                style="font-family:Cambria">&nbsp;</span></p>
         <table id="05" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
@@ -410,6 +441,8 @@ table#06 {
                                 style="font-family:Cambria">&nbsp;</span></p>
                     </td>
                     <td style="width:176.3pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                        <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
+                                style="font-family:Cambria">&nbsp;</span></p>
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span
                                 style="font-family:Cambria">&nbsp;</span></p>
                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:justify; font-size:11pt"><span

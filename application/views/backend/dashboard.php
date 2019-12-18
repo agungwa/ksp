@@ -64,7 +64,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-2">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <span class="label label-info pull-right"></span>
@@ -110,13 +110,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h1 class="no-margins">Data</h2>
-                                <div class="stat-percent font-bold text-info"><?= $saldosimpananpokok/1000000;?> <i class="fa fa-level-up"></i> 
-                                </div><small>Pokok Dalam Juta</small>
+                                <div class="stat-percent font-bold text-info"><?= $saldosimpananwajib/1000000;?> <i class="fa fa-level-up"></i> 
+                                </div><small>Wajib Dalam Juta</small>
                             </div>
                             <div class="col-md-6">
                                 <h1 class="no-margins">Data </h1>
                                 <div class="stat-percent font-bold text-info"><?= $saldosimpananpokok/1000000;?> <i class="fa fa-level-up"></i> 
-                                </div><small>Wajib Dalam Juta</small>
+                                </div><small>Pokok Dalam Juta</small>
                             </div>
                         </div>
 

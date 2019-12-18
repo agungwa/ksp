@@ -81,8 +81,9 @@ class Anggota extends MY_Base
                 'ang_nokk' => $this->input->post('ang_nokk',TRUE),
                 'ang_nohp' => $this->input->post('ang_nohp',TRUE),
                 'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+                'ang_tempatlahir' => $this->input->post('ang_tempatlahir',TRUE),
                 'ang_status' => 0,
-                'ang_tgl' => $this->tgl,
+                'ang_tgl' => NUll,
                 'ang_flag' => 0,
                 'ang_info' => "",
 	            );
@@ -108,6 +109,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => set_value('ang_nokk', $row->ang_nokk),
 		'ang_nohp' => set_value('ang_nohp', $row->ang_nohp),
         'ang_tgllahir' => set_value('ang_tgllahir', $row->ang_tgllahir),
+        'ang_tempatlahir' => set_value('ang_tempatlahir', $row->ang_tempatlahir),
         'content' => 'backend/anggota/pendaftaran/pengajuanupdate',
 	    );
             $this->load->view(layout(), $data);
@@ -126,6 +128,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => $this->input->post('ang_nokk',TRUE),
 		'ang_nohp' => $this->input->post('ang_nohp',TRUE),
         'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+        'ang_tempatlahir' => $this->input->post('ang_tempatlahir',TRUE),
         'ang_status' => 1,
 		'ang_flag' => 1,
 	    );
@@ -163,7 +166,7 @@ class Anggota extends MY_Base
 
     //pendaftaran anggota
     public function pendaftaran(){
-        $nowYear = date('d');
+        $nowYear = date('dmy');
     
         $row = $this->Settingsimpanan_model->get_by_id(2);
         if ($row) {
@@ -316,18 +319,31 @@ class Anggota extends MY_Base
         $q = urldecode($this->input->get('q', TRUE));
         $s = urldecode($this->input->get('s', TRUE));
         $u = urldecode($this->input->get('u', TRUE));
-        $start = intval($this->input->get('start'));
+		$f = urldecode($this->input->get('f', TRUE)); //dari tgl
+		$t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+        $start 	= intval($this->input->get('start'));
+		
+		$satu	= 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+		$tanggalDuedatenow = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
 
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedatenow;}
+		
         $anggota = $this->Anggota_model->get_limit_data($start, $q);
         
-        $dataanggota = array();
+        $dataanggota = array();$i=0;
         foreach ($anggota as $key=>$item) {
             if (
                 ( $u=='all' && $s=='all') || 
                 ( $u=='all' && $item->ang_status == $s) || 
                 ( $item->ang_no == $u && $s=='all') || 
                 ( $item->ang_no == $u && $item->ang_status == $s)) {
-
+				
+				$tgl_daftar = $item->ang_tgl;
+				$f = date("Y-m-d", strtotime($f));
+				$t = date("Y-m-d", strtotime($t));
+				
+				if (($tgl_daftar >= $f && $tgl_daftar <= date("Y-m-d", strtotime($t.' + '.$satu.' Days')))) {
                     $dataanggota[$key] = array(
                         'ang_no' => $item->ang_no,
                         'ang_nama' => $item->ang_nama,
@@ -337,10 +353,11 @@ class Anggota extends MY_Base
                         'ang_nohp' => $item->ang_nohp,
                         'ang_tgllahir' => $item->ang_tgllahir,
                         'ang_status' => $this->statusAnggota[$item->ang_status],
-                        'ang_tgl' => $item->ang_tgl,
+                        'ang_tgl' => date("Y-m-d", strtotime($item->ang_tgl)),
                         'ang_flag' => $item->ang_flag,
                         'ang_info' => $item->ang_info,
                     );
+				}
             }
         }
         
@@ -350,6 +367,8 @@ class Anggota extends MY_Base
             'u' => $u,
             's' => $s,
             'q' => $q,
+			'f' => $f,
+			't' => $t,
             'start' => $start,
             'active' => 2,
             'content' => 'backend/anggota/anggota',
@@ -456,6 +475,7 @@ class Anggota extends MY_Base
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
         $satu = 1;
+        $n=1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
         $tanggalDuedatenow = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
         
@@ -466,7 +486,7 @@ class Anggota extends MY_Base
         $anggota = $this->Anggota_model->get_limit_data($start, $q);
     	foreach ($setoranAktif as $key => $value) {
     		$setoran = $this->Setoransimpananwajib_model->get_data_ssw($value->siw_id); 
-            foreach ($setoran as $key=>$item) {
+            foreach ($setoran as $k=>$item) {
                 $siw_id = $this->db->get_where('Simpananwajib', array('siw_id' => $item->siw_id))->row();
                 $ang_no = $this->db->get_where('Anggota', array('ang_no' => $siw_id->ang_no))->row();
                 //$wil_kode = $sim_kode->wil_kode;
@@ -475,7 +495,7 @@ class Anggota extends MY_Base
                 $t = date("Y-m-d", strtotime($t));
 
                 if (($tanggalDuedate >= $f && $tanggalDuedate <= $t)) {
-                    $datasetoranwajib[$key] = array(
+                    $datasetoranwajib[$n] = array(
                     'ssw_id' => $item->ssw_id,
                     'siw_id' => $siw_id->ang_no,
                     'ang_no' => $ang_no->ang_nama,
@@ -484,6 +504,7 @@ class Anggota extends MY_Base
                     'ssw_jmlsetor' => $item->ssw_jmlsetor,
                     'ssw_tgl' => $item->ssw_tgl,
                     );
+                    $n++;
                 }
             }
         }
@@ -559,6 +580,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => set_value('ang_nokk', $row->ang_nokk),
 		'ang_nohp' => set_value('ang_nohp', $row->ang_nohp),
         'ang_tgllahir' => set_value('ang_tgllahir', $row->ang_tgllahir),
+        'ang_tempatlahir' => set_value('ang_tempatlahir', $row->ang_tempatlahir),
         'content' => 'backend/anggota/pendaftaran/pendaftaranedit',
 	    );
             $this->load->view(layout(), $data);
@@ -582,6 +604,7 @@ class Anggota extends MY_Base
 		'ang_nokk' => $this->input->post('ang_nokk',TRUE),
 		'ang_nohp' => $this->input->post('ang_nohp',TRUE),
 		'ang_tgllahir' => $this->input->post('ang_tgllahir',TRUE),
+        'ang_tempatlahir' => $this->input->post('ang_tempatlahir',TRUE),
 		'ang_flag' => 1,
 	    );
 

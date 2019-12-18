@@ -54,7 +54,7 @@
         <?php
         
         $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
-        $kas=$shudata + $simpanancdr + $donasi + $bungasimpanan + $rekeningkoran + $modalpenyertaan +$saldoinvestasi + $saldosimpananwajib+$saldosimpananpokok+ $pokokangsuranpelunasan + $pokokangsuran + $saldosimpananneraca - $saldopinjamanumum - $saldopinjamankaryawan-$saldopinjamankhusus - $jat;
+        $kas=$shudata + $simpanancdr + $donasi + $bungasimpanan + $rekeningkoran + $modalpenyertaan +$saldoinvestasi + $saldosimpananwajib+$saldosimpananpokok + $saldosimpananneraca - $saldopinjamanumumbelum - $saldopinjamankaryawanbelum-$saldopinjamankhususbelum - $jat;
         $jal=$kas + $kasbankdata + $saldopinjamanumumbelum + $saldopinjamankaryawanbelum+$saldopinjamankhususbelum;
         $jkl=$saldosimpananneraca+$bungasimpanan;
         $jkp=$saldoinvestasi+$simpanankaryawandata+$rekeningkoran+$modalpenyertaan;
@@ -62,12 +62,12 @@
         ?>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
-          <!--  <?php echo 'ivb', neraca($saldoinvestasi),'simwa', neraca($saldosimpananwajib), 'simpok', neraca($saldosimpananpokok), 'pokpel', neraca($pokokangsuranpelunasan), 'pokang', neraca($pokokangsuran), 'simpananneraca', neraca($saldosimpananneraca), 'jat', neraca($jat), 'pinum',  neraca($saldopinjamanumum), 'pinkar', neraca($saldopinjamankaryawan), 'pinkhus', neraca($saldopinjamankhusus); ?>-->
+         <!-- <?php echo 'shu',neraca($shudata), ' + utangbunga', neraca($bungasimpanan), ' + ivb', neraca($saldoinvestasi),' + simwa', neraca($saldosimpananwajib), ' + simpok', neraca($saldosimpananpokok), ' + pokpel', neraca($pokokangsuranpelunasan), ' + pokang', neraca($pokokangsuran), ' - simpananneraca', neraca($saldosimpananneraca), ' - jat', neraca($jat), ' - pinum',  neraca($saldopinjamanumum), ' - pinkar', neraca($saldopinjamankaryawan), ' - pinkhus', neraca($saldopinjamankhusus); ?> -->
             <h3> AKTIVA </h3>
             <h4> AKTIVA LANCAR </h4>
             <tr>
                 <td class="text-left">Kas</td>
-				<td class="text-left" ><?= neraca($kas);?></td>
+				<td class="text-left" ><?= rupiah($kas);?></td>
             </tr>
             <tr>
                 <td class="text-left">Kas diBank</td>
@@ -87,7 +87,7 @@
             </tr>
             <tr class='info'>
             <td class="text-left">Jumlah Aktiva Lancar</td>
-                <td class="text-left" width="380px"><?= rupiahsimpanan($jal);?></td>
+                <td class="text-left" width="380px"><?= rupiah($jal);?></td>
             </td>
             </tr>
             </tbody>
@@ -129,7 +129,7 @@
             <tbody class="thead-light">
             <tr class='danger'>
                 <td class="text-left">Jumlah</td>
-				<td class="text-left"><?= rupiahsimpanan($jat+$jal);?></td>
+				<td class="text-left"><?= rupiah($jat+$jal);?></td>
             </tr>
             </tbody>
         </table>
@@ -210,7 +210,7 @@
             <tbody class="thead-light">
             <tr class='danger'>
                 <td class="text-left">Jumlah</td>
-				<td class="text-left"><?= neraca($jek+$jkl+$jkp);?></td>
+				<td class="text-left"><?= rupiah($jek+$jkl+$jkp);?></td>
             </tr>
             </tbody>
         </table>

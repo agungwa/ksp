@@ -43,7 +43,7 @@
                 </form>
             </div>
         </div>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table class="table table-bordered table-hover table-condensed" id="dtOrderExample" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>

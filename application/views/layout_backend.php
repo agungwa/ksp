@@ -20,9 +20,14 @@
     <link href="<?=base_url()?>assets/vendor/inspinia/css/animate.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/inspinia/css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/radiocheck/radiocheck.css" rel="stylesheet">
+    <!--datatables-->
+    <link href="<?php echo base_url().'assets/css/bootstrap.css'?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url().'assets/css/jquery.datatables.min.css'?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.css'?>" rel="stylesheet" type="text/css"/>
+<!--
     <link href="<?=base_url()?>assets/datatables/dataTables.bootstrap.css" rel="stylesheet">
     <script src="<?=base_url()?>assets/datatables/dataTables.bootstrap.js"></script>
-    <script src="<?=base_url()?>assets/datatables/jquery.dataTables.js"></script>
+    <script src="<?=base_url()?>assets/datatables/jquery.dataTables.js"></script>-->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>
     <script src="<?=base_url()?>assets/rupiah/my.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/bootstrap.min.js"></script>
@@ -189,7 +194,7 @@ lookup();
                         <?php endif; ?>
                         <ul class="nav nav-second-level">
 
-                            <?php if(is_allow('M_UTILITAS')): ?>
+                            <?php if(is_allow('M_SIMKESAN')): ?>
                             <li>
                                 <a href="#" id="damian">Utilitas Simkesan<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
@@ -444,7 +449,7 @@ lookup();
                                 class="fa arrow"></span></a>
                         <?php endif; ?>
                         <ul class="nav nav-second-level">
-                        <li>
+							<li>
                                 <a href="#" id="damian">Utilitas Karyawan<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
@@ -453,8 +458,17 @@ lookup();
                                     
                                 </ul>
                             </li>
-                        </ul>
-                        <ul class="nav nav-second-level">
+							
+							<li>
+                                <a href="#" id="damian">Penggajian Karyawan<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="<?=base_url()?>penggajianmarketing">Marketing</a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+							
                             <li><a href="<?=base_url()?>jabatan">Jabatan</a></li>
                             <li><a href="<?=base_url()?>wilayah">Wilayah</a></li>
                             <li><a href="<?=base_url()?>karyawan">Karyawan</a></li>
@@ -464,15 +478,20 @@ lookup();
 
                     <!-- MENU USER MANAGEMENT -->
                     <li class="">
-                        <?php if(is_allow('M_SISTEM')): ?>
+                        
                         <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">MANAJEMEN USER</span>
                             <span class="fa arrow"></span></a>
-                        <?php endif; ?>
                         <ul class="nav nav-second-level">
+                        <?php if(is_allow('M_SISTEM')): ?>
                             <li><a href="<?=base_url()?>users">Users</a></li>
                             <li><a href="<?=base_url()?>user_group">User Group</a></li>
+                            <?php endif; ?>
+                            <?php if(is_allow('M_MANAGER')): ?>
                             <li><a href="<?=base_url()?>user_access">User Access</a></li>
+                            <?php endif; ?>
+                            <?php if(is_allow('M_SISTEM')): ?>
                             <li><a href="<?=base_url()?>master_access">Master Access</a></li>
+                            <?php endif; ?>
                         </ul>
                     </li>
 
@@ -582,6 +601,11 @@ lookup();
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/chartJs/Chart.min.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/toastr/toastr.min.js"></script>
     <script src="<?=base_url()?>assets/js/sf.js"></script>
+    
+    <script src="<?php echo base_url().'assets/js/jquery-2.1.4.min.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/jquery.datatables.min.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/dataTables.bootstrap.js'?>"></script>
 
     <script>
     $(document).ready(function() {
@@ -596,13 +620,19 @@ lookup();
     });
     </script>
 
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.data').DataTable();
+		});
+	</script>
+
     <script>
     var today = new Date();
     var dd = ("0" + (today.getDate())).slice(-2);
     var mm = ("0" + (today.getMonth() + 1)).slice(-2);
     var yyyy = today.getFullYear();
     today = yyyy + '-' + mm + '-' + dd;
-    $("#todays-date").attr("value", today)
+    $("#todays-date,#todays-date1,#todays-date2").attr("value", today)
 
     document.getElementById("number").onblur =function (){    
     this.value = parseFloat(this.value.replace(/,/g, ""))
@@ -638,6 +668,13 @@ lookup();
     function setEventId(event_id){
     document.querySelector("#event_id").innerHTML = event_id;
 }
+
+$(document).ready(function () {
+$('#dtOrderExample').DataTable({
+"order": [[ 3, "desc" ]]
+});
+$('.dataTables_length').addClass('bs-select');
+});
     </script>
 </body>
 

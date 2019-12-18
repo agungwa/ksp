@@ -37,14 +37,15 @@
             </div>
             </form>
         </div>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <thead class="thead-light">
+        <table class="data" style="margin-bottom: 10px">
+            <thead>
             <tr>
-                <th class="text-center">No</th>
-        <th class="text-center">Rekening Simpanan</th>
-		<th class="text-center">Nama Anggota</th>
-		<th class="text-center">Tanggal Setor</th>
-		<th class="text-center">Jumlah Setor</th>
+                <th>No</th>
+				<th>Rekening Simpanan</th>
+				<th>Nama Anggota</th>
+				<th>Tanggal Setor</th>
+				<th>Jumlah Setor</th>
+				<th>Aksi</th>
             </tr>
             </thead>
             <tbody><?php
@@ -57,28 +58,32 @@
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $sim_kode->ang_no))->row();
                 ?>
                 <tr>
-			<td width="80px"><?php echo $no ?></td>
-			<td><?php echo $item['sim_kode'] ?></td>
-			<td><?php echo $ang_no->ang_nama ?></td>
-			<td><?php echo $item['ssi_tglsetor'] ?></td>
-			<td><?php echo rupiahsimpanan($item['ssi_jmlsetor']) ?></td>
-            <?php if(is_allow('M_EDIT')): ?>
-			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('setoransimpanan/update/'.$item['ssi_id']),'Update','class="text-navy"'); 
-             ?>
-			</td> 
-            <?php endif;  ?>
-		</tr>
+					<td width="80px"><?php echo $no ?></td>
+					<td><?php echo $item['sim_kode'] ?></td>
+					<td><?php echo $ang_no->ang_nama ?></td>
+					<td><?php echo $item['ssi_tglsetor'] ?></td>
+					<td><?php echo rupiahsimpanan($item['ssi_jmlsetor']) ?></td>
+					<?php if(is_allow('M_EDIT')): ?>
+					<td style="text-align:center" width="200px">
+						<?php 
+						echo anchor(site_url('setoransimpanan/update/'.$item['ssi_id']),'Update','class="text-navy"'); 
+					 ?>
+					</td> 
+					<?php endif;  ?>
+				</tr>
                 
                 <?php
                 $no++;
             }
             
             ?>
-            <tr><td></td><td></td><td></td><td>Total Setor</td><td><?php echo rupiahsimpanan($total) ?></td></tr>
+            
             </tbody>
         </table>
+		
+		<table class="table table-bordered table-hover table-condensed">
+			<tr class="danger"><td width="660px">Total Setor</td><td><?php echo rupiahsimpanan($total) ?></td></tr>
+		</table>
         <div class="row">
         </div>
         </div>

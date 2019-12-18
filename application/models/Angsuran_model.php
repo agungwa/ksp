@@ -58,6 +58,16 @@ class Angsuran_model extends CI_Model
         $this->db->where($where);
         return $this->db->get($this->table)->result();
     }
+
+    
+    // get angsuran  bayar
+    function get_angsuran_bayarpin($pin_id)
+    {
+        $where = "ags_status = 2 AND pin_id = '$pin_id' AND ags_flag < 2";
+        $this->db->where($where);
+        return $this->db->get($this->table)->result();
+    }
+
     // get all pokok
     function get_target()
     {
@@ -128,6 +138,14 @@ class Angsuran_model extends CI_Model
     function get_angsuran_data( $start = 0, $q = NULL, $date = NULL) {
         $this->db->order_by($this->id, $this->order);
          $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR ags_tgljatuhtempo LIKE '%$q%' ESCAPE '!') AND ags_flag < 2";
+        $this->db->where($where);
+	    //$this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_angsuran_bayarlist( $start = 0, $q = NULL, $date = NULL) {
+        $this->db->order_by($this->id, $this->order);
+         $where = "ags_status > 0 AND ags_flag < 2";
         $this->db->where($where);
 	    //$this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();

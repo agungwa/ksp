@@ -61,22 +61,25 @@
                 $no++;
             }
             ?>
-            <?php
-         if ($totalsetor < $setor_psk_id*60){
-            echo '<button type="submit" class="btn btn-primary">SETOR</button>';
-            }
-            else if ($totalsetor == $setor_psk_id*60){
-            echo '<td class = "danger">Setoran Sudah Selesai</td>';
-            }
-            ?>
             <div class='col-md-4'>
-            <input type="number" class="form-control" name="ssk_jmlsetor" id="ssk_jmlsetor" placeholder="Setor" value="<?php echo $setor_psk_id ?>" required="required" readonly />
+            <input type="number" class="form-control" name="ssk_jmlsetor" id="searchTxt" placeholder="Setor" value="<?php echo $setor_psk_id ?>" required />
+            <input type="date" class="form-control" name="ssk_tglsetoran" id="todays-date" placeholder="ssk_tglsetoran" value="" required />
             <?php if($kekurangan == $setor_psk_id) { 
             echo '<td class = "danger">Setoran Terakhir</td><input type="hidden" class="form-control" name="sik_status" id="sik_status" placeholder="sik_status" value="4" required="required" readonly />';
             } else {
                 echo'<input type="hidden" class="form-control" name="sik_status" id="sik_status" placeholder="sik_status" value="0" required="required" readonly />';
             }?>
             <input type="hidden" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $sik_kode ?>" required="required" readonly />
+            
+           <!-- <?php
+         if ($totalsetor < $setor_psk_id*60){
+            echo '<button type="submit" class="btn btn-primary" onclick="return confirm(\'Click OK jika benar menyetor sejumlah Rp \' + rubah(searchTxt.value))">SETOR</button>';
+            }
+            else if ($totalsetor == $setor_psk_id*60){
+            echo '<td class = "danger">Setoran Sudah Selesai</td>';
+            }
+            ?> -->
+            <button type="submit" class="btn btn-primary" onclick="return confirm('Click OK jika benar menyetor sejumlah Rp ' + rubah(searchTxt.value))">SETOR</button>
         </div>
             </tbody>
             </form>

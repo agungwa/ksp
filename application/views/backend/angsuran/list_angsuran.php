@@ -22,7 +22,10 @@
                                     <?php
                                 }
                             ?>
-                          <button class="btn btn-primary" type="submit">Search</button>
+                            <span class="input-group-btn">
+                                        <a href="<?php echo base_url()?>printangsuran/listAngsuran?t=<?=$t?>&u=<?=$u?>" class="btn btn-default">Print</a>
+                            
+                          <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
             </div>
@@ -34,37 +37,39 @@
             <tr>
                 <th class="text-center">No</th>
 		<th class="text-center">Rekening Pinjaman</th>
+        <th class="text-center">Nama</th>
+        <th class="text-center">Alamat</th>
+        <th class="text-center">No HP</th>
+		<th class="text-center">Jaminan</th>
 		<th class="text-center">Angsuranke</th>
 		<th class="text-center">Jatuh Tempo</th>
 		<th class="text-center">Tanggal Bayar</th>
 		<th class="text-center">Jumlah Pokok</th>
 		<th class="text-center">Jumlah Bunga</th>
 		<th class="text-center">Status</th>
-		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
             foreach ($dataangsuran as $key=>$item)
             {
+                $pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item['pin_id']))->row();
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $pin_id->ang_no))->row();
+                $jaminan = $this->Jaminan_model->get_by_rek($item['pin_id']);
+                $jej_id = $this->db->get_where('jenisjaminan', array('jej_id' => $jaminan->jej_id))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $item['pin_id'] ?></td>
+			<td><?php echo $ang_no->ang_nama ?></td>
+			<td><?php echo $ang_no->ang_alamat ?></td>
+			<td><?php echo $ang_no->ang_nohp ?></td>
+			<td><?php echo $jej_id->jej_jaminan ?></td>
 			<td><?php echo $item['ang_angsuranke'] ?></td>
 			<td><?php echo $item['ags_tgljatuhtempo'] ?></td>
 			<td><?php echo $item['ags_tglbayar'] ?></td>
-			<td><?php echo $item['ags_jmlpokok'] ?></td>
-			<td><?php echo $item['ags_jmlbunga'] ?></td>
+			<td><?php echo rupiah($item['ags_jmlpokok']) ?></td>
+			<td><?php echo rupiah($item['ags_jmlbunga']) ?></td>
 			<td><?php echo $item['ags_status'] ?></td>
-			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('angsuran/read/'.$item['ags_id']),'Read','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('angsuran/update/'.$item['ags_id']),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('angsuran/delete/'.$item['ags_id']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-				?>
-			</td>
 		</tr>
                 
                 <?php

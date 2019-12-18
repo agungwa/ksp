@@ -25,7 +25,7 @@
             
             <div class="col-md-1 text-right">
             </div>
-            <div class="col-md-3 text-right">
+            <!-- <div class="col-md-3 text-right">
                 <form action="<?php echo site_url('simkesan/simkesanlist'); ?>" class="form-inline" method="get">
 
                     <div class="input-group">
@@ -45,24 +45,25 @@
                     </div>
                 </form>
             </div>
+			-->
         </div>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <thead class="thead-light">
+        <table class="data" style="margin-bottom: 10px">
+            <thead>
             <tr>
-                <th class="text-center">No</th>
-        <th class="text-center">Rekening Simkesan</th>
-		<th class="text-center">ID Angggota</th>
-		<th class="text-center">Nama</th>
-		<th class="text-center">Karyawan</th>
-		<th class="text-center">Plan Simkesan</th>
-		<th class="text-center">Wilayah</th>
-		<th class="text-center">Tanggal Pendaftaran</th>
-		<th class="text-center">Tanggal Berakhir</th>
-		<th class="text-center">Total Setor</th>
-		<th class="text-center">Titipan</th>
-		<th class="text-center">Status</th>
-		<th class="text-center">Action</th>
-        </tr>
+                <th>No</th>
+				<th>Rekening Simkesan</th>
+				<th>ID Angggota</th>
+				<th>Nama</th>
+				<th>Karyawan</th>
+				<th>Plan Simkesan</th>
+				<th>Wilayah</th>
+				<th>Tanggal Pendaftaran</th>
+				<th>Tanggal Berakhir</th>
+				<th>Total Setor</th>
+				<th>Titipan</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
             </thead>
 			<tbody>
             
@@ -80,7 +81,7 @@
                 $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $simkesan->kar_kode))->row();
                 ?>
                 <tr>
-                <td width="80px"><?php echo ++$start ?></td>
+					<td width="80px"><?php echo ++$start ?></td>
         			<td><?php echo $simkesan->sik_kode ?></td>
         			<td><?php echo $simkesan->ang_no ?></td>
         			<td><?php echo $ang_no->ang_nama ?></td>

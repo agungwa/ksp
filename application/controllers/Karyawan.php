@@ -123,7 +123,7 @@ class Karyawan extends MY_Base
     		'kar_nohp' => $this->input->post('kar_nohp',TRUE),
     		'kar_simpanan' => $this->input->post('kar_simpanan',TRUE),
     		'kar_status' => 0,
-    		'kar_tgl' => $this->tgl,
+    		'kar_tgl' => $this->input->post('kar_tgl',TRUE),
     		'kar_flag' => 0,
             'kar_info' => "",
             );
@@ -194,6 +194,7 @@ class Karyawan extends MY_Base
                 'nm_jab_kode' => set_value('nm_jab_kode', $jab_kode->jab_nama),
         		'kar_alamat' => set_value('kar_alamat', $row->kar_alamat),
         		'kar_nohp' => set_value('kar_nohp', $row->kar_nohp),
+        		'kar_tgl' => set_value('kar_nohp', $row->kar_tgl),
         		'kar_simpanan' => set_value('kar_nohp', $row->kar_simpanan),
         	    'content' => 'backend/karyawan/karyawan_edit',
                 );
@@ -209,6 +210,7 @@ class Karyawan extends MY_Base
     		'kar_alamat' => $this->input->post('kar_alamat',TRUE),
     		'kar_nohp' => $this->input->post('kar_nohp',TRUE),
     		'kar_simpanan' => $this->input->post('kar_simpanan',TRUE),
+    		'kar_tgl' => $this->input->post('kar_tgl',TRUE),
     		'kar_flag' => 1,
     	    );
 

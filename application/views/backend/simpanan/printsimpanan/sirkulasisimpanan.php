@@ -80,27 +80,27 @@ h5{text-align: center}
             </tr>
             <tr>
                 <td>Bunga Simpanan</td>
-				<td>RP <?= $bungasimpanan;?></td>
+				<td><?= rupiahsimpanan($bungasimpanan);?></td>
             </tr>
             <tr>
                 <td>Saldo Simpanan Wajib</td>
-				<td>RP <?= $saldosimpananwajib;?></td>
+				<td><?= rupiahsimpanan($saldosimpananwajib);?></td>
             </tr>
             <tr>
                 <td>Simpanan Wajib Ditarik</td>
-				<td>RP <?= $saldosimpananwajibditarik;?></td>
+				<td><?= rupiahsimpanan($saldosimpananwajibditarik);?></td>
             </tr>
             <tr>
                 <td>Saldo Simpanan Pokok</td>
-				<td>RP <?= $saldosimpananpokok;?></td>
+				<td><?= rupiahsimpanan($saldosimpananpokok);?></td>
             </tr>
             <tr>
                 <td>PH Buku</td>
-				<td>RP <?= $phbuku;?></td>
+				<td><?= rupiahsimpanan($phbuku);?></td>
             </tr>
             <tr>
                 <td>Administrasi</td>
-				<td>RP <?= $administrasi;?></td>
+				<td><?= rupiahsimpanan($administrasi);?></td>
             </tr>
             <tr>
                 <td>Rekening Lalu</td>
@@ -227,7 +227,7 @@ h5{text-align: center}
                     <td style="width:200.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
                         <p
                             style="margin-top:12pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria; text-decoration:underline">Audia Haqiqi</span></p>
+                            <span style="font-family:Cambria; text-decoration:underline">(                  )</span></p>
                     </td>
                 </tr>
             </tbody>

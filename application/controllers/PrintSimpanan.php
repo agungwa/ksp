@@ -9,6 +9,7 @@ class Printsimpanan extends MY_Base
     {
         parent::__construct();
         
+        $this->load->model('Anggota_model');
         $this->load->model('Bungasetoransimpanan_model');
         $this->load->model('Simpananwajib_model');
         $this->load->model('Setoransimpananwajib_model');
@@ -157,7 +158,9 @@ class Printsimpanan extends MY_Base
     	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
 
+    	$anggotaAktif = $this->Anggota_model->get_all();
     	$simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
+    	$simpananAll = $this->Simpanan_model->get_simpanan_all();
     	$simpananNonaktif = $this->Simpanan_model->get_simpanan_nonaktif();
     	$setoransimpananwajib = $this->Setoransimpananwajib_model->get_all();    	
     	$simpananwajibDitarik = $this->Penarikansimpananwajib_model->get_all();
@@ -187,7 +190,7 @@ class Printsimpanan extends MY_Base
     	}
 
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
-    	//hitung saldo simpanan aktif
+    	//hitung saldo simpanan aktif masuk
     	foreach ($simpananAktif as $key => $value) {
     		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
     		foreach ($setoran as $k => $item) {
@@ -208,7 +211,7 @@ class Printsimpanan extends MY_Base
 		}
 		
 		//hitung saldo simpanan aktif lalu
-		foreach ($simpananAktif as $key => $value) {
+		foreach ($simpananAll as $key => $value) {
     		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
     		foreach ($setoran as $k => $item) {
 				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
@@ -288,17 +291,20 @@ class Printsimpanan extends MY_Base
     		}
     	}
 
-    	//simpanan pokok
-    	foreach ($simpananPokok as $key => $value) {
+		//simpanan pokok
+	foreach ($anggotaAktif as $key => $value) {
+		$simpananPok = $this->Simpananpokok_model->get_data_sip($value->ang_no);
+    	foreach ($simpananPok as $key => $item) {
     		if ($f<>'' && $t<>'') {	
-    			$tgl = date("Y-m-d", strtotime($value->sip_tglbayar));
+    			$tgl = date("Y-m-d", strtotime($item->sip_tglbayar));
     			if ($tgl >= $f && $tgl <= $t) {
-    				$saldoSimpananpokok += $value->sip_setoran;
+    				$saldoSimpananpokok += $item->sip_setoran;
     			}
     		} else {
-				$saldoSimpananpokok += $value->sip_setoran;
+				$saldoSimpananpokok += $item->sip_setoran;
     		}
-		}	
+		}
+	}	
 		
 		//rekening simpanan lalu
 		foreach ($simpananAktif as $key => $value) {
@@ -311,6 +317,7 @@ class Printsimpanan extends MY_Base
 			} else {
 					$totalRekeninglalu++ ;
 		}
+		//var_dump($totalRekeninglalu);
 		}
 
 		//rekening simpanan masuk
@@ -324,6 +331,7 @@ class Printsimpanan extends MY_Base
 			} else {
 					$totalRekening++ ;
 		}
+		//var_dump($totalRekening);
 		}
 
 		//rekening simpanan keluar

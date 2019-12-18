@@ -32,6 +32,12 @@ class Pinjaman_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+// get pinjaman dengan pin marketing
+function get_pin_marketing($pin_marketing, $f, $t){
+	$this->db->where('pin_marketing', $pin_marketing);
+	$this->db->where("pin_tglpencairan BETWEEN '$f' AND '$t'");
+	return $this->db->get($this->table)->result();
+}
 
     // get pinjaman umum
     function get_pinjaman_umum()
@@ -69,6 +75,26 @@ class Pinjaman_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    
+    // get pinjaman aktif
+    function get_pinjaman_aktifcari($q)
+    {
+        
+	    $where = "pin_id LIKE '%$q%' ESCAPE '!' AND pin_statuspinjaman = 1 AND pin_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+    
+    // get pinjaman aktif
+    function get_pinjaman_all()
+    {
+        $where = "pin_statuspinjaman = 1 OR pin_statuspinjaman = 3 AND pin_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
     // get pinjaman non aktif
     function get_pinjaman_nonaktif()
     {
@@ -91,6 +117,14 @@ class Pinjaman_model extends CI_Model
     function get_by_id($id)
     {
         $this->db->where($this->id, $id);
+        return $this->db->get($this->table)->row();
+    }
+
+    // get data pelunasan
+    function get_by_pelunasan($id)
+    {
+        $where = "pin_id = '$id' AND pin_statuspinjaman = 1 AND pin_flag < 2";
+        $this->db->where($where);
         return $this->db->get($this->table)->row();
     }
     

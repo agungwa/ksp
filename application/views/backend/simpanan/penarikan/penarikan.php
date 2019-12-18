@@ -96,34 +96,47 @@
             $no =1;
             $phbuku = 20000;
             $administasi = 1/100;
-            $totalsaldo = 0;
+            $totalbunga = 0;
             foreach ($penarikan['bungasetoran'] as $databunga)
             { 
-                $totalsaldo += $databunga->bss_saldobulanini;
+                $totalbunga += $databunga->bss_bungabulanini;
+                $totalsaldo = $totalbunga + $total_setoran;
                 $pes_administrasi = $totalsaldo*$administasi;
                 $pes_jmltarik = $totalsaldo - $pes_administrasi - $phbuku;
-                $bunga = $totalsaldo-$total_setoran;
                 ?>
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $databunga->sim_kode ?></td>
-			<td><?php echo $databunga->bss_saldobulanini ?></td>
+			<td><?php echo $databunga->bss_bungabulanini ?></td>
 			<td><?php echo $databunga->bss_tglbunga ?></td>
             </td>
-            </tr>
-            <input type="hidden" class="form-control" name="pes_jumlah" id="pes_jumlah" placeholder="pes_jumlah" value="<?php echo $totalsaldo; ?>" />
-            <input type="hidden" class="form-control" name="pes_phbuku" id="pes_phbuku" placeholder="pes_phbuku" value="<?php echo $phbuku; ?>" />
-            <input type="hidden" class="form-control" name="pes_administrasi" id="pes_administrasi" placeholder="pes_administrasi" value="<?php echo $pes_administrasi; ?>" />
-            <input type="hidden" class="form-control" name="pes_jmltarik" id="pes_jmltarik" placeholder="pes_jmltarik" value="<?php echo $pes_jmltarik; ?>" />
-            <input type="hidden" class="form-control" name="pes_bunga" id="pes_bunga" placeholder="pes_bunga" value="<?php echo $bunga; ?>" />
-                <?php
+            </tr><?php
                 $no++;
             }
             
             ?>
+            <input type="hidden" class="form-control" name="pes_jumlah" id="pes_jumlah" placeholder="pes_jumlah" value="<?php echo $totalsaldo; ?>" />
+            <input type="hidden" class="form-control" name="pes_phbuku" id="pes_phbuku" placeholder="pes_phbuku" value="<?php echo $phbuku; ?>" />
+            <input type="hidden" class="form-control" name="pes_administrasi" id="pes_administrasi" placeholder="pes_administrasi" value="<?php echo $pes_administrasi; ?>" />
+            <input type="hidden" class="form-control" name="pes_jmltarik" id="pes_jmltarik" placeholder="pes_jmltarik" value="<?php echo $pes_jmltarik; ?>" />
+            <input type="hidden" class="form-control" name="pes_bunga" id="pes_bunga" placeholder="pes_bunga" value="<?php echo $totalbunga; ?>" />
             <input type="hidden" class="form-control" name="pes_saldopokok" id="pes_saldopokok" placeholder="pes_saldopokok" value="<?php echo $total_setoran; ?>" />
             <input type="hidden" class="form-control" name="sim_kode" id="sim_kode" placeholder="sim_kode" value="<?php echo $sim_kode; ?>" />
             </tbody>
+        </table>
+        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <tr >
+        <td width="300px">Total Saldo</td><td><?php echo rupiahSimpanan($totalsaldo) ?></td>
+        </tr>
+        <tr >
+        <td width="300px">PH Buku</td><td><?php echo rupiahSimpanan($phbuku) ?></td>
+        </tr>
+        <tr >
+        <td width="300px">Administrasi</td><td><?php echo rupiahSimpanan($pes_administrasi) ?></td>
+        </tr>
+        <tr >
+        <td width="300px">Jumlah Tarik</td><td><?php echo rupiahSimpanan($pes_jmltarik) ?></td>
+        </tr>
         </table>
     <div>
 	    <button type="submit" class="btn btn-primary">Tarik Simpanan</button> 

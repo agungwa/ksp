@@ -47,23 +47,23 @@
             </div>
             </form>
 
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table id="dtOrderExample" class="data" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
-                <th class="text-center">No</th>
-		<th class="text-center">Kode Simpanan</th>
-		<th class="text-center">Kode Anggota</th>
-		<th class="text-center">Nama Anggota</th>
-		<th class="text-center">Alamat Anggota</th>
-		<th class="text-center">Karyawan</th>
-		<th class="text-center">Jenis Setoran</th>
-		<th class="text-center">Wilayah</th>
-		<th class="text-center">Tanggal Pendaftaran</th>
-		<th class="text-center">Jatuh Tempo</th>
-		<th class="text-center">Total Setor</th>
-		<th class="text-center">Status</th>
-		<th class="text-center">Edit</th>
-		<th class="text-center">Action</th>
+                <th>No</th>
+				<th>Kode Simpanan</th>
+				<th>Kode Anggota</th>
+				<th>Nama Anggota</th>
+				<th>Alamat Anggota</th>
+				<th>Karyawan</th>
+				<th>Jenis Setoran</th>
+				<th>Wilayah</th>
+				<th>Tanggal Pendaftaran</th>
+				<th>Jatuh Tempo</th>
+				<th>Total Setor</th>
+				<th>Status</th>
+				<th>Edit</th>
+				<th>Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -77,35 +77,34 @@
                 $tanggalDuedate = date("Y-m-d", strtotime($item['sim_tglpendaftaran'].' + '.$item['jsi_id'].' Months'));
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $item['sim_kode'] ?></td>
-			<td><?php echo $item['ang_no'] ?></td>
-			<td><?php echo $item['nm_ang_no'] ?></td>
-			<td><?php echo $item['alamat_ang_no'] ?></td>
-			<td><?php echo $item['kar_kode'] ?></td>
-			<td><?php echo $item['jse_id'] ?></td>
-			<td><?php echo $item['wil_kode'] ?></td>
-			<td><?php echo $item['sim_tglpendaftaran'] ?></td>
-			<td><?php echo $tanggalDuedate?></td>
-            <td><?php echo rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor)?></td>
-			<td><?php echo $item['sim_status']?></td>
-			<td>
-				<?php 
-				echo anchor(site_url('simpanan/read/'.$item['sim_kode']),'Detail','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('simpanan/update/'.$item['sim_kode']),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('simpanan/delete/'.$item['sim_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-				?>
-			</td>
-            <td>
-				<?php 
-				echo anchor(site_url('simpanan/setor?q='.$item['sim_kode']),'Setor','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('simpanan/tariksimpanan?q='.$item['sim_kode']),'Tarik','class="text-navy"');?>
-			</td>
-		</tr>
-                
+					<td width="80px"><?php echo ++$start ?></td>
+					<td><?php echo $item['sim_kode'] ?></td>
+					<td><?php echo $item['ang_no'] ?></td>
+					<td><?php echo $item['nm_ang_no'] ?></td>
+					<td><?php echo $item['alamat_ang_no'] ?></td>
+					<td><?php echo $item['kar_kode'] ?></td>
+					<td><?php echo $item['jse_id'] ?></td>
+					<td><?php echo $item['wil_kode'] ?></td>
+					<td><?php echo $item['sim_tglpendaftaran'] ?></td>
+					<td><?php echo $tanggalDuedate?></td>
+					<td><?php echo rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor)?></td>
+					<td><?php echo $item['sim_status']?></td>
+					<td>
+						<?php 
+						echo anchor(site_url('simpanan/read/'.$item['sim_kode']),'Detail','class="text-navy"'); 
+						echo ' | '; 
+						echo anchor(site_url('simpanan/update/'.$item['sim_kode']),'Update','class="text-navy"'); 
+						echo ' | '; 
+						echo anchor(site_url('simpanan/delete/'.$item['sim_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+						?>
+					</td>
+					<td>
+						<?php 
+						echo anchor(site_url('simpanan/setor?q='.$item['sim_kode']),'Setor','class="text-navy"'); 
+						echo ' | '; 
+						echo anchor(site_url('simpanan/tariksimpanan?q='.$item['sim_kode']),'Tarik','class="text-navy"');?>
+					</td>
+				</tr>
                 <?php
             }
             ?>

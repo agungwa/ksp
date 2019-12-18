@@ -18,7 +18,7 @@
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('pelunasan/index'); ?>" class="form-inline" method="get">
+                <!--<form action="<?php echo site_url('pelunasan/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
@@ -33,14 +33,15 @@
                           <button class="btn btn-primary" type="submit">Search</button>
                         </span>
                     </div>
-                </form>
+                </form>-->
             </div>
         </div>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table class="data" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Rekening Pinjaman</th>
+                <th class="text-center">Rekening Pinjaman</th>
+		<th class="text-center">Nama</th>
 		<th class="text-center">Jenis Pelunasan</th>
 		<th class="text-center">Total Kekurangan Pokok</th>
 		<th class="text-center">Total Bunga Pokok</th>
@@ -48,24 +49,28 @@
 		<th class="text-center">Total Denda</th>
 		<th class="text-center">Biaya Penarikan</th>
 		<th class="text-center">Tanggal Pelunasan</th>
-		<th class="text-center">Action</th>
+		<!--<th class="text-center">Action</th>-->
             </tr>
             </thead>
 			<tbody><?php
             foreach ($pelunasan_data as $pelunasan)
             {
+                $pel_jenis = $this->db->get_where('jenispelunasan', array('jep_id' => $pelunasan->pel_jenis))->row();
+                $pin_id = $this->db->get_where('pinjaman', array('pin_id' => $pelunasan->pin_id))->row();
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $pin_id->ang_no))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $pelunasan->pin_id ?></td>
-			<td><?php echo $pelunasan->pel_jenis ?></td>
-			<td><?php echo $pelunasan->pel_totalkekuranganpokok ?></td>
-			<td><?php echo $pelunasan->pel_totalbungapokok ?></td>
-			<td><?php echo $pelunasan->pel_bungatambahan ?></td>
-			<td><?php echo $pelunasan->pel_totaldenda ?></td>
-			<td><?php echo $pelunasan->pel_biayapenarikan ?></td>
+			<td><?php echo $ang_no->ang_nama ?></td>
+			<td><?php echo $pel_jenis->jep_jenis ?></td>
+			<td><?php echo rupiah($pelunasan->pel_totalkekuranganpokok) ?></td>
+			<td><?php echo rupiah($pelunasan->pel_totalbungapokok) ?></td>
+			<td><?php echo rupiah($pelunasan->pel_bungatambahan) ?></td>
+			<td><?php echo rupiah($pelunasan->pel_totaldenda) ?></td>
+			<td><?php echo rupiah($pelunasan->pel_biayapenarikan) ?></td>
 			<td><?php echo $pelunasan->pel_tglpelunasan ?></td>
-			<td style="text-align:center" width="200px">
+			<!--<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('pelunasan/read/'.$pelunasan->pel_id),'Read','class="text-navy"'); 
 				echo ' | '; 
@@ -73,7 +78,7 @@
 				echo ' | '; 
 				echo anchor(site_url('pelunasan/delete/'.$pelunasan->pel_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
-			</td>
+			</td>-->
 		</tr>
                 
                 <?php

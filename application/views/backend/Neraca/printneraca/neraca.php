@@ -20,19 +20,21 @@ table#04 {
 <?php
         
         $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
-        $kas=$shudata + $simpanancdr + $donasi + $bungasimpanan + $rekeningkoran + $modalpenyertaan +$saldoinvestasi + $saldosimpananwajib+$saldosimpananpokok+ $pokokangsuranpelunasan + $pokokangsuran + $saldosimpananneraca - $saldopinjamanumum - $saldopinjamankaryawan-$saldopinjamankhusus - $jat;
+        $kas=$shudata + $simpanancdr + $donasi + $bungasimpanan + $rekeningkoran + $modalpenyertaan +$saldoinvestasi + $saldosimpananwajib+$saldosimpananpokok + $saldosimpananneraca - $saldopinjamanumumbelum - $saldopinjamankaryawanbelum-$saldopinjamankhususbelum - $jat;
         $jal=$kas + $kasbankdata + $saldopinjamanumumbelum + $saldopinjamankaryawanbelum+$saldopinjamankhususbelum;
         $jkl=$saldosimpananneraca+$bungasimpanan;
         $jkp=$saldoinvestasi+$simpanankaryawandata+$rekeningkoran+$modalpenyertaan;
         $jek=$saldosimpananwajib+$saldosimpananpokok+$simpanancdr+$donasi+$shudata;
+        $kantorksp = $this->Kantorksp_model->get_by_id(1);
+        
         ?>
 
 <body>
  <h2><b>NERACA</b></h2>
  <h2><b>KSP Sido Mukti Makmur</b></h2>
  <?php $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $w))->row(); ?>
-
  <h3><b>Tanggal : <?=dateFormataja($f)?> </b></h3>
+ <h3><b><?= $kantorksp->kks_kode ?> </b></h3>
  <!--<h3><b>Wilayah <?=$w?> <?php //if($w='all'){echo 'semua wilayah';}else {echo $wil_kode->wil_nama;}?></b></h3>-->
     <div>
         <table id="03" style="border-collapse:collapse" cellspacing="0" cellpadding="0">
@@ -123,7 +125,7 @@ table#04 {
                     <td
                         style="width:116.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; background-color:#bdd6ee">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt"><span
-                                style="font-family:Calibri"><?= neraca($jkp);?></span></p>
+                                style="font-family:Calibri"><?= neraca($jkl);?></span></p>
                     </td>
                 </tr>
                 <tr>
@@ -393,7 +395,7 @@ table#04 {
                     <td
                         style="width:127.2pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; background-color:#a8d08d">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt"><span
-                                style="font-family:Calibri"><?= rupiahsimpanan($jat+$jal);?></p>
+                                style="font-family:Calibri"><?= rupiah($jat+$jal);?></p>
                     </td>
                     <td
                         style="width:134.7pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; background-color:#a8d08d">
@@ -404,7 +406,7 @@ table#04 {
                     <td
                         style="width:116.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; background-color:#a8d08d">
                         <p style="margin-top:0pt; margin-bottom:0pt; font-size:12pt"><span
-                                style="font-family:Calibri"><?= neraca($jek+$jkl+$jkp);?></p>
+                                style="font-family:Calibri"><?= rupiah($jek+$jkl+$jkp);?></p>
                     </td>
                 </tr>
             </tbody>

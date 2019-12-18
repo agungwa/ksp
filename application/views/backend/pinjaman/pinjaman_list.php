@@ -8,6 +8,7 @@
             <div class="col-md-8 text-right">
                 <input type="hidden" name="p" value="4">
                 <div class="col-md-2"><h3>Filter : </h3></div>
+                <div class="col-md-3">
                 <select class="form-control col-md-3" name="s">
                     <option value="all">Semua Status</option>
                     <?php
@@ -27,7 +28,7 @@
                     ?>
                 </select>
                 <select class="form-control col-md-3" name="k">
-                    <option value="all">Semua Marketing</option>
+                    <option value="all">Marketing</option>
                     <?php
                         foreach ($karyawan_data as $value) { ?>
                             <option value="<?= $value->kar_kode?>"><?= $value->kar_nama?></option>
@@ -35,6 +36,11 @@
                         }
                     ?>
                 </select>
+                </div>
+                <div class="col-md-2"><h3>Tanggal : </h3></div>
+                
+                <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
+                <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
             </div>
             <div class="col-md-4 text-right">
                     <div class="input-group">
@@ -55,26 +61,27 @@
             </form>
         </div>
 
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <thead class="thead-light">
+        <table class="data" style="margin-bottom: 10px">
+            <thead>
             <tr>
-                <th class="text-center">No</th>
-        		<th class="text-center">Pinjaman</th>
-        		<th class="text-center">Nama Anggota</th>
-        		<th class="text-center">Angsuran (bulan)</th>
-        		<th class="text-center">Wilayah</th>
-        		<th class="text-center">Pengajuan</th>
-        		<th class="text-center">Survey</th>
-        		<th class="text-center">Pinjaman</th>
-        		<th class="text-center">Tanggal Pengajuan</th>
-        		<th class="text-center">Tanggal Pencairan</th>
-        		<th class="text-center">Status Pinjaman</th>
-        		<th class="text-center">Edit Pinjaman</th>
-        		<th class="text-center">Action Pinjaman</th>
+                <th>No</th>
+        		<th>Pinjaman</th>
+        		<th>Nama Anggota</th>
+        		<th>Angsuran (bulan)</th>
+        		<th>Wilayah</th>
+        		<th>Pengajuan</th>
+        		<th>Survey</th>
+        		<th>Pinjaman</th>
+        		<th>Tanggal Pengajuan</th>
+        		<th>Tanggal Pencairan</th>
+        		<th>Tanggal Pelunasan</th>
+        		<th>Status Pinjaman</th>
+        		<th>Edit Pinjaman</th>
+        		<th>Action Pinjaman</th>
             </tr>
             </thead>
             <tbody><?php
-            
+            $total = 0 ;
             foreach ($datapinjaman as $key=>$item)
             {
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $item['ang_no']))->row();
@@ -83,6 +90,7 @@
                 $pop_id = $this->db->get_where('potonganprovisi', array('pop_id' => $item['pop_id']))->row();
                 $skp_id = $this->db->get_where('settingkategoripeminjam', array('skp_id' => $item['skp_id']))->row();
                 $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item['wil_kode']))->row();
+                $total += $item['pin_pinjaman'];
                 ?>
                 <tr>
     			<td width="80px"><?php echo ++$start ?></td>
@@ -97,8 +105,9 @@
             </a>
                 </td>
     			<td><?php echo rupiah($item['pin_pinjaman']) ?></td>
-    			<td><?php echo dateFormat($item['pin_tglpengajuan']); ?></td>
-    			<td><?php echo dateFormat($item['pin_tglpencairan']); ?></td>
+    			<td><?php echo dateFormataja($item['pin_tglpengajuan']); ?></td>
+    			<td><?php echo dateFormataja($item['pin_tglpencairan']); ?></td>
+    			<td><?php echo $item['pin_tglpelunasan']; ?></td>
     			<td><?php echo $item['pin_statuspinjaman'] ?></td>
     			<td style="text-align:center" width="200px">
 				<?php 
@@ -124,8 +133,13 @@
                 <?php
             }
             ?>
+            
             </tbody>
         </table>
+		
+		<table class="table table-bordered table-hover table-condensed">
+			<tr class="danger"><td></td><td>Total Pinjaman</td><td></td><td></td><td></td><td></td><td></td><td><?php echo rupiah($total) ?></td></tr>
+		</table>
         <div id="tallModal" class="modal modal-wide fade">
     <div class="modal-dialog">
          <h4 id='namaaplikasi'> survey</h4>

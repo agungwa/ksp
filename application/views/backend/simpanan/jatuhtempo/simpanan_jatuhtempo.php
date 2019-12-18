@@ -55,33 +55,70 @@
             </form>
         </div>
 
+		<?php
+			$data = array();
+			$i=0;
+			$total=$subtotal_thn=0;	
+			foreach ($datasimpanan as $key => $item){
+				$totalsetoran = $this->Setoransimpanan_model->get_totalsetoran($item['sim_kode']); 
+				$total += $totalsetoran[0]->ssi_jmlsetor;
+				$subtotal_thn += $totalsetoran[0]->ssi_jmlsetor;
+				
+				$data[$i]['sim_kode'] 			= $item['sim_kode'];
+				$data[$i]['ang_no'] 			= $item['ang_no'];
+				$data[$i]['ang_nama'] 			= $item['ang_nama'];
+				$data[$i]['ang_alamat'] 		= $item['ang_alamat'];
+				$data[$i]['kar_nama'] 			= $item['kar_nama'];
+				$data[$i]['jsi_simpanan'] 		= $item['jsi_simpanan'];
+				$data[$i]['jse_setoran'] 		= $item['jse_setoran'];
+				$data[$i]['wil_nama'] 			= $item['wil_nama'];
+				$data[$i]['sim_tglpendaftaran'] = $item['sim_tglpendaftaran'];
+				$data[$i]['tanggalDuedate'] 	= $item['tanggalDuedate'];
+				$data[$i]['to_setor'] 			= rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor);
+				$data[$i]['statusSimpanan'] 	= $item['statusSimpanan'];
+				$data[$i]['wil_nama'] 			= $item['wil_nama'];
+				
+				$i++;
+			}
+
+			function sortFunction($a, $b){
+				return strtotime($a['tanggalDuedate']) - strtotime($b['tanggalDuedate']);
+			}
+			
+			usort($data, "sortFunction");
+			
+			//$j=0;
+			foreach($data as $d){
+				//echo $data[$j]['sim_kode']." ".$data[$j]['tanggalDuedate']."<br>";$j++;
+			}
+		?>
+
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Kode Simpanan</th>
-		<th class="text-center">Kode Anggota</th>
-		<th class="text-center">Nama Anggota</th>
-		<th class="text-center">Alamat Anggota</th>
-		<th class="text-center">Karyawan</th>
-		<th class="text-center">Jenis Simpanan</th>
-		<th class="text-center">Jenis Setoran</th>
-		<th class="text-center">Wilayah</th>
-		<th class="text-center">Tanggal Pendaftaran</th>
-		<th class="text-center">Jatuh Tempo</th>
-		<th class="text-center">Total Setoran </th>
-		<th class="text-center">Status</th>
-
+				<th class="text-center">Kode Simpanan</th>
+				<th class="text-center">Kode Anggota</th>
+				<th class="text-center">Nama Anggota</th>
+				<th class="text-center">Alamat Anggota</th>
+				<th class="text-center">Karyawan</th>
+				<th class="text-center">Jenis Simpanan</th>
+				<th class="text-center">Jenis Setoran</th>
+				<th class="text-center">Wilayah</th>
+				<th class="text-center">Tanggal Pendaftaran</th>
+				<th class="text-center">Jatuh Tempo</th>
+				<th class="text-center">Total Setoran </th>
+				<th class="text-center">Status</th>
             </tr>
             </thead>
             <tbody><?php
             $total=$subtotal_thn=0;
-            foreach ($datasimpanan as $key => $item)
+            foreach ($data as $key => $item)
             {
                 $totalsetoran = $this->Setoransimpanan_model->get_totalsetoran($item['sim_kode']); 
                 $total += $totalsetoran[0]->ssi_jmlsetor;
                 $subtotal_thn += $totalsetoran[0]->ssi_jmlsetor;
-       // var_dump($totalsetoran);
+				// var_dump($totalsetoran);
                 ?>
                 <tr>
                     <td width="80px"><?php echo ++$start ?></td>
@@ -95,28 +132,27 @@
                     <td><?php echo $item['wil_nama'] ?></td>
                     <td><?php echo $item['sim_tglpendaftaran'] ?></td>
                     <td><?php echo $item['tanggalDuedate']?></td>
-                    <td><?php echo rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor)?></td>
+                    <td><?php echo $item['to_setor']?></td>
                     <td><?php echo $item['statusSimpanan']?></td>
                     <?php
                     // SUB TOTAL per thn_byr
-                            if (@$datasimpanan[$key+1]['tanggalDuedate'] != $item['tanggalDuedate']) {
-                                echo '<tr class="info">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>SUB TOTAL ' . $item['tanggalDuedate'] . '</td>
-                                    <td></td>
-                                    <td class="right">'.rupiahsimpanan($subtotal_thn).'</td>
-                                </tr>';
-                                $subtotal_thn = 0;
-                            } 
-                            $total += $totalsetoran[0]->ssi_jmlsetor;
+						if (@$data[$key+1]['tanggalDuedate'] != $item['tanggalDuedate']) {
+							echo '<tr class="info">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>SUB TOTAL ' . $item['tanggalDuedate'] . '</td>
+								<td></td>
+								<td class="right">'.rupiahsimpanan($subtotal_thn).'</td>
+							</tr>';
+							$subtotal_thn = 0;
+						} 
                         
                     ?>
                 </tr>
@@ -127,6 +163,7 @@
             <tr class="danger"><td></td><td>Total Setor</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><?php echo rupiahsimpanan($total) ?></td></tr>
             </tbody>
         </table>
+		
         <div class="row">
         </div>
         </div>

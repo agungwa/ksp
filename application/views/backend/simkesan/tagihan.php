@@ -29,23 +29,23 @@
             </div>
             </form>
         </div>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
-            <thead class="thead-light">
+        <table class="data" style="margin-bottom: 10px">
+            <thead>
             <tr>
-                <th class="text-center">No</th>
-        <th class="text-center">Rekening Simkesan</th>
-		<th class="text-center">ID Angggota</th>
-		<th class="text-center">Nama</th>
-		<th class="text-center">Karyawan</th>
-		<th class="text-center">Plan Simkesan</th>
-		<th class="text-center">Wilayah</th>
-		<th class="text-center">Tanggal Pendaftaran</th>
-		<th class="text-center">Total Setor</th>
-		<th class="text-center">Titipan</th>
-		<th class="text-center">Tunggakan</th>
-		<th class="text-center">Jatuh Tempo</th>
-		<th class="text-center">Status</th>
-		<th class="text-center">Action</th>
+                <th>No</th>
+				<th>Rekening Simkesan</th>
+				<th>ID Angggota</th>
+				<th>Nama</th>
+				<th>Karyawan</th>
+				<th>Plan Simkesan</th>
+				<th>Wilayah</th>
+				<th>Tanggal Pendaftaran</th>
+				<th>Total Setor</th>
+				<th>Titipan</th>
+				<th>Tunggakan</th>
+				<th>Jatuh Tempo</th>
+				<th>Status</th>
+				<th>Action</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -74,30 +74,29 @@
 
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-            <td><?php echo $item['sik_kode'] ?></td>
-			<td><?php echo $item['ang_no'] ?></td>
-			<td><?php echo $item['nm_ang_no'] ?></td>
-			<td><?php echo $item['kar_kode']?></td>
-			<td><?php echo $item['psk_id'] ?></td>
-			<td><?php echo $item['wil_kode'] ?></td>
-			<td><?php echo date('d/m/Y', strtotime($item['sik_tglpendaftaran'])) ?></td>
-			<td><?php echo neraca($totalsetoran[0]->ssk_jmlsetor) ?></td>
-			<td><?php echo neraca($titipan) ?></td>
-			<td><?php echo neraca($tunggakan) ?></td>
-			<td><?php echo dateFormataja($jatuhtempo) ?></td>
-			<td><?php echo $item['sik_status'] ?></td>
-			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('simkesan/read/'.$item['sik_kode']),'Read','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('simkesan/update/'.$item['sik_kode']),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('simkesan/delete/'.$item['sik_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-				?>
-			</td>
-		</tr>
-                
+					<td width="80px"><?php echo ++$start ?></td>
+					<td><?php echo $item['sik_kode'] ?></td>
+					<td><?php echo $item['ang_no'] ?></td>
+					<td><?php echo $item['nm_ang_no'] ?></td>
+					<td><?php echo $item['kar_kode']?></td>
+					<td><?php echo $item['psk_id'] ?></td>
+					<td><?php echo $item['wil_kode'] ?></td>
+					<td><?php echo date('d/m/Y', strtotime($item['sik_tglpendaftaran'])) ?></td>
+					<td><?php echo neraca($totalsetoran[0]->ssk_jmlsetor) ?></td>
+					<td><?php echo neraca($titipan) ?></td>
+					<td><?php echo neraca($tunggakan) ?></td>
+					<td><?php echo dateFormataja($jatuhtempo) ?></td>
+					<td><?php echo $item['sik_status'] ?></td>
+					<td style="text-align:center" width="200px">
+						<?php 
+						echo anchor(site_url('simkesan/read/'.$item['sik_kode']),'Read','class="text-navy"'); 
+						echo ' | '; 
+						echo anchor(site_url('simkesan/update/'.$item['sik_kode']),'Update','class="text-navy"'); 
+						echo ' | '; 
+						echo anchor(site_url('simkesan/delete/'.$item['sik_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+						?>
+					</td>
+				</tr>
                 <?php
             }
             ?>

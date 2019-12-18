@@ -48,7 +48,9 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Rekening Pinjaman</th>
+                <th class="text-center">Rekening Pinjaman</th>
+                <th class="text-center">Nama</th>
+                <th class="text-center">Alamat</th>
 		<th class="text-center">Angsuranke</th>
 		<th class="text-center">Jatuh Tempo</th>
 		<th class="text-center">Tanggal Bayar</th>
@@ -56,16 +58,19 @@
 		<th class="text-center">Jumlah Bunga</th>
 		<th class="text-center">Status</th>
 		<th class="text-center">Tanggal</th>
-		<th class="text-center">Action</th>
             </tr>
             </thead>
 			<tbody><?php
             foreach ($angsuran_data as $angsuran)
             {
+                $pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $pin_id->ang_no))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $angsuran->pin_id ?></td>
+			<td><?php echo $ang_no->ang_nama ?></td>
+			<td><?php echo $ang_no->ang_alamat ?></td>
 			<td><?php echo $angsuran->ang_angsuranke ?></td>
 			<td><?php echo $angsuran->ags_tgljatuhtempo ?></td>
 			<td><?php echo $angsuran->ags_tglbayar ?></td>
@@ -73,7 +78,7 @@
 			<td><?php echo $angsuran->ags_jmlbunga ?></td>
 			<td><?php echo $this->statusAngsuran[$angsuran->ags_status] ?></td>
 			<td><?php echo dateFormat($angsuran->ags_tgl) ?></td>
-			<td style="text-align:center" width="200px">
+			<!--<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('angsuran/read/'.$angsuran->ags_id),'Read','class="text-navy"'); 
 				echo ' | '; 
@@ -81,7 +86,7 @@
 				echo ' | '; 
 				echo anchor(site_url('angsuran/delete/'.$angsuran->ags_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
-			</td>
+			</td>-->
 		</tr>
                 
                 <?php
