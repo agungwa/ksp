@@ -63,7 +63,7 @@
 						?>
 						<tr><td>Jumlah Pokok</td>
 						<td>
-						<input type="text" class="form-control numeric" name="agb_pokok" id="agb_pokok" placeholder="<?php echo rupiah($angsuran['ags_jmlpokok']-$pokok); ?>" />
+						<input type="text" class="form-control numeric" name="agb_pokok" id="searchTxt" placeholder="<?php echo rupiah($angsuran['ags_jmlpokok']-$pokok); ?>" />
 						<input type="date" class="form-control" name="agb_tglpokok" id="todays-date" placeholder="tanggal pokok" />
 						<?php echo 'Pokok Bayar = ',rupiah($pokok),' , Pokok Kurang = ',rupiah($angsuran['ags_jmlpokok']-$pokok) ?></td>
 						</td>
@@ -88,7 +88,7 @@
 						?>
 					<tr><td>Jumlah Bunga</td>
 					<td>
-					<input type="text" class="form-control numeric" name="agb_bunga" id="searchTxt" placeholder="<?php echo rupiah($angsuran['ags_jmlbunga']); ?>" />
+					<input type="text" class="form-control" name="agb_bunga" id="searchTxt2" value ="<?php echo ceiling($angsuran['ags_jmlbunga'],1000); ?>" readonly  placeholder="<?php echo rupiah($angsuran['ags_jmlbunga']); ?>" />
 					<input type="date" readon class="form-control" name="agb_tglbunga" id="todays-date1" placeholder="tanggal bunga" required />
 					</td>
 					</td>
@@ -103,11 +103,11 @@
 					}*/
 					?>
 
-					<?php if ($denda < $angsuran['denda'] ) {
+					<?php if ($denda < 1) {
 						?>
 						<tr><td>Denda</td>
 						<td>
-						<input type="text" class="form-control numeric" name="agb_denda" id="agb_denda" placeholder="<?php echo rupiah($angsuran['denda']-$denda); ?>" />
+						<input type="text" class="form-control numeric" name="agb_denda" id="searchTxt3" placeholder="<?php echo rupiah($angsuran['denda']-$denda); ?>" />
 						<input type="date" class="form-control" name="agb_tgldenda" id="todays-date2" placeholder="tanggal denda"  />
 						<?php echo 'Denda Bayar = ',rupiah($denda),' , Denda Kurang = ',rupiah($angsuran['denda']-$denda) ?></td>
 						</td>
@@ -131,7 +131,7 @@
 					<?php if ($angsuran['ags_status'] < 2) {
 						
 						?>
-					<button type="submit" onclick="return confirm('Click OK jika benar menyetor sejumlah Rp ' + rubah(searchTxt.value))" class="btn btn-primary">Setor</button></td></tr>
+					<button type="submit" onclick="return confirm('Click OK jika benar menyetor pokok sejumlah Rp ' + rubah(searchTxt.value) + ' bunga sejumlah Rp ' + rubah(searchTxt2.value))" class="btn btn-primary">Setor</button></td></tr>
 						<?php
 					}
 					?>
@@ -159,7 +159,6 @@
 						<th class="text-center">Bunga Bayar</th>
 						<th class="text-center">Denda Bayar</th>
 						<th class="text-center">Kurang Setor</th>
-						<th class="text-center">Denda</th>
 						<th class="text-center">Bayar Tunggakan</th>
 						<th class="text-center">Kekurangan Tunggakan</th>
 						<th class="text-center">Status</th>
@@ -226,17 +225,15 @@
 							<td><?php echo rupiah($bunga) ?></td>
 							<td><?php echo rupiah($denda) ?></td>
 							<td><?php echo rupiah($kurangsetor) ?></td>
-							<?php
-							echo '<td>'.rupiah($denda).'</td>';
-							?>
 							<td><?php echo rupiah($item->ags_bayartunggakan)?></td>
 							<td class='danger'><?php echo rupiah($totalkekurangan) ?></td>
-							<td><?php 
+							<td ><?php echo $this->statusAngsuran[$item->ags_status] ?></td>
+							<!--<td><?php 
 							if ($totalkekurangan > 0 && $denda > 0 && $this->tgl > $item->ags_tgljatuhtempo){
 								echo anchor(site_url('angsuran/denda/'.$item->ags_id),'Bayar','class="text-navy"');
 							} else {
 							echo $this->statusAngsuran[$item->ags_status];
-							} ?></td>
+							} ?></td>-->
 							
 						</tr>
 		                
