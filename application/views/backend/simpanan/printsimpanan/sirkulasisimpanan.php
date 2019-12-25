@@ -80,7 +80,7 @@ h5{text-align: center}
             </tr>
             <tr>
                 <td>Bunga Simpanan</td>
-				<td><?= rupiahsimpanan($bungasimpanan);?></td>
+				<td><?= rupiahsimpanan($bungaditarik);?></td>
             </tr>
             <tr>
                 <td>Saldo Simpanan Wajib</td>
