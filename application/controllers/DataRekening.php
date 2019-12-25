@@ -219,7 +219,7 @@ class DataRekening extends MY_Base
 
 		$data = array(
 			'totalrekeninglalu' => $totalRekeninglalu,
-			'bungaditarik' => $bungaditarik,
+			'bungaditarik' => $bungaDitarik,
 			'totalrekeningkeluar' => $totalRekeningkeluar,
 			'saldosimpananlalu' => $saldoSimpananlalu,
 			'totalrekening' => $totalRekening,
