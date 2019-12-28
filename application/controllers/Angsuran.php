@@ -263,6 +263,13 @@ class Angsuran extends MY_Base
         }
 
         $totalbayar = $row->ags_jmlpokok + $row->ags_jmlbunga;
+        if ($row->ags_jmlbayar < 1){
+            $nilaistatus = floatval($this->input->post('agb_pokok',TRUE)) + floatval($this->input->post('agb_bunga',TRUE));
+            $totallunas = $row->ags_jmlpokok + $row->ags_jmlbunga;
+        } else {
+            $nilaistatus = $pokok1 + $bunga1 + floatval($this->input->post('agb_pokok',TRUE)) + floatval($this->input->post('agb_bunga',TRUE));
+            $totallunas = $pokok1 + $bunga1;
+        }
         
         
         if ($row->ags_jmlbayar < 1 ){
@@ -297,7 +304,7 @@ class Angsuran extends MY_Base
             $tgldenda = $this->input->post('agb_tgldenda',TRUE);
         }
             
-        if ($z < $totalbayar){
+        if ($nilaistatus < $totalbayar){
             $status = 1;
             $tglstatus = null;
         } else {
@@ -332,7 +339,7 @@ class Angsuran extends MY_Base
             $this->Angsuranbayar_model->insert($dataAngsuranbayar);
         
         
-       //var_dump($denda,$pokok);
+      // var_dump($status,$nilaistatus,$this->input->post('agb_bunga',TRUE));
        redirect(site_url('angsuran/?p=1&k='.$row->ang_angsuranke.'&q='.$row->pin_id.''));
    }
 

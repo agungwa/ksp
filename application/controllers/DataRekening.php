@@ -31,6 +31,7 @@ class DataRekening extends MY_Base
     	$simpananNonaktif = $this->Simpanan_model->get_simpanan_nonaktif();
     	$setoransimpananwajib = $this->Setoransimpananwajib_model->get_all();    	
     	$simpananwajibDitarik = $this->Penarikansimpananwajib_model->get_all();
+    	$penarikanSimpanan = $this->Penarikansimpanan_model->get_all();
 		$simpananPokok = $this->Simpananpokok_model->get_all();
         $wilayah = $this->Wilayah_model->get_all();		
 
@@ -44,7 +45,8 @@ class DataRekening extends MY_Base
     	$saldoSimpananwajib = 0;
     	$saldoSimpananwajibDitarik = 0;
     	$saldoSimpananpokok = 0;
-    	$phBuku = 0;
+		$phBuku = 0;
+		$bungaDitarik = 0;
     	$administrasi = 0;
         $satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
@@ -108,11 +110,13 @@ class DataRekening extends MY_Base
     					$saldoSimpananDitarik += $item->pes_saldopokok;
 	    				$phBuku += $item->pes_phbuku;
 	    				$administrasi += $item->pes_administrasi;
+						$bungaDitarik += $item->pes_bunga;
     				}
     			} else {
 	    			$saldoSimpananDitarik += $item->pes_saldopokok;
 	    			$phBuku += $item->pes_phbuku;
 	    			$administrasi += $item->pes_administrasi;
+	    			$bungaDitarik += $item->pes_bunga;
     			}
     		}
     	}
@@ -202,9 +206,9 @@ class DataRekening extends MY_Base
 		}
 
 		//rekening simpanan keluar
-		foreach ($simpananNonaktif as $key => $value) {
+		foreach ($penarikanSimpanan as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->sim_tglpendaftaran));
+			$tgl = date("Y-m-d", strtotime($value->pes_tglpenarikan));
 			//var_dump($value->ags_id);
     			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
     				$totalRekeningkeluar++ ;
@@ -217,6 +221,7 @@ class DataRekening extends MY_Base
 
 		$data = array(
 			'totalrekeninglalu' => $totalRekeninglalu,
+			'bungaditarik' => $bungaDitarik,
 			'totalrekeningkeluar' => $totalRekeningkeluar,
 			'saldosimpananlalu' => $saldoSimpananlalu,
 			'totalrekening' => $totalRekening,

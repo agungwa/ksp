@@ -177,7 +177,8 @@ class Printsimpanan extends MY_Base
     	$saldoSimpananwajib = 0;
     	$saldoSimpananwajibDitarik = 0;
     	$saldoSimpananpokok = 0;
-    	$phBuku = 0;
+		$phBuku = 0;
+		$bungaDitarik = 0;
     	$administrasi = 0;
         $satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
@@ -246,6 +247,7 @@ class Printsimpanan extends MY_Base
 	    			$saldoSimpananDitarik += $item->pes_saldopokok;
 	    			$phBuku += $item->pes_phbuku;
 	    			$administrasi += $item->pes_administrasi;
+	    			$bungaDitarik += $item->pes_bunga;
     			}
     		}
     	}
@@ -350,6 +352,7 @@ class Printsimpanan extends MY_Base
 
 		$data = array(
 			'totalrekeninglalu' => $totalRekeninglalu,
+			'bungaditarik' => $bungaDitarik,
 			'totalrekeningkeluar' => $totalRekeningkeluar,
 			'saldosimpananlalu' => $saldoSimpananlalu,
 			'totalrekening' => $totalRekening,
