@@ -110,6 +110,7 @@
             ?>
             </tbody>
         </table>
+        <?php echo $total ?>
         </div>
         </div>
     </div>
