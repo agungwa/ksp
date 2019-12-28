@@ -18,7 +18,7 @@ class Penarikansimpanan_model extends CI_Model
     // get all
     function get_all()
     {
-        $thid->db->where('pes_flag<',2);
+        $this->db->where('pes_flag<',2);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
