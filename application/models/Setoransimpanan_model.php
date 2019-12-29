@@ -44,6 +44,13 @@ class Setoransimpanan_model extends CI_Model
 		$this->db->where('ssi_flag < 2');
 		$this->db->where("ssi_tglsetor BETWEEN '$f' AND '$t'");
         return $this->db->get($this->table)->result();
+    }
+    
+	// get by sim kode hitung
+	function get_hitung($kode, $f){
+		$this->db->where('sim_kode', $kode);
+		$this->db->where('ssi_flag < 2');
+        return $this->db->get($this->table)->result();
 	}
 
     // get data by id

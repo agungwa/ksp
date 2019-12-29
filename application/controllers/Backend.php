@@ -12,8 +12,6 @@ class Backend extends MY_Base {
         $this->load->model('Bungasimpanan_model');
 		$this->load->model('Bungasetoransimpanan_model');
 		
-		$this->load->model('Pengkodean');
-		
 		//neraca
         $this->load->model('Phu_model');
         $this->load->model('Phu_sistem_model');
@@ -592,7 +590,6 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 		}
 
 		$data = array(
-			'kode' => $this->Pengkodean->psis($nowYear),
 
 			//neraca
 			'dataphu' => $dataphu,
@@ -675,11 +672,11 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			'content'=>'backend/dashboard',
 
 		);
-		$this->hitungBungaSetoran();
+		//$this->hitungBungaSetoran();
 		$this->load->view('layout_backend.php',$data);
 	}
 
-	public function hitungBungaSetoran(){
+	/*public function hitungBungaSetoran(){
 		$lastmonth = mktime(0, 0, 0, date("m")-1, 28, date("Y"));
 		$lastTgl = date("Y-m-d",$lastmonth);
 		//cek tgl terakhir perhitungan dr tabel histori bungasetoran
@@ -729,7 +726,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 					. "Saldo Baru = " .$saldoBaru . '</br>';*/
 
 				//simpan data bunga setoran ke tabel bungasetoransimpanan
-				$dataBungaSetoran = array(
+			/*	$dataBungaSetoran = array(
 						'sim_kode' => $value->sim_kode,
 						'bss_saldosimpanan' => $saldoSetoranLalu,
 						'bss_jumlahsetoranbulanan' => $jumSetorBaru,
@@ -750,7 +747,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 					'hbs_flag' => 0,
 					'hbs_info' => ''
 			);
-			$this->Historibungasimpanan_model->insert($dataHistori);
-		}
-	}
+			$this->Historibungasimpanan_model->insert($dataHistori); 
+		} 
+	} */
 }
