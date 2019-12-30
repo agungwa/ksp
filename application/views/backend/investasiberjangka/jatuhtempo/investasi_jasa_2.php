@@ -70,6 +70,7 @@
 							<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
 							<td><?php echo dateFormataja($item['ivb_tglpendaftaran']) ?></td>
 							<td><?php echo dateFormataja($item['jatuhtempo']) ?></td>
+							<td><?php echo $item['wil_kode'] ?></td>
 							<td><?php echo $item['ivb_status'] ?></td>
 						</tr>
 					
