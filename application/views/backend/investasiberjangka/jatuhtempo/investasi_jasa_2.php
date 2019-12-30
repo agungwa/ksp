@@ -48,6 +48,7 @@
 						<th>Investasi</th>
 						<th>Tanggal Pendaftaran</th>
 						<th>Tanggal Jatuh Tempo</th>
+						<th>Wilayah</th>
 						<th>Status</th>
 					</tr>
 				</thead>

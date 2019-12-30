@@ -68,6 +68,7 @@
 					$data[$i]['status'] 		= $item['ivb_status'];
 					$data[$i]['ivb_jumlah']		= $item['ivb_jumlah'];
 					$data[$i]['jatuhtempo']		= $item['jatuhtempo'];
+					$data[$i]['wil_kode']		= $item['wil_kode'];
 					$i++;
 				}
 
@@ -99,6 +100,7 @@
 						<th class="text-center">Pokok + Sisa Jasa</th>
 						<th class="text-center">Tanggal Pendaftaran</th>
 						<th class="text-center">Tanggal Jatuh Tempo</th>
+						<th class="text-center">Wilayah</th>
 						<th class="text-center">Status</th>
 					</tr>
 				</thead>
@@ -129,6 +131,7 @@
 						<td><?php echo rupiahsimpanan($item['pokok']+$item['sisajasa']) ?></td>
 						<td><?php echo $item['tglpendaftaran'] ?></td>
 						<td><?php echo $item['tanggalDuedate'] ?></td>
+						<td><?php echo $item['wil_kode'] ?></td>
 						<td><?php echo $item['status'] ?></td> 
 						<?php
 							// SUB TOTAL per thn_byr

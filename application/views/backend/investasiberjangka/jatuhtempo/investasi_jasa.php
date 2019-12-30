@@ -86,6 +86,7 @@
 								<th class="text-center">Investasi</th>
 								<th class="text-center">Tanggal Pendaftaran</th>
 								<th class="text-center">Tanggal Jatuh Tempo</th>
+								<th class="text-center">Wilayah</th>
 								<th class="text-center">Status</th>
 							</tr>
 						</thead>
@@ -107,6 +108,7 @@
 									<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
 									<td><?php echo dateFormataja($item['ivb_tglpendaftaran']) ?></td>
 									<td><?php echo dateFormataja($item['jatuhtempo']) ?></td>
+									<td><?php echo $item['wil_kode']?></td>
 									<td><?php echo $item['ivb_status'] ?></td> 
 									<?php
 										// SUB TOTAL per thn_byr
