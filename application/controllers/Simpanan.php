@@ -316,7 +316,6 @@ class Simpanan extends MY_Base
         $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
         $datasetoran = array();
         $wilayah = $this->Wilayah_model->get_all();
-        $datasetoran = array();
         $simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
         
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
