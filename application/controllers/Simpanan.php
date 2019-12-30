@@ -52,14 +52,14 @@ class Simpanan extends MY_Base
         }
     } 
 
-    public function setupsimpanan(){
+   public function setupsimpanan(){
         $data = array(
         'content' => 'backend/simpanan/simpanan',
         'item'=> 'setupsimpanan.php',
         'active' => 8,
         );
         $this->load->view(layout(), $data);
-    }
+    } 
 
     public function simpanana(){
         $nowYear = date('d');
@@ -159,13 +159,15 @@ class Simpanan extends MY_Base
         //data simpanan
         if ($q<>''){
             $sim_status = $this->statusSimpanan;
-            $row = $this->Simpanan_model->get_by_id($q);
+            $row = $this->Simpanan_model->get_by_id_penarikan($q);
+            if ($row != NULL){
             $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $row->jsi_id))->row();
             $jse_id = $this->db->get_where('jenissetoran', array('jse_id' => $row->jse_id))->row();
             $bus_id = $this->db->get_where('bungasimpanan', array('bus_id' => $row->bus_id))->row();
             $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
             $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
             $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
+        }
             $setoran = $this->Setoransimpanan_model->get_data_setor($q);
             $bungasetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($q);
             if ($row) {
@@ -208,7 +210,7 @@ class Simpanan extends MY_Base
         //insert data tarik simpanan
         $dataPenarikan = array(
             'sim_kode' => $this->input->post('sim_kode',TRUE),
-            'pes_tglpenarikan' => $this->tgl,
+            'pes_tglpenarikan' => $this->input->post('pes_tglpenarikan',TRUE),
             'pes_saldopokok' => $this->input->post('pes_saldopokok',TRUE),
             'pes_bunga' => $this->input->post('pes_bunga',TRUE),
             'pes_jumlah' => $this->input->post('pes_jumlah',TRUE),
@@ -312,7 +314,7 @@ class Simpanan extends MY_Base
         $n=1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
         $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
-
+        $datasetoran = array();
         $wilayah = $this->Wilayah_model->get_all();
         $datasetoran = array();
         $simpananAktif = $this->Simpanan_model->get_simpanan_aktif();

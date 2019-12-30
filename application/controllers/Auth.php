@@ -42,7 +42,20 @@ class Auth extends CI_Controller {
             $this->session->set_userdata($data);
 
 //            redirect ke halaman sukses
-            redirect(site_url('backend'));
+            if ($row->id_user == 5){
+                redirect(site_url('Hitungbungasetoran'));
+            } else if ($row->id_user == 6) {
+                redirect(site_url('Investasiberjangka'));
+            } else if ($row->id_user == 7) {
+                redirect(site_url('pinjaman'));            
+            } else if ($row->id_user == 8) {
+                redirect(site_url('Simkesan'));
+            } else if ($row->id_user == 9) {
+                redirect(site_url('neraca/neraca'));
+            } else {
+                redirect(site_url('backend'));
+            } 
+            
 
         }
 //            tampilkan pesan error

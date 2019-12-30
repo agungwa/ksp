@@ -136,10 +136,15 @@
         </tr>
         <tr >
         <td width="300px">Jumlah Tarik</td><td><?php echo rupiahSimpanan($pes_jmltarik) ?></td>
+        <tr >
+        <td width="300px">Tanggal Tarik</td><td>
+            <input type="text" class="form-control date" name="pes_tglpenarikan" id="pes_tglpenarikan" placeholder="tanggal" required />
+	   </td>
+        </tr>
         </tr>
         </table>
     <div>
-	    <button type="submit" class="btn btn-primary">Tarik Simpanan</button> 
+         <button type="submit" class="btn btn-primary">Tarik Simpanan</button> 
 	    <a href="<?php echo site_url('simpanan/?p=4') ?>" class="btn btn-default">Batal</a>
     </div>
             </form>

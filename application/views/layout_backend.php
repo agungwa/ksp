@@ -23,7 +23,7 @@
     <!--datatables-->
     <link href="<?php echo base_url().'assets/css/bootstrap.css'?>" rel="stylesheet" type="text/css"/>
     <link href="<?php echo base_url().'assets/css/jquery.datatables.min.css'?>" rel="stylesheet" type="text/css"/>
-    <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.css'?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.css'?>" rel="stylesheet" type="text/css"/> 
 <!--
     <link href="<?=base_url()?>assets/datatables/dataTables.bootstrap.css" rel="stylesheet">
     <script src="<?=base_url()?>assets/datatables/dataTables.bootstrap.js"></script>
@@ -503,6 +503,7 @@ lookup();
                         <?php endif;  ?>
                         <?php //die($this->db->last_query());  ?>
                         <ul class="nav nav-second-level">
+                        <li><a href="<?=base_url()?>Tempsetoransimpanan">Hitung Temp SS</a></li>
                             <li><a href="<?=base_url()?>sy_config">Konfigurasi</a></li>
                             <li><a target="_link" href="<?=base_url()?>sfgen">Generator</a></li>
                         </ul>
