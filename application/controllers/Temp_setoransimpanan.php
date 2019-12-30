@@ -11,21 +11,39 @@ class Temp_setoransimpanan extends MY_Base
         $this->load->model('Simpanan_model');
         $this->load->model('Bungasetoransimpanan_model');
         $this->load->model('Wilayah_model');
-        $this->load->model('Setoransimpanan_model');
         $this->load->model('Penarikansimpanan_model');
         $this->load->model('Temp_setoransimpanan_model');
         $this->load->library('form_validation');
     }
 
     public function index(){
-
+        
+        $f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $this->load->model('Setoransimpanan_model');
         $simpanan = $this->Simpanan_model->get_simpanan_aktif();
-        $datetoday = date("m-d", strtotime($this->tgl));
+        $datetoday = date("Y-m-d", strtotime($this->tgl));
+        $n = 1;
         $totalsimpanan = 0;
+        $datasetoran = array();
     	foreach ($simpanan as $key => $value) {
-            $setoran = $this->Setoransimpanan_model->get_hitung($value->sim_kode,$datetoday);
-    		foreach ($setoran as $k => $item) {
-                $totalsimpanan ++;
+            $f = date("Y-m-d", strtotime($f));
+            $setoran = $this->Setoransimpanan_model->get_hitung($value->sim_kode,$f);
+    		foreach ($setoran as $k => $item) { 
+                $tanggalsetor = date("Y-m-d", strtotime($item->ssi_tgl));
+                if ($tanggalDuedate == $f) {
+                    $datasetoran[$n] = array('ssi_id' => $item->ssi_id,
+                    'sim_kode' => $item->sim_kode,
+                    'wil_kode' => $sim_kode->wil_kode,
+                    'ssi_tglsetor' => $item->ssi_tglsetor,
+                    'ssi_jmlsetor' => $item->ssi_jmlsetor,
+                    //'ssi_jmlbunga' => $row->ssi_jmlbunga,
+                    'ssi_tgl' => $item->ssi_tgl,
+                    'ssi_flag' => $item->ssi_flag,
+                    'ssi_info' => $item->ssi_info,
+                    );
+                    $n++;   
+                    $totalsimpanan ++;
+                }
                 }
             }
             echo $datetoday , "Total simpanan" , $totalsimpanan;
@@ -35,7 +53,13 @@ class Temp_setoransimpanan extends MY_Base
                    
                     );
                 //$this->Temp_setoransimpanan_model->insert($dataTemp);
-            }
+            } 
+            $data = array(
+                'datasimpanan' => $datasimpanan,
+                'f' => $f,
+                'content' => 'backend/temp_setoransimpanan/setoransimpanan_list.php',
+            );
+            $this->load->view(layout(), $data);
 
     }
     public function listdata()
