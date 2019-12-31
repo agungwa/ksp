@@ -25,27 +25,22 @@
             
             <div class="col-md-1 text-right">
             </div>
-            <!-- <div class="col-md-3 text-right">
-                <form action="<?php echo site_url('simkesan/simkesanlist'); ?>" class="form-inline" method="get">
+            <div class="col-md-3 text-right">
+                <!--<form action="<?php echo site_url('simkesan/simkesanlist'); ?>" class="form-inline" method="get">
 
                     <div class="input-group">
                     
                     <input type="text" class="form-control" name="q" id="q" placeholder="no simkesan">
                         <span class="input-group-btn">
-                            <?php 
-                                if ($q <> '')
-                                {
-                                    ?>
-                                    <a href="<?php echo base_url()?>simkesan/simkesanlist" class="btn btn-default">Reset</a>
-                                    <?php
-                                }
-                            ?>
+                            -->
+                                    <a href="<?php echo base_url()?>printdatasimkesan/listRekening" class="btn btn-primary">Print</a>
+                                    <!--
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                         </span>
                     </div>
-                </form>
+                </form>-->
             </div>
-			-->
+			
         </div>
         <table class="data" style="margin-bottom: 10px">
             <thead>

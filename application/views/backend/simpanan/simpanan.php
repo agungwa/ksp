@@ -22,6 +22,7 @@
 						  <li role="presentation" class="<?= ($active==3)?'active':''?>"><a href="<?=base_url()?>simpanan/?p=3">List Simpanan</a></li>
 						  <li role="presentation" class="<?= ($active==6)?'active':''?>"><a href="<?=base_url()?>simpanan/?p=6">List Setoran Simpanan</a></li>
 						  <!--<li role="presentation" class="<?= ($active==7)?'active':''?>"><a href="<?=base_url()?>simpanan/?p=7">Cari Simpanan</a></li>-->
+						  <li role="presentation" class="<?= ($active==9)?'active':''?>"><a href="<?=base_url()?>simpanan/?p=9">List Penarikan</a></li>
 						</ul>
 						
             			<?php

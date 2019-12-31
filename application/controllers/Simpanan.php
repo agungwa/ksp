@@ -45,6 +45,9 @@ class Simpanan extends MY_Base
             case  8:
                 $this->setupsimpanan();
                 break;
+			case  9:
+                $this->listpenarikan();
+                break;
                     
             default:
                 $this->setupsimpanan();
@@ -361,8 +364,66 @@ class Simpanan extends MY_Base
         );
         $this->load->view(layout(), $data);
     }
-
-    public function lookup()
+	
+	public function listpenarikan(){
+		$q = urldecode($this->input->get('q', TRUE));
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+		
+		$satu=1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+		
+		$tarik = array();
+		$tot_tarik = 0;
+		
+		$penarikan = $this->Penarikansimpanan_model->get_all();
+		$wilayah = $this->Wilayah_model->get_all();
+		
+		foreach($penarikan as $key=>$row){
+			$tgl = date("Y-m-d", strtotime($row->pes_tglpenarikan));
+			$f = date("Y-m-d", strtotime($f));
+			$t = date("Y-m-d", strtotime($t));
+			
+			$simpanan = $this->db->get_where('simpanan', array('sim_kode' => $row->sim_kode))->row();
+			$anggota = $this->db->get_where('anggota', array('ang_no' => $simpanan->ang_no))->row();
+			
+			if($tgl >= $f && $tgl <= $t && $w == 'all' || $tgl >= $f && $tgl <= $t && $simpanan->wil_kode == $w){
+				$tarik[$key] = array(
+					'pes_id'=>$row->pes_id,
+					'sim_kode'=>$row->sim_kode,
+					'ang_nama'=>$anggota->ang_nama,
+					'ang_alamat'=>$anggota->ang_alamat,
+					'tgl_tarik'=>$row->pes_tglpenarikan,
+					'saldo'=>$row->pes_saldopokok,
+					'bunga'=>$row->pes_bunga,
+					'jumlah'=>$row->pes_jumlah,
+					'phbuku'=>$row->pes_phbuku,
+					'administrasi'=>$row->pes_administrasi,
+					'jml_tarik'=>$row->pes_jmltarik
+				);
+			}
+			$tot_tarik += $row->pes_jmltarik;
+		}
+		//print_r($tarik);
+		$data = array(
+			'tarik' => $tarik,
+			'wilayah' => $wilayah,
+			'tot_tarik' => $tot_tarik,
+			'q' => $q,
+			'w' => $w,
+			'f' => $f,
+			't' => $t,
+			'active' => 9,
+			'content' => 'backend/simpanan/simpanan',
+			'item' => 'penarikan_list.php'
+		);
+		$this->load->view(layout(), $data);
+	}
+	
+	public function lookup()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
@@ -382,7 +443,6 @@ class Simpanan extends MY_Base
         return ob_get_contents();
         ob_end_clean();
     }
-
     
     public function carisimpanan()
     {

@@ -78,25 +78,33 @@ class Penarikansimpanan extends MY_Base
         ob_end_clean();
     }
 
-    public function read($id) 
-    {
-        $row = $this->Penarikansimpanan_model->get_by_id($id);
-        if ($row) {
-            $data = array(
-		'pes_id' => $row->pes_id,
-		'sim_kode' => $row->sim_kode,
-		'pes_tglpenarikan' => $row->pes_tglpenarikan,
-		'pes_jumlah' => $row->pes_jumlah,
-		'pes_tgl' => $row->pes_tgl,
-		'pes_flag' => $row->pes_flag,
-		'pes_info' => $row->pes_info,'content' => 'backend/penarikansimpanan/penarikansimpanan_read',
-	    );
-            $this->load->view(
-            layout(), $data);
-        } else {
+    public function read($id){
+		$row = $this->Penarikansimpanan_model->get_by_id($id);
+		
+        if($row){
+			$simpanan = $this->db->get_where('simpanan', array('sim_kode' => $row->sim_kode))->row();
+			$anggota = $this->db->get_where('anggota', array('ang_no' => $simpanan->ang_no))->row();
+			
+			$data = array(
+				'pes_id'=>$row->pes_id,
+				'sim_kode'=>$row->sim_kode,
+				'pes_tglpenarikan'=>$row->pes_tglpenarikan,
+				'pes_saldopokok'=>$row->pes_saldopokok,
+				'pes_bunga'=>$row->pes_bunga,
+				'pes_jumlah'=>$row->pes_jumlah,
+				'pes_phbuku'=>$row->pes_phbuku,
+				'pes_administrasi'=>$row->pes_administrasi,
+				'pes_jmltarik'=>$row->pes_jmltarik,
+				'ang_nama'=>$anggota->ang_nama,
+				'ang_alamat'=>$anggota->ang_alamat,
+				'content' => 'backend/penarikansimpanan/penarikansimpanan_read'
+			);
+            $this->load->view(layout(), $data);
+        }else{
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('penarikansimpanan'));
         }
+		//print_r($data);
     }
 
     public function create() 
@@ -144,13 +152,13 @@ class Penarikansimpanan extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('penarikansimpanan/update_action'),
-		'pes_id' => set_value('pes_id', $row->pes_id),
-		'nm_sim_kode' => set_value('nm_sim_kode', $row->sim_kode),
-		'sim_kode' => set_value('sim_kode', $row->sim_kode),
-		'pes_tglpenarikan' => set_value('pes_tglpenarikan', $row->pes_tglpenarikan),
-		'pes_jumlah' => set_value('pes_jumlah', $row->pes_jumlah),
-	    'content' => 'backend/penarikansimpanan/penarikansimpanan_form',
-	    );
+				'pes_id' => set_value('pes_id', $row->pes_id),
+				'nm_sim_kode' => set_value('nm_sim_kode', $row->sim_kode),
+				'sim_kode' => set_value('sim_kode', $row->sim_kode),
+				'pes_tglpenarikan' => set_value('pes_tglpenarikan', $row->pes_tglpenarikan),
+				'pes_jumlah' => set_value('pes_jumlah', $row->pes_jumlah),
+				'content' => 'backend/penarikansimpanan/penarikansimpanan_form',
+			);
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -166,15 +174,15 @@ class Penarikansimpanan extends MY_Base
             $this->update($this->input->post('pes_id', TRUE));
         } else {
             $data = array(
-		'sim_kode' => $this->input->post('sim_kode',TRUE),
-		'pes_tglpenarikan' => $this->input->post('pes_tglpenarikan',TRUE),
-		'pes_jumlah' => $this->input->post('pes_jumlah',TRUE),
-        'pes_flag' => 1,
+				'sim_kode' => $this->input->post('sim_kode',TRUE),
+				'pes_tglpenarikan' => $this->input->post('pes_tglpenarikan',TRUE),
+				'pes_jumlah' => $this->input->post('pes_jumlah',TRUE),
+				'pes_flag' => 1,
     	    );
 
             $this->Penarikansimpanan_model->update($this->input->post('pes_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('penarikansimpanan'));
+            redirect(site_url('simpanan/?p=9'));
         }
     }
     
@@ -188,10 +196,10 @@ class Penarikansimpanan extends MY_Base
             );
             $this->Penarikansimpanan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('penarikansimpanan'));
+            redirect(site_url('simpanan/?p=9'));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('penarikansimpanan'));
+            redirect(site_url('simpanan/?p=9'));
         }
     }
 
