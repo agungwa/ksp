@@ -198,26 +198,6 @@ class Backend extends MY_Base {
     	}
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 
-    	//hitung saldo simpanan aktif
-    	foreach ($simpananAktif as $key => $value) {
-    		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
-    		foreach ($setoran as $k => $item) {
-				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
-				
-    			if ($f<>'' && $w<>'') {	
-    				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-    				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w) {
-						$saldoSimpanan += $item->ssi_jmlsetor;
-    				}
-    			} else {
-    				$saldoSimpanan += $item->ssi_jmlsetor;
-				}
-				
-				
-			}
-	
-		}
-
     	//hitung saldo pinjaman umum
     	foreach ($pinjamanUmumaktif as $key => $value) {
 			if ($f<>'' && $w<>'') {	
@@ -481,23 +461,16 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 	foreach ($simpananAktif as $key => $value) {
 		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
 		foreach ($setoran as $k => $item) {
-			$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
+				$saldoSimpanan += $item->ssi_jmlsetor;
 			
-			if ($f<>'' && $t<>'' && $w<>'') {	
-				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w) {
-					$saldoSimpanan += $item->ssi_jmlsetor;
-				}
-			} else {
-				$saldoSimpanan += 0;
-			}
-			//var_dump($item->ssi_jmlsetor);
+			
 			
 			
 		}
 		
 	}
 
+	var_dump($saldoSimpanan);
 		//hitung saldo investasi aktif
 		foreach ($investasiAktif as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
