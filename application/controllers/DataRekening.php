@@ -209,6 +209,8 @@ class DataRekening extends MY_Base
 		foreach ($penarikanSimpanan as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
 			$tgl = date("Y-m-d", strtotime($value->pes_tglpenarikan));
+			$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $value->sim_kode))->row();
+			$wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $sim_kode->wil_kode))->row();
 			//var_dump($value->ags_id);
     			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
     				$totalRekeningkeluar++ ;
