@@ -478,7 +478,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 	}
 
 	//hitung saldo simpanan aktif masuk
-	foreach ($simpananAktif as $key => $value) {
+	/*foreach ($simpananAktif as $key => $value) {
 		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
 		foreach ($setoran as $k => $item) {
 			$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
@@ -496,7 +496,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			
 		}
 		
-	}
+	}*/
 
 		//hitung saldo investasi aktif
 		foreach ($investasiAktif as $key => $value) {
