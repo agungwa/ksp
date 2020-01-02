@@ -791,6 +791,31 @@ class PrintDataSimkesan extends MY_Base
         //$mpdf->Output(); // opens in browser
         $mpdf->Output('tagihan.pdf','D'); // it downloads the file into the user system, with give name
 	}
+	
+	public function listRekening(){
+		$q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+
+        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
+       
+        $data = array(
+            'simkesan_data' => $simkesan,
+            'q' => $q,
+            'start' => $start,
+            'content' => 'backend/simkesan/simkesan',
+            'item' => 'simkesanlist.php',
+            'active' => 5,
+        );
+		
+        $this->load->view(layout(), $data);
+		$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'A4']);
+        $html = $this->load->view('backend/simkesan/printsimkesan/list_rekening.php',$data,true);
+        //echo $html;
+        $mpdf->WriteHTML($html);
+        //$mpdf->Output(); // opens in browser
+        $mpdf->Output('listrekening.pdf','D'); // it downloads the file into the user system, with give name
+	
+	}
 
 
     public function dataAll(){
