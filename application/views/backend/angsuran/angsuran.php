@@ -13,7 +13,8 @@
                 <div class="ibox-content">
         			<div class="row" style="margin-bottom: 10px">
         				<ul class="nav nav-tabs">
-						  <li role="presentation" class="<?= ($active==1)?'active':''?>"><a href="<?=base_url()?>angsuran/?p=1">Bayar Angsuran</a></li>
+						<li role="presentation" class="<?= ($active==1)?'active':''?>"><a href="<?=base_url()?>angsuran/?p=1">Bayar Angsuran</a></li>
+						  <li role="presentation" class="<?= ($active==6)?'active':''?>"><a href="<?=base_url()?>angsuran/?p=6">Bayar Angsuran Migrasi</a></li>
 						  <li role="presentation" class="<?= ($active==2)?'active':''?>"><a href="<?=base_url()?>angsuran/?p=2">Rencana Angsuran</a></li>
 						  <li role="presentation" class="<?= ($active==5)?'active':''?>"><a href="<?=base_url()?>angsuran/?p=5">list Angsuran</a></li>
 						 <!-- <li role="presentation" class="<?= ($active==3)?'active':''?>"><a href="<?=base_url()?>angsuran/?p=3">Denda Angsuran</a></li> -->

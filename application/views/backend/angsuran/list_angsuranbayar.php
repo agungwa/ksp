@@ -38,7 +38,8 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Rekening Pinjaman</th>
         <th class="text-center">Nama</th>
-        <th class="text-center">Alamat</th>
+		<th class="text-center">Angsuranke</th>
+        <!--<th class="text-center">Alamat</th>
         <th class="text-center">No HP</th>
 		<th class="text-center">Jaminan</th>
 		<th class="text-center">Angsuranke</th>
@@ -46,8 +47,9 @@
 		<th class="text-center">Tanggal Bayar</th>
 		<th class="text-center">Jumlah Pokok</th>
 		<th class="text-center">Jumlah Bunga</th>
-		<th class="text-center">Jumlah Setor</th>
+		<th class="text-center">Jumlah Setor</th>-->
 		<th class="text-center">Status</th>
+		<th class="text-center">Migrasi</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -66,7 +68,8 @@
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $item['pin_id'] ?></td>
 			<td><?php echo $ang_no->ang_nama ?></td>
-			<td><?php echo $ang_no->ang_alamat ?></td>
+			<td><?php echo $item['ang_angsuranke'] ?></td>
+			<!--<td><?php echo $ang_no->ang_alamat ?></td>
 			<td><?php echo $ang_no->ang_nohp ?></td>
 			<td><?php echo $jej_id->jej_jaminan ?></td>
 			<td><?php echo $item['ang_angsuranke'] ?></td>
@@ -74,8 +77,13 @@
 			<td><?php echo dateFormataja($item['ags_tglbayar']) ?></td>
 			<td><?php echo rupiah($item['ags_jmlpokok']) ?></td>
 			<td><?php echo rupiah($item['ags_jmlbunga']) ?></td>
-			<td><?php echo rupiah($item['ags_jmlbayar']+$item['ags_bayartunggakan']) ?></td>
+			<td><?php echo rupiah($item['ags_jmlbayar']+$item['ags_bayartunggakan']) ?></td>-->
 			<td><?php echo $item['ags_status'] ?></td>
+			<td style="text-align:center" width="200px">
+				<?php 
+				echo anchor(site_url('angsuran?p=6&k='.$item['ang_angsuranke'].'&q='.$item['pin_id']),'Read','class="text-navy"'); 
+				?>
+			</td>
 		</tr>
                 
                 <?php
