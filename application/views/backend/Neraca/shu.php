@@ -93,7 +93,7 @@
             <h3> Biaya </h3>
             <tr>
                 <td class="text-left">Bunga Simpanan</td>
-				<td class="text-left"><?= neraca($bungasimpanan);?></td>
+				<td class="text-left"><?= neraca($bungaditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Bunga Investasi</td>
@@ -306,8 +306,8 @@
             
         <?php
         $totalphu = $phugaji+ $phuoprasional + $phulps + $phukomunikasi + $phuperlengkapan + $phupenyusutan + $phuasuransi + $phuisentif + $phupajakkendaraan + $phurapat + $phuatk + $phukeamanan + $phuphpinjaman + $phusosial +$phutasyakuran + $phukoran + $phupajakkoprasi + $phuservicekendaraan + $phukonsumsi + $phurat + $phuthr + $phunonoprasional + $phuperawatankantor; 
-            $pengeluaranpsis = $bungasimpanan+$jasainvestasiditarik;
-            $totalpengeluaran = $totalphu+$bungasimpanan+$jasainvestasiditarik;
+            $pengeluaranpsis = $bungaditarik+$jasainvestasiditarik;
+            $totalpengeluaran = $totalphu+$bungaditarik+$jasainvestasiditarik;
             $totalpendapatan = $bungaangsuran + $bungadendapelunasan + $provisipinjaman + $dendaangsuran + $administrasi + $phbuku;
            $jumlahshu = $totalpendapatan - $totalpengeluaran;
         ?>

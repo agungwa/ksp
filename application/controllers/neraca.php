@@ -649,6 +649,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
     	$saldoSimpananpokok = 0;
     	$phBuku = 0;
 		$administrasi = 0;
+		$bungaDitarik = 0;
 		
 		//pinjaman
 		$saldoDroppinjaman = 0;
@@ -769,10 +770,12 @@ foreach ($pinjamanKhususaktif as $key => $value) {
     				if ( $tgl >= $f && $tgl <= $t|| $tgl >= $f && $tgl <= $t) {
 	    				$phBuku += $item->pes_phbuku;
 	    				$administrasi += $item->pes_administrasi;
+						$bungaDitarik += $item->pes_bunga;
     				}
     			} else {
 	    			$phBuku += $item->pes_phbuku;
 	    			$administrasi += $item->pes_administrasi;
+	    			$bungaDitarik += $item->pes_bunga;
     			}
     		}
     	}
@@ -941,6 +944,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			'saldoinvestasi' => $saldoInvestasi,
 			
 			//simpanan
+			'bungaditarik' => $bungaDitarik,
 			'saldosimpananlalu' => $saldoSimpananlalu,
             'wilayah_data' => $wilayah,
 			'saldosimpanan' => $saldoSimpanan,
