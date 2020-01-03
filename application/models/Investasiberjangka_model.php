@@ -39,6 +39,7 @@ class Investasiberjangka_model extends CI_Model
         $where = "ivb_status = 0 AND ivb_flag < 2";
         $this->db->where($where);
         $this->db->order_by($this->id, $this->order);
+        $this->db->select_sum('ivb_jumlah');
         return $this->db->get($this->table)->result();
     }
 

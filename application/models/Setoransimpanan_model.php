@@ -51,7 +51,8 @@ class Setoransimpanan_model extends CI_Model
         $this->db->join('simpanan', 'simpanan.sim_kode = setoransimpanan.sim_kode', 'right');
         $where = "sim_status = 0 AND sim_flag < 2";
 		$this->db->where($where);
-		$this->db->where('ssi_flag < 2');
+        $this->db->where('ssi_flag < 2');
+        $this->db->select_sum('ssi_jmlsetor');
         return $this->db->get($this->table)->result();
     }
     

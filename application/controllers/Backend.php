@@ -202,11 +202,9 @@ class Backend extends MY_Base {
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 
     	//hitung saldo simpanan aktif
-    		foreach ($setoran as $k => $item) {
-				$saldoSimpanan += $item->ssi_jmlsetor;
+				$saldoSimpanan = $setoran[0]->ssi_jmlsetor;
 	
-		}
-		var_dump($saldoSimpanan);
+		
 
     	//hitung saldo pinjaman umum
     	foreach ($pinjamanUmumaktif as $key => $value) {
@@ -286,11 +284,9 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 
 	
     	//hitung saldo investasi aktif
-    	foreach ($investasiAktif as $key => $value) {
 			
-    				$saldoInvestasi += $value->ivb_jumlah ;
+    	$saldoInvestasi = $investasiAktif[0]->ivb_jumlah;
     	
-	}
 
 	//hitung SHU
     	foreach ($Shu as $key => $value) {
@@ -365,19 +361,6 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			} else {
 				$bungaSimpanan += $item->bss_bungabulanini;
 			}
-		}
-	}
-
-		//hitung saldo investasi aktif
-		foreach ($investasiAktif as $key => $value) {
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
-			//var_dump($value->ags_id);
-				if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $value->wil_kode==$w))  {
-					$saldoInvestasi += $value->ivb_jumlah ;
-				}
-			} else {
-				$saldoInvestasi += 0;
 		}
 	}
 

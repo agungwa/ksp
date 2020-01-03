@@ -58,7 +58,7 @@
                     </div>
                     <div class="ibox-content">
                         <h1 class="no-margins">Data </h1>
-                        <div class="stat-percent font-bold text-info"><?= $piutang/1000000;?> <i class="fa fa-level-up"></i></div>
+                        <div class="stat-percent font-bold text-info"><?= ceiling($piutang/1000000,1);?> <i class="fa fa-level-up"></i></div>
                         <small>x Juta </small>
                     </div>
                 </div>
