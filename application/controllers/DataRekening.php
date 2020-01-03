@@ -60,24 +60,12 @@ class DataRekening extends MY_Base
 
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
     	//hitung saldo simpanan aktif masuk
-    	foreach ($simpananAktif as $key => $value) {
-    		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
-    		foreach ($setoran as $k => $item) {
-				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
-				
-    			if ($f<>'' && $t<>'' && $w<>'') {	
-    				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-    				if ($tgl >= $f && $tgl <= $t && 'all' == $w || $tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == $w) {
-						$saldoSimpanan += $item->ssi_jmlsetor;
+    	
+    			if ($f<>'' && $t<>'' && $w<>'') {
+					$setoran = $this->Setoransimpanan_model->get_sirkulasi_simpanan($f,$t,$w,0);
+						$saldoSimpanan += $setoran[0]->ssi_jmlsetor;
     				}
-    			} else {
-    				$saldoSimpanan += $item->ssi_jmlsetor;
-				}
-				
-				
-			}
-			
-		}
+    		var_dump($saldoSimpanan);
 		
 		//hitung saldo simpanan aktif lalu
 		foreach ($simpananAll as $key => $value) {
