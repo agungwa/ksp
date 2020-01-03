@@ -669,12 +669,12 @@ lookup();
     document.querySelector("#event_id").innerHTML = event_id;
 }
 
-$(document).ready(function () {
-$('#dtOrderExample').DataTable({
-"order": [[ 3, "desc" ]]
-});
-$('.dataTables_length').addClass('bs-select');
-});
+// $(document).ready(function () {
+// $('#dtOrderExample').DataTable({
+// "order": [[ 3, "desc" ]]
+// });
+// $('.dataTables_length').addClass('bs-select');
+// });
     </script>
 </body>
 
