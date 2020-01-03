@@ -47,6 +47,15 @@ class Setoransimpanan_model extends CI_Model
     }
     
 	// get by sim kode hitung
+	function get_sirkulasi(){
+        $this->db->join('simpanan', 'simpanan.sim_kode = setoransimpanan.sim_kode', 'right');
+        $where = "sim_status = 0 AND sim_flag < 2";
+		$this->db->where($where);
+		$this->db->where('ssi_flag < 2');
+        return $this->db->get($this->table)->result();
+    }
+    
+	// get by sim kode hitung
 	function get_hitung($kode, $f){
 		$this->db->where('sim_kode', $kode);
 		$this->db->where('ssi_flag < 2');

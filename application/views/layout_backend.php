@@ -21,7 +21,6 @@
     <link href="<?=base_url()?>assets/vendor/inspinia/css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/radiocheck/radiocheck.css" rel="stylesheet">
     <!--datatables-->
-    <link href="<?php echo base_url().'assets/css/bootstrap.css'?>" rel="stylesheet" type="text/css"/>
     <link href="<?php echo base_url().'assets/css/jquery.datatables.min.css'?>" rel="stylesheet" type="text/css"/>
     <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.css'?>" rel="stylesheet" type="text/css"/> 
 <!--
@@ -603,8 +602,6 @@ lookup();
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/toastr/toastr.min.js"></script>
     <script src="<?=base_url()?>assets/js/sf.js"></script>
     
-    <script src="<?php echo base_url().'assets/js/jquery-2.1.4.min.js'?>"></script>
-    <script src="<?php echo base_url().'assets/js/bootstrap.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/jquery.datatables.min.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/dataTables.bootstrap.js'?>"></script>
 
@@ -635,30 +632,6 @@ lookup();
     today = yyyy + '-' + mm + '-' + dd;
     $("#todays-date,#todays-date1,#todays-date2").attr("value", today)
 
-    document.getElementById("number").onblur =function (){    
-    this.value = parseFloat(this.value.replace(/,/g, ""))
-                    .toFixed(2)
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
-    document.getElementById("display").value = this.value.replace(/,/g, "")
-    
-    function addSeparatorsNF(nStr, inD, outD, sep){
-     nStr += '';
-     var dpos = nStr.indexOf(inD);
-     var nStrEnd = '';
-     if (dpos != -1) {
-      nStrEnd = outD + nStr.substring(dpos + 1, nStr.length);
-      nStr = nStr.substring(0, dpos);
-     }
-     var rgx = /(\d+)(\d{3})/;
-     while (rgx.test(nStr)) {
-      nStr = nStr.replace(rgx, '$1' + sep + '$2');
-     }
-     return nStr + nStrEnd;
-    }
-    
-    }
     function rubah(angka){
    var reverse = angka.toString().split('').reverse().join(''),
    ribuan = reverse.match(/\d{1,3}/g);

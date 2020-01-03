@@ -76,6 +76,9 @@ class Neraca extends MY_Base
     	$simpananwajibDitarik = $this->Penarikansimpananwajib_model->get_all();
 		$simpananPokok = $this->Simpananpokok_model->get_all();
 
+		//setoran
+		$setoran = $this->Setoransimpanan_model->get_sirkulasi();
+
 		//pinjaman
     	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
     	$pinjamanUmumaktif = $this->Pinjaman_model->get_pinjaman_umum();
@@ -153,22 +156,9 @@ class Neraca extends MY_Base
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 
     	//hitung saldo simpanan aktif
-    	foreach ($simpananAktif as $key => $value) {
-    		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
     		foreach ($setoran as $k => $item) {
-				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
-				
-    			if ($f<>'' && $w<>'') {	
-    				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-    				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w) {
-						$saldoSimpanan += $item->ssi_jmlsetor;
-    				}
-    			} else {
-    				$saldoSimpanan += $item->ssi_jmlsetor;
-				}
-				
-				
-			}
+						
+				$saldoSimpanan += $item->ssi_jmlsetor;
 			
 		}
 
@@ -429,27 +419,6 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 				$bungaSimpanan += $item->bss_bungabulanini;
 			}
 		}
-	}
-
-	//hitung saldo simpanan aktif masuk
-	foreach ($simpananAktif as $key => $value) {
-		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
-		foreach ($setoran as $k => $item) {
-			$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
-			
-			if ($f<>'' && $t<>'' && $w<>'') {	
-				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w) {
-					$saldoSimpanan += $item->ssi_jmlsetor;
-				}
-			} else {
-				$saldoSimpanan += 0;
-			}
-			//var_dump($item->ssi_jmlsetor);
-			
-			
-		}
-		
 	}
 
 		//hitung saldo investasi aktif

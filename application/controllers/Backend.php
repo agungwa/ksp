@@ -92,6 +92,9 @@ class Backend extends MY_Base {
     	$simpananwajibDitarik = $this->Penarikansimpananwajib_model->get_all();
 		$simpananPokok = $this->Simpananpokok_model->get_all();
 
+		//setoransimpanan
+		$setoran = $this->Setoransimpanan_model->get_sirkulasi();
+
 		//pinjaman
     	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
     	$pinjamanUmumaktif = $this->Pinjaman_model->get_pinjaman_umum();
@@ -199,95 +202,46 @@ class Backend extends MY_Base {
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 
     	//hitung saldo simpanan aktif
-    	foreach ($simpananAktif as $key => $value) {
-    		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
     		foreach ($setoran as $k => $item) {
-				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
-				
-    			if ($f<>'' && $w<>'') {	
-    				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-    				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w) {
-						$saldoSimpanan += $item->ssi_jmlsetor;
-    				}
-    			} else {
-    				$saldoSimpanan += $item->ssi_jmlsetor;
-				}
-				
-				
-			}
+				$saldoSimpanan += $item->ssi_jmlsetor;
 	
 		}
+		var_dump($saldoSimpanan);
 
     	//hitung saldo pinjaman umum
     	foreach ($pinjamanUmumaktif as $key => $value) {
-			if ($f<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->pin_tglpencairan));
-			//var_dump($value->ags_id);
-    			if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w)  {
     				$saldoPinjamanumum += $value->pin_pinjaman ;
-    			}
-			} else {
-				$saldoPinjamanumum += $value->pin_pinjaman;
-		}
+    	
 	}
 
 		//hitung saldo pinjaman karyawan
 		foreach ($pinjamanKaryawanaktif as $key => $value) {
-			if ($f<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->pin_tglpencairan));
-			//var_dump($value->ags_id);
-				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w)  {
+			
 					$saldoPinjamankaryawan += $value->pin_pinjaman;
-				}
-			} else {
-				$saldoPinjamankaryawan += $value->pin_pinjaman;
-		}
 	}
 
 		//hitung saldo pinjaman khusus
 		foreach ($pinjamanKhususaktif as $key => $value) {
-			if ($f<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->pin_tglpencairan));
-			//var_dump($value->ags_id);
-				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w)  {
+		
 					$saldoPinjamankhusus += $value->pin_pinjaman ;
-				}
-			} else {
-				$saldoPinjamankhusus += $value->pin_pinjaman;
-		}
+	
 	}
 
 		//hitung saldo angsuran pokok dari angsuran status bayar
     	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
-    			if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
+		
     				$pokokAngsuran += $value->ags_jmlpokok ;
-    			}
-			} else {
-				$pokokAngsuran += $value->ags_jmlpokok;
-		}
+  
 	}
 
 	//angsuran pinjaman anggota/umum belum dibayar
 	foreach ($pinjamanUmumaktif as $key => $value) {
     	$angsuranBelumbayar = $this->Angsuran_model->get_angsuran_belum($value->pin_id);
 		foreach ($angsuranBelumbayar as $k => $item) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
-			
-			if ($f<>'' && $w<>'') {	
-				$tgl = date("Y-m-d", strtotime($item->ags_tgl));
-				//var_dump($value->ags_id);
-					if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
-						$saldoPinjamanumumbelum += $item->ags_jmlpokok ;
-					}
-				} else {
-					$saldoPinjamanumumbelum += $item->ags_jmlpokok;
-			
-			
-		}
+		
+				$saldoPinjamanumumbelum += $item->ags_jmlpokok ;
+		
+	
 		
 	}
 }
@@ -295,19 +249,9 @@ class Backend extends MY_Base {
 	foreach ($pinjamanKaryawanaktif as $key => $value) {
     	$angsuranBelumbayar = $this->Angsuran_model->get_angsuran_belum($value->pin_id);
 		foreach ($angsuranBelumbayar as $k => $item) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
 			
-			if ($f<>'' && $w<>'') {	
-				$tgl = date("Y-m-d", strtotime($item->ags_tgl));
-				//var_dump($value->ags_id);
-					if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
 						$saldoPinjamankaryawanbelum += $item->ags_jmlpokok ;
-					}
-				} else {
-					$saldoPinjamankaryawanbelum += $item->ags_jmlpokok;
 			
-			
-		}
 		
 	}
 }
@@ -316,19 +260,9 @@ class Backend extends MY_Base {
 foreach ($pinjamanKhususaktif as $key => $value) {
 	$angsuranBelumbayar = $this->Angsuran_model->get_angsuran_belum($value->pin_id);
 	foreach ($angsuranBelumbayar as $k => $item) {
-		$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
 		
-		if ($f<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($item->ags_tgl));
-			//var_dump($value->ags_id);
-				if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
 					$saldoPinjamankhususbelum += $item->ags_jmlpokok ;
-				}
-			} else {
-				$saldoPinjamankhususbelum += $item->ags_jmlpokok;
-		
-		
-	}
+	
 	
 }
 }
@@ -337,90 +271,47 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 	foreach ($pinjamanAktif as $key => $value) {
     	$angsuranBelumbayar = $this->Angsuran_model->get_angsuran_belum($value->pin_id);
 		foreach ($angsuranBelumbayar as $k => $item) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
-			
-			if ($f<>'' && $w<>'') {	
-				$tgl = date("Y-m-d", strtotime($item->ags_tgl));
-				//var_dump($value->ags_id);
-					if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
-						$pokokAngsuranbelum += $item->ags_jmlpokok ;
-					}
-				} else {
-					$pokokAngsuranbelum += $item->ags_jmlpokok;
-			
-			
-		}
 		
+						$pokokAngsuranbelum += $item->ags_jmlpokok ;
+			
 	}
 }
 
     	//hitung saldo angsuran pokok dari pelunasan
     	foreach ($pelunasanPinjaman as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->pel_tglpelunasan));
-			//var_dump($value->ags_id);
-    			if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $pin_id->wil_kode==$w))  {
+			
     				$pokokAngsuranpelunasan += $value->pel_totalkekuranganpokok ;
-    			}
-			} else {
-				$pokokAngsuranpelunasan += $value->pel_totalkekuranganpokok;
-		}
+    		
 	}
 
 	
     	//hitung saldo investasi aktif
     	foreach ($investasiAktif as $key => $value) {
-			if ($f<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
-			//var_dump($value->ags_id);
-    			if (($tgl <= $f && 'all'==$w) || ($tgl <= $f && $value->wil_kode==$w))  {
+			
     				$saldoInvestasi += $value->ivb_jumlah ;
-    			}
-			} else {
-				$saldoInvestasi += $value->ivb_jumlah;
-		}
+    	
 	}
 
 	//hitung SHU
     	foreach ($Shu as $key => $value) {
-			if ($f<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->shu_tanggal));
-			//var_dump($value->ags_id);
-    			if ($tgl <= $f)  {
+			
     				$shuData += $value->shu_jumlah;
-    			}
-			} else {
-				$shuData += $value->shu_jumlah;
-		}
+    	
 	}
 
 	//hitung Neraca Kas Bank
     	foreach ($kasBank as $key => $value) {
-			if ($f<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->nkb_tanggal));
-			//var_dump($value->ags_id);
-    			if ($tgl <= $f)  {
+		
     				$kasBankdata += $value->nkb_jumlah;
-    			}
-			} else {
-				$kasBankdata += $value->nkb_jumlah;
-		}
+    	
 	}
 
 	//hitung kewajiban jangkapanjang
     	foreach ($kewJangkapanjang as $key => $value) {
-			if ($f<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->njp_tanggal));
-			//var_dump($value->ags_id);
-    			if ($tgl <= $f)  {
-    				$rekeningKoran += $value->njp_rekeningkoran;
-    				$modalPenyertaan += $value->njp_modalpenyertaan;
-    			}
-			} else {
+			
 				$rekeningKoran += $value->njp_rekeningkoran;
 				$modalPenyertaan += $value->njp_modalpenyertaan;
-		}
+		
 	}
 
 	//hitung ekuitas
@@ -476,27 +367,6 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			}
 		}
 	}
-
-	//hitung saldo simpanan aktif masuk
-	/*foreach ($simpananAktif as $key => $value) {
-		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
-		foreach ($setoran as $k => $item) {
-			$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
-			
-			if ($f<>'' && $t<>'' && $w<>'') {	
-				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w) {
-					$saldoSimpanan += $item->ssi_jmlsetor;
-				}
-			} else {
-				$saldoSimpanan += 0;
-			}
-			//var_dump($item->ssi_jmlsetor);
-			
-			
-		}
-		
-	}*/
 
 		//hitung saldo investasi aktif
 		foreach ($investasiAktif as $key => $value) {
