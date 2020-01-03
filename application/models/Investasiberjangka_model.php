@@ -42,6 +42,17 @@ class Investasiberjangka_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    
+    // get investasi aktif dashboard
+    function get_investasi_sirkulasi()
+    {
+        $where = "ivb_status = 0 AND ivb_flag < 2";
+        $this->db->where($where);
+        $this->db->order_by($this->id, $this->order);
+        $this->db->select_sum('ivb_jumlah');
+        return $this->db->get($this->table)->result();
+    }
+
     // get investasi nonaktif
     function get_investasi_nonaktif()
     {
