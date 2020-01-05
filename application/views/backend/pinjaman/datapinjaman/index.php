@@ -66,7 +66,7 @@
             <tr>
                 <td class="text-left">Angsuran Masuk (pokok)</td>
 				<td class="text-center"><?= rupiah($pokokangsuran+$pokokangsuranpelunasan);?></td>
-				<!--<td class="text-center"><?= rupiah($pokokangsuran);?></td> -->
+				<td class="text-center"><?= rupiah($pokokangsuran);?></td>
 
             </tr>
             <tr>

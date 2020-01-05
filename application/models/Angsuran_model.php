@@ -16,6 +16,18 @@ class Angsuran_model extends CI_Model
         parent::__construct();
     }
 
+        // get angsuran bayar
+        function get_angsuran_totalagb($pin_id)
+        {
+            $this->db->join('angsuranbayar', 'angsuran.ags_id = angsuranbayar.ags_id', 'right');
+            $where = "pin_id = '$pin_id'";
+            $this->db->select_sum('agb_pokok');
+            $this->db->select_sum('agb_bunga');
+            $this->db->select_sum('agb_denda');
+            $this->db->where($where);
+            return $this->db->get($this->table)->result();
+        }
+
     // get all
     function get_all()
     {

@@ -200,7 +200,7 @@ class Angsuran extends MY_Base
                             // if ($this->tgl > $dendajatuhtempo && $row->ags_jmlbayar < $totalbayar ){
                                //  $denda = ($totalbayar * ($settingdenda->sed_denda/100))*$perbedaan->d;
                            //  } 
-                              if ($row->ags_tglbayar > $dendajatuhtempo ){
+                              if ($this->tgl > $dendajatuhtempo && $row->ags_status < 2 ){
                                 $denda = ($totalbayar * ($settingdenda->sed_denda/100))*$perbedaan->d;
                              }
                              //var_dump($denda,$row->ags_tglbayar);
@@ -289,9 +289,14 @@ class Angsuran extends MY_Base
 
         if ($pokok1 < 1){
             $pokok= $this->input->post('agb_pokok',TRUE);
-            $tglpokok = NULL;
         } else if ($pokok1 > 1){
             $pokok= $dataangsur->{'agb_pokok'}+floatval($this->input->post('agb_pokok',TRUE));
+        }
+
+        
+        if ($this->input->post('agb_pokok',TRUE) < 1){
+            $tglpokok = NULL;
+        } else if ($pokok1 > 1){
             $tglpokok = $this->input->post('agb_tglpokok',TRUE);
         }
 
@@ -301,6 +306,13 @@ class Angsuran extends MY_Base
             $tgldenda = NULL;
         } else if ($denda1 > 1){
             $denda= $dataangsur->{'agb_denda'}+floatval($this->input->post('agb_denda',TRUE));
+            $tgldenda = $this->input->post('agb_tgldenda',TRUE);
+        }
+
+        
+        if ($$this->input->post('agb_denda',TRUE) < 1){
+            $tgldenda = NULL;
+        } else if ($denda1 > 1){
             $tgldenda = $this->input->post('agb_tgldenda',TRUE);
         }
             
