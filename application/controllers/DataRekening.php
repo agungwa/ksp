@@ -58,13 +58,11 @@ class DataRekening extends MY_Base
         	$t = date("Y-m-d", strtotime($t));
     	}
 
-		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+		//if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
     	//hitung saldo simpanan aktif masuk
     	
-    			if ($f<>'' && $t<>'' && $w<>'') {
 					$setoran = $this->Setoransimpanan_model->get_sirkulasi_simpanan($f,$t,$w,0);
-						$saldoSimpanan += $setoran[0]->ssi_jmlsetor;
-    				}
+					$saldoSimpanan += $setoran[0]->ssi_jmlsetor;
     		var_dump($saldoSimpanan);
 		
 		//hitung saldo simpanan aktif lalu
