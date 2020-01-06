@@ -293,8 +293,8 @@ class Angsuran extends MY_Base
             $pokok= $dataangsur->{'agb_pokok'}+floatval($this->input->post('agb_pokok',TRUE));
         }
 
-        
-        if ($this->input->post('agb_pokok',TRUE) < 1){
+        $pokokbanding = $this->input->post('agb_pokok',TRUE);
+        if ($pokokbanding < 1){
             $tglpokok = NULL;
         } else if ($pokok1 > 1){
             $tglpokok = $this->input->post('agb_tglpokok',TRUE);
@@ -309,8 +309,8 @@ class Angsuran extends MY_Base
             $tgldenda = $this->input->post('agb_tgldenda',TRUE);
         }
 
-        
-        if ($$this->input->post('agb_denda',TRUE) < 1){
+        $dendabanding = $this->input->post('agb_pokok',TRUE);
+        if ($dendabanding < 1){
             $tgldenda = NULL;
         } else if ($denda1 > 1){
             $tgldenda = $this->input->post('agb_tgldenda',TRUE);
