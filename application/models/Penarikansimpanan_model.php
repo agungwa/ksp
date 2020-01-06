@@ -29,6 +29,49 @@ class Penarikansimpanan_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+	// get by sim kode hitung
+	function get_sirkulasi_penarikansimpanan($f,$t,$w,$s){
+        $this->db->join('simpanan', 'simpanan.sim_kode = penarikansimpanan.sim_kode', 'right');
+        if ($w == 'all' OR $w == ''){
+            $where = "sim_status = $s AND sim_flag < 2";
+         } else {
+            $where = "wil_kode = $w AND sim_status = $s AND sim_flag < 2";
+        }
+        $this->db->where($where);
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(pes_tglpenarikan, '%Y-%m-%d') >= '$f'");
+        }
+        if ($t != NULL) {
+            $this->db->where("DATE_FORMAT(pes_tglpenarikan, '%Y-%m-%d') <= '$t'");
+        }
+		$this->db->where('pes_flag < 2');
+        $this->db->select_sum('pes_saldopokok');
+        $this->db->select_sum('pes_phbuku');
+        $this->db->select_sum('pes_administrasi');
+        $this->db->select_sum('pes_bunga');
+        return $this->db->get($this->table)->result();
+    }
+
+    
+	// get by rekening tarik
+	function get_total_rekening($f,$t,$w,$s){
+        $this->db->join('simpanan', 'simpanan.sim_kode = penarikansimpanan.sim_kode', 'right');
+        if ($w == 'all' OR $w == ''){
+            $where = "sim_status = $s AND sim_flag < 2";
+         } else {
+            $where = "wil_kode = $w AND sim_status = $s AND sim_flag < 2";
+        }
+        $this->db->where($where);
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(pes_tglpenarikan, '%Y-%m-%d') >= '$f'");
+        }
+        if ($t != NULL) {
+            $this->db->where("DATE_FORMAT(pes_tglpenarikan, '%Y-%m-%d') <= '$t'");
+        }
+        return $this->db->count_all_results($this->table);
+    }
+
     
     // get total rows
     function total_rows($q = NULL) {
