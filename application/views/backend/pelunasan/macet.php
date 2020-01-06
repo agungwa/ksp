@@ -50,11 +50,11 @@
     </tr>
     </thead>
     <tbody><?php
-    if ($histori != null) {
+    if ($q != null) {
     $i = 1;
     $denda=0;
     $totaldenda=0;
-    foreach ($q as $item)
+    foreach ($histori as $item)
     {
 
         $d=2;
