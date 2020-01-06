@@ -52,6 +52,7 @@ class Pelunasan extends MY_Base
         $angsuransudah = $this->Angsuran_model->get_angsuran_bayarpin($q);
         $pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktifcari($q);
         $historiAngsuran = array();
+        $hitungtotalangsuran = array();
         foreach ($pinjamanAktif as $key => $value) {
         $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($value->pin_id);
         };
@@ -206,6 +207,7 @@ class Pelunasan extends MY_Base
         $jenispelunasan = $this->Jenispelunasan_model->get_by_id(3);
         $pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktifcari($q);
         $historiAngsuran = array();
+        $hitungtotalangsuran = array();
         foreach ($pinjamanAktif as $key => $value) {
         $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($value->pin_id);
         };
