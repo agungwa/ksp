@@ -380,7 +380,6 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 		}
 	}
 
-
 	//hitung Neraca Aktiva Tetap
     	foreach ($aktivaTetap as $key => $value) {
 			if ($f<>'' && $w<>'') {	
@@ -445,9 +444,6 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 		//simpanan pokok
 		$setoransip = $this->Simpananpokok_model->get_neraca_simpananpokok($f,$t);
 		$saldoSimpananpokok += $setoransip[0]->sip_setoran;
-    	
-			
-		
 
 		$data = array(
 
