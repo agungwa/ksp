@@ -163,25 +163,6 @@ class Printneraca extends MY_Base
     	}
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 
-    	//hitung saldo simpanan aktif
-    	foreach ($simpananAktif as $key => $value) {
-    		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
-    		foreach ($setoran as $k => $item) {
-				$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
-				
-    			if ($f<>'' && $w<>'') {	
-    				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-    				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w) {
-						$saldoSimpanan += $item->ssi_jmlsetor;
-    				}
-    			} else {
-    				$saldoSimpanan += $item->ssi_jmlsetor;
-				}
-				
-				
-			}
-			
-		}
 
     	//hitung saldo pinjaman umum
     	foreach ($pinjamanUmumaktif as $key => $value) {
@@ -424,40 +405,12 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 	}
 
 	//hitung bunga simpanan aktif
-	foreach ($simpananAktif as $key => $value) {
-		$bungaSetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($value->sim_kode);
-		foreach ($bungaSetoran as $k => $item) {
-			if ($f<>'' && $t<>'') {	
-				$tgl = date("Y-m-d", strtotime($item->bss_tglbunga));
-				if ($tgl <= $f) {
-					$bungaSimpanan += $item->bss_bungabulanini;
-				}
-			} else {
-				$bungaSimpanan += $item->bss_bungabulanini;
-			}
-		}
-	}
+	$bungasim = $this->Bungasetoransimpanan_model->get_neraca_bungasimpanan($f,$t,$w,0);
+	$bungaSimpanan = $bungasim[0]->bss_bungabulanini;
 
 	//hitung saldo simpanan aktif masuk
-	foreach ($simpananAktif as $key => $value) {
-		$setoran = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
-		foreach ($setoran as $k => $item) {
-			$sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
-			
-			if ($f<>'' && $t<>'' && $w<>'') {	
-				$tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-				if ($tgl <= $f && 'all' == $w || $tgl <= $f && $sim_kode->wil_kode == $w) {
-					$saldoSimpanan += $item->ssi_jmlsetor;
-				}
-			} else {
-				$saldoSimpanan += 0;
-			}
-			//var_dump($item->ssi_jmlsetor);
-			
-			
-		}
-		
-	}
+	$setoran = $this->Setoransimpanan_model->get_neraca_simpanan($f,$t,$w,0);
+	$saldoSimpanan += $setoran[0]->ssi_jmlsetor;
 
 		//hitung saldo investasi aktif
 		foreach ($investasiAktif as $key => $value) {
@@ -485,30 +438,15 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 	}
 }
 
-    	//simpanan wajib
-    	foreach ($setoransimpananwajib as $key => $value) {
-    		if ($f<>'') {	
-				$tgl = date("Y-m-d", strtotime($value->ssw_tgl));
-				//var_dump($f);
-    			if (($tgl <= $f)) {
-    				$saldoSimpananwajib += $value->ssw_jmlsetor;
-    			}
-    		} else {
-    			$saldoSimpananwajib += 0;
-    		}
-    	}
+		//simpanan wajib
+		$setoranwajib = $this->Setoransimpananwajib_model->get_neraca_simpananwajib($f,$t);
+		$saldoSimpananwajib += $setoranwajib[0]->ssw_jmlsetor;
 
-    	//simpanan pokok
-    	foreach ($simpananPokok as $key => $value) {
-    		if ($f<>'') {	
-    			$tgl = date("Y-m-d", strtotime($value->sip_tglbayar));
-    			if ($tgl <= $f) {
-    				$saldoSimpananpokok += $value->sip_setoran;
-    			}
-    		} else {
-				$saldoSimpananpokok += $value->sip_setoran;
-    		}
-		}	
+		//simpanan pokok
+		$setoransip = $this->Simpananpokok_model->get_neraca_simpananpokok($f,$t);
+		$saldoSimpananpokok += $setoransip[0]->sip_setoran;
+    	
+			
 		
 
 		$data = array(
