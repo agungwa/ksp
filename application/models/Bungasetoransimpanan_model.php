@@ -42,6 +42,23 @@ class Bungasetoransimpanan_model extends CI_Model
         $this->db->select_sum('bss_bungabulanini');
         return $this->db->get($this->table)->result();
     }
+
+	// get by sim kode bunga simpanan
+	function get_neraca_bungasimpanan($f,$t,$w,$s){
+        $this->db->join('simpanan', 'simpanan.sim_kode = bungasetoransimpanan.sim_kode', 'right');
+        if ($w == 'all' OR $w == ''){
+            $where = "sim_status = $s AND sim_flag < 2";
+         } else {
+            $where = "wil_kode = $w AND sim_status = $s AND sim_flag < 2";
+        }
+        $this->db->where($where);
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(bss_tglbunga, '%Y-%m-%d') <= '$f'");
+        }
+		$this->db->where('bss_flag < 2');
+        $this->db->select_sum('bss_bungabulanini');
+        return $this->db->get($this->table)->result();
+    }
     
     // get data by id
     function get_by_id($id)

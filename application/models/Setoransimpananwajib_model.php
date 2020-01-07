@@ -38,6 +38,17 @@ class Setoransimpananwajib_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+	// get by total simpanan wajib
+	function get_neraca_simpananwajib($f,$t){
+        
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(ssw_tglsetor, '%Y-%m-%d') <= '$f'");
+        }
+		$this->db->where('ssw_flag < 2');
+        $this->db->select_sum('ssw_jmlsetor');
+        return $this->db->get($this->table)->result();
+    }
+
     // get data by id
     function get_by_id($id)
     {

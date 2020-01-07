@@ -39,6 +39,18 @@ class Simpananpokok_model extends CI_Model
         $this->db->select_sum('sip_setoran');
         return $this->db->get($this->table)->result();
     }
+    
+	// get by simpanan pokok sirkulasi
+	function get_neraca_simpananpokok($f,$t){
+        $this->db->join('anggota', 'anggota.ang_no = simpananpokok.ang_no', 'right');
+		$this->db->where('ang_flag < 2');
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(sip_tglbayar, '%Y-%m-%d') <= '$f'");
+        }
+		$this->db->where('sip_flag < 2');
+        $this->db->select_sum('sip_setoran');
+        return $this->db->get($this->table)->result();
+    }
 
     // get data by id
     function get_by_id($id)
