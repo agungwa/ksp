@@ -29,7 +29,21 @@ class Penarikansimpananwajib_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
-    
+
+	// get by total penarikan simpanan wajib
+	function get_sirkulasi_penarikansimpananwajib($f,$t){
+        
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(psw_tglpenarikan, '%Y-%m-%d') >= '$f'");
+        }
+        if ($t != NULL) {
+            $this->db->where("DATE_FORMAT(psw_tglpenarikan, '%Y-%m-%d') <= '$t'");
+        }
+		$this->db->where('psw_flag < 2');
+        $this->db->select_sum('psw_jumlah');
+        return $this->db->get($this->table)->result();
+    }
+
     // get total rows
     function total_rows($q = NULL) {
         $where = "siw_id LIKE '%$q%' ESCAPE '!' AND psw_flag < 2";

@@ -59,13 +59,60 @@ class Setoransimpanan_model extends CI_Model
 	// get by sim kode hitung
 	function get_sirkulasi_simpanan($f,$t,$w,$s){
         $this->db->join('simpanan', 'simpanan.sim_kode = setoransimpanan.sim_kode', 'right');
-        $where = "wil_kode = $w AND sim_status = $s AND sim_flag < 2";
+        if ($w == 'all' OR $w == ''){
+            $where = "sim_status = $s AND sim_flag < 2";
+         } else {
+            $where = "wil_kode = $w AND sim_status = $s AND sim_flag < 2";
+        }
         $this->db->where($where);
-        $where2 = "ssi_flag < 2 AND DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') >= $f AND DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') <= $t ";
-        $this->db->where($where2);
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') >= '$f'");
+        }
+        if ($t != NULL) {
+            $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') <= '$t'");
+        }
+		$this->db->where('ssi_flag < 2');
         $this->db->select_sum('ssi_jmlsetor');
         return $this->db->get($this->table)->result();
     }
+
+	// get by list setoran
+	function get_listsetoran($f,$t,$w,$s){
+        $this->db->join('simpanan', 'simpanan.sim_kode = setoransimpanan.sim_kode', 'right');
+        if ($w == 'all' OR $w == ''){
+            $where = "sim_status = $s AND sim_flag < 2";
+         } else {
+            $where = "wil_kode = $w AND sim_status = $s AND sim_flag < 2";
+        }
+        $this->db->where($where);
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') >= '$f'");
+        }
+        if ($t != NULL) {
+            $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') <= '$t'");
+        }
+		$this->db->where('ssi_flag < 2');
+        return $this->db->get($this->table)->result();
+    }
+    
+	// get by sim kode hitung
+	function get_sirkulasi_simpananall($f,$w){
+        $this->db->join('simpanan', 'simpanan.sim_kode = setoransimpanan.sim_kode', 'right');
+        if ($w == 'all' OR $w == ''){
+            $where = "sim_flag < 2";
+         } 
+        else {
+            $where = "wil_kode = $w AND sim_flag < 2";
+        }
+        $this->db->where($where);
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') < '$f'");
+        } 
+		$this->db->where('ssi_flag < 2');
+        $this->db->select_sum('ssi_jmlsetor');
+        return $this->db->get($this->table)->result();
+    }
+    
     
 	// get by sim kode hitung
 	function get_hitung($kode, $f){
