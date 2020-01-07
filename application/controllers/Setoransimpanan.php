@@ -158,7 +158,7 @@ class Setoransimpanan extends MY_Base
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('setoransimpanan'));
+            redirect(site_url('simpanan/?p=6'));
         }
     }
     

@@ -314,44 +314,16 @@ class Simpanan extends MY_Base
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $satu = 1;
-        $n=1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
         $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
-        $datasetoran = array();
         $wilayah = $this->Wilayah_model->get_all();
-        $simpananAktif = $this->Simpanan_model->get_simpanan_aktif();
         
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
-    	foreach ($simpananAktif as $key => $value) {
-            $setoransimpanan = $this->Setoransimpanan_model->get_data_setor($value->sim_kode);
-            
-            foreach ($setoransimpanan as $k=>$item) {
-                //var_dump($item->sim_kode);
-            $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
-            //$wil_kode = $sim_kode->wil_kode;
-            $tgl = date("Y-m-d", strtotime($item->ssi_tglsetor));
-            $f = date("Y-m-d", strtotime($f));
-            $t = date("Y-m-d", strtotime($t));
-
-            if (($tgl >= $f && $tgl <= $t && $w=='all') || ($tgl >= $f && $tgl <= $t && $sim_kode->wil_kode == $w)) {
-                
-                $datasetoran[$n] = array('ssi_id' => $item->ssi_id,
-                'sim_kode' => $item->sim_kode,
-                'wil_kode' => $sim_kode->wil_kode,
-                'ssi_tglsetor' => $item->ssi_tglsetor,
-                'ssi_jmlsetor' => $item->ssi_jmlsetor,
-                //'ssi_jmlbunga' => $row->ssi_jmlbunga,
-                'ssi_tgl' => $item->ssi_tgl,
-                'ssi_flag' => $item->ssi_flag,
-                'ssi_info' => $item->ssi_info,
-                );
-                $n++;
-            }
-        }
-    }
+    	
+        $setoransimpanan = $this->Setoransimpanan_model->get_listsetoran($f,$t,$w,0);
     
         $data = array(
-            'datasetoran' => $datasetoran,
+            'setoransimpanan' => $setoransimpanan,
             'wilayah_data' => $wilayah,
             'q' => $q,
             'w' => $w,

@@ -23,7 +23,7 @@
         </div>
 	    <div class="form-group">
             <label for="datetime">Tanggal Setor <?php echo form_error('ssi_tglsetor') ?></label>
-            <input type="date" class="form-control" name="ssi_tglsetor" placeholder="Tanggal Setor" value="<?php echo $ssi_tglsetor; ?>" />
+            <input type="text" class="form-control date" name="ssi_tglsetor" placeholder="Tanggal Setor" value="<?php echo $ssi_tglsetor; ?>" />
         </div>
 	    <div class="form-group">
             <label for="float">Jumlah Setor <?php echo form_error('ssi_jmlsetor') ?></label>
