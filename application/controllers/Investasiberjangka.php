@@ -37,6 +37,9 @@ class Investasiberjangka extends MY_Base
 			case  6:
                 $this->listjasa($active);
                 break;
+			case  7:
+                $this->listpenarikan();
+                break;
                     
             default:
                 $this->pendaftaran();
@@ -394,6 +397,64 @@ class Investasiberjangka extends MY_Base
         $this->load->view(layout(), $data);
     }
 
+
+	public function listpenarikan(){
+		$q = urldecode($this->input->get('q', TRUE));
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+		
+        $start = intval($this->input->get('start'));
+        $satu =1;
+		
+        $penarikan = $this->Penarikaninvestasiberjangka_model->get_all();
+		$wilayah = $this->Wilayah_model->get_all();
+		
+        $datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+        
+		$listpenarikan = array();
+		
+        if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+        foreach($penarikan as $key=>$item){
+            $investasi = $this->db->get_where('investasiberjangka', array('ivb_kode' => $item->ivb_kode))->row();
+            $anggota = $this->db->get_where('anggota', array('ang_no' => $investasi->ang_no))->row();
+            $wil = $this->db->get_where('wilayah', array('wil_kode' => $investasi->wil_kode))->row();
+			
+			$day = date("d", strtotime($item->pib_tgl));
+			if($w == null || $w=='all' || $wil->wil_kode == $w){
+				$listpenarikan[$key] = array(
+					'ang_nama'=>$anggota->ang_nama,
+					'ang_alamat'=>$anggota->ang_alamat,
+					'ang_nohp'=>$anggota->ang_nohp,
+					'pib_id'=>$item->pib_id,
+					'ivb_kode'=>$item->ivb_kode,
+					'pib_penarikanke'=>$item->pib_penarikanke,
+					'pib_jmlkeuntungan'=>$item->pib_jmlkeuntungan,
+					'pib_jmlditerima'=>$item->pib_jmlditerima,
+					'pib_tgl'=>date("d-m-Y", strtotime($item->pib_tgl)),
+					'day'=>$day
+				);
+			}
+		}
+		//print_r($tglpenarikan);	
+			
+		$data = array(
+            'listpenarikan' => $listpenarikan,
+			'wilayah'=>$wilayah,
+            'q' => $q,
+            'w' => $w,
+            'f' => $f,
+            't' => $t,
+			//'p' => $active,
+            'start' => $start,
+            'active' => 7,
+            'content' => 'backend/investasiberjangka/investasiberjangka',
+            'item' =>'penarikan/penarikan_list.php'
+        );
+        $this->load->view(layout(), $data);
+	}
+	
 
     public function lookup()
     {
