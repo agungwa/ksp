@@ -647,18 +647,19 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 	// 			$bungaAngsuran += $value->ags_jmlbunga;
 	// 	}
 	// }
-	
-    	//hitung denda angsuran status bayar
-    	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+		
+    	//hitung denda angsuran bayar
+    	foreach ($angsuranbayarAll as $key => $value) {
+			$ags_id = $this->db->get_where('angsuran', array('ags_id' => $value->ags_id))->row();
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $ags_id->pin_id))->row();
 			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->ags_tgl));
+			$jt = date("Y-m-d", strtotime($value->agb_tgl));
 			//var_dump($value->ags_id);
-    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
-    				$dendaAngsuran += $value->ags_denda ;
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t  && $pin_id->wil_kode==$w))  {
+    				$dendaAngsuran += $value->agb_denda ;
     			}
 			} else {
-				$dendaAngsuran += $value->ags_denda;
+				$dendaAngsuran += $value->agb_denda;
 		}
 	}
 	

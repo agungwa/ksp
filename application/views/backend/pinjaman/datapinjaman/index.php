@@ -71,7 +71,7 @@
             </tr>
             <tr>
                 <td class="text-left">Saldo Kini</td>
-				<td class="text-center"><?= neraca($saldolalupinjaman+$saldodroppinjaman);?></td>
+				<td class="text-center"><?= neraca($saldolalupinjaman+$saldodroppinjaman+$saldolunaskini-$pokokangsuran-$pokokangsuranpelunasan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Bunga Angsuran</td>
