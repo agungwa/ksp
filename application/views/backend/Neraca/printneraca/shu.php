@@ -64,7 +64,7 @@ h5{text-align: center}
             <tbody>
             <tr>
                 <td width="150px">Jasa Pinjaman</td>
-				<td width="150px"><?= neraca($bungaangsuran + $bungadendapelunasan);?></td>
+				<td width="150px"><?= neraca($bungaangsuran + $bungadendapelunasan + $bungapelunasan);?></td>
                 <td width="150px">Administrasi</td>
 				<td width="150px"><?= neraca($provisipinjaman);?></td>
             </tr>
@@ -82,7 +82,7 @@ h5{text-align: center}
             </tr>
             <tr id="01">
                 <td>Jumlah</td>
-				<td><?= neraca($bungaangsuran + $bungadendapelunasan+$provisipinjaman+$dendaangsuran+$administrasi+$phbuku);?></td></td>
+				<td><?= neraca($bungaangsuran + $bungadendapelunasan + $bungapelunasan +$provisipinjaman+$dendaangsuran+$administrasi+$phbuku);?></td></td>
             </tr>
             </tbody>
             
@@ -280,7 +280,7 @@ h5{text-align: center}
                     <td style="width:200.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
                         <p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria; text-decoration:underline">Aryadi, A.Md</span></p>
+                            <span style="font-family:Cambria; text-decoration:underline">Aryadi, S.E</span></p>
                     </td>
                     <td style="width:200.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p

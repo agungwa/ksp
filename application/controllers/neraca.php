@@ -38,6 +38,7 @@ class Neraca extends MY_Base
 		//pinjaman
         $this->load->model('Pinjaman_model');
         $this->load->model('Angsuran_model');
+        $this->load->model('Angsuranbayar_model');
         $this->load->model('Pelunasan_model');
         $this->load->model('Potonganprovisi_model');
         $this->load->model('Wilayah_model');
@@ -531,6 +532,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 		$simpananPokok = $this->Simpananpokok_model->get_all();
 
 		//pinjaman
+    	$angsuranbayarAll = $this->Angsuranbayar_model->get_all();
     	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
     	$pinjamanNonaktif = $this->Pinjaman_model->get_pinjaman_nonaktif();
     	$angsuranBayar = $this->Angsuran_model->get_angsuran_bayar();
@@ -595,7 +597,8 @@ foreach ($pinjamanKhususaktif as $key => $value) {
     	$bungaAngsuran = 0;
     	$dendaAngsuran = 0;
     	$provisiPinjaman = 0;
-    	$bungaDendapelunasan = 0;
+		$bungaDendapelunasan = 0;
+		$bungaPelunasan = 0;
     	$totalAngsuran = 0;
 		$totalAngsurantunggakan = 0;
 		
@@ -609,19 +612,41 @@ foreach ($pinjamanKhususaktif as $key => $value) {
     	}
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 
+
+		
+
+		
     	//hitung bunga angsuran status bayar
-    	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
-    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
-    				$bungaAngsuran += $value->ags_jmlbunga ;
-    			}
+    	foreach ($angsuranbayarAll as $key => $value) {
+			$ags_id = $this->db->get_where('angsuran', array('ags_id' => $value->ags_id))->row();
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $ags_id->pin_id))->row();
+			
+			if ($f<>'' && $t<>'' && $w<>'') {
+			$jt = date("Y-m-d", strtotime($value->agb_tgl));
+			//var_dump($value->ags_tgl);
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
+					$bungaAngsuran += $value->agb_bunga ;
+				}
+				
+		//var_dump($value->ags_jmlbunga);
 			} else {
-				$bungaAngsuran += $value->ags_jmlbunga;
+				$bungaAngsuran += $value->agb_bunga;
+				
 		}
 	}
+    // 	//hitung bunga angsuran status bayar
+    // 	foreach ($angsuranBayar as $key => $value) {
+	// 		$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+	// 		if ($f<>'' && $t<>'' && $w<>'') {	
+	// 		$tgl = date("Y-m-d", strtotime($value->ags_tgl));
+	// 		//var_dump($value->ags_id);
+    // 			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
+    // 				$bungaAngsuran += $value->ags_jmlbunga ;
+    // 			}
+	// 		} else {
+	// 			$bungaAngsuran += $value->ags_jmlbunga;
+	// 	}
+	// }
 	
     	//hitung denda angsuran status bayar
     	foreach ($angsuranBayar as $key => $value) {
@@ -653,19 +678,22 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 		}
 	}
 
+	
 		   	//hitung saldo bunga denda pelunasan
-    	foreach ($pelunasanPinjaman as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->pel_tglpelunasan));
-			//var_dump($value->ags_id);
-    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
-    				$bungaDendapelunasan += $value->pel_bungatambahan ;
-    			}
-			} else {
-				$bungaDendapelunasan += $value->pel_bungatambahan;
+			   foreach ($pelunasanPinjaman as $key => $value) {
+				$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+				if ($f<>'' && $t<>'' && $w<>'') {	
+				$jt = date("Y-m-d", strtotime($value->pel_tglpelunasan));
+				//var_dump($value->ags_id);
+					if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
+						$bungaDendapelunasan += $value->pel_bungatambahan ;
+						$bungaPelunasan += $value->pel_totalbungapokok;
+					}
+				} else {
+					$bungaPelunasan += $value->pel_totalbungapokok;
+					$bungaDendapelunasan += $value->pel_bungatambahan;
+			}
 		}
-	}
 	
 		//hitung Total saldo angsuran pokok dari angsuran jumlah bayar
     	foreach ($angsuranTotal as $key => $value) {
@@ -900,6 +928,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			'pokokangsuranpelunasan' => $pokokAngsuranpelunasan,
 			'bungaangsuran' => $bungaAngsuran,
 			'bungadendapelunasan' => $bungaDendapelunasan,
+			'bungapelunasan' => $bungaPelunasan,
 			'dendaangsuran' => $dendaAngsuran,
 			'provisipinjaman' => $provisiPinjaman,
 			'totalangsuran' => $totalAngsuran,

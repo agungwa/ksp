@@ -214,10 +214,6 @@ class Datapinjaman extends MY_Base
 				if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t  && $pin_id->wil_kode==$w))  {
 					$bungaAngsurankurang += $value->ags_jmlbunga ;
 				}
-				//var_dump($value->ags_tgl);
-				//var_dump($jt);
-				//var_dump($f);
-				//var_dump($t);
 			} else {
 				$bungaAngsurankurang += $value->ags_jmlbunga;
 		}

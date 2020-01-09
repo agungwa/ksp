@@ -217,7 +217,7 @@ h5{text-align: center}
                     <td style="width:200.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
                         <p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria; text-decoration:underline">Silvia Indah Lestari</span></p>
+                            <span style="font-family:Cambria; text-decoration:underline">Audia Khaqqi, S.E</span></p>
                     </td>
                     <td style="width:200.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p
@@ -337,7 +337,7 @@ h5{text-align: center}
                     <td style="width:200.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
                         <p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria ; text-decoration:underline">Aryadi, A.Md</span></p>
+                            <span style="font-family:Cambria ; text-decoration:underline">Aryadi, S.E</span></p>
                     </td>
                     <td style="width:200.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
                         <p
