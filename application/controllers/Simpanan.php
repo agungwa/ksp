@@ -320,7 +320,7 @@ class Simpanan extends MY_Base
         
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
     	
-        $setoransimpanan = $this->Setoransimpanan_model->get_listsetoran($f,$t,$w,0);
+        $setoransimpanan = $this->Setoransimpanan_model->get_listsetoran($f,$t,$w,2);
     
         $data = array(
             'setoransimpanan' => $setoransimpanan,

@@ -60,9 +60,9 @@ class Setoransimpanan_model extends CI_Model
 	function get_sirkulasi_simpanan($f,$t,$w,$s){
         $this->db->join('simpanan', 'simpanan.sim_kode = setoransimpanan.sim_kode', 'right');
         if ($w == 'all' OR $w == ''){
-            $where = "sim_status = $s AND sim_flag < 2";
+            $where = "sim_status < $s AND sim_flag < 2";
          } else {
-            $where = "wil_kode = $w AND sim_status = $s AND sim_flag < 2";
+            $where = "wil_kode = $w AND sim_status < $s AND sim_flag < 2";
         }
         $this->db->where($where);
         if ($f != NULL) {
@@ -97,9 +97,9 @@ class Setoransimpanan_model extends CI_Model
 	function get_listsetoran($f,$t,$w,$s){
         $this->db->join('simpanan', 'simpanan.sim_kode = setoransimpanan.sim_kode', 'right');
         if ($w == 'all' OR $w == ''){
-            $where = "sim_status = $s AND sim_flag < 2";
+            $where = "sim_status < $s AND sim_flag < 2";
          } else {
-            $where = "wil_kode = $w AND sim_status = $s AND sim_flag < 2";
+            $where = "wil_kode = $w AND sim_status < $s AND sim_flag < 2";
         }
         $this->db->where($where);
         if ($f != NULL) {

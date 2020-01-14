@@ -34,16 +34,16 @@ class Setoransimkesan_model extends CI_Model
     // get group by
     function get_group_bysikkode($start = 0, $q = NULL)
     {
-        $this->db->order_by($this->id, $this->ssk_tglsetoran);
+        $this->db->select('* , max(ssk_tglsetoran) AS tanggal');
         $where = "ssk_flag < 2 ";
         $this->db->where($where);
+        $this->db->group_by($this->sik_kode);
         
         //$this->db->select_max($this->id);
          //->from('setoransimkesan')
          //->group_by($this->sik_kode);
         //$this->db->select_max($this->id);
         //$query = $this->db->get('setoransimkesan' );
-        $this->db->group_by($this->sik_kode);
         return $this->db->get($this->table)->result();
     }
 

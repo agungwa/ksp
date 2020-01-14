@@ -170,11 +170,10 @@
             <tr>
                 <th class="text-center">No</th>
         		<th class="text-center">Tanggal Setoran</th>
-        		<th class="text-center">Tanggal Bayar</th>
+        		<th class="text-center">Tanggal input</th>
         		<th class="text-center">Jumlah Setor</th>
         		<th class="text-center">Total Setor</th>
         		<th class="text-center">Kekurangan Setor</th>
-        		<th class="text-center">Tanggal</th>
             </tr>
             </thead>
 			<tbody><?php
@@ -187,12 +186,11 @@
                 ?>
                 <tr>
     			<td width="80px"><?php echo $no ?></td>
-    			<td><?php echo $setoran->ssk_tglsetoran ?></td>
-    			<td><?php echo $setoran->ssk_tglbayar ?></td>
+    			<td><?php echo dateFormataja($setoran->ssk_tglsetoran) ?></td>
+    			<td><?php echo dateFormataja($setoran->ssk_tglbayar) ?></td>
     			<td><?php echo $setoran->ssk_jmlsetor ?></td>
     			<td><?php echo $totalsetor ?></td>
     			<td><?php echo $kekurangan ?></td>
-    			<td><?php echo dateFormat($setoran->ssk_tgl) ?></td>
 		</tr>
         
                 <?php
