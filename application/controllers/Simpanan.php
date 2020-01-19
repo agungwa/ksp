@@ -13,6 +13,7 @@ class Simpanan extends MY_Base
         $this->load->model('Wilayah_model');
         $this->load->model('Setoransimpanan_model');
         $this->load->model('Penarikansimpanan_model');
+        $this->load->model('Simpananpokok_model');
         $this->load->model('Pengkodean');
         $this->load->library('form_validation');
     }
@@ -48,6 +49,9 @@ class Simpanan extends MY_Base
 			case  9:
                 $this->listpenarikan();
                 break;
+			case  10:
+                $this->listsimpananpokok();
+                break;
                     
             default:
                 $this->setupsimpanan();
@@ -55,6 +59,111 @@ class Simpanan extends MY_Base
         }
     } 
 
+	public function listsimpananpokok(){
+        $f = urldecode($this->input->get('f', TRUE));
+        $t = urldecode($this->input->get('t', TRUE));
+		
+        $SATU = 1;
+		
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $dateyesterday = date("Y-m-d", strtotime($datetoday.' - '.$SATU.' Months'));
+		if ($f == null && $t == null ){$f=$dateyesterday; $t=$datetoday;}
+		
+        $datasimpananpokok = array();
+		$simpananpokok = $this->Simpananpokok_model->get_all();
+        
+		foreach($simpananpokok as $key=>$item){
+			$ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
+			$set_sp = $this->db->get_where('settingsimpanan', array('ses_id' => $item->ses_id))->row();
+			
+			$tgl_bayar = date("Y-m-d", strtotime($item->sip_tglbayar));
+			
+			if($tgl_bayar >= $f && $tgl_bayar <= $t){
+				$datasimpananpokok[$key] = array(
+					'ang_no'=>$ang_no->ang_no,
+					'ang_nama'=>$ang_no->ang_nama,
+					'ses_nama'=>$set_sp->ses_nama,
+					'sip_id'=>$item->sip_id,
+					'sip_setoran'=>$item->sip_setoran,
+					'sip_tglbayar'=>date("d-m-Y", strtotime($item->sip_tglbayar)),
+				);
+			}
+		}
+		//echo $datetoday."<br>";
+		//echo $dateyesterday;
+		//print_r($datasimpananpokok);
+		$data = array(
+			'datasimpananpokok'=>$datasimpananpokok,
+			'content' => 'backend/simpanan/simpanan',
+			'item'=> 'simpananpokok/simpananpokok_list.php',
+			'active' => 10,
+			'f'=>$f,
+			't'=>$t
+		);
+		$this->load->view(layout(), $data);
+	}
+	
+	public function simpananpokok_read($id){
+		$simpananpokok = $this->Simpananpokok_model->get_by_id($id);
+        
+		$ang_no = $this->db->get_where('anggota', array('ang_no' => $simpananpokok->ang_no))->row();
+		$set_sp = $this->db->get_where('settingsimpanan', array('ses_id' => $simpananpokok->ses_id))->row();
+		
+		$data = array(
+			'ang_no'=>$ang_no->ang_no,
+			'ang_nama'=>$ang_no->ang_nama,
+			'ses_nama'=>$set_sp->ses_nama,
+			'sip_id'=>$simpananpokok->sip_id,
+			'sip_setoran'=>$simpananpokok->sip_setoran,
+			'sip_tglbayar'=>date("d-m-Y", strtotime($simpananpokok->sip_tglbayar)),
+			'active'=>10,
+			'content' => 'backend/simpanan/simpanan',
+			'item'=> 'simpananpokok/simpananpokok_read.php',
+		);
+		//print_r($datasimpananpokok);
+		$this->load->view(layout(), $data);
+	}
+	
+	public function simpananpokok_update($id){
+		$simpananpokok = $this->Simpananpokok_model->get_by_id($id);
+        
+		$ang_no = $this->db->get_where('anggota', array('ang_no' => $simpananpokok->ang_no))->row();
+		$set_sp = $this->db->get_where('settingsimpanan', array('ses_id' => $simpananpokok->ses_id))->row();
+		
+		$data = array(
+			'ang_no'=>$ang_no->ang_no,
+			'ang_nama'=>$ang_no->ang_nama,
+			'ses_nama'=>$set_sp->ses_nama,
+			'sip_id'=>$simpananpokok->sip_id,
+			'sip_setoran'=>$simpananpokok->sip_setoran,
+			'sip_tglbayar'=>date("d-m-Y", strtotime($simpananpokok->sip_tglbayar)),
+			'active'=>10,
+			'button'=>'Update',
+			'action'=>'simpanan/simpananpokok_updateaction',
+			'content' => 'backend/simpanan/simpanan',
+			'item'=> 'simpananpokok/simpananpokok_form.php',
+		);
+		//print_r($datasimpananpokok);
+		$this->load->view(layout(), $data);
+	}
+	
+	public function simpananpokok_updateaction(){
+		$sip_id=$this->input->post('sip_id');
+		
+		$data=array(
+			'sip_setoran'=>$this->input->post('sip_setoran'),
+			'sip_tglbayar'=>date("Y-m-d", strtotime($this->input->post('sip_tglbayar'))),
+			'sip_flag'=>'1'
+		);
+		$this->Simpananpokok_model->update($sip_id, $data);
+		redirect('simpanan/listsimpananpokok');
+	}
+	
+	public function simpananpokok_delete($id){
+		$this->Simpananpokok_model->delete($id);
+		redirect('simpanan/listsimpananpokok');
+	}
+   
    public function setupsimpanan(){
         $data = array(
         'content' => 'backend/simpanan/simpanan',
