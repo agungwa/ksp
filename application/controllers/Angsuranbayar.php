@@ -12,18 +12,46 @@ class Angsuranbayar extends MY_Base
         $this->load->library('form_validation');
     }
 
-    public function index()
-    {
-        $q = urldecode($this->input->get('q', TRUE));
-        $start = intval($this->input->get('start'));
+    public function index(){
+        $f = urldecode($this->input->get('f', TRUE));
+        $t = urldecode($this->input->get('t', TRUE));
+		
+		$SATU = 1;
+		
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $dateyesterday = date("Y-m-d", strtotime($datetoday.' - '.$SATU.' Months'));
+		if ($f == null && $t == null ){$f=$dateyesterday; $t=$datetoday;}
         
-        $angsuranbayar = $this->Angsuranbayar_model->get_limit_data($start, $q);
-
-
+		$agbdata = array();
+        $agb = $this->Angsuranbayar_model->get_all();
+		foreach($agb as $key=>$item){
+			$angsuran = $this->db->get_where('angsuran', array('ags_id'=> $item->ags_id))->row();
+			$pinjaman = $this->db->get_where('pinjaman', array('pin_id'=> $angsuran->pin_id))->row();
+			$anggota  = $this->db->get_where('anggota', array('ang_no'=> $pinjaman->ang_no))->row();
+			
+			$agb_tgl = date('Y-m-d', strtotime($item->agb_tgl));
+			
+			if($agb_tgl >= $f && $agb_tgl <= $t){
+				$agbdata[$key] = array(
+					'ags_id'=>$item->ags_id,
+					'agb_id'=>$item->agb_id,
+					'agb_pokok'=>$item->agb_pokok,
+					'agb_bunga'=>$item->agb_bunga,
+					'agb_denda'=>$item->agb_denda,
+					'agb_status'=>$this->statusAngsuran[$item->agb_status],
+					'agb_tglpokok'=>$item->agb_tglpokok,
+					'agb_tglbunga'=>$item->agb_tglbunga,
+					'agb_tgldenda'=>$item->agb_tgldenda,
+					'agb_tgl'=>$item->agb_tgl,
+					'ang_nama'=>$anggota->ang_nama,
+					'ang_alamat'=>$anggota->ang_alamat
+				);
+			}
+		}
         $data = array(
-            'angsuranbayar_data' => $angsuranbayar,
-            'q' => $q,
-            'start' => $start,
+            'angsuranbayar_data' => $agbdata,
+			'f'=>$f,
+			't'=>$t,
             'content' => 'backend/angsuranbayar/angsuranbayar_list',
         );
         $this->load->view(layout(), $data);
@@ -59,30 +87,41 @@ class Angsuranbayar extends MY_Base
         ob_end_clean();
     }
 
-    public function read($id) 
-    {
-        $row = $this->Angsuranbayar_model->get_by_id($id);
-        if ($row) {
-            $data = array(
-		'agb_id' => $row->agb_id,
-		'ags_id' => $row->ags_id,
-		'agb_pokok' => $row->agb_pokok,
-		'agb_bunga' => $row->agb_bunga,
-		'agb_denda' => $row->agb_denda,
-		'agb_status' => $row->agb_status,
-		'agb_tglpokok' => $row->agb_tglpokok,
-		'agb_tglbunga' => $row->agb_tglbunga,
-		'agb_tgllunas' => $row->agb_tgllunas,
-		'agb_tgl' => $row->agb_tgl,
-		'agb_flag' => $row->agb_flag,
-		'agb_info' => $row->agb_info,'content' => 'backend/angsuranbayar/angsuranbayar_read',
-	    );
-            $this->load->view(
-            layout(), $data);
-        } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('angsuranbayar'));
-        }
+    public function read($id){
+        $f = urldecode($this->input->get('f', TRUE));
+        $t = urldecode($this->input->get('t', TRUE));
+		
+		$SATU = 1;
+		
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $dateyesterday = date("Y-m-d", strtotime($datetoday.' - '.$SATU.' Months'));
+		if ($f == null && $t == null ){$f=$dateyesterday; $t=$datetoday;}
+        
+        $agb = $this->Angsuranbayar_model->get_by_id($id);
+		$angsuran = $this->db->get_where('angsuran', array('ags_id'=> $agb->ags_id))->row();
+		$pinjaman = $this->db->get_where('pinjaman', array('pin_id'=> $angsuran->pin_id))->row();
+		$anggota  = $this->db->get_where('anggota', array('ang_no'=> $pinjaman->ang_no))->row();
+			
+		$agbdata = array(
+			'ags_id'=>$agb->ags_id,
+			'agb_id'=>$agb->agb_id,
+			'agb_pokok'=>$agb->agb_pokok,
+			'agb_bunga'=>$agb->agb_bunga,
+			'agb_denda'=>$agb->agb_denda,
+			'agb_status'=>$this->statusAngsuran[$agb->agb_status],
+			'agb_tglpokok'=>$agb->agb_tglpokok,
+			'agb_tglbunga'=>$agb->agb_tglbunga,
+			'agb_tgldenda'=>$agb->agb_tgldenda,
+			'agb_tgllunas'=>$agb->agb_tgllunas,
+			'agb_tgl'=>$agb->agb_tgl,
+			'ang_nama'=>$anggota->ang_nama,
+			'ang_alamat'=>$anggota->ang_alamat,
+		
+			'f'=>$f,
+			't'=>$t,
+            'content' => 'backend/angsuranbayar/angsuranbayar_read',
+        );
+        $this->load->view(layout(), $agbdata);
     }
 
     public function create() 
@@ -139,17 +178,17 @@ class Angsuranbayar extends MY_Base
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('angsuranbayar/update_action'),
-		'agb_id' => set_value('agb_id', $row->agb_id),
-		'ags_id' => set_value('ags_id', $row->ags_id),
-		'agb_pokok' => set_value('agb_pokok', $row->agb_pokok),
-		'agb_bunga' => set_value('agb_bunga', $row->agb_bunga),
-		'agb_denda' => set_value('agb_denda', $row->agb_denda),
-		'agb_status' => set_value('agb_status', $row->agb_status),
-		'agb_tglpokok' => set_value('agb_tglpokok', $row->agb_tglpokok),
-		'agb_tglbunga' => set_value('agb_tglbunga', $row->agb_tglbunga),
-		'agb_tgllunas' => set_value('agb_tgllunas', $row->agb_tgllunas),
-	    'content' => 'backend/angsuranbayar/angsuranbayar_form',
-	    );
+				'agb_id' => set_value('agb_id', $row->agb_id),
+				'ags_id' => set_value('ags_id', $row->ags_id),
+				'agb_pokok' => set_value('agb_pokok', $row->agb_pokok),
+				'agb_bunga' => set_value('agb_bunga', $row->agb_bunga),
+				'agb_denda' => set_value('agb_denda', $row->agb_denda),
+				'agb_status' => set_value('agb_status', $row->agb_status),
+				'agb_tglpokok' => set_value('agb_tglpokok', $row->agb_tglpokok),
+				'agb_tglbunga' => set_value('agb_tglbunga', $row->agb_tglbunga),
+				'agb_tgllunas' => set_value('agb_tgllunas', $row->agb_tgllunas),
+				'content' => 'backend/angsuranbayar/angsuranbayar_form',
+			);
             $this->load->view(layout(), $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
