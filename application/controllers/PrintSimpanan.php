@@ -108,39 +108,25 @@ class Printsimpanan extends MY_Base
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
         
-        $setoransimpanan = $this->Setoransimpanan_model->get_limit_data($start, $q, $f, $t);
-
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
         $wilayah = $this->Wilayah_model->get_all();
-        $datasetoran = array();
-        foreach ($setoransimpanan as $key=>$item) {
-            $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
-            //$wil_kode = $sim_kode->wil_kode;
-            $tanggalDuedate = $item->ssi_tglsetor;
-            $f = date("Y-m-d", strtotime($f));
-            $t = date("Y-m-d", strtotime($t));
-
-            if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sim_kode->wil_kode == $w)) {
-                $datasetoran[$key] = array('ssi_id' => $item->ssi_id,
-                'sim_kode' => $item->sim_kode,
-                'wil_kode' => $sim_kode->wil_kode,
-                'ssi_tglsetor' => $item->ssi_tglsetor,
-                'ssi_jmlsetor' => $item->ssi_jmlsetor,
-                //'ssi_jmlbunga' => $row->ssi_jmlbunga,
-                'ssi_tgl' => $item->ssi_tgl,
-                'ssi_flag' => $item->ssi_flag,
-                'ssi_info' => $item->ssi_info,
-                );
-            }
-        }
+        
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+    	
+        $setoransimpanan = $this->Setoransimpanan_model->get_listsetoran($f,$t,$w,0);
+    
         $data = array(
-            'datasetoran' => $datasetoran,
-            'setoransimpanan_data' => $setoransimpanan,
+            'setoransimpanan' => $setoransimpanan,
             'wilayah_data' => $wilayah,
             'q' => $q,
             'w' => $w,
             'f' => $f,
             't' => $t,
-            'start' => $start,
+            'active' => 6,
+            'content' => 'backend/simpanan/simpanan',
+            'item' => 'setoransimpanan_list.php',
         );
         //var_dump($data);
         $mpdf = new \Mpdf\Mpdf();

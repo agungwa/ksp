@@ -20,20 +20,20 @@
 		<th class="text-center">Jumlah Setor</th>
             </tr>
         <tbody><?php
-        $total=0;
-            foreach ($datasetoran as $key => $item)
+        $total=$no=0;
+            foreach ($setoransimpanan as $key => $item)
             {
-                $total += $item['ssi_jmlsetor'];
-                $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item['sim_kode']))->row();
+                $total += $item->ssi_jmlsetor;
+                $sim_kode = $this->db->get_where('simpanan', array('sim_kode' => $item->sim_kode))->row();
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $sim_kode->ang_no))->row();
                 ?>
                 <tr>
-			<td width="20px"><?php echo ++$start ?></td>
-			<td><?php echo $item['sim_kode'] ?></td>
-			<td width="250px"><?php echo $ang_no->ang_nama ?></td>
-			<td><?php echo dateFormataja($item['ssi_tglsetor']) ?></td>
-			<td><?php echo rupiahsimpanan($item['ssi_jmlsetor']) ?></td>
-		</tr>
+					<td width="20px"><?php echo ++$no ?></td>
+					<td><?php echo $item->sim_kode ?></td>
+					<td width="250px"><?php echo $ang_no->ang_nama ?></td>
+					<td><?php echo dateFormataja($item->ssi_tglsetor) ?></td>
+					<td><?php echo rupiahsimpanan($item->ssi_jmlsetor) ?></td>
+				</tr>
                 
                 <?php
             }
