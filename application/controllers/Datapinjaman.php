@@ -32,6 +32,7 @@ class Datapinjaman extends MY_Base
         $wilayah = $this->Wilayah_model->get_all();
         $provisi = $this->Potonganprovisi_model->get_by_id(1);		
 
+		$dendaPelunasan = 0;
 		$bungaPelunasan = 0;
 		$totalRekening = 0;
 		$saldolunaskini = 0;
@@ -243,9 +244,11 @@ class Datapinjaman extends MY_Base
     			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
 					$bungaDendapelunasan += $value->pel_bungatambahan ;
 					$bungaPelunasan += $value->pel_totalbungapokok;
+					$dendaPelunasan += $value->pel_totaldenda;
     			}
 			} else {
 				$bungaPelunasan += $value->pel_totalbungapokok;
+				$dendaPelunasan += $value->pel_totaldenda;
 				$bungaDendapelunasan += $value->pel_bungatambahan;
 		}
 	}
@@ -387,6 +390,7 @@ foreach ($pinjamanNonaktif as $key => $value) {
 
 		$data = array(
 			
+			'dendapelunasan' => $dendaPelunasan,
 			'bungapelunasan' => $bungaPelunasan,
 			'totalrekening' => $totalRekening,
 			'totalrekeningmasuk' => $totalrekeningMasuk,

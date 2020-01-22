@@ -122,7 +122,7 @@
 						<?php
 					}
 					?>
-
+					<tr><td>Tanggal</td><td><input required type="date" class="form-control" name="agb_tgl" id="agb_tgl" />
 					<tr><td>Status</td><td><?php echo $this->statusAngsuran[$angsuran['ags_status']]; ?></td></tr>
 					
 					<input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $angsuran['pin_id']; ?>" required="required" />

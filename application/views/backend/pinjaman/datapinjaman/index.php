@@ -75,12 +75,12 @@
             </tr>
             <tr>
                 <td class="text-left">Bunga Angsuran</td>
-				<td class="text-center"><?= rupiah($bungaangsuran + $bungadendapelunasan + $bungapelunasan);?></td>
-				<!--<td class="text-center"><?php echo 'bunga angsuran = ', $bungaangsuran, ' ,  bunga pelunasan = ', $bungadendapelunasan, ' ,  bunga kurang = ', $bungaangsurankurang;?></td>-->
+				<td class="text-center"><?= rupiah($bungaangsuran + $bungapelunasan);?></td>
+				<!--<td class="text-center"><?php echo 'bunga angsuran = ', $bungaangsuran, ' ,  bunga pelunasan = ', $bungadendapelunasan, ' ,  bunga kurang = ', $bungapelunasan;?></td>-->
             </tr>
             <tr>
                 <td class="text-left">Denda Angsuran</td>
-				<td class="text-center"><?= neraca($dendaangsuran);?></td>
+				<td class="text-center"><?= neraca($dendaangsuran + $dendapelunasan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Administrasi</td>

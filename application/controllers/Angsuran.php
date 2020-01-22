@@ -327,7 +327,7 @@ class Angsuran extends MY_Base
        $dataAngsuran = array(
            'pin_id' => $this->input->post('pin_id',TRUE),
            'ags_tglbayar' =>  $ags_tglbayar,
-           'ags_tgl' => $this->tgl,
+           'ags_tgl' => $this->input->post('agb_tgl',TRUE),
            'ags_jmlbayar' => $z,
            'ags_status' => $status,
            );
@@ -344,7 +344,7 @@ class Angsuran extends MY_Base
                 'agb_tgldenda' => $tgldenda,
                 'agb_status' => $status,
                 'agb_tgllunas' => $tglstatus,
-                'agb_tgl' => $this->tgl,
+                'agb_tgl' => $this->input->post('agb_tgl',TRUE),
                 'agb_flag' => 0,
                 'agb_info' => "",
                 );
