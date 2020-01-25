@@ -43,8 +43,6 @@
         <th class="text-center">Jumlah Bayar</th>
         <th class="text-center">Kurang Setor</th>
         <th class="text-center">Denda</th>
-        <th class="text-center">Bayar Tunggakan</th>
-        <th class="text-center">Kekurangan Tunggakan</th>
         <th class="text-center">Total Denda</th>
         <th class="text-center">Status</th>
     </tr>
@@ -100,15 +98,14 @@
             <td><?php echo rupiah($item->ags_jmlbayar) ?></td>
             <td><?php echo rupiah($kurangsetor) ?></td>
             <td><?php echo rupiah($denda) ?></td>
-            <td><?php echo rupiah($item->ags_bayartunggakan)?></td>
-            <td class='danger'><?php echo rupiah($totalkekurangan) ?></td>
             <td><?php echo rupiah($totaldenda) ?></td>
-            <td><?php 
+            <td><?php echo $this->statusAngsuran[$item->ags_status]; ?></td>
+            <!-- <td><?php 
             if ($totalkekurangan > 0 && $denda > 0 && $this->tgl > $item->ags_tgljatuhtempo){
                 echo anchor(site_url('angsuran/denda/'.$item->ags_id),'Bayar','class="text-navy"');
             } else {
             echo $this->statusAngsuran[$item->ags_status];
-            } ?></td>
+            } ?></td> -->
             
                 </tr>
                 
@@ -151,11 +148,11 @@
                 <tr><td>Pokok/Bulan</td><td><?php echo rupiah($item->ags_jmlpokok)?><input type="hidden" class="form-control" name="pel_angsuran" id="pel_angsuran" placeholder="<?php echo ceiling($item->ags_jmlpokok,1000); ?>" value="<?php echo ceiling($item->ags_jmlpokok,1000); ?>" readonly/></td></tr>
                 <tr><td>Bunga/Bulan</td><td><?php echo rupiah($item->ags_jmlbunga)?><input type="hidden" class="form-control" name="pel_bungaangsuran" id="pel_bungaangsuran" placeholder="<?php echo ceiling($item->ags_jmlbunga,1000); ?>" value="<?php echo ceiling($item->ags_jmlbunga,1000); ?>" readonly/></td></tr>
                 <tr><td>Pokok Bayar</td><td><?php echo rupiah($hitungtotalangsuran[0]->agb_pokok)?><input type="hidden" class="form-control" name="pel_pokoksudahbayar" id="pel_pokoksudahbayar" placeholder="<?php echo ceiling($hitungtotalangsuran[0]->agb_pokok,1000); ?>" value="<?php echo ceiling($hitungtotalangsuran[0]->agb_pokok,1000); ?>" readonly/></td></tr>
-                <tr><td>Total Kurang Pokok</td><td><?php echo rupiah(($pinjaman['sea_id']*$item->ags_jmlpokok) - $hitungtotalangsuran[0]->agb_pokok)?><input type="hidden" class="form-control" name="pel_totalkekuranganpokok" id="pel_totalkekuranganpokok" placeholder="<?php echo ceiling(($pinjaman['sea_id']*$item->ags_jmlpokok) - $hitungtotalangsuran[0]->agb_pokok,1000); ?>" value="<?php echo ceiling(($pinjaman['sea_id']*$item->ags_jmlpokok) - $hitungtotalangsuran[0]->agb_pokok,1000); ?>" readonly/></td></tr>
-                <tr><td>Total Kurang Bunga</td><td><?php echo rupiah(($pinjaman['sea_id']*$item->ags_jmlbunga) - $hitungtotalangsuran[0]->agb_bunga)?><input type="hidden" class="form-control" name="pel_totalbungapokok" id="pel_totalbungapokok" placeholder="<?php echo ceiling(($pinjaman['sea_id']*$item->ags_jmlbunga) - $hitungtotalangsuran[0]->agb_bunga,1000); ?>" value="<?php echo ceiling(($pinjaman['sea_id']*$item->ags_jmlbunga) - $hitungtotalangsuran[0]->agb_bunga,1000); ?>" readonly/></td></tr>
-                <tr><td>Bunga Pelunasan</td><td><?php echo rupiah($item->ags_jmlbunga)?><input type="hidden" class="form-control" name="pel_bungatambahan" id="pel_bungatambahan" placeholder="<?php echo ceiling($item->ags_jmlbunga); ?>" value="<?php echo ceiling($item->ags_jmlbunga,1000); ?>" readonly/></td></tr>
+                <tr><td>Total Kurang Pokok</td><td><?php echo rupiah(($pinjaman['sea_id']*ceiling($item->ags_jmlpokok,1000)) - $hitungtotalangsuran[0]->agb_pokok)?><input type="hidden" class="form-control" name="pel_totalkekuranganpokok" id="pel_totalkekuranganpokok" value="<?php echo ($pinjaman['sea_id']*ceiling($item->ags_jmlpokok,1000)) - $hitungtotalangsuran[0]->agb_pokok; ?>" readonly/></td></tr>
+                <tr><td>Total Kurang Bunga</td><td><?php echo rupiah(($pinjaman['sea_id']*ceiling($item->ags_jmlbunga,1000)) - $hitungtotalangsuran[0]->agb_bunga)?><input type="hidden" class="form-control" name="pel_totalbungapokok" id="pel_totalbungapokok" value="<?php echo ($pinjaman['sea_id']*ceiling($item->ags_jmlbunga,1000)) - $hitungtotalangsuran[0]->agb_bunga; ?>" readonly/></td></tr>
+                <input type="hidden" class="form-control" name="pel_bungatambahan" id="pel_bungatambahan" value="<?php echo 0; ?>" readonly/></td></tr>
                 <tr><td>Biaya Penarikan</td><td><input type="text" class="form-control" name="pel_biayapenarikan" id="pel_biayapenarikan" placeholder="Biaya Penarikan" value=""/></td></tr>
-                <tr><td>Total Denda</td><td><input type="number" class="form-control" name="pel_totaldenda" id="pel_totaldenda" placeholder="<?php echo ceiling($totaldenda-$hitungtotalangsuran[0]->agb_pokok,1000); ?>" value="<?php echo ceiling($totaldenda,1000); ?>"/></td></tr>
+                <tr><td>Total Denda</td><td><input type="number" class="form-control" name="pel_totaldenda" id="pel_totaldenda" placeholder="<?php echo ceiling($totaldenda-$hitungtotalangsuran[0]->agb_denda,1000); ?>" value="<?php echo ceiling($totaldenda-$hitungtotalangsuran[0]->agb_denda,1000); ?>"/></td></tr>
                 <tr><td>Tanggal Pelunasan</td><td><?php echo dateFormat($this->tgl); ?></td></tr>
                 <tr><td>Marketing</td><td><?php echo $pinjaman['pin_marketing']; ?></td></tr>
                 <tr><td>Surveyor</td><td><?php echo $pinjaman['pin_surveyor']; ?></td></tr>

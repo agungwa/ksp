@@ -46,7 +46,7 @@ class Pelunasan extends MY_Base
         $q = urldecode($this->input->get('q', TRUE));
         $pinjaman = null;
         
-        $datenow = date('n'); //var_dump($datenow);
+        $datenow = date('my');
         $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
         $angsuranbelum = $this->Angsuran_model->get_angsuran_belum($q);
         $angsuransudah = $this->Angsuran_model->get_angsuran_bayarpin($q);
@@ -98,7 +98,7 @@ class Pelunasan extends MY_Base
             'angsuransudah' => $angsuransudah,
             'datatglsekarang' => $datatglsekarang,
             'jenispelunasan' => $jenispelunasan,
-            'settingdenda_data' => $settingdenda,
+            'settingdenda' => $settingdenda,
             'histori' => $historiAngsuran,
             'q' => $q,
             'pinjaman' => $pinjaman,
@@ -140,7 +140,7 @@ class Pelunasan extends MY_Base
     public function biasa(){
         $q = urldecode($this->input->get('q', TRUE));
         $pinjaman = null;
-        $datenow = date('n'); 
+        $datenow = date('my');
         $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
         $pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktifcari($q);
         $historiAngsuran = array();
@@ -187,7 +187,7 @@ class Pelunasan extends MY_Base
             'pinjamanaktif' => $pinjamanAktif,
             'datatglsekarang' => $datatglsekarang,
             'jenispelunasan' => $jenispelunasan,
-            'settingdenda_data' => $settingdenda,
+            'settingdenda' => $settingdenda,
             'histori' => $historiAngsuran,
             'q' => $q,
             'pinjaman' => $pinjaman,
@@ -202,7 +202,7 @@ class Pelunasan extends MY_Base
     public function macet(){
         $q = urldecode($this->input->get('q', TRUE));
         $pinjaman = null;
-        $datenow = date('n'); //var_dump($datenow);
+        $datenow = date('my');
         $datatglsekarang = $this->Angsuran_model->get_by_tgl($q,$datenow);
         $jenispelunasan = $this->Jenispelunasan_model->get_by_id(3);
         $pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktifcari($q);
@@ -249,7 +249,7 @@ class Pelunasan extends MY_Base
             'pinjamanaktif' => $pinjamanAktif,
             'datatglsekarang' => $datatglsekarang,
             'jenispelunasan' => $jenispelunasan,
-            'settingdenda_data' => $settingdenda,
+            'settingdenda' => $settingdenda,
             'histori' => $historiAngsuran,
             'q' => $q,
             'pinjaman' => $pinjaman,

@@ -109,7 +109,7 @@ class Angsuran_model extends CI_Model
     // get data by id
     function get_by_tgl($p, $tgl)
     {
-        $where = "pin_id = '$p' AND MONTH(ags_tgljatuhtempo) = $tgl AND ags_flag < 2";
+        $where = "pin_id = '$p' AND DATE_FORMAT(ags_tgljatuhtempo,'%m%y') = $tgl AND ags_flag < 2";
         $this->db->where($where);
         return $this->db->get($this->table)->row();
     }
