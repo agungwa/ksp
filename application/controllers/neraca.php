@@ -106,6 +106,7 @@ class Neraca extends MY_Base
 		$modalPenyertaan = 0;
 		$simpananCdr = 0;
 		$donasi = 0;
+		$phuPenyusutan = 0;
 		
 		//investasi
 		$saldoInvestasi = 0;
@@ -278,8 +279,6 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 					}
 				} else {
 					$pokokAngsuranbelum += $item->ags_jmlpokok;
-			
-			
 		}
 		
 	}
@@ -426,6 +425,21 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			$simpananKaryawandata += $value->kar_simpanan;
 	}
 }
+		
+//hitung PHU
+foreach ($phu as $key => $value) {
+	if ($f<>'') {	
+	$tgl = date("Y-m-d", strtotime($value->phu_tanggal));
+		if ($tgl <= $f )  {
+			
+			$phuPenyusutan += $value->phu_penyusutan;
+		}
+	} else {
+		$phuPenyusutan = 0;
+		
+}
+}
+
 
 		//simpanan wajib
 		$setoranwajib = $this->Setoransimpananwajib_model->get_neraca_simpananwajib($f,$t);
@@ -456,6 +470,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			'modalpenyertaan' => $modalPenyertaan,
 			'simpanancdr' => $simpananCdr,
 			'donasi' => $donasi,
+			'phupenyusutan'=> $phuPenyusutan,
 
 			//investasi
 			'jasainvestasiditarik' => $jasaInvestasiditarik,
@@ -517,6 +532,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
         $phu = $this->Phu_model->get_all();		
         $phuSistem = $this->Phu_sistem_model->get_all();		
         $Shu = $this->Shu_model->get_all();		
+        $neracaaktifa = $this->Neracaaktifatetap_model->get_all();		
 		
 		//investasi
     	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
@@ -780,7 +796,6 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			if ($f<>'' && $t<>'') {	
 			$tgl = date("Y-m-d", strtotime($value->phu_tanggal));
 				if ($tgl >= $f && $tgl <= $t)  {
-					$
 					$phuGaji += $value->phu_gaji;
 					$phuOprasional += $value->phu_operasional;
 					$phuLps += $value->phu_lps;
@@ -831,6 +846,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 				$phuPerawatankantor = 0;
 		}
 	}
+	
 		
     	//hitung data phu
     	/*foreach ($phu as $key => $item) {

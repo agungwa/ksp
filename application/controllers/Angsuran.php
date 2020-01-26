@@ -339,7 +339,7 @@ class Angsuran extends MY_Base
                 'agb_pokok' =>  $this->input->post('agb_pokok',TRUE),
                 'agb_tglpokok' => $tglpokok,
                 'agb_bunga' => $this->input->post('agb_bunga',TRUE),
-                'agb_tglbunga' => $this->input->post('agb_tglbunga',TRUE),
+                'agb_tglbunga' => $this->input->post('agb_tgl',TRUE),
                 'agb_denda' => $this->input->post('agb_denda',TRUE),
                 'agb_tgldenda' => $tgldenda,
                 'agb_status' => $status,

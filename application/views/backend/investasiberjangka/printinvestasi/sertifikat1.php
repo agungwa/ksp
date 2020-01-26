@@ -328,7 +328,7 @@ table#04 {
                                     <td
                                         style="width:341.35pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                                         <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:16pt">
-                                            <span style="font-family:Calibri">(ARIYADI, A.md)</span></p>
+                                            <span style="font-family:Calibri">(Aryadi, S.E)</span></p>
                                     </td>
                                 </tr>
                             </tbody>

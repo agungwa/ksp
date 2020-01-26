@@ -88,8 +88,15 @@
 						?>
 					<tr><td>Jumlah Bunga</td>
 					<td>
-					<input type="text" class="form-control" name="agb_bunga" id="searchTxt2" value ="<?php echo ceiling($angsuran['ags_jmlbunga'],1000); ?>" readonly  placeholder="<?php echo rupiah($angsuran['ags_jmlbunga']); ?>" />
-					<input type="date" readon class="form-control" name="agb_tglbunga" id="todays-date1" placeholder="tanggal bunga" required />
+					<div class="radio">
+					<label><input type="radio"  name="agb_bunga" id="searchTxt2" value ="<?php echo ceiling($angsuran['ags_jmlbunga'],1000); ?>" checked><?php echo ceiling($angsuran['ags_jmlbunga'],1000); ?></label>
+					</div>
+					<div class="radio">
+					<label><input type="radio"  name="agb_bunga" id="searchTxt2" value ="<?php echo 0; ?>">0</label>
+					</div>
+					<?php echo 'Bunga Bayar = ',rupiah($bunga),' , Bunga Kurang = ',rupiah($angsuran['ags_jmlbunga']-$bunga) ?></td>
+					<!-- <input type="text" class="form-control" name="agb_bunga" id="searchTxt2" value ="<?php echo ceiling($angsuran['ags_jmlbunga'],1000); ?>" readonly  placeholder="<?php echo rupiah($angsuran['ags_jmlbunga']); ?>" />
+					<input type="date" readon class="form-control" name="agb_tglbunga" id="todays-date1" placeholder="tanggal bunga" required /> -->
 					</td>
 					</td>
 					</tr><?php

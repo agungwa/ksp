@@ -105,9 +105,9 @@
 				echo anchor(site_url('simkesan/read/'.$item['sik_kode']),'Read','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('simkesan/update/'.$item['sik_kode']),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('simkesan/delete/'.$item['sik_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-				?>
+				// echo ' | '; 
+				// echo anchor(site_url('simkesan/delete/'.$item['sik_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				 ?>
 			</td>
 		</tr>
                 

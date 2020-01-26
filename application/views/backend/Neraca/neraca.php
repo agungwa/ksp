@@ -53,7 +53,7 @@
         </div>
         <?php
         
-        $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$aktivatetappenyusutan;
+        $jat=$aktivatetaptanah+$aktivatetapbangunan+$aktivatetapelektronik+$aktivatetapkendaraan+$aktivatetapperalatan+$phupenyusutan;
         $kas=$shudata + $simpanancdr + $donasi + $bungasimpanan + $rekeningkoran + $modalpenyertaan +$saldoinvestasi + $saldosimpananwajib+$saldosimpananpokok + $saldosimpananneraca - $saldopinjamanumumbelum - $saldopinjamankaryawanbelum-$saldopinjamankhususbelum - $jat;
         $jal=$kas + $kasbankdata + $saldopinjamanumumbelum + $saldopinjamankaryawanbelum+$saldopinjamankhususbelum;
         $jkl=$saldosimpananneraca+$bungasimpanan;
@@ -118,7 +118,7 @@
             </tr>
             <tr>
                 <td class="text-left">Akumulasi Penyusutan AT</td>
-				<td class="text-left"><?= neraca($aktivatetappenyusutan);?></td>
+				<td class="text-left"><?= neraca($phupenyusutan);?></td>
             </tr>
             <tr class='info'>
                 <td class="text-left">Jumlah Aktiva Tetap</td>

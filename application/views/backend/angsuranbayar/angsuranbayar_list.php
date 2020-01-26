@@ -40,16 +40,12 @@
 						<thead class="thead-light">
 						<tr>
 							<th class="text-center">No</th>
-							<th class="text-center">Angsuran</th>
+							<th class="text-center">Angsuran Ke-</th>
 							<th class="text-center">Nama</th>
 							<th class="text-center">Alamat</th>
 							<th class="text-center">Bayar Pokok</th>
 							<th class="text-center">Bayar Bunga</th>
 							<th class="text-center">Bayar Denda</th>
-							<th class="text-center">Bayar Status</th>
-							<th class="text-center">Bayar Tglpokok</th>
-							<th class="text-center">Bayar Tglbunga</th>
-							<th class="text-center">Bayar Tgldenda</th>
 							<th class="text-center">Tanggal Bayar</th>
 							<?php if(is_allow('M_EDIT')): ?>
 								<th class="text-center">Action</th>
@@ -60,16 +56,12 @@
 						foreach ($angsuranbayar_data as $angsuranbayar){ ?>
 							<tr>
 								<td width="80px"><?= ++$no ?></td>
-								<td><?php echo $angsuranbayar['ags_id'] ?></td>
+								<td><?php echo $angsuranbayar['ags_ke'] ?></td>
 								<td><?php echo $angsuranbayar['ang_nama'] ?></td>
 								<td><?php echo $angsuranbayar['ang_alamat'] ?></td>
 								<td><?php echo rupiah($angsuranbayar['agb_pokok']) ?></td>
 								<td><?php echo rupiah($angsuranbayar['agb_bunga']) ?></td>
 								<td><?php echo rupiah($angsuranbayar['agb_denda']) ?></td>
-								<td><?php echo $angsuranbayar['agb_status'] ?></td>
-								<td><?php echo $angsuranbayar['agb_tglpokok'] ?></td>
-								<td><?php echo $angsuranbayar['agb_tglbunga'] ?></td>
-								<td><?php echo $angsuranbayar['agb_tgldenda'] ?></td>
 								<td><?php echo date('d-m-Y', strtotime($angsuranbayar['agb_tgl'])) ?></td>
 								<?php if(is_allow('M_EDIT')): ?>
 									<td style="text-align:center" width="200px">

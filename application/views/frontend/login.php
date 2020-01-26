@@ -50,9 +50,9 @@
 </div>
                  <?php }?>
   <div class="limiter">
-    <div class="container-login100">
+  <div id="container-login100" class="container-login100">
       <div class="wrap-login100">
-        <div class="login100-form-title" style="background-image: url(<?=base_url()?>/assets/vendor/login_v15/images/bg-01.jpg);">
+        <div class="login100-form-title" style="background-image: url(<?=base_url()?>/assets/vendor/login_v15/images/tech.jpg);">
           <span class="login100-form-title-1">
             <?=data_app()?>
           </span>

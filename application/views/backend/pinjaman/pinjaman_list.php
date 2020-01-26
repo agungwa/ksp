@@ -114,9 +114,9 @@
 				echo anchor(site_url('pinjaman/read/'.$item['pin_id']),'Read','class="text-navy"'); 
 				echo ' | '; 
 				echo anchor(site_url('pinjaman/update/'.$item['pin_id']),'Update','class="text-navy"'); 
-				echo ' | '; 
-				echo anchor(site_url('pinjaman/delete/'.$item['pin_id']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-				?>
+				// echo ' | '; 
+				// echo anchor(site_url('pinjaman/delete/'.$item['pin_id']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				 ?>
                 </td>
                 <td style="text-align:center" width="200px">
                 <?php

@@ -89,13 +89,14 @@
 					<td><?php echo $tanggalDuedate?></td>
 					<td><?php echo rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor)?></td>
 					<td><?php echo $item['sim_status']?></td>
+                    
 					<td>
 						<?php 
 						echo anchor(site_url('simpanan/read/'.$item['sim_kode']),'Detail','class="text-navy"'); 
 						echo ' | '; 
 						echo anchor(site_url('simpanan/update/'.$item['sim_kode']),'Update','class="text-navy"'); 
-						echo ' | '; 
-						echo anchor(site_url('simpanan/delete/'.$item['sim_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+						// echo ' | '; 
+						// echo anchor(site_url('simpanan/delete/'.$item['sim_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 						?>
 					</td>
 					<td>

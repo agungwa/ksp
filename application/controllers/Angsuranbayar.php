@@ -35,6 +35,7 @@ class Angsuranbayar extends MY_Base
 				$agbdata[$key] = array(
 					'ags_id'=>$item->ags_id,
 					'agb_id'=>$item->agb_id,
+					'ags_ke'=>$angsuran->ang_angsuranke,
 					'agb_pokok'=>$item->agb_pokok,
 					'agb_bunga'=>$item->agb_bunga,
 					'agb_denda'=>$item->agb_denda,

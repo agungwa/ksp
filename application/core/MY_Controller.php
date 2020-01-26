@@ -23,7 +23,7 @@ class MY_Base extends CI_Controller {
         $this->statusKaryawan = array(0=>"Aktif", 1=>"Cuti", 2=>"Resign");
         $this->statusSimpanankaryawan = array(0=>"Aktif", 1=>"Ditarik");
         $this->statusIjasahkaryawan = array(0=>"Aktif", 1=>"Ditarik");
-        $this->statusAngsuran = array(0=>"Belum Bayar", 1=>"Kurang", 2=>"Bayar");
+        $this->statusAngsuran = array(0=>"Belum Bayar", 1=>"Kurang", 2=>"Lunas");
         $this->statusPinjaman = array(0=>"Pengajuan", 1=>"Disetujui", 2=>"Ditolak", 3=>"Lunas");
         $this->statusSimkesan = array(0=>"Aktif", 1=>"Diklaim", 2=>"Ditarik", 3=>"Hangus", 4=>"Lunas");
         $this->statusAnggota = array(0=>"", 1=>"Calon Anggota", 2=>"Anggota");

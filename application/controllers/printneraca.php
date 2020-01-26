@@ -116,6 +116,7 @@ class Printneraca extends MY_Base
 		$modalPenyertaan = 0;
 		$simpananCdr = 0;
 		$donasi = 0;
+		$phuPenyusutan = 0;
 		
 		//investasi
 		$saldoInvestasi = 0;
@@ -437,6 +438,20 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 	}
 }
 
+		
+//hitung PHU
+foreach ($phu as $key => $value) {
+	if ($f<>'') {	
+	$tgl = date("Y-m-d", strtotime($value->phu_tanggal));
+		if ($tgl <= $f )  {
+			
+			$phuPenyusutan += $value->phu_penyusutan;
+		}
+	} else {
+		$phuPenyusutan = 0;
+		
+}
+}
 		//simpanan wajib
 		$setoranwajib = $this->Setoransimpananwajib_model->get_neraca_simpananwajib($f,$t);
 		$saldoSimpananwajib += $setoranwajib[0]->ssw_jmlsetor;
@@ -464,6 +479,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			'modalpenyertaan' => $modalPenyertaan,
 			'simpanancdr' => $simpananCdr,
 			'donasi' => $donasi,
+			'phupenyusutan' => $phuPenyusutan,
 
 			//investasi
 			'jasainvestasiditarik' => $jasaInvestasiditarik,
