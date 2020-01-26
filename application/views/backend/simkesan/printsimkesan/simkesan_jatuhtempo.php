@@ -23,12 +23,18 @@
                 $tanggal = new DateTime($item['ssk_tglsetoran']); 
                 $sekarang = new DateTime();
                 $perbedaan = $tanggal->diff($sekarang);
+                $selisih = $perbedaan->m+($interval->y * 12);
+                if ($sekarang > $tanggal){
+                    $jatuh = $selisih;
+                } else {
+                    $jatuh = $selisih * -1;
+                }
                 ?>
                 <tr>
     			<td width="80px"><?php echo ++$start ?></td>
     			<td><?php echo $item['sik_kode'] ?></td>
-    			<td><?php echo $item['ssk_tglsetoran'] ?></td>
-    			<td><?php echo $perbedaan->m ?></td>
+    			<td><?php echo dateFormataja($item['ssk_tglsetoran']) ?></td>
+    			<td><?php echo $jatuh?></td>
     			<td><?php echo neraca($item['ssk_jmlsetor']) ?></td>
 		</tr>
                 

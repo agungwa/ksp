@@ -504,7 +504,6 @@ lookup();
                         <?php endif;  ?>
                         <?php //die($this->db->last_query());  ?>
                         <ul class="nav nav-second-level">
-                        <li><a href="<?=base_url()?>Tempsetoransimpanan">Hitung Temp SS</a></li>
                             <li><a href="<?=base_url()?>sy_config">Konfigurasi</a></li>
                             <li><a target="_link" href="<?=base_url()?>sfgen">Generator</a></li>
                         </ul>

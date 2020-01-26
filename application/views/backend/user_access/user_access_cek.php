@@ -1,4 +1,6 @@
 <!doctype html>
+
+<?php if(is_allow('M_MANAGER')): ?>
 <html>
     <head>
         <title></title>
@@ -98,3 +100,5 @@
         }
     </script>
 </html>
+
+<?php endif; ?>

@@ -84,7 +84,12 @@
    <div class="form-group col-md-4">
         <label for="varchar">Penarikan <?php echo '(Penarikan Rp ',number_format($jasa, 0, ".", "."),')'?></label>
         <input type="hidden" class="form-control" name="pib_penarikanke" id="pib_penarikanke" placeholder="pib_penarikanke" value="<?php echo $no; ?>" required="required" />
+        
         <input type="number" class="form-control" name="pib_jmlditerima" id="pib_jmlditerima" placeholder="pib_jmlditerima" value="<?php echo $jasa; ?>" readonly/>
+        
+        <?php if(is_allow('M_EDITINVESTASI')): ?>
+        <input type="date" class="form-control" name="pib_tgl" id="todays-date" />
+        <?php endif; ?>
         <input type="hidden" class="form-control" name="ivb_kode" id="ivb_kode" placeholder="ivb_kode" value="<?php echo $tarikpenarikanperbulan['ivb_kode']; ?>" readonly/>
         <input type="hidden" class="form-control" name="pib_jmlkeuntungan"id="pib_jmlkeuntungan" placeholder="pib_jmlkeuntungan" value="<?php echo $total; ?>" required="required" />
     </div>

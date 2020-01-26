@@ -115,13 +115,18 @@ class Penarikaninvestasiberjangka extends MY_Base
 
         public function tarikpenarikandidepan_action() 
     {
+        if ($this->input->post('pib_tgl',TRUE) == NULL){
+            $tanggal = $this->tgl;
+        } else {
+            $tanggal = $this->input->post('pib_tgl',TRUE);
+        };
         //insert data penarikan
         $dataTarik = array(
             'ivb_kode' => $this->input->post('ivb_kode',TRUE),
             'pib_penarikanke' => $this->input->post('pib_penarikanke',TRUE),
             'pib_jmlkeuntungan' => $this->input->post('pib_jmlkeuntungan',TRUE),
             'pib_jmlditerima' => $this->input->post('pib_jmlditerima',TRUE),
-            'pib_tgl' => $this->tgl,
+            'pib_tgl' => $tanggal,
             'pib_flag' => 0,
             'pib_info' => "",
             );
@@ -214,13 +219,19 @@ class Penarikaninvestasiberjangka extends MY_Base
 
         public function tarikpenarikanperbulan_action() 
     {
+        
+        if ($this->input->post('pib_tgl',TRUE) == NULL){
+            $tanggal = $this->tgl;
+        } else {
+            $tanggal = $this->input->post('pib_tgl',TRUE);
+        };
         //insert data penarikan
         $dataTarik = array(
             'ivb_kode' => $this->input->post('ivb_kode',TRUE),
             'pib_penarikanke' => $this->input->post('pib_penarikanke',TRUE),
             'pib_jmlkeuntungan' => $this->input->post('pib_jmlkeuntungan',TRUE),
             'pib_jmlditerima' => $this->input->post('pib_jmlditerima',TRUE),
-            'pib_tgl' => $this->tgl,
+            'pib_tgl' => $tanggal,
             'pib_flag' => 0,
             'pib_info' => "",
             );
@@ -305,13 +316,18 @@ class Penarikaninvestasiberjangka extends MY_Base
 
         public function tarikpenarikandibelakang_action() 
     {
+        if ($this->input->post('pib_tgl',TRUE) == NULL){
+            $tanggal = $this->tgl;
+        } else {
+            $tanggal = $this->input->post('pib_tgl',TRUE);
+        };
         //insert data penarikan
         $dataTarik = array(
             'ivb_kode' => $this->input->post('ivb_kode',TRUE),
             'pib_penarikanke' => $this->input->post('pib_penarikanke',TRUE),
             'pib_jmlkeuntungan' => $this->input->post('pib_jmlkeuntungan',TRUE),
             'pib_jmlditerima' => $this->input->post('pib_jmlditerima',TRUE),
-            'pib_tgl' => $this->tgl,
+            'pib_tgl' => $tanggal,
             'pib_flag' => 0,
             'pib_info' => "",
             );

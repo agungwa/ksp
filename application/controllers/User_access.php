@@ -12,6 +12,8 @@ class User_access extends MY_Base
         $this->load->model('Users_model');
         $this->load->model('User_group_model');
         $this->load->library('form_validation');
+        
+		is_logged();
     }
 
     public function index()
@@ -27,7 +29,7 @@ class User_access extends MY_Base
             $config['first_url'] = base_url() . 'user_access/index.html';
         }
 
-        $config['per_page'] = 10;
+        $config['per_page'] = 20;
         $config['page_query_string'] = TRUE;
         $numUser = $this->Users_model->total_rows($q);
         $numGroup = $this->User_group_model->total_rows($q);
@@ -61,7 +63,7 @@ class User_access extends MY_Base
             $config['first_url'] = base_url() . 'user_access/index.html';
         }
 
-        $config['per_page'] = 10;
+        $config['per_page'] = 20;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->User_access_model->total_rows($q);
         $user_access = $this->User_access_model->get_limit_data($config['per_page'], $start, $q);

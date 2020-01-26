@@ -63,7 +63,7 @@
                 $tanggal = new DateTime($item['tanggal']); 
                 $sekarang = new DateTime();
                 $perbedaan = $tanggal->diff($sekarang);
-                $selisih = $perbedaan->m;
+                $selisih = $perbedaan->m+($interval->y * 12);
                 if ($sekarang > $tanggal){
                     $jatuh = $selisih;
                 } else {
