@@ -532,7 +532,7 @@ foreach ($phu as $key => $value) {
         $phu = $this->Phu_model->get_all();		
         $phuSistem = $this->Phu_sistem_model->get_all();		
         $Shu = $this->Shu_model->get_all();		
-        $neracaaktifa = $this->Neracaaktifatetap_model->get_all();		
+        $neracaaktiva = $this->Neracaaktivatetap_model->get_all();		
 		
 		//investasi
     	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
