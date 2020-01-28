@@ -485,6 +485,62 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			}
 			
 		}
+		
+		
+		
+		// tarik simkesan otomatis
+		
+		$datenow = date('Y-m-d');
+		$SATU = 1;
+		// $simkesan = $this->Simkesan_model->get_all();
+		$setoran = $this->Setoransimkesan_model->get_group_bysikkode();
+		$titipan = $this->Titipansimkesan_model->get_all();
+		$no=0;
+		foreach($setoran as $key=>$item){
+			$sik_kode = $item->sik_kode;
+			$tempo = date("Y-m-d", strtotime($item->tanggal.' + '.$SATU.'month'));
+			if($datenow >= $tempo){
+				$jmltitip = $jmlambil = 0;
+				foreach($titipan as $k=>$tip){
+					if($tip->sik_kode == $sik_kode){
+						$jmltitip += $tip->tts_jmltitip;
+						$jmlambil += $tip->tts_jmlambil;
+					}
+				}
+				if(($jmltitip - $jmlambil) > 0){
+					foreach($titipan as $k=>$tip){
+						if($tip->sik_kode == $sik_kode){
+							$data=array(
+								'tts_status'=>2
+							);
+							$this->Titipansimkesan_model->update($tip->tts_id, $data);
+						}
+					}
+					$date = date("Y-m-d H:i:s");//echo $date;
+					$data=array(
+						'sik_kode'=>$sik_kode,
+						'ssk_jmlsetor'=>$jmltitip - $jmlambil,
+						'ssk_tglsetoran'=>$date,
+						'ssk_tglbayar'=>$date,
+						'ssk_tgl'=>$date
+					);
+					$this->Setoransimkesan_model->insert($data);
+					
+					$data=array(
+						'sik_kode'=>$sik_kode,
+						'tts_tgltitip'=>$date,
+						'tts_jmltitip'=>$jmltitip - $jmlambil,
+						'tts_tgl'=>$date
+					);
+					$this->Titipansimkesan_model->insert($data);
+				}
+				
+			}
+		}
+		
+		
+		
+		
 
 		$data = array(
 
