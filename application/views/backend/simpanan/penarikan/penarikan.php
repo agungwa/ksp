@@ -39,7 +39,8 @@
 	    <tr><td>Jenis Simpanan</td><td><?php echo $penarikan['jsi_id'],' bulan'; ?></td></tr>
 	    <tr><td>Jenis Setoran</td><td><?php echo $penarikan['jse_id']; ?></td></tr>
 	    <tr><td>Wilayah</td><td><?php echo $penarikan['wil_kode']; ?></td></tr>
-        <tr><td>Tanggal Pendaftaran</td><td><?php echo $penarikan['sim_tglpendaftaran']; ?></td></tr>
+        <tr><td>Tanggal Pendaftaran</td><td><?php echo dateFormataja($penarikan['sim_tglpendaftaran']); ?></td></tr>
+        <tr><td>Tanggal Jatuhtempo</td><td><?php echo dateFormataja($penarikan['sim_jatuhtempo']); ?></td></tr>
         <tr><td>Status</td><td><?php echo $penarikan['sim_status']; ?></td></tr>
 	</table>
     <form action="<?php echo site_url('simpanan/tariksimpanan_action'); ?>" method="post">
@@ -54,12 +55,11 @@
             </tr>
             </thead>
 			<tbody><?php
-
-
             $no = 1;
             $coba = 40000/3;
             $coba2 = 25355.555;
             $total_setoran = 0;
+            
             foreach ($penarikan['setoran_data'] as $setoran)
             {
                 $sim_kode = $penarikan['sim_kode'];
@@ -83,12 +83,18 @@
             </div>
 	</div>
 
+    <?php 
+    $pes_administrasi = 0;
+    $pes_jmltarik = 0;
+    $totalsaldo = $total_setoran;
+    if ($penarikan['setoran_data'] != NULL){
+        ?>
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
 		<th class="text-center">Saldo simpanan</th>
-		<th class="text-center">Saldo Sekarang (Pokok+Bunga)</th>
+		<th class="text-center">Bunga</th>
 		<th class="text-center">Tanggal Bunga</th>
             </tr>
             </thead>
@@ -102,13 +108,13 @@
                 $totalbunga += $databunga->bss_bungabulanini;
                 $totalsaldo = $totalbunga + $total_setoran;
                 $pes_administrasi = $totalsaldo*$administasi;
-                $pes_jmltarik = $totalsaldo - $pes_administrasi - $phbuku;
+                $pes_jmltarik = round($totalsaldo,-3) - round($pes_administrasi,-3) - $phbuku;
                 ?>
                 <tr>
 			<td width="80px"><?php echo $no ?></td>
 			<td><?php echo $databunga->sim_kode ?></td>
-			<td><?php echo $databunga->bss_bungabulanini ?></td>
-			<td><?php echo $databunga->bss_tglbunga ?></td>
+			<td><?php echo neraca($databunga->bss_bungabulanini) ?></td>
+			<td><?php echo dateFormataja($databunga->bss_tglbunga) ?></td>
             </td>
             </tr><?php
                 $no++;
@@ -124,6 +130,9 @@
             <input type="hidden" class="form-control" name="sim_kode" id="sim_kode" placeholder="sim_kode" value="<?php echo $sim_kode; ?>" />
             </tbody>
         </table>
+        <?php 
+    }
+        ?>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
         <tr >
         <td width="300px">Total Saldo</td><td><?php echo rupiahSimpanan($totalsaldo) ?></td>
@@ -144,7 +153,17 @@
         </tr>
         </table>
     <div>
-         <button type="submit" class="btn btn-primary">Tarik Simpanan</button> 
+    
+    <?php 
+        if (dateFormataja($this->tgl) < dateFormataja($penarikan['sim_jatuhtempo']))
+        {
+            echo " Rekening belum bisa di tarik tanggal jatuh tempo = ",dateFormataja($penarikan['sim_jatuhtempo']);
+        } else {
+        ?>
+         <button type="submit" class="btn btn-primary">Tarik Simpanan</button>
+         <?php
+        }
+        ?>4r
 	    <a href="<?php echo site_url('simpanan/?p=4') ?>" class="btn btn-default">Batal</a>
     </div>
             </form>

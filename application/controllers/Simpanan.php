@@ -280,6 +280,8 @@ class Simpanan extends MY_Base
             $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
             $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
         }
+        
+        $tanggalDuedate = date("Y-m-d", strtotime($row->sim_tglpendaftaran.' + '.$jsi_id->jsi_simpanan.' Months'));
             $setoran = $this->Setoransimpanan_model->get_data_setor($q);
             $bungasetoran = $this->Bungasetoransimpanan_model->get_data_bungasetoran($q);
             if ($row) {
@@ -294,6 +296,7 @@ class Simpanan extends MY_Base
                 'jse_id' => $jse_id->jse_setoran,
                 'wil_kode' => $wil_kode->wil_nama,
                 'sim_tglpendaftaran' => $row->sim_tglpendaftaran,
+                'sim_jatuhtempo' => $tanggalDuedate,
                 'sim_status' => $sim_status[$row->sim_status],
 	    );
             }
