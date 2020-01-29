@@ -30,6 +30,7 @@ class Printneraca extends MY_Base
         $this->load->model('Karyawan_model');
         $this->load->model('Neracakewajibanjangkapanjang_model');
         $this->load->model('Neracaekuitas_model');
+        $this->load->model('Angsuranbayar_model');
 
 		//investasi
         $this->load->model('Penarikaninvestasiberjangka_model');
@@ -846,6 +847,7 @@ foreach ($phu as $key => $value) {
         $phu = $this->Phu_model->get_all();		
         $phuSistem = $this->Phu_sistem_model->get_all();		
         $Shu = $this->Shu_model->get_all();		
+        $neracaaktiva = $this->Neracaaktivatetap_model->get_all();		
 		
 		//investasi
     	$investasiAktif = $this->Investasiberjangka_model->get_investasi_aktif();
@@ -861,6 +863,7 @@ foreach ($phu as $key => $value) {
 		$simpananPokok = $this->Simpananpokok_model->get_all();
 
 		//pinjaman
+    	$angsuranbayarAll = $this->Angsuranbayar_model->get_all();
     	$pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktif();
     	$pinjamanNonaktif = $this->Pinjaman_model->get_pinjaman_nonaktif();
     	$angsuranBayar = $this->Angsuran_model->get_angsuran_bayar();
@@ -915,6 +918,7 @@ foreach ($phu as $key => $value) {
     	$saldoSimpananpokok = 0;
     	$phBuku = 0;
 		$administrasi = 0;
+		$bungaDitarik = 0;
 		
 		//pinjaman
 		$saldoDroppinjaman = 0;
@@ -924,7 +928,8 @@ foreach ($phu as $key => $value) {
     	$bungaAngsuran = 0;
     	$dendaAngsuran = 0;
     	$provisiPinjaman = 0;
-    	$bungaDendapelunasan = 0;
+		$bungaDendapelunasan = 0;
+		$bungaPelunasan = 0;
     	$totalAngsuran = 0;
 		$totalAngsurantunggakan = 0;
 		
@@ -938,31 +943,54 @@ foreach ($phu as $key => $value) {
     	}
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 
+
+		
+
+		
     	//hitung bunga angsuran status bayar
-    	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
-    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
-    				$bungaAngsuran += $value->ags_jmlbunga ;
-    			}
+    	foreach ($angsuranbayarAll as $key => $value) {
+			$ags_id = $this->db->get_where('angsuran', array('ags_id' => $value->ags_id))->row();
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $ags_id->pin_id))->row();
+			
+			if ($f<>'' && $t<>'' && $w<>'') {
+			$jt = date("Y-m-d", strtotime($value->agb_tgl));
+			//var_dump($value->ags_tgl);
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
+					$bungaAngsuran += $value->agb_bunga ;
+				}
+				
+		//var_dump($value->ags_jmlbunga);
 			} else {
-				$bungaAngsuran += $value->ags_jmlbunga;
+				$bungaAngsuran += $value->agb_bunga;
+				
 		}
 	}
-	
-    	//hitung denda angsuran status bayar
-    	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+    // 	//hitung bunga angsuran status bayar
+    // 	foreach ($angsuranBayar as $key => $value) {
+	// 		$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+	// 		if ($f<>'' && $t<>'' && $w<>'') {	
+	// 		$tgl = date("Y-m-d", strtotime($value->ags_tgl));
+	// 		//var_dump($value->ags_id);
+    // 			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
+    // 				$bungaAngsuran += $value->ags_jmlbunga ;
+    // 			}
+	// 		} else {
+	// 			$bungaAngsuran += $value->ags_jmlbunga;
+	// 	}
+	// }
+		
+    	//hitung denda angsuran bayar
+    	foreach ($angsuranbayarAll as $key => $value) {
+			$ags_id = $this->db->get_where('angsuran', array('ags_id' => $value->ags_id))->row();
+			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $ags_id->pin_id))->row();
 			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->ags_tgl));
+			$jt = date("Y-m-d", strtotime($value->agb_tgl));
 			//var_dump($value->ags_id);
-    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
-    				$dendaAngsuran += $value->ags_denda ;
+    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t  && $pin_id->wil_kode==$w))  {
+    				$dendaAngsuran += $value->agb_denda ;
     			}
 			} else {
-				$dendaAngsuran += $value->ags_denda;
+				$dendaAngsuran += $value->agb_denda;
 		}
 	}
 	
@@ -982,19 +1010,22 @@ foreach ($phu as $key => $value) {
 		}
 	}
 
+	
 		   	//hitung saldo bunga denda pelunasan
-    	foreach ($pelunasanPinjaman as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->pel_tglpelunasan));
-			//var_dump($value->ags_id);
-    			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $pin_id->wil_kode==$w))  {
-    				$bungaDendapelunasan += $value->pel_bungatambahan ;
-    			}
-			} else {
-				$bungaDendapelunasan += $value->pel_bungatambahan;
+			   foreach ($pelunasanPinjaman as $key => $value) {
+				$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
+				if ($f<>'' && $t<>'' && $w<>'') {	
+				$jt = date("Y-m-d", strtotime($value->pel_tglpelunasan));
+				//var_dump($value->ags_id);
+					if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
+						$bungaDendapelunasan += $value->pel_bungatambahan ;
+						$bungaPelunasan += $value->pel_totalbungapokok;
+					}
+				} else {
+					$bungaPelunasan += $value->pel_totalbungapokok;
+					$bungaDendapelunasan += $value->pel_bungatambahan;
+			}
 		}
-	}
 	
 		//hitung Total saldo angsuran pokok dari angsuran jumlah bayar
     	foreach ($angsuranTotal as $key => $value) {
@@ -1035,10 +1066,12 @@ foreach ($phu as $key => $value) {
     				if ( $tgl >= $f && $tgl <= $t|| $tgl >= $f && $tgl <= $t) {
 	    				$phBuku += $item->pes_phbuku;
 	    				$administrasi += $item->pes_administrasi;
+						$bungaDitarik += $item->pes_bunga;
     				}
     			} else {
 	    			$phBuku += $item->pes_phbuku;
 	    			$administrasi += $item->pes_administrasi;
+	    			$bungaDitarik += $item->pes_bunga;
     			}
     		}
     	}
@@ -1078,7 +1111,6 @@ foreach ($phu as $key => $value) {
 			if ($f<>'' && $t<>'') {	
 			$tgl = date("Y-m-d", strtotime($value->phu_tanggal));
 				if ($tgl >= $f && $tgl <= $t)  {
-					$
 					$phuGaji += $value->phu_gaji;
 					$phuOprasional += $value->phu_operasional;
 					$phuLps += $value->phu_lps;
@@ -1129,7 +1161,45 @@ foreach ($phu as $key => $value) {
 				$phuPerawatankantor = 0;
 		}
 	}
+	
 		
+    	//hitung data phu
+    	/*foreach ($phu as $key => $item) {
+			if ($f<>'' && $t<>'' && $w<>'') {	
+    				$tgl = date("Y-m-d", strtotime($item->phu_tanggal));
+    				if ($tgl >= $f && $tgl <= $t) {
+    					$dataphu[$key] = array(
+							'phu_id' => $item->phu_id,
+							'phu_gaji' => $item->phu_gaji,
+							'phu_operasional' => $item->phu_operasional,
+							'phu_lps' => $item->phu_lps,
+							'phu_komunikasi' => $item->phu_komunikasi,
+							'phu_perlengkapan' => $item->phu_perlengkapan,
+							'phu_penyusutan' => $item->phu_penyusutan,
+							'phu_asuransi' => $item->phu_asuransi,
+							'phu_insentif' => $item->phu_insentif,
+							'phu_pajakkendaraan' => $item->phu_pajakkendaraan,
+							'phu_rapat' => $item->phu_rapat,
+							'phu_atk' => $item->phu_atk,
+							'phu_keamanan' => $item->phu_keamanan,
+							'phu_phpinjaman' => $item->phu_phpinjaman,
+							'phu_sosial' => $item->phu_sosial,
+							'phu_tayakuran' => $item->phu_tayakuran,
+							'phu_koran' => $item->phu_koran,
+							'phu_pajakkoprasi' => $item->phu_pajakkoprasi,
+							'phu_servicekendaraan' => $item->phu_servicekendaraan,
+							'phu_konsumsi' => $item->phu_konsumsi,
+							'phu_rat' => $item->phu_rat,
+							'phu_thr' => $item->phu_thr,
+							'phu_nonoprasional' => $item->phu_nonoprasional,
+							'phu_perawatankantor' => $item->phu_perawatankantor,
+							'phu_keterangan' => $item->phu_keterangan,
+
+						);
+    				}
+			}
+    	
+		}*/
 
 		$data = array(
 
@@ -1170,6 +1240,7 @@ foreach ($phu as $key => $value) {
 			'saldoinvestasi' => $saldoInvestasi,
 			
 			//simpanan
+			'bungaditarik' => $bungaDitarik,
 			'saldosimpananlalu' => $saldoSimpananlalu,
             'wilayah_data' => $wilayah,
 			'saldosimpanan' => $saldoSimpanan,
@@ -1189,6 +1260,7 @@ foreach ($phu as $key => $value) {
 			'pokokangsuranpelunasan' => $pokokAngsuranpelunasan,
 			'bungaangsuran' => $bungaAngsuran,
 			'bungadendapelunasan' => $bungaDendapelunasan,
+			'bungapelunasan' => $bungaPelunasan,
 			'dendaangsuran' => $dendaAngsuran,
 			'provisipinjaman' => $provisiPinjaman,
 			'totalangsuran' => $totalAngsuran,
