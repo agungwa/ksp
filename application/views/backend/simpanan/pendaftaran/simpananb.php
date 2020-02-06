@@ -34,17 +34,17 @@
             </div>
             </div>
         </div>
-        <div class="form-group col-md-12">
-            <label for="float">Bunga Simpanan </label>
+         <div class="form-group col-md-12">
+           <!-- <label for="float">Bunga Simpanan </label>
             <div class="input-group">
             <input type="hidden" name="bus_id" id="bus_id" value="" required="required" />
             <input type="text" class="form-control" name="nm_bus_id" id="nm_bus_id" placeholder="Bunga Simpanan" value="" required="required" readonly/>
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>bungasimpanan/lookup','bus_id');" style="cursor: pointer;">Cari</span>
             </div>
-            </div>
+            </div> -->
         </div>
-        </div>
+        </div> 
         <div class="col-md-6">
         <div class="form-group col-md-12">
             <label for="int">Jenis Setoran </label>

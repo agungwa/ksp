@@ -155,7 +155,7 @@
     <div>
     
     <?php 
-        if (dateFormataja($this->tgl) < dateFormataja($penarikan['sim_jatuhtempo']))
+        if ($this->tgl < $penarikan['sim_jatuhtempo'])
         {
             echo " Rekening belum bisa di tarik tanggal jatuh tempo = ",dateFormataja($penarikan['sim_jatuhtempo']);
         } else {
@@ -163,7 +163,7 @@
          <button type="submit" class="btn btn-primary">Tarik Simpanan</button>
          <?php
         }
-        ?>4r
+        ?>
 	    <a href="<?php echo site_url('simpanan/?p=4') ?>" class="btn btn-default">Batal</a>
     </div>
             </form>

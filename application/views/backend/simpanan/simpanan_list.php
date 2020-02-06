@@ -98,6 +98,13 @@
 						// echo ' | '; 
 						// echo anchor(site_url('simpanan/delete/'.$item['sim_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 						?>
+                        <?php if(is_allow('M_EDIT')): ?>
+                            <?php 
+                        echo ' | '; 
+						echo anchor(site_url('simpanan/delete/'.$item['sim_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+						?>
+                                <?php endif; ?>
+
 					</td>
 					<td>
 						<?php 
