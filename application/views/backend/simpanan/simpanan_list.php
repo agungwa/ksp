@@ -47,7 +47,7 @@
             </div>
             </form>
 
-        <table id="dtOrderExample" class="data" style="margin-bottom: 10px">
+        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th>No</th>
@@ -59,6 +59,7 @@
 				<th>Jenis Setoran</th>
 				<th>Wilayah</th>
 				<th>Tanggal Pendaftaran</th>
+				<th>Status Diagunkan</th>
 				<th>Jatuh Tempo</th>
 				<th>Total Setor</th>
 				<th>Status</th>
@@ -76,7 +77,14 @@
                 $subtotal_thn += $totalsetoran[0]->ssi_jmlsetor;
                 $tanggalDuedate = date("Y-m-d", strtotime($item['sim_tglpendaftaran'].' + '.$item['jsi_id'].' Months'));
                 ?>
-                <tr>
+                
+                 <?php 
+                if ($item['sim_jamid'] > 0){
+                    echo '<tr class = danger>';
+                } else {
+                    echo '<tr class = info>';
+                }
+                ?>
 					<td width="80px"><?php echo ++$start ?></td>
 					<td><?php echo $item['sim_kode'] ?></td>
 					<td><?php echo $item['ang_no'] ?></td>
@@ -86,6 +94,7 @@
 					<td><?php echo $item['jse_id'] ?></td>
 					<td><?php echo $item['wil_kode'] ?></td>
 					<td><?php echo $item['sim_tglpendaftaran'] ?></td>
+					<td><?php echo $item['sim_jam'] ?></td>
 					<td><?php echo $tanggalDuedate?></td>
 					<td><?php echo rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor)?></td>
 					<td><?php echo $item['sim_status']?></td>
@@ -107,10 +116,27 @@
 
 					</td>
 					<td>
-						<?php 
-						echo anchor(site_url('simpanan/setor?q='.$item['sim_kode']),'Setor','class="text-navy"'); 
-						echo ' | '; 
-						echo anchor(site_url('simpanan/tariksimpanan?q='.$item['sim_kode']),'Tarik','class="text-navy"');?>
+						<?php
+                        if ($item['sim_statusid'] < 1){
+                            echo anchor(site_url('simpanan/setor?q='.$item['sim_kode']),'Setor','class="text-navy"'); 
+                            echo ' | '; 
+                            echo anchor(site_url('simpanan/tariksimpanan?q='.$item['sim_kode']),'Tarik','class="text-navy"');
+                        } 
+                        ?>
+                      <form action="<?php echo site_url('simpanan/jaminan/'.$item['sim_kode']); ?>" method="post">
+                        <input type="hidden" class="form-control" name="sim_kode" id="sim_kode" placeholder="sim_kode" value="<?php echo $item['sim_kode']; ?>" />
+                        <?php  
+                        if ($item['sim_jamid'] == 0 && $item['sim_statusid'] < 1){
+                        echo '
+                        <input type="hidden" class="form-control" name="sim_jam" id="sim_jam" placeholder="sim_jam" value="1" />
+                        <button type="submit" class="btn btn-danger">Agunkan</button>';
+                            } 
+                        else if ($item['sim_jamid'] == 1 && $item['sim_statusid'] < 1) {
+                        echo '
+                        <input type="hidden" class="form-control" name="sim_jam" id="sim_jam" placeholder="sim_jam" value="0"/>
+                        <button type="submit" class="btn btn-info">Lunas</button>'; 
+                            } ?>
+                    </form>
 					</td>
 				</tr>
                 <?php

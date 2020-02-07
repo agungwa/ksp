@@ -375,6 +375,7 @@ class Simpanan extends MY_Base
                 ( $u == $item->sim_kode && $s == $item->sim_status && $w == $item->wil_kode && $tgl >= $f && $tgl <= $t ) || 
                 ( $u=='all' && $s == $item->sim_status && $w == $item->wil_kode && $tgl >= $f && $tgl <= $t )) {
                     $sim_status = $this->statusSimpanan;
+                    $sim_jam = $this->statusJaminan;
                     $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $item->jsi_id))->row();
                     $jse_id = $this->db->get_where('jenissetoran', array('jse_id' => $item->jse_id))->row();
                     $bus_id = $this->db->get_where('bungasimpanan', array('bus_id' => $item->bus_id))->row();
@@ -393,6 +394,9 @@ class Simpanan extends MY_Base
                 'wil_kode' => $wil_kode->wil_nama,
                 'sim_tglpendaftaran' => $item->sim_tglpendaftaran,
                 'sim_status' => $sim_status[$item->sim_status],
+                'sim_statusid' => $item->sim_status,
+                'sim_jam' => $sim_jam[$item->sim_jam],
+                'sim_jamid' => $item->sim_jam,
                 'sim_tgl' => $item->sim_tgl,
                 'sim_flag' => $item->sim_flag,
                 'sim_info' => $item->sim_info,
@@ -504,7 +508,20 @@ class Simpanan extends MY_Base
 			'item' => 'penarikan_list.php'
 		);
 		$this->load->view(layout(), $data);
-	}
+    }
+    
+    public function jaminan($id) 
+    {
+        $row = $this->Simpanan_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+            'sim_jam' => $this->input->post('sim_jam', TRUE),
+        );
+        $this->Simpanan_model->update($this->input->post('sim_kode', TRUE), $data);
+        $this->session->set_flashdata('message', 'Update Agunan');
+        redirect(site_url('simpanan/?p=3'));
+        }
+    }
 	
 	public function lookup()
     {

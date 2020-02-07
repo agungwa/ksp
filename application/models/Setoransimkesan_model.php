@@ -31,6 +31,16 @@ class Setoransimkesan_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    
+    // get group tgl terakhir
+    function get_tglterakhir($sik_kode)
+    {
+        $this->db->select('* , max(ssk_tglsetoran) AS tanggal');
+        $where = "sik_kode = '$sik_kode' AND ssk_flag < 2 ";
+        $this->db->where($where);
+        return $this->db->get($this->table)->row();
+    }
+
     // get group by
     function get_group_bysikkode($start = 0, $q = NULL)
     {
