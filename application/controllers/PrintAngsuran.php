@@ -176,6 +176,13 @@ class PrintAngsuran extends MY_Base
             'angsuran' => $angsuran,
             'histori' => $historiAngsuran
         );
+        $mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('backend/angsuran/printangsuran/detailangsuran.php',$data,true);
+        //echo $html;
+        $mpdf->WriteHTML($html);
+        //$mpdf->Output(); // opens in browser
+        $mpdf->Output("rincianangsuran$row->pin_id.pdf","D"); // it downloads the file into the user system, with give name
+    
 
         $this->load->view(layout(), $data);
     }

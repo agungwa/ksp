@@ -1,4 +1,33 @@
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
 
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+ 	table{margin: auto;}
+ 	td,th{padding: 5px;text-align: center; }
+ 	h2{text-align: center}
+ 	h3{text-align: center}
+ 	th{background-color: #95a5a6; padding: 10px;color: #fff}
+ </style> 
 	        	<?php
 	        	if ($angsuran != null) {
 					$agsb = $this->Angsuranbayar_model->get_angsuran_ags($angsuran['ags_id']);
@@ -11,10 +40,21 @@
 						$bunga = $agsb->{'agb_bunga'}; 
 						$denda = $agsb->{'agb_denda'};
 					}
+
+					$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $angsuran['pin_id']))->row();
+					$ang_no = $this->db->get_where('anggota', array('ang_no' => $pin_id->ang_no))->row();
+					$sea_id = $this->db->get_where('settingangsuran', array('sea_id' => $pin_id->sea_id))->row();
+					$bup_id = $this->db->get_where('bungapinjaman', array('bup_id' => $pin_id->bup_id))->row();
 					?>
 				
-	        	<table class="table">
+	        	<table id="customers">
 				    <tr><td>Rekening Pinjaman</td><td><?php echo $angsuran['pin_id']; ?></td></tr>
+					<tr><td>Anggota</td><td><?php echo $ang_no->ang_nama; ?></td></tr>
+					<tr><td>Tenor</td><td><?php echo $sea_id->sea_tenor," Bulan"; ?></td></tr>
+					<tr><td>Pinjaman</td><td><?php echo rupiah($pin_id->pin_pinjaman); ?></td></tr>
+					<tr><td>Bunga/Bulan</td><td><?php echo $bup_id->bup_bunga," % (Bunga/bulan ",rupiah(($pin_id->pin_pinjaman*$bup_id->bup_bunga)/100),")"; ?></td></tr>
+					<tr><td>Pokok/Bulan</td><td><?php echo rupiah($pin_id->pin_pinjaman/$sea_id->sea_tenor); ?></td></tr>
+					<tr><td>Tanggal Pencairan</td><td><?php echo dateFormataja($pin_id->pin_tglpencairan); ?></td></tr>
 				</table>
 	        	<?php
 	        	} ?>
@@ -67,12 +107,6 @@
 						if ($this->tgl > $dendajatuhtempo && $item->ags_jmlbayar < $totalbayar && $item->ags_status < 2 ){
 							$denda = ($kurangsetor * ($settingdenda_data->sed_denda/100))*$perbedaan->d;
 						}
-						if ($item->ags_bayartunggakan <= 0) {
-							$totalkekurangan = $kurangsetor + $denda;
-							} else {
-							$totalkekurangan = $kurangsetor + $item->ags_denda - $item->ags_bayartunggakan;
-							}
-						
 						$angsuranbayar = $this->Angsuranbayar_model->get_angsuran_ags($item->ags_id);
 						if ($angsuranbayar == NULL){
 							$pokok = 0;
