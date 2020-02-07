@@ -134,7 +134,7 @@
 					
 					<input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="pin_id" value="<?php echo $angsuran['pin_id']; ?>" required="required" />
 					<input type="hidden" class="form-control" name="ags_id" id="ags_id" placeholder="ags_id" value="<?php echo $angsuran['ags_id']; ?>" required="required" />
-					<tr><td></td><td><a href="<?php echo site_url('angsuran/?p=4') ?>" class="btn btn-default">Batal</a>
+					<tr><td></td><td><a href="<?php echo site_url('angsuran/?p=4') ?>" class="btn btn-default">Batal</a><a href="<?php echo site_url('printangsuran/detailangsuran?q='.$q) ?>" class="btn btn-info">Print</a>
 					<?php if ($angsuran['ags_status'] < 2) {
 						
 						?>

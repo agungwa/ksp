@@ -9,6 +9,7 @@ class PrintAngsuran extends MY_Base
     {
         parent::__construct();
         $this->load->model('Angsuran_model');
+        $this->load->model('Angsuranbayar_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Karyawan_model');
         $this->load->model('Pinjaman_model');
@@ -90,6 +91,95 @@ class PrintAngsuran extends MY_Base
         );
         $this->load->view(layout(), $data);
     }
+
+    public function detailangsuran(){
+        $q = urldecode($this->input->get('q', TRUE));        
+        $k = urldecode($this->input->get('k', TRUE));
+        $d = 3;
+        $denda = 0;
+        $angsuran = null;
+        $historiAngsuran = null;
+        $angsuranbayar = array();
+        $settingdenda = $this->Settingdenda_model->get_by_id(1);
+        if ($k == null) { $k=1;}
+
+        if ($q<>''){
+            $pinjamanAktif = $this->Pinjaman_model->get_pinjaman_aktifcari($q);
+            foreach ($pinjamanAktif as $key => $value) {
+            $row = $this->Angsuran_model->get_by_pinjaman($value->pin_id, $k);
+            $historiAngsuran = $this->Angsuran_model->get_histori_angsuran($value->pin_id);
+             if ($row) {
+                 $tgldenda = date("Y-m-d", strtotime($row->ags_tgljatuhtempo.' + '.$d.' days'));
+                 $d=2;
+                 $m=1;
+                 $dataangsur = $this->Angsuranbayar_model->get_angsuran_bayarpin($row->ags_id);
+                 $totalbayar = $row->ags_jmlpokok + $row->ags_jmlbunga;
+                 $dendajatuhtempo = date("Y-m-d", strtotime($row->ags_tgljatuhtempo.' + '.$d.' days'));
+                 $nextjatuhtempo = date("Y-m-d", strtotime($row->ags_tgljatuhtempo.' + '.$m.' months'));
+                 //$tglbayar = date("Y-m-d", strtotime($row->ags_tglbayar));
+                             $tanggalnext = new DateTime($nextjatuhtempo); 
+                             $tanggala = new DateTime($dendajatuhtempo); 
+                             //$tanggala = new DateTime($tglbayar); 
+                             $sekarang = new DateTime();
+                             if ($this->tgl < $nextjatuhtempo ){
+                             $perbedaan = $tanggala->diff($sekarang);
+                             }else if ($this->tgl >= $nextjatuhtempo ){
+                             $perbedaan = $tanggala->diff($tanggalnext);
+                             }
+
+                             if ($row->ags_jmlbayar < 1){
+                                 $kurangsetor = $totalbayar; 
+                             }else {
+                                 $kurangsetor = $totalbayar-$row->ags_jmlbayar;
+                             }
+                             if ($kurangsetor < 0){
+                                 $kurangsetor = 0;
+                             }
+                            // if ($this->tgl > $dendajatuhtempo && $row->ags_jmlbayar < $totalbayar ){
+                               //  $denda = ($totalbayar * ($settingdenda->sed_denda/100))*$perbedaan->d;
+                           //  } 
+                              if ($this->tgl > $dendajatuhtempo && $row->ags_status < 2 ){
+                                $denda = ($totalbayar * ($settingdenda->sed_denda/100))*$perbedaan->d;
+                             }
+                             //var_dump($denda,$row->ags_tglbayar);
+                         if ($row->ags_bayartunggakan <= 0) {
+                                 $totalkekurangan = $kurangsetor + $denda;
+                                 } else {
+                                 $totalkekurangan = $kurangsetor + $row->ags_denda - $row->ags_bayartunggakan;
+                                 }
+                                 //var_dump($denda);
+                 $angsuran = array(
+                    'angsuranbayar' => $angsuranbayar,
+                    'kurangsetor' => $kurangsetor,
+                    'denda' => $denda,
+                    'tgldenda' => $tgldenda,
+                    'ags_id' => $row->ags_id,
+                    'pin_id' => $row->pin_id,
+                    'ang_angsuranke' => $row->ang_angsuranke,
+                    'ags_tgljatuhtempo' => $row->ags_tgljatuhtempo,
+                    'ags_tglbayar' => $row->ags_tglbayar,
+                    'ags_jmlpokok' => $row->ags_jmlpokok,
+                    'ags_jmlbunga' => $row->ags_jmlbunga,
+                    'totalbayar' => $totalbayar,
+                    'ags_jmlbayar' => $row->ags_jmlbayar,
+                    'ags_status' => $row->ags_status,
+                );
+             }
+            }
+        }   
+
+        $data = array(
+            'settingdenda_data' => $settingdenda,
+            'q' => $q,
+            'k' => $k,
+            'content' => 'backend/angsuran/printangsuran/detailangsuran.php',
+            'angsuran' => $angsuran,
+            'histori' => $historiAngsuran
+        );
+
+        $this->load->view(layout(), $data);
+    }
+
 
 
 }
