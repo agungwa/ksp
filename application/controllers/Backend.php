@@ -485,10 +485,10 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			}
 			
 		}
-			
-		
-		
-		
+
+
+
+
 		// tarik simkesan otomatis
 		
 		$datenow = date('Y-m-d');
@@ -533,8 +533,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 		}
 		
 		// end tarik simkesan otomatis
-		
-		
+
 
 		$data = array(
 
