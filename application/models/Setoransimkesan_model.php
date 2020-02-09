@@ -24,6 +24,15 @@ class Setoransimkesan_model extends CI_Model
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
+	
+	// get_last_setor
+	function get_last_setor($rekening){
+		$this->db->select('*');
+		$this->db->select_max('ssk_tglsetoran');
+		$this->db->where('ssk_flag <',2);
+		$this->db->where('sik_kode =', $rekening);
+		return $this->db->get($this->table)->row();
+	}
 
     function get_totalsetoran($sik_kode){
         $this->db->select_sum('ssk_jmlsetor');
