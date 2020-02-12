@@ -85,6 +85,20 @@ class Investasiberjangka extends MY_Base
              redirect(site_url('investasiberjangka'));
     }
 
+    public function jaminan($id) 
+    {
+        $row = $this->Investasiberjangka_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+            'ivb_jam' => $this->input->post('ivb_jam', TRUE),
+        );
+        $this->Investasiberjangka_model->update($this->input->post('ivb_kode', TRUE), $data);
+        $this->session->set_flashdata('message', 'Update Agunan');
+        redirect(site_url('investasiberjangka/?p=2'));
+        }
+    }
+
+
 
     //list tarik atau tutup investasi
     public function tarikinvestasi(){
@@ -225,6 +239,8 @@ class Investasiberjangka extends MY_Base
 						'ivb_tglperpanjangan' => $item->ivb_tglperpanjangan,
 						'jatuhtempo' => $tanggalDuedate,
 						'ivb_status' => $ivb_status[$item->ivb_status],
+						'ivb_statusid' => $item->ivb_status,
+						'ivb_jam' => $item->ivb_jam,
 						'ivb_tgl' => $item->ivb_tgl,
 						'ivb_flag' => $item->ivb_flag,
 						'ivb_info' => $item->ivb_info,

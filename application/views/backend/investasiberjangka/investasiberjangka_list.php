@@ -61,7 +61,7 @@
                     </div>
             </div>
             </form>
-        <table class="data" style="margin-bottom: 10px">
+        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead>
             <tr>
                 <th>No</th>
@@ -76,6 +76,7 @@
 				<th>Investasi</th>
 				<th>Tanggal Pendaftaran</th>
 				<th>Tanggal Jatuh Tempo</th>
+				<th>Status Diagunkan</th>
 				<th>Status</th>
 				<th>Action</th>
             </tr>
@@ -86,7 +87,13 @@
              {
                  $total += $item['ivb_jumlah'];
                  ?>
-                <tr>
+                 <?php 
+                if ($item['ivb_jam'] > 0){
+                    echo '<tr class = danger>';
+                } else {
+                    echo '<tr class = info>';
+                }
+                ?>
 					<td width="80px"><?php echo ++$start ?></td>
 					<td><?php echo $item['ivb_kode'] ?></td>
 					<td><?php echo $item['ang_no'] ?></td>
@@ -99,15 +106,35 @@
 					<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
 					<td><?php echo dateFormataja($item['ivb_tglpendaftaran']) ?></td>
 					<td><?php echo dateFormataja($item['jatuhtempo']) ?></td>
+					<td><?php echo $this->statusJaminan[$item['ivb_jam']] ?></td>
 					<td><?php echo $item['ivb_status'] ?></td>
 					<td style="text-align:center" width="200px">
 						<?php 
 						echo anchor(site_url('investasiberjangka/read/'.$item['ivb_kode']),'Read','class="text-navy"'); 
 						echo ' | '; 
 						echo anchor(site_url('investasiberjangka/update/'.$item['ivb_kode']),'Update','class="text-navy"'); 
-						// echo ' | '; 
-						// echo anchor(site_url('investasiberjangka/delete/'.$item['ivb_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 						 ?>
+                        <?php if(is_allow('M_EDIT')): ?>
+                        <?php
+						echo ' | '; 
+						echo anchor(site_url('investasiberjangka/delete/'.$item['ivb_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+                        ?>
+                        <?php endif; ?>
+                      <form action="<?php echo site_url('investasiberjangka/jaminan/'.$item['ivb_kode']); ?>" method="post">
+                        <input type="hidden" class="form-control" name="ivb_kode" id="ivb_kode" placeholder="ivb_kode" value="<?php echo $item['ivb_kode']; ?>" />
+                        <?php  
+                        if ($item['ivb_jam'] == 0 && $item['ivb_statusid'] < 1){
+                        echo '
+                        <input type="hidden" class="form-control" name="ivb_jam" id="ivb_jam" placeholder="ivb_jam" value="1" />
+                        <button type="submit" class="btn btn-danger">Agunkan</button>';
+                            } 
+                        else if ($item['ivb_jam'] == 1 && $item['ivb_statusid'] < 1) {
+                        echo '
+                        <input type="hidden" class="form-control" name="ivb_jam" id="ivb_jam" placeholder="ivb_jam" value="0"/>
+                        <button type="submit" class="btn btn-info">Lunas</button>'; 
+                            } ?>
+                    </form>
+
 					</td>
 				</tr>
                 <?php

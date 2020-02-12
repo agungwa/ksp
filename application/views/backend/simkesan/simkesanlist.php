@@ -42,7 +42,7 @@
             </div>
 			
         </div>
-        <table class="data" style="margin-bottom: 10px">
+        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead>
             <tr>
                 <th>No</th>
@@ -57,6 +57,7 @@
 				<th>Terakhir Setor</th>
 				<th>Total Setor</th>
 				<th>Titipan</th>
+				<th>Status Diagunkan</th>
 				<th>Status</th>
 				<th>Action</th>
 			</tr>
@@ -76,7 +77,14 @@
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $simkesan->ang_no))->row();
                 $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $simkesan->kar_kode))->row();
                 ?>
-                <tr>
+                
+                <?php 
+               if ($simkesan->sik_jam > 0){
+                   echo '<tr class = danger>';
+               } else {
+                   echo '<tr class = info>';
+               }
+               ?>
 					<td width="80px"><?php echo ++$start ?></td>
         			<td><?php echo $simkesan->sik_kode ?></td>
         			<td><?php echo $simkesan->ang_no ?></td>
@@ -89,15 +97,35 @@
         			<td><?php echo dateFormataja($terakhir->tanggal) ?></td>
                     <td><?php echo neraca($totalsetoran[0]->ssk_jmlsetor) ?></td>
                     <td><?php echo neraca($titipan) ?></td>
+        			<td><?php echo $this->statusJaminan[$simkesan->sik_jam] ?></td>
         			<td><?php echo $this->statusSimkesan[$simkesan->sik_status] ?></td>
                     <td style="text-align:center" width="200px">
                         <?php 
                         echo anchor(site_url('simkesan/read/'.$simkesan->sik_kode),'Read','class="text-navy"'); 
                         echo ' | '; 
                         echo anchor(site_url('simkesan/update/'.$simkesan->sik_kode),'Update','class="text-navy"'); 
+                     
+                        ?>
+                        <?php if(is_allow('M_EDIT')): ?>
+                            <?php
                         echo ' | '; 
                         echo anchor(site_url('simkesan/delete/'.$simkesan->sik_kode),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
                         ?>
+                            <?php endif; ?>
+                      <form action="<?php echo site_url('simkesan/jaminan/'.$simkesan->sik_kode); ?>" method="post">
+                        <input type="hidden" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $simkesan->sik_kode; ?>" />
+                        <?php  
+                        if ($simkesan->sik_jam == 0 && $simkesan->sik_status < 1){
+                        echo '
+                        <input type="hidden" class="form-control" name="sik_jam" id="sik_jam" placeholder="sik_jam" value="1" />
+                        <button type="submit" class="btn btn-danger">Agunkan</button>';
+                            } 
+                        else if ($simkesan->sik_jam == 1 && $simkesan->sik_status < 1) {
+                        echo '
+                        <input type="hidden" class="form-control" name="sik_jam" id="sik_jam" placeholder="sik_jam" value="0"/>
+                        <button type="submit" class="btn btn-info">Lunas</button>'; 
+                            } ?>
+                    </form>
                     </td>
         		</tr>
                 

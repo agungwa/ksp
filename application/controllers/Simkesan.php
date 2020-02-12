@@ -122,6 +122,19 @@ class Simkesan extends MY_Base
             redirect(site_url('simkesan'));
         }
 
+        public function jaminan($id) 
+        {
+            $row = $this->Simkesan_model->get_by_id($id);
+            if ($row) {
+                $data = array(
+                'sik_jam' => $this->input->post('sik_jam', TRUE),
+            );
+            $this->Simkesan_model->update($this->input->post('sik_kode', TRUE), $data);
+            $this->session->set_flashdata('message', 'Update Agunan');
+            redirect(site_url('simkesan/?p=2'));
+            }
+        }
+
      //Setoran simkesan
      public function setoransimkesan($id) 
      {

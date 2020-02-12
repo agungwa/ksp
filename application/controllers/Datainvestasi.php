@@ -73,7 +73,7 @@ class DataInvestasi extends MY_Base
     	//hitung saldo investasi nonaktif
     	foreach ($investasiNonaktif as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglditutup));
 			//var_dump($value->ags_id);
     			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
     				$saldoInvestasiditarik += $value->ivb_jumlah ;
@@ -127,7 +127,7 @@ class DataInvestasi extends MY_Base
     	//Rekening investasi nonaktif
     	foreach ($investasiNonaktif as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->ivb_tglpendaftaran));
+			$tgl = date("Y-m-d", strtotime($value->ivb_tglditutup));
 			//var_dump($value->ags_id);
     			if (($tgl >= $f && $tgl <= $t && 'all'==$w) || ($tgl >= $f && $tgl <= $t && $value->wil_kode==$w))  {
     				$totalRekeningkeluar++ ;
