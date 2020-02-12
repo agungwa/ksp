@@ -503,8 +503,8 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 			$jatuhTempo = date("Y-m-d", strtotime($setoransimkesan->ssk_tglsetoran.' + '.$SATU.'month'));
 			
 			if($datenow >= $jatuhTempo){
-				$tts_jmltitip = $this->Titipansimkesan_model->get_totaltitipan($rekening);
-				$tts_jmlambil = $this->Titipansimkesan_model->get_totalambil($rekening);
+				$tts_jmltitip = $this->Titipansimkesan_model->get_totaltitipan1($rekening);
+				$tts_jmlambil = $this->Titipansimkesan_model->get_totalambil1($rekening);
 				if(($tts_jmltitip->tts_jmltitip - $tts_jmlambil->tts_jmlambil) > 0){
 					$ambilTitipan = $tts_jmltitip->tts_jmltitip;
 					
