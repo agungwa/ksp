@@ -178,6 +178,7 @@ class Investasiberjangka extends MY_Base
         //update data investasi
         $dataInvestasi = array(
             'ivb_status' => 1,
+            'ivb_tglditutup' => $this->input->post('ivb_tglditutup',TRUE),
             );
         $this->Investasiberjangka_model->update($this->input->post('ivb_kode', TRUE), $dataInvestasi);
         redirect(site_url('investasiberjangka/?p=4'));
