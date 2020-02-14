@@ -23,7 +23,7 @@ class Investasiberjangka extends MY_Base
                 $this->pendaftaran();
                 break;
             case  2:
-                $this->listdata();
+                $this->listdata($active);
                 break;
             case  3:
                 $this->jatuhtempo();
@@ -39,6 +39,9 @@ class Investasiberjangka extends MY_Base
                 break;
 			case  7:
                 $this->listpenarikan();
+                break;
+            case  8:
+                $this->listdata($active);
                 break;
                     
             default:
@@ -184,8 +187,16 @@ class Investasiberjangka extends MY_Base
         redirect(site_url('investasiberjangka/?p=4'));
     }
 
-    public function listdata()
+    public function listdata($active)
     {
+        
+          
+        if($active == 2){ 
+            $item_dt = "investasiberjangka_list.php";
+        }
+        elseif($active == 8){
+            $item_dt = "investasiberjangka_penarikan.php";
+        }
         $q = urldecode($this->input->get('q', TRUE));
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
         $s = urldecode($this->input->get('s', TRUE)); //status
@@ -202,6 +213,7 @@ class Investasiberjangka extends MY_Base
         $start = intval($this->input->get('start'));
         
         $investasiberjangka = $this->Investasiberjangka_model->get_limit_data( $start, $q);
+     
         $wilayah = $this->Wilayah_model->get_all();
         $datainvest = array();
         foreach ($investasiberjangka as $key=>$item) {
@@ -214,8 +226,14 @@ class Investasiberjangka extends MY_Base
                 ( $u == $item->ivb_kode && $s=='all' && $w == $item->wil_kode) || 
                 ( $u == $item->ivb_kode && $s == $item->ivb_status && $w == $item->wil_kode) || 
                 ( $u=='all' && $s == $item->ivb_status && $w == $item->wil_kode)) {
-					
-				$tglpendaftaran = $item->ivb_tglpendaftaran;
+				   
+                if($active == 2){ 
+                    $tanggalfilter = $item->ivb_tglpendaftaran;
+                }
+                elseif($active == 8){
+                    $tanggalfilter = $item->ivb_tglditutup;
+                }
+				$tglpendaftaran = $tanggalfilter;
 				if($tglpendaftaran >= $f && $tglpendaftaran <= date("Y-m-d", strtotime($t.' + '.$satu.' Days'))){
                     $ivb_status = $this->statusInvestasi;                
                     $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
@@ -238,6 +256,7 @@ class Investasiberjangka extends MY_Base
 						'ivb_jumlah' => $item->ivb_jumlah,
 						'ivb_tglpendaftaran' => $item->ivb_tglpendaftaran,
 						'ivb_tglperpanjangan' => $item->ivb_tglperpanjangan,
+						'ivb_tglditutup' => $item->ivb_tglditutup,
 						'jatuhtempo' => $tanggalDuedate,
 						'ivb_status' => $ivb_status[$item->ivb_status],
 						'ivb_statusid' => $item->ivb_status,
@@ -258,10 +277,11 @@ class Investasiberjangka extends MY_Base
             'u' => $u,
 			'f'	=> $f,
 			't'	=> $t,
+			'p' => $active,
             'start' => $start,
-            'active' => 2,
+            'active' => $active,
             'content' => 'backend/investasiberjangka/investasiberjangka',
-            'item' => 'investasiberjangka_list.php'
+            'item' => $item_dt,
         );
         $this->load->view(layout(), $data);
     }

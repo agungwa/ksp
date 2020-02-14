@@ -18,7 +18,7 @@
             <label for="varchar">Anggota </label>
             <div class="input-group">
             <input type="hidden" name="ang_no" id="ang_no"  required />
-            <input type="text" class="form-control" name="nm_ang_no" id="nm_ang_no" placeholder="Anggota"  required />
+            <input type="text" class="form-control" name="nm_ang_no" id="nm_ang_no" placeholder="Anggota" autocomplete="off" class="readonly" required onkeypress="return false" />
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>anggota/lookup','ang_no');" style="cursor: pointer;">Cari</span>
             </div>
@@ -28,29 +28,21 @@
             <label for="varchar">Karyawan </label>
             <div class="input-group">
             <input type="hidden" name="kar_kode" id="kar_kode"  required />
-            <input type="text" class="form-control" name="nm_kar_kode" id="nm_kar_kode" placeholder="Karyawan"  required />
+            <input type="text" class="form-control" name="nm_kar_kode" id="nm_kar_kode" autocomplete="off" placeholder="Karyawan" onkeypress="return false" required />
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>karyawan/lookup','kar_kode');" style="cursor: pointer;">Cari</span>
             </div>
             </div>
         </div>
          <div class="form-group col-md-12">
-           <!-- <label for="float">Bunga Simpanan</label>
-            <div class="input-group">
-            <input type="hidden" name="bus_id" id="bus_id" required />
-            <input type="text" class="form-control" name="nm_bus_id" id="nm_bus_id" placeholder="Bunga Simpanan"  required />
-            <div class="input-group-addon">
-                <span onclick="lookup('<?=base_url()?>bungasimpanan/lookup','bus_id');" style="cursor: pointer;">Cari</span>
-            </div>
-            </div>--> 
         </div>
         </div> 
         <div class="col-md-6">
         <div class="form-group col-md-12">
             <label for="int">Jenis Setoran </label>
             <div class="input-group">
-            <input type="hidden" name="jse_id" id="jse_id"  required />
-            <input type="text" class="form-control" name="nm_jse_id" id="nm_jse_id" placeholder="Jenis Setoran"  required />
+            <input type="hidden" name="jse_id" id="jse_id" required />
+            <input type="text" class="form-control" name="nm_jse_id" id="nm_jse_id" autocomplete="off" onkeypress="return false" placeholder="Jenis Setoran"  required />
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>jenissetoran/lookup','jse_id');" style="cursor: pointer;">Cari</span>
             </div>
@@ -60,7 +52,7 @@
             <label for="varchar">Wilayah </label>
             <div class="input-group">
             <input type="hidden" name="wil_kode" id="wil_kode"  required />
-            <input type="text" class="form-control" name="nm_wil_kode" id="nm_wil_kode" placeholder="Wilayah"  required />
+            <input type="text" class="form-control" name="nm_wil_kode" id="nm_wil_kode" autocomplete="off" onkeypress="return false" placeholder="Wilayah"  required />
             <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>wilayah/lookup','wil_kode');" style="cursor: pointer;">Cari</span>
             </div>

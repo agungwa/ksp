@@ -20,6 +20,7 @@
                         <li role="presentation" class="<?= ($active==5)?'active':''?>"><a href="<?=base_url()?>investasiberjangka/?p=5">List Jasa (Sub Total)</a></li>
 						<li role="presentation" class="<?= ($active==6)?'active':''?>"><a href="<?=base_url()?>investasiberjangka/?p=6">List Jasa</a></li>
 						<li role="presentation" class="<?= ($active==7)?'active':''?>"><a href="<?=base_url()?>investasiberjangka/?p=7">List Penarikan</a></li>
+						<li role="presentation" class="<?= ($active==8)?'active':''?>"><a href="<?=base_url()?>investasiberjangka/?p=8">List Investasi Tutup</a></li>
                         </ul>
 						
             			<?php

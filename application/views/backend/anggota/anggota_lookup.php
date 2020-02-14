@@ -1,9 +1,7 @@
-<!doctype html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
+
+
+    <link href="<?=base_url()?>assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=base_url()?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/> 
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
@@ -28,7 +26,7 @@
             <div class="col-md-3 text-right">
                 <form action="<?php echo site_url('anggota/lookup'); ?>" class="form-inline" method="get">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="q" id="q" value="<?php echo @$_GET['q']; ?>">
+                        <input type="text" class="form-control" name="q" id="q" value="<?php echo @$_GET['q']; ?>" autofocus autocomplete="off">
                         <span class="input-group-btn">
                           <button type="button" class="btn btn-success" onclick="lookup('<?php echo base_url()?>anggota/lookup', '<?= @$_GET['idhtml']?>')" >Search</button>
                         </span>
@@ -46,7 +44,6 @@
 		<th class="text-center">Nomor KTP</th>
 		<th class="text-center">Nomor KK</th>
 		<th class="text-center">Nomor Handphone</th>
-		<th class="text-center">Status</th>
             </thead>
 			<tbody><?php
             foreach ($anggota_data as $anggota)
@@ -61,7 +58,6 @@
 			<td><?php echo $anggota->ang_noktp ?></td>
 			<td><?php echo $anggota->ang_nokk ?></td>
 			<td><?php echo $anggota->ang_nohp ?></td>
-			<td><?php echo $this->statusAnggota[$anggota->ang_status] ?></td>
 		</tr>
                 
                 <?php
@@ -69,9 +65,23 @@
             ?>
             </tbody>
         </table>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="#" class="btn btn-primary">Total Record : <?php echo $total_rows ?></a>
+	    </div>
+        </div>
+        </div>
         </div>
     </div>
     </div>
     </div>
-    </body>
-</html>
+   
+
+<script type="text/javascript">
+ $(document).keypress(
+  function(event){
+    if (event.which == '13') {
+      event.preventDefault();
+    }
+});
+</script>

@@ -1,4 +1,11 @@
 <!doctype html>
+
+    <link href="<?php echo base_url().'assets/css/bootstrap.css'?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url().'assets/css/jquery.datatables.min.css'?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url().'assets/css/dataTables.bootstrap.css'?>" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo base_url().'assets/js/jquery.js'?>" rel="stylesheet" type="text/css"/>
+    <link href="<?=base_url()?>assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=base_url()?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/> 
 <html>
     <head>
         <title></title>
@@ -37,7 +44,7 @@
                 </form>
             </div>
         </div>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
@@ -73,5 +80,21 @@
     </div>
     </div>
     </div>
-    </body>
+
+<script type="text/javascript">
+ $(document).keypress(
+  function(event){
+    if (event.which == '13') {
+      event.preventDefault();
+    }
+});
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.data').DataTable();
+    });
+</script>
+
+</body>
+
 </html>

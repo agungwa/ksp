@@ -48,6 +48,15 @@ class Anggota_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    // get data with limit and search
+    function get_limit_data1($limit, $start = 0, $q = NULL) {
+        $this->db->order_by($this->id, $this->order);
+        $where = "ang_nama LIKE '%$q%' ESCAPE '!' AND ang_flag < 2";
+        $this->db->where($where);
+        $this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
     // insert pendaftaran
     function savePendaftaran($data)
     {

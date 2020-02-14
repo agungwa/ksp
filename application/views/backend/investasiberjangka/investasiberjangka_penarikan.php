@@ -76,6 +76,7 @@
 				<th>Investasi</th>
 				<th>Tanggal Pendaftaran</th>
 				<th>Tanggal Jatuh Tempo</th>
+				<th>Tanggal Ditarik</th>
 				<th>Status Diagunkan</th>
 				<th>Status</th>
 				<th>Action</th>
@@ -106,6 +107,7 @@
 					<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
 					<td><?php echo dateFormataja($item['ivb_tglpendaftaran']) ?></td>
 					<td><?php echo dateFormataja($item['jatuhtempo']) ?></td>
+					<td><?php echo dateFormataja($item['ivb_tglditutup']) ?></td>
 					<td><?php echo $this->statusJaminan[$item['ivb_jam']] ?></td>
 					<td><?php echo $item['ivb_status'] ?></td>
 					<td style="text-align:center" width="200px">
@@ -143,6 +145,15 @@
             </tbody>
            
         </table>
+        <table class="table table-bordered table-hover table-condensed">
+        <tr class="danger">
+									<td></td>
+									<td>Total </td>
+									<td></td><td></td><td></td><td></td>
+									<td><?php echo rupiahsimpanan($total) ?></td>
+								</tr>
+        </table>
+
         <div class="row">
             
         </div>

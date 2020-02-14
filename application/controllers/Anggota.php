@@ -391,13 +391,20 @@ class Anggota extends MY_Base
             $config['first_url'] = base_url() . 'anggota/index.html';
         }
 
-        $anggota = $this->Anggota_model->get_limit_data($start, $q);
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Anggota_model->total_rows($q);
+        $anggota = $this->Anggota_model->get_limit_data1($config['per_page'], $start, $q);
 
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
 
         $data = array(
             'anggota_data' => $anggota,
+            'pagination' => $this->pagination->create_links(),
             'idhtml' => $idhtml,
             'q' => $q,
+            'total_rows' => $config['total_rows'],
             'start' => $start,
             'content' => 'backend/anggota/anggota_lookup',
         );
