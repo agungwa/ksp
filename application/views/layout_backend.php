@@ -475,6 +475,30 @@ lookup();
                             <li><a href="<?=base_url()?>karyawan">Karyawan</a></li>
                             <li><a href="<?=base_url()?>wilayah_karyawan">Wilayah Karyawan</a></li>
                         </ul>
+                    </li> 
+                    
+                    <!-- MENU KASIR -->
+                    <li class="">
+                        
+                        <a href="index.html"><i class="fa fa-money"></i> <span class="nav-label">KASIR</span>
+                            <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                        <?php if(is_allow('M_MANAGER')): ?>
+                            <li><a href="<?=base_url()?>kasbon">Kas Bon</a></li>
+                            <li>
+                                <a href="#" id="damian">Tunai<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="<?=base_url()?>penggajianmarketing">Tunai Masuk</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?=base_url()?>penggajianmarketing">Tunai Keluar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="<?=base_url()?>tunai">KAS</a></li>
+                            <?php endif; ?>
+                        </ul>
                     </li>
 
                     <!-- MENU USER MANAGEMENT -->

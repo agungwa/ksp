@@ -85,8 +85,8 @@
                 
                 <label for="int">Tenor (bulan)</label>
                 <div class="input-group">
-                <input type="hidden" name="sea_id" id="sea_id" value="" required="required" />
-                <input type="text" class="form-control" name="nm_sea_id" id="nm_sea_id" placeholder="Setting Angsuran" value="" required="required" readonly/>
+                <input type="hidden" name="sea_id" id="sea_id" required />
+                <input type="text" class="form-control" name="nm_sea_id" id="nm_sea_id" placeholder="Setting Angsuran" required autocomplete="off" onkeypress="return false"/>
                 <div class="input-group-addon">
                 <span onclick="lookup('<?=base_url()?>settingangsuran/lookup','sea_id');" style="cursor: pointer;"><i class="glyphicon glyphicon-search"></i></span>
                 </div>

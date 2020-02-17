@@ -54,7 +54,7 @@
             <div class="col-md-4">
                 <label for="text">Disetujui</label>
                 <input type="file" class="file" name="pin_survey" id="pin_survey" placeholder="Survey" required="required"/>
-                <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="<?php echo $survey['pin_id'];?>" required="required"/>            
+                <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="<?php echo $survey['pin_id'];?>" required/>            
 	            <button type="submit" class="btn btn-primary">Setujui</button> 
                 <a href="<?php echo site_url('pinjaman/?p=2') ?>" class="btn btn-default">Batal</a>
             </div>
@@ -70,7 +70,7 @@
 	        	?>
             <div class="col-md-4">
                 <label for="text">Ditolak</label>
-                <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="<?php echo $survey['pin_id'];?>" required="required"/>            
+                <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="<?php echo $survey['pin_id'];?>" required/>            
                 <input type="file" class="file" name="pin_survey" id="pin_survey" placeholder="Survey" required="required"/>
 	            <button type="submit" class="btn btn-primary">Tolak</button> 
                 <a href="<?php echo site_url('pinjaman/?p=2') ?>" class="btn btn-default">Batal</a>

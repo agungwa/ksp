@@ -32,6 +32,7 @@ class MY_Base extends CI_Controller {
         $this->statusInvestasi = array(0=>"Aktif", 1=>"Tidak Aktif");
         $this->statusSimpananwajib = array(0=>"Aktif", 1=>"Ditarik", 2=>"Belum Dibayar");
         $this->statusMutasi = array(0=>"Tidak", 1=>"Mutasi");
+        $this->jenisKasbon = array(0=>"Simpanan", 1=>"Investasi", 2=>"Simkesan", 3=>"Pinjaman");
         $this->load->vars($this->tgl, $this->flag, $this->statusAngsuran);
 
         if ($this->session->userdata('logged')!=TRUE){
