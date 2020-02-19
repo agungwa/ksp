@@ -1054,12 +1054,26 @@ class Simkesan extends MY_Base
         $start = intval($this->input->get('start'));
         $idhtml = $this->input->get('idhtml');
         
-        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q) .'&idhtml='.$idhtml;
+            $config['first_url'] = base_url() . 'simkesan/index.html?q=' . urlencode($q).'&idhtml='.$idhtml;
+        } else {
+            $config['base_url'] = base_url() . 'simkesan/index.html';
+            $config['first_url'] = base_url() . 'simkesan/index.html';
+        }
+
+        $config['per_page'] = 500;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Simkesan_model->total_rows($q);
+        
+        $simkesan = $this->Simkesan_model->get_limit_datajoin($config['per_page'], $start, $q);
 
 
         $data = array(
             'simkesan_data' => $simkesan,
+            'pagination' => $this->pagination->create_links(),
             'idhtml' => $idhtml,
+            'total_rows' => $config['total_rows'],
             'q' => $q,
             'content' => 'backend/simkesan/simkesan_lookup',
         );

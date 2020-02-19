@@ -13,7 +13,7 @@
     <link href="<?=base_url()?>assets/vendor/inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/sweetalert/css/sweetalert.css" rel="stylesheet">
     <!-- Toastr style -->
-    <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <!-- <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/toastr/toastr.min.css" rel="stylesheet"> -->
     <!-- Morris -->
     <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/datepicker/css/datepicker3.css" rel="stylesheet">
@@ -21,13 +21,9 @@
     <link href="<?=base_url()?>assets/vendor/inspinia/css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/radiocheck/radiocheck.css" rel="stylesheet">
     <!--datatables-->
-    <!--<link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>-->
     <link href="<?=base_url()?>assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?=base_url()?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/> 
-<!--
-    <link href="<?=base_url()?>assets/datatables/dataTables.bootstrap.css" rel="stylesheet">
-    <script src="<?=base_url()?>assets/datatables/dataTables.bootstrap.js"></script>
-    <script src="<?=base_url()?>assets/datatables/jquery.dataTables.js"></script>-->
+
     <script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>
     <script src="<?=base_url()?>assets/rupiah/my.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/bootstrap.min.js"></script>

@@ -9,6 +9,7 @@ class Mutasisimkesan extends MY_Base
     {
         parent::__construct();
         $this->load->model('Mutasisimkesan_model');
+        $this->load->model('Simkesan_model');
         $this->load->library('form_validation');
     }
 
@@ -123,26 +124,33 @@ class Mutasisimkesan extends MY_Base
     
     public function create_action() 
     {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->create();
+        if ($this->input->post('ulang') == "") {
+            $x = 1;
         } else {
+            $x=$this->input->post('ulang');
+        }
+        for($num=0; $num<$x; $num++){
+            $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $this->input->post('sik_kode',TRUE)[$num] ))->row();
             $data = array(
-    		'sik_kode' => $this->input->post('sik_kode',TRUE),
-    		'msk_tglmutasi' => $this->input->post('msk_tglmutasi',TRUE),
-    		'msk_asal' => $this->input->post('msk_asal',TRUE),
-    		'msk_tujuan' => $this->input->post('msk_tujuan',TRUE),
-    		'msk_status' => $this->input->post('msk_status',TRUE),
+    		'sik_kode' => $this->input->post('sik_kode',TRUE)[$num],
+    		'msk_tglmutasi' => $this->input->post('msk_tglmutasi',TRUE)[$num],
+    		'msk_asal' => $sik_kode->wil_kode,
+    		'msk_tujuan' => $this->input->post('tujuan_id',TRUE),
     		'msk_tgl' => $this->tgl,
     		'msk_flag' => 0,
     		'msk_info' => "",
-    	    );
-
+            );
             $this->Mutasisimkesan_model->insert($data);
+            $sik_kode = $this->input->post('sik_kode',TRUE)[$num];
+            $dataSimkesan = array(
+                'wil_kode' => $this->input->post('tujuan_id',TRUE),
+                'sik_flag' => 1,
+                );
+            $this->Simkesan_model->update($sik_kode, $dataSimkesan);
+        }
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('mutasisimkesan'));
-        }
+        
     }
     
     public function update($id) 

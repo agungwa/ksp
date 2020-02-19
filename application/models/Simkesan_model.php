@@ -92,11 +92,21 @@ class Simkesan_model extends CI_Model
     }
 
     // get data with limit and search
-    function get_limit_data($start = 0, $q = NULL) {
+    function get_limit_data($limit,$start = 0, $q = NULL) {
         $this->db->order_by($this->id, $this->order);
         $where = "(sik_kode LIKE '%$q%' ESCAPE '!' OR ang_no LIKE '%$q%' ESCAPE '!') AND sik_flag < 2";
         $this->db->where($where);
-	   // $this->db->limit($limit, $start);
+	    $this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get data with limit and search and join
+    function get_limit_datajoin($limit,$start = 0, $q = NULL) {
+        $this->db->join('anggota', 'simkesan.ang_no = anggota.ang_no', 'right');
+        $this->db->order_by($this->id, $this->order);
+        $where = "(sik_kode LIKE '%$q%' ESCAPE '!' OR simkesan.ang_no LIKE '%$q%' ESCAPE '!' OR anggota.ang_alamat LIKE '%$q%' ESCAPE '!') AND sik_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 
