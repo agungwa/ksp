@@ -12,8 +12,24 @@ class Mutasisimkesan extends MY_Base
         $this->load->model('Simkesan_model');
         $this->load->library('form_validation');
     }
+    public function index(){
+        $active = urldecode($this->input->get('p', TRUE));
+    
+        switch ($active) {
+            case  1:
+                $this->create();
+                break;
+            case  2:
+                $this->listdata();
+                break;
 
-    public function index()
+            default:
+                $this->listdata();
+                break;
+        }
+    }
+
+    public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
@@ -40,7 +56,9 @@ class Mutasisimkesan extends MY_Base
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            'content' => 'backend/mutasisimkesan/mutasisimkesan_list',
+            'content' => 'backend/mutasisimkesan/mutasi',
+            'item'=> 'mutasisimkesan_list.php',
+            'active' => 2,
         );
         $this->load->view(layout(), $data);
     }
@@ -117,7 +135,9 @@ class Mutasisimkesan extends MY_Base
     	    'msk_tgl' => set_value('msk_tgl'),
     	    'msk_flag' => set_value('msk_flag'),
     	    'msk_info' => set_value('msk_info'),
-    	    'content' => 'backend/mutasisimkesan/mutasisimkesan_form',
+            'content' => 'backend/mutasisimkesan/mutasi',
+            'item'=> 'mutasisimkesan_form.php',
+            'active' => 1,
     	);
         $this->load->view(layout(), $data);
     }
@@ -223,7 +243,6 @@ class Mutasisimkesan extends MY_Base
 	$this->form_validation->set_rules('msk_tglmutasi', 'msk tglmutasi', 'trim|required');
 	$this->form_validation->set_rules('msk_asal', 'msk asal', 'trim|required');
 	$this->form_validation->set_rules('msk_tujuan', 'msk tujuan', 'trim|required');
-	$this->form_validation->set_rules('msk_status', 'msk status', 'trim|required');
 
 	$this->form_validation->set_rules('msk_id', 'msk_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
