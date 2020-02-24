@@ -267,12 +267,53 @@ class Pelunasan extends MY_Base
         $start = intval($this->input->get('start'));
         
 
+        $f = urldecode($this->input->get('f', TRUE));
+        $t = urldecode($this->input->get('t', TRUE));
+		
+		$SATU = 1;
+		
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $dateyesterday = date("Y-m-d", strtotime($datetoday.' - '.$SATU.' Months'));
+        if ($f == null && $t == null ){$f=$dateyesterday; $t=$datetoday;}
+        
+        $peldata = array();
         $pelunasan = $this->Pelunasan_model->get_limit_data($start, $q);
-
+		foreach($pelunasan as $key=>$item){
+            $pel_jenis = $this->db->get_where('jenispelunasan', array('jep_id' => $item->pel_jenis))->row();
+            $pin_id = $this->db->get_where('pinjaman', array('pin_id' => $item->pin_id))->row();
+            $ang_no = $this->db->get_where('anggota', array('ang_no' => $pin_id->ang_no))->row();
+			
+			$pel_tgl = date('Y-m-d', strtotime($item->pel_tglpelunasan));
+			
+			if($pel_tgl >= $f && $pel_tgl <= $t){
+				$peldata[$key] = array(
+                    'pel_id' => $item->pel_id,
+                    'pin_id' => $item->pin_id,
+                    'ang_no' => $pin_id->ang_no,
+                    'nm_ang_no' => $ang_no->ang_nama,
+                    'pel_jenis' => $item->pel_jenis,
+                    'nm_pel_jenis' => $pel_jenis->jep_jenis,
+                    'pel_tenor' => $item->pel_tenor,
+                    'pel_angsuran' => $item->pel_angsuran,
+                    'pel_bungaangsuran' => $item->pel_bungaangsuran,
+                    'pel_totalkekuranganpokok' => $item->pel_totalkekuranganpokok,
+                    'pel_totalbungapokok' => $item->pel_totalbungapokok,
+                    'pel_bungatambahan' => $item->pel_bungatambahan,
+                    'pel_biayapenarikan' => $item->pel_biayapenarikan,
+                    'pel_totaldenda' => $item->pel_totaldenda,
+                    'pel_tglpelunasan' => $item->pel_tglpelunasan,
+                    'pel_tgl' => $item->pel_tgl,
+                    'pel_flag' => $item->pel_flag,
+                    'pel_info' => $item->pel_info,
+				);
+			}
+		}
 
         $data = array(
-            'pelunasan_data' => $pelunasan,
+            'pelunasan_data' => $peldata,
             'q' => $q,
+			'f'=>$f,
+			't'=>$t,
             'start' => $start,
             'content' => 'backend/pelunasan/index',
             'item'=> 'pelunasan_list.php',

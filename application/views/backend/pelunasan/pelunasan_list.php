@@ -13,11 +13,23 @@
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-8">
+            <form action="<?php echo site_url('pelunasan/listData'); ?>" class="form-inline" method="get">
+								<div class="col-md-6 text-right">Rentang Tanggal :
+									<input class="form-control" type="date" name="f" required="required" value="<?= $f ?>">
+									<input class="form-control" type="date" name="t" value="<?= $t ?>" required="required">
+								</div>
+								<div class="input-group">
+									<span class="input-group-btn">
+									  <button class="btn btn-primary" type="submit">Tampilkan</button>
+									</span>
+								</div>
+							</form>
             </div>
             
             <div class="col-md-1 text-right">
             </div>
             <div class="col-md-3 text-right">
+       
                 <!--<form action="<?php echo site_url('pelunasan/index'); ?>" class="form-inline" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
@@ -53,30 +65,36 @@
             </tr>
             </thead>
 			<tbody><?php
+            $totalpokok = 0;
+            $totalbunga = 0;
+            $totaldenda = 0;
+            $totalbiaya = 0;
             foreach ($pelunasan_data as $pelunasan)
             {
-                $pel_jenis = $this->db->get_where('jenispelunasan', array('jep_id' => $pelunasan->pel_jenis))->row();
-                $pin_id = $this->db->get_where('pinjaman', array('pin_id' => $pelunasan->pin_id))->row();
-                $ang_no = $this->db->get_where('anggota', array('ang_no' => $pin_id->ang_no))->row();
+                
+                $totalpokok += $pelunasan['pel_totalkekuranganpokok'];
+                $totalbunga += $pelunasan['pel_totalbungapokok'];
+                $totaldenda += $pelunasan['pel_totaldenda'];
+                $totalbiaya += $pelunasan['pel_biayapenarikan'];
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $pelunasan->pin_id ?></td>
-			<td><?php echo $ang_no->ang_nama ?></td>
-			<td><?php echo $pel_jenis->jep_jenis ?></td>
-			<td><?php echo rupiah($pelunasan->pel_totalkekuranganpokok) ?></td>
-			<td><?php echo rupiah($pelunasan->pel_totalbungapokok) ?></td>
-			<td><?php echo rupiah($pelunasan->pel_bungatambahan) ?></td>
-			<td><?php echo rupiah($pelunasan->pel_totaldenda) ?></td>
-			<td><?php echo rupiah($pelunasan->pel_biayapenarikan) ?></td>
-			<td><?php echo $pelunasan->pel_tglpelunasan ?></td>
+			<td><?php echo $pelunasan['pin_id'] ?></td>
+			<td><?php echo $pelunasan['nm_ang_no'] ?></td>
+			<td><?php echo $pelunasan['nm_pel_jenis'] ?></td>
+			<td><?php echo rupiah($pelunasan['pel_totalkekuranganpokok']) ?></td>
+			<td><?php echo rupiah($pelunasan['pel_totalbungapokok']) ?></td>
+			<td><?php echo rupiah($pelunasan['pel_bungatambahan']) ?></td>
+			<td><?php echo rupiah($pelunasan['pel_totaldenda']) ?></td>
+			<td><?php echo rupiah($pelunasan['pel_biayapenarikan']) ?></td>
+			<td><?php echo dateFormataja($pelunasan['pel_tglpelunasan']) ?></td>
 			<!--<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('pelunasan/read/'.$pelunasan->pel_id),'Read','class="text-navy"'); 
+				echo anchor(site_url('pelunasan/read/'.$pelunasan['pin_id']),'Read','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('pelunasan/update/'.$pelunasan->pel_id),'Update','class="text-navy"'); 
+				echo anchor(site_url('pelunasan/update/'.$pelunasan['pin_id']),'Update','class="text-navy"'); 
 				echo ' | '; 
-				echo anchor(site_url('pelunasan/delete/'.$pelunasan->pel_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
+				echo anchor(site_url('pelunasan/delete/'.$pelunasan['pin_id']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>-->
 		</tr>
@@ -86,6 +104,16 @@
             ?>
             </tbody>
         </table>
+					
+                    <table class="table table-bordered table-hover table-condensed">
+                        <tr class="danger">
+                        <td width="660px">Total Pokok</td><td><?php echo rupiah($totalpokok) ?></td>
+                        <td width="660px">Total Bunga</td><td><?php echo rupiah($totalbunga) ?></td>
+                        <td width="660px">Total Denda</td><td><?php echo rupiah($totaldenda) ?></td>
+                        <td width="660px">Total Biaya</td><td><?php echo rupiah($totalbiaya) ?></td>
+                        <td width="660px">Total </td><td><?php echo rupiah($totalpokok+$totalbunga+$totaldenda+$totalbiaya) ?></td>
+                        </tr>
+                    </table>
         <div class="row">
         </div>
         </div>
