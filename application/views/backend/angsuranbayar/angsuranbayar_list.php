@@ -52,8 +52,18 @@
 							<?php endif; ?>
 						</tr>
 						</thead>
-						<tbody><?php $no=0;
-						foreach ($angsuranbayar_data as $angsuranbayar){ ?>
+						<tbody><?php 
+						$no=0;
+						$totalpokok = 0;
+						$totalbunga = 0;
+						$totaldenda = 0;
+						
+						foreach ($angsuranbayar_data as $angsuranbayar){ 
+							
+								$totalpokok += $angsuranbayar['agb_pokok'];
+								$totalbunga += $angsuranbayar['agb_bunga'];
+								$totaldenda += $angsuranbayar['agb_denda'];
+							?>
 							<tr>
 								<td width="80px"><?= ++$no ?></td>
 								<td><?php echo $angsuranbayar['ags_ke'] ?></td>
@@ -79,6 +89,15 @@
 							<?php } ?>
 						</tbody>
 					</table>
+					
+		<table class="table table-bordered table-hover table-condensed">
+			<tr class="danger">
+			<td width="660px">Total Pokok</td><td><?php echo rupiah($totalpokok) ?></td>
+			<td width="660px">Total Bunga</td><td><?php echo rupiah($totalbunga) ?></td>
+			<td width="660px">Total Denda</td><td><?php echo rupiah($totaldenda) ?></td>
+			<td width="660px">Total </td><td><?php echo rupiah($totalpokok+$totalbunga+$totaldenda) ?></td>
+			</tr>
+		</table>
 			<div class="row">
 			</div>
         </div>

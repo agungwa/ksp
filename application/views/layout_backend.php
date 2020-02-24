@@ -153,6 +153,22 @@ lookup();
                             <li>
                                 <a href="<?=base_url()?>Simpanan">Simpanan</a>
                             </li>
+                            <?php if(is_allow('M_UTILITAS')): ?>
+                            <li>
+                                <a href="#" id="damian">Rekap<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="<?=base_url()?>Wilayah">Kas Bon</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?=base_url()?>Lainlain">Lain-lain</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?=base_url()?>Tunai/simpanan">Rekap Simpanan</a>
+                                    </li>
+                                </ul>
+                            </li>
+                                <?php endif; ?>
                             <li>
                                 <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
@@ -474,12 +490,13 @@ lookup();
                     </li> 
                     
                     <!-- MENU KASIR -->
+                    
+                    <?php if(is_allow('M_MANAGER')): ?>
                     <li class="">
                         
                         <a href="index.html"><i class="fa fa-money"></i> <span class="nav-label">KASIR</span>
                             <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                        <?php if(is_allow('M_MANAGER')): ?>
                             <li><a href="<?=base_url()?>kasbon">Kas Bon</a></li>
                             <li>
                                 <a href="#" id="damian">Tunai<span class="fa arrow"></span></a>
@@ -493,17 +510,18 @@ lookup();
                                 </ul>
                             </li>
                             <li><a href="<?=base_url()?>tunai">KAS</a></li>
-                            <?php endif; ?>
                         </ul>
                     </li>
+                    <?php endif; ?>
 
                     <!-- MENU USER MANAGEMENT -->
+                    
+                    <?php if(is_allow('M_SISTEM')): ?>
                     <li class="">
                         
                         <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">MANAJEMEN USER</span>
                             <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                        <?php if(is_allow('M_SISTEM')): ?>
                             <li><a href="<?=base_url()?>users">Users</a></li>
                             <li><a href="<?=base_url()?>user_group">User Group</a></li>
                             <?php endif; ?>
@@ -512,9 +530,9 @@ lookup();
                             <?php endif; ?>
                             <?php if(is_allow('M_SISTEM')): ?>
                             <li><a href="<?=base_url()?>master_access">Master Access</a></li>
-                            <?php endif; ?>
                         </ul>
                     </li>
+                    <?php endif; ?>
 
                     <!-- MENU SISTEM UTIL -->
                     <li class="">
