@@ -40,7 +40,9 @@ class Penarikaninvestasiberjangka_model extends CI_Model
      // get data by ivb_kode
      function get_data_ivb($ivb_kode)
      {
-         $this->db->where('ivb_kode =', $ivb_kode);
+         
+         $where = "ivb_kode = '$ivb_kode' AND pib_flag < 2";
+         $this->db->where($where);
          return $this->db->get($this->table)->result();
      }
     
