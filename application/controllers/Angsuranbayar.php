@@ -45,6 +45,7 @@ class Angsuranbayar extends MY_Base
 					'agb_tgldenda'=>$item->agb_tgldenda,
 					'agb_tgl'=>$item->agb_tgl,
 					'ang_nama'=>$anggota->ang_nama,
+					'ang_no'=>$anggota->ang_no,
 					'ang_alamat'=>$anggota->ang_alamat
 				);
 			}
