@@ -41,6 +41,7 @@
 						<tr>
 							<th class="text-center">No</th>
 							<th class="text-center">Angsuran Ke-</th>
+							<th class="text-center">No Rek.</th>
 							<th class="text-center">Nama</th>
 							<th class="text-center">Alamat</th>
 							<th class="text-center">Bayar Pokok</th>
@@ -67,6 +68,7 @@
 							<tr>
 								<td width="80px"><?= ++$no ?></td>
 								<td><?php echo $angsuranbayar['ags_ke'] ?></td>
+								<td><?php echo $angsuranbayar['ang_no'] ?></td>
 								<td><?php echo $angsuranbayar['ang_nama'] ?></td>
 								<td><?php echo $angsuranbayar['ang_alamat'] ?></td>
 								<td><?php echo rupiah($angsuranbayar['agb_pokok']) ?></td>
