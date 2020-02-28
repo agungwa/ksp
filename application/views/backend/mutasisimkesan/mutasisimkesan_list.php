@@ -48,7 +48,9 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Rekening Simkesan</th>
+        <th class="text-center">Rekening Simkesan</th>
+		<th class="text-center">Nama</th>
+		<th class="text-center">Alamat</th>
 		<th class="text-center">Asal</th>
 		<th class="text-center">Tujuan</th>
 		<th class="text-center">Tanggal</th>
@@ -59,12 +61,16 @@
             foreach ($mutasisimkesan_data as $mutasisimkesan)
             {
                 
+                $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $mutasisimkesan->sik_kode))->row();
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $sik_kode->ang_no))->row();
                 $wil_asal = $this->db->get_where('wilayah', array('wil_kode' => $mutasisimkesan->msk_asal))->row();
                 $wil_tujuan = $this->db->get_where('wilayah', array('wil_kode' => $mutasisimkesan->msk_asal))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $mutasisimkesan->sik_kode ?></td>
+			<td><?php echo $ang_no->ang_nama ?></td>
+			<td><?php echo $ang_no->ang_alamat ?></td>
 			<td><?php echo $wil_asal->wil_nama ?></td>
 			<td><?php echo $wil_tujuan->wil_nama ?></td>
 			<td><?php echo dateFormat($mutasisimkesan->msk_tgl) ?></td>
