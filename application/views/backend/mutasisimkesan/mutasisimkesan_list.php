@@ -65,8 +65,8 @@
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $mutasisimkesan->sik_kode ?></td>
-			<td><?php echo $mutasisimkesan->msk_asal ?></td>
-			<td><?php echo $mutasisimkesan->msk_tujuan ?></td>
+			<td><?php echo $wil_asal->wil_nama ?></td>
+			<td><?php echo $wil_tujuan->wil_nama ?></td>
 			<td><?php echo dateFormat($mutasisimkesan->msk_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
