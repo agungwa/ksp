@@ -54,7 +54,10 @@
 		<th class="text-center">Asal</th>
 		<th class="text-center">Tujuan</th>
 		<th class="text-center">Tanggal</th>
+        
+        <?php if(is_allow('M_EDIT')): ?>
 		<th class="text-center">Action</th>
+        <?php endif; ?>
             </tr>
             </thead>
 			<tbody><?php
@@ -74,6 +77,8 @@
 			<td><?php echo $wil_asal->wil_nama ?></td>
 			<td><?php echo $wil_tujuan->wil_nama ?></td>
 			<td><?php echo dateFormataja($mutasisimkesan->msk_tgl) ?></td>
+            
+            <?php if(is_allow('M_EDIT')): ?>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('mutasisimkesan/read/'.$mutasisimkesan->msk_id),'Read','class="text-navy"'); 
@@ -83,6 +88,7 @@
 				echo anchor(site_url('mutasisimkesan/delete/'.$mutasisimkesan->msk_id),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
 				?>
 			</td>
+            <?php endif; ?>
 		</tr>
                 
                 <?php
