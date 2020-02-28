@@ -49,10 +49,8 @@
             <tr>
                 <th class="text-center">No</th>
 		<th class="text-center">Rekening Simkesan</th>
-		<th class="text-center">Tanggal Mutasi</th>
 		<th class="text-center">Asal</th>
 		<th class="text-center">Tujuan</th>
-		<th class="text-center">Status</th>
 		<th class="text-center">Tanggal</th>
 		<th class="text-center">Action</th>
             </tr>
@@ -60,14 +58,15 @@
 			<tbody><?php
             foreach ($mutasisimkesan_data as $mutasisimkesan)
             {
+                
+                $wil_asal = $this->db->get_where('wilayah', array('wil_kode' => $mutasisimkesan->msk_asal))->row();
+                $wil_tujuan = $this->db->get_where('wilayah', array('wil_kode' => $mutasisimkesan->msk_asal))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo $mutasisimkesan->sik_kode ?></td>
-			<td><?php echo $mutasisimkesan->msk_tglmutasi ?></td>
 			<td><?php echo $mutasisimkesan->msk_asal ?></td>
 			<td><?php echo $mutasisimkesan->msk_tujuan ?></td>
-			<td><?php echo $mutasisimkesan->msk_status ?></td>
 			<td><?php echo dateFormat($mutasisimkesan->msk_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 

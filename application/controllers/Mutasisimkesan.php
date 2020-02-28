@@ -153,7 +153,7 @@ class Mutasisimkesan extends MY_Base
             $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $this->input->post('sik_kode',TRUE)[$num] ))->row();
             $data = array(
     		'sik_kode' => $this->input->post('sik_kode',TRUE)[$num],
-    		'msk_tglmutasi' => $this->input->post('msk_tglmutasi',TRUE)[$num],
+    		'msk_tglmutasi' => $this->input->post('msk_tglmutasi',TRUE),
     		'msk_asal' => $sik_kode->wil_kode,
     		'msk_tujuan' => $this->input->post('tujuan_id',TRUE),
     		'msk_tgl' => $this->tgl,
