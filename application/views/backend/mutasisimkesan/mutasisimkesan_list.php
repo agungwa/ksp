@@ -73,7 +73,7 @@
 			<td><?php echo $ang_no->ang_alamat ?></td>
 			<td><?php echo $wil_asal->wil_nama ?></td>
 			<td><?php echo $wil_tujuan->wil_nama ?></td>
-			<td><?php echo dateFormat($mutasisimkesan->msk_tgl) ?></td>
+			<td><?php echo dateFormataja($mutasisimkesan->msk_tgl) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('mutasisimkesan/read/'.$mutasisimkesan->msk_id),'Read','class="text-navy"'); 
