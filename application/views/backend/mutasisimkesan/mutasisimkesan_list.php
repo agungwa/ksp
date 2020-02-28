@@ -64,7 +64,7 @@
                 $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $mutasisimkesan->sik_kode))->row();
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $sik_kode->ang_no))->row();
                 $wil_asal = $this->db->get_where('wilayah', array('wil_kode' => $mutasisimkesan->msk_asal))->row();
-                $wil_tujuan = $this->db->get_where('wilayah', array('wil_kode' => $mutasisimkesan->msk_asal))->row();
+                $wil_tujuan = $this->db->get_where('wilayah', array('wil_kode' => $mutasisimkesan->msk_tujuan))->row();
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
