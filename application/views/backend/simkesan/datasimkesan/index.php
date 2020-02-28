@@ -54,6 +54,9 @@
             </div>
             </form>
         </div>
+        <?php if ($w!=NULL){
+
+        ?>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
             <tr>
@@ -106,6 +109,7 @@
             </tr>
             </tbody>
         </table>
+        <?php } ?>
         <div class="row">
         </div>
         </div>

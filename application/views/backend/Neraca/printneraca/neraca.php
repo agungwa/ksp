@@ -523,14 +523,14 @@ table#04 {
                     <td style="width:200.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria ; text-decoration:underline">Retno Eko Astuti</span></p><p
+                            <span style="font-family:Cambria ; text-decoration:underline">Retno Eko Astuti, A.Md</span></p><p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
                             <span style="font-family:Cambria">Sekretaris</span></p>
                     </td>
                     <td style="width:200.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
                         <p
                             style="margin-top:12pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria; text-decoration:underline">Adila Septi Mayasa</span></p><p
+                            <span style="font-family:Cambria; text-decoration:underline">Adila Septi Mayasa, S.M</span></p><p
                             style="margin-top:0pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
                             <span style="font-family:Cambria">Bendahara</span></p>
                     </td>

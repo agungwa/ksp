@@ -219,7 +219,7 @@ h5{text-align: center}
                     <td style="width:200.85pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; text-align:center;">
                         <p
                             style="margin-top:12pt; margin-bottom:10pt; text-align:center; line-height:115%; font-size:11pt">
-                            <span style="font-family:Cambria; text-decoration:underline">Maya Syarifatul Fajarah</span></p>
+                            <span style="font-family:Cambria; text-decoration:underline">Vika Amelia N, S.E</span></p>
                     </td>
                 </tr>
             </tbody>
