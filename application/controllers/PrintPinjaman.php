@@ -10,6 +10,7 @@ class PrintPinjaman extends MY_Base
         parent::__construct();
         $this->load->model('Pelunasan_model');
         $this->load->model('Potonganprovisi_model');
+        $this->load->model('Angsuranbayar_model');
         $this->load->model('Pinjaman_model');
         $this->load->model('Jaminan_model');
         $this->load->model('Penjamin_model');
