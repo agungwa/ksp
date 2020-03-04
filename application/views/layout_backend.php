@@ -9,12 +9,17 @@
 
     <title><?=data_app()?></title>
     <link rel="icon" href="<?=base_url()?>upload/koperasi.png" type="image/png">
+
+    <!--vertical-dark-->
+
+
+    
+    <!--inspinia-->
     <link href="<?=base_url()?>assets/vendor/inspinia/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/sweetalert/css/sweetalert.css" rel="stylesheet">
-    <!-- Toastr style -->
-    <!-- <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/toastr/toastr.min.css" rel="stylesheet"> -->
-    <!-- Morris -->
+
+
     <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/datepicker/css/datepicker3.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/inspinia/css/animate.css" rel="stylesheet">
@@ -25,7 +30,6 @@
     <link href="<?=base_url()?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/> 
 
     <script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>
-    <script src="<?=base_url()?>assets/rupiah/my.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/bootstrap.min.js"></script>
     <style>
     html {
@@ -696,7 +700,7 @@ lookup();
     
 
 
-    function rubah(angka){
+   function rubah(angka){
    var reverse = angka.toString().split('').reverse().join(''),
    ribuan = reverse.match(/\d{1,3}/g);
    ribuan = ribuan.join('.').split('').reverse().join('');

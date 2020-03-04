@@ -205,7 +205,7 @@ class Simpanan extends MY_Base
         //data simpanan
         if ($q<>''){
             $sim_status = $this->statusSimpanan;
-            $row = $this->Simpanan_model->get_by_id($q);
+            $row = $this->Simpanan_model->get_by_id_penarikan($q);
             $setoran = $this->Setoransimpanan_model->get_data_setor($q);
             if ($row) {    
             $jsi_id = $this->db->get_where('jenissimpanan', array('jsi_id' => $row->jsi_id))->row();
@@ -464,7 +464,6 @@ class Simpanan extends MY_Base
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 		
 		$tarik = array();
-		$tot_tarik = 0;
 		
 		$penarikan = $this->Penarikansimpanan_model->get_all();
 		$wilayah = $this->Wilayah_model->get_all();
@@ -492,13 +491,11 @@ class Simpanan extends MY_Base
 					'jml_tarik'=>$row->pes_jmltarik
 				);
 			}
-			$tot_tarik += $row->pes_jmltarik;
 		}
 		//print_r($tarik);
 		$data = array(
 			'tarik' => $tarik,
 			'wilayah' => $wilayah,
-			'tot_tarik' => $tot_tarik,
 			'q' => $q,
 			'w' => $w,
 			'f' => $f,

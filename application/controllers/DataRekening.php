@@ -43,7 +43,10 @@ class DataRekening extends MY_Base
     	$saldoSimpananDitarik = 0;
     	$bungaSimpanan = 0;
     	$saldoSimpananwajib = 0;
-    	$saldoSimpananwajibDitarik = 0;
+		$saldoSimpananwajibDitarik = 0;
+		$saldoSimpananall = 0;
+		$saldoSimpanankininon = 0;
+		$saldoSimpananDitariklalu = 0;
     	$saldoSimpananpokok = 0;
 		$phBuku = 0;
 		$bungaDitarik = 0;
@@ -60,9 +63,21 @@ class DataRekening extends MY_Base
 
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 		
-			//hitung saldo simpanan aktif kini
+			//hitung saldo simpanan masuk
 			$setoran = $this->Setoransimpanan_model->get_sirkulasi_simpanan($f,$t,$w,2);
 			$saldoSimpanan += $setoran[0]->ssi_jmlsetor;
+			
+			//hitung saldo simpanan kini
+			$setoranall = $this->Setoransimpanan_model->get_sirkulasi_simpanan_all($t,$w,1);
+			$saldoSimpananall += $setoranall[0]->ssi_jmlsetor;
+
+			//hitung saldo simpanan kini nonaktif
+			$setoranallnon = $this->Setoransimpanan_model->get_sirkulasi_simpanan_allnon($f,$t,$w,1);
+			$saldoSimpanankininon += $setoranallnon[0]->ssi_jmlsetor;
+
+			//hitung saldo penarikan lalu
+			$setoranNonlalu = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpananlalu($f,$w,1);
+			$saldoSimpananDitariklalu += $setoranNonlalu[0]->pes_saldopokok;
 			
 			//hitung saldo simpanan lalu
 			$setorankini = $this->Setoransimpanan_model->get_sirkulasi_simpananall($f,$w);
@@ -105,6 +120,9 @@ class DataRekening extends MY_Base
 			'totalrekening' => $totalRekening,
             'wilayah_data' => $wilayah,
 			'saldosimpanan' => $saldoSimpanan,
+			'saldosimpananall' => $saldoSimpananall,
+			'saldosimpanankininon' => $saldoSimpanankininon,
+			'saldosimpananditariklalu' => $saldoSimpananDitariklalu,
 			'saldosimpananditarik' => $saldoSimpananDitarik,
 			'bungasimpanan' => $bungaSimpanan,
 			'saldosimpananwajib' => $saldoSimpananwajib,

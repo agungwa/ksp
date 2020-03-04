@@ -397,7 +397,7 @@ foreach ($pinjamanKhususaktif as $key => $value) {
 	$bungaSimpanan = $bungasim[0]->bss_bungabulanini;
 
 	//hitung saldo simpanan aktif masuk
-	$setoran = $this->Setoransimpanan_model->get_neraca_simpanan($f,$t,$w,0);
+	$setoran = $this->Setoransimpanan_model->get_neraca_simpanan($f,$w,0);
 	$saldoSimpanan += $setoran[0]->ssi_jmlsetor;
 
 		//hitung saldo investasi aktif

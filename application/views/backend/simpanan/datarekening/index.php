@@ -65,12 +65,16 @@
 				<td class="text-center"><?= neraca($saldosimpanan);?></td>
             </tr>
             <tr>
+                <td class="text-left">Penarikan Simpanan Lalu</td>
+				<td class="text-center"><?= neraca($saldosimpananditariklalu);?></td>
+            </tr>
+            <tr>
                 <td class="text-left">Penarikan Simpanan</td>
 				<td class="text-center"><?= neraca($saldosimpananditarik);?></td>
             </tr>
             <tr>
                 <td class="text-left">Saldo Simpanan Kini</td>
-				<td class="text-center"><?= neraca($saldosimpanan+$saldosimpananlalu-$saldosimpananditarik);?></td>
+				<td class="text-center"><?= neraca($saldosimpananlalu+$saldosimpanan-$saldosimpananditariklalu-$saldosimpananditarik);?></td>
             </tr>
             <!--<tr>
                 <td class="text-left">Bunga Simpanan</td>

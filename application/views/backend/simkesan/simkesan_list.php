@@ -61,7 +61,7 @@
         <th class="text-center">Rekening Simkesan</th>
 		<th class="text-center">ID Angggota</th>
 		<th class="text-center">Nama</th>
-		<th class="text-center">Karyawan</th>
+		<th class="text-center">Alamat</th>
 		<th class="text-center">Plan Simkesan</th>
 		<th class="text-center">Wilayah</th>
 		<th class="text-center">Tanggal Pendaftaran</th>
@@ -91,7 +91,7 @@
             <td><?php echo $item['sik_kode'] ?></td>
 			<td><?php echo $item['ang_no'] ?></td>
 			<td><?php echo $item['nm_ang_no'] ?></td>
-			<td><?php echo $item['kar_kode']?></td>
+			<td><?php echo $ang_no->ang_alamat?></td>
 			<td><?php echo $item['psk_id'] ?></td>
 			<td><?php echo $item['wil_kode'] ?></td>
 			<td><?php echo date('d/m/Y', strtotime($item['sik_tglpendaftaran'])) ?></td>

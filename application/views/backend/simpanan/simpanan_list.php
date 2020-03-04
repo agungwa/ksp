@@ -144,6 +144,11 @@
             ?>
             </tbody>
         </table>
+		<table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <tr>
+            <td class="active">Total Pokok</td><td><?= rupiahSimpanan($total) ?></td>
+            </tr>
+		</table>
         </div>
         </div>
     </div>

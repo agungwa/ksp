@@ -64,20 +64,32 @@
 				<th>Action</th>
             </tr>
             </thead>
-			<tbody><?php $i=1;
-				foreach ($tarik as $key=>$item){?>
+            <tbody><?php $i=1;
+            
+                    $tot_tarikpokok = 0;
+                    $tot_tarikbunga = 0;
+                    $tot_tarikph = 0;
+                    $tot_tarikadmin = 0;
+                    $tot_tarik = 0;
+                foreach ($tarik as $key=>$item){   
+                    $tot_tarikpokok += $item['saldo'];
+                    $tot_tarikbunga += $item['bunga'];
+                    $tot_tarikph += $item['phbuku'];
+                    $tot_tarikadmin += $item['administrasi'];
+                    $tot_tarik += $item['jml_tarik'];
+                    ?>
 					<tr>
 						<td><?= $i++ ?></td>
 						<td><?= $item['sim_kode'] ?></td>
 						<td><?= $item['ang_nama'] ?></td>
 						<td><?= $item['ang_alamat'] ?></td>
 						<td><?= dateFormataja($item['tgl_tarik']) ?></td>
-						<td><?= $item['saldo'] ?></td>
-						<td><?= $item['bunga'] ?></td>
-						<td><?= $item['jumlah'] ?></td>
-						<td><?= $item['phbuku'] ?></td>
-						<td><?= $item['administrasi'] ?></td>
-						<td><?= $item['jml_tarik'] ?></td>
+						<td><?= neraca($item['saldo']) ?></td>
+						<td><?= neraca($item['bunga']) ?></td>
+						<td><?= neraca($item['jumlah']) ?></td>
+						<td><?= neraca($item['phbuku']) ?></td>
+						<td><?= neraca($item['administrasi']) ?></td>
+						<td><?= neraca($item['jml_tarik']) ?></td>
 						<td>
 							<?php 
 								echo anchor(site_url('penarikansimpanan/read/'.$item['pes_id']),'Detail','class="text-navy"'); 
@@ -91,8 +103,22 @@
 				<?php }?>
             </tbody>
         </table>
-		<table class="table" style="margin-bottom: 10px">
-			<tr class="danger"><td>Total Penarikan</td><td></td><td></td><td></td><td></td><td></td><td></td><td><?= $tot_tarik ?></td></tr>
+		<table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <tr>
+            <td class="active">Pokok</td><td><?= neraca($tot_tarikpokok) ?></td>
+            </tr>
+            <tr>
+            <td class="info">Bunga</td><td><?= neraca($tot_tarikbunga) ?></td>
+            </tr>
+            <tr>
+            <td class="active">PH</td><td><?= neraca($tot_tarikph) ?></td>
+            </tr>
+            <tr>
+            <td class="info">Admin</td><td><?= neraca($tot_tarikadmin) ?></td>
+            </tr>
+            <tr>
+            <td class="danger">Total</td><td><?= neraca($tot_tarik) ?></td></tr>
+            </tr>
 		</table>
         </div>
         </div>
