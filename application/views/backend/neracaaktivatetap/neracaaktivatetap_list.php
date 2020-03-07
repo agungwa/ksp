@@ -54,6 +54,7 @@
 		<th class="text-center">Kendaraan</th>
 		<th class="text-center">Peralatan</th>
 		<th class="text-center">Akumulasipenyusutan</th>
+		<th class="text-center">Keterangan</th>
 		<th class="text-center">Tanggal</th>
 		<th class="text-center">Action</th>
             </tr>
@@ -70,6 +71,7 @@
 			<td><?php echo neraca($neracaaktivatetap->nat_kendaraan) ?></td>
 			<td><?php echo neraca($neracaaktivatetap->nat_peralatan) ?></td>
 			<td><?php echo neraca($neracaaktivatetap->nat_akumulasipenyusutan) ?></td>
+			<td><?php echo $neracaaktivatetap->nat_keterangan ?></td>
 			<td><?php echo $neracaaktivatetap->nat_tanggal ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 

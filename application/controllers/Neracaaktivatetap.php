@@ -60,6 +60,7 @@ class Neracaaktivatetap extends MY_Base
 		'nat_kendaraan' => $row->nat_kendaraan,
 		'nat_peralatan' => $row->nat_peralatan,
 		'nat_akumulasipenyusutan' => $row->nat_akumulasipenyusutan,
+		'nat_keterangan' => $row->nat_keterangan,
 		'nat_tanggal' => $row->nat_tanggal,
 		'nat_tgl' => $row->nat_tgl,
 		'nat_flag' => $row->nat_flag,
@@ -85,6 +86,7 @@ class Neracaaktivatetap extends MY_Base
 	    'nat_kendaraan' => set_value('nat_kendaraan'),
 	    'nat_peralatan' => set_value('nat_peralatan'),
 	    'nat_akumulasipenyusutan' => set_value('nat_akumulasipenyusutan'),
+	    'nat_keterangan' => set_value('nat_keterangan'),
 	    'nat_tanggal' => set_value('nat_tanggal'),
 	    'content' => 'backend/neracaaktivatetap/neracaaktivatetap_form',
 	);
@@ -105,6 +107,7 @@ class Neracaaktivatetap extends MY_Base
 		'nat_kendaraan' => $this->input->post('nat_kendaraan',TRUE),
 		'nat_peralatan' => $this->input->post('nat_peralatan',TRUE),
 		'nat_akumulasipenyusutan' => $this->input->post('nat_akumulasipenyusutan',TRUE),
+		'nat_keterangan' => $this->input->post('nat_keterangan',TRUE),
 		'nat_tanggal' => $this->input->post('nat_tanggal',TRUE),
 		'nat_tgl' => $this->tgl,
 		'nat_flag' => 0,
@@ -132,6 +135,7 @@ class Neracaaktivatetap extends MY_Base
 		'nat_kendaraan' => set_value('nat_kendaraan', $row->nat_kendaraan),
 		'nat_peralatan' => set_value('nat_peralatan', $row->nat_peralatan),
 		'nat_akumulasipenyusutan' => set_value('nat_akumulasipenyusutan', $row->nat_akumulasipenyusutan),
+		'nat_keterangan' => set_value('nat_keterangan', $row->nat_keterangan),
 		'nat_tanggal' => set_value('nat_tanggal', $row->nat_tanggal),
 	    'content' => 'backend/neracaaktivatetap/neracaaktivatetap_form',
 	    );
@@ -156,6 +160,7 @@ class Neracaaktivatetap extends MY_Base
 		'nat_kendaraan' => $this->input->post('nat_kendaraan',TRUE),
 		'nat_peralatan' => $this->input->post('nat_peralatan',TRUE),
 		'nat_akumulasipenyusutan' => $this->input->post('nat_akumulasipenyusutan',TRUE),
+		'nat_keterangan' => $this->input->post('nat_keterangan',TRUE),
 		'nat_tanggal' => $this->input->post('nat_tanggal',TRUE),
 		'nat_flag' => 1,
 	    );
