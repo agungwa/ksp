@@ -64,7 +64,7 @@ h5{text-align: center}
             <tbody>
             <tr>
                 <td>Saldo Simpanan Lalu</td>
-				<td><?= rupiahsimpanan($saldosimpananlalu);?></td>
+				<td><?= rupiahsimpanan($saldosimpananlalu-$saldosimpananditariklalu);?></td>
             </tr>
             <tr>
                 <td>Saldo Simpanan Masuk</td>
@@ -76,7 +76,7 @@ h5{text-align: center}
             </tr>
             <tr>
                 <td>Saldo Simpanan Kini</td>
-				<td><?= rupiahsimpanan($saldosimpanan+$saldosimpananlalu-$saldosimpananditarik);?></td>
+				<td><?= rupiahsimpanan($saldosimpananlalu+$saldosimpanan-$saldosimpananditariklalu-$saldosimpananditarik);?></td>
             </tr>
             <tr>
                 <td>Bunga Simpanan</td>
