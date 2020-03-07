@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>CR MOTOR ADMIN PANEL</title>
+    <title>KOPRASI DIGITAL</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
@@ -54,7 +54,6 @@
 		============================================ -->
     <script src="<?=base_url()?>assets/vendor/verticaldark/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-
 <?php
 $CI = &get_instance();
 lookup();
@@ -85,13 +84,15 @@ lookup();
                     </a>
                 <?php } ?>
                     <h3><strong class="font-bold"><?=$this->session->userdata('fullname')?></strong></h3>
-                    <p><?=$this->session->userdata('username')?></p>
+                    <p><?=$this->session->userdata('email')?></p>
                     <strong>KSP</strong>
                 </div>
                 <!-- menu -->
 
                 <div class="left-custom-menu-adp-wrap">
                     <ul class="nav navbar-nav left-sidebar-menu-pro">
+                
+            <!-- START MENU DASHBOARD -->
                         <li class="nav-item">
                             <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-home"></i> <span class="mini-dn">Home</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
                             <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
@@ -107,89 +108,182 @@ lookup();
                             
                         </li>
             
+                        <li class="nav-item"><a href="<?=base_url()?>Anggota" class="nav-link dropdown-toggle"><i class="fa big-icon fa-edit"></i> <span class="mini-dn">Anggota</span></a>        
+                        </li>
+            <!-- END MENU DASHBOARD -->
+            
+            <!-- START MENU SIMPANAN -->
             <?php if(is_allow('M_SIMPANAN')): ?>
                     <?php if(is_allow('M_UTILITAS')): ?>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-envelope"></i> <span class="mini-dn">Utilitas Berjangka</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                                        <a href="<?=base_url()?>Jenissetoran">Jenis Setoran</a>
-                                        <a href="<?=base_url()?>Jenissimpanan">Jenis Simpanan</a>
-                                        <a href="<?=base_url()?>Bungasimpanan">Bunga Simpanan</a>
-                                        <a href="<?=base_url()?>Settingsimpanan">Setting Simpanan</a>
-                            </div>
+                        <li class="nav-item chart-left-menu-std animated flipInX"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-gears"></i> <span class="mini-dn">Utilitas Berjangka</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li class="left-menu-dropdown">
+                                    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="mini-dn">Utilitas Simpanan</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                                    <ul class="left dropdown-menu  chart-left-menu-std animated flipInX" aria-labelledby="navbarDropdown">
+                                        <li><a href="<?=base_url()?>Jenissetoran">Jenis Setoran</a></li>
+                                        <li><a href="<?=base_url()?>Jenissimpanan">Jenis Simpanan</a></li>
+                                        <li><a href="<?=base_url()?>Bungasimpanan">Bunga Simpanan</a></li>
+                                        <li><a href="<?=base_url()?>Settingsimpanan">Setting Simpanan</a></li>
+                                    </ul>
+                                    <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="mini-dn">Utilitas Pinjaman</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                                    <ul class="left dropdown-menu chart-left-menu-std animated flipInX" aria-labelledby="navbarDropdown">
+                                        <li><a href="<?=base_url()?>Jenissetoran">Jenis Setoran</a></li>
+                                        <li><a href="<?=base_url()?>Jenissimpanan">Jenis Simpanan</a></li>
+                                        <li><a href="<?=base_url()?>Bungasimpanan">Bunga Simpanan</a></li>
+                                        <li><a href="<?=base_url()?>Settingsimpanan">Setting Simpanan</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            
                         </li>
                     <?php endif; ?>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-flask"></i> <span class="mini-dn">Interface</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                                <a href="google-map.html" class="dropdown-item">Google Map</a>
-                                <a href="data-maps.html" class="dropdown-item">Data Maps</a>
-                                <a href="pdf-viewer.html" class="dropdown-item">Pdf Viewer</a>
-                                <a href="x-editable.html" class="dropdown-item">X-Editable</a>
-                                <a href="code-editor.html" class="dropdown-item">Code Editor</a>
-                                <a href="tree-view.html" class="dropdown-item">Tree View</a>
-                                <a href="preloader.html" class="dropdown-item">Preloader</a>
-                                <a href="images-cropper.html" class="dropdown-item">Images Cropper</a>
+                        <li class="nav-item"><a href="<?=base_url()?>Simpanan" class="nav-link dropdown-toggle"><i class="fa big-icon fa-edit"></i> <span class="mini-dn">Simpanan</span></a>            
+                        </li>
+
+                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-exchange"></i> <span class="mini-dn">Mutasi</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                            <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
+                                <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
+                                <a href="<?=base_url()?>Wilayah_karyawan">Wilayah Karyawan</a>
+                                <a href="<?=base_url()?>Mutasisimpanan">Mutasi Simpanan</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-bar-chart-o"></i> <span class="mini-dn">Data</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                            <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
+                                <a href="<?=base_url()?>simpanan/jatuhtempo">Data Jatuh Tempo</a>
+                                <a href="<?=base_url()?>datarekening">Sirkulasi</a>
                             </div>
                         </li>
             <?php endif; ?>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-pie-chart"></i> <span class="mini-dn">Anggota</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                            <a href="<?=base_url()?>Anggota">Setup Anggota</a>
-                                <a href="contact-client.html" class="dropdown-item">Contact Client</a>
-                                <a href="contact-client-v.1.html" class="dropdown-item">Contact Client v.1</a>
-                                <a href="project-list.html" class="dropdown-item">Project List</a>
-                                <a href="project-details.html" class="dropdown-item">Project Details</a>
-                            </div>
-                        </li>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-bar-chart-o"></i> <span class="mini-dn">Charts</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+            <!-- END MENU SIMPANAN -->
+
+            <!-- START MENU SIMKESAN -->
+            <?php if(is_allow('M_SIMKESAN')): ?>
+                <?php if(is_allow('M_UTILITAS')): ?>
+                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-gears"></i> <span class="mini-dn">Utilitas Simkesan</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
                             <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
-                                <a href="bar-charts.html" class="dropdown-item">Bar Charts</a>
-                                <a href="line-charts.html" class="dropdown-item">Line Charts</a>
-                                <a href="area-charts.html" class="dropdown-item">Area Charts</a>
-                                <a href="rounded-chart.html" class="dropdown-item">Rounded Charts</a>
-                                <a href="c3.html" class="dropdown-item">C3 Charts</a>
-                                <a href="sparkline.html" class="dropdown-item">Sparkline Charts</a>
-                                <a href="peity.html" class="dropdown-item">Peity Charts</a>
+                                <a href="<?=base_url()?>plansimkesan">Plan Simkesan</a>
+                                <a href="<?=base_url()?>jenispenarikansimkesan">Jenis Penarikan Simkesan</a>
+                                <a href="<?=base_url()?>jenisklaim">Jenis Klaim</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-table"></i> <span class="mini-dn">Data Tables</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown animated flipInX">
-                                <a href="static-table.html" class="dropdown-item">Static Table</a>
-                                <a href="data-table.html" class="dropdown-item">Data Table</a>
+                <?php endif; ?>
+                        <li class="nav-item"><a href="<?=base_url()?>Simkesan" class="nav-link dropdown-toggle"><i class="fa big-icon fa-edit"></i> <span class="mini-dn">Simkesan</span></a>            
+                        </li>
+                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-exchange"></i> <span class="mini-dn">Mutasi</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                            <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
+                                <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
+                                <a href="<?=base_url()?>Wilayah_karyawan">Wilayah Karyawan</a>
+                                <a href="<?=base_url()?>Mutasisimkesan">Mutasi Simkesan</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-edit"></i> <span class="mini-dn">Forms Elements</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown form-left-menu-std animated flipInX">
-                                <a href="basic-form-element.html" class="dropdown-item">Basic Elements</a>
-                                <a href="advance-form-element.html" class="dropdown-item">Advance Elements</a>
-                                <a href="password-meter.html" class="dropdown-item">Password Meter</a>
-                                <a href="multi-upload.html" class="dropdown-item">Multi Upload</a>
-                                <a href="tinymc.html" class="dropdown-item">Text Editor</a>
-                                <a href="dual-list-box.html" class="dropdown-item">Dual List Box</a>
+                        <li class="nav-item"><a href="<?=base_url()?>Datasimkesan" class="nav-link dropdown-toggle"><i class="fa big-icon fa-bar-chart-o"></i> <span class="mini-dn">Sirkulasi</span></a>            
+                        </li>
+
+             <?php endif; ?>
+            <!-- END MENU SIMKESAN -->
+
+            <!-- START MENU INVESTASI BERJANGKA -->
+            <?php if(is_allow('M_INVESTASI')): ?>
+                <?php if(is_allow('M_UTILITAS')): ?>
+                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-gears"></i> <span class="mini-dn">Utilitas Investasiberjangka</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                            <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
+                                <a href="<?=base_url()?>jangkawaktuinvestasi">Jangka Waktu</a>
+                                <a href="<?=base_url()?>jasainvestasi">Jasa Investasi</a>
+                                <a href="<?=base_url()?>bungainvestasi">Bunga Investasi</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-desktop"></i> <span class="mini-dn">App views</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown apps-left-menu-std animated flipInX">
-                                <a href="notifications.html" class="dropdown-item">Notifications</a>
-                                <a href="alerts.html" class="dropdown-item">Alerts</a>
-                                <a href="modals.html" class="dropdown-item">Modals</a>
-                                <a href="buttons.html" class="dropdown-item">Buttons</a>
-                                <a href="tabs.html" class="dropdown-item">Tabs</a>
-                                <a href="accordion.html" class="dropdown-item">Accordion</a>
-                                <a href="tab-menus.html" class="dropdown-item">Tab Menus</a>
+                <?php endif; ?>
+                        <li class="nav-item"><a href="<?=base_url()?>Investasiberjangka" class="nav-link dropdown-toggle"><i class="fa big-icon fa-edit"></i> <span class="mini-dn">Investasiberjangka</span></a>            
+                        </li>
+                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-exchange"></i> <span class="mini-dn">Mutasi</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                            <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
+                                <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
+                                <a href="<?=base_url()?>Wilayah_karyawan">Wilayah Karyawan</a>
+                                <a href="<?=base_url()?>Mutasiberjangka">Mutasi Investasi</a>
                             </div>
                         </li>
-                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-files-o"></i> <span class="mini-dn">Pages</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
-                            <div role="menu" class="dropdown-menu left-menu-dropdown pages-left-menu-std animated flipInX">
-                                <a href="login.html" class="dropdown-item">Login</a>
-                                <a href="register.html" class="dropdown-item">Register</a>
-                                <a href="captcha.html" class="dropdown-item">Captcha</a>
-                                <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                <a href="contact.html" class="dropdown-item">Contacts</a>
-                                <a href="review.html" class="dropdown-item">Review</a>
-                                <a href="order.html" class="dropdown-item">Order</a>
-                                <a href="comment.html" class="dropdown-item">Comment</a>
+                        <li class="nav-item"><a href="<?=base_url()?>datainvestasi" class="nav-link dropdown-toggle"><i class="fa big-icon fa-bar-chart-o"></i> <span class="mini-dn">Sirkulasi</span></a>            
+                        </li>
+
+             <?php endif; ?>
+            <!-- END MENU INVESTASI BERJANGKA -->
+
+            <!-- START MENU PINJAMAN -->
+            <?php if(is_allow('M_PINJAMAN')): ?>
+                <?php if(is_allow('M_UTILITAS')): ?>
+                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-gears"></i> <span class="mini-dn">Utilitas Pinjaman</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                            <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
+                                <a href="<?=base_url()?>Settingkategoripeminjam">Setting Kategori Peminjam</a>
+                                <a href="<?=base_url()?>Settingstatuspeminjam">Setting Status Peminjam</a>
+                                <a href="<?=base_url()?>SettingAngsuran">Setting Angsuran</a>
+                                <a href="<?=base_url()?>Bungapinjaman">Bunga Pinjaman</a>
+                                <a href="<?=base_url()?>Potonganprovisi">Potongan Provisi</a>
+                                <a href="<?=base_url()?>Jenisjaminan">Jenis Jaminan</a>
+                                <a href="<?=base_url()?>Jenispelunasan">Jenis Pelunasan</a>
+                                <a href="<?=base_url()?>Settingdenda">Setting Denda</a>
                             </div>
                         </li>
+                <?php endif; ?>
+                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-edit"></i> <span class="mini-dn">Pinjaman</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                            <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
+                                <a href="<?=base_url()?>pinjaman">Pinjaman</a>
+                                <a href="<?=base_url()?>Statuspeminjam">Status Peminjam</a>
+                                <a href="<?=base_url()?>angsuran/?p=2">Angsuran</a>
+                                <a href="<?=base_url()?>angsuranbayar">Angsuran Bayar</a>
+                                <a href="<?=base_url()?>penagihan">Penagihan</a>
+                                <a href="<?=base_url()?>Pelunasan">Pelunasan</a>
+                                <a href="<?=base_url()?>Persentase">Persentase</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-exchange"></i> <span class="mini-dn">Mutasi</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                            <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
+                                <a href="<?=base_url()?>Wilayah">Tambah Wilayah / Resort</a>
+                                <a href="<?=base_url()?>Wilayah_karyawan">Wilayah Karyawan</a>
+                                <a href="<?=base_url()?>Mutasipinjaman">Mutasi Pinjaman</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="<?=base_url()?>Datapinjaman" class="nav-link dropdown-toggle"><i class="fa big-icon fa-bar-chart-o"></i> <span class="mini-dn">Sirkulasi</span></a>            
+                        </li>
+
+             <?php endif; ?>
+            <!-- END MENU PINJAMAN -->
+            
+            <!-- START MENU NERACA -->
+            <?php if(is_allow('M_LAPORAN')): ?>
+                        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="fa big-icon fa-gears"></i> <span class="mini-dn">Neraca</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-left"></i></span></a>
+                            <div role="menu" class="dropdown-menu left-menu-dropdown chart-left-menu-std animated flipInX">
+                                <a href="<?=site_url('phu')?>">Biaya PHU</a>
+                                <a href="<?=site_url('neraca/perhitungan/')?>">Hitung SHU/Bulan</a>
+                                <a href="<?=site_url('neracakasbank/')?>">Input Kas Bank</a>
+                                <a href="<?=site_url('neracaaktivatetap/')?>">Input Aktiva Tetap</a>
+                                <a href="<?=base_url()?>neracaekuitas/">Input Ekuitas</a>
+                                <a href="<?=base_url()?>neracakewajibanjangkapanjang/">Input Kewajiban Jangka Panjang</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="<?=base_url()?>neraca/neraca" class="nav-link dropdown-toggle"><i class="fa big-icon fa-edit"></i> <span class="mini-dn">Investasiberjangka</span></a>            
+                        </li>
+             <?php endif; ?>
+            <!-- END MENU NERACA -->
+            
+            <!-- START MENU NERACA SIMKESAN -->
+            <!-- END MENU NERACA SIMKESAN -->
+            
+            <!-- START MENU KARYAWAN -->
+            <!-- END MENU KARYAWAN -->
+            
+            <!-- START MENU KASIR -->
+            <!-- END MENU KASIR -->
+            
+            <!-- START MENU USER MANAGEMENT -->
+            <!-- END MENU USER MANAGEMENT -->
+            
+            <!-- START MENU SISTEM -->
+            <!-- END MENU SISTEM -->
+
+
+
+
+
                     </ul>
                 </div>
             </nav>
@@ -211,26 +305,34 @@ lookup();
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-1 col-sm-1 col-xs-12">
-                                <div class="header-top-menu tabl-d-n">
-                                    <ul class="nav navbar-nav mai-top-nav">
-                                        <li class="nav-item"><a href="#" class="nav-link">Home</a>
-                                        </li>
-                                        <li class="nav-item"><a href="#" class="nav-link">About</a>
-                                        </li>
-                                        <li class="nav-item"><a href="#" class="nav-link">Services</a>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Project <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
-                                            <div role="menu" class="dropdown-menu animated flipInX">
-                                                <a href="#" class="dropdown-item">Company Info</a>
-                                                <a href="#" class="dropdown-item">Documentation</a>
-                                                <a href="#" class="dropdown-item">Expert Backend</a>
-                                                <a href="#" class="dropdown-item">Expert FrontEnd</a>
-                                                <a href="#" class="dropdown-item">Contact Support</a>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item"><a href="#" class="nav-link">Support</a>
-                                        </li>
+                                <div class="header-top-menu tabl-d-n" >
+                    <ul class="navbar-nav mr-auto nav navbar-nav mai-top-nav header-right-menu">
+                        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">Link</a></li>
+                        <li class="dropdown"><span></i><a class="dropdown-toggle fa big-icon fa-gears" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="mini-dn">Utilitas Pinjaman</span> <span class="indicator-right-menu mini-dn"><i class="fa indicator-mn fa-angle-down"></i></span></a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="left-menu-dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown2</a>
+                                <ul class="dropdown-menu  chart-left-menu-std animated flipInX" aria-labelledby="navbarDropdown">
+                                
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            <li class="left-menu-dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown2</a>
+                                <ul class="dropdown-menu  chart-left-menu-std animated flipInX" aria-labelledby="navbarDropdown">
+                                
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                </ul>
+                            </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Service</a></li>
+                    </ul>
                                     </ul>
                                 </div>
                             </div>
@@ -345,11 +447,7 @@ lookup();
                                                 </li>
                                                 <li><a href="#"><span class="adminpro-icon adminpro-user-rounded author-log-ic"></span>My Profile</a>
                                                 </li>
-                                                <li><a href="#"><span class="adminpro-icon adminpro-money author-log-ic"></span>User Billing</a>
-                                                </li>
-                                                <li><a href="#"><span class="adminpro-icon adminpro-settings author-log-ic"></span>Settings</a>
-                                                </li>
-                                                <li><a href="#"><span class="adminpro-icon adminpro-locked author-log-ic"></span>Log Out</a>
+                                                <li><a href="<?=base_url()?>auth/logout"><span class="adminpro-icon adminpro-locked author-log-ic"></span>Log Out</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -699,6 +797,22 @@ lookup();
                 function setEventId(event_id){
                 document.querySelector("#event_id").innerHTML = event_id;
             }
+
+(function($){
+	$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+	  if (!$(this).next().hasClass('show')) {
+		$(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+	  }
+	  var $subMenu = $(this).next(".dropdown-menu");
+	  $subMenu.toggleClass('show');
+
+	  $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+		$('.dropdown-submenu .show').removeClass("show");
+	  });
+
+	  return false;
+	});
+})(jQuery)
 
     </script>
 </body>
