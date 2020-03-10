@@ -76,7 +76,7 @@
    
         <label for="varchar">Jumlah Setoran <?php echo '(Min Setor Rp ',number_format($setor['min_jse_id'], 0, ".", "."),')'?></label>
         <input type="number" class="form-control" name="mundur" id="mundur" placeholder="mundur hari" required autofocus  />
-        <input type="text" class="form-control" name="ssi_jmlsetor" min=<?= $setor['min_jse_id'] ?> id="searchTxt" data-mask="$ 9,999,999,999.99" placeholder="Jumlah Setor" value="" required="required" autofocus onkeyup="splitInDots(this)"  />
+        <input type="number" class="form-control" name="ssi_jmlsetor" min=<?= $setor['min_jse_id'] ?> id="searchTxt"  placeholder="Jumlah Setor" value="" required="required" autofocus onkeyup="splitInDots(this)"  />
         <input type="hidden" class="form-control" name="sim_kode" id="sim_kode" placeholder="sim_kode" value="<?php echo $setor['sim_kode']; ?>"/>
     </div>
             </tbody>

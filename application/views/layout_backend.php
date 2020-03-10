@@ -14,6 +14,10 @@
     <link href="<?=base_url()?>assets/vendor/sweetalert/css/sweetalert.css" rel="stylesheet">
     <!-- Toastr style -->
     <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    
+    <!-- Input Mask-->
+    <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+
     <!-- Morris -->
     <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/datepicker/css/datepicker3.css" rel="stylesheet">
@@ -580,6 +584,8 @@ lookup();
 
     <!-- Sparkline demo data  -->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/demo/sparkline-demo.js"></script>
+    <!-- Input Mask-->
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/jasny/jasny-bootstrap.min.js"></script>
 
     <!-- ChartJS-->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/chartJs/Chart.min.js"></script>

@@ -4,9 +4,8 @@
         <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
 
-            <form action="<?php echo base_url()?>simpanan/listdata/" class="form-inline" method="get">
+            <form action="<?php echo base_url()?>simpanan/?p=3" class="form-inline" method="get">
             <div class="col-md-8 text-right">
-                <input type="hidden" name="p" value="3">
                 <select class="form-control col-md-3"  name="w">
                     <option value="all">Semua Wilayah</option>
                     <?php
