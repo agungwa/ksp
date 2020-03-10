@@ -3,6 +3,7 @@
         <div class="ibox">
         <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
+
             <form action="<?php echo base_url()?>simpanan/listdata/" class="form-inline" method="get">
             <div class="col-md-8 text-right">
                 <input type="hidden" name="p" value="3">
