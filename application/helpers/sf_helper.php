@@ -192,7 +192,8 @@ function tanggal_indo($tanggal){
     // variabel pecahkan 1 = bulan
     // variabel pecahkan 2 = tanggal
  
-    echo $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+    // echo $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
+    echo $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
 }
 
 function GenerateCode() {

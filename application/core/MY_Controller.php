@@ -18,7 +18,8 @@ class MY_Base extends CI_Controller {
 	function __construct()
     {
         parent::__construct();
-       	$this->tgl = date('Y-m-d H:i:s');
+        $this->tgl = date('Y-m-d H:i:s');
+        $this->tglbulan = date('Y-m');
        	$this->flag = array(0=>"New", 1=>"Updated", 2=>"Deleted");
         $this->statusKaryawan = array(0=>"Aktif", 1=>"Cuti", 2=>"Resign");
         $this->statusSimpanankaryawan = array(0=>"Aktif", 1=>"Ditarik");

@@ -41,10 +41,13 @@ class Setoransimpananwajib_model extends CI_Model
 	// get by total simpanan wajib
 	function get_neraca_simpananwajib($f,$t){
         
+        $this->db->join('simpananwajib', 'simpananwajib.siw_id = setoransimpananwajib.siw_id', 'right');
+        $where = "siw_status = 0 AND siw_flag < 2";
+		$this->db->where($where);
+		$this->db->where('ssw_flag < 2');
         if ($f != NULL) {
             $this->db->where("DATE_FORMAT(ssw_tglsetor, '%Y-%m-%d') <= '$f'");
         }
-		$this->db->where('ssw_flag < 2');
         $this->db->select_sum('ssw_jmlsetor');
         return $this->db->get($this->table)->result();
     }

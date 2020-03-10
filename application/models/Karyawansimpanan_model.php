@@ -31,6 +31,21 @@ class Karyawansimpanan_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
+	// get by total simpanan karyawan
+	function get_simpanan_karyawan($tgl){
+        
+        $this->db->join('karyawan', 'karyawan.kar_kode = karyawansimpanan.kar_kode', 'right');
+        $where = "kar_flag < 2";
+		$this->db->where($where);
+		$this->db->where('ksi_flag < 2');
+        if ($tgl != NULL) {
+            $this->db->where("DATE_FORMAT(ksi_tgl, '%Y-%m-%d') <= '$tgl'");
+        }
+        $this->db->select_sum('ksi_simpanan');
+        return $this->db->get($this->table)->result();
+    }
+
+
     // get data by kar
     function get_by_kar($kar_kode)
     {

@@ -30,6 +30,24 @@ class Pelunasan_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
     
+	// get data pelunasan
+	function get_sirkulasi($status, $month,$tgl){
+        $this->db->join('pinjaman', 'pinjaman.pin_id = pelunasan.pin_id', 'right');
+        $wherepin = "pin_statuspinjaman = $status AND pin_flag < 2";
+        $this->db->where($wherepin);
+        if ($tgl != NULL) {
+            $this->db->where("DATE_FORMAT(pel_tglpelunasan, '%Y-%m-%d') <= '$tgl'");
+        }
+        if ($month != NULL) {
+            $this->db->where("DATE_FORMAT(pel_tglpelunasan, '%Y-%m') = '$month'");
+        }
+        $this->db->where('pel_flag < 2');
+        $this->db->select_sum('pel_totaldenda');
+        $this->db->select_sum('pel_totalbungapokok');
+        $this->db->select_sum('pel_totalkekuranganpokok');
+        return $this->db->get($this->table)->result();
+    }
+    
     // get total rows
     function total_rows($q = NULL) {
         $where = "(pin_id LIKE '%$q%' ESCAPE '!' OR pel_id LIKE '%$q%' ESCAPE '!') AND pel_flag < 2";

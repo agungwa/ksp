@@ -29,8 +29,34 @@ class Angsuranbayar_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
-
-        
+    
+   
+    // get angsuran bayar tgl angsur
+    function get_angsuran_tgl($a,$l,$month,$tgl)
+    {
+        $this->db->join('angsuran', 'angsuran.ags_id = angsuranbayar.ags_id', 'inner');
+        $whereags = "ags_flag < 2";
+        $this->db->where($whereags);
+        $this->db->join('pinjaman', 'pinjaman.pin_id = angsuran.pin_id', 'inner');
+        if($a == NULL){
+            $wherepin = "pin_statuspinjaman > $l  AND pin_flag < 2";
+        } else if ($l == NULL){
+            $wherepin = "pin_statuspinjaman = $a AND pin_flag < 2";
+        }
+        $this->db->where($wherepin);
+        $where = "agb_flag < 2";
+        $this->db->select_sum('agb_pokok');
+        $this->db->select_sum('agb_bunga');
+        $this->db->select_sum('agb_denda');
+        if ($tgl != NULL) {
+            $this->db->where("DATE_FORMAT(agb_tgl, '%Y-%m-%d') <= '$tgl'");
+        } else { 
+            $this->db->where("DATE_FORMAT(agb_tgl, '%Y-%m') = '$month'");
+        }
+        $this->db->where($where);
+        return $this->db->get($this->table)->row();
+    }
+   
     // get angsuran bayar
     function get_angsuran_bayarpin($ags_id)
     {

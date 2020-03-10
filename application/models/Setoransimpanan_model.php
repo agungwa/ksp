@@ -47,10 +47,16 @@ class Setoransimpanan_model extends CI_Model
     }
     
 	// get by sim kode hitung
-	function get_sirkulasi(){
+	function get_sirkulasi($tgl,$month,$status){
         $this->db->join('simpanan', 'simpanan.sim_kode = setoransimpanan.sim_kode', 'right');
-        $where = "sim_status = 0 AND sim_flag < 2";
+        $where = "sim_status < '$status' AND sim_flag < 2";
 		$this->db->where($where);
+        if ($tgl != NULL) {
+            $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') <= '$tgl'");
+        }
+        if ($month != NULL) {
+            $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m') = '$month'");
+        }
         $this->db->where('ssi_flag < 2');
         $this->db->select_sum('ssi_jmlsetor');
         return $this->db->get($this->table)->result();

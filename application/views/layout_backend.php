@@ -12,19 +12,20 @@
 
     <!--vertical-dark-->
 
-
+    <!-- flot graph -->
+    <link href="<?=base_url()?>assets/vendor/inspinia/css/animate.css" rel="stylesheet">
+    <link href="<?=base_url()?>assets/vendor/inspinia/css/style.css" rel="stylesheet">
     
     <!--inspinia-->
     <link href="<?=base_url()?>assets/vendor/inspinia/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/sweetalert/css/sweetalert.css" rel="stylesheet">
 
-
+    <!-- Morris -->
     <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/datepicker/css/datepicker3.css" rel="stylesheet">
-    <link href="<?=base_url()?>assets/vendor/inspinia/css/animate.css" rel="stylesheet">
-    <link href="<?=base_url()?>assets/vendor/inspinia/css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/radiocheck/radiocheck.css" rel="stylesheet">
+
     <!--datatables-->
     <link href="<?=base_url()?>assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?=base_url()?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/> 
@@ -91,37 +92,30 @@ lookup();
                             KSP
                         </div>
                     </li>
+                    
                     <li><a href="<?=base_url()?>backend"><i class="fa fa-th-large"></i> <span
                                 class="nav-label">Dashboard</span><span
-                                class="label label-primary pull-right"></span></a></li>
-                    <!--  
-                <li>
-                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li>
-                            <a href="#" id="damian">Third Level <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
+                                class="label label-primary pull-right"></span></a></li><li class="">
 
-                            </ul>
-                        </li>
-                        <li><a href="#">Second Level Item</a></li>
-                        <li>
-                            <a href="#">Second Level Item</a></li>
-                        <li>
-                            <a href="#">Second Level Item</a></li>
-                    </ul>
-                </li> -->
-
-
+                    <?php if(is_allow('M_LAPORAN')): ?>               
+                    <li><a href="<?=base_url()?>cart"><i class="fa fa-th-large"></i> <span
+                                class="nav-label">Chart</span><span
+                                class="label label-primary pull-right"></span></a></li><li class="">
+                    <?php endif; ?>
+<!-- 
+                    <?php if(is_allow('M_LAPORAN')): ?>
+                        <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Analisa </span> <span class="fa arrow"></span></a>
+                    <?php endif; ?>
+                        <ul class="nav nav-second-level">
+                            
+                            <li>
+                                <a href="<?=base_url()?>cart">Cart</a>
+                            </li>
+                            <li>
+                                <a href="<?=base_url()?>Simpanan">Simpanan</a>
+                            </li>
+                            
+                        </ul> -->
 
                     <!-- MENU SIMPANAN BERJANGKA -->
 
@@ -615,6 +609,7 @@ lookup();
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/flot/jquery.flot.pie.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/flot/jquery.flot.symbol.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/flot/curvedLines.js"></script>
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/flot/jquery.flot.time.js"></script>
 
     <!-- Peity -->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/peity/jquery.peity.min.js"></script>
@@ -623,6 +618,10 @@ lookup();
     <!-- Custom and plugin javascript -->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/inspinia.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/pace/pace.min.js"></script>
+
+    <!-- Morris -->
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/morris/morris.js"></script>
 
     <!-- jQuery UI -->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/jquery-ui/jquery-ui.min.js"></script>

@@ -33,6 +33,17 @@ class Setoransimkesan_model extends CI_Model
 		$this->db->where('sik_kode =', $rekening);
 		return $this->db->get($this->table)->row();
 	}
+    
+	// get by simkesan kode hitung
+	function get_setoran_simkesan($status,$tgl){
+        $this->db->join('simkesan', 'simkesan.sik_kode = setoransimkesan.sik_kode', 'right');
+        $where = "sik_status = $status AND sik_flag < 2";
+		$this->db->where($where);
+        $this->db->where("DATE_FORMAT(ssk_tglsetoran, '%Y-%m-%d') <= '$tgl'");
+        $this->db->where('ssk_flag < 2');
+        $this->db->select_sum('ssk_jmlsetor');
+        return $this->db->get($this->table)->result();
+    }
 
     function get_totalsetoran($sik_kode){
         $this->db->select_sum('ssk_jmlsetor');

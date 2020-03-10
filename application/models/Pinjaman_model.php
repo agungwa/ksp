@@ -32,12 +32,23 @@ class Pinjaman_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
-// get pinjaman dengan pin marketing
-function get_pin_marketing($pin_marketing, $f, $t){
-	$this->db->where('pin_marketing', $pin_marketing);
-	$this->db->where("pin_tglpencairan BETWEEN '$f' AND '$t'");
-	return $this->db->get($this->table)->result();
-}
+    // get data by anggota no
+    function get_data_pihutang($status,$tgl)
+    {
+        $where = "pin_statuspinjaman = $status AND pin_flag < 2";
+		$this->db->where($where);
+        $this->db->where("DATE_FORMAT(pin_tglpencairan, '%Y-%m-%d') <= '$tgl'");
+        $this->db->select_sum('pin_pinjaman');
+        return $this->db->get($this->table)->result();
+    }
+
+
+    // get pinjaman dengan pin marketing
+    function get_pin_marketing($pin_marketing, $f, $t){
+        $this->db->where('pin_marketing', $pin_marketing);
+        $this->db->where("pin_tglpencairan BETWEEN '$f' AND '$t'");
+        return $this->db->get($this->table)->result();
+    }
 
     // get pinjaman umum
     function get_pinjaman_umum()
