@@ -9,28 +9,23 @@
 
     <title><?=data_app()?></title>
     <link rel="icon" href="<?=base_url()?>upload/koperasi.png" type="image/png">
-
-    <!--vertical-dark-->
-
-    <!-- flot graph -->
-    <link href="<?=base_url()?>assets/vendor/inspinia/css/animate.css" rel="stylesheet">
-    <link href="<?=base_url()?>assets/vendor/inspinia/css/style.css" rel="stylesheet">
-    
-    <!--inspinia-->
     <link href="<?=base_url()?>assets/vendor/inspinia/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/inspinia/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/sweetalert/css/sweetalert.css" rel="stylesheet">
-
+    <!-- Toastr style -->
+    <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <!-- Morris -->
     <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/morris/morris-0.4.3.min.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/datepicker/css/datepicker3.css" rel="stylesheet">
+    <link href="<?=base_url()?>assets/vendor/inspinia/css/animate.css" rel="stylesheet">
+    <link href="<?=base_url()?>assets/vendor/inspinia/css/style.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/radiocheck/radiocheck.css" rel="stylesheet">
-
     <!--datatables-->
     <link href="<?=base_url()?>assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?=base_url()?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/> 
 
     <script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>
+    <script src="<?=base_url()?>assets/rupiah/my.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/bootstrap.min.js"></script>
     <style>
     html {
@@ -59,7 +54,6 @@ $CI = &get_instance();
 lookup();
 
 ?>
-
 <body>
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
@@ -92,30 +86,20 @@ lookup();
                             KSP
                         </div>
                     </li>
-                    
                     <li><a href="<?=base_url()?>backend"><i class="fa fa-th-large"></i> <span
                                 class="nav-label">Dashboard</span><span
-                                class="label label-primary pull-right"></span></a></li><li class="">
+                                class="label label-primary pull-right"></span></a></li>
 
-                    <?php if(is_allow('M_LAPORAN')): ?>               
+                                <?php if(is_allow('M_LAPORAN')): ?>
                     <li><a href="<?=base_url()?>cart"><i class="fa fa-th-large"></i> <span
                                 class="nav-label">Chart</span><span
-                                class="label label-primary pull-right"></span></a></li><li class="">
-                    <?php endif; ?>
-<!-- 
-                    <?php if(is_allow('M_LAPORAN')): ?>
-                        <a href="#"><i class="fa fa-user"></i> <span class="nav-label">Analisa </span> <span class="fa arrow"></span></a>
-                    <?php endif; ?>
-                        <ul class="nav nav-second-level">
-                            
-                            <li>
-                                <a href="<?=base_url()?>cart">Cart</a>
-                            </li>
-                            <li>
-                                <a href="<?=base_url()?>Simpanan">Simpanan</a>
-                            </li>
-                            
-                        </ul> -->
+                                class="label label-primary pull-right"></span></a></li>
+                  
+                                <?php endif; ?>
+
+
+                  
+
 
                     <!-- MENU SIMPANAN BERJANGKA -->
 
@@ -151,22 +135,6 @@ lookup();
                             <li>
                                 <a href="<?=base_url()?>Simpanan">Simpanan</a>
                             </li>
-                            <?php if(is_allow('M_UTILITAS')): ?>
-                            <li>
-                                <a href="#" id="damian">Rekap<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="<?=base_url()?>Wilayah">Kas Bon</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?=base_url()?>Lainlain">Lain-lain</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?=base_url()?>Tunai/simpanan">Rekap Simpanan</a>
-                                    </li>
-                                </ul>
-                            </li>
-                                <?php endif; ?>
                             <li>
                                 <a href="#" id="damian">Mutasi<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
@@ -485,41 +453,15 @@ lookup();
                             <li><a href="<?=base_url()?>karyawan">Karyawan</a></li>
                             <li><a href="<?=base_url()?>wilayah_karyawan">Wilayah Karyawan</a></li>
                         </ul>
-                    </li> 
-                    
-                    <!-- MENU KASIR -->
-                    
-                    <?php if(is_allow('M_MANAGER')): ?>
-                    <li class="">
-                        
-                        <a href="index.html"><i class="fa fa-money"></i> <span class="nav-label">KASIR</span>
-                            <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="<?=base_url()?>kasbon">Kas Bon</a></li>
-                            <li>
-                                <a href="#" id="damian">Tunai<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="<?=base_url()?>penggajianmarketing">Tunai Masuk</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?=base_url()?>penggajianmarketing">Tunai Keluar</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="<?=base_url()?>tunai">KAS</a></li>
-                        </ul>
                     </li>
-                    <?php endif; ?>
 
                     <!-- MENU USER MANAGEMENT -->
-                    
-                    <?php if(is_allow('M_SISTEM')): ?>
                     <li class="">
                         
                         <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">MANAJEMEN USER</span>
                             <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
+                        <?php if(is_allow('M_SISTEM')): ?>
                             <li><a href="<?=base_url()?>users">Users</a></li>
                             <li><a href="<?=base_url()?>user_group">User Group</a></li>
                             <?php endif; ?>
@@ -528,9 +470,9 @@ lookup();
                             <?php endif; ?>
                             <?php if(is_allow('M_SISTEM')): ?>
                             <li><a href="<?=base_url()?>master_access">Master Access</a></li>
+                            <?php endif; ?>
                         </ul>
                     </li>
-                    <?php endif; ?>
 
                     <!-- MENU SISTEM UTIL -->
                     <li class="">
@@ -540,6 +482,7 @@ lookup();
                         <?php endif;  ?>
                         <?php //die($this->db->last_query());  ?>
                         <ul class="nav nav-second-level">
+                        <li><a href="<?=base_url()?>Tempsetoransimpanan">Hitung Temp SS</a></li>
                             <li><a href="<?=base_url()?>sy_config">Konfigurasi</a></li>
                             <li><a target="_link" href="<?=base_url()?>sfgen">Generator</a></li>
                         </ul>
@@ -609,7 +552,10 @@ lookup();
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/flot/jquery.flot.pie.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/flot/jquery.flot.symbol.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/flot/curvedLines.js"></script>
-    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/flot/jquery.flot.time.js"></script>
+ 
+    <!-- Morris -->
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/morris/morris.js"></script>
 
     <!-- Peity -->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/peity/jquery.peity.min.js"></script>
@@ -618,10 +564,6 @@ lookup();
     <!-- Custom and plugin javascript -->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/inspinia.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/pace/pace.min.js"></script>
-
-    <!-- Morris -->
-    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/morris/raphael-2.1.0.min.js"></script>
-    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/morris/morris.js"></script>
 
     <!-- jQuery UI -->
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -646,7 +588,7 @@ lookup();
     
     <script src="<?php echo base_url().'assets/js/jquery.dataTables.min.js'?>"></script>
     <script src="<?php echo base_url().'assets/js/dataTables.bootstrap.js'?>"></script>
-
+    
     <script>
     $(document).ready(function() {
 
@@ -696,10 +638,7 @@ lookup();
      return nStr + nStrEnd;
     }*/
 
-    
-
-
-   function rubah(angka){
+    function rubah(angka){
    var reverse = angka.toString().split('').reverse().join(''),
    ribuan = reverse.match(/\d{1,3}/g);
    ribuan = ribuan.join('.').split('').reverse().join('');

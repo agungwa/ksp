@@ -39,6 +39,7 @@
                                 }
                             ?>
                           <button class="btn btn-primary" type="submit">Search</button>
+                          <a href="<?php echo base_url()?>printneraca/aktivatetap?q=<?=$q?>" class="btn btn-default">Print</a>
                         </span>
                     </div>
                 </form>
@@ -72,7 +73,7 @@
 			<td><?php echo neraca($neracaaktivatetap->nat_peralatan) ?></td>
 			<td><?php echo neraca($neracaaktivatetap->nat_akumulasipenyusutan) ?></td>
 			<td><?php echo $neracaaktivatetap->nat_keterangan ?></td>
-			<td><?php echo $neracaaktivatetap->nat_tanggal ?></td>
+			<td><?php echo dateFormataja($neracaaktivatetap->nat_tanggal) ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
 				echo anchor(site_url('neracaaktivatetap/read/'.$neracaaktivatetap->nat_id),'Read','class="text-navy"'); 

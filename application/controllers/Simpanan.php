@@ -404,7 +404,6 @@ class Simpanan extends MY_Base
                 }
             }
             
-      //  var_dump($datasimpanan);
         $data = array(
             'datasimpanan' => $datasimpanan,
             'simpanan_data' => $simpanan,

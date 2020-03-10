@@ -829,6 +829,26 @@ foreach ($phu as $key => $value) {
         //$mpdf->Output(); // opens in browser
         $mpdf->Output('printneracasimkesan.pdf','D'); // it downloads the file into the user system, with give name
     
+	}
+	
+    public function aktivatetap()
+    {
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        $neracaaktivatetap = $this->Neracaaktivatetap_model->get_limit_data($start, $q);
+
+        $data = array(
+            'neracaaktivatetap_data' => $neracaaktivatetap,
+            'q' => $q,
+            'start' => $start,
+            'content' => 'backend/neracaaktivatetap/neracaaktivatetap_list',
+        );
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'Legal', [216, 356]]);
+        $html = $this->load->view('backend/neracaaktivatetap/print/neracaaktivatetap_list.php',$data,true);
+        //echo $html;
+        $mpdf->WriteHTML($html);
+        //$mpdf->Output(); // opens in browser
+        $mpdf->Output('print-aktivatetap.pdf','D');
     }
 
 

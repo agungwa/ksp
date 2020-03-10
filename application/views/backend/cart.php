@@ -1,7 +1,7 @@
 
 <?php if(is_allow('M_LAPORAN')): ?>
 
-    <div class="animated wobble">
+    <div class="animated fadeIn">
             <div class="row col-md-6">
                         <div class="col-lg-12">
                             <div class="ibox float-e-margins">
@@ -20,7 +20,7 @@
                             </div>
                         </div>
 
-    <div class="animated wobble">
+    <div class="animated fadeIn">
             <div class="row col-md-6">
                         <div class="col-lg-12">
                             <div class="ibox float-e-margins">
@@ -39,7 +39,7 @@
                             </div>
                         </div>
 
-    <div class="animated wobble">
+    <div class="animated fadeIn">
             <div class="row col-md-6">
                         <div class="col-lg-12">
                             <div class="ibox float-e-margins">
@@ -78,21 +78,41 @@
                         return dateNow;
                         }
 
-                //data simpanan masuk
                 $(function() {
-                Morris.Line({
-                    element: 'morris-line-chart-simpanan-masuk',
+
+                    // Morris.Line({
+                    //     element: 'morris-one-line-chart',
+                    //         data: [
+                    //             { year: '2008', value: 5 },
+                    //             { year: '2009', value: 10 },
+                    //             { year: '2010', value: 8 },
+                    //             { year: '2011', value: 22 },
+                    //             { year: '2012', value: 8 },
+                    //             { year: '2014', value: 10 },
+                    //             { year: '2015', value: 5 }
+                    //         ],
+                    //     xkey: 'year',
+                    //     ykeys: ['value'],
+                    //     resize: true,
+                    //     lineWidth:4,
+                    //     labels: ['Value'],
+                    //     lineColors: ['#1ab394'],
+                    //     pointSize:5,
+                    // });
+                    //investasi
+                    Morris.Line({
+                    element: 'morris-line-chart-investasi-masuk',
                     data: [
-                         { y: dateNow("-",5), a: <?= $saldosimpananneraca5/1000000 ?> },
-                         { y: dateNow("-",4), a: <?= $saldosimpananneraca4/1000000 ?> },
-                         { y: dateNow("-",3), a: <?= $saldosimpananneraca3/1000000 ?> },
-                         { y: dateNow("-",2), a: <?= $saldosimpananneraca2/1000000 ?> },
-                         { y: dateNow("-",1), a: <?= $saldosimpananneraca1/1000000 ?> },
-                         { y: dateNow("-",0), a: <?= $saldosimpananneraca0/1000000 ?> } 
+                        { y: dateNow("-",5), e: <?= ($investasi0)/1000000 ?> },
+                        { y: dateNow("-",4), e: <?= ($investasi1)/1000000 ?> },
+                        { y: dateNow("-",3), e: <?= ($investasi2)/1000000 ?> },
+                        { y: dateNow("-",2), e: <?= ($investasi3)/1000000 ?> },
+                        { y: dateNow("-",1), e: <?= ($investasi4)/1000000 ?> },
+                        { y: dateNow("-",0), e: <?= ($investasi5)/1000000 ?> } 
                         ],
                     xkey: 'y',
-                    ykeys: ['a','b','c'],
-                    labels: ['Simpanan','Phbuku','Administrasi']
+                    ykeys: [ 'e' ],
+                    labels: [ 'Investasi' ],
                     xLabelFormat: function (x) {
                         var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Des" ];
                         var month = IndexToMonth[ x.getMonth() ];
@@ -107,10 +127,10 @@
                     },
                     hideHover: 'auto',
                     resize: true,
-                    lineColors: ['#54cdb4'],
+                    lineColors: ['#1ab394'],
                 });
-
-                Morris.Line({
+                    //pinjaman
+                    Morris.Line({
                     element: 'morris-line-chart-pinjaman-masuk',
                     data: [
                          { y: dateNow("-",5), b: <?= ($angsuranPokok0+$pelunasanPokok0)/1000000 ?>, c: <?= ($angsuranBunga0+$pelunasanBunga0)/1000000 ?>, d: <?= ($angsuranDenda0+$pelunasanDenda0)/1000000 ?> },
@@ -141,19 +161,18 @@
                     lineColors: ['#1ab394','#035c4a','#659c91'],
                 });
 
-                Morris.Line({
-                    element: 'morris-line-chart-investasi-masuk',
+                    Morris.Line({
+                    element: 'morris-line-chart-simpanan-masuk',
                     data: [
-                        { y: dateNow("-",5), e: <?= ($investasi0)/1000000 ?> },
-                        { y: dateNow("-",4), e: <?= ($investasi1)/1000000 ?> },
-                        { y: dateNow("-",3), e: <?= ($investasi2)/1000000 ?> },
-                        { y: dateNow("-",2), e: <?= ($investasi3)/1000000 ?> },
-                        { y: dateNow("-",1), e: <?= ($investasi4)/1000000 ?> },
-                        { y: dateNow("-",0), e: <?= ($investasi5)/1000000 ?> } 
-                        ],
+                         { y: dateNow("-",5), a: <?= $saldosimpananneraca5/1000000 ?> },
+                         { y: dateNow("-",4), a: <?= $saldosimpananneraca4/1000000 ?> },
+                         { y: dateNow("-",3), a: <?= $saldosimpananneraca3/1000000 ?> },
+                         { y: dateNow("-",2), a: <?= $saldosimpananneraca2/1000000 ?> },
+                         { y: dateNow("-",1), a: <?= $saldosimpananneraca1/1000000 ?> },
+                         { y: dateNow("-",0), a: <?= $saldosimpananneraca0/1000000 ?> } ],
                     xkey: 'y',
-                    ykeys: [ 'e' ],
-                    labels: [ 'Investasi' ],
+                    ykeys: ['a'],
+                    labels: ['Simpanan'],
                     xLabelFormat: function (x) {
                         var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Des" ];
                         var month = IndexToMonth[ x.getMonth() ];
@@ -168,11 +187,11 @@
                     },
                     hideHover: 'auto',
                     resize: true,
-                    lineColors: ['#1ab394'],
+                    lineColors: ['#54cdb4'],
                 });
-                
 
                 });
+                    
 
                 </script>
         <?php endif; ?>
