@@ -344,6 +344,7 @@ class Simpanan extends MY_Base
 
     public function listdata()
     {
+        $j = urldecode($this->input->get('j', TRUE));
         $q = urldecode($this->input->get('q', TRUE));
         $f = urldecode($this->input->get('f', TRUE));
         $t = urldecode($this->input->get('t', TRUE));
@@ -408,6 +409,7 @@ class Simpanan extends MY_Base
             'datasimpanan' => $datasimpanan,
             'simpanan_data' => $simpanan,
             'wilayah_data' => $wilayah,
+            'j' => $j,
             'q' => $q,
             'f' => $f,
             't' => $t,
