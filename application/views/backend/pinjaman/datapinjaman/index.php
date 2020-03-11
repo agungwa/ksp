@@ -88,7 +88,7 @@
             </tr>
             <tr class="danger">
                 <td class="text-left">Total Angsuran Masuk</td>
-				<td class="text-center"><?= neraca($pokokangsuran+$pokokangsuranpelunasan+$bungaangsuran + $bungadendapelunasan + $bungapelunasan + $dendaangsuran);?></td>
+				<td class="text-center"><?= neraca($pokokangsuran+$pokokangsuranpelunasan+$bungaangsuran+$bungapelunasan+$dendaangsuran+$dendapelunasan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Masuk Lalu</td>

@@ -26,9 +26,9 @@
                         <h5>Simpanan</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">Data </h1>
+                        <h1 class="no-margins">Data</h1>
                         <div class="stat-percent font-bold text-success"><?= $saldosimpananneraca/1000000;?><i class="fa fa-bolt"></i></div>
-                        <small>x Juta </small>
+                        <small>x Jt</small>
                     </div>
                 </div>
             </div>
