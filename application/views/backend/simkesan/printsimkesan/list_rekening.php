@@ -12,7 +12,7 @@
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
     style="font-family:Cambria">Wilayah : <?php if($w!=''){echo $wil_kode->wil_nama;} else {echo 'Semua Wilayah';}?></p>
         
-        <table >
+        <table>
             <thead>
             <tr>
                 <th>No</th>
@@ -25,10 +25,10 @@
 				<th>Tgl Daftar | Terakhir Setor</th>
 				<th>Total | Titip</th>
 				<th width="100px">Status | Diagunkan</th>
-				<th>Action</th>
 			</tr>
             </thead>
 			<tbody>
+            
             
             <?php
             foreach ($simkesan_data as $simkesan)
@@ -43,12 +43,13 @@
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $simkesan->ang_no))->row();
                 $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $simkesan->kar_kode))->row();
                 ?>
-                
                 <?php 
-               if ($simkesan->sik_jam > 0){
-                   echo '<tr color = #750000>';
-               } 
-               ?>
+                if ($simkesan->sik_jam > 0){
+                    echo '<tr color = #75001d>';
+                } else {
+                    echo '<tr class = #4db7e1>';
+                }
+                ?>
 					<td width="80px"><?php echo ++$start ?></td>
         			<td><?php echo $simkesan->sik_kode ?></td>
         			<td><?php echo $simkesan->ang_no ?></td>
@@ -60,9 +61,10 @@
                     <td><?php echo neraca($totalsetoran[0]->ssk_jmlsetor),' | ', neraca($titipan)?></td>
         			<td><?php echo $this->statusSimkesan[$simkesan->sik_status],' | ',$this->statusJaminan[$simkesan->sik_jam] ?></td>
                    
-                
+        		</tr>
                 <?php
             }
             ?>
             
-           
+            </tbody>
+        </table>
