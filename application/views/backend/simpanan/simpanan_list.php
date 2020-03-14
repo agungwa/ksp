@@ -26,8 +26,8 @@
                     ?>
                 </select>
                 
-                    <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
-                    <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
+                    <input class="form-control" type="date" name="f"  value="<?= $f;?>">
+                    <input class="form-control" type="date" name="t" value="<?= $t;?>">
                 </div>
             <div class="col-md-4 text-right">
                     <div class="input-group">

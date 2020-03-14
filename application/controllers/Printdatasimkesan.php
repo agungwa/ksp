@@ -793,18 +793,33 @@ class PrintDataSimkesan extends MY_Base
 	}
 	
 	public function listRekening(){
-		$q = urldecode($this->input->get('q', TRUE));
+		$p = urldecode($this->input->get('p', TRUE));
+        $plan = urldecode($this->input->get('plan', TRUE)); //plan simkesan
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $s = urldecode($this->input->get('s', TRUE)); //status
+        $f = urldecode($this->input->get('f', TRUE)); //tgl dari
+        $t = urldecode($this->input->get('t', TRUE)); //tgl ke
         $start = intval($this->input->get('start'));
-
-        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
-       
+        $simkesan = $this->Simkesan_model->get_data_simkesan($plan,$w,$s,$f,$t,$start);
+        $wilayah = $this->Wilayah_model->get_all();
+        $plansimkesan = $this->Plansimkesan_model->get_all();
+        $date = date("Y-m-d", strtotime($f));
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $rangetgl = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+		if ($f == null && $t == null ) { $f=$date; $t=$rangetgl;}
+        
         $data = array(
             'simkesan_data' => $simkesan,
-            'q' => $q,
+            'wilayah_data' => $wilayah,
+            'plansimkesan_data' => $plansimkesan,
+            'w' => $w,
+            'p' => $p,
+            'plan' => $plan,
+            's' => $s,
+            'f' => $f,
+            't' => $t,
             'start' => $start,
-            'content' => 'backend/simkesan/simkesan',
-            'item' => 'simkesanlist.php',
-            'active' => 5,
         );
 		
         $this->load->view(layout(), $data);

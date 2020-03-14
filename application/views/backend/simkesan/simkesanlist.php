@@ -1,46 +1,49 @@
-<!doctype html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h2><b>List Simkesan</b></h2>
-                    <?php if ($this->session->userdata('message') != '') {?>
-                    <div class="alert alert-success alert-dismissable">
-                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                <?=$this->session->userdata('message')?> <a class="alert-link" href="#"></a>
-                    </div>
-                 <?php }?>
-                </div>
-                <div class="ibox-content">
-        <div class="row" style="margin-bottom: 10px">
-            <div class="col-md-8">
-               
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox">
+        <div class="ibox-content">
+        <div class="row" style="margin-bottom: 10px, margin-top:10px">
+            <form action="<?php echo base_url()?>simkesan/simkesanlist" class="form-inline" method="get">
+            <div class="col-md-8 text-right">
+                <input type="hidden" name="p" value="5">
+                <select class="form-control col-md-2" name="s">
+                    <option value="all">Semua Status</option>
+                    <?php
+                        foreach ($this->statusSimkesan as $key => $value) { ?>
+                            <option value="<?= $key?>"><?= $value?></option>
+                    <?php        
+                        }
+                    ?>
+                </select>
+                <select class="form-control col-md-2" name="w">
+                    <option value="">Semua Wilayah</option>
+                    <?php
+                        foreach ($wilayah_data as $value) { ?>
+                            <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
+                    <?php        
+                        }
+                    ?>
+                </select>
+                <select class="form-control col-md-2" name="plan">
+                    <option value="">Semua Plan</option>
+                    <?php
+                        foreach ($plansimkesan_data as $value) { ?>
+                            <option value="<?= $value->psk_id?>"><?= $value->psk_plan?></option>
+                    <?php        
+                        }
+                    ?>
+                </select>
+                
+            <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
+            <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
             </div>
             
-            
-            <div class="col-md-1 text-right">
-            </div>
-            <div class="col-md-3 text-right">
-                <!--<form action="<?php echo site_url('simkesan/simkesanlist'); ?>" class="form-inline" method="get">
-
+            <div class="col-md-4 text-right">
                     <div class="input-group">
-                    
-                    <input type="text" class="form-control" name="q" id="q" placeholder="no simkesan">
-                        <span class="input-group-btn">
-                            -->
-                                    <a href="<?php echo base_url()?>printdatasimkesan/listRekening" class="btn btn-primary">Print</a>
-                                    <!--
+                          <a href="<?php echo base_url()?>printdatasimkesan/listRekening?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>&s=<?=$s?>&w=<?=$w?>&p=<?=$plan?>" class="btn btn-default">Print</a>  
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
-                        </span>
-                    </div>
-                </form>-->
             </div>
-			
+            </form>
         </div>
         <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead>
@@ -49,16 +52,12 @@
 				<th>Rekening Simkesan</th>
 				<th>ID Angggota</th>
 				<th>Nama</th>
-				<th>Karyawan</th>
-				<th>Plan Simkesan</th>
+				<th>Alamat</th>
+				<th width="100px">Plan</th>
 				<th>Wilayah</th>
-				<th>Tanggal Pendaftaran</th>
-				<th>Tanggal Berakhir</th>
-				<th>Terakhir Setor</th>
-				<th>Total Setor</th>
-				<th>Titipan</th>
-				<th>Status Diagunkan</th>
-				<th>Status</th>
+				<th>Tgl Daftar | Terakhir Setor</th>
+				<th>Total | Titip</th>
+				<th width="100px">Status | Diagunkan</th>
 				<th>Action</th>
 			</tr>
             </thead>
@@ -89,16 +88,12 @@
         			<td><?php echo $simkesan->sik_kode ?></td>
         			<td><?php echo $simkesan->ang_no ?></td>
         			<td><?php echo $ang_no->ang_nama ?></td>
-        			<td><?php echo $kar_kode->kar_nama ?></td>
+        			<td><?php echo $ang_no->ang_alamat ?></td>
         			<td><?php echo $psk_id->psk_plan ?></td>
         			<td><?php echo $wil_kode->wil_nama ?></td>
-        			<td><?php echo dateFormataja($simkesan->sik_tglpendaftaran) ?></td>
-        			<td><?php echo $simkesan->sik_tglberakhir ?></td>
-        			<td><?php echo dateFormataja($terakhir->tanggal) ?></td>
-                    <td><?php echo neraca($totalsetoran[0]->ssk_jmlsetor) ?></td>
-                    <td><?php echo neraca($titipan) ?></td>
-        			<td><?php echo $this->statusJaminan[$simkesan->sik_jam] ?></td>
-        			<td><?php echo $this->statusSimkesan[$simkesan->sik_status] ?></td>
+        			<td><?php echo dateFormataja($simkesan->sik_tglpendaftaran),' | ',dateFormataja($terakhir->tanggal) ?></td>
+                    <td><?php echo neraca($totalsetoran[0]->ssk_jmlsetor),' | ', neraca($titipan)?></td>
+        			<td><?php echo $this->statusSimkesan[$simkesan->sik_status],' | ',$this->statusJaminan[$simkesan->sik_jam] ?></td>
                     <td style="text-align:center" width="200px">
                         <?php 
                         echo anchor(site_url('simkesan/read/'.$simkesan->sik_kode),'Read','class="text-navy"'); 

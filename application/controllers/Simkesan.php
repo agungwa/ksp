@@ -770,65 +770,33 @@ class Simkesan extends MY_Base
 
     public function listdata()
     {
-        $q = urldecode($this->input->get('q', TRUE));
-        $u = urldecode($this->input->get('u', TRUE)); //kode simkesan
-        $p = urldecode($this->input->get('p', TRUE)); //plan simkesan
+        $p = urldecode($this->input->get('p', TRUE));
+        $plan = urldecode($this->input->get('plan', TRUE)); //plan simkesan
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
-        $r = urldecode($this->input->get('r', TRUE)); //karyawan
+        $s = urldecode($this->input->get('s', TRUE)); //status
+        $f = urldecode($this->input->get('f', TRUE)); //tgl dari
+        $t = urldecode($this->input->get('t', TRUE)); //tgl ke
         $start = intval($this->input->get('start'));
         
-        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
+        $simkesan = $this->Simkesan_model->get_data_simkesan($plan,$w,$s,$f,$t,$start);
         $wilayah = $this->Wilayah_model->get_all();
-        $karyawan = $this->Karyawan_model->get_all();
         $plansimkesan = $this->Plansimkesan_model->get_all();
-        $datasimkesan= array();
-        foreach ($simkesan as $key=>$item) {
-           
-            $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $item->psk_id))->row();
-            $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $item->wil_kode))->row();
-            $ang_no = $this->db->get_where('anggota', array('ang_no' => $item->ang_no))->row();
-            $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $item->kar_kode))->row();
-            if (
-                ( $p=='all' && $w=='all' && $r=='all' && $u=='all') || 
-                ( $p=='all' && $w=='all' && $r=='all' && $item->sik_kode == $u) || 
-            ( $item->psk_id == $p && $w=='all' && $r=='all' ) || 
-            ( $item->psk_id == $p && $item->wil_kode == $w && $r=='all' ) || 
-            ( $item->psk_id == $p && $w=='all' && $item->kar_kode == $r ) ||
-            ( $p=='all' && $w=='all' && $item->kar_kode == $r ) ||
-            ( $p=='all' && $item->wil_kode == $w && $item->kar_kode == $r ) ||
-            ( $p=='all' && $item->wil_kode == $w && $r=='all' ) ||
-            ($item->psk_id == $p && $item->wil_kode == $w && $item->kar_kode == $r  )) {
-
-               $datasimkesan[$key] = array(
-                'sik_kode' => $item->sik_kode,
-                'ang_no' => $item->ang_no,
-                'nm_ang_no' => $ang_no->ang_nama,
-                'kar_kode' => $kar_kode->kar_nama,
-                'psk_id' => $psk_id->psk_plan,
-                'setor_psk_id' => $psk_id->psk_setoran,
-                'wil_kode' => $wil_kode->wil_nama,
-                'sik_tglpendaftaran' => $item->sik_tglpendaftaran,
-                'sik_tglberakhir' => $item->sik_tglberakhir,
-                'sik_status' => $this->statusSimkesan[$item->sik_status],
-                'sik_tgl' => $item->sik_tgl,
-                'sik_flag' => $item->sik_flag,
-                'sik_info' => $item->sik_info,
-                );
-            }
-        }
+        $date = date("Y-m-d", strtotime($f));
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $rangetgl = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+		if ($f == null && $t == null ) { $f=$date; $t=$rangetgl;}
         
-       // var_dump($datasimkesan);
         $data = array(
             'simkesan_data' => $simkesan,
-            'datasimkesan' => $datasimkesan,
             'wilayah_data' => $wilayah,
-            'karyawan_data' => $karyawan,
             'plansimkesan_data' => $plansimkesan,
-            'q' => $q,
-            'u' => $u,
             'w' => $w,
             'p' => $p,
-            'r' => $r,
+            'plan' => $plan,
+            's' => $s,
+            'f' => $f,
+            't' => $t,
             'start' => $start,
             'content' => 'backend/simkesan/simkesan',
             'item' => 'simkesan_list.php',
@@ -914,14 +882,32 @@ class Simkesan extends MY_Base
 
     public function simkesanlist()
     {
-        $q = urldecode($this->input->get('q', TRUE));
+        $p = urldecode($this->input->get('p', TRUE));
+        $plan = urldecode($this->input->get('plan', TRUE)); //plan simkesan
+        $w = urldecode($this->input->get('w', TRUE)); //wilayah
+        $s = urldecode($this->input->get('s', TRUE)); //status
+        $f = urldecode($this->input->get('f', TRUE)); //tgl dari
+        $t = urldecode($this->input->get('t', TRUE)); //tgl ke
         $start = intval($this->input->get('start'));
-
-        $simkesan = $this->Simkesan_model->get_limit_data($start, $q);
-       
+        $simkesan = $this->Simkesan_model->get_data_simkesan($plan,$w,$s,$f,$t,$start);
+        $wilayah = $this->Wilayah_model->get_all();
+        $plansimkesan = $this->Plansimkesan_model->get_all();
+        $date = date("Y-m-d", strtotime($f));
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $rangetgl = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+		if ($f == null && $t == null ) { $f=$date; $t=$rangetgl;}
+        
         $data = array(
             'simkesan_data' => $simkesan,
-            'q' => $q,
+            'wilayah_data' => $wilayah,
+            'plansimkesan_data' => $plansimkesan,
+            'w' => $w,
+            'p' => $p,
+            'plan' => $plan,
+            's' => $s,
+            'f' => $f,
+            't' => $t,
             'start' => $start,
             'content' => 'backend/simkesan/simkesan',
             'item' => 'simkesanlist.php',

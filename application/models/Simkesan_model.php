@@ -101,6 +101,27 @@ class Simkesan_model extends CI_Model
     }
 
     // get data with limit and search and join
+    function get_data_simkesan($plan,$w,$s,$f,$t,$start = 0) {
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(sik_tglpendaftaran, '%Y-%m-%d') >= '$f'");
+        }
+        if ($t != NULL) {
+            $this->db->where("DATE_FORMAT(sik_tglpendaftaran, '%Y-%m-%d') <= '$t'");
+        }
+        if ($s != NULL){
+            $this->db->where("sik_status=",$s);
+        }
+        if ($w != NULL){
+            $this->db->where("wil_kode=",$w);
+        }
+         if ($plan != NULL){
+             $this->db->where("psk_id=",$plan);
+         }
+        $this->db->where('sik_flag<',2);
+        return $this->db->get($this->table)->result();
+    }
+
+    // get data with limit and search and join
     function get_limit_datajoin($limit,$start = 0, $q = NULL) {
         $this->db->join('anggota', 'simkesan.ang_no = anggota.ang_no', 'right');
         $this->db->order_by($this->id, $this->order);

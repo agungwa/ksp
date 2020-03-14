@@ -9,7 +9,7 @@ function dateFormat($inputDate) {
 function dateFormataja($inputDate) {
     $date = date_create($inputDate);
 
-    return date_format($date, "d-m-Y");
+    return date_format($date, "d-m-y");
 }
 
 function dateFormatTanggal($inputDate) {
