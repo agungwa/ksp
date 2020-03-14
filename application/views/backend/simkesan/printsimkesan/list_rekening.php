@@ -10,7 +10,7 @@
 
  <h3><b>Rentang Tanggal : <?=dateFormataja($f)?> Sampai <?=dateFormataja($t)?> </b></h3>
 <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:11pt"><span
-    style="font-family:Cambria">Wilayah : <?php if($w!='all'){echo $wil_kode->wil_nama;} else if ($w='all') {echo 'Semua Wilayah';}?></p>
+    style="font-family:Cambria">Wilayah : <?php if($w!=''){echo $wil_kode->wil_nama;} else {echo 'Semua Wilayah';}?></p>
         
         <table >
             <thead>

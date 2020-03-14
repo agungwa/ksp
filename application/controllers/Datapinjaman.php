@@ -105,20 +105,6 @@ class Datapinjaman extends MY_Base
 }
 
 
-    	//hitung saldo angsuran pokok dari angsuran status bayar
-   /* 	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
-    				$pokokAngsuran += $value->ags_jmlpokok ;
-    			}
-			} else {
-				$pokokAngsuran += $value->ags_jmlpokok;
-		}
-	} */
-
     	//hitung saldo angsuran pokok dari pelunasan
     	foreach ($pelunasanPinjaman as $key => $value) {
 			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
@@ -135,39 +121,7 @@ class Datapinjaman extends MY_Base
 		}
 	}
 
-    	//hitung bunga angsuran status bayar
-   /* 	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			
-			if ($f<>'' && $t<>'' && $w<>'') {
-			$jt = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_tgl);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
-					$bungaAngsuran += $value->ags_jmlbunga ;
-				}
-				
-		//var_dump($value->ags_jmlbunga);
-			} else {
-				$bungaAngsuran += $value->ags_jmlbunga;
-				
-		}
-	} */
-
-	
-    	//hitung denda angsuran status bayar
-/*    	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t  && $pin_id->wil_kode==$w))  {
-    				$dendaAngsuran += $value->ags_denda ;
-    			}
-			} else {
-				$dendaAngsuran += $value->ags_denda;
-		}
-	} */
-
+  
     	//hitung bunga pokok denda angsuran
     	foreach ($angsuranbayarAll as $key => $value) {
 			$ags_id = $this->db->get_where('angsuran', array('ags_id' => $value->ags_id))->row();

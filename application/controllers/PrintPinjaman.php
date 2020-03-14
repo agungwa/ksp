@@ -37,6 +37,7 @@ class PrintPinjaman extends MY_Base
         $wilayah = $this->Wilayah_model->get_all();
         $provisi = $this->Potonganprovisi_model->get_by_id(1);		
 
+		$dendaPelunasan = 0;
 		$bungaPelunasan = 0;
 		$totalRekening = 0;
 		$saldolunaskini = 0;
@@ -109,20 +110,6 @@ class PrintPinjaman extends MY_Base
 }
 
 
-    	//hitung saldo angsuran pokok dari angsuran status bayar
-   /* 	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
-    				$pokokAngsuran += $value->ags_jmlpokok ;
-    			}
-			} else {
-				$pokokAngsuran += $value->ags_jmlpokok;
-		}
-	} */
-
     	//hitung saldo angsuran pokok dari pelunasan
     	foreach ($pelunasanPinjaman as $key => $value) {
 			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
@@ -139,73 +126,23 @@ class PrintPinjaman extends MY_Base
 		}
 	}
 
-    	//hitung bunga angsuran status bayar
-   /* 	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			
-			if ($f<>'' && $t<>'' && $w<>'') {
-			$jt = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_tgl);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
-					$bungaAngsuran += $value->ags_jmlbunga ;
-				}
-				
-		//var_dump($value->ags_jmlbunga);
-			} else {
-				$bungaAngsuran += $value->ags_jmlbunga;
-				
-		}
-	} */
-
-	
-    	//hitung denda angsuran status bayar
-/*    	foreach ($angsuranBayar as $key => $value) {
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $value->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->ags_tgl));
-			//var_dump($value->ags_id);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t  && $pin_id->wil_kode==$w))  {
-    				$dendaAngsuran += $value->ags_denda ;
-    			}
-			} else {
-				$dendaAngsuran += $value->ags_denda;
-		}
-	} */
-
-	
-    	//hitung denda angsuran bayar
-    	foreach ($angsuranbayarAll as $key => $value) {
-			$ags_id = $this->db->get_where('angsuran', array('ags_id' => $value->ags_id))->row();
-			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $ags_id->pin_id))->row();
-			if ($f<>'' && $t<>'' && $w<>'') {	
-			$jt = date("Y-m-d", strtotime($value->agb_tgl));
-			//var_dump($value->ags_id);
-    			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t  && $pin_id->wil_kode==$w))  {
-    				$dendaAngsuran += $value->agb_denda ;
-    			}
-			} else {
-				$dendaAngsuran += $value->agb_denda;
-		}
-	}
-
-		
-    	//hitung bunga angsuran status bayar
+  
+    	//hitung bunga pokok denda angsuran
     	foreach ($angsuranbayarAll as $key => $value) {
 			$ags_id = $this->db->get_where('angsuran', array('ags_id' => $value->ags_id))->row();
 			$pin_id = $this->db->get_where('pinjaman', array('pin_id' => $ags_id->pin_id))->row();
 			
 			if ($f<>'' && $t<>'' && $w<>'') {
 			$jt = date("Y-m-d", strtotime($value->agb_tgl));
-			//var_dump($value->ags_tgl);
     			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
-					$bungaAngsuran += $value->agb_bunga ;
-					$pokokAngsuran += $value->agb_pokok;
+					$bungaAngsuran += ceiling($value->agb_bunga,1000) ;
+					$pokokAngsuran += ceiling($value->agb_pokok,1000);
+					$dendaAngsuran += ceiling($value->agb_denda,1000);
 				}
-				
-		//var_dump($value->ags_jmlbunga);
 			} else {
-				$bungaAngsuran += $value->agb_bunga;
-				$pokokAngsuran += $value->agb_pokok;
+				$bungaAngsuran += ceiling($value->agb_bunga,1000);
+				$pokokAngsuran += ceiling($value->agb_pokok,1000);
+				$dendaAngsuran += ceiling($value->agb_denda,1000);
 				
 		}
 	}
@@ -248,9 +185,11 @@ class PrintPinjaman extends MY_Base
     			if (($jt >= $f && $jt <= $t && 'all'==$w) || ($jt >= $f && $jt <= $t && $pin_id->wil_kode==$w))  {
 					$bungaDendapelunasan += $value->pel_bungatambahan ;
 					$bungaPelunasan += $value->pel_totalbungapokok;
+					$dendaPelunasan += $value->pel_totaldenda;
     			}
 			} else {
 				$bungaPelunasan += $value->pel_totalbungapokok;
+				$dendaPelunasan += $value->pel_totaldenda;
 				$bungaDendapelunasan += $value->pel_bungatambahan;
 		}
 	}
@@ -392,6 +331,7 @@ foreach ($pinjamanNonaktif as $key => $value) {
 
 		$data = array(
 			
+			'dendapelunasan' => $dendaPelunasan,
 			'bungapelunasan' => $bungaPelunasan,
 			'totalrekening' => $totalRekening,
 			'totalrekeningmasuk' => $totalrekeningMasuk,
