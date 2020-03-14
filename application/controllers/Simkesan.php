@@ -131,7 +131,7 @@ class Simkesan extends MY_Base
             );
             $this->Simkesan_model->update($this->input->post('sik_kode', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Agunan');
-            redirect(site_url('simkesan/?p=2'));
+            redirect(site_url('simkesan/?p=5'));
             }
         }
 

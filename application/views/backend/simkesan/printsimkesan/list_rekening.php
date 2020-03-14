@@ -45,9 +45,9 @@
                 ?>
                 <?php 
                 if ($simkesan->sik_jam > 0){
-                    echo '<tr color = #75001d>';
+                    echo '<tr bgcolor = "#f8514b">';
                 } else {
-                    echo '<tr class = #4db7e1>';
+                    echo '<tr bgcolor = "#4db7e1">';
                 }
                 ?>
 					<td width="80px"><?php echo ++$start ?></td>
