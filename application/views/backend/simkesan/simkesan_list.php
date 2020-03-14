@@ -9,7 +9,7 @@
                     <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
                     <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
                 <select class="form-control col-md-3" name="s">
-                    <option value="all">Semua Status</option>
+                    <option value=NULL>Semua Status</option>
                     <?php
                         foreach ($this->statusSimkesan as $key => $value) { ?>
                             <option value="<?= $key?>"><?= $value?></option>
@@ -18,7 +18,7 @@
                     ?>
                 </select>
                 <select class="form-control col-md-3" name="w">
-                    <option value="">Semua Wilayah</option>
+                    <option value=NULL>Semua Wilayah</option>
                     <?php
                         foreach ($wilayah_data as $value) { ?>
                             <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
@@ -27,7 +27,7 @@
                     ?>
                 </select>
                 <select class="form-control col-md-3" name="p">
-                    <option value="">Semua Plan</option>
+                    <option value=NULL>Semua Plan</option>
                     <?php
                         foreach ($plansimkesan_data as $value) { ?>
                             <option value="<?= $value->psk_id?>"><?= $value->psk_plan?></option>

@@ -823,7 +823,6 @@ class PrintDataSimkesan extends MY_Base
             'start' => $start,
         );
 		
-        $this->load->view(layout(), $data);
 		$mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8','format' => 'A4']);
         $html = $this->load->view('backend/simkesan/printsimkesan/list_rekening.php',$data,true);
         //echo $html;

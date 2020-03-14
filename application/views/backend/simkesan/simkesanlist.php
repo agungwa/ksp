@@ -7,7 +7,7 @@
             <div class="col-md-8 text-right">
                 <input type="hidden" name="p" value="5">
                 <select class="form-control col-md-2" name="s">
-                    <option value="all">Semua Status</option>
+                    <option value="">Semua Status</option>
                     <?php
                         foreach ($this->statusSimkesan as $key => $value) { ?>
                             <option value="<?= $key?>"><?= $value?></option>
@@ -40,7 +40,7 @@
             
             <div class="col-md-4 text-right">
                     <div class="input-group">
-                          <a href="<?php echo base_url()?>printdatasimkesan/listRekening?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>&s=<?=$s?>&w=<?=$w?>&p=<?=$plan?>" class="btn btn-default">Print</a>  
+                          <a href="<?php echo base_url()?>printdatasimkesan/listRekening?p=<?=$p?>&s=<?=$s?>&w=<?=$w?>&plan=<?=$plan?>&f=<?=$f?>&t=<?=$t?>" class="btn btn-default">Print</a>  
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
             </div>
             </form>
