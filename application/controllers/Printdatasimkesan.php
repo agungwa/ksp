@@ -819,6 +819,7 @@ class PrintDataSimkesan extends MY_Base
             's' => $s,
             'f' => $f,
             't' => $t,
+            'content' => 'backend/simkesan/printsimkesan/list_rekening.php',
             'start' => $start,
         );
 		
