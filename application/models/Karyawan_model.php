@@ -54,6 +54,15 @@ function get_kar_with($kar_kode){
         return $this->db->get($this->table)->result();
     }
 
+    // get data with limit and search
+    function get_limit_data_karyawan($limit, $start = 0, $q = NULL) {
+        $this->db->order_by($this->id, $this->order);
+        $where = "(kar_kode LIKE '%$q%' ESCAPE '!' OR kar_nama LIKE '%$q%' ESCAPE '!') AND kar_flag < 2";
+        $this->db->where($where);
+	    $this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
     // insert data
     function insert($data)
     {

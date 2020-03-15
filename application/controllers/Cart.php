@@ -63,40 +63,9 @@ class Cart extends MY_Base {
 	
 	public function index()
 	{ 	
-		$nowYear = date('d');
-		
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
     	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
 		$t = urldecode($this->input->get('t', TRUE)); //smpai tgl
-		
-		//model
-
-		//neraca			
-		
-		//investasi
-    	
-
-		//pinjaman
-			
-
-		//neraca
-		
-		//investasi
-
-
-		//simpanan
-		
-		//pinjaman
-
-		//simkesan
-
-		//setoran simkesan
-
-		//klaim simkesan
-
-		//penarikan simkesan
-
-		//titipan simkesan
 
 		$satu = 1;
 		$dua = 2;
@@ -183,11 +152,6 @@ class Cart extends MY_Base {
 		$investasi4 = $dataInvestasi4[0]->ivb_jumlah;
 		$investasi5 = $dataInvestasi5[0]->ivb_jumlah;
 
-		
-
-
-		//hitung SHU
-
 		//hitung simpanan karyawan
 
 		//simpanan wajib aktif
@@ -206,25 +170,47 @@ class Cart extends MY_Base {
 		$setoran4 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate4,2);
 		$setoran5 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate5,2);
 		$saldoSimpanan0 = $setoran0[0]->ssi_jmlsetor;
-		$saldoSimpanan1= $setoran1[0]->ssi_jmlsetor;
+		$saldoSimpanan1 = $setoran1[0]->ssi_jmlsetor;
 		$saldoSimpanan2 = $setoran2[0]->ssi_jmlsetor;
 		$saldoSimpanan3 = $setoran3[0]->ssi_jmlsetor;
 		$saldoSimpanan4 = $setoran4[0]->ssi_jmlsetor;
 		$saldoSimpanan5 = $setoran5[0]->ssi_jmlsetor;
 		
 		//Data simpanan ditarik
-		$setoran0 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate0,2);
-		$setoran1 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate1,2);
-		$setoran2 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate2,2);
-		$setoran3 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate3,2);
-		$setoran4 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate4,2);
-		$setoran5 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate5,2);
-		$saldoSimpanan0 = $setoran0[0]->ssi_jmlsetor;
-		$saldoSimpanan1= $setoran1[0]->ssi_jmlsetor;
-		$saldoSimpanan2 = $setoran2[0]->ssi_jmlsetor;
-		$saldoSimpanan3 = $setoran3[0]->ssi_jmlsetor;
-		$saldoSimpanan4 = $setoran4[0]->ssi_jmlsetor;
-		$saldoSimpanan5 = $setoran5[0]->ssi_jmlsetor;
+		$penarikan0 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate0,NULL,1);
+		$penarikan1 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate1,NULL,1);
+		$penarikan2 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate2,NULL,1);
+		$penarikan3 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate3,NULL,1);
+		$penarikan4 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate4,NULL,1);
+		$penarikan5 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate5,NULL,1);
+			//Pokok
+		$pokokPenarikan0 = $penarikan0[0]->pes_saldopokok;
+		$pokokPenarikan1 = $penarikan1[0]->pes_saldopokok;
+		$pokokPenarikan2 = $penarikan2[0]->pes_saldopokok;
+		$pokokPenarikan3 = $penarikan3[0]->pes_saldopokok;
+		$pokokPenarikan4 = $penarikan4[0]->pes_saldopokok;
+		$pokokPenarikan5 = $penarikan5[0]->pes_saldopokok;
+			//Bunga
+		$bungaPenarikan0 = $penarikan0[0]->pes_bunga;
+		$bungaPenarikan1 = $penarikan1[0]->pes_bunga;
+		$bungaPenarikan2 = $penarikan2[0]->pes_bunga;
+		$bungaPenarikan3 = $penarikan3[0]->pes_bunga;
+		$bungaPenarikan4 = $penarikan4[0]->pes_bunga;
+		$bungaPenarikan5 = $penarikan5[0]->pes_bunga;
+			//Phbuku
+		$phPenarikan0 = $penarikan0[0]->pes_phbuku;
+		$phPenarikan1 = $penarikan1[0]->pes_phbuku;
+		$phPenarikan2 = $penarikan2[0]->pes_phbuku;
+		$phPenarikan3 = $penarikan3[0]->pes_phbuku;
+		$phPenarikan4 = $penarikan4[0]->pes_phbuku;
+		$phPenarikan5 = $penarikan5[0]->pes_phbuku;
+			//Administrasi
+		$adminPenarikan0 = round($penarikan0[0]->pes_administrasi);
+		$adminPenarikan1 = round($penarikan1[0]->pes_administrasi);
+		$adminPenarikan2 = round($penarikan2[0]->pes_administrasi);
+		$adminPenarikan3 = round($penarikan3[0]->pes_administrasi);
+		$adminPenarikan4 = round($penarikan4[0]->pes_administrasi);
+		$adminPenarikan5 = round($penarikan5[0]->pes_administrasi);
 
 		//setoran simkesan
 		// $simkesanSaldo = $this->Setoransimkesan_model->get_setoran_simkesan(0,$datetoday);
@@ -246,12 +232,41 @@ class Cart extends MY_Base {
 			//investasi
 			
 			//simpanan
-			'saldosimpananneraca0' => $saldoSimpanan0,
-			'saldosimpananneraca1' => $saldoSimpanan1,
-			'saldosimpananneraca2' => $saldoSimpanan2,
-			'saldosimpananneraca3' => $saldoSimpanan3,
-			'saldosimpananneraca4' => $saldoSimpanan4,
-			'saldosimpananneraca5' => $saldoSimpanan5,
+				//setoran masuk
+				'saldosimpananneraca0' => $saldoSimpanan0,
+				'saldosimpananneraca1' => $saldoSimpanan1,
+				'saldosimpananneraca2' => $saldoSimpanan2,
+				'saldosimpananneraca3' => $saldoSimpanan3,
+				'saldosimpananneraca4' => $saldoSimpanan4,
+				'saldosimpananneraca5' => $saldoSimpanan5,
+				//phbuku
+				"phPenarikan0" => $phPenarikan0,
+				"phPenarikan1" => $phPenarikan1,
+				"phPenarikan2" => $phPenarikan2,
+				"phPenarikan3" => $phPenarikan3,
+				"phPenarikan4" => $phPenarikan4,
+				"phPenarikan5" => $phPenarikan5,
+				//admin
+				"adminPenarikan0" => $adminPenarikan0,
+				"adminPenarikan1" => $adminPenarikan1,
+				"adminPenarikan2" => $adminPenarikan2,
+				"adminPenarikan3" => $adminPenarikan3,
+				"adminPenarikan4" => $adminPenarikan4,
+				"adminPenarikan5" => $adminPenarikan5,
+				//pokok keluar
+				"pokokPenarikan0" => $pokokPenarikan0,
+				"pokokPenarikan1" => $pokokPenarikan1,
+				"pokokPenarikan2" => $pokokPenarikan2,
+				"pokokPenarikan3" => $pokokPenarikan3,
+				"pokokPenarikan4" => $pokokPenarikan4,
+				"pokokPenarikan5" => $pokokPenarikan5,
+				//bunga keluar
+				"bungaPenarikan0" => $bungaPenarikan0,
+				"bungaPenarikan1" => $bungaPenarikan1,
+				"bungaPenarikan2" => $bungaPenarikan2,
+				"bungaPenarikan3" => $bungaPenarikan3,
+				"bungaPenarikan4" => $bungaPenarikan4,
+				"bungaPenarikan5" => $bungaPenarikan5,
 			
 			//pinjaman
 				//angsuran pokok

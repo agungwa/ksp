@@ -48,7 +48,7 @@
             </div>
             </form>
 
-        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table class="data table table-sm table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th>No</th>
@@ -56,15 +56,12 @@
 				<th>Kode Anggota</th>
 				<th>Nama Anggota</th>
 				<th>Alamat Anggota</th>
-				<th>Karyawan</th>
 				<th>Jenis Setoran</th>
 				<th>Wilayah</th>
-				<th>Tanggal Pendaftaran</th>
-				<th>Status Diagunkan</th>
-				<th>Jatuh Tempo</th>
-				<th>Total Setor</th>
-				<th>Status</th>
-				<th>Edit</th>
+                <th><i class ="fa fa-calendar" aria-hidden="true"></i>
+            </th>
+				<th>Saldo</th>
+				<th width="100px">Status | Diagunkan</th>
 				<th>Action</th>
             </tr>
             </thead>
@@ -91,54 +88,47 @@
 					<td><?php echo $item['ang_no'] ?></td>
 					<td><?php echo $item['nm_ang_no'] ?></td>
 					<td><?php echo $item['alamat_ang_no'] ?></td>
-					<td><?php echo $item['kar_kode'] ?></td>
 					<td><?php echo $item['jse_id'] ?></td>
 					<td><?php echo $item['wil_kode'] ?></td>
-					<td><?php echo $item['sim_tglpendaftaran'] ?></td>
-					<td><?php echo $item['sim_jam'] ?></td>
-					<td><?php echo $tanggalDuedate?></td>
+					<td width="100px"><initialism title="Tanggal Pendaftaran | Jatuh Tempo"><?php echo dateFormataja($item['sim_tglpendaftaran']),' | ',dateFormataja($tanggalDuedate) ?></initialism></td>
 					<td><?php echo rupiahsimpanan($totalsetoran[0]->ssi_jmlsetor)?></td>
-					<td><?php echo $item['sim_status']?></td>
+					<td><?php echo $item['sim_status'],' | ',$item['sim_jam'] ?></td>
                     
 					<td>
-						<?php 
-						echo anchor(site_url('simpanan/read/'.$item['sim_kode']),'Detail','class="text-navy"'); 
-						echo ' | '; 
-						echo anchor(site_url('simpanan/update/'.$item['sim_kode']),'Update','class="text-navy"'); 
-						// echo ' | '; 
-						// echo anchor(site_url('simpanan/delete/'.$item['sim_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-						?>
-                        <?php if(is_allow('M_EDIT')): ?>
-                            <?php 
-                        echo ' | '; 
-						echo anchor(site_url('simpanan/delete/'.$item['sim_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-						?>
-                                <?php endif; ?>
-
-					</td>
-					<td>
-						<?php
-                        if ($item['sim_statusid'] < 1){
-                            echo anchor(site_url('simpanan/setor?q='.$item['sim_kode']),'Setor','class="text-navy"'); 
-                            echo ' | '; 
-                            echo anchor(site_url('simpanan/tariksimpanan?q='.$item['sim_kode']),'Tarik','class="text-navy"');
-                        } 
-                        ?>
-                      <form action="<?php echo site_url('simpanan/jaminan/'.$item['sim_kode']); ?>" method="post">
+                    <div class="dropdown">
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+                            Pilih 
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php echo site_url('simpanan/read/'.$item['sim_kode']); ?>">Detail</a></li>
+                            <li><a class="dropdown-item" href="<?php echo site_url('simpanan/update/'.$item['sim_kode']); ?>">Update</a></li>
+                            <?php if(is_allow('M_EDIT')): ?>
+                            <li><a class="dropdown-item" href="<?php echo site_url('simpanan/delete/'.$item['sim_kode']); ?>">Delete</a></li>
+                            <?php endif; ?>
+                            <?php if ($item['sim_statusid'] < 1){ ?>
+                            <li class="divider"></li>
+                            <li><a class="dropdown-item" href="<?php echo site_url('simpanan/setor?q='.$item['sim_kode']); ?>">Setor</a></li>
+                            <li><a class="dropdown-item" href="<?php echo site_url('simpanan/tariksimpanan?q='.$item['sim_kode']); ?>">Tarik</a></li>
+                            <?php }   ?>
+                        </ul>
+                    </div>
+					<form action="<?php echo site_url('simpanan/jaminan/'.$item['sim_kode']); ?>" method="post">
                         <input type="hidden" class="form-control" name="sim_kode" id="sim_kode" placeholder="sim_kode" value="<?php echo $item['sim_kode']; ?>" />
                         <?php  
                         if ($item['sim_jamid'] == 0 && $item['sim_statusid'] < 1){
                         echo '
                         <input type="hidden" class="form-control" name="sim_jam" id="sim_jam" placeholder="sim_jam" value="1" />
-                        <button type="submit" class="btn btn-danger">Agunkan</button>';
+                        <button type="submit" class="btn btn-danger btn-sm">Agunkan</button>';
                             } 
                         else if ($item['sim_jamid'] == 1 && $item['sim_statusid'] < 1) {
                         echo '
                         <input type="hidden" class="form-control" name="sim_jam" id="sim_jam" placeholder="sim_jam" value="0"/>
-                        <button type="submit" class="btn btn-info">Lunas</button>'; 
+                        <button type="submit" class="btn btn-info btn-sm">Lunas</button>'; 
                             } ?>
                     </form>
+
 					</td>
+					
 				</tr>
                 <?php
             }

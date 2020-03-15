@@ -24,8 +24,8 @@
 	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $sim_tglpendaftaran; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $sim_status; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo base_url()?>printsimpanan/read/<?=$sim_kode?>" class="btn btn-default">Print</a>
-                        <a href="<?php echo site_url('simpanan/?p=3') ?>" class="btn btn-default">Batal</a></td></tr>
-	</table>
+                        <a href="<?php echo site_url('simpanan/?p=3') ?>" class="btn btn-primary hBack">Kembali</a></td></tr>
+                    </table>
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>

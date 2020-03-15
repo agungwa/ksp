@@ -23,9 +23,12 @@
     <link href="<?=base_url()?>assets/vendor/datepicker/css/datepicker3.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/inspinia/css/animate.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/inspinia/css/style.css" rel="stylesheet">
-    <link href="<?=base_url()?>assets/vendor/radiocheck/radiocheck.css" rel="stylesheet">
+    <!-- Form -->
+    <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+   
     <!--datatables-->
-    <link href="<?=base_url()?>assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+    <!-- <link href="<?=base_url()?>assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/> -->
     <link href="<?=base_url()?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/> 
 
     <script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>
@@ -95,15 +98,11 @@ lookup();
                                 class="label label-primary pull-right"></span></a></li>
 
                                 <?php if(is_allow('M_LAPORAN')): ?>
-                    <li><a href="<?=base_url()?>cart"><i class="fa fa-th-large"></i> <span
+                    <li><a href="<?=base_url()?>cart"><i class="fa fa-bar-chart-o"></i> <span
                                 class="nav-label">Chart</span><span
                                 class="label label-primary pull-right"></span></a></li>
                   
                                 <?php endif; ?>
-
-
-                  
-
 
                     <!-- MENU SIMPANAN BERJANGKA -->
 
@@ -131,8 +130,25 @@ lookup();
                                     </li>
                                 </ul>
                             </li>
+                            <?php endif; ?>
+
+                            <?php if(is_allow('M_UTILITAS')): ?>
                             <li>
-                                <?php endif; ?>
+                                <a href="#" id="damian">Rekap<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="<?=base_url()?>Wilayah">Kas Bon</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?=base_url()?>Lainlain">Lain-lain</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?=base_url()?>Tunai/simpanan">Rekap Simpanan</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <?php endif; ?>
+
                             <li>
                                 <a href="<?=base_url()?>Anggota">Setup Anggota</a>
                             </li>
@@ -224,8 +240,7 @@ lookup();
 
                     <li class="">
                         <?php if(is_allow('M_INVESTASI')): ?>
-                        <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Investasi
-                                Berjangka</span> <span class="fa arrow"></span></a>
+                        <a href="index.html"><i class="fa fa-user"></i> <span class="nav-label">Investasi</span> <span class="fa arrow"></span></a>
                         <?php endif; ?>
                         <ul class="nav nav-second-level">
                             <?php if(is_allow('M_UTILITAS')): ?>
@@ -248,7 +263,7 @@ lookup();
                                 <a href="<?=base_url()?>Anggota">Setup Anggota</a>
                             </li>
                             <li>
-                                <a href="<?=base_url()?>Investasiberjangka">Investasi Berjangka</a>
+                                <a href="<?=base_url()?>Investasiberjangka">Investasi</a>
                             </li>
                             <li>
                                 <a href="<?=base_url()?>Penarikaninvestasiberjangka">Penarikan Jasa</a>
@@ -477,8 +492,32 @@ lookup();
                             <?php endif; ?>
                         </ul>
                     </li>
+                    
+                    <!-- MENU KASIR -->
+                    <li class="">
+                        
+                        <a href="index.html"><i class="fa fa-money"></i> <span class="nav-label">KASIR</span>
+                            <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                        <?php if(is_allow('M_MANAGER')): ?>
+                            <li><a href="<?=base_url()?>kasbon">Kas Bon</a></li>
+                            <li>
+                                <a href="#" id="damian">Tunai<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="<?=base_url()?>penggajianmarketing">Tunai Masuk</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?=base_url()?>penggajianmarketing">Tunai Keluar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="<?=base_url()?>tunai">KAS</a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </li>
 
-                    <!-- MENU SISTEM UTIL -->
+                    <!-- MENU SISTEM UTILITAS -->
                     <li class="">
                         <?php if(is_allow('M_SISTEM')): ?>
                         <a href="index.html"><i class="fa fa-wrench"></i> <span class="nav-label">Sistem</span> <span
@@ -503,11 +542,7 @@ lookup();
                     <div class="navbar-header">
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
                                 class="fa fa-bars"></i> </a>
-                        <!-- <form role="search" class="navbar-form-custom" action="search_results.html">
-                <div class="form-group">
-                    <input type="text" placeholder="Cari risalah ..." class="form-control" name="top-search" id="top-search">
-                </div>
-            </form> -->
+                  
                     </div>
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
@@ -611,6 +646,14 @@ lookup();
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('.data').DataTable();
+            var table = $('.data').DataTable();
+            $('#next').on( 'click', function () {
+                table.page( 'next' ).draw( 'page' );
+            } );
+            
+            $('#previous').on( 'click', function () {
+                table.page( 'previous' ).draw( 'page' );
+            } );
 		});
 	</script>
 
@@ -622,27 +665,12 @@ lookup();
     today = yyyy + '-' + mm + '-' + dd;
     $("#todays-date,#todays-date1,#todays-date2").attr("value", today)
 
-    /*document.getElementById("number").onblur =function (){this.value = parseFloat(this.value.replace(/,/g, ""))
-                    .toFixed(2)
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    
-    document.getElementById("display").value = this.value.replace(/,/g, "") 
-    
-    function addSeparatorsNF(nStr, inD, outD, sep){
-     nStr += '';
-     var dpos = nStr.indexOf(inD);
-     var nStrEnd = '';
-     if (dpos != -1) {
-      nStrEnd = outD + nStr.substring(dpos + 1, nStr.length);
-      nStr = nStr.substring(0, dpos);
-     }
-     var rgx = /(\d+)(\d{3})/;
-     while (rgx.test(nStr)) {
-      nStr = nStr.replace(rgx, '$1' + sep + '$2');
-     }
-     return nStr + nStrEnd;
-    }*/
+    //back function
+    $(".hBack").on("click", function(e){
+    e.preventDefault();
+    window.history.back();
+});
+
 
     function rubah(angka){
    var reverse = angka.toString().split('').reverse().join(''),
@@ -655,12 +683,6 @@ lookup();
     document.querySelector("#event_id").innerHTML = event_id;
 }
 
-// $(document).ready(function () {
-// $('#dtOrderExample').DataTable({
-// "order": [[ 3, "desc" ]]
-// });
-// $('.dataTables_length').addClass('bs-select');
-// });
     </script>
 </body>
 

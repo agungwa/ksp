@@ -37,7 +37,7 @@
             </div>
             </form>
         </div>
-        <table class="data" style="margin-bottom: 10px">
+        <table class="data table table-sm table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead>
             <tr>
                 <th>No</th>

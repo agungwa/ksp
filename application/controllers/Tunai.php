@@ -57,7 +57,7 @@ class Tunai extends MY_Base
 			
 			
 			//hitung penarikan
-			$simpananNon = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan($f,$t,$w,1);
+			$simpananNon = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan($f,$t,NULL,$w,1);
 			$saldoSimpananDitarik += $simpananNon[0]->pes_saldopokok;
 			$phBuku += $simpananNon[0]->pes_phbuku;
 			$administrasi += $simpananNon[0]->pes_administrasi;

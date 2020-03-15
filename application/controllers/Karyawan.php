@@ -46,12 +46,17 @@ class Karyawan extends MY_Base
             $config['base_url'] = base_url() . 'anggota/index.html';
             $config['first_url'] = base_url() . 'anggota/index.html';
         }
+        $config['per_page'] = 20;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Karyawan_model->total_rows($q);
 
-        $karyawan = $this->Karyawan_model->get_limit_data( $start, $q);
+        $karyawan = $this->Karyawan_model->get_limit_data_karyawan($config['per_page'], $start, $q);
 
         $data = array(
             'karyawan_data' => $karyawan,
+            'pagination' => $this->pagination->create_links(),
             'idhtml' => $idhtml,
+            'total_rows' => $config['total_rows'],
             'q' => $q,
             'start' => $start,
             'content' => 'backend/karyawan/karyawan_lookup',
