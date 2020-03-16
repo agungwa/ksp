@@ -14,7 +14,7 @@
         <div class="ibox-content">
         
         <table class="table">
-	    <tr><td>Jumlah</td><td><?php echo $ksb_jumlah; ?></td></tr>
+	    <tr><td>Jumlah</td><td><?php echo $ksb_masuk; ?></td></tr>
 	    <tr><td>Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
 	    <tr><td>Karyawan</td><td><?php echo $kar_kode; ?></td></tr>
 	    <tr><td>Keterangan</td><td><?php echo $ksb_keterangan; ?></td></tr>

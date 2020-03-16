@@ -14,8 +14,8 @@
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
 	    <div class="form-group">
-            <label for="float">Jumlah</label>
-            <input type="text" class="form-control" name="ksb_jumlah" id="ksb_jumlah" placeholder="Jumlah" value="<?php echo $ksb_jumlah; ?>" required />
+            <label for="float">Jumlah Masuk</label>
+            <input type="text" class="form-control" name="ksb_masuk" id="ksb_masuk" placeholder="Jumlah" value="<?php echo $ksb_masuk; ?>" required />
         </div>
         <div>
             <label for="int">Wilayah</label>

@@ -98,19 +98,23 @@
                     <td><?php echo neraca($totalsetoran[0]->ssk_jmlsetor),' | ', neraca($titipan)?></td>
         			<td><?php echo $this->statusSimkesan[$simkesan->sik_status],' | ',$this->statusJaminan[$simkesan->sik_jam] ?></td>
                     <td style="text-align:center" width="200px">
-                        <?php 
-                        echo anchor(site_url('simkesan/read/'.$simkesan->sik_kode),'Read','class="text-navy"'); 
-                        echo ' | '; 
-                        echo anchor(site_url('simkesan/update/'.$simkesan->sik_kode),'Update','class="text-navy"'); 
-                     
-                        ?>
-                        <?php if(is_allow('M_EDIT')): ?>
-                            <?php
-                        echo ' | '; 
-                        echo anchor(site_url('simkesan/delete/'.$simkesan->sik_kode),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-                        ?>
+                    <div class="dropdown">
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+                            Pilih 
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php echo site_url('simkesan/read/'.$simkesan->sik_kode); ?>">Detail</a></li>
+                            <li><a class="dropdown-item" href="<?php echo site_url('simkesan/update/'.$simkesan->sik_kode); ?>">Update</a></li>
+                            <?php if(is_allow('M_EDIT')): ?>
+                            <li><a class="dropdown-item" href="<?php echo site_url('simkesan/delete/'.$simkesan->sik_kode); ?>">Delete</a></li>
                             <?php endif; ?>
-                      <form action="<?php echo site_url('simkesan/jaminan/'.$simkesan->sik_kode); ?>" method="post">
+                            <?php if ($simkesan->sik_status == 3){ ?>
+                            <li class="divider"></li>
+                            <li><a class="dropdown-item" href="<?php echo site_url('simkesan/aktifkan/'.$simkesan->sik_kode); ?>">Aktifkan</a></li>
+                            <?php }   ?>
+                        </ul>
+                    </div>
+					<form action="<?php echo site_url('simkesan/jaminan/'.$simkesan->sik_kode); ?>" method="post">
                         <input type="hidden" class="form-control" name="sik_kode" id="sik_kode" placeholder="sik_kode" value="<?php echo $simkesan->sik_kode; ?>" />
                         <?php  
                         if ($simkesan->sik_jam == 0 && $simkesan->sik_status < 1){
@@ -124,6 +128,8 @@
                         <button type="submit" class="btn btn-info">Lunas</button>'; 
                             } ?>
                     </form>
+
+                      
                     </td>
         		</tr>
                 

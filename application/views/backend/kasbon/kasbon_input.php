@@ -10,7 +10,7 @@
 	    <div class="col-lg-4">
             <div class="form-group">
                 <label for="float">Jumlah</label>
-                <input type="text" class="form-control numeric" name="ksb_jumlah" id="ksb_jumlah" placeholder="Jumlah" required />
+                <input type="text" class="form-control numeric" name="ksb_masuk" id="ksb_masuk" placeholder="Jumlah" required />
             </div>
 
             <div>

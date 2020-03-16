@@ -80,11 +80,11 @@ h5{text-align: center}
             </tr>
             <tr>
                 <td class="text-left">Bunga Angsuran</td>
-				<td class="text-center"><?= rupiah($bungaangsuran + $bungadendapelunasan);?></td>
+				<td class="text-center"><?= rupiah($bungaangsuran + $bungapelunasan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Denda Angsuran</td>
-				<td class="text-center"><?= neraca($dendaangsuran);?></td>
+				<td class="text-center"><?= neraca($dendaangsuran + $dendapelunasan);?></td>
             </tr>
             <tr>
                 <td class="text-left">Administrasi</td>

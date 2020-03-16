@@ -68,11 +68,13 @@ class Bungasetoransimpanan_model extends CI_Model
     }
 
     function get_data_bungasetoran($sim_kode){
+		$this->db->where('bss_flag < 2');
         $this->db->where('sim_kode =',$sim_kode);
         return $this->db->get($this->table)->result();
     }
 
     function get_data_bungasetoranTgl($sim_kode, $tgl){
+		$this->db->where('bss_flag < 2');
         $this->db->where('sim_kode =',$sim_kode);
         $this->db->where("bss_tglbunga = '$tgl'");
         $this->db->limit(1);

@@ -62,7 +62,10 @@
                 <th class="text-center">No</th>
 		<th class="text-center">Saldo simpanan</th>
 		<th class="text-center">Bunga/bulan</th>
-		<th class="text-center">Tanggal Bunga</th>
+		<th class="text-center">Tanggal Bunga</th> 
+        <?php if(is_allow('M_EDIT')): ?>
+		<th class="text-center">Action</th>
+        <?php endif; ?>
             </tr>
             </thead>
             <tbody><?php
@@ -79,12 +82,25 @@
 			<td><?php echo $databunga->sim_kode ?></td>
 			<td><?php echo $databunga->bss_bungabulanini?></td>
 			<td><?php echo $databunga->bss_tglbunga ?></td>
+            <?php if(is_allow('M_EDIT')): ?>
+			<td>
+            <div class="dropdown">
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+                            Pilih 
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php echo site_url('bungasetoransimpanan/update/'.$databunga->bss_id); ?>">Update</a></li>
+                            <li><a class="dropdown-item" href="<?php echo site_url('bungasetoransimpanan/delete/'.$databunga->bss_id); ?>">Delete</a></li>
+                            
+                        </ul>
+                    </div>
             </td>
-            </tr>    <?php
+            <?php endif; ?>
+            </tr>    
+            <?php
                 $no++;
-            }
-            
-            ?></tbody>
+            }?>
+            </tbody>
             <tr class="danger"><td></td><td>Total Saldo (setoran+bunga)</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><?php echo $total_setoran+$totalbunga ?></td></tr>
             
         </table>

@@ -47,12 +47,15 @@ class Setoransimpanan_model extends CI_Model
     }
     
 	// get by sim kode hitung
-	function get_sirkulasi($tgl,$month,$status){
+	function get_sirkulasi($today,$tgl,$month,$status){
         $this->db->join('simpanan', 'simpanan.sim_kode = setoransimpanan.sim_kode', 'right');
         $where = "sim_status < '$status' AND sim_flag < 2";
 		$this->db->where($where);
         if ($tgl != NULL) {
             $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') <= '$tgl'");
+        }
+        if ($today != NULL) {
+            $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') = '$today'");
         }
         if ($month != NULL) {
             $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m') = '$month'");
@@ -63,7 +66,7 @@ class Setoransimpanan_model extends CI_Model
     }
 
 	// get by sim kode hitung
-	function get_sirkulasi_simpanan($f,$t,$w,$s){
+	function get_sirkulasi_simpanan($today,$f,$t,$w,$s){
         $this->db->join('simpanan', 'simpanan.sim_kode = setoransimpanan.sim_kode', 'right');
         if ($w == 'all' OR $w == ''){
             $where = "sim_status < $s AND sim_flag < 2";
@@ -76,6 +79,9 @@ class Setoransimpanan_model extends CI_Model
         }
         if ($t != NULL) {
             $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') <= '$t'");
+        }
+        if ($today != NULL) {
+            $this->db->where("DATE_FORMAT(ssi_tglsetor, '%Y-%m-%d') = '$today'");
         }
 		$this->db->where('ssi_flag < 2');
         $this->db->select_sum('ssi_jmlsetor');

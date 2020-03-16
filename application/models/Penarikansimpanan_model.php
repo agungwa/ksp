@@ -31,11 +31,9 @@ class Penarikansimpanan_model extends CI_Model
     }
 
 	// get by sim penarikan kini
-	function get_sirkulasi_penarikansimpanan($f,$t,$month,$w,$s){
+	function get_sirkulasi_penarikansimpanan($f,$t,$today,$month,$w,$s){
         $this->db->join('simpanan', 'simpanan.sim_kode = penarikansimpanan.sim_kode', 'right');
-        if ($w == 'all' OR $w == ''){
-            $where = "sim_status = $s AND sim_flag < 2";
-        } else if ($w == NULL){
+        if ($w == 'all' OR $w == '' OR $w == NULL){
             $where = "sim_status = $s AND sim_flag < 2";
         } else {
             $where = "wil_kode = $w AND sim_status = $s AND sim_flag < 2";
@@ -46,6 +44,9 @@ class Penarikansimpanan_model extends CI_Model
         }
         if ($month != NULL) {
             $this->db->where("DATE_FORMAT(pes_tglpenarikan, '%Y-%m') = '$month'");
+        }
+        if ($today != NULL) {
+                $this->db->where("DATE_FORMAT(pes_tglpenarikan, '%Y-%m-%d') = '$today'");
         }
         if ($t != NULL) {
             $this->db->where("DATE_FORMAT(pes_tglpenarikan, '%Y-%m-%d') <= '$t'");

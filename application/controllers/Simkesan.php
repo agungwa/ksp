@@ -135,6 +135,19 @@ class Simkesan extends MY_Base
             }
         }
 
+        public function aktifkan($id) 
+        {
+            $row = $this->Simkesan_model->get_by_id($id);
+            if ($row) {
+                $data = array(
+                'sik_status' => 0,
+            );
+            $this->Simkesan_model->update($id, $data);
+            $this->session->set_flashdata('message', 'Update Agunan');
+            redirect(site_url('simkesan/?p=5'));
+            }
+        }
+
      //Setoran simkesan
      public function setoransimkesan($id) 
      {

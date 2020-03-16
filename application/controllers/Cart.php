@@ -163,12 +163,12 @@ class Cart extends MY_Base {
 		// $saldoSimpananpokok = $dataSimpananpokok[0]->sip_setoran;
 		
 		//Data simpanan aktif
-		$setoran0 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate0,2);
-		$setoran1 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate1,2);
-		$setoran2 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate2,2);
-		$setoran3 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate3,2);
-		$setoran4 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate4,2);
-		$setoran5 = $this->Setoransimpanan_model->get_sirkulasi(NULL,$tanggalDuedate5,2);
+		$setoran0 = $this->Setoransimpanan_model->get_sirkulasi(NULL,NULL,$tanggalDuedate0,2);
+		$setoran1 = $this->Setoransimpanan_model->get_sirkulasi(NULL,NULL,$tanggalDuedate1,2);
+		$setoran2 = $this->Setoransimpanan_model->get_sirkulasi(NULL,NULL,$tanggalDuedate2,2);
+		$setoran3 = $this->Setoransimpanan_model->get_sirkulasi(NULL,NULL,$tanggalDuedate3,2);
+		$setoran4 = $this->Setoransimpanan_model->get_sirkulasi(NULL,NULL,$tanggalDuedate4,2);
+		$setoran5 = $this->Setoransimpanan_model->get_sirkulasi(NULL,NULL,$tanggalDuedate5,2);
 		$saldoSimpanan0 = $setoran0[0]->ssi_jmlsetor;
 		$saldoSimpanan1 = $setoran1[0]->ssi_jmlsetor;
 		$saldoSimpanan2 = $setoran2[0]->ssi_jmlsetor;
@@ -177,12 +177,12 @@ class Cart extends MY_Base {
 		$saldoSimpanan5 = $setoran5[0]->ssi_jmlsetor;
 		
 		//Data simpanan ditarik
-		$penarikan0 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate0,NULL,1);
-		$penarikan1 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate1,NULL,1);
-		$penarikan2 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate2,NULL,1);
-		$penarikan3 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate3,NULL,1);
-		$penarikan4 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate4,NULL,1);
-		$penarikan5 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$tanggalDuedate5,NULL,1);
+		$penarikan0 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,NULL,$tanggalDuedate0,NULL,1);
+		$penarikan1 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,NULL,$tanggalDuedate1,NULL,1);
+		$penarikan2 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,NULL,$tanggalDuedate2,NULL,1);
+		$penarikan3 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,NULL,$tanggalDuedate3,NULL,1);
+		$penarikan4 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,NULL,$tanggalDuedate4,NULL,1);
+		$penarikan5 = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,NULL,$tanggalDuedate5,NULL,1);
 			//Pokok
 		$pokokPenarikan0 = $penarikan0[0]->pes_saldopokok;
 		$pokokPenarikan1 = $penarikan1[0]->pes_saldopokok;

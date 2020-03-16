@@ -8,7 +8,7 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h2><b>Data Rekening</b></h2>
+                    <h2><b>Rekap Simpanan</b></h2>
                 </div>
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
@@ -17,9 +17,6 @@
                 <div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
                 <div class="col-md-3">
                     <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
-                </div>
-                <div class="col-md-3">
-                    <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
                 </div>
                 <select class="form-control col-md-3"  name="w">
                     <option value="all">Semua Wilayah</option>
@@ -37,7 +34,7 @@
                     <div class="input-group">
                         <span class="input-group-btn">
                             <?php 
-                                if ($f <> '' || $t <> '')
+                                if ($f <> '')
                                 {
                                     ?>
                                     <a href="<?php echo base_url()?>datarekening" class="btn btn-default">Reset</a>

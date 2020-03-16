@@ -170,30 +170,22 @@ class Bungasetoransimpanan extends CI_Controller
     
     public function update_action() 
     {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('bss_id', TRUE));
-        } else {
-            $data = array(
+        $data = array(
 		'sim_kode' => $this->input->post('sim_kode',TRUE),
-		'bss_saldosimpanan' => $this->input->post('bss_saldosimpanan',TRUE),
 		'bss_bungabulanini' => $this->input->post('bss_bungabulanini',TRUE),
-		'bss_saldobulanini' => $this->input->post('bss_saldobulanini',TRUE),
-		'bss_jumlahsetoranbulanan' => $this->input->post('bss_jumlahsetoranbulanan',TRUE),
-		'bss_tglbunga' => $this->input->post('bss_tglbunga',TRUE),
 		'bss_flag' => 1,
 	    );
 
             $this->Bungasetoransimpanan_model->update($this->input->post('bss_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('bungasetoransimpanan'));
-        }
+            redirect(site_url('simpanan/read/'.$this->input->post('sim_kode',TRUE)));
+        
     }
     
     public function delete($id) 
     {
         $row = $this->Bungasetoransimpanan_model->get_by_id($id);
+        $sim_kode = $this->db->get_where('bungasetoransimpanan', array('bss_id' => $id))->row();
 
         if ($row) {
             $data = array(
@@ -201,20 +193,16 @@ class Bungasetoransimpanan extends CI_Controller
             );
             $this->Bungasetoransimpanan_model->update($id,$data);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('bungasetoransimpanan'));
+            redirect(site_url('simpanan/read/'.$sim_kode->sim_kode));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('bungasetoransimpanan'));
+            redirect(site_url('simpanan/read/'.$sim_kode->sim_kode));
         }
     }
 
     public function _rules() 
     {
 	$this->form_validation->set_rules('sim_kode', 'sim kode', 'trim|required');
-	$this->form_validation->set_rules('bss_saldosimpanan', 'bss saldosimpanan', 'trim|required');
-	$this->form_validation->set_rules('bss_bungabulanini', 'bss bungabulanini', 'trim|required');
-	$this->form_validation->set_rules('bss_saldobulanini', 'bss saldobulanini', 'trim|required');
-	$this->form_validation->set_rules('bss_tglbunga', 'bss tglbunga', 'trim|required');
 
 	$this->form_validation->set_rules('bss_id', 'bss_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

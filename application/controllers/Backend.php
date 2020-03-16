@@ -190,7 +190,7 @@ class Backend extends MY_Base {
 		$saldoSimpananpokok = $dataSimpananpokok[0]->sip_setoran;
 		
 		//hitung simpanan aktif
-		$setoran = $this->Setoransimpanan_model->get_sirkulasi($datetoday,NULL,1);
+		$setoran = $this->Setoransimpanan_model->get_sirkulasi(NULL,$datetoday,NULL,1);
 		$saldoSimpanan = $setoran[0]->ssi_jmlsetor;
 
 		//setoran simkesan

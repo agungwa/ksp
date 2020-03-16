@@ -64,7 +64,7 @@ class DataRekening extends MY_Base
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 		
 			//hitung saldo simpanan masuk
-			$setoran = $this->Setoransimpanan_model->get_sirkulasi_simpanan($f,$t,$w,2);
+			$setoran = $this->Setoransimpanan_model->get_sirkulasi_simpanan(NULL,$f,$t,$w,2);
 			$saldoSimpanan += $setoran[0]->ssi_jmlsetor;
 			
 			//hitung saldo simpanan kini
@@ -84,7 +84,7 @@ class DataRekening extends MY_Base
 			$saldoSimpananlalu += $setorankini[0]->ssi_jmlsetor;
 			
 			//hitung penarikan
-			$simpananNon = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan($f,$t,NULL,$w,1);
+			$simpananNon = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan($f,$t,NULL,NULL,$w,1);
 			$saldoSimpananDitarik += $simpananNon[0]->pes_saldopokok;
 			$phBuku += $simpananNon[0]->pes_phbuku;
 			$administrasi += $simpananNon[0]->pes_administrasi;

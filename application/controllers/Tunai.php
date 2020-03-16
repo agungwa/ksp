@@ -46,43 +46,26 @@ class Tunai extends MY_Base
 
     	if ($f<>'' && $t<>'') {	
         	$f = date("Y-m-d", strtotime($f));
-        	$t = date("Y-m-d", strtotime($t));
     	}
 
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 		
 			//hitung saldo simpanan aktif kini
-			$setoran = $this->Setoransimpanan_model->get_sirkulasi_simpanan($f,$t,$w,2);
+			$setoran = $this->Setoransimpanan_model->get_sirkulasi_simpanan($f,NULL,NULL,$w,2);
 			$saldoSimpanan += $setoran[0]->ssi_jmlsetor;
 			
-			
 			//hitung penarikan
-			$simpananNon = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan($f,$t,NULL,$w,1);
+			$simpananNon = $this->Penarikansimpanan_model->get_sirkulasi_penarikansimpanan(NULL,NULL,$f,NULL,$w,1);
 			$saldoSimpananDitarik += $simpananNon[0]->pes_saldopokok;
 			$phBuku += $simpananNon[0]->pes_phbuku;
 			$administrasi += $simpananNon[0]->pes_administrasi;
 			$bungaDitarik += $simpananNon[0]->pes_bunga;
-
-			//hitung bunga
-			$bungasim = $this->Bungasetoransimpanan_model->get_sirkulasi_bungasimpanan($f,$t,$w,0);
-			$bungaSimpanan = $bungasim[0]->bss_bungabulanini;
-
-			//simpanan wajib
-			$setoranwajib = $this->Setoransimpananwajib_model->get_sirkulasi_simpananwajib($f,$t);
-			$saldoSimpananwajib += $setoranwajib[0]->ssw_jmlsetor;
-
-			//simpanan pokok
-			$setoransip = $this->Simpananpokok_model->get_sirkulasi_simpananpokok($f,$t);
-			$saldoSimpananpokok += $setoransip[0]->sip_setoran;
 
 		$data = array(
 			'bungaditarik' => $bungaDitarik,
             'wilayah_data' => $wilayah,
 			'saldosimpanan' => $saldoSimpanan,
 			'saldosimpananditarik' => $saldoSimpananDitarik,
-			'bungasimpanan' => $bungaSimpanan,
-			'saldosimpananwajib' => $saldoSimpananwajib,
-			'saldosimpananpokok' => $saldoSimpananpokok,
 			'phbuku' => $phBuku,
 			'administrasi' => $administrasi,
 			'f' => $f,

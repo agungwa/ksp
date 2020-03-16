@@ -65,7 +65,8 @@ class Kasbon extends MY_Base
         if ($row) {
             $data = array(
 		'ksb_no' => $row->ksb_no,
-		'ksb_jumlah' => $row->ksb_jumlah,
+		'ksb_masuk' => $row->ksb_masuk,
+		'ksb_keluar' => $row->ksb_keluar,
 		'wil_kode' => $row->wil_kode,
 		'kar_kode' => $row->kar_kode,
 		'ksb_keterangan' => $row->ksb_keterangan,
@@ -88,7 +89,8 @@ class Kasbon extends MY_Base
             'button' => 'Create',
             'action' => site_url('kasbon/create_action'),
 	    'ksb_no' => set_value('ksb_no'),
-	    'ksb_jumlah' => set_value('ksb_jumlah'),
+	    'ksb_masuk' => set_value('ksb_masuk'),
+	    'ksb_keluar' => set_value('ksb_keluar'),
 	    'wil_kode' => set_value('wil_kode'),
 	    'kar_kode' => set_value('kar_kode'),
 	    'ksb_keterangan' => set_value('ksb_keterangan'),
@@ -109,7 +111,8 @@ class Kasbon extends MY_Base
             $this->create();
         } else {
             $data = array(
-		'ksb_jumlah' => $this->input->post('ksb_jumlah',TRUE),
+        'ksb_masuk' => $this->input->post('ksb_masuk',TRUE),
+        'ksb_keluar' => $this->input->post('ksb_keluar',TRUE),
 		'wil_kode' => $this->input->post('wil_kode',TRUE),
 		'kar_kode' => $this->input->post('kar_kode',TRUE),
 		'ksb_jenis' => $this->input->post('ksb_jenis',TRUE),
@@ -137,7 +140,8 @@ class Kasbon extends MY_Base
                 'button' => 'Update',
                 'action' => site_url('kasbon/update_action'),
 		'ksb_no' => set_value('ksb_no', $row->ksb_no),
-		'ksb_jumlah' => set_value('ksb_jumlah', $row->ksb_jumlah),
+		'ksb_masuk' => set_value('ksb_masuk', $row->ksb_masuk),
+		'ksb_keluar' => set_value('ksb_keluar', $row->ksb_keluar),
 		'wil_kode' => set_value('wil_kode', $row->wil_kode),
 		'nm_wil_kode' => set_value('nm_wil_kode', $wil_kode->wil_nama),
 		'kar_kode' => set_value('kar_kode', $row->kar_kode),
@@ -166,7 +170,8 @@ class Kasbon extends MY_Base
             $this->update($this->input->post('ksb_no', TRUE));
         } else {
             $data = array(
-		'ksb_jumlah' => $this->input->post('ksb_jumlah',TRUE),
+        'ksb_masuk' => $this->input->post('ksb_masuk',TRUE),
+        'ksb_keluar' => $this->input->post('ksb_keluar',TRUE),
 		'wil_kode' => $this->input->post('wil_kode',TRUE),
 		'kar_kode' => $this->input->post('kar_kode',TRUE),
 		'ksb_jenis' => $this->input->post('ksb_jenis',TRUE),
@@ -202,7 +207,7 @@ class Kasbon extends MY_Base
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('ksb_jumlah', 'ksb jumlah', 'trim|required');
+	$this->form_validation->set_rules('ksb_masuk', 'ksb ksb_masuk', 'trim|required');
 	$this->form_validation->set_rules('wil_kode', 'wil kode', 'trim|required');
 	$this->form_validation->set_rules('kar_kode', 'kar kode', 'trim|required');
 	$this->form_validation->set_rules('ksb_tanggal', 'ksb tanggal', 'trim|required');
