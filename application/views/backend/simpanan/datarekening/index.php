@@ -102,7 +102,7 @@
             </tr>
             <tr>
                 <td class="text-left">Rekening Lalu</td>
-				<td class="text-center"><?= $totalrekeninglalu + $totalrekeningkeluar;?></td>
+				<td class="text-center"><?= $totalrekeninglalu - $totalrekeningkeluarlalu;?></td>
             </tr>
             <tr>
                 <td class="text-left">Rekening Masuk</td>
@@ -114,7 +114,7 @@
             </tr>
             <tr>
                 <td class="text-left">Rekening Kini</td>
-				<td class="text-center"><?= $totalrekeninglalu+$totalrekening;?></td>
+				<td class="text-center"><?= $totalrekeninglalu - $totalrekeningkeluarlalu + $totalrekening - $totalrekeningkeluar;?></td>
             </tr>
             </tbody>
         </table>
