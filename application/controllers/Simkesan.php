@@ -54,7 +54,7 @@ class Simkesan extends MY_Base
     public function pendaftaran(){
 		$setoransimkesan = $this->Setoransimkesan_model->get_group_bysikkode($start = 0, $q = NULL);
 		
-		foreach($setoransimkesan as $k) {
+		// foreach($setoransimkesan as $k) {
 			
 		// 	$kode		= $k->sik_kode;
 		// 	$tanggal 	= new DateTime($k->tanggal); 

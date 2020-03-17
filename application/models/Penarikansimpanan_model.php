@@ -81,7 +81,7 @@ class Penarikansimpanan_model extends CI_Model
 
     
 	// get by rekening tarik
-	function get_total_rekening($f,$t,$w,$s){
+	function get_total_rekening($f,$t,$lalu,$w,$s){
         $this->db->join('simpanan', 'simpanan.sim_kode = penarikansimpanan.sim_kode', 'right');
         if ($w == 'all' OR $w == ''){
             $where = "sim_status = $s AND sim_flag < 2";
@@ -94,6 +94,9 @@ class Penarikansimpanan_model extends CI_Model
         }
         if ($t != NULL) {
             $this->db->where("DATE_FORMAT(pes_tglpenarikan, '%Y-%m-%d') <= '$t'");
+        }
+        if ($lalu != NULL) {
+            $this->db->where("DATE_FORMAT(pes_tglpenarikan, '%Y-%m-%d') < '$lalu'");
         }
         return $this->db->count_all_results($this->table);
     }

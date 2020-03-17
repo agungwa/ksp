@@ -98,21 +98,6 @@ class Simpanan_model extends CI_Model
         return $this->db->count_all_results($this->table);
     }
     
-	// get by sim kode hitung
-	function get_total_rekeningkeluarlalu($f,$w,$s){
-        if ($w == 'all' OR $w == ''){
-            $where = "sim_status = $s AND sim_flag < 2";
-         } 
-        else {
-            $where = "wil_kode = $w AND sim_status = $s AND sim_flag < 2";
-        }
-        $this->db->where($where);
-        if ($f != NULL) {
-            $this->db->where("DATE_FORMAT(sim_tglpendaftaran, '%Y-%m-%d') < '$f'");
-        } 
-		$this->db->where('sim_flag < 2');
-        return $this->db->count_all_results($this->table);
-    }
 
     // get data with limit and search
     function get_limit_data($start = 0, $q = NULL) {

@@ -108,11 +108,11 @@ class DataRekening extends MY_Base
 			//rekening simpanan lalu
 			$totalRekeninglalu = $this->Simpanan_model->get_total_rekeninglalu($f,$w,2);
 			//rekening simpanan lalu
-			$totalRekeningkeluarlalu = $this->Simpanan_model->get_total_rekeningkeluarlalu($f,$w,1);
+			$totalRekeningkeluarlalu = $this->Penarikansimpanan_model->get_total_rekening(NULL,NULL,$f,$w,1);
 			//rekening simpanan kini
 			$totalRekening = $this->Simpanan_model->get_total_rekening($f,$t,$w,0);
 			//rekening simpanan keluar
-			$totalRekeningkeluar = $this->Penarikansimpanan_model->get_total_rekening($f,$t,$w,1);
+			$totalRekeningkeluar = $this->Penarikansimpanan_model->get_total_rekening($f,$t,NULL,$w,1);
 
 		$data = array(
 			'totalrekeninglalu' => $totalRekeninglalu,
