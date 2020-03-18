@@ -1014,7 +1014,8 @@ class Simkesan extends MY_Base
                 if (
                     ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all' && $plan=='all')|| 
                     ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w && $plan == 'all') ||
-                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w && $plan == $item['psk_id'])
+                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && 'all' == $w && $plan == $sik_kode->psk_id) ||
+                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w && $plan == $sik_kode->psk_id)
                     ) {
                     $datasetoran[$n] = array(
                     'ssk_id' => $item->ssk_id,
@@ -1034,7 +1035,6 @@ class Simkesan extends MY_Base
                 }
             }
         }
-        var_dump($datasetoran);
         $data = array(
             'datasetoran' => $datasetoran,
             'plansimkesan_data' => $plansimkesan,
