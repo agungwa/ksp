@@ -986,12 +986,14 @@ class Simkesan extends MY_Base
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+        $plan = urldecode($this->input->get('plan', TRUE)); //plan
         $start = intval($this->input->get('start'));
         $satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
 		$tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
         $n=1;
         $simkesanAktif = $this->Simkesan_model->get_simkesan_aktif();
+        $plansimkesan = $this->Plansimkesan_model->get_all();
         
         $wilayah = $this->Wilayah_model->get_all();
         $datasetoran = array();
@@ -1001,6 +1003,7 @@ class Simkesan extends MY_Base
     		$setoransimkesan = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
             foreach ($setoransimkesan as $k=>$item) {
                 $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
+                $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $sik_kode->psk_id))->row();
                 $ang_no = $this->db->get_where('anggota', array('ang_no' => $sik_kode->ang_no))->row();
 
                 //$wil_kode = $sim_kode->wil_kode;
@@ -1008,12 +1011,18 @@ class Simkesan extends MY_Base
                 $f = date("Y-m-d", strtotime($f));
                 $t = date("Y-m-d", strtotime($t));
 
-                if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w)) {
+                if (
+                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all' && $plan=='all')|| 
+                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w && $plan == 'all') ||
+                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w && $plan == $item['psk_id'])
+                    ) {
                     $datasetoran[$n] = array(
                     'ssk_id' => $item->ssk_id,
                     'sik_kode' => $item->sik_kode,
+                    'psk_plan' => $psk_id->psk_plan,
                     'nama_anggota' => $ang_no->ang_nama,
                     'wil_kode' => $sik_kode->wil_kode,
+                    'psk_id' => $sik_kode->psk_id,
                     'ssk_tglsetoran' => $item->ssk_tglsetoran,
                     'ssk_jmlsetor' => $item->ssk_jmlsetor,
                     'ssk_tgl' => $item->ssk_tgl,
@@ -1021,18 +1030,21 @@ class Simkesan extends MY_Base
                     'ssk_info' => $item->ssk_info,
                     );
                     $n++;
+                    
                 }
             }
         }
-
+        var_dump($datasetoran);
         $data = array(
             'datasetoran' => $datasetoran,
+            'plansimkesan_data' => $plansimkesan,
             'setoransimkesan_data' => $setoransimkesan,
             'wilayah_data' => $wilayah,
             'q' => $q,
             'w' => $w,
             'f' => $f,
             't' => $t,
+            'plan' => $plan,
             'start' => $start,  
             'active' => 4,          
             'content' => 'backend/simkesan/simkesan',

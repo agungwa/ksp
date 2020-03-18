@@ -8,18 +8,26 @@
         <div class="row" style="margin-bottom: 10px, margin-top:10px">
             <form action="<?php echo base_url()?>simkesan/listsetoran" class="form-inline" method="get">
             <div class="col-md-8 text-right">
-                <div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
                 <div class="col-md-3">
                     <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
                 </div>
                 <div class="col-md-3">
                     <input class="form-control" type="date" name="t" value="<?= $t;?>" required="required">
                 </div>
-                <select class="form-control col-md-3"  name="w">
+                <select class="form-control col-md-2"  name="w">
                     <option value="all">Semua Wilayah</option>
                     <?php
                         foreach ($wilayah_data as $value) { ?>
                             <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
+                    <?php        
+                        }
+                    ?>
+                </select>
+                <select class="form-control col-md-2" name="plan">
+                    <option value="all">Semua Plan</option>
+                    <?php
+                        foreach ($plansimkesan_data as $value) { ?>
+                            <option value="<?= $value->psk_id?>"><?= $value->psk_plan?></option>
                     <?php        
                         }
                     ?>
@@ -53,6 +61,7 @@
 					<th>No</th>
 					<th>Rekening Simkesan</th>
 					<th>Nama Anggota</th>
+					<th>Plan Simkesan</th>
 					<th>Tanggal Setoran</th>
 					<th>Jumlah Setor</th>
 				</tr>
@@ -67,6 +76,7 @@
 					<td width="80px"><?php echo ++$start ?></td>
 					<td><?php echo $item['sik_kode'] ?></td>
 					<td><?php echo $item['nama_anggota'] ?></td>
+					<td><?php echo $item['psk_plan'] ?></td>
 					<td><?php echo $item['ssk_tglsetoran'] ?></td>
 					<td><?php echo neraca($item['ssk_jmlsetor']) ?></td>
 				</tr>
