@@ -588,6 +588,7 @@ class PrintDataSimkesan extends MY_Base
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+        $plan = urldecode($this->input->get('plan', TRUE)); //plan
         $start = intval($this->input->get('start'));
         $satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
@@ -610,7 +611,12 @@ class PrintDataSimkesan extends MY_Base
                 $f = date("Y-m-d", strtotime($f));
                 $t = date("Y-m-d", strtotime($t));
 
-                if (($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all') || ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w)) {
+                if (
+                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all' && $plan=='all')|| 
+                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w && $plan == 'all') ||
+                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && 'all' == $w && $plan == $sik_kode->psk_id) ||
+                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w && $plan == $sik_kode->psk_id)
+                    ) {
                     $datasetoran[$n] = array(
                     'ssk_id' => $item->ssk_id,
                     'sik_kode' => $item->sik_kode,
@@ -635,6 +641,7 @@ class PrintDataSimkesan extends MY_Base
             'w' => $w,
             'f' => $f,
             't' => $t,
+            'plan' => $plan,
             'start' => $start,  
             'active' => 4,          
             'content' => 'backend/simkesan/simkesan',
