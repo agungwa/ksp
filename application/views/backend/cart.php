@@ -217,7 +217,7 @@
                     },
                     hideHover: 'auto',
                     resize: true,
-                    lineColors: ['#54cdb4','#f5412a','#ff9587'],
+                    lineColors: ['#54cdb4','#0b997c','#ff9587'],
                 });
 
                  });
