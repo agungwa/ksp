@@ -33,11 +33,16 @@ class Pinjaman_model extends CI_Model
     }
 
     // get data by anggota no
-    function get_data_pihutang($status,$tgl)
+    function get_data_pihutang($status,$month,$tgl)
     {
         $where = "pin_statuspinjaman = $status AND pin_flag < 2";
-		$this->db->where($where);
+        $this->db->where($where);
+        if ($tgl != NULL) {
         $this->db->where("DATE_FORMAT(pin_tglpencairan, '%Y-%m-%d') <= '$tgl'");
+        }
+        if ($month != NULL) {
+            $this->db->where("DATE_FORMAT(pin_tglpencairan, '%Y-%m') = '$month'");
+        }
         $this->db->select_sum('pin_pinjaman');
         return $this->db->get($this->table)->result();
     }

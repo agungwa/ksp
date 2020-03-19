@@ -1,6 +1,28 @@
 
 <?php if(is_allow('M_LAPORAN')): ?>
 
+<div class="animated fadeIn">
+        <div class="row col-md-12">
+
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Chart Kas</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div id="morris-line-chart-kas"></div>
+                            </div>
+                        </div>
+
+                                              
+                        </div>
+                    </div>
+
     <div class="animated fadeIn">
             <div class="row col-md-6">
 
@@ -44,7 +66,7 @@
                         </div>
 
     <div class="animated fadeIn">
-            <div class="row col-md-12">
+            <div class="row col-md-6">
                         <div class="col-lg-12">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
@@ -63,7 +85,26 @@
                         </div>
 
     <div class="animated fadeIn">
-            <div class="row col-md-12">
+            <div class="row col-md-6">
+                        <div class="col-lg-12">
+                            <div class="ibox float-e-margins">
+                                <div class="ibox-title">
+                                    <h5>Chart Kas Pinjaman Keluar</h5>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+                                    <div id="morris-line-chart-pinjaman-keluar"></div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+    <div class="animated fadeIn">
+            <div class="row col-md-6">
                         <div class="col-lg-12">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
@@ -80,6 +121,25 @@
                             </div>
                             </div>
                         </div>
+
+<div class="animated fadeIn">
+        <div class="row col-md-6">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Chart Kas Investasi Jasa Keluar</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div id="morris-line-chart-jasa-keluar"></div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
 
                 <script>
                     function dateNow(splinter,sub){
@@ -101,19 +161,19 @@
                         return dateNow;
                         }
                 $(function() {
-                    //investasi
+                    //chart kas
                     Morris.Line({
-                    element: 'morris-line-chart-investasi-masuk',
+                    element: 'morris-line-chart-kas',
                     data: [
-                        { y: dateNow("-",4), e: <?= ($investasi1)/1000000 ?> },
-                        { y: dateNow("-",3), e: <?= ($investasi2)/1000000 ?> },
-                        { y: dateNow("-",2), e: <?= ($investasi3)/1000000 ?> },
-                        { y: dateNow("-",1), e: <?= ($investasi4)/1000000 ?> },
-                        { y: dateNow("-",0), e: <?= ($investasi5)/1000000 ?> } 
+                        { y: dateNow("-",4), e: <?= ($masuk4)/1000000 ?> , a: <?= ($keluar4)/1000000 ?> },
+                        { y: dateNow("-",3), e: <?= ($masuk3)/1000000 ?> , a: <?= ($keluar3)/1000000 ?> },
+                        { y: dateNow("-",2), e: <?= ($masuk2)/1000000 ?> , a: <?= ($keluar2)/1000000 ?> },
+                        { y: dateNow("-",1), e: <?= ($masuk1)/1000000 ?> , a: <?= ($keluar1)/1000000 ?> },
+                        { y: dateNow("-",0), e: <?= ($masuk0)/1000000 ?> , a: <?= ($keluar0)/1000000 ?> } 
                         ],
                     xkey: 'y',
-                    ykeys: [ 'e' ],
-                    labels: [ 'Investasi' ],
+                    ykeys: [ 'e' , 'a'],
+                    labels: [ 'Masuk' , 'Keluar' ],
                     xLabelFormat: function (x) {
                         var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Des" ];
                         var month = IndexToMonth[ x.getMonth() ];
@@ -128,18 +188,76 @@
                     },
                     hideHover: 'auto',
                     resize: true,
-                    lineColors: ['#1ab394'],
+                    lineColors: ['#1ab394','#ff9587'],
+                });
+                    //investasi
+                    Morris.Line({
+                    element: 'morris-line-chart-investasi-masuk',
+                    data: [
+                        { y: dateNow("-",4), e: <?= ($investasi4)/1000000 ?> , a: <?= ($investasiTutup4)/1000000 ?> },
+                        { y: dateNow("-",3), e: <?= ($investasi3)/1000000 ?> , a: <?= ($investasiTutup3)/1000000 ?> },
+                        { y: dateNow("-",2), e: <?= ($investasi2)/1000000 ?> , a: <?= ($investasiTutup2)/1000000 ?>},
+                        { y: dateNow("-",1), e: <?= ($investasi1)/1000000 ?> , a: <?= ($investasiTutup1)/1000000 ?>},
+                        { y: dateNow("-",0), e: <?= ($investasi0)/1000000 ?> , a: <?= ($investasiTutup0)/1000000 ?>} 
+                        ],
+                    xkey: 'y',
+                    ykeys: [ 'e' , 'a' ],
+                    labels: [ 'Investasi' ,'Investasi tutup' ],
+                    xLabelFormat: function (x) {
+                        var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Des" ];
+                        var month = IndexToMonth[ x.getMonth() ];
+                        var year = x.getFullYear();
+                        return year + ' ' + month;
+                    },
+                    dateFormat: function (x) {
+                        var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Des" ];
+                        var month = IndexToMonth[ new Date(x).getMonth() ];
+                        var year = new Date(x).getFullYear();
+                        return year + ' ' + month;
+                    },
+                    hideHover: 'auto',
+                    resize: true,
+                    lineColors: ['#1ab394','#ff9587'],
+                });
+                    //jasa keluar
+                    Morris.Line({
+                    element: 'morris-line-chart-jasa-keluar',
+                    data: [
+                        { y: dateNow("-",4), e: <?= ($jasaInvestasi4)/1000000 ?> },
+                        { y: dateNow("-",3), e: <?= ($jasaInvestasi3)/1000000 ?> },
+                        { y: dateNow("-",2), e: <?= ($jasaInvestasi2)/1000000 ?> },
+                        { y: dateNow("-",1), e: <?= ($jasaInvestasi1)/1000000 ?> },
+                        { y: dateNow("-",0), e: <?= ($jasaInvestasi0)/1000000 ?> } 
+                        ],
+                    xkey: 'y',
+                    ykeys: [ 'e' ],
+                    labels: [ 'Jasa' ],
+                    xLabelFormat: function (x) {
+                        var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Des" ];
+                        var month = IndexToMonth[ x.getMonth() ];
+                        var year = x.getFullYear();
+                        return year + ' ' + month;
+                    },
+                    dateFormat: function (x) {
+                        var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Des" ];
+                        var month = IndexToMonth[ new Date(x).getMonth() ];
+                        var year = new Date(x).getFullYear();
+                        return year + ' ' + month;
+                    },
+                    hideHover: 'auto',
+                    resize: true,
+                    lineColors: ['#ff9587'],
                 });
 
                     //pinjaman
                     Morris.Line({
                     element: 'morris-line-chart-pinjaman-masuk',
                     data: [
-                         { y: dateNow("-",4), b: <?= ($angsuranPokok1+$pelunasanPokok1)/1000000 ?>, c: <?= ($angsuranBunga1+$pelunasanBunga1)/1000000 ?>, d: <?= ($angsuranDenda1+$pelunasanDenda1)/1000000 ?> },
-                         { y: dateNow("-",3), b: <?= ($angsuranPokok2+$pelunasanPokok2)/1000000 ?>, c: <?= ($angsuranBunga2+$pelunasanBunga2)/1000000 ?>, d: <?= ($angsuranDenda2+$pelunasanDenda2)/1000000 ?> },
-                         { y: dateNow("-",2), b: <?= ($angsuranPokok3+$pelunasanPokok3)/1000000 ?>, c: <?= ($angsuranBunga3+$pelunasanBunga3)/1000000 ?>, d: <?= ($angsuranDenda3+$pelunasanDenda3)/1000000 ?> },
-                         { y: dateNow("-",1), b: <?= ($angsuranPokok4+$pelunasanPokok4)/1000000 ?>, c: <?= ($angsuranBunga4+$pelunasanBunga4)/1000000 ?>, d: <?= ($angsuranDenda4+$pelunasanDenda4)/1000000 ?> },
-                         { y: dateNow("-",0), b: <?= ($angsuranPokok5+$pelunasanPokok5)/1000000 ?>, c: <?= ($angsuranBunga5+$pelunasanBunga5)/1000000 ?>, d: <?= ($angsuranDenda5+$pelunasanDenda5)/1000000 ?> } 
+                         { y: dateNow("-",4), b: <?= ($angsuranPokok4+$pelunasanPokok4)/1000000 ?>, c: <?= ($angsuranBunga4+$pelunasanBunga4)/1000000 ?>, d: <?= ($angsuranDenda4+$pelunasanDenda4)/1000000 ?> },
+                         { y: dateNow("-",3), b: <?= ($angsuranPokok3+$pelunasanPokok3)/1000000 ?>, c: <?= ($angsuranBunga3+$pelunasanBunga3)/1000000 ?>, d: <?= ($angsuranDenda3+$pelunasanDenda3)/1000000 ?> },
+                         { y: dateNow("-",2), b: <?= ($angsuranPokok2+$pelunasanPokok2)/1000000 ?>, c: <?= ($angsuranBunga2+$pelunasanBunga2)/1000000 ?>, d: <?= ($angsuranDenda2+$pelunasanDenda2)/1000000 ?> },
+                         { y: dateNow("-",1), b: <?= ($angsuranPokok1+$pelunasanPokok1)/1000000 ?>, c: <?= ($angsuranBunga1+$pelunasanBunga1)/1000000 ?>, d: <?= ($angsuranDenda1+$pelunasanDenda1)/1000000 ?> },
+                         { y: dateNow("-",0), b: <?= ($angsuranPokok0+$pelunasanPokok0)/1000000 ?>, c: <?= ($angsuranBunga0+$pelunasanBunga0)/1000000 ?>, d: <?= ($angsuranDenda0+$pelunasanDenda0)/1000000 ?> } 
                         ],
                     xkey: 'y',
                     ykeys: ['b' , 'c' , 'd' ],
@@ -160,6 +278,35 @@
                     ymax : 150,
                     resize: true,
                     lineColors: ['#1ab394','#035c4a','#659c91'],
+                });
+                    //pinjaman keluar
+                    Morris.Line({
+                    element: 'morris-line-chart-pinjaman-keluar',
+                    data: [
+                        { y: dateNow("-",4), e: <?= ($pencairanPokok4)/1000000 ?> },
+                        { y: dateNow("-",3), e: <?= ($pencairanPokok3)/1000000 ?> },
+                        { y: dateNow("-",2), e: <?= ($pencairanPokok2)/1000000 ?> },
+                        { y: dateNow("-",1), e: <?= ($pencairanPokok1)/1000000 ?> },
+                        { y: dateNow("-",0), e: <?= ($pencairanPokok0)/1000000 ?> } 
+                        ],
+                    xkey: 'y',
+                    ykeys: [ 'e' ],
+                    labels: [ 'Pihutang' ],
+                    xLabelFormat: function (x) {
+                        var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Des" ];
+                        var month = IndexToMonth[ x.getMonth() ];
+                        var year = x.getFullYear();
+                        return year + ' ' + month;
+                    },
+                    dateFormat: function (x) {
+                        var IndexToMonth = [ "Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Des" ];
+                        var month = IndexToMonth[ new Date(x).getMonth() ];
+                        var year = new Date(x).getFullYear();
+                        return year + ' ' + month;
+                    },
+                    hideHover: 'auto',
+                    resize: true,
+                    lineColors: ['#ff9587'],
                 });
 
                     //simpanan masuk

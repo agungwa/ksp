@@ -43,12 +43,15 @@ class Investasiberjangka_model extends CI_Model
     }
 
     // get investasi aktif dashboard
-    function get_investasi_chart($status,$tgl)
+    function get_investasi_chart($status,$tgl,$tgltutup)
     {
         $where = "ivb_status = $status AND ivb_flag < 2";
         $this->db->where($where);
         if ($tgl != NULL) {
             $this->db->where("DATE_FORMAT(ivb_tglpendaftaran, '%Y-%m') = '$tgl'");
+        }
+        if ($tgltutup != NULL) {
+            $this->db->where("DATE_FORMAT(ivb_tglditutup, '%Y-%m') = '$tgltutup'");
         }
         $this->db->select_sum('ivb_jumlah');
         return $this->db->get($this->table)->result();

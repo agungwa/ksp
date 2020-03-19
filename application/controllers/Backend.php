@@ -161,7 +161,7 @@ class Backend extends MY_Base {
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
 
 		//data pihutang
-		$dataPihutang = $this->Pinjaman_model->get_data_pihutang(1,$datetoday);
+		$dataPihutang = $this->Pinjaman_model->get_data_pihutang(1,NULL,$datetoday);
 		$pinjamanAktif = $dataPihutang[0]->pin_pinjaman;
 
 		$dataAngsuran = $this->Angsuranbayar_model->get_angsuran_tgl(1,NULL,NULL,$datetoday);

@@ -138,19 +138,63 @@ class Cart extends MY_Base {
 		$pelunasanDenda4 = $dataPelunasan4[0]->pel_totaldenda;
 		$pelunasanDenda5 = $dataPelunasan5[0]->pel_totaldenda;
 
+		//Data Pinjaman Pencairan
+		$dataPencairan0 = $this->Pinjaman_model->get_data_pihutang(1,$tanggalDuedate0,NULL);
+		$dataPencairan1 = $this->Pinjaman_model->get_data_pihutang(1,$tanggalDuedate1,NULL);
+		$dataPencairan2 = $this->Pinjaman_model->get_data_pihutang(1,$tanggalDuedate2,NULL);
+		$dataPencairan3 = $this->Pinjaman_model->get_data_pihutang(1,$tanggalDuedate3,NULL);
+		$dataPencairan4 = $this->Pinjaman_model->get_data_pihutang(1,$tanggalDuedate4,NULL);
+		$dataPencairan5 = $this->Pinjaman_model->get_data_pihutang(1,$tanggalDuedate5,NULL);
+		$pencairanPokok0 = $dataPencairan0[0]->pin_pinjaman;
+		$pencairanPokok1 = $dataPencairan1[0]->pin_pinjaman;
+		$pencairanPokok2 = $dataPencairan2[0]->pin_pinjaman;
+		$pencairanPokok3 = $dataPencairan3[0]->pin_pinjaman;
+		$pencairanPokok4 = $dataPencairan4[0]->pin_pinjaman;
+		$pencairanPokok5 = $dataPencairan5[0]->pin_pinjaman;
+
+
 		//Data Investasi
-		$dataInvestasi0 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate0);
-		$dataInvestasi1= $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate1);
-		$dataInvestasi2 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate2);
-		$dataInvestasi3= $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate3);
-		$dataInvestasi4= $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate4);
-		$dataInvestasi5= $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate5);
+		$dataInvestasi0 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate0,NULL);
+		$dataInvestasi1 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate1,NULL);
+		$dataInvestasi2 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate2,NULL);
+		$dataInvestasi3 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate3,NULL);
+		$dataInvestasi4 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate4,NULL);
+		$dataInvestasi5 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate5,NULL);
 		$investasi0 = $dataInvestasi0[0]->ivb_jumlah;
 		$investasi1 = $dataInvestasi1[0]->ivb_jumlah;
 		$investasi2 = $dataInvestasi2[0]->ivb_jumlah;
 		$investasi3 = $dataInvestasi3[0]->ivb_jumlah;
 		$investasi4 = $dataInvestasi4[0]->ivb_jumlah;
 		$investasi5 = $dataInvestasi5[0]->ivb_jumlah;
+
+		//Data Investasi keluar
+			//investasi tutup
+		$dataInvestasitutup0 = $this->Investasiberjangka_model->get_investasi_chart(1,NULL,$tanggalDuedate0);
+		$dataInvestasitutup1 = $this->Investasiberjangka_model->get_investasi_chart(1,NULL,$tanggalDuedate1);
+		$dataInvestasitutup2 = $this->Investasiberjangka_model->get_investasi_chart(1,NULL,$tanggalDuedate2);
+		$dataInvestasitutup3 = $this->Investasiberjangka_model->get_investasi_chart(1,NULL,$tanggalDuedate3);
+		$dataInvestasitutup4 = $this->Investasiberjangka_model->get_investasi_chart(1,NULL,$tanggalDuedate4);
+		$dataInvestasitutup5 = $this->Investasiberjangka_model->get_investasi_chart(1,NULL,$tanggalDuedate5);
+		$investasiTutup0 = $dataInvestasitutup0[0]->ivb_jumlah;
+		$investasiTutup1 = $dataInvestasitutup1[0]->ivb_jumlah;
+		$investasiTutup2 = $dataInvestasitutup2[0]->ivb_jumlah;
+		$investasiTutup3 = $dataInvestasitutup3[0]->ivb_jumlah;
+		$investasiTutup4 = $dataInvestasitutup4[0]->ivb_jumlah;
+		$investasiTutup5 = $dataInvestasitutup5[0]->ivb_jumlah;
+
+			//jasa keluar
+		$datajasaInvestasi0 = $this->Penarikaninvestasiberjangka_model->get_chart(NULL,NULL,$tanggalDuedate0,1);
+		$datajasaInvestasi1 = $this->Penarikaninvestasiberjangka_model->get_chart(NULL,NULL,$tanggalDuedate1,1);
+		$datajasaInvestasi2 = $this->Penarikaninvestasiberjangka_model->get_chart(NULL,NULL,$tanggalDuedate2,1);
+		$datajasaInvestasi3 = $this->Penarikaninvestasiberjangka_model->get_chart(NULL,NULL,$tanggalDuedate3,1);
+		$datajasaInvestasi4 = $this->Penarikaninvestasiberjangka_model->get_chart(NULL,NULL,$tanggalDuedate4,1);
+		$datajasaInvestasi5 = $this->Penarikaninvestasiberjangka_model->get_chart(NULL,NULL,$tanggalDuedate5,1);
+		$jasaInvestasi0 = $datajasaInvestasi0[0]->pib_jmlditerima;
+		$jasaInvestasi1 = $datajasaInvestasi1[0]->pib_jmlditerima;
+		$jasaInvestasi2 = $datajasaInvestasi2[0]->pib_jmlditerima;
+		$jasaInvestasi3 = $datajasaInvestasi3[0]->pib_jmlditerima;
+		$jasaInvestasi4 = $datajasaInvestasi4[0]->pib_jmlditerima;
+		$jasaInvestasi5 = $datajasaInvestasi5[0]->pib_jmlditerima;
 
 		//hitung simpanan karyawan
 
@@ -212,6 +256,24 @@ class Cart extends MY_Base {
 		$adminPenarikan4 = round($penarikan4[0]->pes_administrasi);
 		$adminPenarikan5 = round($penarikan5[0]->pes_administrasi);
 
+
+		//total
+		//masuk
+		$masuk0 = $saldoSimpanan0 + $phPenarikan0 + $adminPenarikan0 + $angsuranPokok0 + $angsuranBunga0 + $pelunasanPokok0 + $pelunasanBunga0 + $pelunasanDenda0 + $angsuranDenda0 + $investasi0;
+		$masuk1 = $saldoSimpanan1 + $phPenarikan1 + $adminPenarikan1 + $angsuranPokok1 + $angsuranBunga1 + $pelunasanPokok1 + $pelunasanBunga1 + $pelunasanDenda1 + $angsuranDenda1 + $investasi1;
+		$masuk2 = $saldoSimpanan2 + $phPenarikan2 + $adminPenarikan2 + $angsuranPokok2 + $angsuranBunga2 + $pelunasanPokok2 + $pelunasanBunga2 + $pelunasanDenda2 + $angsuranDenda2 + $investasi2;
+		$masuk3 = $saldoSimpanan3 + $phPenarikan3 + $adminPenarikan3 + $angsuranPokok3 + $angsuranBunga3 + $pelunasanPokok3 + $pelunasanBunga3 + $pelunasanDenda3 + $angsuranDenda3 + $investasi3;
+		$masuk4 = $saldoSimpanan4 + $phPenarikan4 + $adminPenarikan4 + $angsuranPokok4 + $angsuranBunga4 + $pelunasanPokok4 + $pelunasanBunga4 + $pelunasanDenda4 + $angsuranDenda4 + $investasi4;
+		$masuk5 = $saldoSimpanan5 + $phPenarikan5 + $adminPenarikan5 + $angsuranPokok5 + $angsuranBunga5 + $pelunasanPokok5 + $pelunasanBunga5 + $pelunasanDenda5 + $angsuranDenda5 + $investasi5;
+		//keluar
+		$keluar0 = $pokokPenarikan0 + $bungaPenarikan0 + $pelunasanPokok0 + $pencairanPokok0 + $jasaInvestasi0 + $investasiTutup0;
+		$keluar1 = $pokokPenarikan1 + $bungaPenarikan1 + $pelunasanPokok1 + $pencairanPokok1 + $jasaInvestasi1 + $investasiTutup1;
+		$keluar2 = $pokokPenarikan2 + $bungaPenarikan2 + $pelunasanPokok2 + $pencairanPokok2 + $jasaInvestasi2 + $investasiTutup2;
+		$keluar3 = $pokokPenarikan3 + $bungaPenarikan3 + $pelunasanPokok3 + $pencairanPokok3 + $jasaInvestasi3 + $investasiTutup3;
+		$keluar4 = $pokokPenarikan4 + $bungaPenarikan4 + $pelunasanPokok4 + $pencairanPokok4 + $jasaInvestasi4 + $investasiTutup4;
+		$keluar5 = $pokokPenarikan5 + $bungaPenarikan5 + $pelunasanPokok5 + $pencairanPokok5 + $jasaInvestasi5 + $investasiTutup5;
+
+
 		//setoran simkesan
 		// $simkesanSaldo = $this->Setoransimkesan_model->get_setoran_simkesan(0,$datetoday);
 		// $saldoSimkesan = $simkesanSaldo[0]->ssk_jmlsetor;
@@ -253,6 +315,7 @@ class Cart extends MY_Base {
 				"adminPenarikan3" => $adminPenarikan3,
 				"adminPenarikan4" => $adminPenarikan4,
 				"adminPenarikan5" => $adminPenarikan5,
+			//simpanan keluar
 				//pokok keluar
 				"pokokPenarikan0" => $pokokPenarikan0,
 				"pokokPenarikan1" => $pokokPenarikan1,
@@ -312,14 +375,55 @@ class Cart extends MY_Base {
 				'pelunasanDenda3' => $pelunasanDenda3,
 				'pelunasanDenda4' => $pelunasanDenda4,
 				'pelunasanDenda5' => $pelunasanDenda5,
+			//pencairan pinjaman
+				'pencairanPokok0' => $pencairanPokok0,
+				'pencairanPokok1' => $pencairanPokok1,
+				'pencairanPokok2' => $pencairanPokok2,
+				'pencairanPokok3' => $pencairanPokok3,
+				'pencairanPokok4' => $pencairanPokok4,
+				'pencairanPokok5' => $pencairanPokok5,
 
 			//investasi
+				//masuk
 				'investasi0' => $investasi0,
 				'investasi1' => $investasi1,
 				'investasi2' => $investasi2,
 				'investasi3' => $investasi3,
 				'investasi4' => $investasi4,
 				'investasi5' => $investasi5,
+			
+			//investasi keluar
+				//jasa
+				'jasaInvestasi0' => $jasaInvestasi0,
+				'jasaInvestasi1' => $jasaInvestasi1,
+				'jasaInvestasi2' => $jasaInvestasi2,
+				'jasaInvestasi3' => $jasaInvestasi3,
+				'jasaInvestasi4' => $jasaInvestasi4,
+				'jasaInvestasi5' => $jasaInvestasi5,
+				//tutup
+				'investasiTutup0' => $investasiTutup0,
+				'investasiTutup1' => $investasiTutup1,
+				'investasiTutup2' => $investasiTutup2,
+				'investasiTutup3' => $investasiTutup3,
+				'investasiTutup4' => $investasiTutup4,
+				'investasiTutup5' => $investasiTutup5,
+
+			//total
+				//masuk
+				'masuk0' => $masuk0,
+				'masuk1' => $masuk1,
+				'masuk2' => $masuk2,
+				'masuk3' => $masuk3,
+				'masuk4' => $masuk4,
+				'masuk5' => $masuk5,
+				//keluar
+				'keluar0' => $keluar0,
+				'keluar1' => $keluar1,
+				'keluar2' => $keluar2,
+				'keluar3' => $keluar3,
+				'keluar4' => $keluar4,
+				'keluar5' => $keluar5,
+
 
 			//data setoran
 

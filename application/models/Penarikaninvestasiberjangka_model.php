@@ -30,6 +30,24 @@ class Penarikaninvestasiberjangka_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+	function get_chart($today,$tgl,$month,$status){
+        $this->db->join('investasiberjangka', 'investasiberjangka.ivb_kode = penarikaninvestasiberjangka.ivb_kode', 'right');
+        $where = "ivb_status < '$status' AND ivb_flag < 2";
+		$this->db->where($where);
+        if ($tgl != NULL) {
+            $this->db->where("DATE_FORMAT(pib_tgl, '%Y-%m-%d') <= '$tgl'");
+        }
+        if ($today != NULL) {
+            $this->db->where("DATE_FORMAT(pib_tgl, '%Y-%m-%d') = '$today'");
+        }
+        if ($month != NULL) {
+            $this->db->where("DATE_FORMAT(pib_tgl, '%Y-%m') = '$month'");
+        }
+        $this->db->where('pib_flag < 2');
+        $this->db->select_sum('pib_jmlditerima');
+        return $this->db->get($this->table)->result();
+    }
+
     // get data by id
     function get_by_id($id)
     {
