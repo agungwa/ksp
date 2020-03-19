@@ -248,6 +248,7 @@ class Investasiberjangka extends MY_Base
 						'ivb_kode' => $item->ivb_kode,
 						'ang_no' => $item->ang_no,
 						'nama_ang_no' => $ang_no->ang_nama,
+						'alamat_ang_no' => $ang_no->ang_alamat,
 						'kar_kode' => $kar_kode->kar_nama,
 						'wil_kode' => $wil_kode->wil_nama,
 						'jwi_id' => $jwi_id->jwi_jangkawaktu,

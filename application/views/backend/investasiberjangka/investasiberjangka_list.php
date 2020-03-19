@@ -66,17 +66,14 @@
             <tr>
                 <th>No</th>
 				<th>Rekening Investasi</th>
-				<th>Anggota</th>
-				<th>Nama Anggota</th>
-				<th>Karyawan</th>
+				<th>No. Ang</th>
+				<th>Nama</th>
+				<th>Alamat</th>
 				<th>Wilayah</th>
-				<th>Jangka Waktu</th>
-				<th>Jasa</th>
-				<th>Bunga</th>
+				<th>Jangka</th>
+				<th>Jasa | Bunga</th>
 				<th>Investasi</th>
-				<th>Tanggal Pendaftaran</th>
-				<th>Tanggal Jatuh Tempo</th>
-				<th>Status Diagunkan</th>
+				<th><i class ="fa fa-calendar" aria-hidden="true"></i> Tanggal </th>
 				<th>Status</th>
 				<th>Action</th>
             </tr>
@@ -98,43 +95,40 @@
 					<td><?php echo $item['ivb_kode'] ?></td>
 					<td><?php echo $item['ang_no'] ?></td>
 					<td><?php echo $item['nama_ang_no'] ?></td>
-					<td><?php echo $item['kar_kode'] ?></td>
+					<td><?php echo $item['alamat_ang_no'] ?></td>
 					<td><?php echo $item['wil_kode'] ?></td>
 					<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
-					<td><?php echo $item['jiv_id'] ?></td>
-					<td><?php echo $item['biv_id'] ," %" ?></td>
+					<td><?php echo $item['jiv_id'] ,' | ',$item['biv_id'] ," %"  ?></td>
 					<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
-					<td><?php echo dateFormataja($item['ivb_tglpendaftaran']) ?></td>
-					<td><?php echo dateFormataja($item['jatuhtempo']) ?></td>
-					<td><?php echo $this->statusJaminan[$item['ivb_jam']] ?></td>
-					<td><?php echo $item['ivb_status'] ?></td>
+					<td><initialism title="Tanggal Pendaftaran | Jatuh Tempo"><?php echo dateFormataja($item['ivb_tglpendaftaran']) ,' | ',dateFormataja($item['jatuhtempo'])?></initialism></td>
+					<td><abbreviation title="Status Rek.| Status Diagunkan"><?php echo $item['ivb_status'] ,' | ',$this->statusJaminan[$item['ivb_jam']] ?></abbreviation></td>
 					<td style="text-align:center" width="200px">
-						<?php 
-						echo anchor(site_url('investasiberjangka/read/'.$item['ivb_kode']),'Read','class="text-navy"'); 
-						echo ' | '; 
-						echo anchor(site_url('investasiberjangka/update/'.$item['ivb_kode']),'Update','class="text-navy"'); 
-						 ?>
-                        <?php if(is_allow('M_EDIT')): ?>
-                        <?php
-						echo ' | '; 
-						echo anchor(site_url('investasiberjangka/delete/'.$item['ivb_kode']),'Delete','class="text-navy" onclick="javascript: return confirm(\'Yakin hapus data?\')"'); 
-                        ?>
-                        <?php endif; ?>
-                      <form action="<?php echo site_url('investasiberjangka/jaminan/'.$item['ivb_kode']); ?>" method="post">
+                    <div class="dropdown">
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle btn-sm" type="button">
+                            Pilih 
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php echo site_url('investasiberjangka/read/'.$item['ivb_kode']); ?>">Detail</a></li>
+                            <li><a class="dropdown-item" href="<?php echo site_url('investasiberjangka/update/'.$item['ivb_kode']); ?>">Update</a></li>
+                            <?php if(is_allow('M_EDIT')): ?>
+                            <li><a class="dropdown-item" href="<?php echo site_url('investasiberjangka/delete/'.$item['ivb_kode']); ?>">Delete</a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
+                    <form action="<?php echo site_url('investasiberjangka/jaminan/'.$item['ivb_kode']); ?>" method="post">
                         <input type="hidden" class="form-control" name="ivb_kode" id="ivb_kode" placeholder="ivb_kode" value="<?php echo $item['ivb_kode']; ?>" />
                         <?php  
                         if ($item['ivb_jam'] == 0 && $item['ivb_statusid'] < 1){
                         echo '
                         <input type="hidden" class="form-control" name="ivb_jam" id="ivb_jam" placeholder="ivb_jam" value="1" />
-                        <button type="submit" class="btn btn-danger">Agunkan</button>';
+                        <button type="submit" class="btn btn-danger btn-sm">Agunkan</button>';
                             } 
                         else if ($item['ivb_jam'] == 1 && $item['ivb_statusid'] < 1) {
                         echo '
                         <input type="hidden" class="form-control" name="ivb_jam" id="ivb_jam" placeholder="ivb_jam" value="0"/>
-                        <button type="submit" class="btn btn-info">Lunas</button>'; 
+                        <button type="submit" class="btn btn-info btn-sm">Lunas</button>'; 
                             } ?>
                     </form>
-
 					</td>
 				</tr>
                 <?php
