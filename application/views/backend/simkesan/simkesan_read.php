@@ -163,7 +163,7 @@
 	        	?>
             </form>
             </td></tr>
-    <tr><td></td><td><a href="<?php echo site_url('simkesan/?p=2') ?>" class="btn btn-default">Batal</a> </td></tr>
+    <tr><td></td><td><a href="<?php echo site_url('simkesan/?p=2') ?>" class="btn btn-default hBack">Batal</a> </td></tr>
 	</table>
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
