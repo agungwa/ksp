@@ -225,14 +225,17 @@ class Printsimpanan extends MY_Base
 			$setoransip = $this->Simpananpokok_model->get_sirkulasi_simpananpokok($f,$t);
 			$saldoSimpananpokok += $setoransip[0]->sip_setoran;
 			//rekening simpanan lalu
-			$totalRekeninglalu = $this->Simpanan_model->get_total_rekeninglalu($f,$w,0);
+			$totalRekeninglalu = $this->Simpanan_model->get_total_rekeninglalu($f,$w,2);
+			//rekening simpanan lalu
+			$totalRekeningkeluarlalu = $this->Penarikansimpanan_model->get_total_rekening(NULL,NULL,$f,$w,1);
 			//rekening simpanan kini
 			$totalRekening = $this->Simpanan_model->get_total_rekening($f,$t,$w,0);
 			//rekening simpanan keluar
-			$totalRekeningkeluar = $this->Penarikansimpanan_model->get_total_rekening($f,$t,$w,1);
+			$totalRekeningkeluar = $this->Penarikansimpanan_model->get_total_rekening($f,$t,NULL,$w,1);
 
 		$data = array(
 			'totalrekeninglalu' => $totalRekeninglalu,
+			'totalrekeningkeluarlalu' => $totalRekeningkeluarlalu,
 			'bungaditarik' => $bungaDitarik,
 			'totalrekeningkeluar' => $totalRekeningkeluar,
 			'saldosimpananlalu' => $saldoSimpananlalu,
