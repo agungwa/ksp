@@ -29,6 +29,14 @@ class Kasbon_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+    // get data rekap
+    function get_rekap($j,$w,$f)
+    {
+        $where = "wil_kode = $w AND ksb_jenis = $j AND ksb_flag < 2";
+        $this->db->where($where);
+        $this->db->where("DATE_FORMAT(ksb_tanggal, '%Y-%m-%d') = '$f'");
+        return $this->db->get($this->table)->row();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

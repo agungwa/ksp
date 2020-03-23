@@ -48,7 +48,7 @@
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
-		<th class="text-center">Jumlah</th>
+        <th class="text-center">Kasbon Keluar</th>
 		<th class="text-center">Wilayah</th>
 		<th class="text-center">Karyawan</th>
 		<th class="text-center">Jenis</th>
@@ -66,7 +66,7 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo neraca($kasbon->ksb_masuk) ?></td>
+			<td><?php echo neraca($kasbon->ksb_keluar) ?></td>
 			<td><?php echo $wil_kode->wil_nama ?></td>
 			<td><?php echo $kar_kode->kar_nama ?></td>
 			<td><?php echo $this->jenisKasbon[$kasbon->ksb_jenis] ?></td>

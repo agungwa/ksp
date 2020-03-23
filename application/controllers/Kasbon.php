@@ -9,10 +9,38 @@ class Kasbon extends MY_Base
     {
         parent::__construct();
         $this->load->model('Kasbon_model');
+        $this->load->model('Wilayah_model');
         $this->load->library('form_validation');
     }
 
-    public function index()
+
+    public function index(){
+        $active = urldecode($this->input->get('p', TRUE));
+    
+        switch ($active) {
+            case  1:
+                $this->listdata();
+                break;
+            case  2:
+                $this->rekap($active);
+                break;
+            case  3:
+                $this->rekap($active);
+                break;
+            case  4:
+                $this->rekap($active);
+                break;
+            case  5:
+                $this->rekap($active);
+                break;
+                    
+            default:
+                $this->listdata();
+                break;
+        }
+    } 
+
+    public function listdata()
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
@@ -24,6 +52,7 @@ class Kasbon extends MY_Base
             'kasbon_data' => $kasbon,
             'q' => $q,
             'start' => $start,
+            'active' => 1,
             'content' => 'backend/kasbon/kasbon_list',
         );
         $this->load->view(layout(), $data);
@@ -127,6 +156,77 @@ class Kasbon extends MY_Base
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('kasbon'));
         }
+    }
+    
+    public function rekap($active) 
+    {
+        if($active == 2){ 
+            $j = 0; //simpanan
+        }
+        else if($active == 3){
+            $j = 1; //investasi
+        }
+        else if($active == 4){
+            $j = 2; //simkesan
+        }
+        else if($active == 5){
+            $j = 3; //pinjaman
+        }
+        $wilayah = $this->Wilayah_model->get_all();
+        $w = urldecode($this->input->get('w', TRUE));
+        $f = urldecode($this->input->get('f', TRUE));
+        $z = date("Y-m-d", strtotime($f));
+        $setor = null; 
+        if ($w<>''){
+        $row = $this->Kasbon_model->get_rekap($j,$w,$z);
+        if ($row) {
+            $wil_kode = $this->db->get_where('wilayah',array('wil_kode' => $row->wil_kode))->row();
+            $kar_kode = $this->db->get_where('karyawan',array('kar_kode' => $row->kar_kode))->row();
+            $setor = array(
+                'action' => site_url('kasbon/update_action'),
+		'ksb_no' => set_value('ksb_no', $row->ksb_no),
+		'ksb_masuk' => set_value('ksb_masuk', $row->ksb_masuk),
+		'ksb_keluar' => set_value('ksb_keluar', $row->ksb_keluar),
+		'wil_kode' => set_value('wil_kode', $row->wil_kode),
+		'nm_wil_kode' => set_value('nm_wil_kode', $wil_kode->wil_nama),
+		'kar_kode' => set_value('kar_kode', $row->kar_kode),
+		'nm_kar_kode' => set_value('nm_kar_kode', $kar_kode->kar_nama),
+		'ksb_jenis' => set_value('ksb_jenis', $row->ksb_jenis),
+		'nm_ksb_jenis' => set_value('nm_ksb_jenis', $this->jenisKasbon[$row->ksb_jenis]),
+		'ksb_keterangan' => set_value('ksb_keterangan', $row->ksb_keterangan),
+		'ksb_tanggal' => set_value('ksb_tanggal', $row->ksb_tanggal),
+		'ksb_tgl' => set_value('ksb_tgl', $row->ksb_tgl),
+		'ksb_flag' => set_value('ksb_flag', $row->ksb_flag),
+		'ksb_info' => set_value('ksb_info', $row->ksb_info),
+	    );
+            }
+        }
+        $data = array(
+            'button' => 'Update',
+            'content' => 'backend/kasbon/kasbon_rekap.php',
+            'j' => $j,
+            'f' => $f,
+            'w' => $w,
+            'p' => $active,
+            'wilayah_data' => $wilayah,
+            'setor' => $setor,
+            'active' => $active,
+        );
+        $this->load->view(layout(), $data);
+        
+    }
+
+    public function rekap_action()
+    {
+            $data = array(
+        'ksb_masuk' => $this->input->post('ksb_masuk',TRUE),
+		'ksb_flag' => 0,
+	    );
+
+            $this->Kasbon_model->update($this->input->post('ksb_no', TRUE), $data);
+            $this->session->set_flashdata('message', 'Update Record Success');
+            redirect(site_url('kasbon'));
+        
     }
     
     public function update($id) 

@@ -136,8 +136,8 @@ lookup();
                             <li>
                                 <a href="#" id="damian">Rekap<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="<?=base_url()?>Wilayah">Kas Bon</a>
+                                <li>
+                                        <a href="<?=base_url()?>Kasbon/?p=2">Kas Bon</a>
                                     </li>
                                     <li>
                                         <a href="<?=base_url()?>Lainlain">Lain-lain</a>

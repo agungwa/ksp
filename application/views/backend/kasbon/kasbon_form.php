@@ -14,8 +14,8 @@
         <form action="<?php echo $action; ?>" method="post">
         <div class="ibox-content">
 	    <div class="form-group">
-            <label for="float">Jumlah Masuk</label>
-            <input type="text" class="form-control" name="ksb_masuk" id="ksb_masuk" placeholder="Jumlah" value="<?php echo $ksb_masuk; ?>" required />
+            <label for="float">Kasbon Keluar</label>
+            <input type="text" class="form-control" name="ksb_keluar" id="ksb_keluar" placeholder="Jumlah" value="<?php echo $ksb_masuk; ?>" required />
         </div>
         <div>
             <label for="int">Wilayah</label>
@@ -56,6 +56,7 @@
             <input type="text" class="form-control date" name="ksb_tanggal" placeholder="Tanggal" value="<?php echo $ksb_tanggal; ?>" required />
         </div>
 	    <input type="hidden" name="ksb_no" value="<?php echo $ksb_no; ?>" /> 
+	    <input type="hidden" name="ksb_keluar" value="" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
 	    <a href="<?php echo site_url('kasbon') ?>" class="btn btn-default">Cancel</a>
 	</div>
