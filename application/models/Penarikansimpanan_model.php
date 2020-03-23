@@ -98,6 +98,7 @@ class Penarikansimpanan_model extends CI_Model
         if ($lalu != NULL) {
             $this->db->where("DATE_FORMAT(pes_tglpenarikan, '%Y-%m-%d') < '$lalu'");
         }
+        $this->db->where("pes_flag < 2");
         return $this->db->count_all_results($this->table);
     }
 
