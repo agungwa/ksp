@@ -51,6 +51,7 @@
                         }
                     ?>
                 </select>
+        </div>
 	    <div class="form-group">
             <label for="datetime">Tanggal</label>
             <input type="text" class="form-control date" name="ksb_tanggal" placeholder="Tanggal" value="<?php echo $ksb_tanggal; ?>" required />

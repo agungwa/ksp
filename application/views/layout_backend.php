@@ -132,7 +132,6 @@ lookup();
                             </li>
                             <?php endif; ?>
 
-                            <?php if(is_allow('M_UTILITAS')): ?>
                             <li>
                                 <a href="#" id="damian">Rekap<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
@@ -140,14 +139,13 @@ lookup();
                                         <a href="<?=base_url()?>Kasbon/?p=2">Kas Bon</a>
                                     </li>
                                     <li>
-                                        <a href="<?=base_url()?>Lainlain">Lain-lain</a>
+                                        <a href="<?=base_url()?>Lainlain/setupinput/?active=2">Lain-lain</a>
                                     </li>
                                     <li>
-                                        <a href="<?=base_url()?>Tunai/simpanan">Rekap Simpanan</a>
+                                        <a href="<?=base_url()?>Tunai/?p=2">Rekap Simpanan</a>
                                     </li>
                                 </ul>
                             </li>
-                            <?php endif; ?>
 
                             <li>
                                 <a href="<?=base_url()?>Anggota">Setup Anggota</a>
@@ -440,6 +438,30 @@ lookup();
                     </li>
                     </li>
 
+                    <!-- MENU KASIR -->
+                        <?php if(is_allow('M_MANAGER')): ?>
+                    <li class="">
+                        
+                        <a href="index.html"><i class="fa fa-money"></i> <span class="nav-label">KASIR</span>
+                            <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="<?=base_url()?>kasbon">Kas Bon</a></li>
+                            <!-- <li>
+                                <a href="#" id="damian">Tunai<span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li>
+                                        <a href="<?=base_url()?>penggajianmarketing">Tunai Masuk</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?=base_url()?>penggajianmarketing">Tunai Keluar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="<?=base_url()?>tunai">KAS</a></li> -->
+                        </ul>
+                    </li>
+                        <?php endif; ?>
+
                     <!-- MENU KARYAWAN -->
                     <li class="">
                         <?php if(is_allow('M_USER')): ?>
@@ -493,29 +515,6 @@ lookup();
                         </ul>
                     </li>
                     
-                    <!-- MENU KASIR -->
-                    <li class="">
-                        
-                        <a href="index.html"><i class="fa fa-money"></i> <span class="nav-label">KASIR</span>
-                            <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                        <?php if(is_allow('M_MANAGER')): ?>
-                            <li><a href="<?=base_url()?>kasbon">Kas Bon</a></li>
-                            <li>
-                                <a href="#" id="damian">Tunai<span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="<?=base_url()?>penggajianmarketing">Tunai Masuk</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?=base_url()?>penggajianmarketing">Tunai Keluar</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="<?=base_url()?>tunai">KAS</a></li>
-                            <?php endif; ?>
-                        </ul>
-                    </li>
 
                     <!-- MENU SISTEM UTILITAS -->
                     <li class="">

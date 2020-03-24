@@ -13,7 +13,6 @@ class Kasbon extends MY_Base
         $this->load->library('form_validation');
     }
 
-
     public function index(){
         $active = urldecode($this->input->get('p', TRUE));
     
@@ -33,7 +32,6 @@ class Kasbon extends MY_Base
             case  5:
                 $this->rekap($active);
                 break;
-                    
             default:
                 $this->listdata();
                 break;
@@ -160,7 +158,7 @@ class Kasbon extends MY_Base
     
     public function rekap($active) 
     {
-        if($active == 2){ 
+        if ($active == 2){ 
             $j = 0; //simpanan
         }
         else if($active == 3){
@@ -307,10 +305,6 @@ class Kasbon extends MY_Base
 
     public function _rules() 
     {
-	$this->form_validation->set_rules('ksb_masuk', 'ksb ksb_masuk', 'trim|required');
-	$this->form_validation->set_rules('wil_kode', 'wil kode', 'trim|required');
-	$this->form_validation->set_rules('kar_kode', 'kar kode', 'trim|required');
-	$this->form_validation->set_rules('ksb_tanggal', 'ksb tanggal', 'trim|required');
 
 	$this->form_validation->set_rules('ksb_no', 'ksb_no', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

@@ -12,14 +12,23 @@
                 </div>
                 <div class="ibox-content">
         <div class="row" style="margin-bottom: 10px">
-            <form action="<?php echo base_url()?>Tunai/simpanan" class="form-inline" method="get">
+            <form action="<?php echo base_url()?>Tunai/" class="form-inline" method="get">
+            <input type="hidden" name="p" value="2" />
             <div class="col-md-8 text-right">
                 <div class="col-md-3"><h4>Rentang Tanggal : </h4></div>
                 <div class="col-md-3">
                     <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
                 </div>
                 <select class="form-control col-md-3"  name="w">
-                    <option value="all">Semua Wilayah</option>
+                <?php 
+                if( $w == NULL OR $w =="all"){
+                    $wil_nama = "Semua Wilayah";
+                } else {
+                    $wil = $this->db->get_where('wilayah', array('wil_kode' => $w))->row();
+                    $wil_nama = $wil->wil_nama;
+                }
+                ?>
+                    <option value="all"><?= $wil_nama ?></option>
                     <?php
                         foreach ($wilayah_data as $value) { ?>
                             <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>
@@ -37,13 +46,13 @@
                                 if ($f <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo base_url()?>datarekening" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo base_url()?>Tunai/?p=2" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
                         </span>
                         <span class="input-group-btn">
-                                    <a href="<?php echo base_url()?>printsimpanan/printsirkulasisimpanan?f=<?=$f?>&t=<?=$t?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                                    <a href="<?php echo base_url()?>Tunai/?p=3&f=<?=$f?>&w=<?=$w?>" class="btn btn-default">Print</a>
                         </span>
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                        
@@ -53,10 +62,36 @@
         </div>
         <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <tbody class="thead-light">
+            <h4 align="center"> Kas Masuk </h4>
+            <tr>
+                <td class="text-left">Kabon</td>
+				<td class="text-center"><?= neraca($ksbs);?></td>
+            </tr>
             <tr>
                 <td class="text-left">Setoran Simpanan Masuk</td>
 				<td class="text-center"><?= neraca($saldosimpanan);?></td>
             </tr>
+            <tr>
+                <td class="text-left">PH Buku</td>
+				<td class="text-center"><?= neraca($phbuku);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Administrasi</td>
+				<td class="text-center"><?= neraca($administrasi);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">lain-lain</td>
+				<td class="text-center"><?= neraca($lsm);?></td>
+            </tr>
+            <tr>
+                <td class="text-left">Total masuk</td>
+				<td class="text-center"><?= neraca($totalmasuk);?></td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <tbody class="thead-light">
+            <h4 align="center"> Kas Keluar </h4>
             <tr>
                 <td class="text-left">Penarikan Simpanan</td>
 				<td class="text-center"><?= neraca($saldosimpananditarik);?></td>
@@ -66,12 +101,20 @@
 				<td class="text-center"><?= neraca($bungaditarik);?></td>
             </tr>
             <tr>
-                <td class="text-left">PH Buku</td>
-				<td class="text-center"><?= neraca($phbuku);?></td>
+                <td class="text-left">Lain-lain</td>
+				<td class="text-center"><?= neraca($lsk);?></td>
             </tr>
             <tr>
-                <td class="text-left">Administrasi</td>
-				<td class="text-center"><?= neraca($administrasi);?></td>
+                <td class="text-left">Total keluar</td>
+				<td class="text-center"><?= neraca($totalkeluar);?></td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+            <tbody class="thead-light">
+            <tr>
+                <td class="text-left danger">Total Rekap Simpanan</td>
+				<td class="text-center"><?= neraca($totalrekapsimpanan);?></td>
             </tr>
             </tbody>
         </table>

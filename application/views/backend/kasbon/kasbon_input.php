@@ -10,7 +10,7 @@
 	    <div class="col-lg-4">
             <div class="form-group">
                 <label for="float">Jumlah</label>
-                <input type="text" class="form-control numeric" name="ksb_masuk" id="ksb_masuk" placeholder="Jumlah" required />
+                <input type="text" class="form-control numeric" name="ksb_masuk" id="searchTxt" placeholder="Jumlah" required />
             </div>
 
             <div>
@@ -45,7 +45,7 @@
                 <input type="date" class="form-control" name="ksb_tanggal" id="todays-date" placeholder="Tanggal" required />
             </div>
 	    <input type="hidden" name="ksb_no" value="<?php echo $ksb_no; ?>" /> 
-	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
+	    <button type="submit" class="btn btn-primary" onclick="return confirm('Click OK jika benar menyetor sejumlah Rp ' + rubah(searchTxt.value))"><?php echo $button ?></button> 
         <a href="<?php echo site_url('kasbon') ?>" class="btn btn-default">Cancel</a>
         </div>
 
