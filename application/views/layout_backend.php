@@ -439,7 +439,7 @@ lookup();
                     </li>
 
                     <!-- MENU KASIR -->
-                        <?php if(is_allow('M_MANAGER')): ?>
+                        <?php if(is_allow('M_KASIR')): ?>
                     <li class="">
                         
                         <a href="index.html"><i class="fa fa-money"></i> <span class="nav-label">KASIR</span>
