@@ -39,6 +39,7 @@
                     <tr><td class='active'>Keterangan</td><td><?php echo $setor['ksb_keterangan']; ?></td></tr>
                     <tr><td class='active'>Tanggal</td><td><?php echo dateFormataja($setor['ksb_tanggal']); ?></td></tr>
                 </table>
+                    <input type="hidden" name="p" value="<?php echo $p; ?>" /> 
                     <input type="hidden" name="ksb_no" value="<?php echo $setor['ksb_no']; ?>" /> 
                     <button type="submit" class="btn btn-primary" onclick="return confirm('Click OK jika benar menyetor sejumlah Rp ' + rubah(searchTxt.value))"><?php echo $button ?></button> 
                     <a href="<?=base_url()?>kasbon/rekap/<?= $p?>" class="btn btn-default">Cancel</a>

@@ -52,6 +52,8 @@ class Auth extends CI_Controller {
                 redirect(site_url('Simkesan'));
             } else if ($row->id_user == 9) {
                 redirect(site_url('neraca/neraca'));
+            } else if ($row->id_user == 11 OR $row->id_user == 12 ) {
+                redirect(site_url('kasbon')); 
             } else {
                 redirect(site_url('backend'));
             } 

@@ -223,7 +223,7 @@ class Kasbon extends MY_Base
 
             $this->Kasbon_model->update($this->input->post('ksb_no', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('kasbon'));
+            redirect(site_url('kasbon/rekap/'.$this->input->post('p',TRUE)));
         
     }
     
