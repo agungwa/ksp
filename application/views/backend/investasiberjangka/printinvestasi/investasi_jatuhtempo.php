@@ -40,17 +40,14 @@
 					$data[$i]['jatuhtempo']		= $item['jatuhtempo'];
 					$i++;
 				}
-
-				function sortFunction($a, $b){
-					return strtotime($a['tanggalDuedate']) - strtotime($b['tanggalDuedate']);
-				}
-				
-				usort($data, "sortFunction");
-				
-				//$j=0;
-				foreach($data as $d){
-					//echo $data[$j]['sim_kode']." ".$data[$j]['tanggalDuedate']."<br>";$j++;
-				}
+				$orderByDate = $my2 = array();
+				foreach($data as $key=>$row)
+				{
+					$my2 = explode('/',$row['tanggalDuedate']);
+					$my_date2 = $my2[1].'/'.$my2[0].'/'.$my2[2];        
+					$orderByDate[$key] = strtotime($my_date2);  
+				}    
+				array_multisort($orderByDate, SORT_ASC, $data);
 			?>
 		
 		<table >

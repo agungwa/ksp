@@ -120,7 +120,6 @@ class Investasiberjangka_model extends CI_Model
     }
 
     function get_jatuh_tempo($start = 0, $q = NULL, $date1=NULL, $date2=NULL) {
-        $this->db->order_by($this->id, $this->order);
         $where = "ivb_kode LIKE '%$q%' ESCAPE '!' AND ivb_flag < 2";
         $this->db->where($where);
        // $this->db->limit($limit, $start);

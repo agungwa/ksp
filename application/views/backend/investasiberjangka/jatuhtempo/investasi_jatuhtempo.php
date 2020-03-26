@@ -71,17 +71,27 @@
 					$data[$i]['wil_kode']		= $item['wil_kode'];
 					$i++;
 				}
-
-				function sortFunction($a, $b){
-					return strtotime($a['tanggalDuedate']) - strtotime($b['tanggalDuedate']);
-				}
 				
-				usort($data, "sortFunction");
+				$orderByDate = $my2 = array();
+				foreach($data as $key=>$row)
+				{
+					$my2 = explode('/',$row['tanggalDuedate']);
+					$my_date2 = $my2[1].'/'.$my2[0].'/'.$my2[2];        
+					$orderByDate[$key] = strtotime($my_date2);  
+				}    
+				array_multisort($orderByDate, SORT_ASC, $data);
 				
-				//$j=0;
-				foreach($data as $d){
-					//echo $data[$j]['sim_kode']." ".$data[$j]['tanggalDuedate']."<br>";$j++;
-				}
+				// function sortFunction($a, $b){
+				// 	if ($a['tanggalDuedate'] == $b['tanggalDuedate']) return 0;
+				// 	return strtotime($a['tanggalDuedate']) - strtotime($b['tanggalDuedate']);
+				// }
+				
+				// usort($data, "sortFunction");
+				
+				// $j=0;
+				// foreach($data as $d){
+				// 	echo $data[$j]['ivb_kode']." ".$data[$j]['tanggalDuedate']."<br>";$j++;
+				// }
 			?>
 			
 			<table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
@@ -91,15 +101,13 @@
 						<th class="text-center">Rekening Investasi</th>
 						<th class="text-center">Nama Anggota</th>
 						<th class="text-center">Alamat</th>
-						<th class="text-center">Jangka Waktu</th>
-						<th class="text-center">Bunga</th>
+						<th class="text-center">Jangka | Bunga</th>
 						<th class="text-center">Total Jasa</th>
 						<th class="text-center">Jasa Ditarik</th>
 						<th class="text-center">Sisa Jasa</th>
 						<th class="text-center">Pokok</th>
 						<th class="text-center">Pokok + Sisa Jasa</th>
-						<th class="text-center">Tanggal Pendaftaran</th>
-						<th class="text-center">Tanggal Jatuh Tempo</th>
+						<th class="text-center"><initialism title="Tanggal Pendaftaran | Jatuh Tempo"><i class ="fa fa-calendar" aria-hidden="true"></i></initialism></th>
 						<th class="text-center">Wilayah</th>
 						<th class="text-center">Status</th>
 					</tr>
@@ -122,15 +130,13 @@
 						<td><?php echo $item['ivb_kode'] ?></td>
 						<td><?php echo $item['nama_ang_no'] ?></td>
 						<td><?php echo $item['alamat_ang_no'] ?></td>
-						<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
-						<td><?php echo $item['biv_id'] ," %" ?></td>
+						<td><?php echo $item['jwi_id'] , " Bulan",' | ',$item['biv_id'] ," %" ?></td>
 						<td><?php echo rupiahsimpanan($item['to_jasa']) ?></td>
 						<td><?php echo rupiahsimpanan($item['jumlahditarik'])?></td>
 						<td><?php echo rupiahsimpanan($item['sisajasa'])?></td>
 						<td><?php echo rupiahsimpanan($item['pokok']) ?></td>
 						<td><?php echo rupiahsimpanan($item['pokok']+$item['sisajasa']) ?></td>
-						<td><?php echo $item['tglpendaftaran'] ?></td>
-						<td><?php echo $item['tanggalDuedate'] ?></td>
+						<td><initialism title="Tanggal Pendaftaran | Jatuh Tempo"><?php echo $item['tglpendaftaran'],' | ',$item['tanggalDuedate'] ?></initialism></td>
 						<td><?php echo $item['wil_kode'] ?></td>
 						<td><?php echo $item['status'] ?></td> 
 						<?php
@@ -142,7 +148,6 @@
 									<td></td>
 									<td></td>
 									<td>SUB TOTAL ' . dateFormataja($item['jatuhtempo']) . '</td>
-									<td></td>
 									<td class="right">'.rupiahsimpanan($subtotal_thn).'</td>
 									<td class="right">'.rupiahsimpanan($sub_totaljasaditarik).'</td>
 									<td class="right">'.rupiahsimpanan($sub_totalsisajasa).'</td>
