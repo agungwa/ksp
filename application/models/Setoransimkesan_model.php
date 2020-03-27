@@ -87,6 +87,7 @@ class Setoransimkesan_model extends CI_Model
     // get data by sik_kode
     function get_data_setor($sik_kode)
     {
+		$this->db->where('ssk_flag <',2);
         $this->db->where('sik_kode=', $sik_kode);        
         return $this->db->get($this->table)->result();
 

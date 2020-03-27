@@ -35,7 +35,9 @@
         		<th class="text-center">Jumlah Setor</th>
         		<th class="text-center">Total Setor</th>
         		<th class="text-center">Kekurangan Setoran</th>
-        		<th class="text-center">Tanggal</th>
+                <?php if(is_allow('M_EDIT')): ?>
+        		<th class="text-center">Action</th>
+                <?php endif; ?>
             </tr>
             </thead>
 			<tbody><?php
@@ -49,11 +51,23 @@
                 ?>
                 <tr>
     			<td width="80px"><?php echo $no ?></td>
-    			<td><?php echo $setoran->ssk_tglsetoran ?></td>
-    			<td><?php echo $setoran->ssk_jmlsetor ?></td>
-    			<td><?php echo $totalsetor ?></td>
-    			<td><?php echo $kekurangan ?></td>
-    			<td><?php echo dateFormat($setoran->ssk_tgl) ?></td>
+    			<td><?php echo dateFormataja($setoran->ssk_tglsetoran) ?></td>
+    			<td><?php echo neraca($setoran->ssk_jmlsetor) ?></td>
+    			<td><?php echo neraca($totalsetor) ?></td>
+    			<td><?php echo neraca($kekurangan) ?></td>
+                <?php if(is_allow('M_EDIT')): ?>
+                <td style="text-align:center" width="200px">
+                    <div class="dropdown">
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+                            Pilih 
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php echo site_url('setoransimkesan/update/'.$setoran->ssk_id); ?>">Update</a></li>
+                            <li><a class="dropdown-item" href="<?php echo site_url('setoransimkesan/delete/'.$setoran->ssk_id); ?>">Delete</a></li>
+                        </ul>
+                    </div>
+                </td>
+                <?php endif; ?>
 		</tr>
                 
                 <?php

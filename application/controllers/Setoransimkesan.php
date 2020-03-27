@@ -222,7 +222,7 @@ class Setoransimkesan extends MY_Base
         		'ssk_tglbayar' => set_value('ssk_tglbayar', $row->ssk_tglbayar),
         		'ssk_jmlsetor' => set_value('ssk_jmlsetor', $row->ssk_jmlsetor),
         		'ssk_status' => set_value('ssk_status', $row->ssk_status),
-        	    'content' => 'backend/setoransimkesan/setoransimkesan_form',
+        	    'content' => 'backend/setoransimkesan/setoransimkesan_update',
         	    );
             $this->load->view(layout(), $data);
         } else {
@@ -233,24 +233,15 @@ class Setoransimkesan extends MY_Base
     
     public function update_action() 
     {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('ssk_id', TRUE));
-        } else {
             $data = array(
-    		'sik_kode' => $this->input->post('sik_kode',TRUE),
-    		'ssk_tglsetoran' => $this->input->post('ssk_tglsetoran',TRUE),
-    		'ssk_tglbayar' => $this->input->post('ssk_tglbayar',TRUE),
     		'ssk_jmlsetor' => $this->input->post('ssk_jmlsetor',TRUE),
-    		'ssk_status' => $this->input->post('ssk_status',TRUE),
     		'ssk_flag' => 1,
     	    );
 
             $this->Setoransimkesan_model->update($this->input->post('ssk_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('setoransimkesan'));
-        }
+            redirect(site_url('simkesan/setoransimkesan/'.$this->input->post('sik_kode',TRUE)));
+        
     }
     
     public function delete($id) 
@@ -264,20 +255,16 @@ class Setoransimkesan extends MY_Base
 
             $this->Setoransimkesan_model->update($id, $data);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('setoransimkesan'));
+            redirect(site_url('simkesan/setoransimkesan/'.$row->sik_kode));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('setoransimkesan'));
+            redirect(site_url('simkesan/setoransimkesan/'.$row->sik_kode));
         }
     }
 
     public function _rules() 
     {
 	$this->form_validation->set_rules('sik_kode', 'sik kode', 'trim|required');
-	$this->form_validation->set_rules('ssk_tglsetoran', 'ssk tglsetoran', 'trim|required');
-	$this->form_validation->set_rules('ssk_tglbayar', 'ssk tglbayar', 'trim|required');
-	$this->form_validation->set_rules('ssk_jmlsetor', 'ssk jmlsetor', 'trim|required');
-	$this->form_validation->set_rules('ssk_status', 'ssk status', 'trim|required');
 
 	$this->form_validation->set_rules('ssk_id', 'ssk_id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
