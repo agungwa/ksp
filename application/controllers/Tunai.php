@@ -16,6 +16,7 @@ class Tunai extends MY_Base
         $this->load->model('Setoransimpananwajib_model');
         $this->load->model('Penarikansimpananwajib_model');
         $this->load->model('Simpananpokok_model');
+        $this->load->model('Tunai_kasir_model');
         $this->load->model('Wilayah_model');
         $this->load->model('Lainlain_model');
         $this->load->model('Kasbon_model');
@@ -113,9 +114,9 @@ class Tunai extends MY_Base
 			'active' => $active,
 			'f' => $f,
 			't' => $t,
-			'w' => $w,
+            'w' => $w,
 		    'content' => 'backend/simpanan/rekap/rekap',
-		);
+        );
 	if($active == 2) {
         $this->load->view(layout(), $data);
 	} else if ($active == 3){
@@ -128,12 +129,5 @@ class Tunai extends MY_Base
 	}
 
     }
-
-    public function dataAll(){
-    	return $data;
-    }
-
-    public function dataRentang($f, $t){
-
-    }
+    
 }

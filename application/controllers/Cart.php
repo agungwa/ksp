@@ -73,12 +73,20 @@ class Cart extends MY_Base {
 		$empat = 4;
 		$lima = 5;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
+
 		$tanggalDuedate0 = date("Y-m", strtotime($this->tgl));
 		$tanggalDuedate1 = date("Y-m", strtotime($datetoday.' - '.$satu.' Months'));
 		$tanggalDuedate2 = date("Y-m", strtotime($datetoday.' - '.$dua.' Months'));
 		$tanggalDuedate3= date("Y-m", strtotime($datetoday.' - '.$tiga.' Months'));
 		$tanggalDuedate4 = date("Y-m", strtotime($datetoday.' - '.$empat.' Months'));
 		$tanggalDuedate5 = date("Y-m", strtotime($datetoday.' - '.$lima.' Months'));
+
+		//next months
+		$bulanberikut1 = date("Y-m", strtotime($datetoday.' + '.$satu.' Months'));
+		$bulanberikut2 = date("Y-m", strtotime($datetoday.' + '.$satu.' Months'));
+		$bulanberikut3 = date("Y-m", strtotime($datetoday.' + '.$satu.' Months'));
+		$bulanberikut4 = date("Y-m", strtotime($datetoday.' + '.$satu.' Months'));
+		$bulanberikut5 = date("Y-m", strtotime($datetoday.' + '.$satu.' Months'));
 
 		//Data Pinjaman Angsuran
 		$dataAngsuran0 = $this->Angsuranbayar_model->get_angsuran_tgl(NULL,0,$tanggalDuedate0,NULL);
@@ -152,7 +160,6 @@ class Cart extends MY_Base {
 		$pencairanPokok4 = $dataPencairan4[0]->pin_pinjaman;
 		$pencairanPokok5 = $dataPencairan5[0]->pin_pinjaman;
 
-
 		//Data Investasi
 		$dataInvestasi0 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate0,NULL);
 		$dataInvestasi1 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate1,NULL);
@@ -160,6 +167,7 @@ class Cart extends MY_Base {
 		$dataInvestasi3 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate3,NULL);
 		$dataInvestasi4 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate4,NULL);
 		$dataInvestasi5 = $this->Investasiberjangka_model->get_investasi_chart(0,$tanggalDuedate5,NULL);
+		
 		$investasi0 = $dataInvestasi0[0]->ivb_jumlah;
 		$investasi1 = $dataInvestasi1[0]->ivb_jumlah;
 		$investasi2 = $dataInvestasi2[0]->ivb_jumlah;
@@ -195,16 +203,6 @@ class Cart extends MY_Base {
 		$jasaInvestasi3 = $datajasaInvestasi3[0]->pib_jmlditerima;
 		$jasaInvestasi4 = $datajasaInvestasi4[0]->pib_jmlditerima;
 		$jasaInvestasi5 = $datajasaInvestasi5[0]->pib_jmlditerima;
-
-		//hitung simpanan karyawan
-
-		//simpanan wajib aktif
-		// $dataSimpananwajib = $this->Setoransimpananwajib_model->get_neraca_simpananwajib($datetoday,$t);
-		// $saldosimpananwajib = $dataSimpananwajib[0]->ssw_jmlsetor;
-
-		//simpanan pokok
-		// $dataSimpananpokok = $this->Simpananpokok_model->get_neraca_simpananpokok($datetoday,$t);
-		// $saldoSimpananpokok = $dataSimpananpokok[0]->sip_setoran;
 		
 		//Data simpanan aktif
 		$setoran0 = $this->Setoransimpanan_model->get_sirkulasi(NULL,NULL,$tanggalDuedate0,2);
@@ -256,7 +254,6 @@ class Cart extends MY_Base {
 		$adminPenarikan4 = round($penarikan4[0]->pes_administrasi);
 		$adminPenarikan5 = round($penarikan5[0]->pes_administrasi);
 
-
 		//total
 		//masuk
 		$masuk0 = $saldoSimpanan0 + $phPenarikan0 + $adminPenarikan0 + $angsuranPokok0 + $angsuranBunga0 + $pelunasanPokok0 + $pelunasanBunga0 + $pelunasanDenda0 + $angsuranDenda0 + $investasi0;
@@ -273,18 +270,9 @@ class Cart extends MY_Base {
 		$keluar4 = $pokokPenarikan4 + $bungaPenarikan4 + $pelunasanPokok4 + $pencairanPokok4 + $jasaInvestasi4 + $investasiTutup4;
 		$keluar5 = $pokokPenarikan5 + $bungaPenarikan5 + $pelunasanPokok5 + $pencairanPokok5 + $jasaInvestasi5 + $investasiTutup5;
 
+		//Prediksi Beban
 
-		//setoran simkesan
-		// $simkesanSaldo = $this->Setoransimkesan_model->get_setoran_simkesan(0,$datetoday);
-		// $saldoSimkesan = $simkesanSaldo[0]->ssk_jmlsetor;
-
-		//titipan simkesan
-		// $titipanSimkesan = $this->Titipansimkesan_model->get_titipan_simkesan(0,$datetoday);
-		// $saldoTitipan = $titipanSimkesan[0]->tts_jmltitip;
-		// $saldoAmbiltitipan = $titipanSimkesan[0]->tts_jmlambil;
-		
-		// end tarik simkesan otomatis
-
+		//Prediksi Masuk
 		$data = array(
 
 			//date

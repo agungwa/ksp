@@ -52,7 +52,7 @@
                             ?>
                         </span>
                         <span class="input-group-btn">
-                                    <a href="<?php echo base_url()?>Tunai/?p=3&f=<?=$f?>&w=<?=$w?>" class="btn btn-default">Print</a>
+                                    <a href="<?php echo base_url()?>Tunai/?p=3&f=<?=$f?>&w=<?=$w?>" class="btn btn-default" onclick="return confirm('Click OK jika benar menyetor tunai Rp ' + rubah($totalrekapsimpanan))">Print</a>
                         </span>
                           <button class="btn btn-primary" type="submit">Tampilkan</button>
                        

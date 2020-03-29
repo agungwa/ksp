@@ -17,6 +17,7 @@
             <label for="float"> Jumlah</label>
             <input type="number" class="form-control" name="lln_jumlah" id="searchTxt" placeholder="Jumlah" required />
         </div>
+        <?php if ($active < 6) { ?>
         <div>
             <label for="int">Wilayah</label>
             <div class="input-group">
@@ -27,6 +28,9 @@
             </div>
             </div>
         </div>
+        <?php } else if ($active == 6) { ?>
+        <input type="hidden" name="wil_kode" id="wil_kode" value=<?= NULL ?> required />
+        <?php } ?>
         <div class="form-group">
             <label for="ksb_keterangan">Keterangan</label>
             <textarea class="form-control" rows="3" name="lln_keterangan" id="lln_keterangan" placeholder="Keterangan"> </textarea>

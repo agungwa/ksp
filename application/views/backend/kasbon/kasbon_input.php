@@ -56,19 +56,19 @@
             <div class="radio radio-danger"><input type="radio" for="radio1"  checked="" value="0" name="ksb_jenis">
                                                         <label for="radio1">
                                                             Simpanan
-                                                        </label>
+                                                        </label></div>
             <div class="radio radio-danger"><input type="radio" for="radio2" value="1" name="ksb_jenis"> 
                                                         <label for="radio2">
                                                             Investasi
-                                                        </label>
+                                                        </label></div>
             <div class="radio radio-danger"><input type="radio" for="radio3" value="2" name="ksb_jenis"> 
                                                         <label for="radio3">
                                                             Simkesan
-                                                        </label>
+                                                        </label></div>
             <div class="radio radio-danger"><input type="radio" for="radio4" value="3" name="ksb_jenis"> 
                                                         <label for="radio4">
                                                              Pinjaman
-                                                        </label>
+                                                        </label></div>
         </div>
         </div>
 

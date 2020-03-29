@@ -2,7 +2,7 @@
 <?php if(is_allow('M_LAPORAN')): ?>
 
 <div class="animated fadeIn">
-        <div class="row col-md-12">
+        <div class="row col-md-6">
 
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">

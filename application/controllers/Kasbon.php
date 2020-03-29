@@ -32,6 +32,9 @@ class Kasbon extends MY_Base
             case  5:
                 $this->rekap($active);
                 break;
+            case  6:
+                $this->create();
+                break;
             default:
                 $this->listdata();
                 break;
@@ -50,8 +53,9 @@ class Kasbon extends MY_Base
             'kasbon_data' => $kasbon,
             'q' => $q,
             'start' => $start,
+            'content' => 'backend/kasbon/kasbon',
+            'item'=> 'kasbon_list.php',
             'active' => 1,
-            'content' => 'backend/kasbon/kasbon_list',
         );
         $this->load->view(layout(), $data);
     }
@@ -125,7 +129,9 @@ class Kasbon extends MY_Base
 	    'ksb_tgl' => set_value('ksb_tgl'),
 	    'ksb_flag' => set_value('ksb_flag'),
 	    'ksb_info' => set_value('ksb_info'),
-	    'content' => 'backend/kasbon/kasbon_input',
+        'content' => 'backend/kasbon/kasbon',
+        'item'=> 'kasbon_input.php',
+        'active' => 6,
 	);
         $this->load->view(layout(), $data);
     }

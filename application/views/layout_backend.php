@@ -27,9 +27,9 @@
     <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/iCheck/custom.css" rel="stylesheet">
     <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
    
-    <!--datatables-->
-    <!-- <link href="<?=base_url()?>assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/> -->
-    <link href="<?=base_url()?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/> 
+    
+    <link href="<?=base_url()?>assets/vendor/inspinia/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <!-- <link href="<?=base_url()?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css"/>  -->
 
     <script src="<?=base_url()?>assets/vendor/inspinia/js/jquery-2.1.1.js"></script>
     <script src="<?=base_url()?>assets/rupiah/my.js"></script>
@@ -445,12 +445,16 @@ lookup();
                         <a href="index.html"><i class="fa fa-money"></i> <span class="nav-label">KASIR</span>
                             <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="<?=base_url()?>kasbon">Kas Bon</a></li>
+                            <li><a href="<?=base_url()?>kasbon/create">Input Kasbon</a></li>
+                            <li>
+                                <a href="<?=base_url()?>Lainlain/setupinput/?active=6">Input Lain-lain</a>
+                            </li>
+                            <li><a href="<?=base_url()?>tunai_kasir/input_tunai">Input Tunai</a></li>
                             <!-- <li>
                                 <a href="#" id="damian">Tunai<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
-                                        <a href="<?=base_url()?>penggajianmarketing">Tunai Masuk</a>
+                                        <a href="<?=base_url()?>tunai_kasir/input_tunai">Tunai Masuk</a>
                                     </li>
                                     <li>
                                         <a href="<?=base_url()?>penggajianmarketing">Tunai Keluar</a>
@@ -625,9 +629,11 @@ lookup();
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/chartJs/Chart.min.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/toastr/toastr.min.js"></script>
     <script src="<?=base_url()?>assets/js/sf.js"></script>
-    
+
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/dataTables/datatables.min.js"></script>
+<!-- 
     <script src="<?php echo base_url().'assets/js/jquery.dataTables.min.js'?>"></script>
-    <script src="<?php echo base_url().'assets/js/dataTables.bootstrap.js'?>"></script>
+    <script src="<?php echo base_url().'assets/js/dataTables.bootstrap.js'?>"></script> -->
     
     <script>
     $(document).ready(function() {
@@ -644,7 +650,26 @@ lookup();
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('.data').DataTable();
+			$('.data').DataTable({
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    {extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    //{extend: 'pdf', title: 'ExampleFile'},
+
+                    {extend: 'print',
+                     customize: function (win){
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                    }
+                    }
+                ]}
+            );
             var table = $('.data').DataTable();
             $('#next').on( 'click', function () {
                 table.page( 'next' ).draw( 'page' );
