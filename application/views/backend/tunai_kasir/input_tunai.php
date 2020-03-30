@@ -11,6 +11,16 @@
             <label for="float">Jumlah</label>
             <input type="text" class="form-control numeric" name="tun_jumlah" id="searchTxt" required placeholder="Jumlah"/>
         </div>
+        <div class="form-group">
+            <label for="varchar">Wilayah </label>
+            <div class="input-group">
+            <input type="hidden" name="wil_kode" id="wil_kode"  required />
+            <input type="text" class="form-control" name="nm_wil_kode" id="nm_wil_kode" autocomplete="off" onkeypress="return false" placeholder="Wilayah"  required />
+            <div class="input-group-addon">
+                <span onclick="lookup('<?=base_url()?>wilayah/lookup','wil_kode');" style="cursor: pointer;">Cari</span>
+            </div>
+            </div>
+        </div>
     <div class="form-group">
             <label for="tinyint">Jenis : </label>
             

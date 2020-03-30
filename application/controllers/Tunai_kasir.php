@@ -22,6 +22,7 @@ class Tunai_kasir extends MY_Base
     public function inputtunai_action(){
         $data = array(
             'tun_jumlah' => $this->input->post('tun_jumlah',TRUE),
+            'wil_kode' => $this->input->post('wil_kode',TRUE),
             'tun_jenis' => $this->input->post('tun_jenis',TRUE),
             'tun_kantor' => $this->input->post('tun_kantor',TRUE),
             'tun_tanggal' => $this->input->post('tun_tanggal',TRUE),
