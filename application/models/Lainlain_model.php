@@ -24,7 +24,7 @@ class Lainlain_model extends CI_Model
     }
 
     // get all
-    function get_rekap($j,$i,$f,$w)
+    function get_rekap($j,$i,$now,$f,$t,$lalu,$month,$w)
     {
         if ($w == 'all' OR $w == ''){
             $where = "lln_jenis = $j AND lln_inout = $i AND lln_flag < 2";
@@ -32,8 +32,20 @@ class Lainlain_model extends CI_Model
             $where = "wil_kode = $w AND lln_jenis = $j AND lln_inout = $i AND lln_flag < 2";
         }
         $this->db->where($where);
-        if ($f != NULL){
-            $this->db->where("DATE_FORMAT(lln_tanggal, '%Y-%m-%d') = '$f'");
+        if ($now != NULL){
+            $this->db->where("DATE_FORMAT(lln_tanggal, '%Y-%m-%d') = '$now'");
+        }
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(lln_tanggal, '%Y-%m-%d') >= '$f'");
+        }
+        if ($t != NULL) {
+            $this->db->where("DATE_FORMAT(lln_tanggal, '%Y-%m-%d') <= '$t'");
+        }
+        if ($lalu != NULL) {
+            $this->db->where("DATE_FORMAT(lln_tanggal, '%Y-%m-%d') < '$lalu'");
+        }
+        if ($month != NULL) {
+            $this->db->where("DATE_FORMAT(lln_tanggal, '%Y-%m') = '$month'");
         }
         $this->db->select_sum('lln_jumlah');
         return $this->db->get($this->table)->result();

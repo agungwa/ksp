@@ -790,9 +790,12 @@ class Simkesan extends MY_Base
         $f = urldecode($this->input->get('f', TRUE)); //tgl dari
         $t = urldecode($this->input->get('t', TRUE)); //tgl ke
         $start = intval($this->input->get('start'));
-        if ($f != NULL){
-            $simkesan = $this->Simkesan_model->get_data_simkesan($plan,$w,$s,$f,$t,$start);
-        }
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+        
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+        $simkesan = $this->Simkesan_model->get_data_simkesan($plan,$w,$s,$f,$t,$start);
         $wilayah = $this->Wilayah_model->get_all();
         $plansimkesan = $this->Plansimkesan_model->get_all();
         
@@ -990,53 +993,13 @@ class Simkesan extends MY_Base
         $start = intval($this->input->get('start'));
         $satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
-		$tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
-        $n=1;
-        $simkesanAktif = $this->Simkesan_model->get_simkesan_aktif();
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+        
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+        $setoransimkesan = $this->Setoransimkesan_model->get_list_simkesan(NULL,$f,$t,$w,5,$plan);
         $plansimkesan = $this->Plansimkesan_model->get_all();
-        
         $wilayah = $this->Wilayah_model->get_all();
-        $datasetoran = array();
-        
-        if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
-        foreach ($simkesanAktif as $key => $value) {
-    		$setoransimkesan = $this->Setoransimkesan_model->get_data_setor($value->sik_kode);
-            foreach ($setoransimkesan as $k=>$item) {
-                $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
-                $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $sik_kode->psk_id))->row();
-                $ang_no = $this->db->get_where('anggota', array('ang_no' => $sik_kode->ang_no))->row();
-
-                //$wil_kode = $sim_kode->wil_kode;
-                $tanggalDuedate = $item->ssk_tglsetoran;
-                $f = date("Y-m-d", strtotime($f));
-                $t = date("Y-m-d", strtotime($t));
-
-                if (
-                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $w=='all' && $plan=='all')|| 
-                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w && $plan == 'all') ||
-                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && 'all' == $w && $plan == $sik_kode->psk_id) ||
-                    ($tanggalDuedate >= $f && $tanggalDuedate <= $t && $sik_kode->wil_kode == $w && $plan == $sik_kode->psk_id)
-                    ) {
-                    $datasetoran[$n] = array(
-                    'ssk_id' => $item->ssk_id,
-                    'sik_kode' => $item->sik_kode,
-                    'psk_plan' => $psk_id->psk_plan,
-                    'nama_anggota' => $ang_no->ang_nama,
-                    'wil_kode' => $sik_kode->wil_kode,
-                    'psk_id' => $sik_kode->psk_id,
-                    'ssk_tglsetoran' => $item->ssk_tglsetoran,
-                    'ssk_jmlsetor' => $item->ssk_jmlsetor,
-                    'ssk_tgl' => $item->ssk_tgl,
-                    'ssk_flag' => $item->ssk_flag,
-                    'ssk_info' => $item->ssk_info,
-                    );
-                    $n++;
-                    
-                }
-            }
-        }
         $data = array(
-            'datasetoran' => $datasetoran,
             'plansimkesan_data' => $plansimkesan,
             'setoransimkesan_data' => $setoransimkesan,
             'wilayah_data' => $wilayah,

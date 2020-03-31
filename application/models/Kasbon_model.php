@@ -38,17 +38,27 @@ class Kasbon_model extends CI_Model
         return $this->db->get($this->table)->row();
     }
     // get data tunai
-    function get_tunai($j,$w,$f)
+    function get_tunai($j,$w,$now,$lalu,$f,$t,$month)
     {
-        if($w == 'all' OR $w == ''){
-            $where = "ksb_jenis = $j AND ksb_flag < 2";
-        } else {
-            $where = "wil_kode = $w AND ksb_jenis = $j AND ksb_flag < 2";
+        if ($w != NULL) {
+            $this->db->where("wil_kode = $w AND ksb_jenis = $j");
         }
-        $this->db->where($where);
-        if($f != NULL){
-            $this->db->where("DATE_FORMAT(ksb_tanggal, '%Y-%m-%d') = '$f'");
+        if ($now != NULL){
+            $this->db->where("DATE_FORMAT(ksb_tanggal, '%Y-%m-%d') = '$now'");
         }
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(ksb_tanggal, '%Y-%m-%d') >= '$f'");
+        }
+        if ($t != NULL) {
+            $this->db->where("DATE_FORMAT(ksb_tanggal, '%Y-%m-%d') <= '$t'");
+        }
+        if ($lalu != NULL) {
+            $this->db->where("DATE_FORMAT(ksb_tanggal, '%Y-%m-%d') < '$lalu'");
+        }
+        if ($month != NULL) {
+            $this->db->where("DATE_FORMAT(ksb_tanggal, '%Y-%m') = '$month'");
+        }
+        $this->db->where("ksb_flag < 2");
         $this->db->select_sum('ksb_masuk');
         $this->db->select_sum('ksb_keluar');
         return $this->db->get($this->table)->result();

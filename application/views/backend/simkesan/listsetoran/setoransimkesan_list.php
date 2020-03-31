@@ -24,7 +24,7 @@
                     ?>
                 </select>
                 <select class="form-control col-md-2" name="plan">
-                    <option value="all">Semua Plan</option>
+                    <option value="<?= NULL ?>">Semua Plan</option>
                     <?php
                         foreach ($plansimkesan_data as $value) { ?>
                             <option value="<?= $value->psk_id?>"><?= $value->psk_plan?></option>
@@ -68,17 +68,20 @@
             </thead>
             <tbody><?php
             $total = 0;
-            foreach ($datasetoran as $k => $item)
+            foreach ($setoransimkesan_data as $item)
             {
-                $total += $item['ssk_jmlsetor'];
+                $sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $item->sik_kode))->row();
+                $ang_no = $this->db->get_where('anggota', array('ang_no' => $sik_kode->ang_no))->row();
+                $plan_id = $this->db->get_where('plansimkesan', array('psk_id' => $sik_kode->psk_id))->row();
+                $total += $item->ssk_jmlsetor;
                 ?>
                 <tr>
 					<td width="80px"><?php echo ++$start ?></td>
-					<td><?php echo $item['sik_kode'] ?></td>
-					<td><?php echo $item['nama_anggota'] ?></td>
-					<td><?php echo $item['psk_plan'] ?></td>
-					<td><?php echo $item['ssk_tglsetoran'] ?></td>
-					<td><?php echo neraca($item['ssk_jmlsetor']) ?></td>
+					<td><?php echo $item->sik_kode ?></td>
+					<td><?php echo $ang_no->ang_nama ?></td>
+					<td><?php echo $plan_id->psk_plan ?></td>
+					<td><?php echo $item->ssk_tglsetoran ?></td>
+					<td><?php echo neraca($item->ssk_jmlsetor) ?></td>
 				</tr>
                 <?php
             }

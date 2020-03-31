@@ -26,7 +26,11 @@ table#04 {
         <table id="02">
             <tbody>
             <tr>
-                <td width="500">Setoran Simpanan Masuk</td>
+                <td width="500">Kabon</td>
+				<td><?= neraca($ksbs);?></td>
+            </tr>
+            <tr>
+                <td>Setoran Simpanan Masuk</td>
 				<td><?= neraca($saldosimpanan);?></td>
             </tr>
             <tr>

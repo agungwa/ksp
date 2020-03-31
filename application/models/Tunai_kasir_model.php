@@ -29,6 +29,24 @@ class Tunai_kasir_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+	function get_kasir($f,$t,$lalu,$month){
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(tun_tanggal, '%Y-%m-%d') >= '$f'");
+        }
+        if ($t != NULL) {
+            $this->db->where("DATE_FORMAT(tun_tanggal, '%Y-%m-%d') <= '$t'");
+        }
+        if ($lalu != NULL) {
+            $this->db->where("DATE_FORMAT(tun_tanggal, '%Y-%m-%d') < '$lalu'");
+        }
+        if ($month != NULL) {
+            $this->db->where("DATE_FORMAT(tun_tanggal, '%Y-%m') = '$month'");
+        }
+        $this->db->where('tun_flag < 2');
+        $this->db->select_sum('tun_jumlah');
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows($q = NULL) {

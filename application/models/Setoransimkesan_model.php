@@ -32,7 +32,34 @@ class Setoransimkesan_model extends CI_Model
 		$this->db->where('ssk_flag <',2);
 		$this->db->where('sik_kode =', $rekening);
 		return $this->db->get($this->table)->row();
-	}
+    }	
+    
+    //list setoran
+    function get_list_simkesan($today,$f,$t,$w,$s,$plan){
+        $this->db->join('simkesan', 'simkesan.sik_kode = setoransimkesan.sik_kode', 'right');
+        if ($w == 'all' OR $w == ''){
+            $where = "sik_status < $s AND sik_flag < 2";
+         } else {
+            $where = "wil_kode = $w AND sik_status < $s AND sik_flag < 2";
+        }
+        $this->db->where($where);
+        if ($plan !=NULL){
+            $this->db->where("psk_id = $plan"); 
+        }
+        $this->db->where($where);
+        if ($f != NULL) {
+            $this->db->where("DATE_FORMAT(ssk_tglsetoran, '%Y-%m-%d') >= '$f'");
+        }
+        if ($t != NULL) {
+            $this->db->where("DATE_FORMAT(ssk_tglsetoran, '%Y-%m-%d') <= '$t'");
+        }
+        if ($today != NULL) {
+            $this->db->where("DATE_FORMAT(ssk_tglsetoran, '%Y-%m-%d') = '$today'");
+        }
+		$this->db->where('sik_flag < 2');
+        //$this->db->select_sum('ssk_jmlsetor');
+        return $this->db->get($this->table)->result();
+    }
     
 	// get by simkesan kode hitung
 	function get_setoran_simkesan($status,$tgl){

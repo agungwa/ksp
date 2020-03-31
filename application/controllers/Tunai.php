@@ -35,10 +35,10 @@ class Tunai extends MY_Base
                 $this->simpanan($active);
                 break;
             case  4:
-                $this->rekap($active);
+                $this->datatunai($active);
                 break;
             case  5:
-                $this->rekap($active);
+                $this->datatunai($active);
                 break;
             default:
                 $this->listdata();
@@ -72,14 +72,14 @@ class Tunai extends MY_Base
 
 			//Lain Lain simpanan
 				//masuk
-			$lainsm = $this->Lainlain_model->get_rekap(0,0,$f,$w);
+			$lainsm = $this->Lainlain_model->get_rekap(0,0,$f,NULL,NULL,NULL,NULL,$w);
 			$lsm = $lainsm[0]->lln_jumlah;
 				//keluar
-			$lainsk = $this->Lainlain_model->get_rekap(0,1,$f,$w);
+			$lainsk = $this->Lainlain_model->get_rekap(0,1,$f,NULL,NULL,NULL,NULL,$w);
             $lsk = $lainsk[0]->lln_jumlah;
             
             //Kasbon simpanan
-            $kasbonsimpanan = $this->Kasbon_model->get_tunai(0,$w,$f);
+            $kasbonsimpanan = $this->Kasbon_model->get_tunai(0,$w,$f,NULL,NULL,NULL,NULL);
             $ksbs = $kasbonsimpanan[0]->ksb_masuk;
 		
 			//hitung saldo simpanan aktif kini
@@ -128,6 +128,88 @@ class Tunai extends MY_Base
         $mpdf->Output('rekapsimpanan.pdf','D'); // it downloads the file into the user system, with give name
 	}
 
+    }
+
+    public function datatunai($active){
+        
+    	$f = urldecode($this->input->get('f', TRUE)); //dari tgl
+        $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+
+    	if ($f<>'' && $t<>'') {	
+        	$f = date("Y-m-d", strtotime($f));
+            $t = date("Y-m-d", strtotime($t));
+        }
+        if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+        
+        //tunai lalu
+        $tunailalu = 0;
+        $lainmasuklalu = 0;
+        $lainkeluarlalu = 0;
+        $kasbonlalu = 0;
+        $biayalalu = 0;
+        //tunai masuk
+        $tunaikini = 0;
+        $lainmasuk = 0;
+        //tunai keluar
+        $lainkeluar = 0;
+        $kasbonkini = 0;
+        $biayakini = 0;
+
+        $tunaiLalu = $this->Tunai_kasir_model->get_kasir(NULL,NULL,$f,NULL);
+        $tunailalu = $tunaiLalu[0]->tun_jumlah;
+
+        $tunaiKini = $this->Tunai_kasir_model->get_kasir($f,$t,NULL,NULL);
+        $tunaikini = $tunaiKini[0]->tun_jumlah;
+
+        $lainMasuklalu = $this->Lainlain_model->get_rekap(4,0,NULL,NULL,NULL,$f,NULL,NULL);
+        $lainmasuklalu = $lainMasuklalu[0]->lln_jumlah;
+
+        $lainKeluarlalu = $this->Lainlain_model->get_rekap(4,1,NULL,NULL,NULL,$f,NULL,NULL);
+        $lainkeluarlalu = $lainKeluarlalu[0]->lln_jumlah;
+
+        $lainMasuk = $this->Lainlain_model->get_rekap(4,0,NULL,$f,$t,NULL,NULL,NULL);
+        $lainmasuk = $lainMasuk[0]->lln_jumlah;
+
+        $lainKeluar = $this->Lainlain_model->get_rekap(4,1,NULL,$f,$t,NULL,NULL,NULL);
+        $lainkeluar = $lainKeluar[0]->lln_jumlah;
+
+        $kasbonLalu = $this->Kasbon_model->get_tunai(NULL,NULL,NULL,$f,NULL,NULL,NULL);
+        $kasbonlalu = $kasbonLalu[0]->ksb_keluar;
+
+        $kasbonKini = $this->Kasbon_model->get_tunai(NULL,NULL,NULL,NULL,$f,$t,NULL);
+        $kasbonkini = $kasbonKini[0]->ksb_keluar;
+
+        $datakasirlalu = $tunailalu + $lainmasuklalu - $lainkeluarlalu - $kasbonlalu - $biayalalu;
+        $datakasirmasuk = $tunaikini + $lainmasuk;
+        $datakasirkeluar = $lainkeluar + $kasbonkini + $biayakini;
+        $datakasirkini = $datakasirlalu + $datakasirmasuk - $datakasirkeluar;
+
+        $data = array(
+			'tunailalu' => $tunailalu,
+            'lainmasuklalu' => $lainmasuklalu,
+            'lainkeluarlalu' => $lainkeluarlalu,
+			'kasbonlalu' => $kasbonlalu,
+			'biayalalu' => $biayalalu,
+			'tunaikini' => $tunaikini,
+			'lainmasuk' => $lainmasuk,
+			'lainkeluar' => $lainkeluar,
+            'kasbonkini' => $kasbonkini,
+			'biayakini' => $biayakini,
+			'datakasirlalu' => $datakasirlalu,
+			'datakasirmasuk' => $datakasirmasuk,
+			'datakasirkeluar' => $datakasirkeluar,
+			'datakasirkini' => $datakasirkini,
+			'f' => $f,
+			't' => $t,
+			'active' => $active,
+		    'content' => 'backend/tunai/index',
+        );
+        $this->load->view(layout(), $data);
+
+        
     }
     
 }

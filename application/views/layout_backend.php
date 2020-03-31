@@ -450,6 +450,7 @@ lookup();
                                 <a href="<?=base_url()?>Lainlain/setupinput/?active=6">Input Lain-lain</a>
                             </li>
                             <li><a href="<?=base_url()?>tunai_kasir/input_tunai">Input Tunai</a></li>
+                            <li><a href="<?=base_url()?>Tunai/?p=4">KAS</a></li>
                             <!-- <li>
                                 <a href="#" id="damian">Tunai<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">

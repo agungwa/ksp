@@ -106,8 +106,6 @@ class Printsimpanan extends MY_Base
         $w = urldecode($this->input->get('w', TRUE)); //wilayah
         $f = urldecode($this->input->get('f', TRUE)); //dari tgl
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
-        $start = intval($this->input->get('start'));
-        
         $satu = 1;
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
         $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
@@ -115,7 +113,7 @@ class Printsimpanan extends MY_Base
         
 		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
     	
-        $setoransimpanan = $this->Setoransimpanan_model->get_listsetoran($f,$t,$w,0);
+        $setoransimpanan = $this->Setoransimpanan_model->get_listsetoran($f,$t,$w,2);
     
         $data = array(
             'setoransimpanan' => $setoransimpanan,
@@ -124,7 +122,6 @@ class Printsimpanan extends MY_Base
             'w' => $w,
             'f' => $f,
             't' => $t,
-            'active' => 6,
             'content' => 'backend/simpanan/simpanan',
             'item' => 'setoransimpanan_list.php',
         );

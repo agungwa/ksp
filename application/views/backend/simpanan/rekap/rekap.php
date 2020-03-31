@@ -19,16 +19,16 @@
                 <div class="col-md-3">
                     <input class="form-control" type="date" name="f" required="required" value="<?= $f;?>">
                 </div>
-                <select class="form-control col-md-3"  name="w">
+                <select class="form-control col-md-3"  name="w" required>
                 <?php 
                 if( $w == NULL OR $w =="all"){
-                    $wil_nama = "Semua Wilayah";
+                    $wil_nama = NULL;
                 } else {
                     $wil = $this->db->get_where('wilayah', array('wil_kode' => $w))->row();
                     $wil_nama = $wil->wil_nama;
                 }
                 ?>
-                    <option value="all"><?= $wil_nama ?></option>
+                    <option value="<?php echo $w ?>"><?= $wil_nama ?></option>
                     <?php
                         foreach ($wilayah_data as $value) { ?>
                             <option value="<?= $value->wil_kode?>"><?= $value->wil_nama?></option>

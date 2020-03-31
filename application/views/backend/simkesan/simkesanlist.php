@@ -45,9 +45,6 @@
             </div>
             </form>
         </div>
-        <?php if($f != NULL){
-
-        ?>
         <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead>
             <tr>
@@ -137,12 +134,8 @@
             }
             ?>
             
-            
             </tbody>
         </table>
-        <?php 
-        }
-        ?>
         <div class="row">
             
         </div>
