@@ -12,6 +12,10 @@
                 <label for="float">Jumlah Setor</label>
                 <input type="number" class="form-control" name="ssk_jmlsetor" id="ssk_jmlsetor" placeholder="Jumlah Setor" value="<?php echo $ssk_jmlsetor ?>" />
             </div>
+    	    <div class="form-group">
+                <label for="datetime">Tanggal Setoran</label>
+                <input type="text" class="form-control date" name="ssk_tglsetoran" placeholder="Tanggal Setoran" value="<?php echo $ssk_tglsetoran ?>" />
+            </div>
             <input type="hidden" class="form-control" name="ssk_id" id="ssk_id" value="<?php echo $ssk_id ?>" />
     	    <button type="submit" class="btn btn-primary">Simpan Setoran</button> 
     	    <a href="<?php echo site_url('setoransimkesan/?p=1') ?>" class="btn btn-default hBack">kembali</a>

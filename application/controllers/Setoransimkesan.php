@@ -234,8 +234,9 @@ class Setoransimkesan extends MY_Base
     public function update_action() 
     {
             $data = array(
-    		'ssk_jmlsetor' => $this->input->post('ssk_jmlsetor',TRUE),
-    		'ssk_flag' => 1,
+                'ssk_jmlsetor' => $this->input->post('ssk_jmlsetor',TRUE),
+                'ssk_tglsetoran' => $this->input->post('ssk_tglsetoran',TRUE),
+    		    'ssk_flag' => 1,
     	    );
 
             $this->Setoransimkesan_model->update($this->input->post('ssk_id', TRUE), $data);
