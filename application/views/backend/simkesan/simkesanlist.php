@@ -56,7 +56,8 @@
 				<th width="100px">Plan</th>
 				<th>Wilayah</th>
 				<th>Tgl Daftar | Terakhir Setor</th>
-				<th>Total | Titip</th>
+				<th>Titip</th>
+				<th>Titip</th>
 				<th width="100px">Status | Diagunkan</th>
 				<th>Action</th>
 			</tr>
@@ -92,7 +93,8 @@
         			<td><?php echo $psk_id->psk_plan ?></td>
         			<td><?php echo $wil_kode->wil_nama ?></td>
         			<td><?php echo dateFormataja($simkesan->sik_tglpendaftaran),' | ',dateFormataja($terakhir->tanggal) ?></td>
-                    <td><?php echo neraca($totalsetoran[0]->ssk_jmlsetor),' | ', neraca($titipan)?></td>
+                    <td><?php echo neraca($totalsetoran[0]->ssk_jmlsetor)?></td>
+                    <td><?php echo neraca($titipan)?></td>
         			<td><?php echo $this->statusSimkesan[$simkesan->sik_status],' | ',$this->statusJaminan[$simkesan->sik_jam] ?></td>
                     <td style="text-align:center" width="200px">
                     <div class="dropdown">
