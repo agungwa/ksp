@@ -72,90 +72,99 @@
         <!--Klaim Rawat Inap -->
             <tr><td>Klaim Rawat Inap</td>
             <td>
-    <form action="<?php echo site_url('simkesan/klaimtahunkedua/'.$sik_kode); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaim/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
+                <input type="hidden" class="form-control" name="klaim" id="klaim" placeholder="klaim" value="2" required="required"/>            
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="" required="required"/>            
 	            <button type="submit" class="btn btn-primary">Klaim 2</button> 
             </div>
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('simkesan/klaimtahunketiga/'.$sik_kode); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaim/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
+                <input type="hidden" class="form-control" name="klaim" id="klaim" placeholder="klaim" value="3" required="required"/>            
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="" required="required"/>            
 	            <button type="submit" class="btn btn-primary">Klaim 3</button> 
             </div>
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('simkesan/klaimtahunkeempat/'.$sik_kode); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaim/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
+                <input type="hidden" class="form-control" name="klaim" id="klaim" placeholder="klaim" value="4" required="required"/>            
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="" required="required"/>            
 	            <button type="submit" class="btn btn-primary">Klaim 4</button> 
             </div>
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('simkesan/klaimtahunkelima/'.$sik_kode); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaim/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
+                <input type="hidden" class="form-control" name="klaim" id="klaim" placeholder="klaim" value="5" required="required"/>            
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="" required="required"/>            
 	            <button type="submit" class="btn btn-primary">Klaim 5</button> 
             </div>
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('simkesan/klaimtahunkeenam/'.$sik_kode); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaim/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
+                <input type="hidden" class="form-control" name="klaim" id="klaim" placeholder="klaim" value="6" required="required"/>            
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="" required="required"/>            
 	            <button type="submit" class="btn btn-primary">Klaim 6</button> 
             </div>
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('simkesan/klaimtahunketujuh/'.$sik_kode); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaim/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
+                <input type="hidden" class="form-control" name="klaim" id="klaim" placeholder="klaim" value="7" required="required"/>            
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="" required="required"/>            
 	            <button type="submit" class="btn btn-primary">Klaim 7</button> 
             </div>
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('simkesan/klaimtahunkedelapan/'.$sik_kode); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaim/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
+                <input type="hidden" class="form-control" name="klaim" id="klaim" placeholder="klaim" value="8" required="required"/>            
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="" required="required"/>            
 	            <button type="submit" class="btn btn-primary">Klaim 8</button> 
             </div>
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('simkesan/klaimtahunkesembilan/'.$sik_kode); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaim/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
+                <input type="hidden" class="form-control" name="klaim" id="klaim" placeholder="klaim" value="9" required="required"/>            
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="" required="required"/>            
 	            <button type="submit" class="btn btn-primary">Klaim 9</button> 
             </div>
             <?php 
 	        	?>
             </form>
-    <form action="<?php echo site_url('simkesan/klaimtahunkesepuluh/'.$sik_kode); ?>" method="post">
+    <form action="<?php echo site_url('simkesan/klaim/'.$sik_kode); ?>" method="post">
             <?php
 	        	?>
             <div class="col-md-4">
+                <input type="hidden" class="form-control" name="klaim" id="klaim" placeholder="klaim" value="10" required="required"/>            
                 <input type="hidden" class="form-control" name="pin_id" id="pin_id" placeholder="Survey" value="" required="required"/>            
 	            <button type="submit" class="btn btn-primary">Klaim 10</button> 
             </div>

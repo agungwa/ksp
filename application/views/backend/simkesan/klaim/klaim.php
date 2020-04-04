@@ -106,7 +106,7 @@
                 $no++;
             }
             ?>
-             <?php if ($this->tgl == $tanggalklaim && $totalsetor >= $totalsetorseharusnya){
+             <?php if ($this->tgl >= $tanggalklaim && $totalsetor >= $totalsetorseharusnya){
                     echo '<button type="submit" class="btn btn-primary">Tarik</button>';
                 }
                     else if ($klaim->jkl_tahunke == 0){
@@ -124,9 +124,9 @@
             <input type="hidden" class="form-control" name="ksi_jmlklaim" id="ksi_jmlklaim" placeholder="ksi_jmlklaim" value="<?php echo $klaim->jkl_nominal; ?>"/>
             <input type="hidden" class="form-control" name="ksi_administrasi" id="ksi_administrasi" placeholder="ksi_administrasi" value="<?php echo $administrasi; ?>"/>
             <input type="hidden" class="form-control" name="ksi_totalsetor" id="ksi_totalsetor" placeholder="ksi_totalsetor" value="<?php echo $totalsetor; ?>"/>
+            <input type="hidden" class="form-control" name="ksi_status" id="ksi_status" placeholder="ksi_status" value="<?php echo $k-1; ?>"/>
             <label> Total Klaim</label>
             <input type="number" class="form-control" name="ksi_jmlditerima" id="ksi_jmlditerima" placeholder="ksi_jmlditerima" value="<?php echo $jumlahditerima; ?>" readonly/>
-           
             <label> Jumlah Tunggakan (jika ada)</label>
             <input type="number" class="form-control" name="ksi_jmltunggakan" id="ksi_jmltunggakan" placeholder="Optional" value="<?= $tunggakan?>" readonly/>
         
