@@ -204,46 +204,46 @@ class Backend extends MY_Base {
 
 
 		// tarik simkesan otomatis
-		$datenow = date('Y-m-d');
-		$dateTime = date("Y-m-d H:i:s");
-		$SATU = 1;
+		// $datenow = date('Y-m-d');
+		// $dateTime = date("Y-m-d H:i:s");
+		// $SATU = 1;
 		
-		$simkesan = $this->Simkesan_model->get_all();
-		foreach($simkesan as $key=>$item){
-			$rekening = $item->sik_kode;
+		// $simkesan = $this->Simkesan_model->get_all();
+		// foreach($simkesan as $key=>$item){
+		// 	$rekening = $item->sik_kode;
 			
-			$setoransimkesan = $this->Setoransimkesan_model->get_last_setor($rekening);
-			$jatuhTempo = date("Y-m-d", strtotime($setoransimkesan->ssk_tglsetoran.' + '.$SATU.'month'));
+		// 	$setoransimkesan = $this->Setoransimkesan_model->get_last_setor($rekening);
+		// 	$jatuhTempo = date("Y-m-d", strtotime($setoransimkesan->ssk_tglsetoran.' + '.$SATU.'month'));
 			
-			if($datenow >= $jatuhTempo){
-				$tts_jmltitip = $this->Titipansimkesan_model->get_totaltitipan1($rekening);
-				$tts_jmlambil = $this->Titipansimkesan_model->get_totalambil1($rekening);
-				if(($tts_jmltitip->tts_jmltitip - $tts_jmlambil->tts_jmlambil) > 0){
-					$ambilTitipan = $tts_jmltitip->tts_jmltitip;
+		// 	if($datenow >= $jatuhTempo){
+		// 		$tts_jmltitip = $this->Titipansimkesan_model->get_totaltitipan1($rekening);
+		// 		$tts_jmlambil = $this->Titipansimkesan_model->get_totalambil1($rekening);
+		// 		if(($tts_jmltitip->tts_jmltitip - $tts_jmlambil->tts_jmlambil) > 0){
+		// 			$ambilTitipan = $tts_jmltitip->tts_jmltitip;
 					
-					$insertSetoran = array(
-						'sik_kode' => $rekening,
-						'ssk_tglsetoran' => $dateTime,
-						'ssk_tglbayar' => $dateTime,
-						'ssk_jmlsetor' => $ambilTitipan,
-						'ssk_tgl' => $dateTime
-					);
-					$this->Setoransimkesan_model->insert($insertSetoran);
+		// 			$insertSetoran = array(
+		// 				'sik_kode' => $rekening,
+		// 				'ssk_tglsetoran' => $dateTime,
+		// 				'ssk_tglbayar' => $dateTime,
+		// 				'ssk_jmlsetor' => $ambilTitipan,
+		// 				'ssk_tgl' => $dateTime
+		// 			);
+		// 			$this->Setoransimkesan_model->insert($insertSetoran);
 					
-					$insertTitipan = array(
-						'sik_kode' => $rekening,
-						'tts_tgltitip' => $dateTime,
-						'tts_jmlambil' => $ambilTitipan,
-						'tts_tgl' => $dateTime,
-					);
-					$this->Titipansimkesan_model->insert($insertTitipan);
+		// 			$insertTitipan = array(
+		// 				'sik_kode' => $rekening,
+		// 				'tts_tgltitip' => $dateTime,
+		// 				'tts_jmlambil' => $ambilTitipan,
+		// 				'tts_tgl' => $dateTime,
+		// 			);
+		// 			$this->Titipansimkesan_model->insert($insertTitipan);
 					// echo "SETORAN <br>";
 					// var_dump($insertSetoran);echo "<br>";
 					// echo "TITIPAN <br>";
 					// var_dump($insertTitipan);echo "<br><br><br>";
-				}
-			}
-		}
+		// 		}
+		// 	}
+		// }
 		
 		// end tarik simkesan otomatis
 
