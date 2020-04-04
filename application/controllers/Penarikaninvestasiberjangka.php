@@ -350,13 +350,6 @@ class Penarikaninvestasiberjangka extends MY_Base
         $t = urldecode($this->input->get('t', TRUE)); //smpai tgl
         $start = intval($this->input->get('start'));
         
-       /* if ($q <> '') {
-            $config['base_url'] = base_url() . 'penarikaninvestasiberjangka/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'penarikaninvestasiberjangka/index.html?q=' . urlencode($q);
-        } else {
-            $config['base_url'] = base_url() . 'penarikaninvestasiberjangka/index.html';
-            $config['first_url'] = base_url() . 'penarikaninvestasiberjangka/index.html';
-        } */
 
         $penarikaninvestasiberjangka = $this->Penarikaninvestasiberjangka_model->get_limit_data($start, $q, $f, $t);
 		
@@ -507,11 +500,10 @@ class Penarikaninvestasiberjangka extends MY_Base
                 'action' => site_url('penarikaninvestasiberjangka/update_action'),
 		'pib_id' => set_value('pib_id', $row->pib_id),
 		'ivb_kode' => set_value('ivb_kode', $row->ivb_kode),
-		'nm_ivb_kode' => set_value('ivb_kode', $row->nm_ivb_kode),
 		'pib_penarikanke' => set_value('pib_penarikanke', $row->pib_penarikanke),
-		'pib_jmlkeuntungan' => set_value('pib_jmlkeuntungan', $row->pib_jmlkeuntungan),
 		'pib_jmlditerima' => set_value('pib_jmlditerima', $row->pib_jmlditerima),
-	    'content' => 'backend/penarikaninvestasiberjangka/penarikaninvestasiberjangka_form',
+		'pib_tgl' => set_value('pib_tgl', $row->pib_tgl),
+	    'content' => 'backend/penarikaninvestasiberjangka/penarikan_update',
 	    );
             $this->load->view(layout(), $data);
         } else {
@@ -522,23 +514,18 @@ class Penarikaninvestasiberjangka extends MY_Base
     
     public function update_action() 
     {
-        $this->_rules();
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('pib_id', TRUE));
-        } else {
+        
             $data = array(
 		'ivb_kode' => $this->input->post('ivb_kode',TRUE),
 		'pib_penarikanke' => $this->input->post('pib_penarikanke',TRUE),
-		'pib_jmlkeuntungan' => $this->input->post('pib_jmlkeuntungan',TRUE),
 		'pib_jmlditerima' => $this->input->post('pib_jmlditerima',TRUE),
+		'pib_tgl' => $this->input->post('pib_tgl',TRUE),
 		'pib_flag' => 1,
 	    );
-
             $this->Penarikaninvestasiberjangka_model->update($this->input->post('pib_id', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('penarikaninvestasiberjangka'));
-        }
+        
     }
     
     public function delete($id) 

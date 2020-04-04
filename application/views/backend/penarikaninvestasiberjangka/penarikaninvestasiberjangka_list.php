@@ -52,11 +52,13 @@
 				<th class="text-center">Rekening Investasi</th>
 				<th class="text-center">Nama</th>
 				<th class="text-center">Alamat</th>
-				<th class="text-center">Nomor Hp</th>
 				<th class="text-center">Penarikan ke</th>
 				<th class="text-center">Jumlah Keuntungan</th>
 				<th class="text-center">Jumlah Diterima</th>
 				<th class="text-center">Tanggal</th>
+                <?php if(is_allow('M_EDIT')): ?>
+				<th class="text-center">Action</th>
+                <?php endif; ?>
             </tr>
             </thead>
 			
@@ -67,11 +69,23 @@
 						<td><?php echo $item['ivb_kode'] ?></td>
 						<td><?php echo $item['nama_ang_no'] ?></td>
 						<td><?php echo $item['alm_ang_no'] ?></td>
-						<td><?php echo $item['hp_ang_no'] ?></td>
 						<td><?php echo $item['pib_penarikanke'] ?></td>
 						<td><?php echo rupiahsimpanan($item['pib_jmlkeuntungan']) ?></td>
 						<td><?php echo rupiahsimpanan($item['pib_jmlditerima']) ?></td>
 						<td><?php echo $item['pib_tgl'] ?></td>
+                        <?php if(is_allow('M_EDIT')): ?>
+						<td>
+                        <div class="dropdown">
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button">
+                            Pilih 
+                        <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="<?php echo site_url('penarikaninvestasiberjangka/update/'.$item['pib_id']); ?>">Update</a></li>
+                            <li><a class="dropdown-item" href="<?php echo site_url('penarikaninvestasiberjangka/delete/'.$item['pib_id']); ?>">Delete</a></li>
+                            </ul>
+                    </div>
+                        </td>
+                        <?php endif; ?>
 					</tr>
 				<?php }?>
             </tbody>
