@@ -23,6 +23,8 @@
 	    <tr><td>Estimasi Pokok</td><td><?php echo 'Rp ',number_format($setor_psk_id*60, 0, ".", ".")," | Potensi Pengembangan : Rp ",number_format($setor_psk_id*60*5/3, 0, ".", "."); ?></td></tr>
 	    <tr><td>Tanggal Berakhir</td><td><?php echo $sik_tglberakhir; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $this->statusSimkesan[$sik_status]; ?></td></tr>
+        <?php if ($sik_status == 0){
+            ?>
         <tr>
         <td>
         <td><form action="<?php echo site_url('simkesan/setoransimkesan/'.$sik_kode); ?>" method="post">
@@ -172,6 +174,9 @@
 	        	?>
             </form>
             </td></tr>
+            <?php
+        }
+        ?>
     <tr><td></td><td><a href="<?php echo site_url('simkesan/?p=2') ?>" class="btn btn-default hBack">Batal</a> </td></tr>
 	</table>
     <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
