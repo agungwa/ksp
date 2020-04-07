@@ -261,7 +261,6 @@ class Simkesan extends MY_Base
         $row = $this->Simkesan_model->get_by_id($id);
         $setoran = $this->Setoransimkesan_model->get_data_setor($id);
         $k =  $this->input->post('klaim',TRUE);
-        var_dump($k);
         $tahun = 5;
         $tahun10 = 10;
         if ($row) { 
@@ -341,10 +340,15 @@ class Simkesan extends MY_Base
     public function klaim_action()
         {
             //insert data klaim
+        $tanggal = $this->input->post('ksi_tglklaim',TRUE);
+        
+        if ($tanggal == NULL){
+            $tanggal = $this->tgl;
+        }
         $dataKlaim = array(
     		'sik_kode' => $this->input->post('sik_kode',TRUE),
     		'jkl_id' => $this->input->post('jkl_id',TRUE),
-    		'ksi_tglklaim' => $this->tgl,
+    		'ksi_tglklaim' => $tanggal,
             'ksi_totalsetor' => $this->input->post('ksi_totalsetor',TRUE),
             'ksi_jmlklaim' => $this->input->post('ksi_jmlklaim',TRUE),
     		'ksi_jmltunggakan' => $this->input->post('ksi_jmltunggakan',TRUE),

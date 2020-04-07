@@ -82,15 +82,29 @@
             $no=1;
             foreach ($klaim_data as $klaim)
             {
-            $tahunklaim=$klaim->jkl_tahunke-1;
-            $bulanklaim=($klaim->jkl_tahunke*12)-11;
-            $totalsetorseharusnya=$bulanklaim*$setor_psk_id;
-            $tunggakan=$totalsetorseharusnya-$totalsetor;
-            $tanggalklaim = date("Y-m-d", strtotime($sik_tglpendaftaran.' + '.$tahunklaim.' Years'));            
-            $administrasi = $klaim->jkl_nominal*$klaim->jkl_administrasi/100;
-            $jumlahditerima = $klaim->jkl_nominal - $administrasi;
-            $jkl_plan = $this->db->get_where('plansimkesan', array('psk_id' => $klaim->jkl_plan))->row();
-                ?>
+
+                $date11 = new DateTime($sik_tglpendaftaran);
+                $date21 = new DateTime();
+                
+                $diff1 = $date11->diff($date21);
+                $selisih1 = (($diff1->format('%y') * 12) + $diff1->format('%m'))+1;
+                $selisihjt1 = (($diff1->format('%y') * 12) + $diff1->format('%m'));
+                $harusbayar = $selisihjt1 * $setor_psk_id;
+
+                $tahunklaim=$klaim->jkl_tahunke-1;
+                $bulanklaim=($klaim->jkl_tahunke*12)-11;
+                $totalsetorseharusnya=$bulanklaim*$setor_psk_id;
+                if ($selisih1 < $bulanklaim) {
+                $tunggakan=$totalsetorseharusnya-$totalsetor;
+                } else if ($selisih1 > $bulanklaim) {
+                $tunggakan = $harusbayar - $totalsetor;
+                }
+
+                $tanggalklaim = date("Y-m-d", strtotime($sik_tglpendaftaran.' + '.$tahunklaim.' Years'));            
+                $administrasi = $klaim->jkl_nominal*$klaim->jkl_administrasi/100;
+                $jumlahditerima = $klaim->jkl_nominal - $administrasi;
+                $jkl_plan = $this->db->get_where('plansimkesan', array('psk_id' => $klaim->jkl_plan))->row();
+            ?>
                 <tr>
                 <td width="80px"><?php echo $no ?></td>
 			<td><?php echo $tunggakan ?></td>
@@ -106,12 +120,9 @@
                 $no++;
             }
             ?>
-             <?php if ($this->tgl >= $tanggalklaim && $totalsetor >= $totalsetorseharusnya){
+             <?php if ($this->tgl >= $tanggalklaim){
                     echo '<button type="submit" class="btn btn-primary">Tarik</button>';
-                }
-                    else if ($klaim->jkl_tahunke == 0){
-                    echo '<button type="submit" class="btn btn-primary">Tarik</button>';
-                    }     
+                }     
                     else if ($this->tgl < $tanggalklaim && $totalsetor < $totalsetorseharusnya){
                     echo '<td class = "danger">Belum Bisa Tarik Simkesan </td>
                     <td class = "danger">Tangggal Klaim '.$tanggalklaim.' </td>
@@ -129,7 +140,10 @@
             <input type="number" class="form-control" name="ksi_jmlditerima" id="ksi_jmlditerima" placeholder="ksi_jmlditerima" value="<?php echo $jumlahditerima; ?>" readonly/>
             <label> Jumlah Tunggakan (jika ada)</label>
             <input type="number" class="form-control" name="ksi_jmltunggakan" id="ksi_jmltunggakan" placeholder="Optional" value="<?= $tunggakan?>" readonly/>
-        
+            <?php if(is_allow('M_EDIT')): ?>
+            <label> Tanggal Klaim</label>
+            <input type="date" class="form-control" name="ksi_tglklaim" id="todays-date" placeholder="tanggal" value="<?= $tunggakan?>"/>
+            <?php endif ?>
             </div>
             </tbody>
         </table>

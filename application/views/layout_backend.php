@@ -632,10 +632,7 @@ lookup();
     <script src="<?=base_url()?>assets/js/sf.js"></script>
 
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/dataTables/datatables.min.js"></script>
-<!-- 
-    <script src="<?php echo base_url().'assets/js/jquery.dataTables.min.js'?>"></script>
-    <script src="<?php echo base_url().'assets/js/dataTables.bootstrap.js'?>"></script> -->
-    
+
     <script>
     $(document).ready(function() {
 

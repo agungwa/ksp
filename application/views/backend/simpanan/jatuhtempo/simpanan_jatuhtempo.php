@@ -98,8 +98,7 @@
             <tr>
                 <th class="text-center">No</th>
 				<th class="text-center">Kode Simpanan</th>
-				<th class="text-center">Kode Anggota</th>
-				<th class="text-center">Nama Anggota</th>
+				<th class="text-center">Kode | Nama Anggota</th>
 				<th class="text-center">Alamat Anggota</th>
 				<th class="text-center">Karyawan</th>
 				<th class="text-center">Jenis Simpanan</th>
@@ -123,8 +122,7 @@
                 <tr>
                     <td width="80px"><?php echo ++$start ?></td>
                     <td><?php echo $item['sim_kode'] ?></td>
-                    <td><?php echo $item['ang_no'] ?></td>
-                    <td><?php echo $item['ang_nama'] ?></td>
+                    <td><?php echo $item['ang_no']." | ".$item['ang_nama'] ?></td>
                     <td><?php echo $item['ang_alamat'] ?></td>
                     <td><?php echo $item['kar_nama'] ?></td>
                     <td><?php echo $item['jsi_simpanan'] ?></td>
