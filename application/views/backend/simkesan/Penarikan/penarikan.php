@@ -95,9 +95,9 @@
                 ?>
               <td width="80px"><?php echo $no ?></td>
 			<td><?php echo $penarikan_data->jps_jenis ?></td>
-			<td><?php echo 'Rp ',number_format($administrasi, 0, ".", ".") ?></td>
-			<td><?php echo 'Rp ',number_format($pengembangan, 0, ".", ".") ?></td>
-			<td class="success"><?php echo 'Rp ',number_format($totalpenarikan, 0, ".", ".") ?></td>
+			<td><?php echo neraca($administrasi) ?></td>
+			<td><?php echo neraca($pengembangan) ?></td>
+			<td class="success"><?php echo neraca($totalpenarikan) ?></td>
 		</tr>
                 
             </tbody>

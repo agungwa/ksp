@@ -19,8 +19,8 @@
 	    <tr><td>Plan Simkesan</td><td><?php echo $psk_id; ?></td></tr>
 	    <tr><td>Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
 	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $sik_tglpendaftaran," | Estimasi Berakhir : ",$estimasi_berakhir," | Estimasi Pengembangan : ",$estimasi_pengembangan; ?></td></tr>
-	    <tr><td>Setoran Perbulan</td><td><?php echo 'Rp ',number_format($setor_psk_id, 0, ".", "."); ?></td></tr>
-	    <tr><td>Estimasi Pokok</td><td><?php echo 'Rp ',number_format($setor_psk_id*60, 0, ".", ".")," | Potensi Pengembangan : Rp ",number_format($setor_psk_id*60*5/3, 0, ".", "."); ?></td></tr>
+	    <tr><td>Setoran Perbulan</td><td><?php echo neraca($setor_psk_id); ?></td></tr>
+	    <tr><td>Estimasi Pokok</td><td><?php echo neraca($setor_psk_id*60)," | Potensi Pengembangan : ",neraca($setor_psk_id*60*5/3); ?></td></tr>
 	    <tr><td>Tanggal Berakhir</td><td><?php echo $sik_tglberakhir; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $this->statusSimkesan[$sik_status]; ?></td></tr>
     <tr><td></td><td><a href="<?php echo site_url('simkesan/read/'.$sik_kode) ?>" class="btn btn-default">Batal</a> </td></tr>
@@ -105,15 +105,21 @@
                 $jumlahditerima = $klaim->jkl_nominal - $administrasi;
                 $jkl_plan = $this->db->get_where('plansimkesan', array('psk_id' => $klaim->jkl_plan))->row();
             ?>
+            <?php 
+            
+            $datetime1 = new DateTime('2019-10-1');
+            $datetime2 = new DateTime('2019-12-1');
+            $interval = $datetime1->diff($datetime2);
+            echo $harusbayar ," ", $interval->format('%m') ?>
                 <tr>
                 <td width="80px"><?php echo $no ?></td>
 			<td><?php echo $tunggakan ?></td>
 			<td><?php echo $klaim->jkl_keuntungan ?></td>
 			<td><?php echo $jkl_plan->psk_plan?></td>
 			<td><?php echo $klaim->jkl_tahunke ?></td>
-			<td><?php echo "Rp ",$klaim->jkl_nominal ?></td>
-			<td><?php echo "Rp ",$administrasi ?></td>
-			<td><?php echo "Rp ",$jumlahditerima?></td>
+			<td><?php echo neraca($klaim->jkl_nominal) ?></td>
+			<td><?php echo neraca($administrasi) ?></td>
+			<td><?php echo neraca($jumlahditerima)?></td>
 		</tr>
                 
                 <?php

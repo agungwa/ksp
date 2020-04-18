@@ -627,7 +627,9 @@ lookup();
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/jasny/jasny-bootstrap.min.js"></script>
 
     <!-- ChartJS-->
-    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/chartJs/Chart.min.js"></script>
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/chartJs/v2-9-3/dist/Chart.min.js"></script>
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/chartJs/v2-9-3/dist/Chart.js"></script>
+    <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/chartJs/v2-9-3/util/utils.js"></script>
     <script src="<?=base_url()?>assets/vendor/inspinia/js/plugins/toastr/toastr.min.js"></script>
     <script src="<?=base_url()?>assets/js/sf.js"></script>
 
