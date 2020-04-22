@@ -146,6 +146,25 @@ class Cart extends MY_Base {
 		$pelunasanDenda4 = $dataPelunasan4[0]->pel_totaldenda;
 		$pelunasanDenda5 = $dataPelunasan5[0]->pel_totaldenda;
 
+		//total pokok , bunga, denda pinjaman masuk
+		$t_pokok_0 = $pelunasanPokok0 + $angsuranPokok0;
+		$t_pokok_1 = $pelunasanPokok1 + $angsuranPokok1;
+		$t_pokok_2 = $pelunasanPokok2 + $angsuranPokok2;
+		$t_pokok_3 = $pelunasanPokok3 + $angsuranPokok3;
+		$t_pokok_4 = $pelunasanPokok4 + $angsuranPokok4;
+		$t_pokok_5 = $pelunasanPokok5 + $angsuranPokok5;
+		$t_bunga_0 = $angsuranBunga0 + $pelunasanBunga0;
+		$t_bunga_1 = $angsuranBunga1 + $pelunasanBunga1;
+		$t_bunga_2 = $angsuranBunga2 + $pelunasanBunga2;
+		$t_bunga_3 = $angsuranBunga3 + $pelunasanBunga3;
+		$t_bunga_4 = $angsuranBunga4 + $pelunasanBunga4;
+		$t_bunga_5 = $angsuranBunga5 + $pelunasanBunga5;
+		$t_denda_0 = $angsuranDenda0 + $pelunasanDenda0;
+		$t_denda_1 = $angsuranDenda1 + $pelunasanDenda1;
+		$t_denda_2 = $angsuranDenda2 + $pelunasanDenda2;
+		$t_denda_3 = $angsuranDenda3 + $pelunasanDenda3;
+		$t_denda_4 = $angsuranDenda4 + $pelunasanDenda4;
+		$t_denda_5 = $angsuranDenda5 + $pelunasanDenda5;
 		//Data Pinjaman Pencairan
 		$dataPencairan0 = $this->Pinjaman_model->get_data_pihutang(1,$tanggalDuedate0,NULL);
 		$dataPencairan1 = $this->Pinjaman_model->get_data_pihutang(1,$tanggalDuedate1,NULL);
@@ -270,17 +289,42 @@ class Cart extends MY_Base {
 		$keluar4 = $pokokPenarikan4 + $bungaPenarikan4 + $pelunasanPokok4 + $pencairanPokok4 + $jasaInvestasi4 + $investasiTutup4;
 		$keluar5 = $pokokPenarikan5 + $bungaPenarikan5 + $pelunasanPokok5 + $pencairanPokok5 + $jasaInvestasi5 + $investasiTutup5;
 
+		//total simpanan masuk
+		$t_simpanan_m0 = $saldoSimpanan0 + $phPenarikan0 + $adminPenarikan0;
+		$t_simpanan_m1 = $saldoSimpanan1 + $phPenarikan1 + $adminPenarikan1;
+		$t_simpanan_m2 = $saldoSimpanan2 + $phPenarikan2 + $adminPenarikan2;
+		$t_simpanan_m3 = $saldoSimpanan3 + $phPenarikan3 + $adminPenarikan3;
+		$t_simpanan_m4 = $saldoSimpanan4 + $phPenarikan4 + $adminPenarikan4;
+		$t_simpanan_m5 = $saldoSimpanan5 + $phPenarikan5 + $adminPenarikan5;
+		//total simpanan keluar
+		$t_simpanan_k0 = $bungaPenarikan0 + $pokokPenarikan0;
+		$t_simpanan_k1 = $bungaPenarikan1 + $pokokPenarikan1;
+		$t_simpanan_k2 = $bungaPenarikan2 + $pokokPenarikan2;
+		$t_simpanan_k3 = $bungaPenarikan3 + $pokokPenarikan3;
+		$t_simpanan_k4 = $bungaPenarikan4 + $pokokPenarikan4;
+		$t_simpanan_k5 = $bungaPenarikan5 + $pokokPenarikan5;
+
+		//total pinjaman masuk
+		$t_pinjaman_m0 = $t_pokok_0 + $t_bunga_0 + $t_denda_0;
+		$t_pinjaman_m1 = $t_pokok_1 + $t_bunga_1 + $t_denda_1;
+		$t_pinjaman_m2 = $t_pokok_2 + $t_bunga_2 + $t_denda_2;
+		$t_pinjaman_m3 = $t_pokok_3 + $t_bunga_3 + $t_denda_3;
+		$t_pinjaman_m4 = $t_pokok_4 + $t_bunga_4 + $t_denda_4;
+		$t_pinjaman_m5 = $t_pokok_5 + $t_bunga_5 + $t_denda_5;
+		
+		//total investasi keluar
+		$t_investasi_k0 = $investasiTutup0 + $jasaInvestasi0;
+		$t_investasi_k1 = $investasiTutup1 + $jasaInvestasi1;
+		$t_investasi_k2 = $investasiTutup2 + $jasaInvestasi2;
+		$t_investasi_k3 = $investasiTutup3 + $jasaInvestasi3;
+		$t_investasi_k4 = $investasiTutup4 + $jasaInvestasi4;
+		$t_investasi_k5 = $investasiTutup5 + $jasaInvestasi5;
+
 		//Prediksi Beban
 
 		//Prediksi Masuk
 		$data = array(
 
-			//date
-
-			//neraca
-
-			//investasi
-			
 			//simpanan
 				//setoran masuk
 				'saldosimpananneraca0' => $saldoSimpanan0,
@@ -363,6 +407,15 @@ class Cart extends MY_Base {
 				'pelunasanDenda3' => $pelunasanDenda3,
 				'pelunasanDenda4' => $pelunasanDenda4,
 				'pelunasanDenda5' => $pelunasanDenda5,
+
+				//total pokok masuk
+				"t_pokok_0" => $t_pokok_0,
+				"t_pokok_1" => $t_pokok_1,
+				"t_pokok_2" => $t_pokok_2,
+				"t_pokok_3" => $t_pokok_3,
+				"t_pokok_4" => $t_pokok_4,
+				"t_pokok_5" => $t_pokok_5,
+				
 			//pencairan pinjaman
 				'pencairanPokok0' => $pencairanPokok0,
 				'pencairanPokok1' => $pencairanPokok1,
@@ -379,8 +432,7 @@ class Cart extends MY_Base {
 				'investasi3' => $investasi3,
 				'investasi4' => $investasi4,
 				'investasi5' => $investasi5,
-			
-			//investasi keluar
+				//keluar
 				//jasa
 				'jasaInvestasi0' => $jasaInvestasi0,
 				'jasaInvestasi1' => $jasaInvestasi1,
@@ -396,7 +448,7 @@ class Cart extends MY_Base {
 				'investasiTutup4' => $investasiTutup4,
 				'investasiTutup5' => $investasiTutup5,
 
-			//total
+			//total kas
 				//masuk
 				'masuk0' => $masuk0,
 				'masuk1' => $masuk1,
@@ -411,7 +463,35 @@ class Cart extends MY_Base {
 				'keluar3' => $keluar3,
 				'keluar4' => $keluar4,
 				'keluar5' => $keluar5,
-
+			
+			//total simpanan masuk
+			't_simpanan_m0' => $t_simpanan_m0,
+			't_simpanan_m1' => $t_simpanan_m1,
+			't_simpanan_m2' => $t_simpanan_m2,
+			't_simpanan_m3' => $t_simpanan_m3,
+			't_simpanan_m4' => $t_simpanan_m4,
+			't_simpanan_m5' => $t_simpanan_m5,
+			//total simpanan keluar
+			't_simpanan_k0' => $t_simpanan_k0,
+			't_simpanan_k1' => $t_simpanan_k1,
+			't_simpanan_k2' => $t_simpanan_k2,
+			't_simpanan_k3' => $t_simpanan_k3,
+			't_simpanan_k4' => $t_simpanan_k4,
+			't_simpanan_k5' => $t_simpanan_k5,
+			//total pinjaman masuk
+			't_pinjaman_m0' => $t_pinjaman_m0,
+			't_pinjaman_m1' => $t_pinjaman_m1,
+			't_pinjaman_m2' => $t_pinjaman_m2,
+			't_pinjaman_m3' => $t_pinjaman_m3,
+			't_pinjaman_m4' => $t_pinjaman_m4,
+			't_pinjaman_m5' => $t_pinjaman_m5,
+			//total investasi keluar
+			't_investasi_k0' => $t_investasi_k0,
+			't_investasi_k1' => $t_investasi_k1,
+			't_investasi_k2' => $t_investasi_k2,
+			't_investasi_k3' => $t_investasi_k3,
+			't_investasi_k4' => $t_investasi_k4,
+			't_investasi_k5' => $t_investasi_k5,
 
 			//data setoran
 

@@ -155,14 +155,14 @@ class Simkesan extends MY_Base
          $setoran = $this->Setoransimkesan_model->get_data_setor($id);
          $titipan = $this->Titipansimkesan_model->get_sikkode($id);
          //var_dump($titipan);
-         $tahun = 5;
+         $bulan = 59;
          $tahun10 = 10;
          if ($row) {
              $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
              $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
              $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
              $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
-             $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+             $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$bulan.' Month'));
              $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years')); 
              $data = array(
                 'setoran_data' => $setoran,
@@ -261,14 +261,14 @@ class Simkesan extends MY_Base
         $row = $this->Simkesan_model->get_by_id($id);
         $setoran = $this->Setoransimkesan_model->get_data_setor($id);
         $k =  $this->input->post('klaim',TRUE);
-        $tahun = 5;
+        $bulan = 59;
         $tahun10 = 10;
         if ($row) { 
             $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
             $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
             $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
             $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
-            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$bulan.' Month'));
             $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
             $klaim = $this->Jenisklaim_model->get_by_tahunke($k,$row->psk_id);
             $data = array(
@@ -301,14 +301,14 @@ class Simkesan extends MY_Base
     {
         $row = $this->Simkesan_model->get_by_id($id);
         $setoran = $this->Setoransimkesan_model->get_data_setor($id);
-        $tahun = 5;
+        $bulan = 59;
         $tahun10 = 10;
         if ($row) { 
             $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
             $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
             $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
             $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
-            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$bulan.' Month'));
             $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
             $klaim = $this->Jenisklaim_model->get_by_tahunke(0,$row->psk_id);
             $data = array(
@@ -375,14 +375,14 @@ class Simkesan extends MY_Base
         $row = $this->Simkesan_model->get_by_id($id);
         $penarikan = $this->Jenispenarikansimkesan_model->get_by_id(1);
         $setoran = $this->Setoransimkesan_model->get_data_setor($id);
-        $tahun = 5;
+        $bulan = 59;
         $tahun10 = 10;
         if ($row) {
             $psk_id = $this->db->get_where('plansimkesan', array('psk_id' => $row->psk_id))->row();
             $wil_kode = $this->db->get_where('wilayah', array('wil_kode' => $row->wil_kode))->row();
             $ang_no = $this->db->get_where('anggota', array('ang_no' => $row->ang_no))->row();
             $kar_kode = $this->db->get_where('karyawan', array('kar_kode' => $row->kar_kode))->row();
-            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun.' Years'));
+            $tanggalDuedate = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$bulan.' Months'));
             $tahun10 = date("Y-m-d", strtotime($row->sik_tglpendaftaran.' + '.$tahun10.' Years'));
             $data = array(
                 'penarikan_data' => $penarikan,

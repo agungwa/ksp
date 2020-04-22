@@ -18,7 +18,7 @@
 	    <tr><td>Id Anggota</td><td><?php echo $ang_no," | ",$nm_ang_no; ?></td></tr>
 	    <tr><td>Plan Simkesan</td><td><?php echo $psk_id; ?></td></tr>
 	    <tr><td>Wilayah</td><td><?php echo $wil_kode; ?></td></tr>
-	    <tr><td>Tanggal Pendaftaran</td><td><?php echo $sik_tglpendaftaran," | Estimasi Berakhir : ",$estimasi_berakhir," | Estimasi Pengembangan : ",$estimasi_pengembangan; ?></td></tr>
+	    <tr><td>Tanggal Pendaftaran</td><td><?php echo dateFormataja($sik_tglpendaftaran)," | Berakhir Setoran : ",dateFormataja($estimasi_berakhir)," | Pengembangan : ",dateFormataja($estimasi_pengembangan); ?></td></tr>
 	    <tr><td>Setoran Perbulan</td><td><?php echo neraca($setor_psk_id); ?></td></tr>
 	    <tr><td>Estimasi Pokok</td><td><?php echo neraca($setor_psk_id*60)," | Potensi Pengembangan : ",neraca($setor_psk_id*60*5/3); ?></td></tr>
 	    <tr><td>Tanggal Berakhir</td><td><?php echo $sik_tglberakhir; ?></td></tr>
@@ -50,10 +50,10 @@
                 <tr>
     			<td width="80px"><?php echo $no ?></td>
     			<td><?php echo $setoran->sik_kode ?></td>
-    			<td><?php echo $setoran->ssk_tglsetoran ?></td>
-    			<td><?php echo $setoran->ssk_jmlsetor ?></td>
-    			<td><?php echo $totalsetor ?></td>
-    			<td><?php echo $kekurangan ?></td>
+    			<td><?php echo dateFormataja($setoran->ssk_tglsetoran) ?></td>
+    			<td><?php echo neraca($setoran->ssk_jmlsetor) ?></td>
+    			<td><?php echo neraca($totalsetor) ?></td>
+    			<td><?php echo neraca($kekurangan) ?></td>
 		</tr>
                    
                 <?php
@@ -75,6 +75,7 @@
         		<th class="text-center">Tahunke</th>
         		<th class="text-center">Nominal</th>
         		<th class="text-center">Administrasi</th>
+        		<th class="text-center">Tunggakan</th>
         		<th class="text-center">Total Diterima</th>
             </tr>
             </thead>
@@ -89,7 +90,7 @@
                 $diff1 = $date11->diff($date21);
                 $selisih1 = (($diff1->format('%y') * 12) + $diff1->format('%m'))+1;
                 $selisihjt1 = (($diff1->format('%y') * 12) + $diff1->format('%m'));
-                $harusbayar = $selisihjt1 * $setor_psk_id;
+                $harusbayar = $selisih1 * $setor_psk_id;
 
                 $tahunklaim=$klaim->jkl_tahunke-1;
                 $bulanklaim=($klaim->jkl_tahunke*12)-11;
@@ -102,15 +103,10 @@
 
                 $tanggalklaim = date("Y-m-d", strtotime($sik_tglpendaftaran.' + '.$tahunklaim.' Years'));            
                 $administrasi = $klaim->jkl_nominal*$klaim->jkl_administrasi/100;
-                $jumlahditerima = $klaim->jkl_nominal - $administrasi;
+                $jumlahditerima = $klaim->jkl_nominal - $administrasi - $tunggakan;
                 $jkl_plan = $this->db->get_where('plansimkesan', array('psk_id' => $klaim->jkl_plan))->row();
-            ?>
-            <?php 
             
-            $datetime1 = new DateTime('2019-10-1');
-            $datetime2 = new DateTime('2019-12-1');
-            $interval = $datetime1->diff($datetime2);
-            echo $harusbayar ," ", $interval->format('%m') ?>
+            ?>
                 <tr>
                 <td width="80px"><?php echo $no ?></td>
 			<td><?php echo $tunggakan ?></td>
@@ -119,6 +115,7 @@
 			<td><?php echo $klaim->jkl_tahunke ?></td>
 			<td><?php echo neraca($klaim->jkl_nominal) ?></td>
 			<td><?php echo neraca($administrasi) ?></td>
+			<td><?php echo neraca($tunggakan) ?></td>
 			<td><?php echo neraca($jumlahditerima)?></td>
 		</tr>
                 
