@@ -246,10 +246,10 @@ class Simpanan extends MY_Base
         //insert data setoran simpanan
         
 		$datetoday = date("Y-m-d", strtotime($this->tgl));
-        $tglsetor = date("Y-m-d", strtotime($datetoday.' - '.$this->input->post('mundur',TRUE).' Days'));
+        // $tglsetor = date("Y-m-d", strtotime($datetoday.' - '.$this->input->post('mundur',TRUE).' Days'));
         $dataSetoran = array(
             'sim_kode' => $this->input->post('sim_kode',TRUE),
-            'ssi_tglsetor' => $tglsetor,
+            'ssi_tglsetor' => $this->tgl,
             'ssi_jmlsetor' => $this->input->post('ssi_jmlsetor',TRUE),
             'ssi_tgl' => $this->tgl,
             'ssi_flag' => 0,

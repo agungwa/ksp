@@ -97,7 +97,7 @@
                 $totalsetorseharusnya=$bulanklaim*$setor_psk_id;
                 if ($selisih1 < $bulanklaim) {
                 $tunggakan=$totalsetorseharusnya-$totalsetor;
-                } else if ($selisih1 > $bulanklaim) {
+                } else if ($selisih1 >= $bulanklaim) {
                 $tunggakan = $harusbayar - $totalsetor;
                 }
 

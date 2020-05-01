@@ -648,7 +648,21 @@ lookup();
     });
     </script>
 
-	<script type="text/javascript">
+    <script type="text/javascript">
+    
+    $(document).ready(function() {
+            setTimeout(function() {
+                toastr.options = {
+                    closeButton: true,
+                    progressBar: true,
+                    showMethod: 'slideDown',
+                    timeOut: 6000
+                };
+                toastr.success('Jaga kesehatan, tetap tersenyum :)', 'Selamat datang di KSP SMM');
+
+            }, 1300);
+    });
+
 		$(document).ready(function(){
 			$('.data').DataTable({
                 dom: '<"html5buttons"B>lTfgitp',
