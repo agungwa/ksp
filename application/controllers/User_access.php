@@ -9,6 +9,7 @@ class User_access extends MY_Base
     {
         parent::__construct();
         $this->load->model('User_access_model');
+        $this->load->model('Master_access_model');
         $this->load->model('Users_model');
         $this->load->model('User_group_model');
         $this->load->library('form_validation');
@@ -33,7 +34,8 @@ class User_access extends MY_Base
         $config['page_query_string'] = TRUE;
         $numUser = $this->Users_model->total_rows($q);
         $numGroup = $this->User_group_model->total_rows($q);
-        $config['total_rows'] = $numUser * $numGroup;//$this->User_access_model->total_rows($q);
+        $masterAccess = $this->Master_access_model->total_rows($q);
+        $config['total_rows'] = $masterAccess * $numGroup;//$this->User_access_model->total_rows($q);
         $user_access = $this->User_access_model->get_limit_data_cek($config['per_page'], $start, $q);
         // print_r($user_access);die();
         $this->load->library('pagination');
