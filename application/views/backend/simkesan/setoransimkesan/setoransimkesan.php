@@ -7,7 +7,7 @@
     <div class="col-lg-12">
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h2 style="margin-top:0px">Simkesan Read</h2>
+            <h2 style="margin-top:0px">Setor Simkesan</h2>
             <div class="ibox-tools">
             </div>
         </div>
@@ -23,7 +23,7 @@
 	    <tr><td>Estimasi Pokok</td><td><?php echo 'Rp ',number_format($setor_psk_id*60, 0, ".", ".")," | Potensi Pengembangan : Rp ",number_format($setor_psk_id*60*5/3, 0, ".", "."); ?></td></tr>
 	    <tr><td>Tanggal Berakhir</td><td><?php echo $sik_tglberakhir; ?></td></tr>
 	    <tr><td>Status</td><td><?php echo $this->statusSimkesan[$sik_status]; ?></td></tr>
-    <tr><td></td><td><a href="<?php echo site_url('simkesan/read/'.$sik_kode) ?>" class="btn btn-default hBack">Batal</a> </td></tr>
+    <tr><td></td><td><a href="<?php echo site_url('simkesan/read/'.$sik_kode) ?>" class="btn btn-default hBack">Kembali</a> </td></tr>
 	</table>
 
     <form action="<?php echo site_url('simkesan/setoransimkesan_action'); ?>" method="post">
@@ -68,15 +68,21 @@
                     </div>
                 </td>
                 <?php endif; ?>
-		</tr>
-                
+		    </tr>
                 <?php
-               
                 $no++;
             }
             ?>
             <div class='col-md-4'>
-            <input type="number" class="form-control" name="ssk_jmlsetor" id="searchTxt" placeholder="Setor" value="<?php echo $setor_psk_id ?>" required />
+            <select name="ssk_jmlsetor" id="searchTxt" class="form-control"> 
+            <option value="<?= $setor_psk_id ?>"><?= $setor_psk_id ?></option> 
+                <?php
+                    $ang=($kekurangan/$setor_psk_id)+1;
+                    for ($num=1; $num<$ang; $num++){ echo '
+                    <option value="' .+$num*$setor_psk_id. '">' .$num*$setor_psk_id. '</option>'; }
+                    echo $ang;
+                ?> 
+            </select>
             <input type="date" class="form-control" name="ssk_tglsetoran" id="todays-date" placeholder="ssk_tglsetoran" value="" required />
             <?php if($kekurangan == $setor_psk_id) { 
             echo '<td class = "danger">Setoran Terakhir</td><input type="hidden" class="form-control" name="sik_status" id="sik_status" placeholder="sik_status" value="4" required="required" readonly />';
@@ -97,7 +103,9 @@
         </div>
             </tbody>
             </form>
-    <form action="<?php echo site_url('simkesan/titipsimkesan_action'); ?>" method="post">
+
+    <!-- titipan simkesan -->
+    <!-- <form action="<?php echo site_url('simkesan/titipsimkesan_action'); ?>" method="post">
         </table>
     
             <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
@@ -168,10 +176,7 @@
             ?>
             
             </form>
-        </table>
-       
-    
-        
+        </table> -->
         </div>
         
     </div>

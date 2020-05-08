@@ -206,8 +206,7 @@ class Simkesan extends MY_Base
         );
         
         $this->Simkesan_model->update($this->input->post('sik_kode', TRUE), $dataSimkesan);
-
-                 redirect(site_url('simkesan/?p=5&s=&w=&plan=&f=1970-03-05&t='));
+                 redirect(site_url('simkesan/setoransimkesan/'.$this->input->post('sik_kode',TRUE)));
          }
 
     public function titipsimkesan_action()
@@ -594,11 +593,13 @@ class Simkesan extends MY_Base
         $f = urldecode($this->input->get('f', TRUE)); //tgl dari
         $t = urldecode($this->input->get('t', TRUE)); //tgl ke
         $start = intval($this->input->get('start'));
-        if ($f != NULL){
-            $simkesan = $this->Simkesan_model->get_data_simkesan($plan,$w,$s,$f,$t,$start);
-        } else {
-            $simkesan = array();
-        }
+        
+        $satu = 1;
+		$datetoday = date("Y-m-d", strtotime($this->tgl));
+        $tanggalDuedate = date("Y-m-d", strtotime($datetoday.' + '.$satu.' Months'));
+		if ($f == null && $t == null ) { $f=$datetoday; $t=$tanggalDuedate;}
+        
+        $simkesan = $this->Simkesan_model->get_data_simkesan($plan,$w,$s,$f,$t,$start);
         $wilayah = $this->Wilayah_model->get_all();
         $plansimkesan = $this->Plansimkesan_model->get_all();
         $data = array(

@@ -145,7 +145,7 @@ class DataSimkesan extends MY_Base
 		//Saldo Klaim
 		foreach ($simkesanKlaim as $key => $value) {
 			if ($f<>'' && $t<>'' && $w<>'') {	
-			$tgl = date("Y-m-d", strtotime($value->sik_tglpendaftaran));
+			$tgl = date("Y-m-d", strtotime($value->ksi_tglklaim));
 			$sik_kode = $this->db->get_where('simkesan', array('sik_kode' => $value->sik_kode))->row();
     			if (($tgl < $f && 'all'==$w) || ($tgl < $f && $sik_kode->wil_kode==$w))  {
     				$saldoSetorklaim += $value->ksi_totalsetor;
