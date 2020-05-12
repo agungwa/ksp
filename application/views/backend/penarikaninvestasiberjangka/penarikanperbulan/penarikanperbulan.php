@@ -32,20 +32,18 @@
             </div>
         </div>
         
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
         <th class="text-center">Rekening Investasi</th>
 		<th class="text-center">Anggota</th>
 		<th class="text-center">Nama Anggota</th>
-		<th class="text-center">Karyawan</th>
-		<th class="text-center">Wilayah</th>
+		<th class="text-center">Karyawan | Wilayah</th>
 		<th class="text-center">Jangka Waktu</th>
-		<th class="text-center">Jasa</th>
-		<th class="text-center">Bunga</th>
-		<th class="text-center">Tanggal Pendaftaran</th>
-		<th class="text-center">Tanggal Jatuh Tempo</th>
+		<th class="text-center">Jasa | Bunga</th>
+		<th class="text-center">Pendaftaran | JatuhTempo</th>
+		<th class="text-center">Sisa Jasa</th>
 		<th class="text-center">Status</th>
 		<th class="text-center">Action</th>
             </tr>
@@ -61,24 +59,28 @@
                 $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $investasiberjangka->jiv_id))->row();
                 $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $investasiberjangka->biv_id))->row();
                 $tanggalDuedate = date("Y-m-d", strtotime($investasiberjangka->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
-
+                $jumlahtarik = $this->Penarikaninvestasiberjangka_model->get_totalpenarikan($investasiberjangka->ivb_kode);
+                $jmlterima = $investasiberjangka->ivb_jumlah*$biv_id->biv_bunga/100*$jwi_id->jwi_jangkawaktu;
+                $sisajasa = $jmlterima-$jumlahtarik[0]->pib_jmlditerima;
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
             <td><?php echo $investasiberjangka->ivb_kode ?></td>
             <td><?php echo $investasiberjangka->ang_no ?></td>
 			<td><?php echo $ang_no->ang_nama ?></td>
-			<td><?php echo $kar_kode->kar_nama ?></td>
-			<td><?php echo $wil_kode->wil_nama ?></td>
+			<td><?php echo $kar_kode->kar_nama," | ",$wil_kode->wil_nama ?></td>
 			<td><?php echo $jwi_id->jwi_jangkawaktu , " Bulan" ?></td>
-			<td><?php echo $jiv_id->jiv_jasa ?></td>
-			<td><?php echo $biv_id->biv_bunga ," %" ?></td>
-			<td><?php echo $investasiberjangka->ivb_tglpendaftaran ?></td>
-			<td><?php echo $tanggalDuedate ?></td>
+			<td><?php echo $jiv_id->jiv_jasa," | ",$biv_id->biv_bunga ," %" ?></td>
+			<td><?php echo dateFormataja($investasiberjangka->ivb_tglpendaftaran)," | ",dateFormataja($tanggalDuedate) ?></td>
+			<td><?php echo rupiah($sisajasa) ?></td>
 			<td><?php echo $ivb_status[$investasiberjangka->ivb_status] ?></td>
 			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('penarikaninvestasiberjangka/tarikpenarikanperbulan?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 
+				<?php
+                if ($jumlahtarik[0]->pib_jmlditerima < $jmlterima){
+                    echo anchor(site_url('penarikaninvestasiberjangka/tarikpenarikanperbulan?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 
+                } else {
+                    echo " Silakan tutup rekening";
+                }
 				?>
 			</td>
 		</tr>

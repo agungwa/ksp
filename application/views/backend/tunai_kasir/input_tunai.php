@@ -66,7 +66,7 @@
         </div>
 	    <div class="form-group">
             <label for="datetime">Tanggal</label>
-            <input type="date" class="form-control" name="tun_tanggal" id="todays-date" placeholder="Tanggal"  />
+            <input type="date" class="form-control" readonly name="tun_tanggal" id="todays-date" placeholder="Tanggal"  />
         </div>
 	    <input type="hidden" name="tun_id" /> 
 	    <button type="submit" class="btn btn-primary" onclick="return confirm('Click OK jika benar menyetor sejumlah Rp ' + rubah(searchTxt.value) + ', Jenis : ' + jenis[form.tun_jenis.value] + ', Kantor : ' + kantor[form.tun_kantor.value])">Proses</button> 

@@ -37,7 +37,7 @@
         </div>
 	    <div class="form-group">
             <label for="datetime"> Tanggal</label>
-            <input type="date" class="form-control" name="lln_tanggal" id="todays-date" required placeholder=" Tanggal" />
+            <input type="date" readonly class="form-control" name="lln_tanggal" id="todays-date" required placeholder=" Tanggal" />
         </div>
 	    <input type="hidden" name="lln_id" /> 
 	    <input type="hidden" name="lln_jenis" value="<?php echo $j; ?>" /> 

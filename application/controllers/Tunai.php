@@ -80,7 +80,7 @@ class Tunai extends MY_Base
             
             //Kasbon simpanan
             $kasbonsimpanan = $this->Kasbon_model->get_tunai(0,$w,$f,NULL,NULL,NULL,NULL);
-            $ksbs = $kasbonsimpanan[0]->ksb_masuk;
+            $ksbs = $kasbonsimpanan[0]->ksb_keluar;
 		
 			//hitung saldo simpanan aktif kini
 			$setoran = $this->Setoransimpanan_model->get_sirkulasi_simpanan($f,NULL,NULL,$w,2);

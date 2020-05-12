@@ -30,7 +30,7 @@
                 </form>
             </div>
         </div>
-        <table class="table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
+        <table class="data table table-bordered table-hover table-condensed" style="margin-bottom: 10px">
             <thead class="thead-light">
             <tr>
                 <th class="text-center">No</th>
@@ -59,7 +59,7 @@
                 $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $investasiberjangka->jiv_id))->row();
                 $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $investasiberjangka->biv_id))->row();
                 $tanggalDuedate = date("Y-m-d", strtotime($investasiberjangka->ivb_tglpendaftaran.' + '.$jwi_id->jwi_jangkawaktu.' Months'));
-
+                $jumlahtarik = $this->Penarikaninvestasiberjangka_model->get_totalpenarikan($investasiberjangka->ivb_kode);
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
@@ -75,8 +75,12 @@
 			<td><?php echo $tanggalDuedate ?></td>
 			<td><?php echo $ivb_status[$investasiberjangka->ivb_status] ?></td>
 			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('penarikaninvestasiberjangka/tarikpenarikandidepan?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 
+                <?php 
+                if ($jumlahtarik[0]->pib_jmlditerima > 0){
+                    echo anchor(site_url('penarikaninvestasiberjangka/tarikpenarikandidepan?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 			
+                } else {
+                    echo "silakan tutup rekening";
+                }
 				
 				?>
 			</td>

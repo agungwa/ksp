@@ -25,6 +25,8 @@
 					$jumlahtarik = $this->Penarikaninvestasiberjangka_model->get_totalpenarikan($item['ivb_kode']);
 					$data[$i]['ivb_kode'] 		= $item['ivb_kode'];
 					$data[$i]['nama_ang_no'] 	= $item['nama_ang_no'];
+					$data[$i]['kar_kode'] 		= $item['kar_kode'];
+					$data[$i]['wil_kode'] 		= $item['wil_kode'];
 					$data[$i]['alamat_ang_no'] 	= $item['alamat_ang_no'];
 					$data[$i]['jwi_id'] 		= $item['jwi_id'];
 					$data[$i]['biv_id'] 		= $item['biv_id'];
@@ -56,17 +58,16 @@
 					<th >No</th>
 					<th >Rekening Investasi</th>
 					<th >Nama Anggota</th>
+					<th >Karyawan</th>
+					<th >Wilayah</th>
 					<th >Alamat</th>
-					<th >Jangka Waktu</th>
-					<th >Bunga</th>
+					<th >Jangka | Bunga</th>
 					<th >Total Jasa</th>
 					<th >Jasa Ditarik</th>
 					<th >Sisa Jasa</th>
 					<th >Pokok</th>
 					<th >Pokok + Sisa Jasa</th>
-					<th >Tanggal Pendaftaran</th>
-					<th >Tanggal Jatuh Tempo</th>
-					<th >Status</th>
+					<th >Pendaftaran | Jatuh Tempo</th>
 				</tr>
             </thead>
 			<tbody><?php
@@ -86,17 +87,16 @@
 						<td width="80px"><?php echo ++$start ?></td>
 						<td><?php echo $item['ivb_kode'] ?></td>
 						<td><?php echo $item['nama_ang_no'] ?></td>
+						<td><?php echo $item['kar_kode'] ?></td>
+						<td><?php echo $item['wil_kode'] ?></td>
 						<td><?php echo $item['alamat_ang_no'] ?></td>
-						<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
-						<td><?php echo $item['biv_id'] ," %" ?></td>
+						<td><?php echo $item['jwi_id'] , " Bulan "," | ",$item['biv_id'] ," % " ?></td>
 						<td><?php echo rupiahsimpanan($item['to_jasa']) ?></td>
 						<td><?php echo rupiahsimpanan($item['jumlahditarik'])?></td>
 						<td><?php echo rupiahsimpanan($item['sisajasa'])?></td>
 						<td><?php echo rupiahsimpanan($item['pokok']) ?></td>
 						<td><?php echo rupiahsimpanan($item['pokok']+$item['sisajasa']) ?></td>
-						<td><?php echo $item['tglpendaftaran'] ?></td>
-						<td><?php echo $item['tanggalDuedate'] ?></td>
-						<td><?php echo $item['status'] ?></td> 
+						<td><?php echo $item['tglpendaftaran']," | ",$item['tanggalDuedate'] ?></td>
 						<?php
 							// SUB TOTAL per thn_byr
 							if (@$data[$key+1]['jatuhtempo'] != $item['jatuhtempo']) {

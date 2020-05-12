@@ -42,7 +42,7 @@
 
             <div class="form-group">
                 <label for="datetime">Tanggal</label>
-                <input type="date" class="form-control" name="ksb_tanggal" id="todays-date" placeholder="Tanggal" required />
+                <input type="date" class="form-control" readonly name="ksb_tanggal" id="todays-date" placeholder="Tanggal" required />
             </div>
 	    <input type="hidden" name="ksb_no" value="<?php echo $ksb_no; ?>" /> 
 	    <button type="submit" class="btn btn-primary" onclick="return confirm('Click OK jika benar menyetor sejumlah Rp ' + rubah(searchTxt.value))"><?php echo $button ?></button> 

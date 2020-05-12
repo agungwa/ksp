@@ -135,9 +135,9 @@ lookup();
                             <li>
                                 <a href="#" id="damian">Rekap<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
-                                <li>
+                                <!-- <li>
                                         <a href="<?=base_url()?>Kasbon/?p=2">Kas Bon</a>
-                                    </li>
+                                    </li> -->
                                     <li>
                                         <a href="<?=base_url()?>Lainlain/setupinput/?active=2">Lain-lain</a>
                                     </li>
