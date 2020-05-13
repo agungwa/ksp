@@ -78,9 +78,9 @@
 			<td style="text-align:center" width="200px">
                 <?php
                 if ($jumlahtarik[0]->pib_jmlditerima > 0){
-                    echo anchor(site_url('penarikaninvestasiberjangka/tarikpenarikandibelakang?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 
-                } else {
                     echo "silakan tutup rekening";
+                } else {
+                    echo anchor(site_url('penarikaninvestasiberjangka/tarikpenarikandibelakang?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 
                 }
 				?>
 			</td>

@@ -73,15 +73,15 @@
 			<td><?php echo $biv_id->biv_bunga ," %" ?></td>
 			<td><?php echo $investasiberjangka->ivb_tglpendaftaran ?></td>
 			<td><?php echo $tanggalDuedate ?></td>
+			<td><?php echo $jumlahtarik[0]->pib_jmlditerima ?></td>
 			<td><?php echo $ivb_status[$investasiberjangka->ivb_status] ?></td>
 			<td style="text-align:center" width="200px">
                 <?php 
-                if ($jumlahtarik[0]->pib_jmlditerima > 0){
-                    echo anchor(site_url('penarikaninvestasiberjangka/tarikpenarikandidepan?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 			
-                } else {
+               if ($jumlahtarik[0]->pib_jmlditerima > 0){
                     echo "silakan tutup rekening";
+                } else {
+                    echo anchor(site_url('penarikaninvestasiberjangka/tarikpenarikandibelakang?q='.$investasiberjangka->ivb_kode),'tarik','class="text-navy"'); 
                 }
-				
 				?>
 			</td>
 		</tr>
