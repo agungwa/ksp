@@ -185,8 +185,6 @@ class PrintInvestasiberjangka extends MY_Base
             $jwi_id = $this->db->get_where('jangkawaktuinvestasi', array('jwi_id' => $item->jwi_id))->row();
             $jiv_id = $this->db->get_where('jasainvestasi', array('jiv_id' => $item->jiv_id))->row();
             $biv_id = $this->db->get_where('bungainvestasi', array('biv_id' => $item->biv_id))->row();
-
-            
             $date1 = new DateTime($item->ivb_tglpendaftaran);
             $date2 = new DateTime();
             $diff = $date1->diff($date2);

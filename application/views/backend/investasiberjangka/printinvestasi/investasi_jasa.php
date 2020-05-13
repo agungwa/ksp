@@ -24,12 +24,12 @@
         <th >Rekening Investasi</th>
 		<th >Nama Anggota</th>
 		<th >Alamat</th>
-		<th >Jangka Waktu</th>
-		<th >Bunga</th>
+        <th >Karyawan</th>
+        <th >Wilayah</th>
+		<th >Jangka | Bunga</th>
 		<th >Jasa/bulan</th>
 		<th >Investasi</th>
-		<th >Tanggal Pendaftaran</th>
-		<th >Tanggal Jatuh Tempo</th>
+		<th >Pendaftaran | JatuhTempo</th>
 		<th >Status</th>
             </tr>
             </thead>
@@ -45,12 +45,12 @@
             <td><?php echo $item['ivb_kode'] ?></td>
 			<td><?php echo $item['nama_ang_no'] ?></td>
 			<td><?php echo $item['alamat_ang_no'] ?></td>
-			<td><?php echo $item['jwi_id'] , " Bulan" ?></td>
-			<td><?php echo $item['biv_id'] ," %" ?></td>
+			<td><?php echo $item['kar_kode'] ?></td>
+			<td><?php echo $item['wil_kode'] ?></td>
+			<td><?php echo $item['jwi_id'] , " Bulan"," | ",$item['biv_id'] ," %"  ?></td>
 			<td><?php echo rupiahsimpanan($item['ivb_jumlah']*$item['biv_id']/100) ?></td>
 			<td><?php echo rupiahsimpanan($item['ivb_jumlah']) ?></td>
-			<td><?php echo dateFormataja($item['ivb_tglpendaftaran']) ?></td>
-			<td><?php echo dateFormataja($item['jatuhtempo']) ?></td>
+			<td><?php echo dateFormataja($item['ivb_tglpendaftaran'])," | ",dateFormataja($item['jatuhtempo'])  ?></td>
             <td><?php echo $item['ivb_status'] ?></td> 
             <?php
                     // SUB TOTAL per thn_byr
