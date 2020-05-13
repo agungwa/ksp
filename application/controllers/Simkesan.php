@@ -206,7 +206,8 @@ class Simkesan extends MY_Base
         );
         
         $this->Simkesan_model->update($this->input->post('sik_kode', TRUE), $dataSimkesan);
-                 redirect(site_url('simkesan/setoransimkesan/'.$this->input->post('sik_kode',TRUE)));
+                redirect(site_url('simkesan/?p=5&s=&w=&plan=&f=1970-03-05&t='));
+                //redirect(site_url('simkesan/setoransimkesan/'.$this->input->post('sik_kode',TRUE)));
          }
 
     public function titipsimkesan_action()
