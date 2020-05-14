@@ -73,7 +73,6 @@
 			<td><?php echo $biv_id->biv_bunga ," %" ?></td>
 			<td><?php echo $investasiberjangka->ivb_tglpendaftaran ?></td>
 			<td><?php echo $tanggalDuedate ?></td>
-			<td><?php echo $jumlahtarik[0]->pib_jmlditerima ?></td>
 			<td><?php echo $ivb_status[$investasiberjangka->ivb_status] ?></td>
 			<td style="text-align:center" width="200px">
                 <?php 
